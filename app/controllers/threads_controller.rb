@@ -1,5 +1,5 @@
 class ThreadsController < ApplicationController
-  def create
+  def index
     head :ok
   end
 end
