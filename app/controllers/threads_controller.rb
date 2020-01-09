@@ -1,6 +1,6 @@
 class ThreadsController < ApplicationController
   def index
-    head :ok
+    render plain: 'hello world'
   end
 end
 
