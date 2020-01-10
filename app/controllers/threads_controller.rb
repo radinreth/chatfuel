@@ -21,7 +21,6 @@ class ThreadsController < ApplicationController
     def log_console
       logger.warn action_name
       logger.info params.inspect
-      render plain: params.inspect
     end
 end
 
