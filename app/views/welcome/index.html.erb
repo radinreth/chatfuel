@@ -1,5 +1,12 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<% if user_signed_in? %>
+  Hi, <%= current_user.email %>
+  <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'sign in', new_user_session_path %>
+<% end %>
+
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
