@@ -18,12 +18,12 @@ to build interactive chatbot.
 ## Challenge
 
 - __re-engagement__
-- _story_: send remind static message to user if he/she does not complete questionair form.
-- subscribe user to a sequence, then unsubscribe once finish.
+  - _story_: send remind static message to user if he/she does not complete questionair form.
+  - subscribe user to a sequence, then unsubscribe once finish.
 
 - __advance re-engagement__
-- _story_: as a chat admin, The bot should follow up the user only question that he/she does not answer yet or not yet complete the current form.
-- _solution_: keep track for each question, redirect user to last block, which is where his/her question that not yet complete.
+  - _story_: as a chat admin, The bot should follow up the user only question that he/she does not answer yet or not yet complete the current form.
+  - _solution_: keep track for each question, redirect user to last block, which is where his/her question that not yet complete.
 
 ## For more defail,
 
