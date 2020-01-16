@@ -4,6 +4,6 @@ class Activity < ApplicationRecord
   belongs_to :user
 
   def to_block
-    name.downcase.sub /set_/, 'ask '
+    name.to_s.downcase.sub /set_/, 'ask '
   end
 end
