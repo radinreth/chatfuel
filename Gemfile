@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'alto_guisso', github: 'instedd/alto_guisso', branch: 'master'
+gem 'alto_guisso_rails', github: 'instedd/alto_guisso_rails', branch: 'rails-5.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 
