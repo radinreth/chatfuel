@@ -1,5 +1,5 @@
-class OmniauthCallbacksController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :verify_authenticity_token
   skip_before_action :check_guisso_cookie
 
   def instedd
@@ -12,12 +12,10 @@ class OmniauthCallbacksController < ApplicationController
   end
 
   def failure
-
   end
 
   def generic
     auth = request.env['omniauth.auth']
-
     if identity = Identity.find_by_provider_and_token(auth['provider'], auth['uid'])
       user = identity.user
     else
