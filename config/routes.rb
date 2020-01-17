@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   guisso_for :user
 
   root 'welcome#index'
-  get 'welcome/index'
 
-  resources :threads, only: %i[index create] do
+  resources :threads, only: %i[index create show] do
     post :continue, on: :collection
   end
 end

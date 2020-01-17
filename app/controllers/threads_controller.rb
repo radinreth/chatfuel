@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
 class ThreadsController < ApplicationController
-  before_action :log_console, :set_user
+  before_action :log_console, :set_lead
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: resp
+    @leads = Lead.all
   end
 
   def create
-    @activity = @set_user.activities
+    @activity = @set_lead.activities
                          .create_with(value: params[:value])\
                          .find_or_create_by(name: params[:act])
-    head :ok
+    if params[:act] === 'SET_DONE'
+      render json: resp
+    else
+      head :ok
+    end
   end
 
   def continue
@@ -32,7 +36,7 @@ class ThreadsController < ApplicationController
 
   def continue_resp
     {
-      "redirect_to_blocks": [@set_user.last_block]
+      "redirect_to_blocks": [@set_lead.last_block]
     }
   end
 
@@ -41,10 +45,10 @@ class ThreadsController < ApplicationController
     logger.info params.inspect
   end
 
-  def set_user
-    @set_user ||= User.find_or_create_by(mid: params[:mid]) do |user|
-      user.first_name = params[:first_name]
-      user.gender = params[:gender]
+  def set_lead
+    @set_lead ||= Lead.find_or_create_by(mid: params[:mid]) do |lead|
+      lead.first_name = params[:first_name]
+      lead.gender = params[:gender]
     end
   end
 end

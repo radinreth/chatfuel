@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <% if user_signed_in? %>
+      Hi, <%= current_user.email %>
+      <%= link_to 'sign out', destroy_session_path(:user), method: :delete %>
+    <% else %>
+      <%= link_to 'sign in', guisso_sign_in_path_for(:user) %>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
