@@ -2,12 +2,14 @@
   <table>
     <tr>
       <th>mid</th>
-      <th>activity</th>
+      <th>progress</th>
+      <th>-</th>
     </tr>
     <% @leads.each do |lead| %>
       <tr>
         <td><%= lead.mid %></td>
-        <td><%= lead.list %></td>
+        <td>2/3</td>
+        <td><%= link_to 'show', thread_path(lead) %></td>
       </tr>
     <% end %>
   </table>
