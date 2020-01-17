@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class ThreadsController < ApplicationController
-  before_action :log_console, :set_lead
+  before_action :log_console
+  before_action :set_lead, only: [:create]
   skip_before_action :verify_authenticity_token
 
   def index
     @leads = Lead.all
+  end
+
+  def show
+    @lead = Lead.find params[:id]
   end
 
   def create
