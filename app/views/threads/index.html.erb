@@ -1,0 +1,14 @@
+<div>
+  <table>
+    <tr>
+      <th>mid</th>
+      <th>activity</th>
+    </tr>
+    <% @leads.each do |lead| %>
+      <tr>
+        <td><%= lead.mid %></td>
+        <td><%= lead.list %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
