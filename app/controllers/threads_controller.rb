@@ -2,6 +2,7 @@
 
 class ThreadsController < ApplicationController
   before_action :log_console, :set_user
+  skip_before_action :verify_authenticity_token
 
   def index
     render json: resp
