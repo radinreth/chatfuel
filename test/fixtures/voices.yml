@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  call_sid: MyString
+  status: MyString
+  from: MyString
+  call_duration: 1
+
+two:
+  call_sid: MyString
+  status: MyString
+  from: MyString
+  call_duration: 1
