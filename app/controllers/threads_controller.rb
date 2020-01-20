@@ -7,6 +7,11 @@ class ThreadsController < ApplicationController
 
   def index
     @leads = Lead.all
+
+    # respond_to do |format|
+    #   format.html
+    #   format.xml { render xml: @leads.as_json }
+    # end
   end
 
   def show

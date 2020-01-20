@@ -8,7 +8,7 @@
     <% @leads.each do |lead| %>
       <tr>
         <td><%= lead.mid %></td>
-        <td>2/3</td>
+        <td><%= lead.progress %></td>
         <td><%= link_to 'show', thread_path(lead) %></td>
       </tr>
     <% end %>
