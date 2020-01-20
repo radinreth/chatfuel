@@ -4,4 +4,8 @@ class Lead < ApplicationRecord
   def list
     activities.pluck(:name, :value).to_h.inspect
   end
+
+  def progress
+    activities.where(value: 'DONE').present?
+  end
 end
