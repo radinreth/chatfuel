@@ -1,8 +1,10 @@
 class VerboicesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
   end
 
-  def new
+  def create
     @voice = Voice.where(call_sid: params[:CallSid]).first_or_initialize
 
     @voice.call_sid = params[:CallSid]
@@ -12,9 +14,6 @@ class VerboicesController < ApplicationController
     @voice.save
 
     head :ok
-  end
-
-  def create
   end
 
   private
