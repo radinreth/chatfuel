@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     post :continue, on: :collection
   end
 
-  resources :verboices
+  resources :verboices, only: [:index, :create]
 end
