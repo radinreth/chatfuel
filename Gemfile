@@ -32,6 +32,8 @@ gem 'alto_guisso', github: 'instedd/alto_guisso', branch: 'master'
 gem 'alto_guisso_rails', github: 'instedd/alto_guisso_rails', branch: 'rails-5.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
