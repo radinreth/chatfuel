@@ -7,11 +7,6 @@ class ThreadsController < ApplicationController
 
   def index
     @leads = Lead.all
-
-    # respond_to do |format|
-    #   format.html
-    #   format.xml { render xml: @leads.as_json }
-    # end
   end
 
   def show
@@ -30,7 +25,7 @@ class ThreadsController < ApplicationController
   end
 
   def continue
-    render json: continue_resp
+    render json: continue_to_chat_block
   end
 
   private
@@ -44,7 +39,7 @@ class ThreadsController < ApplicationController
     }
   end
 
-  def continue_resp
+  def continue_to_chat_block
     {
       "redirect_to_blocks": [@set_lead.last_block]
     }
