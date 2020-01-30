@@ -33,7 +33,7 @@ class ThreadsController < ApplicationController
   def resp
     {
       "messages": [
-        { "text": 'Hello world' },
+        { "text": 'Your result is:' },
         { "text": "your info: #{params['invoice']}-#{params['phone_number']}" }
       ]
     }
