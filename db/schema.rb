@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_071232) do
+ActiveRecord::Schema.define(version: 2020_01_30_152008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,33 @@ ActiveRecord::Schema.define(version: 2020_01_20_071232) do
     t.string "mid"
     t.string "first_name"
     t.string "gender"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content_type"
+    t.integer "content_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "text_messages", force: :cascade do |t|
+    t.string "messenger_user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.string "profile_pic_url"
+    t.string "timezone"
+    t.string "locale"
+    t.string "source"
+    t.string "last_seen"
+    t.string "signed_up"
+    t.string "sessions"
+    t.string "last_visited_block_name"
+    t.string "last_visited_block_id"
+    t.string "last_clicked_button_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
