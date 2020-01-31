@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    @step = @set_message.steps.build(act: params[:act], value: params[:value])
+    @step = @message.steps.build(act: params[:act], value: params[:value])
     if @step.save
       head :ok
     else
@@ -12,7 +12,21 @@ class MessagesController < ApplicationController
     end
   end
 
+  def done
+    render json: done_response 
+  end
+
   private
+
+  def done_response
+    @last_step = @message.steps.last
+    {
+      "messages": [
+        { "text": 'Your result is:' },
+        { "text": "your info: #{@last_step.act}-#{@last_step.value}" }
+      ]
+    }
+  end
 
   def log_console
     logger.warn action_name
