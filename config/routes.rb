@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   guisso_for :user
   
   root 'homes#show'
+  resources :messages, only: [:create]
+
   # root 'welcome#index'
 
   # resources :threads, only: %i[index create show] do
