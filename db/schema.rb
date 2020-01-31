@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_024349) do
+ActiveRecord::Schema.define(version: 2020_01_31_090020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_01_31_024349) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "lead_id", null: false
     t.index ["lead_id"], name: "index_activities_on_lead_id"
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.string "variable_name"
+    t.string "value"
+    t.bigint "voice_message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["voice_message_id"], name: "index_answers_on_voice_message_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -96,6 +105,15 @@ ActiveRecord::Schema.define(version: 2020_01_31_024349) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "voice_messages", force: :cascade do |t|
+    t.integer "call_id"
+    t.string "address"
+    t.datetime "called_at"
+    t.datetime "finished_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "voices", force: :cascade do |t|
     t.string "call_sid"
     t.string "status"
@@ -106,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_024349) do
   end
 
   add_foreign_key "activities", "leads"
+  add_foreign_key "answers", "voice_messages"
   add_foreign_key "identities", "users"
   add_foreign_key "steps", "messages"
 end
