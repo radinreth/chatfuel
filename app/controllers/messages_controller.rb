@@ -1,29 +1,34 @@
 class MessagesController < ApplicationController
   before_action :log_console
-  before_action :set_message, only: [:create, :done]
+  before_action :set_message, only: [:create, :done, :continue]
+  before_action :set_step, only: [:create, :done, :continue]
   skip_before_action :verify_authenticity_token
 
   def create
-    @step = @message.steps.build(act: params[:act], value: params[:value])
-    if @step.save
-      head :ok
-    else
-      render json: @step.errors, status: :unprocessable_entity
-    end
+    head :ok
   end
 
   def done
-    render json: done_response 
+    render json: done_response
+  end
+
+  def continue
+    render json: continue_response
   end
 
   private
 
+  def continue_response
+    {
+      "redirect_to_blocks": [@message.last_step.to_block]
+    }
+  end
+
   def done_response
-    @last_step = @message.steps.last
     {
       "messages": [
         { "text": 'Your result is:' },
-        { "text": "your info: #{@last_step.act}-#{@last_step.value}" }
+        { "text": "your info: #{@message.last_step.act}-#{@message.last_step.value}" }
       ]
     }
   end
@@ -34,7 +39,7 @@ class MessagesController < ApplicationController
   end
 
   def set_message
-    @set_message ||= TextMessage.find_or_create_by(messenger_user_id: params[:messenger_user_id]) do |message|
+    text_message ||= TextMessage.find_or_create_by(messenger_user_id: params[:messenger_user_id]) do |message|
       message.first_name = params[:first_name]
       message.last_name = params[:last_name]
       message.gender = params[:gender]
@@ -50,6 +55,14 @@ class MessagesController < ApplicationController
       message.last_clicked_button_name = params[:last_clicked_button_name]
     end
 
-    @message ||= Message.find_or_create_by content: @set_message
+    @message ||= Message.find_or_create_by content: text_message
+  end
+
+  def set_step
+    @set_step ||= @message.steps.build(act: params[:act], value: params[:value])
+
+    unless @set_step.save
+      render json: @step.errors, status: :unprocessable_entity
+    end
   end
 end

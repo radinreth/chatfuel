@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   
   root 'homes#show'
   resources :messages, only: [:create] do
-    post :done, on: :collection
+    collection do
+      post :continue
+      post :done
+    end
   end
 end
