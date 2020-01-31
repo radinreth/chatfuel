@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :log_console
-  before_action :set_message, only: [:create]
+  before_action :set_message, only: [:create, :done]
   skip_before_action :verify_authenticity_token
 
   def create
