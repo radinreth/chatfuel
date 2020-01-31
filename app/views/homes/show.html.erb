@@ -1,1 +1,6 @@
-<h1>Homes#show</h1>
+<h1>Text mesage:</h1>
+
+
+<% @messages.each do |message| %>
+  <p><%= message.content.first_name %> </p>
+<% end %>
