@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   guisso_for :user
   
   root 'homes#show'
+  resources :threads, only: [:index]
   resources :messages, only: [:create] do
     collection do
       post :continue
