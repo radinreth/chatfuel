@@ -1,6 +1,20 @@
 <tr>
   <td>
-    <%= voice_message.address %>
+    <table class="table table-sm">
+      <tr>
+        <th>call id</th>
+        <th>address</th>
+        <th>called at</th>
+        <th>finished at</th>
+      </tr>
+
+      <tr>
+        <td><%= voice_message.call_id%></td>
+        <td><%= voice_message.address%></td>
+        <td><%= voice_message.called_at%></td>
+        <td><%= voice_message.finished_at%></td>
+      </tr>
+    </table>
   </td>
   <td>
     <%= voice_message.class.name %>

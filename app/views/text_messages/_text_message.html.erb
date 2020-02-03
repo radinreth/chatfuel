@@ -1,6 +1,22 @@
 <tr>
   <td>
-    <%= text_message.first_name %>
+    <div class="container">
+      <table class="table table-sm">
+        <tr>
+          <th>user id</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>gender</th>
+        </tr>
+
+        <tr>
+          <td><%= text_message.messenger_user_id%></td>
+          <td><%= text_message.first_name%></td>
+          <td><%= text_message.last_name%></td>
+          <td><%= text_message.gender%></td>
+        </tr>
+      </table>
+    </div>
   </td>
   <td>
     <%= text_message.class.name %>
