@@ -39,23 +39,16 @@ class MessagesController < ApplicationController
   end
 
   def set_message
-    text_message ||= TextMessage.find_or_create_by(messenger_user_id: params[:messenger_user_id]) do |message|
-      message.first_name = params[:first_name]
-      message.last_name = params[:last_name]
-      message.gender = params[:gender]
-      message.profile_pic_url = params[:profile_pic_url]
-      message.timezone = params[:timezone]
-      message.locale = params[:locale]
-      message.source = params[:source]
-      message.last_seen = params[:last_seen]
-      message.signed_up = params[:signed_up]
-      message.sessions = params[:sessions]
-      message.last_visited_block_name = params[:last_visited_block_name]
-      message.last_visited_block_id = params[:last_visited_block_id]
-      message.last_clicked_button_name = params[:last_clicked_button_name]
-    end
+    text_message = TextMessage.create_with(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      gender: params[:gender],
+      profile_pic_url: params[:profile_pic_url],
+      source: params[:source],
+      sessions: params[:sessions]
+    ).find_or_create_by(messenger_user_id: params[:messenger_user_id])
 
-    @message ||= Message.find_or_create_by content: text_message
+    @message = Message.find_or_create_by content: text_message
   end
 
   def set_step
