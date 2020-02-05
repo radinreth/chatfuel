@@ -3,7 +3,8 @@
 class VoiceMessagesController < ApplicationController
   def create
     @voice = VoiceMessage.create(voice_message_params)
-    @logger = VoiceLogger.new(params[:CallSid])
+    Message.create(content: @voice)
+    @logger = VoiceLogger.new(params["CallSid"])
     answer_attributes = answer_attributes(@logger.call)
     @voice.voice_answers.create(answer_attributes)
   end
@@ -16,7 +17,7 @@ class VoiceMessagesController < ApplicationController
 
   def answer_attributes(answers)
     @answer_attributes ||= answers.map do |a|
-      a.extract!(:value, :project_variable_name)
+      a.extract!('value', 'project_variable_name')
     end
   end
 end

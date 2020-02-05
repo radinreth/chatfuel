@@ -39,6 +39,7 @@ class MessagesController < ApplicationController
   end
 
   def set_message
+    user_id = "#{params[:messenger_user_id]}#{random_id(100, 1)}"
     text_message = TextMessage.create_with(
       first_name: params[:first_name],
       last_name: params[:last_name],
@@ -46,7 +47,7 @@ class MessagesController < ApplicationController
       profile_pic_url: params[:profile_pic_url],
       source: params[:source],
       sessions: params[:sessions]
-    ).find_or_create_by(messenger_user_id: params[:messenger_user_id])
+    ).find_or_create_by(messenger_user_id: user_id)
 
     @message = Message.find_or_create_by content: text_message
   end
@@ -57,5 +58,9 @@ class MessagesController < ApplicationController
     unless @set_step.save
       render json: @step.errors, status: :unprocessable_entity
     end
+  end
+
+  def random_id(min, max)
+    (rand * max).floor + min
   end
 end

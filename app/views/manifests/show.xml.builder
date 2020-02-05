@@ -8,7 +8,10 @@ xml.tag! 'verboice-service' do
   xml.steps do
     xml.step name: 'create', 'display-name': 'Create voice', icon: 'alert', type: 'callback', 'callback-url': 'http://{service_domain}/voice_messages/' do
       xml.settings do
-        xml.variable name: 'age', 'display-name': 'Age', type: 'string'
+        xml.variable name: 'f1', 'display-name': 'choose services', type: 'string'
+        xml.variable name: 'f11', 'display-name': 'owso info', type: 'string'
+        xml.variable name: 'f12', 'display-name': 'feedback', type: 'string'
+        xml.variable name: 'f13', 'display-name': 'tracking', type: 'string'
       end
 
       xml.response type: 'none'
