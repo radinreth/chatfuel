@@ -1,23 +1,35 @@
 <tr>
+  <td><%= voice_message.CallSid %></td>
   <td>
-    <table class="table table-sm">
-      <tr>
-        <th>call id</th>
-        <th>address</th>
-        <th>called at</th>
-        <th>finished at</th>
-      </tr>
+    <%= voice_message.voice_answers.f1.value %>
+  </td>
+  <td>
+    <%= voice_message.voice_answers.f11.value %>
+  </td>
+  <td>
+    <%= voice_message.voice_answers.f111.value %>
+  </td>
+<td>
+    <%= voice_message.voice_answers.f112.value %>
+  </td>
+<td>
+    <%= voice_message.voice_answers.f113.value %>
+  </td>
+  <td>
+    <%= voice_message.voice_answers.f12.value %>
+  </td>
+  <td>
+    <%= voice_message.voice_answers.f121.value %>
+  </td>
+<td>
+    <%= voice_message.voice_answers.f122.value %>
+  </td>
+<td>
+    <%= voice_message.voice_answers.f13.value %>
+  </td>
+<td>
+    <%= voice_message.voice_answers.f131.value %>
+  </td>
 
-      <tr>
-        <td><%= voice_message.call_id%></td>
-        <td><%= voice_message.address%></td>
-        <td><%= voice_message.called_at%></td>
-        <td><%= voice_message.finished_at%></td>
-      </tr>
-    </table>
-  </td>
-  <td>
-    <%= voice_message.class.name %>
-  </td>
-</td>
+</tr>
 

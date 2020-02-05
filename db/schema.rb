@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_073217) do
+ActiveRecord::Schema.define(version: 2020_02_05_101552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_073217) do
   end
 
   create_table "voice_messages", force: :cascade do |t|
-    t.integer "call_id"
+    t.integer "CallSid"
     t.string "address"
     t.datetime "called_at"
     t.datetime "finished_at"
