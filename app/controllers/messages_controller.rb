@@ -33,13 +33,7 @@ class MessagesController < ApplicationController
     }
   end
 
-  def log_console
-    logger.warn action_name
-    logger.info params.inspect
-  end
-
   def set_message
-    # user_id = "#{params[:messenger_user_id]}#{random_id(1, 100)}"
     text_message = TextMessage.create_with(
       first_name: params[:first_name],
       last_name: params[:last_name],
@@ -58,9 +52,5 @@ class MessagesController < ApplicationController
     unless @set_step.save
       render json: @step.errors, status: :unprocessable_entity
     end
-  end
-
-  def random_id(min, max)
-    (rand * max).floor + min
   end
 end
