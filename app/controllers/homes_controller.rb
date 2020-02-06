@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
   def show
-    @messages = Message.all
+    @messages = Message.includes(:steps).all
   end
 end
