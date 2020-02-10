@@ -5,24 +5,33 @@
     <tr>
       <th scope="col">Session id</th>
       <!--owso info-->
-      <th scope="col">Main services</th>
-      <th scope="col">Service #1</th>
-      <th scope="col">Sub 1.1</th>
-      <th scope="col">Sub 1.2</th>
-      <th scope="col">Sub 1.3</th>
+      <th scope="col">Main menu</th>
+      <th scope="col">owso info options</th>
+      <th scope="col">អត្រានុកូលដ្ឋាន options</th>
+      <th scope="col">អាជីវកម្ម options</th>
+      <th scope="col">សុរិយោដី options</th>
       <!--feedback-->
-      <th scope="col">Feedback type</th>
-      <th scope="col">Feedback value</th>
-      <th scope="col">Sub 2.1</th>
+      <th scope="col">Feed text</th>
+      <th scope="col">feed voice</th>
       <!--tracking-->
-      <th scope="col">Service #3</th>
-      <th scope="col">Sub 3.1</th>
+      <th scope="col">Ticket id</th>
     </tr>
   </thead>
   <tbody>
-    <% cache do %>
-      <%= render @messages %>
+    
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.content.messenger_user_id %></td>
+        <% @variables.each do |var| %>
+          <td>
+            <% message.steps.each do |step| %>
+              <%= step.value if var == step.act %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
+
   </tbody>
 </table>
 
