@@ -14,7 +14,7 @@ class VoiceLogger
     params = { email: email, token: token }
     call_url = "#{endpoint}/call_logs/#{@call_id}"
     call_log = RestClient.get(call_url, params: params)
-    JSON.parse(call_log)['call_log_answers']
+    JSON.parse(call_log)
   end
 
   private
