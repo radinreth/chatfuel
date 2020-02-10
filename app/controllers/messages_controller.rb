@@ -50,7 +50,7 @@ class MessagesController < ApplicationController
     @set_step ||= @message.steps.build(act: params[:act], value: params[:value])
 
     unless @set_step.save
-      render json: @step.errors, status: :unprocessable_entity
+      render json: @set_step.errors, status: :unprocessable_entity
     end
   end
 end

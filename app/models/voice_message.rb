@@ -16,7 +16,7 @@ class VoiceMessage < ApplicationRecord
   def f1
     answer('f1', steps.f1.value)
   end
-  
+
   def f11
     answer('f11', steps.f11.value)
   end
