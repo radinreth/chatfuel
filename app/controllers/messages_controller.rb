@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
   end
 
   def set_message
-    text_message = TextMessage.create_with(
+    content = TextMessage.create_with(
       first_name: params[:first_name],
       last_name: params[:last_name],
       gender: params[:gender],
@@ -43,14 +43,10 @@ class MessagesController < ApplicationController
       sessions: params[:sessions]
     ).find_or_create_by(messenger_user_id: params[:messenger_user_id])
 
-    @message = Message.find_or_create_by content: text_message
+    @message = Message.create_or_update(content)
   end
 
   def set_step
-    @set_step ||= @message.steps.build(act: params[:act], value: params[:value])
-
-    unless @set_step.save
-      render json: @set_step.errors, status: :unprocessable_entity
-    end
+    @set_step ||= @message.steps.create(act: params[:act], value: params[:value])
   end
 end
