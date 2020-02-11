@@ -4,14 +4,14 @@ Message.destroy_all
 Dictionary.destroy_all
 
 dictionaries = [
-  { value: "f1"   },
-  { value: "f11"  },
-  { value: "f111" },
-  { value: "f112" },
-  { value: "f113" },
-  { value: "f121" },
-  { value: "f122" },
-  { value: "f131" }
+  { value: 'f1',    header: 'Main menu' },
+  { value: 'f11',   header: 'owso info options' },
+  { value: 'f111',  header: 'អត្រានុកូលដ្ឋាន options' },
+  { value: 'f112',  header: 'អាជីវកម្ម options' },
+  { value: 'f113',  header: 'សុរិយោដី options' },
+  { value: 'f121',  header: 'Feed text' },
+  { value: 'f122',  header: 'feed voice' },
+  { value: 'f131',  header: 'Ticket id' }
 ]
 
 Dictionary.create dictionaries
@@ -38,7 +38,6 @@ text_messages = [
 text_messages.each do |text|
   Message.create content: TextMessage.create(text)
 end
-
 
 voice_messages = [
   {

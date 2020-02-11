@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_02_11_070553) do
 
   create_table "dictionaries", force: :cascade do |t|
     t.string "value"
+    t.string "header"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
