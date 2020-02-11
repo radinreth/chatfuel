@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 Message.destroy_all
+Dictionary.destroy_all
+
+dictionaries = [
+  { value: "f1"   },
+  { value: "f11"  },
+  { value: "f111" },
+  { value: "f112" },
+  { value: "f113" },
+  { value: "f121" },
+  { value: "f122" },
+  { value: "f131" }
+]
+
+Dictionary.create dictionaries
 
 text_messages = [
   {

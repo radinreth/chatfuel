@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_073617) do
+ActiveRecord::Schema.define(version: 2020_02_11_070553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 2020_02_06_073617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["voice_message_id"], name: "index_answers_on_voice_message_id"
+  end
+
+  create_table "dictionaries", force: :cascade do |t|
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "identities", force: :cascade do |t|
@@ -56,6 +62,12 @@ ActiveRecord::Schema.define(version: 2020_02_06_073617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "display_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "steps", force: :cascade do |t|
