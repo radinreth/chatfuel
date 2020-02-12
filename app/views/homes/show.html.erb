@@ -13,7 +13,7 @@
     
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.content.messenger_user_id %></td>
+        <td><%= message.content.session_id %></td>
         <% @dictionaries.pluck(:value).each do |var| %>
           <td>
             <% message.steps.each do |step| %>

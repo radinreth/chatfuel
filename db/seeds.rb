@@ -4,14 +4,14 @@ Message.destroy_all
 Dictionary.destroy_all
 
 dictionaries = [
-  { value: 'f1',    header: 'Main menu' },
-  { value: 'f11',   header: 'owso info options' },
-  { value: 'f111',  header: 'អត្រានុកូលដ្ឋាន options' },
-  { value: 'f112',  header: 'អាជីវកម្ម options' },
-  { value: 'f113',  header: 'សុរិយោដី options' },
-  { value: 'f121',  header: 'Feed text' },
-  { value: 'f122',  header: 'feed voice' },
-  { value: 'f131',  header: 'Ticket id' }
+  { variable_name: 'f1', value: '',    title: 'Main menu' },
+  { variable_name: 'f11', value: '',   title: 'owso info options' },
+  { variable_name: 'f111', value: '',  title: 'អត្រានុកូលដ្ឋាន options' },
+  { variable_name: 'f112', value: '',  title: 'អាជីវកម្ម options' },
+  { variable_name: 'f113', value: '',  title: 'សុរិយោដី options' },
+  { variable_name: 'f121', value: '',  title: 'Feed text' },
+  { variable_name: 'f122', value: '',  title: 'feed voice' },
+  { variable_name: 'f131', value: '',  title: 'Ticket id' }
 ]
 
 Dictionary.create dictionaries

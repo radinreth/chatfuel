@@ -1,0 +1,2 @@
+class TextVariable < Variable
+end
