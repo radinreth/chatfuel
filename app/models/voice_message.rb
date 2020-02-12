@@ -6,6 +6,8 @@ class VoiceMessage < ApplicationRecord
   delegate :f112, :f113, :f12, to: :steps
   delegate :f121, :f122, :f13, :f131, to: :steps
 
+  alias_attribute :session_id, :CallSid
+
   def services
     {
       'f1': { '1': 'owso info', '2': 'feedback', '3': 'tracking' },
