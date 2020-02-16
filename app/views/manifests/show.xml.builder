@@ -13,6 +13,55 @@ xml.tag! 'verboice-service' do
       xml.response type: 'none'
     end
 
+    xml.step name: 'api owso', icon: 'gear', type: 'callback', 'display-name': 'OWSO options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'owso_options', 'display-name': 'owso-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api certify', icon: 'gear', type: 'callback', 'display-name': 'certify options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'certify_options', 'display-name': 'certify-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api others', icon: 'gear', type: 'callback', 'display-name': 'other options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'other_options', 'display-name': 'other-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api feedback', icon: 'gear', type: 'callback', 'display-name': 'Feedback options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'feedback_options', 'display-name': 'feedback-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api feedback rating', icon: 'gear', type: 'callback', 'display-name': 'Feedback rating options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'feedback_rating_options', 'display-name': 'feedback-rating-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api feedback record', icon: 'gear', type: 'callback', 'display-name': 'Feedback record options', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'feedback_record_options', 'display-name': 'feedback-record-options', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
+    xml.step name: 'api tracking ticket', icon: 'gear', type: 'callback', 'display-name': 'Tracking ticket', 'callback-url': 'http://{service_domain}/voice_messages/' do
+      xml.settings do
+        xml.variable name: 'tracking_ticket', 'display-name': 'tracking-ticket', type: 'string'
+      end
+      xml.response type: 'none'
+    end
+
     xml.step name: 'api menu', icon: 'gear', type: 'callback', 'display-name': 'Menu options', 'callback-url': 'http://{service_domain}/voice_messages/' do
       xml.settings do
         xml.variable name: 'menu_options', 'display-name': 'menu-options', type: 'string'
