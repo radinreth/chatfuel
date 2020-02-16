@@ -9,6 +9,6 @@ class CreateVariables < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :variables, [:type, :name], unique: true
+    add_index :variables, [:type, :name, :value], unique: true
   end
 end

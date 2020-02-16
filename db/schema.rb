@@ -65,12 +65,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_015534) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.string "display_text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "steps", force: :cascade do |t|
     t.string "act", null: false
     t.string "value", null: false
@@ -125,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_015534) do
     t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["type", "name"], name: "index_variables_on_type_and_name", unique: true
+    t.index ["type", "name", "value"], name: "index_variables_on_type_and_name_and_value", unique: true
   end
 
   create_table "voice_answers", force: :cascade do |t|

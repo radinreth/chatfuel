@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th scope="col">Session id</th>
-      <% @dictionaries.pluck(:header).each do |header| %>
+      <% VoiceVariable.pluck(:name).uniq.each do |header| %>
         <th scope="col"><%= header %></th>
       <% end %>
     </tr>
@@ -14,7 +14,7 @@
     <% @messages.each do |message| %>
       <tr>
         <td><%= message.content.session_id %></td>
-        <% @dictionaries.pluck(:value).each do |var| %>
+        <% VoiceVariable.pluck(:name).uniq.each do |var| %>
           <td>
             <% message.steps.each do |step| %>
               <%= step.value if var == step.act %>
