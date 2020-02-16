@@ -5,7 +5,7 @@
     <tr>
       <th scope="col">Session id</th>
       <% Variable.pluck(:name).uniq.each do |header| %>
-        <th scope="col"><%= header %></th>
+        <th scope="col"><%= header.titleize %></th>
       <% end %>
     </tr>
   </thead>
