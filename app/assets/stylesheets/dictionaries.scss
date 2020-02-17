@@ -1,5 +1,20 @@
 #dictionaries-index {
   .dict-list {
     list-style: none;
+    float: left;
+  }
+
+  .dict-item {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  .result-map {
+    float: left;
+  }
+
+  .active {
+    background-color: #ccc;
   }
 }

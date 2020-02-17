@@ -2,7 +2,6 @@
   document.addEventListener('turbolinks:load', function() {
     var handleActiveSidebar, init, onClickSidebar;
     init = function() {
-      console.log('hi');
       handleActiveSidebar();
       return onClickSidebar();
     };
