@@ -1,0 +1,6 @@
+%div
+  %ul
+    - @lead.activities.each do |activity|
+      %li
+        = activity.name
+        \: #{activity.value}
