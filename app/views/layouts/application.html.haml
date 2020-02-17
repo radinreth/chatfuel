@@ -7,11 +7,10 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    .container-fluid
-      = render "shared/navbar"
-      .row
-        .col-12
-          %p.notice= notice
-          %p.alert= alert
-          = yield
+  %body{ id: css_class_name }
+    = render 'shared/notify_message'
+    .wrapper
+      = render 'shared/sidebar'
+      #content
+        .clearfix
+        = yield
