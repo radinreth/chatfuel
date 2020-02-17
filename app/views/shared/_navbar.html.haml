@@ -1,0 +1,11 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{:href => "#"} {OWSO}
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    .mr-auto
+    - if user_signed_in?
+      Hi, #{current_user.email}
+      \#{link_to 'sign out', destroy_session_path(:user), method: :delete}
+    - else
+      = link_to 'sign in', guisso_sign_in_path_for(:user)

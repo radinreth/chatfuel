@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem 'verboice', '~> 0.7.0'
 gem 'dotenv-rails'
 gem 'pagy', '~> 3.5'
+gem "haml", "~> 5.1.2"
+gem "haml-rails", "~> 2.0"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

@@ -1,0 +1,16 @@
+%h3 All contacts:
+%table.table.table-striped
+  %thead
+    %tr
+      %th{:scope => "col"} Session id
+      - Variable.pluck(:name).uniq.each do |header|
+        %th{:scope => "col"}= header.titleize
+  %tbody
+    - @messages.each do |message|
+      %tr
+        %td= message.content.session_id
+        - Variable.pluck(:name).uniq.each do |var|
+          %td
+            - message.steps.each do |step|
+              = valueize(step.value) if var == step.act
+!= pagy_bootstrap_nav(@pagy)
