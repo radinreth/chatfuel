@@ -2,21 +2,21 @@
   #sidebarCollapse.sidebar-header
     %h3= 'one window service office'.titleize
 
-    %strong EOC
-    %i.fas.fa-align-left
+    %strong OWSO
+    = fa_icon 'align-left'
 
   %ul.list-unstyled.components
     %li
       = link_to '#' do
-        %i.fas.fa-home
+        = fa_icon 'home'
         = t('sidebar.home')
     %li
       = link_to '#' do
-        %i.fas.fa-file-import
-        = t('sidebar.import_wizard')
+        = fa_icon 'book'
+        = t('sidebar.dictionary')
     %li
       = link_to '#', method: :delete do
-        %i.fas.fa-key
+        = fa_icon 'sign-out'
         = t('sidebar.logout')
 
   .copyright
