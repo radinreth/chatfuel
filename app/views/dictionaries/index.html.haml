@@ -12,10 +12,13 @@
         %tr
           %th Value
           %th Text
+          %th Action
         - @variables.each do |sub|
           - if sub.name == v.name
-            %tr
-              %td= sub.value
-              %td= sub.text
+            = form_with model: sub, url: dictionary_path(sub), method: :patch do |f|
+              %tr
+                %td= sub.value
+                %td= f.text_field :text, name: 'variable[text]'
+                %td= f.submit 'update'
 
 .clearfix

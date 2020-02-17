@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'homes#show'
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
-  resources :dictionaries, only: [:index]
+  resources :dictionaries, only: [:index, :update]
   resources :messages, only: [:create] do
     collection do
       post :continue
