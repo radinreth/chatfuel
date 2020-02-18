@@ -1,7 +1,5 @@
 class Step < ApplicationRecord
   belongs_to :message
 
-  def to_block
-    act.to_s.downcase.sub(/set_/, 'ask ')
-  end
+  validates :act, uniqueness: { scope: :message_id }
 end

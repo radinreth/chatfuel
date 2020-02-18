@@ -4,7 +4,7 @@
     %tr
       %th{:scope => "col"} Session id
       %th{:scope => "col"} Type
-      - @variables.each do |header|
+      - Variable.pluck(:name).uniq.each do |header|
         %th{:scope => "col"}= header.titleize
 
   %tbody
@@ -12,7 +12,7 @@
       %tr
         %td= message.session_id
         %td= message.type
-        - @variables.each do |var|
+        - Variable.pluck(:name).uniq.each do |var|
           %td
             - message.steps.each do |step|
               = valueize(step.value) if var == step.act
