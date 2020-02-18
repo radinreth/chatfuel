@@ -10,49 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_015534) do
+ActiveRecord::Schema.define(version: 2020_02_18_034454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "lead_id", null: false
-    t.index ["lead_id"], name: "index_activities_on_lead_id"
-  end
-
-  create_table "answers", force: :cascade do |t|
-    t.string "variable_name"
-    t.string "value"
-    t.bigint "voice_message_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["voice_message_id"], name: "index_answers_on_voice_message_id"
-  end
-
   create_table "dictionaries", force: :cascade do |t|
     t.string "value"
     t.string "header"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "identities", force: :cascade do |t|
-    t.string "provider"
-    t.string "token"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_identities_on_user_id"
-  end
-
-  create_table "leads", force: :cascade do |t|
-    t.string "mid"
-    t.string "first_name"
-    t.string "gender"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -141,17 +106,5 @@ ActiveRecord::Schema.define(version: 2020_02_12_015534) do
     t.integer "project_id"
   end
 
-  create_table "voices", force: :cascade do |t|
-    t.string "call_sid"
-    t.string "status"
-    t.string "from"
-    t.integer "call_duration"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  add_foreign_key "activities", "leads"
-  add_foreign_key "answers", "voice_messages"
-  add_foreign_key "identities", "users"
   add_foreign_key "steps", "messages"
 end
