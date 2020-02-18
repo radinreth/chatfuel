@@ -5,5 +5,7 @@ class RemoveUnusedTabled < ActiveRecord::Migration[6.0]
     drop_table :answers
     drop_table :identities
     drop_table :voices
+    drop_table :voice_answers
+    drop_table :dictionaries
   end
 end
