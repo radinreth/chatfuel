@@ -7,8 +7,9 @@ class DefaultVariable
   end
 
   def audio_path
+    ""
   end
-
+  
   alias_method :text, :value
 end
 
@@ -19,7 +20,10 @@ class AudioVariable
   end
 
   def audio_path
-    "http://verboice.com/projects/#{@voice.project_id}/calls/#{@voice.CallSid}/results/#{@value}"
+    host = 'http://verboice.com/projects'
+    path = [@voice.project_id, 'calls', @voice.CallSid, 'results', @value]
+
+    "#{host}/#{path.join('/')}"
   end
 end
 
