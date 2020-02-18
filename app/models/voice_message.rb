@@ -8,6 +8,10 @@ class VoiceMessage < ApplicationRecord
 
   alias_attribute :session_id, :CallSid
 
+  def type
+    'IVR'
+  end
+
   def services
     {
       'f1': { '1': 'owso info', '2': 'feedback', '3': 'tracking' },

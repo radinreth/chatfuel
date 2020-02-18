@@ -2,6 +2,8 @@ class Message < ApplicationRecord
   has_many :steps, dependent: :destroy
   belongs_to :content, polymorphic: true, dependent: :destroy
 
+  delegate :type, to: :content
+
   def completed?
     steps.where(act: 'done', value: 'true').present?
   end

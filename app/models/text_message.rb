@@ -8,4 +8,8 @@ class TextMessage < ApplicationRecord
   delegate :f121, :f122, :f13, :f131, to: :steps
   
   alias_attribute :session_id, :messenger_user_id
+
+  def type
+    'Chatbot'
+  end
 end
