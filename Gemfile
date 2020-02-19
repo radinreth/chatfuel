@@ -41,6 +41,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'database_cleaner-active_record'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
