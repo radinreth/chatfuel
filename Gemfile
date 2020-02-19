@@ -25,7 +25,7 @@ gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 3.8.2'
+  gem 'rspec-rails', '~> 4-0-dev'
 end
 
 group :development do
@@ -37,6 +37,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'shoulda-matchers'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
