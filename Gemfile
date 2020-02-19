@@ -40,6 +40,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
