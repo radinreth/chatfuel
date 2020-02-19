@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def set_message
     messenger_user_id = params[:messenger_user_id]
     content = TextMessage.find_or_create_by(messenger_user_id: messenger_user_id)
-    @message = Message.create_or_update(content)
+    @message = Message.create_or_return(content)
   end
 
   def set_step
