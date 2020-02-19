@@ -34,8 +34,8 @@ a:focus {
 }
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 200px;
+  max-width: 200px;
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
@@ -47,12 +47,17 @@ a:focus {
     text-align: left;
   }
 
+  .toggle-align {
+    margin-left: 8px;
+  }
+
   .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
     display: flex;
     align-items: center;
     cursor: pointer;
+    line-height: 39px;
   }
 
   .sidebar-header strong {
@@ -120,8 +125,8 @@ a:focus {
 }
 
 #sidebar.active {
-  min-width: 80px;
-  max-width: 80px;
+  min-width: 115px;
+  max-width: 115px;
   text-align: center;
 
   .sidebar-header h3,
