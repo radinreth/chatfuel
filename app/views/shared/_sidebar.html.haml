@@ -11,6 +11,10 @@
         = fa_icon 'home'
         = t('sidebar.home')
     %li
+      = link_to sites_path do
+        = fa_icon 'sitemap'
+        = t('sidebar.sites')
+    %li
       = link_to dictionaries_path do
         = fa_icon 'book'
         = t('sidebar.dictionary')
