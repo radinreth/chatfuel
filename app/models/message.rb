@@ -5,13 +5,14 @@ class Message < ApplicationRecord
   default_scope -> { order(updated_at: 'desc') }
   delegate :type, :session_id, to: :content
 
-  def self.create_or_update(content)
+  # validations
+  validates :content, presence: true
+
+  def self.create_or_return(content)
     message = find_by(content: content)
     message = create(content: content) if !message || message.completed?
     message
   end
-
-  private
 
   def completed?
     steps.where(act: 'done', value: 'true').present?

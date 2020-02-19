@@ -38,6 +38,8 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
