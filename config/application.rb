@@ -22,6 +22,12 @@ module Chatfuel
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.generators do |generate|
+      generate.helper false
+      generate.assets false
+      generate.view_spec false
+    end
+
     console do
       ActiveRecord::Base.connection
     end
