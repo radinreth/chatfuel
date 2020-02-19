@@ -1,9 +1,9 @@
 %nav#sidebar
   #sidebarCollapse.sidebar-header
-    %h3= 'one window service office'.titleize
+    %h3= 'OWSO'.upcase
 
-    %strong OWSO
-    = fa_icon 'align-left'
+    %strong= 'OW<br/>SO'.html_safe
+    = fa_icon 'align-left', class: 'toggle-align'
 
   %ul.list-unstyled.components
     %li
