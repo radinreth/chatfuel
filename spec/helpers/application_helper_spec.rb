@@ -1,11 +1,8 @@
 RSpec.describe ApplicationHelper do
- 
-  before do
+  it '#css_class_name' do
     allow(controller).to receive(:controller_path).and_return 'Homes'
     allow(controller).to receive(:action_name).and_return 'index'
-  end
 
-  it '#css_class_name' do
     expect(helper.css_class_name).to eq 'homes-index'
   end
 
