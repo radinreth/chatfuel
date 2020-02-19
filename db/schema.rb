@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_034454) do
+ActiveRecord::Schema.define(version: 2020_02_19_102312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2020_02_18_034454) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "code", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tracks_count", default: 0
+    t.index ["name"], name: "index_sites_on_name"
   end
 
   create_table "steps", force: :cascade do |t|
@@ -54,6 +63,12 @@ ActiveRecord::Schema.define(version: 2020_02_18_034454) do
     t.string "last_visited_block_name"
     t.string "last_visited_block_id"
     t.string "last_clicked_button_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

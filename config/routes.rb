@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :update]
+  resources :sites, only: [:index]
   resources :messages, only: [:create] do
     collection do
       post :continue
