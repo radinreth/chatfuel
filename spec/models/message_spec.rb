@@ -16,17 +16,15 @@ RSpec.describe Message do
       it 'create a new message if not exist' do
         expect {
           described_class.create_or_return(content)
-        }.to change { Message.count }
+        }.to(change { Message.count })
       end
 
       it 'returns if already created' do
         create(:message, content: content)
 
-        expect {
+        expect do
           described_class.create_or_return(content)
-        }.not_to change {
-          Message.count
-        }
+        end.not_to(change { Message.count })
       end
     end
 
@@ -36,17 +34,17 @@ RSpec.describe Message do
       end
 
       it 'returns if incompleted' do
-        expect {
+        expect do
           described_class.create_or_return(content)
-        }.not_to change { Message.count }
+        end.not_to(change { Message.count })
       end
 
       it 'creates if completed' do
         create(:step, act: 'done', value: 'true', message: @message)
-        
-        expect {
+
+        expect do
           described_class.create_or_return(content)
-        }.to change { Message.count }
+        end.to(change { Message.count })
       end
     end
   end
