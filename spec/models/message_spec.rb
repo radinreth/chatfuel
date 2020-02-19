@@ -50,4 +50,23 @@ RSpec.describe Message do
       end
     end
   end
+
+  describe '#completed?' do
+    let(:voice_message) { build(:voice_message) }
+    let(:step) { build(:step, act: 'done', value: 'true') }
+
+    before do
+      @message = create(:message, content: voice_message)
+    end
+
+    it 'is not complete' do
+      expect(@message).not_to be_completed
+    end
+
+    it 'considers completed if their steps contains done=true' do
+      @message.steps << step
+
+      expect(@message).to be_completed
+    end
+  end
 end
