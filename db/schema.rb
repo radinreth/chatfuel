@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_102312) do
+ActiveRecord::Schema.define(version: 2020_02_19_101601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "dictionaries", force: :cascade do |t|
-    t.string "value"
-    t.string "header"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "messages", force: :cascade do |t|
     t.string "content_type"
@@ -106,17 +99,8 @@ ActiveRecord::Schema.define(version: 2020_02_19_102312) do
     t.index ["type", "name", "value"], name: "index_variables_on_type_and_name_and_value", unique: true
   end
 
-  create_table "voice_answers", force: :cascade do |t|
-    t.string "project_variable_name"
-    t.string "value"
-    t.bigint "voice_message_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["voice_message_id"], name: "index_voice_answers_on_voice_message_id"
-  end
-
   create_table "voice_messages", force: :cascade do |t|
-    t.integer "CallSid"
+    t.integer "callsid"
     t.string "address"
     t.datetime "called_at"
     t.datetime "finished_at"

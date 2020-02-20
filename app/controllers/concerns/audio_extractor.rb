@@ -6,7 +6,7 @@ class AudioExtractor < Extractor
 
   def audio_path
     host = 'http://verboice.com/projects'
-    path = [@voice.project_id, 'calls', @voice.CallSid, 'results', value]
+    path = [@voice.project_id, 'calls', @voice.callsid, 'results', value]
     "#{host}/#{path.join('/')}"
   end
 end
