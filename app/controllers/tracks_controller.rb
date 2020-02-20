@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
   before_action :message
+  after_action :tracking_step
 
   def create
     @track = Track.new(track_params)
@@ -7,15 +8,18 @@ class TracksController < ApplicationController
     if @track.save
       @site = Site.find_by(code: @track.site_code)
       @track.update(site: @site)
-
-      @message = Message.find_by(content: message)
-      @message.steps.create(act: 'tracking_ticket', track: @track)
-
       head :created
     end
   end
 
   private
+
+  def tracking_step
+    return unless @track.persisted?
+
+    @message = Message.find_by(content: message)
+    @message.steps.create(act: 'tracking_ticket', track: @track)
+  end
 
   def message
     case params[:klass]
