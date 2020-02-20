@@ -24,11 +24,11 @@ class TracksController < ApplicationController
   def message
     case params[:klass]
     when 'TextMessage' then TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
-    when 'VoiceMessage' then VoiceMessage.find_by(callsid: params[:callsid])
+    when 'VoiceMessage' then VoiceMessage.find_by(callsid: params[:CallSid])
     end
   end
 
   def track_params
-    params.require(:track).permit(:code)
+    params.permit(:code)
   end
 end

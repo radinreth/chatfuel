@@ -4,7 +4,7 @@ class AnswerExtractor < Extractor
   end
 
   def text
-    variable.try(:text) || super
+    variable.try(:text) || value
   end
 
   private

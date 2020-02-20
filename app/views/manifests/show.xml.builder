@@ -55,8 +55,10 @@ xml.tag! 'verboice-service' do
       xml.response type: 'none'
     end
 
-    xml.step name: 'api tracking ticket', icon: 'gear', type: 'callback', 'display-name': 'Tracking ticket', 'callback-url': 'http://{service_domain}/voice_messages/' do
+    xml.step name: 'api tracking ticket', icon: 'gear', type: 'callback', 'display-name': 'Tracking ticket', 'callback-url': 'http://{service_domain}/tracks/' do
       xml.settings do
+        xml.variable name: 'klass', 'display-name': 'ivr-class', type: 'string'
+        xml.variable name: 'code', 'display-name': 'ticket-number', type: 'string'
         xml.variable name: 'tracking_ticket', 'display-name': 'tracking-ticket', type: 'string'
       end
       xml.response type: 'none'

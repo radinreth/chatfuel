@@ -5,6 +5,6 @@ class Track < ApplicationRecord
   validates :code, presence: true
 
   def site_code
-    code.split('-').first
+    code[0...4]
   end
 end
