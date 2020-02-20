@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_101601) do
 
   create_table "steps", force: :cascade do |t|
     t.string "act", null: false
-    t.string "value", null: false
+    t.string "value"
     t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
