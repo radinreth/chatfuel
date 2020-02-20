@@ -5,8 +5,7 @@ RSpec.describe TracksController do
   end
 
   it 'POST :create' do
-    track = { code: '1234-56789' }
-    params = { klass: 'TextMessage', messenger_user_id: 123, track: track }
+    params = { klass: 'TextMessage', messenger_user_id: 123, code: '1234-56789' }
 
     post :create, params: params
 
