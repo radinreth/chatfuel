@@ -5,7 +5,10 @@ RSpec.describe TracksController do
   end
 
   it 'POST :create' do
-    post :create, params: { klass: 'TextMessage', messenger_user_id: 123, track: { code: '1234-56789' } }
+    track = { code: '1234-56789' }
+    params = { klass: 'TextMessage', messenger_user_id: 123, track: track }
+
+    post :create, params: params
 
     expect(response).to have_http_status(:created)
   end

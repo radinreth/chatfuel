@@ -5,9 +5,9 @@ RSpec.describe Track, type: :model do
     it { should have_attribute(:code) }
   end
 
-  xdescribe 'associations' do
-    it { should belong_to(:site) }
-    it { should belong_to(:step) }
+  describe 'associations' do
+    it { should belong_to(:site).optional }
+    it { should belong_to(:step).optional }
   end
 
   describe 'validations' do
