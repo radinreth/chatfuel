@@ -1,5 +1,14 @@
 %h3 Sites
-- @sites.each do |site|
-  = site.name
-  = site.code
-  = site.tracks_count
+
+%table.table
+  %tr
+    %th Name
+    %th Code
+    %th Tracks count
+    %th Detail
+    - @sites.each do |site|
+      %tr
+        %td= site.name
+        %td= site.code
+        %td= site.tracks_count
+        %td= link_to fa_icon('arrow-right'), site_path(site)

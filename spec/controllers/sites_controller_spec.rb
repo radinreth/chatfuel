@@ -6,4 +6,10 @@ RSpec.describe SitesController, type: :controller do
 
     expect(response).to render_template("index")
   end
+
+  it 'GET :show' do
+    get :show, params: { id: create(:site).id } 
+
+    expect(response).to render_template("show")
+  end
 end
