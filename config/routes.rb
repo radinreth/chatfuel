@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :update]
   resources :sites, only: [:index, :show]
+  resources :tracks, only: [:create]
   resources :messages, only: [:create] do
     collection do
       post :continue

@@ -1,3 +1,10 @@
 class Track < ApplicationRecord
-  belongs_to :site, counter_cache: true
+  belongs_to :site, counter_cache: true, optional: true
+  belongs_to :step, optional: true
+
+  validates :code, presence: true
+
+  def site_code
+    code.split('-').first
+  end
 end
