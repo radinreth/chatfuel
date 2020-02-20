@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Variable.destroy_all
+Site.destroy_all
 
 variables = [
   {
@@ -96,3 +97,14 @@ variables = [
 ]
 
 Variable.create(variables)
+p 'variables created!'
+
+sites = [
+  {
+    name: 'kamrieng',
+    code: '0216'
+  }
+]
+
+Site.create(sites)
+p 'sites created!'

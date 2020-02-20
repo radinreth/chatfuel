@@ -8,7 +8,7 @@ class TracksController < ApplicationController
     if @track.save
       @site = Site.find_by(code: @track.site_code)
       @track.update(site: @site)
-      head :created
+      head :ok
     end
   end
 
