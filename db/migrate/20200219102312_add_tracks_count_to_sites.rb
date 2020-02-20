@@ -1,5 +1,0 @@
-class AddTracksCountToSites < ActiveRecord::Migration[6.0]
-  def change
-    add_column :sites, :tracks_count, :integer, default: 0
-  end
-end

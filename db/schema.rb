@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 2020_02_19_102312) do
 
   create_table "sites", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "code", default: 0
+    t.string "code", default: ""
+    t.integer "tracks_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tracks_count", default: 0
     t.index ["name"], name: "index_sites_on_name"
   end
 
@@ -69,8 +69,10 @@ ActiveRecord::Schema.define(version: 2020_02_19_102312) do
 
   create_table "tracks", force: :cascade do |t|
     t.string "code"
+    t.bigint "site_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_tracks_on_site_id"
   end
 
   create_table "users", force: :cascade do |t|
