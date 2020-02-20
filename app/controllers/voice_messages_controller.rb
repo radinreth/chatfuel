@@ -35,7 +35,9 @@ class VoiceMessagesController < ApplicationController
   end
 
   def voice_message_params
-    params.permit(:CallSid, :address)
+    p = params.permit(:CallSid, :address)
+    p[:callsid] = p.delete(:CallSid)
+    p
   end
 
   def get_audio_attributes(audios)

@@ -8,7 +8,7 @@ RSpec.describe SitesController, type: :controller do
   end
 
   it 'GET :show' do
-    get :show, params: { id: create(:site).id } 
+    get :show, params: { id: create(:site).id }
 
     expect(response).to render_template("show")
   end
