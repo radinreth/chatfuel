@@ -26,9 +26,9 @@ RSpec.describe SitesController, type: :controller do
   end
 
   it 'POST :create' do
-    post :create, params: { site: { name: 'new site', code: '0212' } }
-
-    expect(response).to have_http_status(:created)
+    expect do
+      post :create, params: { site: { name: 'new site', code: '0212' } }
+    end.to change { Site.count }.by(1)
   end
 
   context 'updates' do
@@ -37,7 +37,11 @@ RSpec.describe SitesController, type: :controller do
     it 'PUT :update' do
       put :update, params: { id: kamrieng.id, site: { name: 'bavil', code: '0211' } }
 
+      updated = assigns(:site)
+
       expect(response).to have_http_status(:ok)
+      expect(updated.name).to eq 'bavil'
+      expect(updated.code).to eq '0211'
     end
   end
 
@@ -47,9 +51,9 @@ RSpec.describe SitesController, type: :controller do
     end
 
     it 'DELETE :destroy' do
-      expect {
+      expect do
         delete :destroy, params: { id: @kamrieng.id }
-      }.to change { Site.count }.by(-1)
+      end.to change { Site.count }.by(-1)
     end
   end
 end
