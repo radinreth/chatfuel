@@ -1,3 +1,5 @@
 class Ticket < ApplicationRecord
-  enum status: [:submitted, :completed, :picked_up]
+  enum status: %i[submitted completed picked_up]
+
+  validates :status, inclusion: { in: statuses.keys }
 end

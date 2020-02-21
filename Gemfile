@@ -27,6 +27,7 @@ gem 'simple_form'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 4-0-dev'
+  gem 'ffaker'
   gem 'coderay', '~> 1.1', '>= 1.1.2'
 end
 
@@ -41,7 +42,6 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
-  gem 'ffaker'
   gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
