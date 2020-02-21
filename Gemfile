@@ -22,6 +22,7 @@ gem 'pagy', '~> 3.5'
 gem 'haml', '~> 5.1.2'
 gem 'haml-rails', '~> 2.0'
 gem 'font-awesome-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
