@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :update]
-  resources :sites, only: [:index, :show]
+  resources :sites, only: [:new, :index, :show, :create]
   resources :tracks, only: [:create]
   resources :messages, only: [:create] do
     collection do

@@ -1,0 +1,6 @@
+%h3 New site
+.col-sm-4
+  = simple_form_for @site do |f|
+    = f.input :name
+    = f.input :code
+    = f.button :submit, class: 'btn btn-primary'

@@ -8,10 +8,10 @@ module ApplicationHelper
   end
 
   def render_notice
-    content_tag(:p, notice, class: 'notice') if notice
+    content_tag(:div, notice, class: 'alert alert-primary', role: 'alert') if notice
   end
 
   def render_alert
-    content_tag(:p, alert, class: 'alert') if alert
+    content_tag(:div, alert, class: 'alert alert-danger', role: 'alert') if alert
   end
 end

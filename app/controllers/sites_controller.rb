@@ -3,8 +3,25 @@ class SitesController < ApplicationController
     @sites = Site.all
   end
 
+  def new
+    @site = Site.new
+  end
+
   def show
     @site = Site.find params[:id]
     @tracks = @site.tracks
+  end
+
+  def create
+    @site = Site.new site_params
+    if @site.save
+      redirect_to @site, status: :created, notice: 'site created successfully!'
+    end
+  end
+
+  private
+
+  def site_params
+    params.require(:site).permit(:name, :code)
   end
 end
