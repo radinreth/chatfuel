@@ -7,7 +7,7 @@ RSpec.describe ApplicationHelper do
   end
 
   it '#render_notice' do
-    html = '<p class="notice">success</p>'
+    html = '<div class="alert alert-primary" role="alert">success</div>'
 
     allow(controller).to receive(:notice).and_return 'success'
 
@@ -15,7 +15,7 @@ RSpec.describe ApplicationHelper do
   end
 
   it '#render_alert' do
-    html = '<p class="alert">fail</p>'
+    html = '<div class="alert alert-danger" role="alert">fail</div>'
 
     allow(controller).to receive(:alert).and_return 'fail'
 
