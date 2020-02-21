@@ -40,4 +40,16 @@ RSpec.describe SitesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  context 'destroy' do
+    before do
+      @kamrieng = create(:site, name: 'kamrieng')
+    end
+
+    it 'DELETE :destroy' do
+      expect {
+        delete :destroy, params: { id: @kamrieng.id }
+      }.to change { Site.count }.by(-1)
+    end
+  end
 end
