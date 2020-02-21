@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_101601) do
+ActiveRecord::Schema.define(version: 2020_02_21_041957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,18 @@ ActiveRecord::Schema.define(version: 2020_02_19_101601) do
     t.string "last_clicked_button_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "code", null: false
+    t.integer "status", default: 0
+    t.date "submitted_at"
+    t.date "completed_at"
+    t.date "actual_completed_at"
+    t.date "picked_up_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_tickets_on_code"
   end
 
   create_table "tracks", force: :cascade do |t|
