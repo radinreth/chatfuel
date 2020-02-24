@@ -8,11 +8,24 @@ class TracksController < ApplicationController
     if @track.save
       @site = Site.find_by(code: @track.site_code)
       @track.update(site: @site)
-      head :ok
+      render json: json_response, status: :ok
     end
   end
 
   private
+
+  def json_response
+    {
+      "messages": [
+        {"text": "Ticket #{params[:code]} is #{ticket_status}"},
+      ]
+    }
+  end
+
+  def ticket_status
+    ticket = Ticket.find_by(code: params[:code])
+    ticket.try(:status) || 'ticket not found'
+  end
 
   def tracking_step
     return unless @track.persisted?
