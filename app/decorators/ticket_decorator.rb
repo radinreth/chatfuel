@@ -15,4 +15,3 @@ class TicketDecorator
     @klazz.new(self)
   end
 end
-
