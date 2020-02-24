@@ -1,6 +1,7 @@
 class TracksController < ApplicationController
   before_action :message
   after_action :tracking_step
+  before_action :ticket
 
   def create
     @track = Track.new(track_params)
@@ -17,15 +18,19 @@ class TracksController < ApplicationController
   def json_response
     {
       "messages": [
-        {"text": "Ticket #{params[:code]} is #{ticket_status}"},
+        {"text": decorator.status },
+        {"text": decorator.description }
       ]
     }
   end
 
-  def ticket_status
-    ticket = Ticket.find_by(code: params[:code])
-    ticket.try(:status) || 'ticket not found'
+  def decorator
+    @decorator ||= TicketDecorator.new(ticket)
   end
+
+  def ticket
+    @ticket ||= Ticket.find_by(code: params[:code])
+ end
 
   def tracking_step
     return unless @track.persisted?

@@ -2,6 +2,7 @@ RSpec.describe TracksController do
   before do
     content = create(:text_message, messenger_user_id: 123)
     create(:message, content: content)
+    create(:ticket, code: '1234-56789')
   end
 
   it 'POST :create' do
