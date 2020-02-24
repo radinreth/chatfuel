@@ -1,7 +1,23 @@
 RSpec.describe TicketDecorator do
+  let(:ticket) { build(:ticket) }
+
+  before do
+    @decorator = described_class.new(ticket)
+  end
+
+  it '#delegates' do
+    expect(@decorator).to respond_to(:status)
+    expect(@decorator).to respond_to(:description)
+    expect(@decorator).to respond_to(:code)
+    expect(@decorator).to respond_to(:status)
+    expect(@decorator).to respond_to(:submitted_at)
+    expect(@decorator).to respond_to(:completed_at)
+    expect(@decorator).to respond_to(:picked_up_at)
+  end
+
   context ':submitted' do
     it 'is a kind of SubmittedStatus' do
-      ticket = create(:ticket, status: :submitted)
+      ticket = build(:ticket, status: :submitted)
 
       @decorator = described_class.new(ticket)
 
@@ -11,7 +27,7 @@ RSpec.describe TicketDecorator do
 
   context ':completed' do
     it 'is a kind of CompletedStatus' do
-      ticket = create(:ticket, status: :completed)
+      ticket = build(:ticket, status: :completed)
 
       @decorator = described_class.new(ticket)
 
@@ -21,7 +37,7 @@ RSpec.describe TicketDecorator do
 
   context ':picked_up' do
     it 'is a kind of PickedUpStatus' do
-      ticket = create(:ticket, status: :picked_up)
+      ticket = build(:ticket, status: :picked_up)
 
       @decorator = described_class.new(ticket)
 
