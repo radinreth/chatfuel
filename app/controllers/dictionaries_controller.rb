@@ -1,6 +1,6 @@
 class DictionariesController < ApplicationController
   def index
-    @variables = Variable.order(name: 'asc')
+    @variables = Variable.order(name: :asc)
   end
 
   def update

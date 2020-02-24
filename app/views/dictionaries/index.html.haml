@@ -4,7 +4,7 @@
   %ul.dict-list
     - @variables.select('name').distinct.each do |v|
       %li.dict-item{ 'data-name': v.name}
-        = link_to v.name, '#'
+        = link_to v.name.titleize, '#'
         .arrow-shape.arrow-shape__top
         .arrow-shape.arrow-shape__bottom
 
@@ -15,7 +15,7 @@
           %th Value
           %th Text
           %th Action
-        - @variables.each do |sub|
+        - @variables.order(value: :asc).each do |sub|
           - if sub.name == v.name
             = simple_form_for sub, url: dictionary_path(sub) do |f|
               %tr
