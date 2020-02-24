@@ -18,8 +18,8 @@ class TracksController < ApplicationController
   def json_response
     {
       "messages": [
-        {"text": decorator.status },
-        {"text": decorator.description }
+        { "text": decorator.status },
+        { "text": decorator.description }
       ]
     }
   end
@@ -30,7 +30,7 @@ class TracksController < ApplicationController
 
   def ticket
     @ticket ||= Ticket.find_by(code: params[:code])
- end
+  end
 
   def tracking_step
     return unless @track.persisted?
