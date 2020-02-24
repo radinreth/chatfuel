@@ -7,7 +7,7 @@ class DictionariesController < ApplicationController
     @variable = Variable.find(params[:id])
 
     if @variable.update(variable_params)
-      head :ok
+      redirect_to dictionaries_path
     else
       render json: @variable.errors, status: :unprocessable_entity
     end

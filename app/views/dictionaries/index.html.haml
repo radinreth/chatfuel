@@ -20,7 +20,7 @@
             = simple_form_for sub, url: dictionary_path(sub) do |f|
               %tr
                 %td= f.input :value, readonly: true, label: false
-                %td= f.input :text, name: 'variable[text]', label: false
+                %td= f.input :text, input_html: { name: 'variable[text]' }, label: false
                 %td= f.submit 'Update', class: 'btn btn-primary'
 
 .clearfix
