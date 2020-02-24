@@ -5,6 +5,8 @@
     - @variables.select('name').distinct.each do |v|
       %li.dict-item{ 'data-name': v.name}
         = link_to v.name, '#'
+        .arrow-shape.arrow-shape__top
+        .arrow-shape.arrow-shape__bottom
 
   .result-map
     - @variables.select('name').distinct.each do |v|
@@ -15,10 +17,10 @@
           %th Action
         - @variables.each do |sub|
           - if sub.name == v.name
-            = form_with model: sub, url: dictionary_path(sub), method: :patch do |f|
+            = simple_form_for sub, url: dictionary_path(sub) do |f|
               %tr
-                %td= sub.value
-                %td= f.text_field :text, name: 'variable[text]'
-                %td= f.submit 'update'
+                %td= f.input :value, readonly: true, label: false
+                %td= f.input :text, name: 'variable[text]', label: false
+                %td= f.submit 'Update', class: 'btn btn-primary'
 
 .clearfix
