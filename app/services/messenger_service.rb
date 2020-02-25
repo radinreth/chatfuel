@@ -3,7 +3,6 @@ class MessengerService
     completed.find_each do |ticket|
       # RestClient.post url, params(ticket)
       ticket.notified!
-      p 'notified'
     end
   end
 
