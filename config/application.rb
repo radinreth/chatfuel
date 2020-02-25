@@ -31,5 +31,7 @@ module Chatfuel
     console do
       ActiveRecord::Base.connection
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
