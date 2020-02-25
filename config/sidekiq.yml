@@ -1,4 +1,5 @@
+:dynamic: true
 :schedule:
   completed_ticket:
-    cron: '0 * * * * *'
+    cron: '0 0 * * * *'
     class: NotifyCompletedTicketJob
