@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_041957) do
+ActiveRecord::Schema.define(version: 2020_02_25_044832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,10 @@ ActiveRecord::Schema.define(version: 2020_02_21_041957) do
     t.bigint "step_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "ticket_id"
     t.index ["site_id"], name: "index_tracks_on_site_id"
     t.index ["step_id"], name: "index_tracks_on_step_id"
+    t.index ["ticket_id"], name: "index_tracks_on_ticket_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,4 +124,5 @@ ActiveRecord::Schema.define(version: 2020_02_21_041957) do
   end
 
   add_foreign_key "steps", "messages"
+  add_foreign_key "tracks", "tickets"
 end

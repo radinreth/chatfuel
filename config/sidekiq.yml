@@ -1,0 +1,4 @@
+:schedule:
+  completed_ticket:
+    cron: '0 * * * * *'
+    class: NotifyCompletedTicketJob
