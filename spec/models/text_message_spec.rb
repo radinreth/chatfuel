@@ -2,23 +2,23 @@
 #
 # Table name: text_messages
 #
-#  id                       :bigint           not null, primary key
-#  messenger_user_id        :bigint
+#  id                       :bigint(8)        not null, primary key
 #  first_name               :string
-#  last_name                :string
 #  gender                   :string
-#  profile_pic_url          :string
-#  timezone                 :string
-#  locale                   :string
-#  source                   :string
-#  last_seen                :string
-#  signed_up                :string
-#  sessions                 :string
-#  last_visited_block_name  :string
-#  last_visited_block_id    :string
 #  last_clicked_button_name :string
+#  last_name                :string
+#  last_seen                :string
+#  last_visited_block_name  :string
+#  locale                   :string
+#  profile_pic_url          :string
+#  sessions                 :string
+#  signed_up                :string
+#  source                   :string
+#  timezone                 :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  last_visited_block_id    :string
+#  messenger_user_id        :bigint(8)
 #
 RSpec.describe TextMessage do
   describe 'associations' do
