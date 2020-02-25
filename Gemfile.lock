@@ -80,6 +80,9 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     aes_key_wrap (1.0.1)
+    annotate (3.1.0)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     attr_required (1.0.1)
     bcrypt (3.1.13)
     bindata (2.4.4)
@@ -362,6 +365,7 @@ PLATFORMS
 DEPENDENCIES
   alto_guisso!
   alto_guisso_rails!
+  annotate
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
