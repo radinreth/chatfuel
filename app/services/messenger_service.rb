@@ -1,7 +1,7 @@
 class MessengerService
   def self.notify(completed)
     completed.find_each do |ticket|
-      # RestClient.post url, params(ticket)
+      RestClient.post url, params(ticket) if Rails.env.production?
       ticket.notified!
     end
   end
@@ -16,6 +16,7 @@ class MessengerService
     @url ||= "#{host}/#{path}?access_token=#{token}"
   end
 
+  # TODO: response with pre-defined template
   def params(ticket)
     {
       message_type: 'RESPONSE',
@@ -28,4 +29,3 @@ class MessengerService
     }
   end
 end
-

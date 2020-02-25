@@ -3,11 +3,11 @@
 Rails.application.routes.draw do
   root 'homes#show'
 
-  # TODO only authenticated user
+  # TODO: only authenticated user
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   guisso_for :user
 
   resource :manifest, only: [:show]
