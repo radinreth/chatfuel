@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id           :bigint           not null, primary key
+#  content_type :string
+#  content_id   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 class Message < ApplicationRecord
   has_many :steps, dependent: :destroy
   belongs_to :content, polymorphic: true, dependent: :destroy

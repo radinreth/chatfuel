@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: steps
+#
+#  id         :bigint           not null, primary key
+#  act        :string           not null
+#  value      :string
+#  message_id :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 RSpec.describe Step do
   describe 'validations' do
     let(:text_message) { create(:text_message) }
