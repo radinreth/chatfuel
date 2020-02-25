@@ -24,12 +24,14 @@ gem 'haml-rails', '~> 2.0'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'sidekiq'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 4-0-dev'
   gem 'ffaker'
   gem 'coderay', '~> 1.1', '>= 1.1.2'
+  gem 'sidekiq-scheduler'
 end
 
 group :development do

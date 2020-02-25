@@ -19,5 +19,11 @@
 class Ticket < ApplicationRecord
   enum status: %i[submitted completed notified picked_up]
 
+  has_one :track, dependent: :destroy
+  has_one :step, through: :track
+  has_one :message, through: :step
+
+  scope :completed_with_session, -> { completed.joins(:message) }
+
   validates :status, inclusion: { in: statuses.keys }
 end
