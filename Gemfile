@@ -23,6 +23,7 @@ gem 'haml', '~> 5.1.2'
 gem 'haml-rails', '~> 2.0'
 gem 'font-awesome-rails'
 gem 'simple_form'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -46,6 +47,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'rspec-sidekiq'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
