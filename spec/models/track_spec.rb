@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: tracks
+#
+#  id         :bigint           not null, primary key
+#  code       :string
+#  site_id    :bigint
+#  step_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Track, type: :model do
