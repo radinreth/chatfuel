@@ -19,6 +19,10 @@
         = fa_icon 'book'
         = t('sidebar.dictionary')
     %li
+      = link_to reports_path do
+        = fa_icon 'line-chart'
+        = t('sidebar.report')
+    %li
       = link_to '#', method: :delete do
         = fa_icon 'sign-out'
         = t('sidebar.logout')
