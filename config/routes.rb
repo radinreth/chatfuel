@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :dictionaries, only: [:index, :update]
   resources :sites
   resources :tracks, only: [:create]
+  resources :reports, only: [:index]
   resources :messages, only: [:create] do
     collection do
       post :continue
