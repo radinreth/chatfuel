@@ -7,6 +7,7 @@ Site.destroy_all
 Seed::Ticket.generate!
 Seed::Site.generate!
 Seed::Message.generate!
+Seed::Step.generate!
 
 # text_messages = []
 # voice_messages = []
