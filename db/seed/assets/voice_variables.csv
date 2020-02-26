@@ -1,0 +1,16 @@
+﻿name,value,text
+main_menu,1,សេវាកម្មសំខាន់ៗ
+main_menu,2,ផ្ដល់មតិយោបល់
+main_menu,3,តាមដានឯកសារ
+owso_options,1,បញ្ជាក់ឯកសារ
+owso_options,2,សេវាកម្មផ្សេងៗ
+certify_options,1,បញ្ចាក់កំណើត
+certify_options,2,បញ្ជាក់សៀវភៅគ្រួសារ
+other_options,1,អាហារដ្ឋាន
+other_options,2,ហាងធ្វើសក់
+feedback_options,1,ផ្ដល់យោបល់
+feedback_options,2,ផ្ដល់យោបល់ជាសម្លេង
+feedback_rating_options,1,ពេញចិត្ត
+feedback_rating_options,2,មិនពេញចិត្ត
+feedback_record_options,,
+tracking_ticket,,

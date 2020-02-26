@@ -124,5 +124,4 @@ ActiveRecord::Schema.define(version: 2020_02_25_044832) do
   end
 
   add_foreign_key "steps", "messages"
-  add_foreign_key "tracks", "tickets"
 end
