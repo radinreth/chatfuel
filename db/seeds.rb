@@ -1,7 +1,36 @@
 # frozen_string_literal: true
+Dir[Rails.root.join('db', 'seed', '**', '*.rb')].each { |f| require f }
 
 Variable.destroy_all
 Site.destroy_all
+
+p 'Create ticket'
+Seed::Ticket.generate!
+
+# text_messages = []
+# voice_messages = []
+# Message.destroy_all
+# messages = [
+#   {
+#     content_type: '',
+#     content_id: 0
+#   }
+# ]
+# Message.create(messages)
+
+# steps = [
+#   {
+#     message_id
+#   }
+# ]
+
+# tracks = [
+#   {
+#     site
+#     step
+#     ticket
+#   }
+# ]
 
 variables = [
   {
