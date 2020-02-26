@@ -4,8 +4,8 @@ Dir[Rails.root.join('db', 'seed', '**', '*.rb')].each { |f| require f }
 Variable.destroy_all
 Site.destroy_all
 
-p 'Create ticket'
 Seed::Ticket.generate!
+Seed::Site.generate!
 
 # text_messages = []
 # voice_messages = []
