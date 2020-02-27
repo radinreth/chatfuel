@@ -1,12 +1,16 @@
-= pie_chart Step.group_by_day(:created_at).count
 
-= simple_form_for :datepicker, method: :get do |f|
-  = f.input :date, input_html: { name: 'dates', value: params['dates'] }, as: :string
-  = f.submit 'Search', class: 'btn btn-primary'
--# = @period.duration_in_day
--# = @period_name
--# = @range
 
+.offset-md-4.col-4
+  = simple_form_for :datepicker, method: :get, inline: true do |f|
+    .input-group
+      = f.input_field :date, name: 'dates', class: 'form-control', value: params['dates']
+      .input-group-append
+        %button.btn.btn-primary{:type => "submit"}
+          %i.fa.fa-search
+.mb-5
 = line_chart @goals.map { |goal|                      |                                        
       { name: goal.name, data: goal.data }   |
-    }                                               |
+    }, download: {background: "#ffffff"}, messages: {empty: "No data"}                                            |
+
+.mb-5
+= pie_chart Step.group_by_day(:created_at).count, download: true
