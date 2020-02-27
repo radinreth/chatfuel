@@ -17,7 +17,7 @@
           %th Action
         - @variables.order(value: :asc).each do |sub|
           - if sub.name == v.name
-            = simple_form_for sub, url: dictionary_path(sub) do |f|
+            = simple_form_for sub, url: dictionary_path(sub), remote: true do |f|
               %tr
                 %td= f.input :value, input_html: { id: "variable_value_#{sub.id}" }, readonly: true, label: false
                 %td= f.input :text, input_html: { name: 'variable[text]', id: "variable_text_#{sub.id}" }, label: false
