@@ -26,6 +26,8 @@ gem 'simple_form'
 gem 'sidekiq'
 gem 'dotenv-rails'
 gem 'gon'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
