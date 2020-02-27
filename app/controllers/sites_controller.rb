@@ -26,7 +26,7 @@ class SitesController < ApplicationController
   def update
     @site = Site.find(params[:id])
     if @site.update(site_params)
-      redirect_to @site, status: :ok, notice: 'site updated successfully!'
+      redirect_to @site, status: 302, notice: 'site updated successfully!'
     end
   end
 
