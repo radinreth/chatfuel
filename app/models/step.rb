@@ -21,6 +21,7 @@ class Step < ApplicationRecord
   belongs_to :message
   has_one :track, dependent: :destroy
 
+  scope :accessed, -> { where(act: 'owso_options') }
   validates :act, uniqueness: { scope: :message_id }
 
   def value
