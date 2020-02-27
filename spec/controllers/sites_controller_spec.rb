@@ -39,7 +39,7 @@ RSpec.describe SitesController, type: :controller do
 
       updated = assigns(:site)
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(302)
       expect(updated.name).to eq 'bavil'
       expect(updated.code).to eq '0211'
     end
