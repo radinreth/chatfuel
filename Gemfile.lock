@@ -89,6 +89,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bootstrap-daterangepicker-rails (3.0.4)
+      railties (>= 4.0)
     builder (3.2.4)
     byebug (11.0.1)
     capybara (3.30.0)
@@ -199,6 +201,8 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    momentjs-rails (2.20.1)
+      railties (>= 3.1)
     msgpack (1.3.1)
     multi_json (1.14.1)
     netrc (0.11.0)
@@ -395,6 +399,7 @@ DEPENDENCIES
   alto_guisso_rails!
   annotate
   bootsnap (>= 1.4.2)
+  bootstrap-daterangepicker-rails
   byebug
   capybara (>= 2.15)
   chartkick
@@ -412,6 +417,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  momentjs-rails
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
