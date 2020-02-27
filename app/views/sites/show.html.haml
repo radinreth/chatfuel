@@ -1,4 +1,7 @@
 %h3= "#{@site.name}(#{@site.tracks_count})"
+%span.hint Number of tracks by each district
+.mb-2
 
+%ul
 - @tracks.each do |track|
-  %div= track.code
+  %li= track.code
