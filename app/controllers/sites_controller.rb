@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   def index
-    @sites = Site.all
+    @pagy, @sites = pagy(Site.all)
   end
 
   def new
