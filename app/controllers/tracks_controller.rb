@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   before_action :message
   before_action :ticket
-  after_action :tracking_step
+  after_action :assign_track_to_step
 
   def create
     @track = Track.new(track_params)
@@ -32,7 +32,7 @@ class TracksController < ApplicationController
     @ticket ||= Ticket.find_by(code: params[:code])
   end
 
-  def tracking_step
+  def assign_track_to_step
     return unless @track.persisted?
 
     @message = Message.find_by(content: message)
