@@ -17,3 +17,4 @@
         %td= link_to fa_icon('arrow-right'), site_path(site)
         %td= link_to fa_icon('pencil'), edit_site_path(site)
         %td= link_to fa_icon('trash'), site_path(site), method: :delete, data: { confirm: 'Are you sure?' }
+!= pagy_bootstrap_nav(@pagy)
