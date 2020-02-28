@@ -391,7 +391,7 @@ DEPENDENCIES
   alto_guisso_rails!
   annotate
   bootsnap (>= 1.4.2)
-  bootstrap-daterangepicker-rails
+  bootstrap-daterangepicker-rails (~> 3.0.4)
   byebug
   capybara (>= 2.15)
   chartkick
@@ -408,7 +408,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
-  momentjs-rails
+  momentjs-rails (~> 2.20.1)
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)

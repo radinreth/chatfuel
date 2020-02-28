@@ -29,8 +29,8 @@ gem 'dotenv-rails'
 gem 'chartkick'
 gem 'groupdate'
 
-gem 'momentjs-rails'
-gem 'bootstrap-daterangepicker-rails'
+gem 'momentjs-rails', '~> 2.20.1'
+gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
