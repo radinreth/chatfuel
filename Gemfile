@@ -25,7 +25,7 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'sidekiq'
 gem 'dotenv-rails'
-gem 'gon'
+
 gem 'chartkick'
 gem 'groupdate'
 
