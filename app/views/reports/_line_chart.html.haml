@@ -1,3 +1,17 @@
 = line_chart chart_data(@goals), download: {background: "#FFF"}, messages: {empty: "No data"}
 .mb-3
-= render @goals
+
+%table.table.table-sm{ style: 'font-size: 13px' }
+  %tr
+    %td
+    %td Accessed
+    %td Submitted
+    %td Completed
+
+  - [:total, :average].each do |group|
+    %tr
+      %td= "#{group.to_s.titleize}:"
+      - @goals.each do |goal|
+        %td= goal.send(group)
+
+=# render @goals
