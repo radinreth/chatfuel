@@ -1,3 +1,5 @@
+# TODO: add spec
+
 class StepCollectionDecorator < BaseCollectionDecorator
   def collection
     Step.send(@sym)

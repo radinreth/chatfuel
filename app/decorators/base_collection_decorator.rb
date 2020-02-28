@@ -1,3 +1,5 @@
+# TODO: add spec
+
 class BaseCollectionDecorator
   include ActionView::Helpers
   attr_reader :period, :sym

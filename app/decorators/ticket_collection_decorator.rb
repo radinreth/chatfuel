@@ -1,3 +1,5 @@
+# TODO: add spec
+
 class TicketCollectionDecorator < BaseCollectionDecorator
   def collection
     Ticket.send(@sym)
