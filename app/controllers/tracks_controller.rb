@@ -1,14 +1,14 @@
 class TracksController < ApplicationController
   before_action :message
-  after_action :tracking_step
   before_action :ticket
+  after_action :tracking_step
 
   def create
     @track = Track.new(track_params)
 
     if @track.save
       @site = Site.find_by(code: @track.site_code)
-      @track.update(site: @site)
+      @track.update(site: @site, ticket: @ticket)
       render json: json_response, status: :ok
     end
   end
