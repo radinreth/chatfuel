@@ -1,16 +1,8 @@
-
-
 .offset-md-4.col-4
-  = simple_form_for :datepicker, method: :get, inline: true do |f|
-    .input-group
-      = f.input_field :date, name: 'dates', class: 'form-control', value: params['dates']
-      .input-group-append
-        %button.btn.btn-primary{:type => "submit"}
-          %i.fa.fa-search
+  = render 'search'
+
 .mb-5
-= line_chart @goals.map { |goal|                      |                                        
-      { name: goal.name, data: goal.data }   |
-    }, download: {background: "#ffffff"}, messages: {empty: "No data"}                                            |
+= render 'line_chart'
 
 .mb-5
 = pie_chart Step.group_by_day(:created_at).count, download: true
