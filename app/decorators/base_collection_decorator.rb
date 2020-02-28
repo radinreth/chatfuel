@@ -1,5 +1,6 @@
 class BaseCollectionDecorator
-  attr_reader :period
+  include ActionView::Helpers
+  attr_reader :period, :sym
 
   def initialize(sym, period)
     @sym = sym
@@ -8,6 +9,14 @@ class BaseCollectionDecorator
 
   def name
     @sym.to_s.titleize
+  end
+
+  def total
+    collection.count
+  end
+
+  def avg
+    number_to_percentage(total / period.duration_in_day)
   end
 
   def data
