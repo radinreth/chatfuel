@@ -1,3 +1,1 @@
-= line_chart @goals.map { |goal|                      |                                        
-      { name: goal.name, data: goal.data }   |
-    }, download: {background: "#ffffff"}, messages: {empty: "No data"}                                            |
+= line_chart chart_data(@goals), download: {background: "#FFF"}, messages: {empty: "No data"}
