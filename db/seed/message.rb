@@ -4,8 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Message
     def self.generate!
-      ::Message.destroy_all
-
       p 'Create messages'
       %w[text_message voice_message].each do |message_type|
         CSV.foreach("db/seed/assets/#{message_type}.csv", headers: true) do |row|

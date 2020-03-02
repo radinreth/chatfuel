@@ -1,4 +1,8 @@
+require Rails.root.join('db', 'seed', 'site.rb')
+
 class SitesController < ApplicationController
+  before_action :ensure_file, only: [:import]
+
   def index
     @pagy, @sites = pagy(Site.all)
   end
@@ -23,10 +27,16 @@ class SitesController < ApplicationController
     end
   end
 
+  def import
+    tempfile = file_params[:file]
+    ::Seed::Site.generate!(tempfile.path)
+    redirect_to sites_path, status: :moved_permanently, notice: 'Successfully imported'
+  end
+
   def update
     @site = Site.find(params[:id])
     if @site.update(site_params)
-      redirect_to @site, status: 302, notice: 'site updated successfully!'
+      redirect_to @site, status: :moved_permanently, notice: 'site updated successfully!'
     end
   end
 
@@ -37,6 +47,18 @@ class SitesController < ApplicationController
   end
 
   private
+
+  def ensure_file
+    begin
+      file_params
+    rescue
+      redirect_to sites_path, status: :moved_permanently, alert: 'File required!' and return
+    end
+  end
+
+  def file_params
+    params.require(:site).permit(:file)
+  end
 
   def site_params
     params.require(:site).permit(:name, :code)

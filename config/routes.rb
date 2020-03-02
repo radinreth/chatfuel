@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :update]
-  resources :sites
+  resources :sites do
+    post 'import', on: :collection
+  end
   resources :tracks, only: [:create]
   resources :reports, only: [:index]
   resources :messages, only: [:create] do

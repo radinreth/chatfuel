@@ -4,8 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Track
     def self.generate!
-      ::Track.destroy_all
-
       p 'Create tracks'
       CSV.foreach('db/seed/assets/tracks.csv', headers: true) do |row|
         hash = row.to_hash

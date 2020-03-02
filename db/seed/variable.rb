@@ -4,8 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Variable
     def self.generate!
-      ::Variable.destroy_all
-
       p 'Create variables'
       CSV.foreach('db/seed/assets/voice_variables.csv', headers: true, encoding: 'bom|utf-8') do |row|
         hash = row.to_hash
