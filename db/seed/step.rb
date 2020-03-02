@@ -4,7 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Step
     def self.generate!
-      p 'Create steps'
       CSV.foreach('db/seed/assets/steps.csv', headers: true) do |row|
         hash = row.to_hash
 

@@ -4,7 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Track
     def self.generate!
-      p 'Create tracks'
       CSV.foreach('db/seed/assets/tracks.csv', headers: true) do |row|
         hash = row.to_hash
 
@@ -16,7 +15,7 @@ module Seed
           track = ::Track.new(parsed)
 
           ticket_id = ticket_ids.sample
-          
+
           track.site_id = site_ids.sample
           track.step_id = step_ids.sample
           track.ticket_id = ticket_id
