@@ -1,7 +1,7 @@
 require Rails.root.join('db', 'seed', 'site.rb')
 
 class SitesController < ApplicationController
-  before_action :ensure_file, only: [:import]
+  before_action :ensure_file_exits, only: [:import]
 
   def index
     @pagy, @sites = pagy(Site.all)
@@ -48,7 +48,7 @@ class SitesController < ApplicationController
 
   private
 
-  def ensure_file
+  def ensure_file_exits
     begin
       file_params
     rescue
