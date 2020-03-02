@@ -31,6 +31,25 @@ RSpec.describe SitesController, type: :controller do
     end.to change { Site.count }.by(1)
   end
 
+  describe 'POST :import' do
+    context 'success' do
+      it 'attach a file' do
+        expect do
+          post :import, params: { site: { file: fixture_file_upload(file_path('site.csv'), 'image/png') } }
+        end.to change { Site.count }
+      end
+    end
+
+    context 'fail' do
+      it 'does not attach a file' do
+        expect do
+          post :import
+        end.not_to change { Site.count }
+      end
+    end
+
+  end
+
   context 'updates' do
     let(:kamrieng) { create(:site, name: 'kamrieng', code: '0212') }
 
