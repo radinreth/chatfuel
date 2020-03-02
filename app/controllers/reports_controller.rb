@@ -7,5 +7,12 @@ class ReportsController < ApplicationController
     @completed = TicketCollectionDecorator.new(:completed, @period)
 
     @goals = [ @accessed, @submitted, @completed ]
+
+=begin
+  feedback
+    status enum :satisfied, :disatified
+    media_url only when status is not provided
+=end
+    @complains = []
   end
 end
