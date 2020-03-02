@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2020_03_02_093814) do
   create_table "feedbacks", force: :cascade do |t|
     t.integer "status", default: 0
     t.string "media_url"
+    t.bigint "step_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["step_id"], name: "index_feedbacks_on_step_id"
   end
 
   create_table "messages", force: :cascade do |t|
