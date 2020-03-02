@@ -16,6 +16,25 @@
 require 'rails_helper'
 
 RSpec.describe Site, type: :model do
-  it { should have_attribute(:name) } 
-  it { should have_attribute(:code) }
+  it { is_expected.to have_attribute(:name) } 
+  it { is_expected.to have_attribute(:code) }
+
+  describe 'uniqueness' do
+    before do
+      create(:site, code: '0212')
+    end
+
+    it 'valid' do
+      site = build(:site, code: '0211')
+
+      expect(site).to be_valid
+    end
+
+    it 'invalid' do
+      site = build(:site, code: '0212')
+
+      expect(site).to be_invalid
+      expect(site.errors[:code]).to eq ["has already been taken"]
+    end
+  end
 end
