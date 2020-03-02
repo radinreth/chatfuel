@@ -4,7 +4,6 @@ require_relative 'time_parser'
 module Seed
   class Message
     def self.generate!
-      p 'Create messages'
       %w[text_message voice_message].each do |message_type|
         CSV.foreach("db/seed/assets/#{message_type}.csv", headers: true) do |row|
           hash = row.to_hash
