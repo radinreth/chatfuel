@@ -1,8 +1,8 @@
-.offset-md-4.col-4
-  = render 'search'
+= render 'header', title: 'Accessed, Submitted, Completed'
+= render 'asc_line_chart'
+= render 'asc_summary_table'
 
-.mb-5
-= render 'line_chart'
 
-.mb-5
-= pie_chart Step.group_by_day(:created_at).count, download: true
+= render 'header', title: 'Complains'
+= render 'complains_line_chart'
+= #render 'complains_summary_table'
