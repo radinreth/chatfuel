@@ -7,6 +7,11 @@
 #  status     :integer(4)       default("0")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  step_id    :bigint(8)
+#
+# Indexes
+#
+#  index_feedbacks_on_step_id  (step_id)
 #
 require 'rails_helper'
 

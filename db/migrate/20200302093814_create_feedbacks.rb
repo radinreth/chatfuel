@@ -3,6 +3,7 @@ class CreateFeedbacks < ActiveRecord::Migration[6.0]
     create_table :feedbacks do |t|
       t.integer :status, default: 0
       t.string :media_url
+      t.belongs_to :step
 
       t.timestamps
     end
