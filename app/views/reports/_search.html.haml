@@ -1,6 +1,6 @@
 = simple_form_for :datepicker, method: :get, inline: true do |f|
   .input-group
-    = f.input_field :date, name: 'dates', class: 'form-control', value: params['dates']
+    = f.input_field :date, name: "dates_#{type}", class: 'form-control datepicker_date', value: params["dates_#{type}"]
     .input-group-append
       %button.btn.btn-primary{:type => "submit"}
         %i.fa.fa-search
