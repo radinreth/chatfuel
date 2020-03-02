@@ -7,9 +7,9 @@ class DictionariesController < ApplicationController
     @variable = Variable.find(params[:id])
 
     if @variable.update(variable_params)
-      redirect_to dictionaries_path
+      redirect_to dictionaries_path, status: :moved_permanently, notice: 'Updated successfully!'
     else
-      render json: @variable.errors, status: :unprocessable_entity
+      render json: @variable.errors, status: :unprocessable_entity, notice: 'Updated fail!'
     end
   end
 
