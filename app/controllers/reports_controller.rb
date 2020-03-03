@@ -4,14 +4,10 @@ class ReportsController < ApplicationController
 
   def index
     @goals = [accessed, submitted, completed]
-    @complains = [satisfied, disatisfied]
+    @complaints = [satisfied, disatisfied]
   end
 
   private
-
-=begin
-  default url options
-=end
 
   def accessed
     @accessed ||= StepCollectionDecorator.new(:accessed, period)
