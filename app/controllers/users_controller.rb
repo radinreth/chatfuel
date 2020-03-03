@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path, status: :moved_permanently, notice: 'delete successfully'
+  end
+
   private
 
   def user_params
