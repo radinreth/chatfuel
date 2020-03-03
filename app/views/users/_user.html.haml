@@ -3,3 +3,4 @@
   %td= user.email
   %td= user.role
   %td= link_to 'edit', user
+  %td= link_to 'delete', user, method: :delete, data: { confirm: 'are you sure?' }
