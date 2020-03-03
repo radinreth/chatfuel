@@ -5,6 +5,7 @@
 #  id           :bigint(8)        not null, primary key
 #  code         :string           default("")
 #  name         :string           not null
+#  status       :integer(4)       default("0")
 #  tracks_count :integer(4)       default("0")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
