@@ -1,4 +1,5 @@
 = simple_form_for @site do |f|
+  = f.input :status, as: :radio_buttons, collection: Site.statuses, value_method: :first
   = f.input :name
   = f.input :code
   = f.button :submit, class: 'btn btn-primary'
