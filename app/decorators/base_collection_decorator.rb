@@ -18,7 +18,7 @@ class BaseCollectionDecorator
   end
 
   def average
-    number_to_percentage(total / period.duration_in_day)
+    number_to_percentage(total / period.duration_in_day, precision: 1)
   end
 
   def data
