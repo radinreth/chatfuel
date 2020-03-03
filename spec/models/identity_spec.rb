@@ -17,10 +17,10 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'test_helper'
+require 'rails_helper'
 
-class IdentityTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe Identity, type: :model do
+  it { is_expected.to have_attribute(:provider) }
+  it { is_expected.to have_attribute(:token) }
+  it { is_expected.to belong_to(:user) }
 end

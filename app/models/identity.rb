@@ -17,10 +17,6 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'test_helper'
-
-class IdentityTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Identity < ApplicationRecord
+  belongs_to :user
 end
