@@ -23,6 +23,10 @@
         = fa_icon 'line-chart'
         = t('sidebar.report')
     %li
+      = link_to users_path do
+        = fa_icon 'user'
+        = t('sidebar.manage_user')
+    %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do
           = fa_icon 'sign-out'

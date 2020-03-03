@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/new'
+  get 'users/create'
   root 'homes#show'
 
   # TODO: only authenticated user
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
   resources :sites do
     post 'import', on: :collection
   end
+  resources :users, only: [:index, :new, :create]
   resources :tracks, only: [:create]
   resources :reports, only: [:index]
   resources :messages, only: [:create] do
