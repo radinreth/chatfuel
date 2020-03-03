@@ -1,11 +1,10 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token
   skip_before_action :check_guisso_cookie
 
   def instedd
     generic do |auth|
       {
-        email: auth.info['email'],
+        email: auth.info['email']
         # name: auth.info['name'],
       }
     end
@@ -16,7 +15,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def generic
-    auth = request.env['omniauth.auth']
+    auth = env['omniauth.auth']
+
     if identity = Identity.find_by_provider_and_token(auth['provider'], auth['uid'])
       user = identity.user
     else
@@ -31,7 +31,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       user.identities.create! provider: auth['provider'], token: auth['uid']
     end
-
+    
     sign_in user
     next_url = request.env['omniauth.origin'] || root_path
     next_url = root_path if next_url == new_user_session_url

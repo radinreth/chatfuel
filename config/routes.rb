@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  guisso_for :user
+  # guisso_for :user
 
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]

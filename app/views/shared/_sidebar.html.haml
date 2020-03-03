@@ -23,9 +23,14 @@
         = fa_icon 'line-chart'
         = t('sidebar.report')
     %li
-      = link_to '#', method: :delete do
-        = fa_icon 'sign-out'
-        = t('sidebar.logout')
+      - if user_signed_in?
+        = link_to destroy_user_session_path, method: :delete do
+          = fa_icon 'sign-out'
+          = t('sidebar.logout')
+      - else
+        = link_to new_user_session_path do
+          = fa_icon 'sign-in'
+          = t('sidebar.signin')
 
   .copyright
     Developed by 2020 InSTEDD

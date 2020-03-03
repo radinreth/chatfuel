@@ -1,4 +1,4 @@
-enabled: true
-url: http://guisso.instedd.org:3001
-client_id: oQLfa9_Yok5LKxx8Tge0fw
-client_secret: FKbQOWUWbTiYR9b5y8K0rG03HZoQtCrYUo3wmJarTlw
+enabled: false
+url: https://login.instedd.org
+client_id: OfDvU04BfVcby3rWLhq2nQ
+client_secret: hxeLs_8HXLIccRvwChXjtOaNykbvM1eYkF9Iq0R6okU
