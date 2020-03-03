@@ -25,7 +25,7 @@ RSpec.describe Ticket, type: :model do
     it { is_expected.to have_attribute(:actual_completed_at) }
     it { is_expected.to have_attribute(:picked_up_at) }
   end
-  
+
   describe 'associations' do
     it { is_expected.to have_one(:track) }
     it { is_expected.to have_one(:step) }
@@ -54,7 +54,8 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'validations' do
-    it { is_expected.to define_enum_for(:status)
-      .with_values(%i[submitted completed notified picked_up]) }
+    statuses = %i[submitted completed notified picked_up]
+
+    it { is_expected.to define_enum_for(:status).with_values(statuses) }
   end
 end

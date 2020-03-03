@@ -16,8 +16,10 @@
 require 'rails_helper'
 
 RSpec.describe Feedback, type: :model do
+  # attributes
   it { is_expected.to have_attribute(:media_url) }
-  it { is_expected.to define_enum_for(:status)
-        .with_values(%i[satisfied disatisfied]) }
+  it { is_expected.to define_enum_for(:status).with_values(%i[satisfied disatisfied]) }
+
+  # associations
   it { is_expected.to belong_to(:step) }
 end
