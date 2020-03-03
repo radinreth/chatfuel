@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   scope '/role' do
-    resources :users, only: [:index, :new, :create]
+    resources :users
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

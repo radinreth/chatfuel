@@ -36,6 +36,6 @@
           = fa_icon 'sign-in'
           = t('sidebar.signin')
 
-  %small= "logged in as : #{current_user.email}"
+  %small= "logged in as : #{current_user&.email}"
   .copyright
     Developed by 2020 InSTEDD
