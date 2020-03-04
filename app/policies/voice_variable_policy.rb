@@ -1,7 +1,5 @@
 class VoiceVariablePolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope
-    end
+  def update?
+    user.system_admin?
   end
 end

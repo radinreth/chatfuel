@@ -1,7 +1,5 @@
 class VariablePolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope
-    end
+  def index?
+    user.system_admin?
   end
 end
