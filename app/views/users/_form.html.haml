@@ -1,5 +1,5 @@
 = simple_form_for @user do |f|
-  = f.input :role, as: :radio_buttons, collection: User.roles, value_method: :first
+  = f.input :role, as: :radio_buttons, collection: policy(User).roles, value_method: :first
   = f.input :status, as: :radio_buttons, collection: User.statuses, value_method: :first
   = f.input :email
   = f.input :password
