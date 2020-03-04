@@ -6,26 +6,28 @@
     = fa_icon 'align-left', class: 'toggle-align'
 
   %ul.list-unstyled.components
-    %li
-      = link_to root_path do
-        = fa_icon 'home'
-        = t('sidebar.home')
-    %li
-      = link_to sites_path do
-        = fa_icon 'sitemap'
-        = t('sidebar.sites')
-    %li
-      = link_to dictionaries_path do
-        = fa_icon 'book'
-        = t('sidebar.dictionary')
+    - if policy(:menu_item).show?
+      %li
+        = link_to root_path do
+          = fa_icon 'home'
+          = t('sidebar.home')
+      %li
+        = link_to sites_path do
+          = fa_icon 'sitemap'
+          = t('sidebar.sites')
+      %li
+        = link_to dictionaries_path do
+          = fa_icon 'book'
+          = t('sidebar.dictionary')
     %li
       = link_to reports_path do
         = fa_icon 'line-chart'
         = t('sidebar.report')
-    %li
-      = link_to users_path do
-        = fa_icon 'user'
-        = t('sidebar.manage_user')
+    - if policy(:menu_item).show?
+      %li
+        = link_to users_path do
+          = fa_icon 'user'
+          = t('sidebar.manage_user')
     %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do
