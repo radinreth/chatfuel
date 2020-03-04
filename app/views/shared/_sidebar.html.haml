@@ -6,11 +6,12 @@
     = fa_icon 'align-left', class: 'toggle-align'
 
   %ul.list-unstyled.components
-    - if policy(:menu_item).show?
+    - if policy(:admin).show?
       %li
         = link_to root_path do
           = fa_icon 'home'
           = t('sidebar.home')
+    - if policy(:system_admin).show?
       %li
         = link_to sites_path do
           = fa_icon 'sitemap'
@@ -23,7 +24,7 @@
       = link_to reports_path do
         = fa_icon 'line-chart'
         = t('sidebar.report')
-    - if policy(:menu_item).show?
+    - if policy(:admin).show?
       %li
         = link_to users_path do
           = fa_icon 'user'
