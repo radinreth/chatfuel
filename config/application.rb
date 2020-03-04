@@ -33,5 +33,8 @@ module Chatfuel
     end
 
     config.active_job.queue_adapter = :sidekiq
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+    end
   end
 end
