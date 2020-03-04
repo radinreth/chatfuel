@@ -10,7 +10,8 @@ class SitesController < ApplicationController
   end
 
   def new
-    @site = authorize(Site.new)
+    @site = Site.new
+    authorize @site
   end
 
   def show
@@ -25,7 +26,7 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     if @site.save
-      redirect_to @site, status: :created, notice: 'site created successfully!'
+      redirect_to @site, status: :moved_permanently, notice: 'site created successfully!'
     end
   end
 

@@ -3,6 +3,10 @@ class SitePolicy < ApplicationPolicy
     user.system_admin?
   end
 
+  def new?
+    user.system_admin?
+  end
+
   def edit?
     user.system_admin?
   end
