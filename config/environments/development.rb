@@ -65,4 +65,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.hosts << /[a-z0-9]+\.ngrok\.io/
   config.hosts << 'owso.instedd.org'
+
+  config.web_console.whitelisted_ips = "172.21.0.0/8"
 end

@@ -4,6 +4,8 @@ DB_USER=postgres
 DB_PWD=
 RAILS_MAX_THREADS=5
 REDIS_URL=redis://redis:6379
+GUISSO_CLIENT_ID=LlFtfN6ez38GQldGQcm5BA
+GUISSO_CLIENT_SECRET=kFZYlp8l0VhJUDwUwLLHw45SpmeiZ_4j5xL
 
 # Shell with unicode support
 LANG=C.UTF-8

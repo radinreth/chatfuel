@@ -1,4 +1,4 @@
-enabled: false
+enabled: true
 url: https://login.instedd.org
-client_id: OfDvU04BfVcby3rWLhq2nQ
-client_secret: hxeLs_8HXLIccRvwChXjtOaNykbvM1eYkF9Iq0R6okU
+client_id: <%= ENV['GUISSO_CLIENT_ID'] %>
+client_secret: <%= ENV['GUISSO_CLIENT_SECRET'] %>

@@ -25,28 +25,33 @@ gem 'groupdate'
 gem 'momentjs-rails', '~> 2.20.1'
 gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
 gem "pundit"
+
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 4-0-dev'
-  gem 'ffaker'
-  gem 'coderay', '~> 1.1', '>= 1.1.2'
-  gem 'sidekiq-scheduler'
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "rspec-rails", "~> 4-0-dev"
+  gem "ffaker"
+  gem "coderay", "~> 1.1", ">= 1.1.2"
+  gem "sidekiq-scheduler"
+  gem "rubocop-rails"
+  gem "rubocop-performance"
 end
+
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'annotate'
+  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "web-console", ">= 3.3.0"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "annotate"
 end
+
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'shoulda-matchers'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner-active_record'
-  gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'rspec-sidekiq'
+  gem "capybara", ">= 2.15"
+  gem "shoulda-matchers"
+  gem "factory_bot_rails"
+  gem "database_cleaner-active_record"
+  gem "rails-controller-testing"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem "rspec-sidekiq"
 end
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]

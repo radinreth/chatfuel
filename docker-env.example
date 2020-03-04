@@ -4,6 +4,8 @@ DB_USER=postgres
 DB_PWD=
 RAILS_MAX_THREADS=5
 REDIS_URL=redis://redis:6379
+GUISSO_CLIENT_ID= --- REGISTER APP AT login.instedd.org ---
+GUISSO_CLIENT_SECRET= --- REGISTER APP AT login.instedd.org ---
 
 # Shell with unicode support
 LANG=C.UTF-8

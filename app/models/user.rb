@@ -34,5 +34,6 @@ class User < ApplicationRecord
   enum status: %i[enable disable]
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+
   has_many :identities, dependent: :destroy
 end

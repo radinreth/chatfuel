@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  guisso_for :user
+
   root 'homes#show'
 
   # TODO: only authenticated user
@@ -10,9 +13,6 @@ Rails.application.routes.draw do
   scope '/role' do
     resources :users
   end
-
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  # guisso_for :user
 
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
