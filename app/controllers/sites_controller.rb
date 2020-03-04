@@ -4,11 +4,11 @@ class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
 
   def index
-    @pagy, @sites = pagy(Site.all)
+    @pagy, @sites = pagy(authorize(Site.all))
   end
 
   def new
-    @site = Site.new
+    @site = authorize Site.new
   end
 
   def show
