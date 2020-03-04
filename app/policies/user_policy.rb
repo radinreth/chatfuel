@@ -1,8 +1,17 @@
 class UserPolicy < ApplicationPolicy
+
+  def new?
+    !user.ombudsman?  
+  end
+
+  def create?
+    !user.ombudsman? && (User.roles[user.role] >= User.roles[record.role])
+  end
+
   def roles
     return User.roles if user.system_admin?
     
-    User.roles.keys.reject { |r| r == 'system_admin' }.map { |r| [r.titlecase, r] }
+    User.roles.keys.reject { |r| r == 'system_admin' }.map { |r| [r, r] }
   end
 
   class Scope < Scope
