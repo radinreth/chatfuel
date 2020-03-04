@@ -1,11 +1,12 @@
 class DictionariesController < ApplicationController
   def index
     @variables = Variable.order(name: :asc)
+    authorize @variables
   end
 
   def update
     @variable = Variable.find(params[:id])
-
+    authorize @variable
     if @variable.update(variable_params)
       redirect_to dictionaries_path, status: :moved_permanently, notice: 'Updated successfully!'
     else
