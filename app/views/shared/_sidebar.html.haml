@@ -38,6 +38,7 @@
           = fa_icon 'sign-in'
           = t('sidebar.signin')
 
-  %small= "logged in as : #{current_user&.email}"
+  %small{ style: "font-size: 10px; padding: 10px" }
+    = "Logged in as : #{current_user&.email}(#{current_user&.role})"
   .copyright
     Developed by 2020 InSTEDD
