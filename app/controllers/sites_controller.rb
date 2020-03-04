@@ -2,26 +2,28 @@ require Rails.root.join('db', 'seed', 'site.rb')
 
 class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
+  before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @sites = pagy(authorize(Site.all))
+    @pagy, @sites = pagy(Site.all)
+    authorize @sites
   end
 
   def new
-    @site = authorize Site.new
+    @site = authorize(Site.new)
   end
 
   def show
-    @site = Site.find params[:id]
+    authorize @site
     @tracks = @site.tracks
   end
 
   def edit
-    @site = Site.find(params[:id])
+    authorize @site
   end
 
   def create
-    @site = Site.new site_params
+    @site = Site.new(site_params)
     if @site.save
       redirect_to @site, status: :created, notice: 'site created successfully!'
     end
@@ -34,25 +36,29 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.find(params[:id])
+    authorize @site
     if @site.update(site_params)
       redirect_to @site, status: :moved_permanently, notice: 'site updated successfully!'
     end
   end
 
   def destroy
-    @site = Site.find(params[:id])
+    authorize @site
     @site.destroy
-    redirect_to sites_path
+    redirect_to sites_path, status: :moved_permanently, notice: 'destroy successfully'
   end
 
   private
+
+  def set_site
+    @site ||= Site.find(params[:id])
+  end
 
   def ensure_file_exits
     begin
       file_params
     rescue
-      redirect_to sites_path, status: :moved_permanently, alert: 'File required!' and return
+      redirect_to sites_path, status: :moved_permanently, alert: 'File required!' && return
     end
   end
 
