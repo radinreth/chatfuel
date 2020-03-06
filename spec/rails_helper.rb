@@ -10,6 +10,7 @@ require 'support/factory_bot'
 require 'support/database_cleaner'
 require 'support/rspec_sidekiq'
 require 'support/util'
+require 'support/controller_macros'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -37,6 +38,8 @@ end
 RSpec.configure do |config|
   config.include Util::Methods
   config.use_transactional_fixtures = false
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, :type => :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
