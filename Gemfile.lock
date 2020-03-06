@@ -413,49 +413,49 @@ PLATFORMS
 DEPENDENCIES
   alto_guisso!
   alto_guisso_rails!
-  annotate
+  annotate (~> 3.1.0)
   bootsnap (>= 1.4.2)
   bootstrap-daterangepicker-rails (~> 3.0.4)
   byebug
   capybara (>= 2.15)
-  chartkick
+  chartkick (~> 3.3.1)
   coderay (~> 1.1, >= 1.1.2)
-  database_cleaner-active_record
-  devise
-  dotenv-rails
-  factory_bot_rails
-  ffaker
-  font-awesome-rails
-  groupdate
+  database_cleaner-active_record (~> 1.8.0)
+  devise (~> 4.7.1)
+  dotenv-rails (~> 2.7.5)
+  factory_bot_rails (~> 5.1.1)
+  ffaker (~> 2.13.0)
+  font-awesome-rails (~> 4.7.0.5)
+  groupdate (~> 5.0.0)
   haml (~> 5.1.2)
   haml-rails (~> 2.0)
   jbuilder (~> 2.7)
-  jquery-rails
+  jquery-rails (~> 4.3.5)
   listen (>= 3.0.5, < 3.2)
   momentjs-rails (~> 2.20.1)
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.3)
-  pundit
+  pundit (~> 1.1.0)
   rails (~> 6.0.1)
-  rails-controller-testing
+  rails-controller-testing (~> 1.0.4)
   rspec-rails (~> 4.pre.0.pre.dev)
-  rspec-sidekiq
-  rubocop-performance
-  rubocop-rails
+  rspec-sidekiq (~> 3.0.3)
+  rubocop-performance (~> 1.5.2)
+  rubocop-rails (~> 2.4.2)
   sass-rails (>= 6)
-  selenium-webdriver
-  shoulda-matchers
-  sidekiq
-  sidekiq-scheduler
-  simple_form
-  spring
+  selenium-webdriver (~> 3.142.7)
+  shoulda-matchers (~> 4.3.0)
+  sidekiq (= 6.0.5)
+  sidekiq-scheduler (~> 3.0.1)
+  simple_form (~> 5.0.2)
+  spring (~> 2.1.0)
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
   verboice (~> 0.7.0)
   web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (~> 4.2.0)
   webpacker (~> 4.0)
 
 RUBY VERSION
