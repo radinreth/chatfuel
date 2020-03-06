@@ -33,4 +33,5 @@ yarn-debug.log*
 /log
 /vendor
 
+.env
 docker-env
