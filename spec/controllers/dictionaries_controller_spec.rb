@@ -9,7 +9,7 @@ RSpec.describe DictionariesController, type: :controller do
 
   describe "GET #index" do
     context "system admin" do
-      login_system_admin
+      stub_system_admin
 
       it "returns http success" do
         get :index
@@ -19,7 +19,7 @@ RSpec.describe DictionariesController, type: :controller do
     end
 
     context "site admin" do
-      login_site_admin
+      stub_site_admin
 
       it "is not authorize" do
         get :index
@@ -29,7 +29,7 @@ RSpec.describe DictionariesController, type: :controller do
     end
 
     context "ombudsman" do
-      login_ombudsman
+      stub_ombudsman
 
       it "is not authorize" do
         get :index

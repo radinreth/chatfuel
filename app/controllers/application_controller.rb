@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   private
     def user_not_authorized
       flash[:alert] = "You are not authorized"
-      redirect_to(reports_path) and return
+      redirect_to(reports_path) && return
     end
 end
