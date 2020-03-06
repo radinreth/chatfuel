@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  skip_before_action :authenticate_user_without_guisso!
+  skip_before_action :verify_authenticity_token
   before_action :set_message
   before_action :set_step
 
