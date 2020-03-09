@@ -23,6 +23,9 @@ module Chatfuel
     # the framework and any gems in your application.
 
     config.generators do |generate|
+      generate.test_framework :rspec, fixtures: false, helper_specs: false, routing_specs: false
+      generate.fixture_replacement :factory_bot
+      generate.factory_bot dir: "spec/factories"
       generate.helper false
       generate.assets false
       generate.view_spec false
