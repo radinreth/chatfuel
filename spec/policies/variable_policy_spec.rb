@@ -1,28 +1,25 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe VariablePolicy do
+  subject { described_class.new(user, nil) }
 
-  let(:user) { User.new }
+  permissions :index? do
+    context "being an ombudsman" do
+      let(:user) { build(:user, :ombudsman) }
 
-  subject { described_class }
+      it { is_expected.to forbid_action(:index) }
+    end
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    context "being a site admin" do
+      let(:user) { build(:user, :site_admin) }
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+      it { is_expected.to forbid_action(:index) }
+    end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    context "being a system admin" do
+      let(:user) { build(:user, :system_admin) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+      it { is_expected.to permit_action(:index) }
+    end
   end
 end
