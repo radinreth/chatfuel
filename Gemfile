@@ -53,5 +53,6 @@ group :test do
   gem "selenium-webdriver", "~> 3.142.7"
   gem "webdrivers", "~> 4.2.0"
   gem "rspec-sidekiq", "~> 3.0.3"
+  gem "pundit-matchers", "~> 1.6.0"
 end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]

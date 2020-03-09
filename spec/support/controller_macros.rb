@@ -8,7 +8,7 @@ module ControllerMacros
     end
   end
 
-  def stub_system_admin
+  def setup_system_admin
     before(:each) do
       system_admin = create(:user, role: :system_admin)
       allow(request.env['warden']).to receive(:authenticate!).and_return(system_admin)
@@ -16,7 +16,7 @@ module ControllerMacros
     end
   end
 
-  def stub_site_admin
+  def setup_site_admin
     before(:each) do
       site_admin = create(:user, role: :site_admin)
       allow(request.env['warden']).to receive(:authenticate!).and_return(site_admin)
@@ -24,7 +24,7 @@ module ControllerMacros
     end
   end
 
-  def stub_ombudsman
+  def setup_ombudsman
     before(:each) do
       ombudsman = create(:user, role: :ombudsman)
       allow(request.env['warden']).to receive(:authenticate!).and_return(ombudsman)
