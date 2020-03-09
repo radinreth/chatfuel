@@ -1,28 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe AdminPolicy do
+  subject { described_class.new(user) }
 
-  let(:user) { User.new }
+  context "being an ombudsman" do
+    let(:user) { build(:user, :ombudsman) }
 
-  subject { described_class }
-
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { is_expected.to forbid_action(:show) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context "being a site admin" do
+    let(:user) { build(:user, :site_admin) }
+
+    it { is_expected.to permit_action(:show) }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context "being a system admin" do
+    let(:user) { build(:user, :system_admin) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { is_expected.to permit_action(:show) }
   end
 end
