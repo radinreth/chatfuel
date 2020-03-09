@@ -1,28 +1,25 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe VoiceVariablePolicy do
-
-  let(:user) { User.new }
-
-  subject { described_class }
-
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  subject { described_class.new(user, nil) }
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    context "being an ombudsman" do
+      let(:user) { build(:user, :ombudsman) }
 
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+      it { is_expected.to forbid_action(:update) }
+    end
+
+    context "being a site admin" do
+      let(:user) { build(:user, :site_admin) }
+
+      it { is_expected.to forbid_action(:update) }
+    end
+
+    context "being a system admin" do
+      let(:user) { build(:user, :system_admin) }
+
+      it { is_expected.to permit_action(:update) }
+    end
   end
 end
