@@ -25,11 +25,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       unless user
         password = Devise.friendly_token
         user = User.new(attributes.merge(password: password, password_confirmation: password))
-        # user = User.new(attributes)
         user.confirmed_at = Time.now
         user.save!
       end
-      user.identities.create! provider: auth['provider'], token: auth['uid']
+      user.identities.create! provider: auth["provider"], token: auth["uid"]
     end
 
     sign_in user
