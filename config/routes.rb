@@ -1,16 +1,17 @@
 # frozen_string_literal: true
+require "sidekiq/web"
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
-  root 'homes#show'
+  root "homes#show"
 
-  # TODO: only authenticated user
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, ->(user) { user.system_admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
-  scope '/role' do
+  scope "/role" do
     resources :users
   end
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :update]
   resources :sites do
-    post 'import', on: :collection
+    post "import", on: :collection
   end
   resources :tracks, only: [:create]
   resources :reports, only: [:index]
