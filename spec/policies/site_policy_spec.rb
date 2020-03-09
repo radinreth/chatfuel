@@ -1,28 +1,25 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SitePolicy do
+  subject { described_class.new(user, site) }
 
-  let(:user) { User.new }
+  let(:site) { build(:site) }
 
-  subject { described_class }
+  context "being a ombudsman" do
+    let(:user) { build(:user, :ombudsman) }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { is_expected.to forbid_actions(%i[index]) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context "being a site_admin" do
+    let(:user) { build(:user, :site_admin) }
+
+    it { is_expected.to forbid_actions(%i[index]) }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context "being a system_admin" do
+    let(:user) { build(:user, :system_admin) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { is_expected.to permit_action(:index) }
   end
 end

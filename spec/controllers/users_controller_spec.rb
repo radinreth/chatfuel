@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  stub_system_admin
+  setup_system_admin
   
   describe "GET #index" do
     it "returns http success" do
