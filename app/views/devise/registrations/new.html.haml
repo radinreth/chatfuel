@@ -1,5 +1,5 @@
 %h2 Sign up
-= form_for(resource, as: resource_name, url: user_registration_path) do |f|
+= form_for(resource, as: resource_name, url: guisso_sign_up_path_for(resource_name)) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
     = f.label :email
