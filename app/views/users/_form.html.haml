@@ -1,6 +1,9 @@
 = simple_form_for @user do |f|
-  = f.input :role, as: :radio_buttons, collection: policy(User).roles, value_method: :first
-  = f.input :status, as: :radio_buttons, collection: User.statuses, value_method: :first
+  .row
+    .col-md-3
+      = f.input :role, as: :select, collection: policy(User).roles, value_method: :first
+  = f.label :status, class: "mb-0"
+  = f.input :status, as: :boolean, label: 'Enable', wrapper_html: { class: "mb-3" }
   = f.input :email
   = f.input :password
   = f.input :password_confirmation
