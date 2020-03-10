@@ -15,8 +15,9 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock /app/
 
-RUN gem install bundler:2.0.2 && \
-  bundle install --jobs 20 --deployment --without development test
+RUN gem install bundler:2.1.4 && \
+  bundle config set deployment 'true' && \
+  bundle install --jobs 10
 
 # Install the application
 COPY . /app
