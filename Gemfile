@@ -39,6 +39,7 @@ group :development, :test do
   gem "sidekiq-scheduler", "~> 3.0.1"
   gem "rubocop-rails", "~> 2.4.2"
   gem "rubocop-performance", "~> 1.5.2"
+  gem "guard-rspec", require: false
 end
 
 group :development do
