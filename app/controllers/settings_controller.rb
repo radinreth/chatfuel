@@ -17,6 +17,6 @@ class SettingsController < ApplicationController
 
   private
     def setting_params
-      params.require(:setting).permit(:id, :uncompleted_text, :completed_text, :uncompleted_audio_file)
+      params.require(:setting).permit(:id, :uncompleted_text, :completed_text, :uncompleted_audio, :completed_audio)
     end
 end
