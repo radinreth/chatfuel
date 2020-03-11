@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.text "uncompleted_text"
+    t.text "completed_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "quota", force: :cascade do |t|
     t.string "platform_name", default: "messenger"
     t.integer "threshold", default: 0

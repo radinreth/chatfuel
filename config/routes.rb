@@ -71,4 +71,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :settings, only: [:index] do
+    collection do
+      put :template
+    end
+  end
 end
