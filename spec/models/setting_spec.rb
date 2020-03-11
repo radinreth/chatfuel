@@ -13,10 +13,21 @@
 require "rails_helper"
 
 RSpec.describe Setting, type: :model do
+  it { is_expected.to validate_content_type_of(:uncompleted_audio).allowing("audio/mpeg") }
+  it { is_expected.to validate_content_type_of(:completed_audio).allowing("audio/mpeg") }
+
+  describe "validations" do
+    let!(:setting) { create(:setting) }
+    let(:new_setting) { build(:setting) }
+
+    it "should raise error when there is already a setting" do
+      new_setting.valid?
+      expect(new_setting.errors.messages[:base]).to eq(["allow only one setting"])
+    end
+  end
+
   describe "completed_audio" do
     let!(:setting) { create(:setting, :with_completed_audio) }
-
-    it { is_expected.to validate_content_type_of(:completed_audio).allowing("audio/mpeg") }
 
     it "should has one completed audio" do
       expect(setting.completed_audio.attached?).to eq(true)
@@ -26,8 +37,6 @@ RSpec.describe Setting, type: :model do
 
   describe "uncompleted_audio" do
     let!(:setting) { create(:setting, :with_uncompleted_audio) }
-
-    it { is_expected.to validate_content_type_of(:uncompleted_audio).allowing("audio/mpeg") }
 
     it "should has one uncompleted audio" do
       expect(setting.uncompleted_audio.attached?).to eq(true)

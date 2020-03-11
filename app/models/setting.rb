@@ -12,9 +12,19 @@
 #
 
 class Setting < ApplicationRecord
+  validate :only_one_record, on: :create
+
   has_one_attached :uncompleted_audio
   has_one_attached :completed_audio
 
   validates :uncompleted_audio, content_type: [:mp3]
   validates :completed_audio, content_type: [:mp3]
+
+  private
+    def only_one_record
+      if Setting.count > 0
+        errors.add(:base, "allow only one setting")
+        throw :abort
+      end
+    end
 end
