@@ -1,13 +1,35 @@
-#content
-  .w-50.view-center
-    = simple_form_for @setting, url: template_settings_path, method: :put, class: 'setting' do |f|
-      = f.hidden_field :id
-      = f.input :uncompleted_text
-      = f.input :completed_text
-      = f.file_field :uncompleted_audio
-      = f.file_field :completed_audio
+.app-header
+  %h3 Setting
 
-      .actions
-        = f.submit t('shared.save'), class: 'btn btn-primary'
-        = link_to t('shared.cancel'), settings_path, class: 'btn btn-secondary'
+#content
+  .row
+    .setting-card.mx-auto
+      .card
+        .card-header
+          Message Template
+        .card-body
+          = simple_form_for @setting, url: template_settings_path, method: :put, class: 'setting' do |f|
+            = f.hidden_field :id
+            = f.input :uncompleted_text
+            = f.input :completed_text
+
+            .form-group.mt-3
+              %label.d-block Uncompleted Audio
+              = f.hidden_field :uncompleted_audio, value: @setting.uncompleted_audio.signed_id if @setting.uncompleted_audio.attached?
+              - if @setting.uncompleted_audio.attached?
+                = audio_tag rails_blob_url(@setting.uncompleted_audio), controls: true, class: "d-block mb-3 audio-player-preview"
+              = f.file_field :uncompleted_audio, accept: "audio/mpeg"
+
+            .form-group.mt-3
+              %label.d-block Completed Audio
+              = f.hidden_field :completed_audio, value: @setting.completed_audio.signed_id if @setting.completed_audio.attached?
+              - if @setting.completed_audio.attached?
+                = audio_tag rails_blob_url(@setting.completed_audio), controls: true, class: "d-block mb-3  audio-player-preview"
+              = f.file_field :completed_audio, accept: "audio/mpeg"
+
+            .actions
+              = f.submit t('shared.save'), class: 'btn btn-primary'
+              -# = link_to t('shared.reset'), type: :reset, class: 'btn btn-secondary'
+              = f.button :button, t('shared.reset'), type: :reset, :class => 'btn btn-secondary'
+
 
