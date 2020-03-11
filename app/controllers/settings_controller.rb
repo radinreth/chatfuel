@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
   def template
     @setting = Setting.find_or_initialize_by(id: setting_params[:id])
     if @setting.update(setting_params)
-      redirect_to settings_path, flash: { notice: "successfully updated" }
+      redirect_to settings_path, flash: { notice: "successfully updated message template" }
     else
       flash.now[:alert] = "cannot update message template"
       render :index
