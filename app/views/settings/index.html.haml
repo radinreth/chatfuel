@@ -1,0 +1,13 @@
+#content
+  .w-50.view-center
+    = simple_form_for @setting, url: template_settings_path, method: :put, class: 'setting' do |f|
+      = f.hidden_field :id
+      = f.input :uncompleted_text
+      = f.input :completed_text
+      = f.file_field :uncompleted_audio
+      = f.file_field :completed_audio
+
+      .actions
+        = f.submit t('shared.save'), class: 'btn btn-primary'
+        = link_to t('shared.cancel'), settings_path, class: 'btn btn-secondary'
+
