@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_033457) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.text "uncompleted_text"
+    t.text "incompleted_text"
     t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

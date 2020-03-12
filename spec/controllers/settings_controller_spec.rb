@@ -17,12 +17,12 @@ RSpec.describe SettingsController, type: :controller do
     context "create setting" do
       it "should created setting" do
         expect {
-          put :template, params: { setting: { uncompleted_text: "your ticket is not ready yet." } }
+          put :template, params: { setting: { incompleted_text: "your ticket is not ready yet." } }
         }.to change(Setting, :count).from(0).to(1)
       end
 
       it "should save audio" do
-        put :template, params: { setting: { completed_audio: fixture_file_upload(file_path("completed_audio.mp3"), "audio/mpeg"), uncompleted_audio: fixture_file_upload(file_path("uncompleted_audio.mp3"), "audio/mpeg") } }
+        put :template, params: { setting: { completed_audio: fixture_file_upload(file_path("completed_audio.mp3"), "audio/mpeg"), incompleted_audio: fixture_file_upload(file_path("incompleted_audio.mp3"), "audio/mpeg") } }
         expect(subject).to redirect_to(settings_path)
         expect(subject.request.flash[:notice]).to eq("successfully updated message template")
       end
@@ -32,7 +32,7 @@ RSpec.describe SettingsController, type: :controller do
       let!(:setting) { create(:setting, :with_completed_audio) }
 
       it "should update existing setting" do
-        put :template, params: { setting: { id: setting.id, uncompleted_text: "your ticket is not ready yet." } }
+        put :template, params: { setting: { id: setting.id, incompleted_text: "your ticket is not ready yet." } }
 
         expect(Setting.count).to eq(1)
         expect(subject).to redirect_to(settings_path)
@@ -43,7 +43,7 @@ RSpec.describe SettingsController, type: :controller do
 
   context "unsucessful save record" do
     before(:each) do
-      put :template, params: { setting: { uncompleted_audio: fixture_file_upload(file_path("site.csv")) } }
+      put :template, params: { setting: { incompleted_audio: fixture_file_upload(file_path("site.csv")) } }
     end
 
     it "should redirect to index page" do

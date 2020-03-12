@@ -2,4 +2,4 @@ en:
   setting:
     select_audio_file: Please select audio file
     select_completed_audio_file: Please select completed audio file
-    select_uncompleted_audio_file: Please select uncompleted audio file
+    select_incompleted_audio_file: Please select incompleted audio file
