@@ -6,7 +6,7 @@
 #
 #  id               :bigint(8)        not null, primary key
 #  completed_text   :text
-#  uncompleted_text :text
+#  incompleted_text :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -14,10 +14,10 @@
 class Setting < ApplicationRecord
   validate :only_one_record, on: :create
 
-  has_one_attached :uncompleted_audio
+  has_one_attached :incompleted_audio
   has_one_attached :completed_audio
 
-  validates :uncompleted_audio, content_type: [:mp3]
+  validates :incompleted_audio, content_type: [:mp3]
   validates :completed_audio, content_type: [:mp3]
 
   private

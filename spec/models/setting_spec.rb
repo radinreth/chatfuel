@@ -6,14 +6,14 @@
 #
 #  id               :bigint(8)        not null, primary key
 #  completed_text   :text
-#  uncompleted_text :text
+#  incompleted_text :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
 require "rails_helper"
 
 RSpec.describe Setting, type: :model do
-  it { is_expected.to validate_content_type_of(:uncompleted_audio).allowing("audio/mpeg") }
+  it { is_expected.to validate_content_type_of(:incompleted_audio).allowing("audio/mpeg") }
   it { is_expected.to validate_content_type_of(:completed_audio).allowing("audio/mpeg") }
 
   describe "validations" do
@@ -35,12 +35,12 @@ RSpec.describe Setting, type: :model do
     end
   end
 
-  describe "uncompleted_audio" do
-    let!(:setting) { create(:setting, :with_uncompleted_audio) }
+  describe "incompleted_audio" do
+    let!(:setting) { create(:setting, :with_incompleted_audio) }
 
-    it "should has one uncompleted audio" do
-      expect(setting.uncompleted_audio.attached?).to eq(true)
-      expect(setting.uncompleted_audio.filename.to_s).to eq("uncompleted_audio.mp3")
+    it "should has one incompleted audio" do
+      expect(setting.incompleted_audio.attached?).to eq(true)
+      expect(setting.incompleted_audio.filename.to_s).to eq("incompleted_audio.mp3")
     end
   end
 end
