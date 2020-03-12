@@ -26,16 +26,23 @@ services:
     depends_on:
       - db
       - redis
-    env_file: docker-env
+    env_file: app.env
     tty: true
     stdin_open: true
     ports:
       - "3000:3000"
+
+  redis:
+    image: redis:5.0.7
 
   sidekiq:
     <<: *rails
     command: bundle exec sidekiq -C config/sidekiq.yml
     ports: []
 
-  redis:
-    image: redis:5.0.7
+  ngrok:
+    image: wernight/ngrok
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_PORT: 'web:3000'

@@ -5,6 +5,7 @@ class CreateTelegramBots < ActiveRecord::Migration[6.0]
     create_table :telegram_bots do |t|
       t.string :username
       t.string :token
+      t.boolean :actived, default: false
 
       t.timestamps
     end

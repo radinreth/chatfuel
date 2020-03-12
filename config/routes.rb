@@ -77,4 +77,7 @@ Rails.application.routes.draw do
       put :telegram_bot
     end
   end
+
+  # Telegram
+  telegram_webhook TelegramWebhooksController
 end

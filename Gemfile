@@ -36,6 +36,8 @@ gem "sentry-raven", "~> 3.0"
 
 gem "active_storage_validations", "~> 0.8.7"
 
+gem "telegram-bot", "~> 0.14.3"
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.rc1"

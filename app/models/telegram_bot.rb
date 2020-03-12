@@ -3,6 +3,7 @@
 # Table name: telegram_bots
 #
 #  id         :bigint(8)        not null, primary key
+#  actived    :boolean          default("false")
 #  token      :string
 #  username   :string
 #  created_at :datetime         not null
@@ -10,4 +11,16 @@
 #
 class TelegramBot < ApplicationRecord
   validates :token, :username, presence: true
+
+  before_save :post_webhook_to_telegram
+
+  def post_webhook_to_telegram
+    telegram_bot = Telegram::Bot::Client.new(token: token, username: username)
+    begin
+      request = telegram_bot.set_webhook(url: ENV["TELEGRAM_CALLBACK_URL"])
+      self.actived = request["ok"]
+    rescue
+      self.actived = false
+    end
+  end
 end
