@@ -16,6 +16,7 @@ class TelegramBot < ApplicationRecord
 
   def post_webhook_to_telegram
     telegram_bot = Telegram::Bot::Client.new(token: token, username: username)
+
     begin
       request = telegram_bot.set_webhook(url: ENV["TELEGRAM_CALLBACK_URL"])
       self.actived = request["ok"]
