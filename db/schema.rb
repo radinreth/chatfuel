@@ -120,6 +120,12 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "site_settings", force: :cascade do |t|
+    t.text "message_template"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "name", null: false
     t.string "code", default: ""
@@ -144,6 +150,22 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_steps_on_message_id"
+  end
+
+  create_table "telegram_bots", force: :cascade do |t|
+    t.string "username"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "telegram_chat_groups", force: :cascade do |t|
+    t.string "title"
+    t.integer "chat_id"
+    t.boolean "is_active"
+    t.text "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "templates", force: :cascade do |t|

@@ -6,7 +6,7 @@
     .setting-card.mx-auto
       .card
         .card-header
-          Message Template
+          = t('settings.telegram_bot')
         .card-body
           = simple_form_for @setting, url: template_settings_path, method: :put, class: 'setting' do |f|
             = f.hidden_field :id
@@ -29,7 +29,6 @@
 
             .actions
               = f.submit t('shared.save'), class: 'btn btn-primary'
-              -# = link_to t('shared.reset'), type: :reset, class: 'btn btn-secondary'
               = f.button :button, t('shared.reset'), type: :reset, :class => 'btn btn-secondary'
 
-
+      = render "telegram_bot_setting"

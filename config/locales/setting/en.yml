@@ -1,5 +1,9 @@
 en:
-  setting:
+  settings:
     select_audio_file: Please select audio file
     select_completed_audio_file: Please select completed audio file
     select_incompleted_audio_file: Please select incompleted audio file
+    message_template: Message Template
+    telegram_bot: Telegram Bot
+    successful_update_bot: successfully updated telegram bot
+    failure_update_bot: cannot update telegram bot

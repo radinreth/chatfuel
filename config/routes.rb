@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index] do
     collection do
       put :template
+      put :telegram_bot
     end
   end
 end
