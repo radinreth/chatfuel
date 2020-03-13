@@ -16,6 +16,9 @@
 #
 class Site < ApplicationRecord
   enum status: %i[enable disable]
+
   has_many :tracks, dependent: :destroy
+  has_many :users
+
   validates :code, uniqueness: true
 end
