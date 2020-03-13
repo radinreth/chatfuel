@@ -36,7 +36,10 @@
 #  fk_rails_...  (role_id => roles.id)
 #
 class User < ApplicationRecord
-  enum status: %i[disable enable]
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable, :trackable 
+  enum role: %i[ombudsman site_admin system_admin]
+  enum status: %i[enable disable]
 
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
