@@ -8,8 +8,8 @@ RSpec.describe MessagePolicy do
   end
   let(:message) { create(:message, :text) }
 
-  context "being an ombudsman" do
-    let(:user) { build(:user, :ombudsman) }
+  context "being an site_ombudsman" do
+    let(:user) { build(:user, :site_ombudsman) }
 
     it "not includes message in resolved scope" do
       expect(resolved_scope).not_to include(message)

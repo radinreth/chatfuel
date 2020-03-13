@@ -28,8 +28,8 @@ RSpec.describe DictionariesController, type: :controller do
       end
     end
 
-    context "ombudsman" do
-      setup_ombudsman
+    context "site_ombudsman" do
+      setup_site_ombudsman
 
       it "is not authorize" do
         get :index

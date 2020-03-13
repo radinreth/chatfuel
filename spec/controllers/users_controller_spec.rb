@@ -18,7 +18,7 @@ RSpec.describe UsersController, type: :controller do
         get :index, format: :json
 
         expect(response.headers["Content-Type"]).to include("application/json")
-        expect(response.body).to include("ombudsman", "site_admin", "system_admin")
+        expect(response.body).to include("site_ombudsman", "site_admin", "system_admin")
       end
     end
   end
