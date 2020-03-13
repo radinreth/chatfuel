@@ -11,3 +11,7 @@ document.addEventListener('turbolinks:load', function() {
     $(".dict-item-" + klassName).removeClass("d-none");
   })
 })
+
+document.addEventListener('turbolinks:before-render', function() {
+  $(".dict-item").removeClass('active');
+})
