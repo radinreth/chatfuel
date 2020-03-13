@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
+    respond_to do |format|
+      format.html
+      format.json { render json: policy(User).roles }
+    end
   end
 
   def new
@@ -20,9 +24,9 @@ class UsersController < ApplicationController
     @user.skip_confirmation!
 
     if @user.save
-      redirect_to users_path, status: :moved_permanently, notice: 'Created successfully'
+      redirect_to users_path, status: :moved_permanently, notice: "Created successfully"
     else
-      render :new, alert: 'created failed'
+      render :new, alert: "created failed"
     end
   end
 
@@ -31,25 +35,24 @@ class UsersController < ApplicationController
     @user.skip_reconfirmation!
 
     if @user.update(user_params)
-      redirect_to @user, status: :moved_permanently, notice: 'update successfully'
+      redirect_to @user, status: :moved_permanently, notice: "update successfully"
     else
-      render :show, alert: 'update failed'
+      render :show, alert: "update failed"
     end
   end
 
   def destroy
     authorize @user
     @user.destroy
-    redirect_to users_path, status: :moved_permanently, notice: 'delete successfully'
+    redirect_to users_path, status: :moved_permanently, notice: "delete successfully"
   end
 
   private
+    def set_user
+      @user ||= User.find(params[:id])
+    end
 
-  def set_user
-    @user ||= User.find(params[:id])
-  end
-
-  def user_params
-    params.require(:user).permit(:role, :status, :email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:role, :site, :status, :email, :password, :password_confirmation)
+    end
 end
