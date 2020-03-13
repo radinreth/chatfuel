@@ -21,11 +21,13 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  site_id                :bigint(8)
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_site_id               (site_id)
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -37,5 +39,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :identities, dependent: :destroy
-  belongs_to :site
+  belongs_to :site, optional: true
 end

@@ -1,4 +1,4 @@
-require Rails.root.join('db', 'seed', 'site.rb')
+require Rails.root.join("db", "seed", "site.rb")
 
 class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
@@ -30,48 +30,47 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     if @site.save
-      redirect_to @site, status: :moved_permanently, notice: 'site created successfully!'
+      redirect_to @site, status: :moved_permanently, notice: "site created successfully!"
     end
   end
 
   def import
     tempfile = file_params[:file]
     ::Seed::Site.generate!(tempfile.path)
-    redirect_to sites_path, status: :moved_permanently, notice: 'Successfully imported'
+    redirect_to sites_path, status: :moved_permanently, notice: "Successfully imported"
   end
 
   def update
     authorize @site
     if @site.update(site_params)
-      redirect_to @site, status: :moved_permanently, notice: 'site updated successfully!'
+      redirect_to @site, status: :moved_permanently, notice: "site updated successfully!"
     end
   end
 
   def destroy
     authorize @site
     @site.destroy
-    redirect_to sites_path, status: :moved_permanently, notice: 'destroy successfully'
+    redirect_to sites_path, status: :moved_permanently, notice: "destroy successfully"
   end
 
   private
-
-  def set_site
-    @site ||= Site.find(params[:id])
-  end
-
-  def ensure_file_exits
-    begin
-      file_params
-    rescue
-      redirect_to(sites_path, status: :moved_permanently, alert: 'File required!') && return
+    def set_site
+      @site ||= Site.find(params[:id])
     end
-  end
 
-  def file_params
-    params.require(:site).permit(:file)
-  end
+    def ensure_file_exits
+      begin
+        file_params
+      rescue
+        redirect_to(sites_path, status: :moved_permanently, alert: "File required!") && return
+      end
+    end
 
-  def site_params
-    params.require(:site).permit(:status, :name, :code)
-  end
+    def file_params
+      params.require(:site).permit(:file)
+    end
+
+    def site_params
+      params.require(:site).permit(:status, :name, :code)
+    end
 end

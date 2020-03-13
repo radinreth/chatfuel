@@ -21,8 +21,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     authorize @user
+    # TODO: remove #skip_confirmation!
     @user.skip_confirmation!
-
+    byebug
     if @user.save
       redirect_to users_path, status: :moved_permanently, notice: "Created successfully"
     else
@@ -53,6 +54,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:role, :site, :status, :email, :password, :password_confirmation)
+      status = params[:user][:status].to_i
+      params.require(:user).permit(:role, :site_id, :email, :password, :password_confirmation).merge(status: status)
     end
 end

@@ -34,3 +34,7 @@ yarn-debug.log*
 .env
 docker-env
 app.env
+
+app/assets/javascripts/i18n/
+chatfuel_*.gz
+public/javascripts/
