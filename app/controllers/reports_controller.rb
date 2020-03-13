@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :ensure_date_range
   before_action :accessed, :submitted, :completed
   before_action :satisfied, :disatisfied
 
@@ -30,5 +31,16 @@ class ReportsController < ApplicationController
 
     def period
       @period ||= Period.new(params["dates"])
+    end
+
+    def ensure_date_range
+      redirect_to reports_path(dates: default_date_range) unless params["dates"]
+    end
+
+    def default_date_range
+      past_date = 6.days.ago.strftime("%d/%m/%Y")
+      current_date = Date.current.strftime("%d/%m/%Y")
+
+      @default_date_range ||= "#{past_date} - #{current_date}"
     end
 end
