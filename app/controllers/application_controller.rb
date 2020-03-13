@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   include Pagy::Backend
-  # before_action :authenticate_api_user!
-  # before_action :authenticate_user_with_guisso!
-  skip_before_action :verify_authenticity_token
+  include Pundit
+
+  before_action :authenticate_user_without_guisso!
+
+  private
+    def user_not_authorized
+      flash[:alert] = "You are not authorized"
+      redirect_to(reports_path) && return
+    end
 end

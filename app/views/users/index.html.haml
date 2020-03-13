@@ -1,0 +1,9 @@
+= link_to 'Add user', new_user_path, class: 'btn btn-primary mb-3 float-right'
+
+%table.table
+  %tr
+    %th No.
+    %th Email
+    %th Role
+    %th{colspan: 2} action
+  = render @users

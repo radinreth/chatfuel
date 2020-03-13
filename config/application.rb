@@ -4,9 +4,9 @@ require_relative 'boot'
 
 require 'rails/all'
 require "openid"
-require 'openid/extensions/sreg'
-require 'openid/extensions/pape'
-require 'openid/store/filesystem'
+require "openid/extensions/sreg"
+require "openid/extensions/pape"
+require "openid/store/filesystem"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,6 +23,9 @@ module Chatfuel
     # the framework and any gems in your application.
 
     config.generators do |generate|
+      generate.test_framework :rspec, fixtures: false, helper_specs: false, routing_specs: false
+      generate.fixture_replacement :factory_bot
+      generate.factory_bot dir: "spec/factories"
       generate.helper false
       generate.assets false
       generate.view_spec false
@@ -33,5 +36,8 @@ module Chatfuel
     end
 
     config.active_job.queue_adapter = :sidekiq
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+    end
   end
 end
