@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     authorize @user
     # TODO: remove #skip_confirmation!
     @user.skip_confirmation!
-
+    byebug
     if @user.save
       redirect_to users_path, status: :moved_permanently, notice: "Created successfully"
     else
