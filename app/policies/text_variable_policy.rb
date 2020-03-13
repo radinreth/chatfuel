@@ -1,4 +1,4 @@
-class VoiceVariablePolicy < ApplicationPolicy
+class TextVariablePolicy < ApplicationPolicy
   def index?
     user.system_admin?
   end
