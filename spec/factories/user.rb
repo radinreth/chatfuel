@@ -3,8 +3,8 @@ FactoryBot.define do
     email { FFaker::Internet.email }
     password { FFaker::Internet.password }
 
-    trait :ombudsman do
-      role { :ombudsman }
+    trait :site_ombudsman do
+      role { :site_ombudsman }
     end
 
     trait :site_admin do
