@@ -7,6 +7,10 @@ class SitesController < ApplicationController
   def index
     @pagy, @sites = pagy(Site.all)
     authorize @sites
+    respond_to do |format|
+      format.html
+      format.json { render json: @sites }
+    end
   end
 
   def new
