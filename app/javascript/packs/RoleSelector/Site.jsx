@@ -26,8 +26,8 @@ class Site extends React.Component {
   render() {
     return(
       <>
-        <label className="select optional mt-3" htmlFor="user_site">Site</label>
-        <select className="form-control is-valid select optional" name="user[site]" id="user_site">
+        <label className="select optional mt-3" htmlFor="user_site_id">Site</label>
+        <select className="form-control is-valid select optional" name="user[site_id]" id="user_site_id">
           <option value=""></option>
           { this.state.sites.map(site => <option key={site.id} value={site.id}>{site.name}</option>) }
         </select>
