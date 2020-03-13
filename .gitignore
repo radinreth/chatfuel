@@ -20,7 +20,7 @@
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-# /config/master.key
+/config/credentials/production.key
 
 /public/packs
 /public/packs-test
@@ -34,5 +34,3 @@ yarn-debug.log*
 .env
 docker-env
 app.env
-
-/config/credentials/production.key

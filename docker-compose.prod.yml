@@ -42,8 +42,6 @@ services:
       options:
         max-size: 10m
         max-file: '5'
-    ports:
-      - 80
     command:
       - /bin/sh
       - -c
