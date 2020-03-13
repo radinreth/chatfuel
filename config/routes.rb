@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   resources :templates
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
-  resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :update] do
     put :batch_update, on: :collection
   end
@@ -37,7 +36,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :settings, only: [:index] do
+    collection do
+      put :template
+    end
+  end
+
   namespace :bots do
+    resources :voice_feedbacks, only: [:create]
+
     # Message
     resources :messages, only: [:create] do
       collection do
@@ -55,33 +62,6 @@ Rails.application.routes.draw do
     end
 
     # Track
-    resources :tracks, only: [:create] do
-      collection do
-        post "ivr", to: "tracks/ivr#create"
-        post "chatbot", to: "tracks/chatbot#create"
-      end
-    end
-  end
-
-  resources :settings, only: [:index] do
-    collection do
-      put :template
-    end
-  end
-  
-  namespace :bots do
-
-    resources :voice_feedbacks, only: [:create]
-    resources :feedbacks, only: [:create]
-
-    resources :messages, only: [:create] do
-      collection do
-        post "ivr", to: "messages/ivr#create"
-        post "chatbot", to: "messages/chatbot#create"
-      end
-    end
-
-    # Tracking
     resources :tracks, only: [:create] do
       collection do
         post "ivr", to: "tracks/ivr#create"
