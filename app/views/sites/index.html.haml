@@ -1,9 +1,7 @@
-.d-flex.justify-content-between.mb-3
-  %h3 Sites
-  = simple_form_for :site, url: import_sites_path, wrapper: :inline_form, html: { class: 'form-inline' } do |f|
-    = f.input :file, as: :file, label: false
-    = f.submit 'upload', class: 'btn btn-primary'
-  = link_to 'Create new', new_site_path, class: 'btn btn-primary'
+= render partial: "shared/page_header", locals: { title: "Sites", link: link_to_new('site') }
+= simple_form_for :site, url: import_sites_path, wrapper: :inline_form, html: { class: 'form-inline mb-3 pull-right' } do |f|
+  = f.input :file, as: :file, label: false
+  = f.submit 'upload', class: 'btn btn-primary'
 
 %table.table
   %tr

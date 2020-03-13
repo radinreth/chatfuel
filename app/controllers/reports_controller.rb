@@ -8,28 +8,27 @@ class ReportsController < ApplicationController
   end
 
   private
+    def accessed
+      @accessed ||= StepCollectionDecorator.new(:accessed, period)
+    end
 
-  def accessed
-    @accessed ||= StepCollectionDecorator.new(:accessed, period)
-  end
+    def submitted
+      @submitted ||= TicketCollectionDecorator.new(:submitted, period)
+    end
 
-  def submitted
-    @submitted ||= TicketCollectionDecorator.new(:submitted, period)
-  end
+    def completed
+      @completed ||= TicketCollectionDecorator.new(:completed, period)
+    end
 
-  def completed
-    @completed ||= TicketCollectionDecorator.new(:completed, period)
-  end
+    def satisfied
+      @satisfied ||= FeedbackCollectionDecorator.new(:satisfied, period)
+    end
 
-  def satisfied
-    @satisfied ||= FeedbackCollectionDecorator.new(:satisfied, period)
-  end
+    def disatisfied
+      @disatisfied ||= FeedbackCollectionDecorator.new(:disatisfied, period)
+    end
 
-  def disatisfied
-    @disatisfied ||= FeedbackCollectionDecorator.new(:disatisfied, period)
-  end
-
-  def period
-    @period ||= Period.new(params['dates'])
-  end
+    def period
+      @period ||= Period.new(params["dates"])
+    end
 end
