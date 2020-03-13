@@ -1,0 +1,48 @@
+.git
+.gitignore
+README.md
+
+# config/credentials/production.key
+Dockerfile
+docker-compose.prod.yml
+app.env
+docker-env
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Rails
+.env
+.env.sample
+*.rbc
+capybara-*.html
+coverage
+log
+tmp/**
+db/*.sqlite3
+db/*.sqlite3-journal
+public/system
+public/uploads
+public/packs
+coverage/
+spec/tmp
+node_modules/
+
+.bundle
+
+.ruby-version
+.ruby-gemset
+
+.rvmrc
+
+# Ignore pow environment settings
+.powenv
+
+# Puma need tmp/pids directory to start
+!tmp/pids/.keep

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
-ruby "2.6.3"
+ruby "2.6.5"
+
 gem "rails", "~> 6.0.1"
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.3"
@@ -26,9 +29,11 @@ gem "momentjs-rails", "~> 2.20.1"
 gem "bootstrap-daterangepicker-rails", "~> 3.0.4"
 gem "pundit", "~> 1.1.0"
 
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
-  gem "rspec-rails", "~> 4-0-dev"
+  gem "rspec-rails", "~> 4.0.0.beta4"
   gem "ffaker", "~> 2.13.0"
   gem "coderay", "~> 1.1", ">= 1.1.2"
   gem "sidekiq-scheduler", "~> 3.0.1"
@@ -55,4 +60,3 @@ group :test do
   gem "rspec-sidekiq", "~> 3.0.3"
   gem "pundit-matchers", "~> 1.6.0"
 end
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
