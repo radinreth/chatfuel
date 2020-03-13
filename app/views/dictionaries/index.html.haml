@@ -2,15 +2,15 @@
 
 %div
   %ul.dict-list
-    - @variables.select('name').distinct.each do |v|
-      %li.dict-item{ 'data-name': v.name}
+    - @variables.select('name').distinct.each_with_index do |v, index|
+      %li.dict-item{ 'data-name': v.name, class: toggle_class_name('active', index.zero?) }
         = link_to v.name.titleize, '#'
         .arrow-shape.arrow-shape__top
         .arrow-shape.arrow-shape__bottom
 
   .result-map
-    - @variables.select('name').distinct.each do |v|
-      %table.table.d-none{ class: "dict-item-#{v.name}" }
+    - @variables.select('name').distinct.each_with_index do |v, index|
+      %table.table{ class: "dict-item-#{v.name} #{ toggle_class_name('d-none', !index.zero?) }" }
         %tr
           %th Value
           %th Text
