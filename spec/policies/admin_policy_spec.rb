@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe AdminPolicy do
   subject { described_class.new(user) }
 
-  context "being an ombudsman" do
-    let(:user) { build(:user, :ombudsman) }
+  context "being an site_ombudsman" do
+    let(:user) { build(:user, :site_ombudsman) }
 
     it { is_expected.to forbid_action(:show) }
   end

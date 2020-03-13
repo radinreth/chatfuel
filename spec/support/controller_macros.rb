@@ -24,11 +24,11 @@ module ControllerMacros
     end
   end
 
-  def setup_ombudsman
+  def setup_site_ombudsman
     before(:each) do
-      ombudsman = create(:user, role: :ombudsman)
-      allow(request.env['warden']).to receive(:authenticate!).and_return(ombudsman)
-      allow(controller).to receive(:current_user).and_return(ombudsman)
+      site_ombudsman = create(:user, role: :site_ombudsman)
+      allow(request.env['warden']).to receive(:authenticate!).and_return(site_ombudsman)
+      allow(controller).to receive(:current_user).and_return(site_ombudsman)
     end
   end
 end

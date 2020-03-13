@@ -1,10 +1,10 @@
 class UserPolicy < ApplicationPolicy
   def new?
-    !user.ombudsman?
+    !user.site_ombudsman?
   end
 
   def create?
-    !user.ombudsman? && (User.roles[user.role] >= User.roles[record.role])
+    !user.site_ombudsman? && (User.roles[user.role] >= User.roles[record.role])
   end
 
   def roles
@@ -18,7 +18,7 @@ class UserPolicy < ApplicationPolicy
       if user.system_admin?
         scope.all
       elsif user.site_admin?
-        scope.where(role: %i[site_admin ombudsman])
+        scope.where(role: %i[site_admin site_ombudsman])
       else
         scope.none
       end
