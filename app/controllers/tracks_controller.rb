@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  skip_before_action :authenticate_user_without_guisso!
+  skip_before_action :verify_authenticity_token
   before_action :message
   before_action :ticket
   after_action :assign_track_to_step
@@ -25,11 +27,15 @@ class TracksController < ApplicationController
   end
 
   def decorator
-    @decorator ||= TicketDecorator.new(ticket)
+    @decorator ||= TicketDecorator.new(ticket || invalid_ticket)
   end
 
   def ticket
     @ticket ||= Ticket.find_by(code: params[:code])
+  end
+
+  def invalid_ticket
+    @invalid_ticket ||= OpenStruct.new(status: 'invalid')
   end
 
   def assign_track_to_step

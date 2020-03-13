@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ReportsController, type: :controller do
+  setup_system_admin
 
   describe "GET #index" do
     it "returns http success" do

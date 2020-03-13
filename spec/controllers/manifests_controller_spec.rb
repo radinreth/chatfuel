@@ -1,4 +1,6 @@
-RSpec.describe ManifestsController do
+RSpec.describe ManifestsController, type: :controller do
+  setup_system_admin
+
   it 'GET :show' do
     get :show, format: :xml
 

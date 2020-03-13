@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SitesController, type: :controller do
+  setup_system_admin
+  
   it 'GET :index' do
     get :index
 
