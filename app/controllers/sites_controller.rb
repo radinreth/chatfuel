@@ -1,3 +1,5 @@
+require Rails.root.join("db", "seed", "site.rb")
+
 class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
   before_action :set_site, only: [:show, :edit, :update, :destroy]
@@ -36,7 +38,7 @@ class SitesController < ApplicationController
 
   def import
     tempfile = file_params[:file]
-    ::SiteService.import(tempfile.path)
+    ::Seed::Site.generate!(tempfile.path)
     redirect_to sites_path, status: :moved_permanently, notice: "Successfully imported"
   end
 
