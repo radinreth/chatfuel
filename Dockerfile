@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.5
 
 LABEL maintainer="Radin <radin@instedd.org>"
 
@@ -13,10 +13,11 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
 RUN mkdir /app
 WORKDIR /app
 
-COPY Gemfile* /app/
+COPY Gemfile Gemfile.lock /app/
 
-RUN gem install bundler:2.0.2 && \
-  bundle install --jobs 20 --deployment --without development test
+RUN gem install bundler:2.1.4 && \
+  bundle config set deployment 'true' && \
+  bundle install --jobs 10
 
 # Install the application
 COPY . /app
