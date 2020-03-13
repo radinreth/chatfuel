@@ -31,7 +31,7 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable 
+  # :lockable, :timeoutable, :trackable
   enum role: %i[ombudsman site_admin system_admin]
   enum status: %i[enable disable]
 
