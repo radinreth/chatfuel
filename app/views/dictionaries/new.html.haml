@@ -1,0 +1,9 @@
+= render partial: "shared/page_header", locals: { title: "New Dictionary", link: nil }
+
+= simple_form_for @variable, url: dictionaries_path do |f|
+  = f.input :type, as: :select, collection: {'TextVariable': 'Text', 'VoiceVariable': 'Voice'}, value_method: :first, label_method: :second
+  = f.input :name
+  = f.input :value
+  = f.input :text
+
+  = f.submit "Create dictionary", class: "btn btn-primary"
