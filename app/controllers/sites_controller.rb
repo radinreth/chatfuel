@@ -1,3 +1,5 @@
+require Rails.root.join("db", "seed", "site.rb")
+
 class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
   before_action :set_site, only: [:show, :edit, :update, :destroy]
