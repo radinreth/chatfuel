@@ -18,6 +18,6 @@ class VoiceMessage < ApplicationRecord
   alias_attribute :session_id, :callsid
 
   def type
-    'IVR'
+    "IVR"
   end
 end
