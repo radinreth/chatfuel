@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :voice_messages, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :update]
   resources :tracks, only: [:create]
+  resources :feedbacks, only: [:create]
   resources :reports, only: [:index]
 
   resources :sites do

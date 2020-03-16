@@ -19,6 +19,7 @@ class Site < ApplicationRecord
 
   has_many :tracks, dependent: :destroy
   has_many :users
+  has_many :feedbacks
 
   validates :code, uniqueness: true
 end
