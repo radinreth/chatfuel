@@ -20,6 +20,7 @@ class Site < ApplicationRecord
   # associations
   has_many :tracks, dependent: :destroy
   has_many :users
+  has_many :feedbacks
 
   # validations
   validates :name, presence: true

@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show]
-  resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
-    put :batch_update, on: :collection
-    resources :values, only: [:destroy]
-    resources :roles, only: [:update]
-  end
+  resources :voice_messages, only: [:create]
+  resources :dictionaries, only: [:index, :new, :create, :update]
+  resources :tracks, only: [:create]
+  resources :feedbacks, only: [:create]
+  resources :reports, only: [:index]
 
   resources :reports, only: [:index]
   resources :sites do
