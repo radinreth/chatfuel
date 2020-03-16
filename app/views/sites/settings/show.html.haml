@@ -11,6 +11,12 @@
         .col-md-8
           = simple_format @setting.message_template
 
+      .row
+        .col-md-2
+          message frequency:
+        .col-md-8
+          = @setting.message_frequency
+
       = link_to t("sites.update_setting"), edit_site_setting_path(@site), class: "btn btn-outline-secondary"
 
 - else

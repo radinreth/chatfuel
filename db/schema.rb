@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
 
   create_table "site_settings", force: :cascade do |t|
     t.text "message_template"
+    t.integer "message_frequency"
     t.bigint "site_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -2,11 +2,12 @@
 #
 # Table name: site_settings
 #
-#  id               :bigint(8)        not null, primary key
-#  message_template :text
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  site_id          :bigint(8)        not null
+#  id                :bigint(8)        not null, primary key
+#  message_frequency :integer(4)
+#  message_template  :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  site_id           :bigint(8)        not null
 #
 # Indexes
 #
@@ -18,6 +19,13 @@
 #
 class SiteSetting < ApplicationRecord
   belongs_to :site
+
+  enum message_frequency: {
+    immediately: 1,
+    daily: 2,
+    weekly: 3,
+    monthly: 4
+  }
 
   FEEDBACK_AUDIO = "{{feedback_audio}}"
   FEEDBACK_TEXT = "{{feedback_text}}"
