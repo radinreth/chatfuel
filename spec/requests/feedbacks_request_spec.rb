@@ -4,7 +4,7 @@ RSpec.describe "Feedbacks", type: :request do
 
   describe "GET /create" do
     it "returns http success" do
-      get "/feedbacks/create"
+      post "/feedbacks"
       expect(response).to have_http_status(:success)
     end
   end
