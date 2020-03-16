@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ManifestPolicy do
   subject { described_class.new(user) }
