@@ -55,6 +55,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
+    # feedback
     xml.step name: "api choose office", icon: "gear", type: "callback", "display-name": "choose office options", "callback-url": "http://{service_domain}/voice_messages/" do
       xml.settings do
         xml.variable name: "choose_office_options", "display-name": "choose-office-options", type: "string"
@@ -62,56 +63,112 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "api feedback overall", icon: "gear", type: "callback", "display-name": "feedback overall options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "overall", icon: "gear", type: "callback", "display-name": "overall", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "overall", "display-name": "overall", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api feedback overall", icon: "gear", type: "callback", "display-name": "feedback overall options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "feedback_overall_options", "display-name": "feedback-overall-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api difficulty", icon: "gear", type: "callback", "display-name": "difficulty options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "difficulty", icon: "alert", type: "callback", "display-name": "difficulty", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "difficulty", "display-name": "difficulty", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api difficulty", icon: "gear", type: "callback", "display-name": "difficulty options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "difficulty_options", "display-name": "difficulty-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api difficulty level", icon: "gear", type: "callback", "display-name": "difficulty level options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "difficulty level", icon: "alert", type: "callback", "display-name": "difficulty level", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "difficulty_level", "display-name": "difficulty level", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api difficulty level", icon: "gear", type: "callback", "display-name": "difficulty level options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "difficulty_level_options", "display-name": "difficulty-level-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api work efficiency", icon: "gear", type: "callback", "display-name": "work efficiency options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "work efficiency", icon: "alert", type: "callback", "display-name": "work efficiency", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "work_efficiency", "display-name": "work efficiency", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api work efficiency", icon: "gear", type: "callback", "display-name": "work efficiency options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "work_efficiency_options", "display-name": "work-efficiency-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api working time", icon: "gear", type: "callback", "display-name": "working time options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "working time", icon: "alert", type: "callback", "display-name": "working time", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "working_time", "display-name": "working time", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api working time", icon: "gear", type: "callback", "display-name": "working time options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "working_time_options", "display-name": "working-time-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api attitude", icon: "gear", type: "callback", "display-name": "attitude options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "attitude", icon: "alert", type: "callback", "display-name": "attitude", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "attitude", "display-name": "attitude", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api attitude", icon: "gear", type: "callback", "display-name": "attitude options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "attitude_options", "display-name": "attitude-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api provide info", icon: "gear", type: "callback", "display-name": "provide info options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "provide info", icon: "alert", type: "callback", "display-name": "provide info", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "provide_info", "display-name": "provide info", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api provide info", icon: "gear", type: "callback", "display-name": "provide info options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "provide_info_options", "display-name": "provide-info-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "api process", icon: "gear", type: "callback", "display-name": "process options", "callback-url": "http://{service_domain}/voice_messages/" do
+    xml.step name: "process", icon: "alert", type: "callback", "display-name": "process", "callback-url": "http://{service_domain}/feedbacks/" do
+      xml.settings do
+        xml.variable name: "process", "display-name": "process", type: "string"
+      end
+      xml.response type: "none"
+    end
+    #legacy
+    xml.step name: "api process", icon: "gear", type: "callback", "display-name": "process options", "callback-url": "http://{service_domain}/feedbacks/" do
       xml.settings do
         xml.variable name: "process_options", "display-name": "process-options", type: "string"
       end
@@ -146,6 +203,7 @@ xml.tag! "verboice-service" do
       xml.settings do
         xml.variable name: "klass", "display-name": "ivr-class", type: "string"
         xml.variable name: "code", "display-name": "ticket-number", type: "string"
+        # legacy
         xml.variable name: "tracking_ticket", "display-name": "tracking-ticket", type: "string"
       end
       xml.response type: "none"
