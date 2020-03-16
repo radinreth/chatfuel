@@ -16,43 +16,42 @@ class TracksController < ApplicationController
   end
 
   private
-
-  def json_response
-    {
-      "messages": [
-        { "text": decorator.status },
-        { "text": decorator.description }
-      ]
-    }
-  end
-
-  def decorator
-    @decorator ||= TicketDecorator.new(ticket || invalid_ticket)
-  end
-
-  def ticket
-    @ticket ||= Ticket.find_by(code: params[:code])
-  end
-
-  def invalid_ticket
-    @invalid_ticket ||= OpenStruct.new(status: 'invalid')
-  end
-
-  def assign_track_to_step
-    return unless @track.persisted?
-
-    @message = Message.find_by(content: message)
-    @message.steps.create(act: 'tracking_ticket', track: @track)
-  end
-
-  def message
-    case params[:klass]
-    when 'TextMessage' then TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
-    when 'VoiceMessage' then VoiceMessage.find_by(callsid: params[:CallSid])
+    def json_response
+      {
+        "messages": [
+          { "text": decorator.status },
+          { "text": decorator.description }
+        ]
+      }
     end
-  end
 
-  def track_params
-    params.permit(:code)
-  end
+    def decorator
+      @decorator ||= TicketDecorator.new(ticket || invalid_ticket)
+    end
+
+    def ticket
+      @ticket ||= Ticket.find_by(code: params[:code])
+    end
+
+    def invalid_ticket
+      @invalid_ticket ||= OpenStruct.new(status: "invalid")
+    end
+
+    def assign_track_to_step
+      return unless @track.persisted?
+
+      @message = Message.find_by(content: message)
+      @message.steps.create(act: "tracking_ticket", track: @track)
+    end
+
+    def message
+      case params[:klass]
+      when "TextMessage" then TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+      when "VoiceMessage" then VoiceMessage.find_by(callsid: params[:CallSid])
+      end
+    end
+
+    def track_params
+      params.permit(:code)
+    end
 end
