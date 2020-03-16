@@ -1,0 +1,21 @@
+.header
+  .header-body
+    %h4.header-title Site Setting
+
+- if @setting.present?
+  .card
+    .card-body
+      .row
+        .col-md-2
+          message template:
+        .col-md-8
+          = simple_format @setting.message_template
+
+      = link_to t("sites.update_setting"), edit_site_setting_path(@site), class: "btn btn-outline-secondary"
+
+- else
+  .card.card-inactive
+    .card-body.text-center
+      %h4 No site setting yet
+      %p.text-description Create site setting to manage message template and alert frequency.
+      = link_to t("sites.create_setting"), new_site_setting_path(@site), class: "btn btn-primary"

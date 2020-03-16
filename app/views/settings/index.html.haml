@@ -6,7 +6,7 @@
     .setting-card.mx-auto
       .card
         .card-header
-          = t('settings.telegram_bot')
+          = t('settings.message_template')
         .card-body
           = simple_form_for @setting, url: template_settings_path, method: :put, class: 'setting' do |f|
             = f.hidden_field :id

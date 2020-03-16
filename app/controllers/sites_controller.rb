@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :ensure_file_exits, only: [:import]
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_site, only: [:show, :edit, :update, :destroy, :setting]
 
   def index
     @pagy, @sites = pagy(Site.order(tracks_count: :desc))
@@ -59,17 +59,19 @@ class SitesController < ApplicationController
     redirect_to sites_path, status: :moved_permanently, notice: t("deleted.success")
   end
 
+  def setting
+    @setting = @site.setting
+  end
+
   private
     def set_site
       @site ||= Site.find(params[:id])
     end
 
     def ensure_file_exits
-      begin
-        file_params
+      file_params
       rescue
         redirect_to(sites_path, status: :moved_permanently, alert: t("required.file")) && return
-      end
     end
 
     def file_params

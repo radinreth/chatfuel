@@ -66,5 +66,5 @@ Rails.application.configure do
   config.hosts << "owso.instedd.org"
   config.hosts << "owso-stg.ilabsea.org"
 
-  config.web_console.whitelisted_ips = "172.21.0.0/8"
+  config.web_console.whitelisted_ips = ["172.21.0.0/8", "192.168.48.1/8"]
 end

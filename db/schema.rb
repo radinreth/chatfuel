@@ -72,13 +72,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.text "uncompleted_text"
-    t.text "completed_text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "quota", force: :cascade do |t|
     t.string "platform_name", default: "messenger"
     t.integer "threshold", default: 0
@@ -122,8 +115,10 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
 
   create_table "site_settings", force: :cascade do |t|
     t.text "message_template"
+    t.bigint "site_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_site_settings_on_site_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -268,6 +263,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
   add_foreign_key "identities", "users"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
+  add_foreign_key "site_settings", "sites"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"

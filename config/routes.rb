@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       get :new_import
       post :import
     end
+
+    scope module: :sites do
+      resource :setting
+    end
   end
 
   resources :settings, only: [:index] do

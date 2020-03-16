@@ -20,6 +20,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  role_id                :bigint(8)        default("1"), not null
+#  site_id                :bigint(8)
 #
 # Indexes
 #

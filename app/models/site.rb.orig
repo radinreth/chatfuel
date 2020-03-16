@@ -22,11 +22,15 @@ class Site < ApplicationRecord
   has_many :users
   has_many :feedbacks
 
-  has_one :site_setting, dependent: :destroy
+<<<<<<< HEAD
   # validations
   validates :name, presence: true
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
                       message: I18n.t("site.invalid_code") }
+=======
+  has_one :site_setting, dependent: :destroy
+  validates :code, uniqueness: true
+>>>>>>> Implement message template site setting
 end
