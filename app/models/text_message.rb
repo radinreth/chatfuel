@@ -27,6 +27,6 @@ class TextMessage < ApplicationRecord
   alias_attribute :session_id, :messenger_user_id
 
   def type
-    'Chatbot'
+    "Chatbot"
   end
 end
