@@ -1,5 +1,5 @@
-require 'csv'
-require_relative 'time_parser'
+require "csv"
+require "time_parser"
 
 module Seed
   class Message
