@@ -1,6 +1,6 @@
 # TODO split model feedback into text, voice
 class VoiceFeedbacksController < ApplicationController
-  skip_before_action :authenticate_user_with_guisso!
+  skip_before_action :authenticate_user_without_guisso!
   skip_before_action :verify_authenticity_token
 
   before_action :set_dictionary
