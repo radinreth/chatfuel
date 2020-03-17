@@ -1,20 +1,24 @@
-= render partial: "shared/page_header", locals: { title: "All messages", link: nil }
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th{:scope => "col"} Session id
-      %th{:scope => "col"} Type
-      - Variable.pluck(:name).uniq.each do |header|
-        %th{:scope => "col"}= header.titleize
+- if @messages.count.zero?
+  %p there is no message
+- else
+  = render partial: "shared/page_header", locals: { title: "All messages", link: nil }
 
-  %tbody
-    - @messages.each do |message|
+  %table.table.table-striped
+    %thead
       %tr
-        %td= message.session_id
-        %td= message.type
-        - Variable.pluck(:name).uniq.each do |var|
-          %td
-            - message.steps.each do |step|
-              = valueize(step.value) if var == step.act
-!= pagy_bootstrap_nav(@pagy)
+        %th{:scope => "col"} Session id
+        %th{:scope => "col"} Type
+        - Variable.pluck(:name).uniq.each do |header|
+          %th{:scope => "col"}= header.titleize
+
+    %tbody
+      - @messages.each do |message|
+        %tr
+          %td= message.session_id
+          %td= message.type
+          - Variable.pluck(:name).uniq.each do |var|
+            %td
+              - message.steps.each do |step|
+                = valueize(step.value) if var == step.act
+  != pagy_bootstrap_nav(@pagy)
