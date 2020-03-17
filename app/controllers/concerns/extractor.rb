@@ -1,10 +1,10 @@
 class Extractor
   def initialize(hash)
-    @hash = hash
+    @hash = hash.with_indifferent_access
   end
 
   def act
-    @hash["project_variable_name"]
+    @hash["project_variable_name"] || @hash["act"]
   end
 
   def value
