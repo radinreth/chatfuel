@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
+
+  # namespace :feedbacks do
+  #   resource :chatbot, only: [:create]
+  #   resource :ivr, only: [:create]
+  # end
+
   resources :reports, only: [:index]
   resources :sites do
     collection do
