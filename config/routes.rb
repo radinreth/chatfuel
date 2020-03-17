@@ -17,11 +17,18 @@ Rails.application.routes.draw do
 
   resource :manifest, only: [:show]
   resources :voice_messages, only: [:create]
+  resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :update] do
     put :batch_update, on: :collection
   end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
+
+  # namespace :feedbacks do
+  #   resource :chatbot, only: [:create]
+  #   resource :ivr, only: [:create]
+  # end
+
   resources :reports, only: [:index]
 
   resources :sites do
