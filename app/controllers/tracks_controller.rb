@@ -1,6 +1,8 @@
 class TracksController < ApplicationController
   skip_before_action :authenticate_user_without_guisso!
   skip_before_action :verify_authenticity_token
+
+  before_action :set_dictionary
   before_action :message
   before_action :ticket
   after_action :assign_track_to_step
@@ -16,6 +18,12 @@ class TracksController < ApplicationController
   end
 
   private
+    def set_dictionary
+      klass = "#{params[:klass]}Variable".constantize
+
+      @dictionary ||= klass.create_with(value: params[:code]).find_or_create_by(name: "tracking_ticket", value: params[:code])
+    end
+
     def json_response
       {
         "messages": [
@@ -41,13 +49,13 @@ class TracksController < ApplicationController
       return unless @track.persisted?
 
       @message = Message.find_by(content: message)
-      @message.steps.create(act: "tracking_ticket", track: @track)
+      @message.steps.create(act: "tracking_ticket", value: params[:code], track: @track)
     end
 
     def message
       case params[:klass]
-      when "TextMessage" then TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
-      when "VoiceMessage" then VoiceMessage.find_by(callsid: params[:CallSid])
+      when "Text" then TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+      when "Voice" then VoiceMessage.find_by(callsid: params[:CallSid])
       end
     end
 
