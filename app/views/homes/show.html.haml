@@ -10,8 +10,8 @@
       - current_user.role.variables.each do |variable|
         %th{:scope => "col"}= variable.name
 
-  %tbody
-    - @messages.each do |message|
+  %table.table.table-striped
+    %thead
       %tr
         %td{align: "center"}= message.session_id
         %td{align: "center"}= message.platform_name
