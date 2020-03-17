@@ -30,7 +30,30 @@ class DictionariesController < ApplicationController
     end
   end
 
+  def batch_update
+    batch_params.each do |_param|
+      id, text = _fetch(_param)
+      update_variable(id, text)
+    end
+
+    redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
+  end
+
   private
+    def _fetch(hash)
+      [hash["id"], hash["text"]]
+    end
+
+    def update_variable(id, text)
+      variable = Variable.find(id)
+
+      variable.update(text: text) if variable
+    end
+
+    def batch_params
+      params.require(:variable)
+    end
+
     def variable_params
       params.require(:variable).permit(:type, :name, :value, :text)
     end
