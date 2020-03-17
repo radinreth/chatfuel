@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
   resources :voice_messages, only: [:create]
-  resources :dictionaries, only: [:index, :new, :create, :update]
+  resources :dictionaries, only: [:index, :new, :create, :update] do
+    put :batch_update, on: :collection
+  end
   resources :tracks, only: [:create]
   resources :reports, only: [:index]
 
