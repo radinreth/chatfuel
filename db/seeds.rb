@@ -4,7 +4,7 @@ Dir[paths].each { |f| require f }
 
 %w[Variable Ticket Site Message Step Track].each do |model|
   model.constantize.send(:destroy_all)
-  unless ENV["seed"]
+  unless ENV["create"]
     p "create #{model}"
     "Seed::#{model}".constantize.send(:generate!)
   end
