@@ -18,7 +18,11 @@ class MessagesController < ApplicationController
     end
 
     def set_step
-      @set_step ||= @message.steps.create(act: params[:act], value: params[:value])
+      @set_step ||= @message.steps.create(act: extract.act, value: extract.text)
+    end
+
+    def extract
+      @extract ||= AnswerExtractor.new(act: params[:act], value: params[:value])
     end
 
     def set_dictionary
