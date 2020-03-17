@@ -7,7 +7,7 @@ document.addEventListener('turbolinks:load', function() {
     $(".dict-item").removeClass('active');
     $(this).addClass('active');
     
-    $(".result-map>table").addClass("d-none");
+    $(".result-map table").addClass("d-none");
     $(".dict-item-" + klassName).removeClass("d-none");
   })
 })
