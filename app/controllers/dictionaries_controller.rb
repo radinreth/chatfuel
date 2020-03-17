@@ -66,6 +66,15 @@ class DictionariesController < ApplicationController
     redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
   end
 
+  def batch_update
+    batch_params.each do |_param|
+      id, text = _fetch(_param)
+      update_variable(id, text)
+    end
+
+    redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
+  end
+
   private
     def update_variable(item_params)
       item_id = item_params.delete("id")
