@@ -63,7 +63,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "overall", icon: "gear", type: "callback", "display-name": "overall", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "overall", icon: "gear", type: "callback", "display-name": "overall", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "overall", "display-name": "overall", type: "string"
       end
@@ -77,7 +77,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "difficulty", icon: "alert", type: "callback", "display-name": "difficulty", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "difficulty", icon: "alert", type: "callback", "display-name": "difficulty", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "difficulty", "display-name": "difficulty", type: "string"
       end
@@ -91,7 +91,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "difficulty level", icon: "alert", type: "callback", "display-name": "difficulty level", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "difficulty level", icon: "alert", type: "callback", "display-name": "difficulty level", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "difficulty_level", "display-name": "difficulty level", type: "string"
       end
@@ -105,7 +105,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "work efficiency", icon: "alert", type: "callback", "display-name": "work efficiency", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "work efficiency", icon: "alert", type: "callback", "display-name": "work efficiency", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "work_efficiency", "display-name": "work efficiency", type: "string"
       end
@@ -119,7 +119,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "working time", icon: "alert", type: "callback", "display-name": "working time", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "working time", icon: "alert", type: "callback", "display-name": "working time", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "working_time", "display-name": "working time", type: "string"
       end
@@ -133,7 +133,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "attitude", icon: "alert", type: "callback", "display-name": "attitude", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "attitude", icon: "alert", type: "callback", "display-name": "attitude", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "attitude", "display-name": "attitude", type: "string"
       end
@@ -147,21 +147,21 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "provide info", icon: "alert", type: "callback", "display-name": "provide info", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "provide info", icon: "alert", type: "callback", "display-name": "provide info", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "provide_info", "display-name": "provide info", type: "string"
       end
       xml.response type: "none"
     end
     #legacy
-    xml.step name: "api provide info", icon: "gear", type: "callback", "display-name": "provide info options", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "api provide info", icon: "gear", type: "callback", "display-name": "provide info options", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "provide_info_options", "display-name": "provide-info-options", type: "string"
       end
       xml.response type: "none"
     end
 
-    xml.step name: "process", icon: "alert", type: "callback", "display-name": "process", "callback-url": "http://{service_domain}/feedbacks/" do
+    xml.step name: "process", icon: "alert", type: "callback", "display-name": "process", "callback-url": "http://{service_domain}/voice_feedbacks/" do
       xml.settings do
         xml.variable name: "process", "display-name": "process", type: "string"
       end

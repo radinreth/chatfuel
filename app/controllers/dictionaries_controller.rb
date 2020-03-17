@@ -1,6 +1,6 @@
 class DictionariesController < ApplicationController
   def index
-    @variables = Variable.order(name: :asc)
+    @variables = Variable.where.not(name: "done").order(name: :asc)
     authorize @variables
   end
 
