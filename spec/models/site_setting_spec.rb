@@ -2,12 +2,13 @@
 #
 # Table name: site_settings
 #
-#  id                :bigint(8)        not null, primary key
-#  message_frequency :integer(4)
-#  message_template  :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  site_id           :bigint(8)        not null
+#  id                      :bigint(8)        not null, primary key
+#  digest_message_template :text
+#  message_frequency       :integer(4)
+#  message_template        :text
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  site_id                 :bigint(8)        not null
 #
 # Indexes
 #

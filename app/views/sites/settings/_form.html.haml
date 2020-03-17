@@ -6,6 +6,11 @@
         - @setting.message_variables.each do |variable|
           %span.message-setting-variable= variable
 
+      = f.input :digest_message_template, wrapper_html: { class: "mb-1"}
+      .mb-3
+        - @setting.digest_message_variables.each do |variable|
+          %span.digest-message-setting-variable= variable
+
       = f.input :message_frequency, as: :radio_buttons, collection: SiteSetting.message_frequencies.keys
       .actions
         = f.submit t('shared.save'), class: 'btn btn-primary'

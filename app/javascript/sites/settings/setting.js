@@ -5,6 +5,7 @@ OWSO.SiteSettings = (() => {
 
   function init() {
     addEventToMessageVariable();
+    addEventToDigestMessageVariable();
   }
 
   function addEventToMessageVariable() {
@@ -15,18 +16,20 @@ OWSO.SiteSettings = (() => {
     });
   }
 
-  function insertAtCursor (input, textToInsert) {
-    // get current text of the input
-    const value = input.value;
+  function addEventToDigestMessageVariable() {
+    $('.digest-message-setting-variable').click((e) => {
+      digestMessageVariable = $(e.target).text();
+      digestMessageTemplateDom = $("#site_setting_digest_message_template")
+      insertAtCursor(digestMessageTemplateDom[0], digestMessageVariable);
+    });
+  }
 
-    // save selection start and end position
+  function insertAtCursor (input, textToInsert) {
+    const value = input.value;
     const start = input.selectionStart;
     const end = input.selectionEnd;
 
-    // update the value with our text inserted
     input.value = value.slice(0, start) + textToInsert + value.slice(end);
-
-    // update cursor to be at the end of insertion
     input.selectionStart = input.selectionEnd = start + textToInsert.length;
   }
 })();

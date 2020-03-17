@@ -6,13 +6,18 @@
   .card
     .card-body
       .row
-        .col-md-2
+        .col-md-3
           message template:
         .col-md-8
           = simple_format @setting.message_template
 
       .row
-        .col-md-2
+        .col-md-3
+          digest message template:
+        .col-md-8
+          = simple_format @setting.digest_message_template
+      .row
+        .col-md-3
           message frequency:
         .col-md-8
           = @setting.message_frequency

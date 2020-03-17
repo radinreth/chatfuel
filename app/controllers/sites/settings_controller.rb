@@ -41,7 +41,7 @@ module Sites
       end
 
       def site_setting_params
-        params.require(:site_setting).permit(:id, :message_template, :message_frequency)
+        params.require(:site_setting).permit(:id, :message_template, :message_frequency, :digest_message_template)
       end
   end
 end
