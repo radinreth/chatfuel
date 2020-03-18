@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: site_settings
 #
 #  id                      :bigint(8)        not null, primary key
 #  digest_message_template :text
+#  enable_notification     :boolean          default("false")
 #  message_frequency       :integer(4)
 #  message_template        :text
 #  created_at              :datetime         not null

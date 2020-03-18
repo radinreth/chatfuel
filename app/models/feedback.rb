@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: feedbacks
@@ -31,4 +33,17 @@ class Feedback < ApplicationRecord
 
   scope :satisfied, -> { joins(:variable_value).where("variable_values.id =? ", Variable.find_by(report_enabled: true).values.satisfied.ids) }
   scope :disatisfied, -> { joins(:variable_value).where("variable_values.id =? ", Variable.find_by(report_enabled: true).values.disatisfied.ids) }
+  
+  after_create :notify_third_party
+
+  def feedback_message
+    "feedback message -- need to generate from setting message_template"
+  end
+
+  def notify_third_party
+    return if site.nil? && site.site_setting.nil?
+    site_setting = site.site_setting
+    return unless site_setting.try(:enable_notification) && site_setting.message_template.present?
+    AlertNotificationJob.perform_later(site_setting.id, feedback_message)
+  end
 end

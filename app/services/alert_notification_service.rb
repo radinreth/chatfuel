@@ -9,8 +9,8 @@ class AlertNotificationService
   end
 
   def notify_all
-    setting = SiteSetting.find(@setting_id)
-    return unless setting.try(:immediately?)
+    setting = SiteSetting.find_by(id: @setting_id, message_frequency: SiteSetting.message_frequencies[:immediately])
+    return if setting.nil?
 
     CHANNEL_NAMES.each do |channel_name|
       channel_factory(channel_name).notify_now(@setting_id, @message)

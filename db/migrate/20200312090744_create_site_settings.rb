@@ -6,6 +6,7 @@ class CreateSiteSettings < ActiveRecord::Migration[6.0]
       t.text :message_template
       t.text :digest_message_template
       t.integer :message_frequency
+      t.boolean :enable_notification, default: false
       t.references :site, null: false, foreign_key: true
 
       t.timestamps
