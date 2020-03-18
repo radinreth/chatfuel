@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class VoiceMessagesController < ApplicationController
-  skip_before_action :authenticate_user_without_guisso!
-  skip_before_action :verify_authenticity_token
-
+class IvrController < BotsController
   before_action :set_voice
   before_action :request_verboice
   before_action :update_project_id
