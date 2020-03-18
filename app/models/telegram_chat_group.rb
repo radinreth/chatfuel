@@ -11,4 +11,5 @@
 #  chat_id    :integer(4)
 #
 class TelegramChatGroup < ApplicationRecord
+  scope :actives, -> { where(is_active: true) }
 end

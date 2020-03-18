@@ -20,6 +20,10 @@
 #
 class SiteSetting < ApplicationRecord
   belongs_to :site
+  has_many :site_settings_telegram_chat_groups
+  has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
+
+  accepts_nested_attributes_for :site_settings_telegram_chat_groups, allow_destroy: true
 
   enum message_frequency: {
     immediately: 1,
