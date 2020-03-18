@@ -14,9 +14,12 @@ document.addEventListener('turbolinks:load', function() {
   $(".btn-add").click(function(e) {
     e.preventDefault()
 
+    var name = $(this).data("name")
+
     var $tr = `<tr>
       <td>
         <div class="form-group hidden dictionaries_id"><input class="form-control hidden" value="" name="variable[][id]" type="hidden" id="dictionaries_id"></div>
+        <div class="form-group hidden dictionaries_id"><input class="form-control hidden" value="${name}" name="variable[][name]" type="hidden" id="dictionaries_name"></div>
         <div class="form-group string required dictionaries_value"><input class="form-control string required mr-sm-2" name="variable[][value]" id="variable_value" type="text"></div>
       </td>
 
