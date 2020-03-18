@@ -20,12 +20,14 @@
               %tr
                 %td
                   = f.input :id, as: :hidden, input_html: { value: sub.id, name: "variable[][id]" }
-                  = f.input :value, input_html: { value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, readonly: true, label: false
+                  = f.input :value, input_html: { value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, label: false
                 %td  
                   = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
 
           %tr
-            %td{ colspan: 2}
+            %td
+              = link_to "Add pair", "#", class: "btn btn-primary btn-add"
+            %td
               = f.submit "Update", class: "btn btn-primary pull-right"
 
 .clearfix
