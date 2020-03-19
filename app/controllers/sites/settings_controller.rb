@@ -9,6 +9,7 @@ module Sites
 
     def new
       @setting = @site.build_site_setting
+      @setting.site_settings_telegram_chat_groups.build
     end
 
     def create
@@ -27,6 +28,7 @@ module Sites
 
     def update
       @setting = @site.site_setting
+
       if @setting.update(site_setting_params)
         redirect_to site_setting_path(@site), flash: { notice: I18n.t("sites.succesfully_update_setting") }
       else
@@ -41,7 +43,9 @@ module Sites
       end
 
       def site_setting_params
-        params.require(:site_setting).permit(:id, :message_template, :message_frequency, :digest_message_template)
+        params.require(:site_setting).permit(:id, :message_template, :message_frequency, :digest_message_template,
+          :enable_notification, site_settings_telegram_chat_groups_attributes: [:id, :site_setting_id, :telegram_chat_group_id]
+        )
       end
   end
 end

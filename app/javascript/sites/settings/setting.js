@@ -6,10 +6,11 @@ OWSO.SiteSettings = (() => {
   function init() {
     addEventToMessageVariable();
     addEventToDigestMessageVariable();
+    initSelectPicker();
   }
 
   function addEventToMessageVariable() {
-    $('.message-setting-variable').click((e) => {
+    $(".message-setting-variable").click((e) => {
       messageVarible = $(e.target).text();
       messageTemplateDom = $("#site_setting_message_template")
       insertAtCursor(messageTemplateDom[0], messageVarible);
@@ -17,7 +18,7 @@ OWSO.SiteSettings = (() => {
   }
 
   function addEventToDigestMessageVariable() {
-    $('.digest-message-setting-variable').click((e) => {
+    $(".digest-message-setting-variable").click((e) => {
       digestMessageVariable = $(e.target).text();
       digestMessageTemplateDom = $("#site_setting_digest_message_template")
       insertAtCursor(digestMessageTemplateDom[0], digestMessageVariable);
@@ -31,6 +32,12 @@ OWSO.SiteSettings = (() => {
 
     input.value = value.slice(0, start) + textToInsert + value.slice(end);
     input.selectionStart = input.selectionEnd = start + textToInsert.length;
+  }
+
+  function initSelectPicker() {
+    // debugger
+    $.fn.selectpicker.Constructor.BootstrapVersion = "4.4.3"
+    $(".selectpicker").selectpicker();
   }
 })();
 

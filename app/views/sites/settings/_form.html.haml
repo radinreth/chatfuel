@@ -1,6 +1,8 @@
 .card
   .card-body
     = simple_form_for @setting, url: site_setting_path(@site) do |f|
+      = f.input :enable_notification
+      -# = f.custom_boolean_switch :enable_notification
       = f.input :message_template, wrapper_html: { class: "mb-1"}
       .mb-3
         - @setting.message_variables.each do |variable|
@@ -11,7 +13,13 @@
         - @setting.digest_message_variables.each do |variable|
           %span.digest-message-setting-variable= variable
 
+      = f.simple_fields_for :site_settings_telegram_chat_groups, wrapper_html: { class: "form-group" } do |ff|
+        = ff.collection_select :telegram_chat_group_id, TelegramChatGroup.all, :id, :title, { label: "Telegram Group", include_blank: false }, { :multiple => "multiple", class: ['form-control selectpicker'] }
+      -# = f.collection_select "telegram_chat_group_ids", TelegramChatGroup.all, :id, :title, { label: "Telegram Group", include_blank: false }, { :multiple => "multiple", class: ['form-control selectpicker'] }
+      -# = f.collection_select :telegram_chat_group_ids, TelegramChatGroup.all, :id, :title, { label: "Telegram Group", include_blank: false }, { :multiple => "multiple", class: ['form-control selectpicker', ('is-invalid')] }
+
       = f.input :message_frequency, as: :radio_buttons, collection: SiteSetting.message_frequencies.keys
+
       .actions
-        = f.submit t('shared.save'), class: 'btn btn-primary'
-        = link_to t('shared.cancel'), site_setting_path(@site), class: 'btn btn-secondary'
+        = f.submit t("shared.save"), class: "btn btn-primary"
+        = link_to t("shared.cancel"), site_setting_path(@site), class: "btn btn-secondary"

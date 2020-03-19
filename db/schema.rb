@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.index ["site_id"], name: "index_site_settings_on_site_id"
   end
 
-  create_table "site_settings_telegram_chat_groups", id: false, force: :cascade do |t|
+  create_table "site_settings_telegram_chat_groups", id: :serial, force: :cascade do |t|
     t.bigint "site_setting_id", null: false
     t.bigint "telegram_chat_group_id", null: false
   end
