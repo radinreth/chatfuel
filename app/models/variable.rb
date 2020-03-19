@@ -15,4 +15,7 @@
 #  index_variables_on_type_and_name_and_value  (type,name,value) UNIQUE
 #
 class Variable < ApplicationRecord
+  validates :type, presence: true
+  validates :name, presence: true
+  validates :name, format: { with: /\w/, message: "only allows numbers or letters" }, allow_blank: true
 end
