@@ -28,11 +28,11 @@ Rails.application.routes.draw do
   namespace :bots do
     # resources :voice_tracks, only: [:create]
     # resources :tracks, only: [:create]
-
-    resources :voice_feedbacks, only: [:create]
-    resources :feedbacks, only: [:create]
-
+    # resources :voice_feedbacks, only: [:create]
+    # resources :feedbacks, only: [:create]
     # resources :messages, only: [:create]
+
+    # Message
     resources :messages, only: [:create] do
       collection do
         post "ivr", to: "messages/ivr#create"
@@ -40,7 +40,15 @@ Rails.application.routes.draw do
       end
     end
 
-    # Tracking
+    # Feedback
+    resources :feedbacks, only: [:create] do
+      collection do
+        post "ivr", to: "feedbacks/ivr#create"
+        post "chatbot", to: "feedbacks/chatbot#create"
+      end
+    end
+
+    # Track
     resources :tracks, only: [:create] do
       collection do
         post "ivr", to: "tracks/ivr#create"
