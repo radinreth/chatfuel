@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show]
-  resources :dictionaries, only: [:index, :new, :create, :update] do
+  resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
     put :batch_update, on: :collection
   end
 

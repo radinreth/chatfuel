@@ -20,7 +20,11 @@
               %tr
                 %td
                   = f.input :id, as: :hidden, input_html: { value: sub.id, name: "variable[][id]" }
-                  = f.input :value, input_html: { value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, label: false
+                  .input-group
+                    .input-group-prepend
+                      .input-group-text
+                        = link_to "X", dictionary_path(sub), method: :delete, data: { disable_with: "wait...", confirm: "Are you sure?" }, remote: true
+                    = f.input_field :value, value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'form-control string required mr-sm-2', label: false
                 %td  
                   = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
 
