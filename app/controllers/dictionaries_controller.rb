@@ -39,6 +39,11 @@ class DictionariesController < ApplicationController
     redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
   end
 
+  def destroy
+    @variable = Variable.find(params[:id])
+    @variable.destroy
+  end
+
   private
     def _fetch(hash)
       [hash["id"], hash["name"], hash["value"], hash["text"]]

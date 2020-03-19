@@ -18,9 +18,17 @@ document.addEventListener('turbolinks:load', function() {
 
     var $tr = `<tr>
       <td>
-        <div class="form-group hidden dictionaries_id"><input class="form-control hidden" value="" name="variable[][id]" type="hidden" id="dictionaries_id"></div>
-        <div class="form-group hidden dictionaries_id"><input class="form-control hidden" value="${name}" name="variable[][name]" type="hidden" id="dictionaries_name"></div>
-        <div class="form-group string required dictionaries_value"><input class="form-control string required mr-sm-2" name="variable[][value]" id="variable_value" type="text"></div>
+        <input class="form-control hidden" value="" name="variable[][id]" type="hidden" id="dictionaries_id">
+        <input class="form-control hidden" value="${name}" name="variable[][name]" type="hidden" id="dictionaries_name">
+        
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <a class="btn-del" rel="nofollow" href="#">X</a>
+            </div>
+          </div>
+          <input class="form-control string required mr-sm-2" name="variable[][value]" id="variable_value" type="text">
+        </div>
       </td>
 
       <td>
@@ -29,6 +37,13 @@ document.addEventListener('turbolinks:load', function() {
     </tr>`
   
     $(this).closest("tr")[0].before($($tr)[0])
+  })
+
+  $(".result-map").on("click", ".btn-del", function(e) {
+    e.preventDefault()
+    if( confirm("Are you sure?") ) {
+      $(this).closest("tr")[0].remove()
+    }
   })
 })
 
