@@ -13,8 +13,8 @@
       = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
         %table.table{ class: "dict-item-#{v.name} #{ toggle_class_name('d-none', !index.zero?) }" }
           %tr
-            %th Value
-            %th Text
+            %th Raw value
+            %th Mapping value
           - @variables.order(value: :asc).each do |sub|
             - if sub.name == v.name
               %tr
