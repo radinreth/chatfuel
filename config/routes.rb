@@ -26,12 +26,6 @@ Rails.application.routes.draw do
   end
 
   namespace :bots do
-    # resources :voice_tracks, only: [:create]
-    # resources :tracks, only: [:create]
-    # resources :voice_feedbacks, only: [:create]
-    # resources :feedbacks, only: [:create]
-    # resources :messages, only: [:create]
-
     # Message
     resources :messages, only: [:create] do
       collection do
