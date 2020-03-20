@@ -24,6 +24,7 @@ module Sites
 
     def edit
       @setting = @site.site_setting
+      @setting.site_settings_telegram_chat_groups || @setting.site_settings_telegram_chat_groups.build
     end
 
     def update

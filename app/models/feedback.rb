@@ -36,6 +36,9 @@ class Feedback < ApplicationRecord
   
   after_create :notify_third_party
 
+  scope :yesterday, -> { where(created_at: Date.yesterday) }
+  scope :last_week, -> { where(created_at: (Date.today - Date.today.wday)..(Date.today - Date.today.wday-6)) }
+
   def feedback_message
     "feedback message -- need to generate from setting message_template"
   end
