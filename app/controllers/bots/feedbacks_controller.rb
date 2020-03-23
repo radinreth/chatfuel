@@ -7,6 +7,7 @@ module Bots
     def create
       @step = @message.steps.create(step_params)
       @feedback = @step.build_feedback(site_id: @site&.id)
+      @feedback.variable = @dictionary
 
       if @feedback.save
         head :ok
