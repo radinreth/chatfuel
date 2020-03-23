@@ -70,13 +70,16 @@ class DictionariesController < ApplicationController
 
   private
     def _fetch(hash)
-      [hash["id"], hash["text"]]
+      [hash["id"], hash["name"], hash["value"], hash["text"], hash["status"]]
     end
 
-    def update_variable(id, text)
-      variable = Variable.find(id)
-
-      variable.update(text: text) if variable
+    def update_variable(id, name, value, text, status)
+      if id.present?
+        variable = Variable.find(id)
+        variable.update(value: value, text: text, status: status.to_i) if variable
+      else
+        BothVariable.create(name: name, value: value, text: text, status: status)
+      end
     end
 
     def batch_params

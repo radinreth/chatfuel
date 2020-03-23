@@ -22,24 +22,12 @@
 #  index_feedbacks_on_step_id  (step_id)
 #
 class Feedback < ApplicationRecord
-  # constants
-  SATISFACTION_BOUNDARY = 4
-  ANSWER_LIST = %w(មិនពេញចិត្តសោះ មិនពេញចិត្តខ្លាំង មិនពេញចិត្តតិចតួច អាចទទួលយកបាន ពេញចិត្តតិចខ្លះ ពេញចិត្តណាស់ ពេញចិត្តខ្លាំងណាស់)
-
   # associations
   belongs_to :step, optional: true
   belongs_to :site, optional: true
+  has_one :rating
+  has_one :variable, through: :rating
 
-  # scopes
-  scope :satisfied, -> { text_satisfied.or(voice_satisfied) }
-  scope :disatisfied, -> { where.not(id: satisfied) }
-
-  private
-    def self.text_satisfied
-      where(overall: ANSWER_LIST.last(SATISFACTION_BOUNDARY))
-    end
-
-    def self.voice_satisfied
-      where("overall >= '?'", SATISFACTION_BOUNDARY)
-    end
+  scope :satisfied, -> { where(variable: Variable.satisfied.ids) }
+  scope :disatisfied, -> { where(variable: Variable.disatisfied.ids) }
 end

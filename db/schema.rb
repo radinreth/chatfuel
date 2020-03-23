@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
 
   create_table "ratings", force: :cascade do |t|
     t.bigint "feedback_id", null: false
+<<<<<<< HEAD
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "variable_value_id", null: false
@@ -101,6 +102,13 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+=======
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
+    t.index ["variable_id"], name: "index_ratings_on_variable_id"
+>>>>>>> Add satisfied feedback option
   end
 
   create_table "sites", force: :cascade do |t|
@@ -203,7 +211,12 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.boolean "report_enabled", default: false
+=======
+    t.integer "status", default: 0
+    t.index ["type", "name", "value"], name: "index_variables_on_type_and_name_and_value", unique: true
+>>>>>>> Add satisfied feedback option
   end
 
   create_table "voice_messages", force: :cascade do |t|
@@ -218,11 +231,16 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
+<<<<<<< HEAD
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
+=======
+  add_foreign_key "ratings", "feedbacks"
+  add_foreign_key "ratings", "variables"
+>>>>>>> Add satisfied feedback option
   add_foreign_key "steps", "messages"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
