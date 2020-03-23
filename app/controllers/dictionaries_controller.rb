@@ -38,11 +38,17 @@ class DictionariesController < ApplicationController
   end
 
   def batch_update
+<<<<<<< HEAD
     updates = []
     options = { status: :moved_permanently }
 
     batch_params.each do |item_params|
       updates << update_variable(item_params.permit!)
+=======
+    batch_params.each do |_param|
+      id, name, value, text, status = _fetch(_param)
+      update_variable(id, name, value, text, status)
+>>>>>>> Add satisfied feedback option
     end
 
     if updates.all?(true)
