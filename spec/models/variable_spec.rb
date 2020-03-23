@@ -4,6 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string
+#  status     :integer(4)       default("0")
 #  text       :string
 #  type       :string           not null
 #  value      :string
