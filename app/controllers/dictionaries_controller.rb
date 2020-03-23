@@ -32,8 +32,8 @@ class DictionariesController < ApplicationController
 
   def batch_update
     batch_params.each do |_param|
-      id, name, value, text = _fetch(_param)
-      update_variable(id, name, value, text)
+      id, name, value, text, status = _fetch(_param)
+      update_variable(id, name, value, text, status)
     end
 
     redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
@@ -46,15 +46,15 @@ class DictionariesController < ApplicationController
 
   private
     def _fetch(hash)
-      [hash["id"], hash["name"], hash["value"], hash["text"]]
+      [hash["id"], hash["name"], hash["value"], hash["text"], hash["status"]]
     end
 
-    def update_variable(id, name, value, text)
+    def update_variable(id, name, value, text, status)
       if id.present?
         variable = Variable.find(id)
-        variable.update(value: value, text: text) if variable
+        variable.update(value: value, text: text, status: status.to_i) if variable
       else
-        BothVariable.create(name: name, value: value, text: text)
+        BothVariable.create(name: name, value: value, text: text, status: status)
       end
     end
 
@@ -63,6 +63,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :value, :text)
+      params.require(:variable).permit(:type, :name, :value, :text, :status)
     end
 end

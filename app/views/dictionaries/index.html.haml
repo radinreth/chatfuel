@@ -16,6 +16,7 @@
                   %tr
                     %th Raw value
                     %th Mapping value
+                    %th Satisfied
                   - @variables.order(value: :asc).each do |sub|
                     - if sub.name == v.name
                       %tr
@@ -28,9 +29,11 @@
                             = f.input_field :value, value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'form-control string required mr-sm-2', label: false
                         %td  
                           = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
+                        %td
+                          = f.radio_button :status, 1, name: "variable[][status]", checked: sub.satisfied?
 
                   %tr
-                    %td
+                    %td{ colspan: 2 }
                       = link_to "+ Add pair", "#", class: "btn btn-add", "data-name": v.name
                     %td
                       = f.submit "Update", class: "btn btn-primary pull-right"

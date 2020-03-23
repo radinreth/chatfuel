@@ -14,6 +14,12 @@
 #  index_feedbacks_on_step_id  (step_id)
 #
 class Feedback < ApplicationRecord
-  enum status: %i[satisfied disatisfied]
-  belongs_to :step
+  # associations
+  belongs_to :step, optional: true
+  belongs_to :site, optional: true
+  has_one :rating
+  has_one :variable, through: :rating
+
+  scope :satisfied, -> { where(variable: Variable.satisfied.ids) }
+  scope :disatisfied, -> { where(variable: Variable.disatisfied.ids) }
 end
