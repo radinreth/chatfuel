@@ -1,4 +1,4 @@
-RSpec.describe TracksController do
+RSpec.describe Bots::Tracks::ChatbotController, type: :controller do
   before do
     content = create(:text_message, messenger_user_id: 123)
     create(:message, content: content)
