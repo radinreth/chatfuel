@@ -15,11 +15,13 @@
 #  index_sites_on_name  (name)
 #
 class Site < ApplicationRecord
-  enum status: %i[enable disable]
+  enum status: %i[disable enable]
 
   has_many :tracks, dependent: :destroy
   has_many :users
   has_many :feedbacks
 
+  validates :name, presence: true
+  validates :code, presence: true
   validates :code, uniqueness: true
 end
