@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DictionariesController, type: :controller do
 
-  describe 'routes' do
-    it { should route(:get, '/dictionaries').to(action: :index) }
-    it { should route(:patch, '/dictionaries/1').to(action: :update, id: 1) }
+  describe "routes" do
+    it { should route(:get, "/dictionaries").to(action: :index) }
+    it { should route(:patch, "/dictionaries/1").to(action: :update, id: 1) }
   end
 
   describe "GET #index" do
