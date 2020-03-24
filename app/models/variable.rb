@@ -24,6 +24,6 @@ class Variable < ApplicationRecord
   validates :name, presence: true
   validates :value, uniqueness: { scope: :name }
   validates :name,  allow_blank: true,
-                    format: { with: /\w/,
+                    format: { with: /\A\w+\z/,
                               message: "only allows numbers or letters" }
 end
