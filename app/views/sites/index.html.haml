@@ -5,12 +5,16 @@
     %th Name
     %th Code
     %th Tracks count
-    %th{colspan: 2} Action
+    %th Action
+
     - @sites.each do |site|
       %tr
         %td= link_to site.name, site, style: "text-decoration: underline"
         %td= site.code
         %td= site.tracks_count
-        %td= link_to fa_icon('pencil'), edit_site_path(site)
-        %td= link_to fa_icon('trash'), site_path(site), method: :delete, data: { confirm: 'Are you sure?' }
+        %td
+          .btn-group.btn-group-sm
+            = link_to fa_icon('pencil'), edit_site_path(site), class: "btn btn-outline-secondary" 
+            = link_to fa_icon('trash'), site_path(site), class: "btn btn-outline-secondary" , method: :delete, data: { confirm: 'Are you sure?' }
+
 != pagy_bootstrap_nav(@pagy)
