@@ -29,6 +29,8 @@ class SitesController < ApplicationController
     @site = Site.new(site_params)
     if @site.save
       redirect_to @site, status: :moved_permanently, notice: "site created successfully!"
+    else
+      render :new, status: :unprocessable_entity, alert: "save fail"
     end
   end
 
@@ -69,6 +71,6 @@ class SitesController < ApplicationController
     end
 
     def site_params
-      params.require(:site).permit(:status, :name, :code)
+      params.require(:site).permit(:name, :code).merge(status: params[:site][:status].to_i)
     end
 end
