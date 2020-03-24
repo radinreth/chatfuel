@@ -12,7 +12,7 @@ class SitesController < ApplicationController
   end
 
   def new
-    @site = Site.new
+    @site = Site.new(status: 1)
     authorize @site
   end
 
