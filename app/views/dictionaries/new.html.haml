@@ -1,7 +1,9 @@
 = render partial: "shared/page_header", locals: { title: "New Dictionary", link: nil }
 
-= simple_form_for @variable, url: dictionaries_path do |f|
-  = f.input :type, as: :select, collection: @collection = { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second
-  = f.input :name
+.row
+  .col-md-4
+    = simple_form_for @variable, url: dictionaries_path do |f|
+      = f.input :type, as: :select, collection: @collection = { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second
+      = f.input :name
 
-  = f.submit "Create dictionary", class: "btn btn-primary"
+      = f.submit "Create dictionary", class: "btn btn-primary"

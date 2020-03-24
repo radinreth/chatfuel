@@ -21,5 +21,8 @@ class Site < ApplicationRecord
   has_many :users
 
   validates :name, presence: true
-  validates :code, format: { with: /\A\d{4}\z/, message: "site code must be exactly 4 digits number" }
+  validates :code, uniqueness: true, 
+                    format: { 
+                      with: /\A\d{4}\z/, 
+                      message: "site code must be exactly 4 digits number" }
 end
