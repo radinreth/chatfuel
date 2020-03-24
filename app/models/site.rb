@@ -22,6 +22,5 @@ class Site < ApplicationRecord
   has_many :feedbacks
 
   validates :name, presence: true
-  validates :code, presence: true
-  validates :code, uniqueness: true
+  validates :code, format: { with: /\A\d{4}\z/, message: "site code must be exactly 4 digits number" }
 end
