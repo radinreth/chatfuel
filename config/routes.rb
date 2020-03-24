@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
   resources :reports, only: [:index]
   resources :sites do
-    post "import", on: :collection
+    collection do
+      get :new_import
+      post :import
+    end
   end
 
   namespace :bots do

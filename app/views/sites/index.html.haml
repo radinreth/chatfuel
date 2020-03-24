@@ -1,7 +1,4 @@
 = render partial: "shared/page_header", locals: { title: "Sites", link: link_to_new('site') }
-= simple_form_for :site, url: import_sites_path, wrapper: :inline_form, html: { class: 'form-inline mb-3 pull-right' } do |f|
-  = f.input :file, as: :file, label: false
-  = f.submit 'upload', class: 'btn btn-primary'
 
 %table.table
   %tr
@@ -11,7 +8,7 @@
     %th{colspan: 2} Action
     - @sites.each do |site|
       %tr
-        %td= link_to site.name, site
+        %td= link_to site.name, site, style: "text-decoration: underline"
         %td= site.code
         %td= site.tracks_count
         %td= link_to fa_icon('pencil'), edit_site_path(site)
