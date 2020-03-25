@@ -33,7 +33,14 @@
                           = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
                         - if sub.report_enabled?
                           %td
-                            = f.radio_button :status, 1, name: "variable[][status]", checked: sub.satisfied?
+                            = #f.input_field :status, label: false, as: :radio_buttons, collection: [['0', 'F'], ['1', 'M']], label_method: :second, value_method: :first
+                            .form-check.form-check-inline
+                              = f.radio_button :status, 0, name: "variable[][status]", class: "form-check-input", checked: sub.normal?
+                              %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
+                              = f.radio_button :status, 1, name: "variable[][status]", class: "form-check-input", checked: sub.satisfied?
+                              %label.form-check-label.mr-2{ for: "dictionaries_status_1"} S
+                              = f.radio_button :status, 2, name: "variable[][status]", class: "form-check-input", checked: sub.disatisfied?
+                              %label.form-check-label{ for: "dictionaries_status_2"} D
 
                   %tr
                     %td{ colspan: 2 }
