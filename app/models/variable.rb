@@ -17,7 +17,7 @@
 #
 class Variable < ApplicationRecord
   enum status: %i[normal satisfied disatisfied]
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :feedbacks, through: :ratings
 
   validates :type, presence: true

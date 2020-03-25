@@ -24,7 +24,7 @@ document.addEventListener('turbolinks:load', function() {
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <a class="btn-del" rel="nofollow" href="#">X</a>
+              <a class="btn-del">X</a>
             </div>
           </div>
           <input class="form-control string required mr-sm-2" name="variable[][value]" id="variable_value" type="text">
@@ -39,7 +39,7 @@ document.addEventListener('turbolinks:load', function() {
     $(this).closest("tr")[0].before($($tr)[0])
   })
 
-  $(".result-map").on("click", ".btn-del", function(e) {
+  $("#dictionaries-index").on("click", ".btn-del", function(e) {
     e.preventDefault()
     if( confirm("Are you sure?") ) {
       $(this).closest("tr")[0].remove()
