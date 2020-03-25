@@ -31,11 +31,20 @@ class DictionariesController < ApplicationController
   end
 
   def batch_update
+    updates = []
+    options = { status: :moved_permanently }
+
     batch_params.each do |item_params|
-      update_variable(item_param)
+      updates << update_variable(item_params.permit!)
     end
 
-    redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
+    if updates.all?(true)
+      options[:notice] = "update success"
+    else
+      options[:alert] = "update fail"
+    end
+
+    redirect_to dictionaries_path, options
   end
 
   def destroy
@@ -52,7 +61,7 @@ class DictionariesController < ApplicationController
         variable = Variable.find(item_id)
         variable.update(item_params) if variable
       else
-        Variable.create(item_params)
+        Variable.new(item_params).save
       end
     end
 
