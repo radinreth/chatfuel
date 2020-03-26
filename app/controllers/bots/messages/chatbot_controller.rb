@@ -24,7 +24,9 @@ module Bots::Messages
       end
 
       def set_dictionary
-        @dictionary ||= TextVariable.create_with(value: params[:value]).find_or_create_by(text_variable_params)
+        # @dictionary ||= TextVariable.create_with(value: params[:value]).find_or_create_by(text_variable_params)
+        @dictionary ||= TextVariable.find_or_create_by(name: text_variable_params[:name])
+        @dictionary.values.create(raw_value: text_variable_params[:value])
       end
 
       def text_variable_params
