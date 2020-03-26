@@ -54,13 +54,15 @@ class DictionariesController < ApplicationController
 
   private
     def update_variable(item_params)
+      item_params = refine(item_params)
       item_id = item_params.delete("variable_id")
+      item_params["status"] = item_params.delete("status").to_i
 
       variable = Variable.find(item_id)
       value = variable.values.find_by(raw_value: item_params["raw_value"])
 
       if value.present?
-        value.update(item_params.to_h)
+        value.update(refine(item_params))
       else
         variable.values.create(item_params)
       end
@@ -68,7 +70,7 @@ class DictionariesController < ApplicationController
       # value.save
       # variable.save
 
-      # item_params["status"] = item_params.delete("status").to_i
+      # 
 
       # if item_id.present?
       #   variable = Variable.find(item_id)
