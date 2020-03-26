@@ -40,11 +40,11 @@
                       - if variable.report_enabled?
                         %td
                           .form-check.form-check-inline
-                            = f.radio_button :status, 0, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.normal?
+                            = f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.normal?
                             %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
-                            = f.radio_button :status, 1, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.satisfied?
+                            = f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.satisfied?
                             %label.form-check-label.mr-2{ for: "dictionaries_status_1"} S
-                            = f.radio_button :status, 2, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.disatisfied?
+                            = f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.disatisfied?
                             %label.form-check-label{ for: "dictionaries_status_2"} D
 
                   %tr
