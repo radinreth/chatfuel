@@ -2,9 +2,9 @@ class InvalidStatus
   def initialize(decorator)
     @decorator = decorator
   end
-  
+
   def status
-    'លេខកូដឯកសារមិនត្រឹមត្រូវ'
+    "លេខកូដឯកសារមិនមានក្នុងប្រព័ន្ធ"
   end
 
   def description
