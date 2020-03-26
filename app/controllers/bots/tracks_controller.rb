@@ -1,7 +1,7 @@
 module Bots
   class TracksController < BotsController
     before_action :set_dictionary
-    before_action :message
+    before_action :set_message
     before_action :ticket
     after_action :assign_track_to_step
 
