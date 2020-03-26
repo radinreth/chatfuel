@@ -19,6 +19,7 @@
 #  fk_rails_...  (variable_id => variables.id)
 #
 class VariableValue < ApplicationRecord
+  enum status: %i[normal satisfied disatisfied]
   belongs_to :variable
 
   validates :raw_value, presence: true, uniqueness: { scope: :variable_id }
