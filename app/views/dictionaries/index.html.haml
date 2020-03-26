@@ -13,10 +13,11 @@
           = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
             .card
               .card-body
-                .btn-group.btn-group-sm.mb-3
-                  - Role.all.each do |role|
-                    %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
-                      = role.name
+                - if current_user.system_admin?
+                  .btn-group.btn-group-sm.mb-3
+                    - Role.all.each do |role|
+                      %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
+                        = role.name
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
                     %th Raw value
