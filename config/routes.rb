@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
     put :batch_update, on: :collection
     resources :values, only: [:destroy]
+    resources :roles, only: [:update]
   end
 
   resources :reports, only: [:index]
