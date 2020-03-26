@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_040640) do
+ActiveRecord::Schema.define(version: 2020_03_26_160151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,11 +69,11 @@ ActiveRecord::Schema.define(version: 2020_03_26_040640) do
     t.datetime "updated_at", precision: 6, null: false
   create_table "ratings", force: :cascade do |t|
     t.bigint "feedback_id", null: false
-    t.bigint "variable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "variable_value_id", null: false
     t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
-    t.index ["variable_id"], name: "index_ratings_on_variable_id"
+    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
   end
 
   create_table "role_variables", force: :cascade do |t|
@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_040640) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
   add_foreign_key "ratings", "feedbacks"
-  add_foreign_key "ratings", "variables"
+  add_foreign_key "ratings", "variable_values"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "steps", "messages"

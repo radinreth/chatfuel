@@ -17,10 +17,10 @@
     %tbody
       - @messages.each do |message|
         %tr
-          %td= message.session_id
-          %td= message.type
+          %td{align: "center"}= message.id
+          %td{align: "center"}= message.type
           - current_user.role.variables.pluck(:name).each do |var_name|
-            %td
+            %td{align: "center"}
               - message.steps.each do |step|
                 = valueize(step.value) if var_name == step.act
   != pagy_bootstrap_nav(@pagy)

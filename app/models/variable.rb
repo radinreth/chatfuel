@@ -20,8 +20,8 @@ class Variable < ApplicationRecord
   # enum status: %i[normal satisfied disatisfied]
 
   # associations
-  has_many :ratings, dependent: :destroy
-  has_many :feedbacks, through: :ratings
+  # has_many :ratings, dependent: :destroy
+  # has_many :feedbacks, through: :ratings
 
   has_many :role_variables, dependent: :destroy
   has_many :roles, through: :role_variables

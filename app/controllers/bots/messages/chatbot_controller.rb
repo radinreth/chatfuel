@@ -17,6 +17,7 @@ module Bots::Messages
 
       def set_step
         @set_step ||= @message.steps.create(act: extract.act, value: extract.text)
+        # TODO: user variable instead
       end
 
       def extract
