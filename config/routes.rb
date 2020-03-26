@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resource :manifest, only: [:show]
   resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
     put :batch_update, on: :collection
+    resources :values, only: [:destroy]
   end
 
   resources :reports, only: [:index]

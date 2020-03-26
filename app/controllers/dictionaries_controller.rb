@@ -40,8 +40,8 @@ class DictionariesController < ApplicationController
 
     if updates.all?(true)
       options[:notice] = "update success"
-    else
-      options[:alert] = "update fail"
+    # else
+      # options[:alert] = "update fail"
     end
 
     redirect_to dictionaries_path, options
