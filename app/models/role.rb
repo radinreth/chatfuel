@@ -11,4 +11,16 @@ class Role < ApplicationRecord
   has_many :users
   has_many :role_variables
   has_many :variables, through: :role_variables
+
+  def system_admin?
+    name == "system admin"
+  end
+
+  def site_admin?
+    name == "site admin"
+  end
+
+  def site_ombudsman?
+    name == "site ombudsman"
+  end
 end
