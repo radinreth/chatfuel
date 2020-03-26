@@ -4,47 +4,47 @@
   .col-3
     %div{ style: "height: 520px; overflow-y: scroll"}
       #v-pills-tab.nav.flex-column.nav-pills
-        - @variables.select("name").distinct.each_with_index do |v, index|
+        - @variables.each_with_index do |v, index|
           = link_to v.name, "#v-pills-#{v.name}", class: "nav-link #{toggle_class_name("active", index.zero?)}", "data-toggle" => "pill"
   .col-9
     #v-pills-tabContent.tab-content
-      - @variables.each_with_index do |v, index|
-        .tab-pane.fade{ id: "v-pills-#{v.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
+      - @variables.each_with_index do |variable, index|
+        .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
           = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
             .card
               .card-body
-                %table.table{ class: "dict-item-#{v.name}" }
+                %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
                     %th Raw value
                     %th Mapping value
-                    - if v.report_enabled?
+                    - if variable.report_enabled?
                       %th Satisfied
-                  - @variables.order(value: :asc).each do |sub|
-                    - if sub.name == v.name
-                      %tr
+
+                  - # data rows 
+                  - variable.values.each do |var_value|
+                    %tr
+                      %td
+                        = f.input :id, as: :hidden, input_html: { value: variable.id, name: "variable_value[][variable_id]" }   
+                        .input-group
+                          .input-group-prepend
+                            .input-group-text
+                              = link_to "X", dictionary_path(var_value), method: :delete, data: { disable_with: "wait...", confirm: "Are you sure?" }, remote: true
+                          = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: 'form-control string required mr-sm-2', label: false, readonly: true
+                      %td  
+                        = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: 'mr-sm-2' }, label: false
+                      - if variable.report_enabled?
                         %td
-                          = f.input :id, as: :hidden, input_html: { value: sub.id, name: "variable[][id]" }
-                          .input-group
-                            .input-group-prepend
-                              .input-group-text
-                                = link_to "X", dictionary_path(sub), method: :delete, data: { disable_with: "wait...", confirm: "Are you sure?" }, remote: true
-                            = f.input_field :value, value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'form-control string required mr-sm-2', label: false
-                        %td  
-                          = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
-                        - if sub.report_enabled?
-                          %td
-                            = #f.input_field :status, label: false, as: :radio_buttons, collection: [['0', 'F'], ['1', 'M']], label_method: :second, value_method: :first
-                            .form-check.form-check-inline
-                              = f.radio_button :status, 0, name: "variable[][status]", class: "form-check-input", checked: sub.normal?
-                              %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
-                              = f.radio_button :status, 1, name: "variable[][status]", class: "form-check-input", checked: sub.satisfied?
-                              %label.form-check-label.mr-2{ for: "dictionaries_status_1"} S
-                              = f.radio_button :status, 2, name: "variable[][status]", class: "form-check-input", checked: sub.disatisfied?
-                              %label.form-check-label{ for: "dictionaries_status_2"} D
+                          .form-check.form-check-inline
+                            = f.radio_button :status, 0, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.normal?
+                            %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
+                            = f.radio_button :status, 1, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.satisfied?
+                            %label.form-check-label.mr-2{ for: "dictionaries_status_1"} S
+                            = f.radio_button :status, 2, name: "variable_value[][status]", class: "form-check-input"#, checked: sub.disatisfied?
+                            %label.form-check-label{ for: "dictionaries_status_2"} D
 
                   %tr
                     %td{ colspan: 2 }
-                      = link_to "+ Add pair", "#", class: "btn btn-add", "data-name": v.name
+                      = link_to "+ Add pair", "#", class: "btn btn-add", "data-name": variable.name
                     %td
                       = f.submit "Update", class: "btn btn-primary pull-right"
 .clearfix

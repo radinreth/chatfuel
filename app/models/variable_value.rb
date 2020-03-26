@@ -20,4 +20,7 @@
 #
 class VariableValue < ApplicationRecord
   belongs_to :variable
+
+  validates :raw_value, presence: true, uniqueness: { scope: :variable_id }
+  default_scope -> { order(:raw_value) }
 end
