@@ -1,6 +1,8 @@
 
 - if @messages.count.zero?
-  %p there is no message
+  .d-flex.h-100.justify-content-center.align-items-center.flex-column
+    = image_tag "empty.png", width: "400"
+    %p Your inbox is empty.
 - else
   = render partial: "shared/page_header", locals: { title: "All messages", link: nil }
 
