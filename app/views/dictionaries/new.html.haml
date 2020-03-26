@@ -3,8 +3,8 @@
 .row
   .col-md-4
     = simple_form_for @variable, url: dictionaries_path do |f|
-      = f.input :report_enabled
-      = f.input :type, as: :select, collection: @collection = { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second, selected: 1
-      = f.input :name
+      = f.input :report_enabled, input_html: { name: "variable[report_enabled]" }
+      = f.input :type, as: :select, collection: @collection = { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second, selected: 1, input_html: { name: "variable[type]" }
+      = f.input :name, input_html: { name: "variable[name]" }
 
       = f.submit "Create dictionary", class: "btn btn-primary"
