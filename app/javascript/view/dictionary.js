@@ -28,7 +28,7 @@ document.addEventListener('turbolinks:load', function() {
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <a class="btn-del">X</a>
+              <a class="btn-del" style="cursor: pointer">X</a>
             </div>
           </div>
           <input class="form-control string required mr-sm-2" name="variable_value[][raw_value]" id="variable_value" type="text">
