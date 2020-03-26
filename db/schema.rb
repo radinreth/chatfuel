@@ -86,6 +86,15 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "role_variables", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_role_variables_on_role_id"
+    t.index ["variable_id"], name: "index_role_variables_on_variable_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
