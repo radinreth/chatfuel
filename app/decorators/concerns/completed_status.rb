@@ -8,6 +8,6 @@ class CompletedStatus
   end
 
   def description
-    "ឯកសារបានធ្វើរួចហើយ នៅថ្ងៃ #{@decorator.completed_at}"
+    "ឯកសារបានធ្វើរួចហើយ នៅថ្ងៃ #{@decorator.completed_at || @decorator.created_at}"
   end
 end
