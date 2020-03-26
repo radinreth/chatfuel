@@ -18,9 +18,15 @@
 #
 class Variable < ApplicationRecord
   enum status: %i[normal satisfied disatisfied]
+
+  # associations
   has_many :ratings, dependent: :destroy
   has_many :feedbacks, through: :ratings
 
+  has_many :role_variables
+  has_many :roles, through: :role_variables
+
+  # validations
   validates :type, presence: true
   validates :name, presence: true
   validates :value, uniqueness: { scope: :name }

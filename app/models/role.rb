@@ -9,4 +9,6 @@
 #
 class Role < ApplicationRecord
   has_many :users
+  has_many :role_variables
+  has_many :variables, through: :role_variables
 end

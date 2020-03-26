@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_030716) do
+ActiveRecord::Schema.define(version: 2020_03_26_034338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2020_03_26_030716) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
     t.index ["variable_id"], name: "index_ratings_on_variable_id"
+  end
+
+  create_table "role_variables", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_role_variables_on_role_id"
+    t.index ["variable_id"], name: "index_role_variables_on_variable_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -203,6 +212,8 @@ ActiveRecord::Schema.define(version: 2020_03_26_030716) do
   add_foreign_key "identities", "users"
   add_foreign_key "ratings", "feedbacks"
   add_foreign_key "ratings", "variables"
+  add_foreign_key "role_variables", "roles"
+  add_foreign_key "role_variables", "variables"
   add_foreign_key "steps", "messages"
   add_foreign_key "users", "roles"
 end
