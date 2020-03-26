@@ -15,6 +15,7 @@ document.addEventListener('turbolinks:load', function() {
     e.preventDefault()
 
     var name = $(this).data("name")
+    var variableId = $(this).closest("table").data("variable_id")
     var index = $(".tr-js").last().data("index")
 
     if(index == undefined) index = 1
@@ -22,9 +23,7 @@ document.addEventListener('turbolinks:load', function() {
 
     var $tr = `<tr class="tr-js" data-index="${index}">
       <td>
-        <input class="form-control hidden" value="" name="variable[][id]" type="hidden" id="dictionaries_id">
-        <input class="form-control hidden" value="${name}" name="variable[][name]" type="hidden" id="dictionaries_name">
-        <input class="form-control hidden" value="BothVariable" name="variable[][type]" type="hidden" id="dictionaries_type">
+        <input class="form-control hidden" value="${variableId}" name="variable_value[][variable_id]" type="hidden" id="dictionaries_id">
         
         <div class="input-group">
           <div class="input-group-prepend">
@@ -32,23 +31,23 @@ document.addEventListener('turbolinks:load', function() {
               <a class="btn-del">X</a>
             </div>
           </div>
-          <input class="form-control string required mr-sm-2" name="variable[][value]" id="variable_value" type="text">
+          <input class="form-control string required mr-sm-2" name="variable_value[][raw_value]" id="variable_value" type="text">
         </div>
       </td>
 
       <td>
-        <div class="form-group string required dictionaries_text"><input class="form-control string required mr-sm-2" name="variable[][text]" id="variable_text" type="text"></div>
+        <div class="form-group string required dictionaries_text"><input class="form-control string required mr-sm-2" name="variable_value[][mapping_value]" id="variable_text" type="text"></div>
       </td>
 
-      <td>
+      <td class="d-none">
         <div class="form-check form-check-inline">
-          <input name="variable[][status${index}]" class="form-check-input" type="radio" value="0" id="dictionaries_status_${index}0">
+          <input name="variable_value[][status${index}]" class="form-check-input" type="radio" value="0" id="dictionaries_status_${index}0">
           <label class="form-check-label mr-2" for="dictionaries_status_${index}0">N</label>
 
-          <input name="variable[][status${index}]" class="form-check-input" type="radio" value="1" id="dictionaries_status_${index}1">
+          <input name="variable_value[][status${index}]" class="form-check-input" type="radio" value="1" id="dictionaries_status_${index}1">
           <label class="form-check-label mr-2" for="dictionaries_status_${index}1">S</label>
 
-          <input name="variable[][status${index}]" class="form-check-input" type="radio" value="2" id="dictionaries_status_${index}2">
+          <input name="variable_value[][status${index}]" class="form-check-input" type="radio" value="2" id="dictionaries_status_${index}2">
           <label class="form-check-label" for="dictionaries_status_${index}2">D</label>
         </div>
       </td>

@@ -17,22 +17,24 @@
 #  index_variables_on_type_and_name_and_value  (type,name,value) UNIQUE
 #
 class Variable < ApplicationRecord
-  enum status: %i[normal satisfied disatisfied]
+  # enum status: %i[normal satisfied disatisfied]
 
   # associations
   has_many :ratings, dependent: :destroy
   has_many :feedbacks, through: :ratings
 
-  has_many :role_variables
+  has_many :role_variables, dependent: :destroy
   has_many :roles, through: :role_variables
 
-  has_many :values, class_name: "VariableValue"
+  has_many :values, class_name: "VariableValue",
+                    dependent: :destroy
 
   # validations
   validates :type, presence: true
-  validates :name, presence: true
-  validates :value, uniqueness: { scope: :name }
+  validates :name, presence: true, uniqueness: true
+  # validates :value, uniqueness: { scope: :name }
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
                               message: "only allows numbers or letters" }
+
 end
