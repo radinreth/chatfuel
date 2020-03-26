@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_034338) do
+ActiveRecord::Schema.define(version: 2020_03_26_040640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,6 +186,16 @@ ActiveRecord::Schema.define(version: 2020_03_26_034338) do
     t.index ["site_id"], name: "index_users_on_site_id"
   end
 
+  create_table "variable_values", force: :cascade do |t|
+    t.string "raw_value", null: false
+    t.string "mapping_value", default: ""
+    t.integer "status", default: 0
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["variable_id"], name: "index_variable_values_on_variable_id"
+  end
+
   create_table "variables", force: :cascade do |t|
     t.string "type", null: false
     t.string "name"
@@ -216,4 +226,5 @@ ActiveRecord::Schema.define(version: 2020_03_26_034338) do
   add_foreign_key "role_variables", "variables"
   add_foreign_key "steps", "messages"
   add_foreign_key "users", "roles"
+  add_foreign_key "variable_values", "variables"
 end

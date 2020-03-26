@@ -26,6 +26,8 @@ class Variable < ApplicationRecord
   has_many :role_variables
   has_many :roles, through: :role_variables
 
+  has_many :values, class_name: "VariableValue"
+
   # validations
   validates :type, presence: true
   validates :name, presence: true
