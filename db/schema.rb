@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_084018) do
+ActiveRecord::Schema.define(version: 2020_03_26_030716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 2020_03_25_084018) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
     t.index ["variable_id"], name: "index_ratings_on_variable_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sites", force: :cascade do |t|
@@ -156,8 +162,10 @@ ActiveRecord::Schema.define(version: 2020_03_25_084018) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.bigint "site_id"
+    t.bigint "role_id", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["site_id"], name: "index_users_on_site_id"
   end
 
@@ -188,4 +196,5 @@ ActiveRecord::Schema.define(version: 2020_03_25_084018) do
   add_foreign_key "ratings", "feedbacks"
   add_foreign_key "ratings", "variables"
   add_foreign_key "steps", "messages"
+  add_foreign_key "users", "roles"
 end
