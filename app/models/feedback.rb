@@ -25,8 +25,6 @@ class Feedback < ApplicationRecord
   # associations
   belongs_to :step, optional: true
   belongs_to :site, optional: true
-  has_one :rating
-  has_one :variable, through: :rating
 
   has_one :rating, dependent: :destroy
   has_one :variable_value, through: :rating
