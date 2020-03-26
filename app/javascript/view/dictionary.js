@@ -62,6 +62,20 @@ document.addEventListener('turbolinks:load', function() {
       $(this).closest("tr")[0].remove()
     }
   })
+
+  $(".btn-role").click(function(e){
+    e.preventDefault()
+    var roleId = $(this).data("role_id")
+    var variableId = $(this).data("variable_id")
+
+    $.ajax({
+      method: "PUT",
+      url: `/dictionaries/${variableId}/roles/${roleId}`
+    })
+    .done(function( msg ) {
+      console.log("done", msg)
+    });
+  })
 })
 
 
