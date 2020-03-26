@@ -90,6 +90,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled)
+      params.require(:variable).permit(:type, :name, :report_enabled, role_ids: [])
     end
 end
