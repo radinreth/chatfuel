@@ -9,16 +9,16 @@
       %tr
         %th{:scope => "col"} Session id
         %th{:scope => "col"} Type
-        - Variable.where.not(name: 'done').pluck(:name).uniq.each do |header|
-          %th{:scope => "col"}= header.titleize
+        - current_user.role.variables.each do |variable|
+          %th{:scope => "col"}= variable.name
 
     %tbody
       - @messages.each do |message|
         %tr
           %td= message.session_id
           %td= message.type
-          - Variable.where.not(name: 'done').pluck(:name).uniq.each do |var|
+          - current_user.role.variables.pluck(:name).each do |var_name|
             %td
               - message.steps.each do |step|
-                = valueize(step.value) if var.downcase != "done" && var == step.act
+                = valueize(step.value) if var_name == step.act
   != pagy_bootstrap_nav(@pagy)
