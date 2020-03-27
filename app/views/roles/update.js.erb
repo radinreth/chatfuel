@@ -1,2 +1,3 @@
 var item = $(".btn-role[data-role_id=<%= j(@role.id) %>][data-variable_id=<%= j(@variable.id) %>]")
 item.toggleClass("active")
+toastr.success('update variable <%= j(@variable.name)%> for <%= j(@role.name)%>', 'Success!')
