@@ -23,7 +23,7 @@
                   %tr
                     %th Raw value
                     %th Mapping value
-                    %th 
+                    %th.text-center
                       - if variable.report_enabled?
                         Satisfied
 
@@ -42,12 +42,16 @@
                       %td
                         - if variable.report_enabled?
                           .form-check.form-check-inline
-                            = f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.normal?
-                            %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
-                            = f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.satisfied?
-                            %label.form-check-label.mr-2{ for: "dictionaries_status_1"} S
-                            = f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.disatisfied?
-                            %label.form-check-label{ for: "dictionaries_status_2"} D
+                            %table.rating
+                              %tr
+                                %td= image_tag "disatisfied.png", size: "26x26"
+                                %td= image_tag "normal.png", size: "24x24"
+                                %td= image_tag "satisfied.png", size: "24x24"
+                              %tr
+                                %td= f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", checked: var_value.disatisfied?
+                                %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
+                                %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
+                              
 
                   %tr
                     %td{ colspan: 2 }

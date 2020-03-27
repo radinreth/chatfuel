@@ -17,7 +17,7 @@
     %tbody
       - @messages.each do |message|
         %tr
-          %td{align: "center"}= message.id
+          %td{align: "center"}= message.session_id
           %td{align: "center"}= message.type
           - current_user.role.variables.pluck(:name).each do |var_name|
             %td{align: "center"}
