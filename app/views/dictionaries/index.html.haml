@@ -17,7 +17,7 @@
                   .btn-group.btn-group-sm.mb-3
                     - Role.all.each do |role|
                       %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
-                        = image_tag "#{role.name}.png", size: "32x32"
+                        = image_tag "#{role.name}.png", size: "32x32", class: "border border-secondary rounded-circle", style: "background-color: #fff"
                         = role.name
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
