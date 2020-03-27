@@ -7,25 +7,25 @@
 
   %ul.list-unstyled.components
     - if policy(:admin).show?
-      %li
+      %li{ class: toggle_class_name("active", controller_name == 'homes') }
         = link_to root_path do
           = fa_icon 'home'
           = t('sidebar.home')
     - if policy(:system_admin).show?
-      %li
+      %li{ class: toggle_class_name("active", controller_name == 'sites') }
         = link_to sites_path do
           = fa_icon 'sitemap'
           = t('sidebar.sites')
-      %li
+      %li{ class: toggle_class_name("active", controller_name == 'dictionaries') }
         = link_to dictionaries_path do
           = fa_icon 'book'
           = t('sidebar.dictionary')
-    %li
+    %li{ class: toggle_class_name("active", controller_name == 'reports') }
       = link_to reports_path do
         = fa_icon 'line-chart'
         = t('sidebar.report')
     - if policy(:admin).show?
-      %li
+      %li{ class: toggle_class_name("active", controller_name == 'users') }
         = link_to users_path do
           = fa_icon 'user'
           = t('sidebar.manage_user')
@@ -45,6 +45,7 @@
           = t('sidebar.signin')
 
   %small{ style: "font-size: 10px; padding: 10px" }
-    = "Logged in as : #{current_user&.email}(#{current_user&.role.name})"
+    %div= "Logged in as : #{current_user&.email}"
+    %div= "Role: #{current_user&.role.name}"
   .copyright
     Developed by 2020 InSTEDD
