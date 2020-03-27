@@ -18,7 +18,7 @@ class UserPolicy < ApplicationPolicy
       if user.system_admin?
         scope.all
       elsif user.site_admin?
-        scope.where(role: %i[site_admin site_ombudsman])
+        scope.where("role not in (?)", Role.where.not(name: 'system admin').ids)
       else
         scope.none
       end
