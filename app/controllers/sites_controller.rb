@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @sites = pagy(Site.all)
+    @pagy, @sites = pagy(Site.order(tracks_count: :desc))
     authorize @sites
     respond_to do |format|
       format.html
