@@ -2,10 +2,10 @@
 
 .row
   .col-3
-    %div{ style: "height: 520px; overflow-y: scroll"}
-      #v-pills-tab.nav.flex-column.nav-pills
-        - @variables.each_with_index do |v, index|
-          = link_to v.name, "#v-pills-#{v.name}", class: "nav-link #{toggle_class_name("active", index.zero?)}", "data-toggle" => "pill"
+    %div.d-none{ style: "height: 520px; overflow-y: scroll"}
+    #v-pills-tab.nav.flex-column.nav-pills
+      - @variables.each_with_index do |v, index|
+        = link_to v.name, "#v-pills-#{v.name}", class: "nav-link #{toggle_class_name("active", index.zero?)}", "data-toggle" => "pill"
   .col-9
     #v-pills-tabContent.tab-content
       - @variables.each_with_index do |variable, index|
@@ -17,6 +17,7 @@
                   .btn-group.btn-group-sm.mb-3
                     - Role.all.each do |role|
                       %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
+                        = image_tag "#{role.name}.png", size: "32x32"
                         = role.name
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
