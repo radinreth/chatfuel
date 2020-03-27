@@ -11,20 +11,21 @@
       - @variables.each_with_index do |variable, index|
         .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
           = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
-            .card
+            .card.w-100
               .card-body
                 - if current_user.system_admin?
                   .btn-group.btn-group-sm.mb-3
                     - Role.all.each do |role|
                       %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
                         = image_tag "#{role.name}.png", size: "32x32", class: "border border-secondary rounded-circle", style: "background-color: #fff"
-                        = role.name
+                        = role.name.capitalize
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
                     %th Raw value
                     %th Mapping value
-                    - if variable.report_enabled?
-                      %th Satisfied
+                    %th 
+                      - if variable.report_enabled?
+                        Satisfied
 
                   - # data rows 
                   - variable.values.each do |var_value|
@@ -38,8 +39,8 @@
                           = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: 'form-control string required mr-sm-2', label: false, readonly: true
                       %td  
                         = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: 'mr-sm-2' }, label: false
-                      - if variable.report_enabled?
-                        %td
+                      %td
+                        - if variable.report_enabled?
                           .form-check.form-check-inline
                             = f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", class: "form-check-input", checked: var_value.normal?
                             %label.form-check-label.mr-2{ for: "dictionaries_status_0"} N
