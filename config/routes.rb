@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:create] do
       collection do
         post "ivr", to: "feedbacks/ivr#create"
-        post "chatbot", to: "feedbacks/chatbot#create"
+        # post "chatbot", to: "feedbacks/chatbot#create"
       end
     end
 

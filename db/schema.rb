@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_042537) do
+ActiveRecord::Schema.define(version: 2020_03_30_075705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_03_30_042537) do
   create_table "step_values", force: :cascade do |t|
     t.bigint "step_id", null: false
     t.bigint "variable_value_id", null: false
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_step_values_on_site_id"
     t.index ["step_id"], name: "index_step_values_on_step_id"
     t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
   end
@@ -213,6 +215,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_042537) do
   add_foreign_key "ratings", "variable_values"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
+  add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"

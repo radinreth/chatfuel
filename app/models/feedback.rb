@@ -15,12 +15,12 @@
 #
 class Feedback < ApplicationRecord
   # associations
-  belongs_to :step, optional: true
-  belongs_to :site, optional: true
+  # belongs_to :step, optional: true
+  # belongs_to :site, optional: true
 
-  has_one :rating, dependent: :destroy
-  has_one :variable_value, through: :rating
+  # has_one :rating, dependent: :destroy
+  # has_one :variable_value, through: :rating
 
-  scope :satisfied, -> { joins(:variable_value).where("variable_values.id in (?) ", Variable.find_by(report_enabled: true).values.satisfied.ids) }
-  scope :disatisfied, -> { joins(:variable_value).where("variable_values.id in (?) ", Variable.find_by(report_enabled: true).values.disatisfied.ids) }
+  # scope :satisfied, -> { joins(:variable_value).where("variable_values.id in (?) ", Variable.find_by(report_enabled: true).values.satisfied.ids) }
+  # scope :disatisfied, -> { joins(:variable_value).where("variable_values.id in (?) ", Variable.find_by(report_enabled: true).values.disatisfied.ids) }
 end

@@ -2,6 +2,7 @@ module Bots::Messages
   class ChatbotController < BotsController
     before_action :set_variable
     before_action :set_message
+    before_action :set_site
     before_action :set_step
 
     def create
@@ -20,7 +21,11 @@ module Bots::Messages
       end
 
       def set_step
-        @message.steps.create(value: @variable_value)
+        @message.steps.create(value: @variable_value, site: @site)
+      end
+
+      def set_site
+        @site = Site.find_by(name: params["value"]) if params["name"] == "feedback_site"
       end
 
       def set_variable
