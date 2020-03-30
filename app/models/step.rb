@@ -18,9 +18,13 @@
 class Step < ApplicationRecord
   belongs_to :message
 
+<<<<<<< HEAD
   # associations
   has_one :step_value, dependent: :destroy
   has_one :site, through: :step_value
+=======
+  has_one :step_value, dependent: :destroy
+>>>>>>> Refactor message
   has_one :value, through: :step_value,
                   class_name: "VariableValue",
                   source: :variable_value
