@@ -1,14 +1,17 @@
 module Bots::Tracks
   class ChatbotController < ::Bots::TracksController
     private
-      def set_dictionary
-        # @dictionary ||= TextVariable.create_with(value: params[:code]).find_or_create_by(name: "tracking_ticket", value: params[:code])
-        @dictionary ||= TextVariable.find_or_create_by(name: "tracking_ticket")
-        @dictionary.values.create(raw_value: params[:code])
+      def set_message
+        @content = TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+        @message = Message.create_or_return(content)
       end
 
-      def set_message
-        @message = TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+      def set_site
+        @site = Site.find_by(code: params[:code][0...4])
+      end
+
+      def set_ticket
+        @ticket ||= Ticket.find_by(code: normalized_code)
       end
   end
 end
