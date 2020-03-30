@@ -10,11 +10,7 @@ module ControllerMacros
 
   def setup_system_admin
     before(:each) do
-<<<<<<< HEAD
       system_admin = create(:user, :system_admin)
-=======
-      system_admin = create(:user, role: :system_admin)
->>>>>>> fix rspec guisso & refactor dictionary batch update
       allow(request.env["warden"]).to receive(:authenticate!).and_return(system_admin)
       cookies[:guisso] = system_admin.email
       allow(controller).to receive(:current_user).and_return(system_admin)
