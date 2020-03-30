@@ -6,6 +6,7 @@ module Bots
     after_action :assign_track_to_step
 
     def create
+      # TODO : remove code from track, cuz we know ticket -> know code
       @track = Track.new(track_params)
 
       if @track.save
@@ -30,7 +31,7 @@ module Bots
       end
 
       def ticket
-        @ticket ||= Ticket.find_by(code: params[:code])
+        @ticket ||= Ticket.find_by(code: refined_code)
       end
 
       def invalid_ticket
@@ -41,11 +42,19 @@ module Bots
         return unless @track.persisted?
 
         message = Message.find_by(content: @message)
-        message.steps.create(act: "tracking_ticket", value: params[:code], track: @track)
+
+        # TODO: no need to setup steps
+        message.steps.create(act: "tracking_ticket", value: refined_code, track: @track)
       end
 
       def track_params
         params.permit(:code)
+      end
+
+      def refined_code
+        code = params[:code]
+        code[4] = "-" if code[4] != "-"
+        code
       end
   end
 end
