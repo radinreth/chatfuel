@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.site_ombudsman? && (User.roles[user.role] >= User.roles[record.role])
+    !user.site_ombudsman? && (user.role.grade >= record.role&.grade.to_i)
   end
 
   def roles
@@ -22,7 +22,7 @@ class UserPolicy < ApplicationPolicy
       if user.system_admin?
         scope.all
       elsif user.site_admin?
-        scope.where("role not in (?)", Role.where.not(name: "system admin").ids)
+        scope.joins(:role).where("roles.name in (?)", ["site admin", "site ombudsman"])
       else
         scope.none
       end
