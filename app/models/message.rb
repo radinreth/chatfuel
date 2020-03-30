@@ -4,6 +4,7 @@
 #
 #  id           :bigint(8)        not null, primary key
 #  content_type :string
+#  status       :integer(4)       default("0")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  content_id   :integer(4)
@@ -13,8 +14,10 @@
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
 class Message < ApplicationRecord
+  enum status: %i[incomplete completed]
+
   # associations
-  has_many :steps, dependent: :destroy
+  has_many :steps, dependent: :destroy, autosave: true
   belongs_to :content, polymorphic: true, dependent: :destroy
 
   # scopes
@@ -27,11 +30,7 @@ class Message < ApplicationRecord
   # methods
   def self.create_or_return(content)
     message = find_by(content: content)
-    message = create(content: content) if !message || message.completed?
+    message = create(content: content) if !message || message&.completed?
     message
-  end
-
-  def completed?
-    steps.where(act: "done", value: "true").present?
   end
 end

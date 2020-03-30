@@ -27,7 +27,8 @@ class Variable < ApplicationRecord
   has_many :roles, through: :role_variables
 
   has_many :values, class_name: "VariableValue",
-                    dependent: :destroy
+                    dependent: :destroy,
+                    autosave: true
 
   # validations
   validates :type, presence: true
