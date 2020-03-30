@@ -4,15 +4,15 @@ FactoryBot.define do
     password { FFaker::Internet.password }
 
     trait :site_ombudsman do
-      role { :site_ombudsman }
+      association :role, :site_ombudsman
     end
 
     trait :site_admin do
-      role { :site_admin }
+      association :role, :site_admin
     end
 
     trait :system_admin do
-      role { :system_admin }
+      association :role, :system_admin
     end
   end
 end
