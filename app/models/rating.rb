@@ -19,6 +19,6 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class Rating < ApplicationRecord
-  belongs_to :feedback
-  belongs_to :variable_value
+  # belongs_to :feedback
+  # belongs_to :variable_value
 end

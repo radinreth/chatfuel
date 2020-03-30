@@ -19,11 +19,12 @@ class Step < ApplicationRecord
   belongs_to :message
 
   has_one :step_value, dependent: :destroy
+  has_one :site, through: :step_value
   has_one :value, through: :step_value,
                   class_name: "VariableValue",
                   source: :variable_value
   has_one :track, dependent: :destroy
-  has_one :feedback, dependent: :destroy
+  # has_one :feedback, dependent: :destroy
 
   def self.accessed
     owso_options = Variable.find_by(name: "owso_options")
@@ -31,6 +32,6 @@ class Step < ApplicationRecord
   end
 
   # def value
-  #   track&.code || super
+  #   value&.display_value && track&.code
   # end
 end
