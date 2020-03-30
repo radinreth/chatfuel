@@ -71,11 +71,5 @@ module Bots
         code[4] = "-" if code[4] != "-"
         code
       end
-
-      def refined_code
-        code = params[:code]
-        code[4] = "-" if code[4] != "-"
-        code
-      end
   end
 end
