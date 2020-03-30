@@ -20,11 +20,19 @@
 #
 class VariableValue < ApplicationRecord
   enum status: %i[normal satisfied disatisfied]
-  belongs_to :variable
   
+  belongs_to :variable
+
+  has_many :step_values
+  has_many :steps, through: :step_values
+
   has_many :ratings, dependent: :destroy
   has_many :feedbacks, through: :ratings
 
   validates :raw_value, presence: true, uniqueness: { scope: :variable_id }
   default_scope -> { order(:raw_value) }
+
+  def display_value
+    mapping_value.presence || raw_value
+  end
 end

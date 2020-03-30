@@ -3,8 +3,6 @@
 # Table name: steps
 #
 #  id         :bigint(8)        not null, primary key
-#  act        :string           not null
-#  value      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  message_id :bigint(8)        not null
@@ -19,13 +17,20 @@
 #
 class Step < ApplicationRecord
   belongs_to :message
+
+  has_one :step_value, dependent: :destroy
+  has_one :value, through: :step_value,
+                  class_name: "VariableValue",
+                  source: :variable_value
   has_one :track, dependent: :destroy
   has_one :feedback, dependent: :destroy
 
-  scope :accessed, -> { where(act: 'owso_options') }
-  validates :act, uniqueness: { scope: :message_id }
-
-  def value
-    track&.code || super
+  def self.accessed
+    owso_options = Variable.find_by(name: "owso_options")
+    joins(:value).where("variable_values.id in (?)", owso_options.values.ids)
   end
+
+  # def value
+  #   track&.code || super
+  # end
 end

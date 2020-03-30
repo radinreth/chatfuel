@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       collection do
         post "ivr", to: "messages/ivr#create"
         post "chatbot", to: "messages/chatbot#create"
+        post "chatbot/done", to: "messages/chatbot#done"
       end
     end
 

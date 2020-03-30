@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_160151) do
+ActiveRecord::Schema.define(version: 2020_03_30_042537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_160151) do
     t.integer "content_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -101,9 +102,14 @@ ActiveRecord::Schema.define(version: 2020_03_26_160151) do
     t.index ["name"], name: "index_sites_on_name"
   end
 
+  create_table "step_values", force: :cascade do |t|
+    t.bigint "step_id", null: false
+    t.bigint "variable_value_id", null: false
+    t.index ["step_id"], name: "index_step_values_on_step_id"
+    t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
+  end
+
   create_table "steps", force: :cascade do |t|
-    t.string "act", null: false
-    t.string "value"
     t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -116,15 +122,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_160151) do
     t.string "last_name"
     t.string "gender"
     t.string "profile_pic_url"
-    t.string "timezone"
-    t.string "locale"
-    t.string "source"
-    t.string "last_seen"
-    t.string "signed_up"
-    t.string "sessions"
-    t.string "last_visited_block_name"
-    t.string "last_visited_block_id"
-    t.string "last_clicked_button_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -216,6 +213,8 @@ ActiveRecord::Schema.define(version: 2020_03_26_160151) do
   add_foreign_key "ratings", "variable_values"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
+  add_foreign_key "step_values", "steps"
+  add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
