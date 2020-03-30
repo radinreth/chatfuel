@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_075705) do
+ActiveRecord::Schema.define(version: 2020_03_30_092925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,13 +198,9 @@ ActiveRecord::Schema.define(version: 2020_03_30_075705) do
   create_table "variables", force: :cascade do |t|
     t.string "type", null: false
     t.string "name"
-    t.string "value"
-    t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
     t.boolean "report_enabled", default: false
-    t.index ["type", "name", "value"], name: "index_variables_on_type_and_name_and_value", unique: true
   end
 
   create_table "voice_messages", force: :cascade do |t|
@@ -219,8 +215,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_075705) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
-  add_foreign_key "ratings", "feedbacks"
-  add_foreign_key "ratings", "variable_values"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "step_values", "sites"

@@ -17,13 +17,15 @@
 class Site < ApplicationRecord
   enum status: %i[disable enable]
 
+  # associations
   has_many :tracks, dependent: :destroy
   has_many :users
   has_many :feedbacks
 
+  # validations
   validates :name, presence: true
-  validates :code, uniqueness: true, 
-                    format: { 
-                      with: /\A\d{4}\z/, 
+  validates :code, uniqueness: true,
+                    format: {
+                      with: /\A\d{4}\z/,
                       message: "site code must be exactly 4 digits number" }
 end
