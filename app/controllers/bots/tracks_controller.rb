@@ -6,7 +6,6 @@ module Bots
     after_action :assign_track_to_step
 
     def create
-      # TODO : remove code from track, cuz we know ticket -> know code
       @track = Track.new(track_params)
 
       if @track.save
