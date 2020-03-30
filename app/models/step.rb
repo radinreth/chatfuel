@@ -34,4 +34,8 @@ class Step < ApplicationRecord
   def value
     super || track
   end
+
+  # def value
+  #   track&.code || super
+  # end
 end
