@@ -13,6 +13,8 @@
 #
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
+require "rails_helper"
+
 RSpec.describe Message do
   describe 'associations' do
     it { should have_many(:steps) }
@@ -55,7 +57,7 @@ RSpec.describe Message do
       end
 
       it 'creates if completed' do
-        create(:step, act: 'done', value: 'true', message: @message)
+        create(:message, content: content, status: :completed)
 
         expect do
           described_class.create_or_return(content)
@@ -66,7 +68,7 @@ RSpec.describe Message do
 
   describe '#completed?' do
     let(:voice_message) { build(:voice_message) }
-    let(:step) { build(:step, act: 'done', value: 'true') }
+    let(:message) { build(:message, content: voice_message, status: :completed) }
 
     before do
       @message = create(:message, content: voice_message)
@@ -77,9 +79,7 @@ RSpec.describe Message do
     end
 
     it 'considers completed if their steps contains done=true' do
-      @message.steps << step
-
-      expect(@message).to be_completed
+      expect(message).to be_completed
     end
   end
 end
