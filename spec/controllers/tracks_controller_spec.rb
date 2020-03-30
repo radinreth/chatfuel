@@ -1,3 +1,5 @@
+require "rails_helper"
+
 RSpec.describe Bots::Tracks::ChatbotController, type: :controller do
   before do
     content = create(:text_message, messenger_user_id: 123)

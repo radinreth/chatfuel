@@ -9,6 +9,17 @@
 #
 FactoryBot.define do
   factory :role do
-    name { "MyString" }
+
+    trait :site_ombudsman do
+      name { "site ombudsman" }
+    end
+
+    trait :site_admin do
+      name { "site admin" }
+    end
+
+    trait :system_admin do
+      name { "system admin" }
+    end
   end
 end

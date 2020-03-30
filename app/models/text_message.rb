@@ -12,6 +12,7 @@
 #  messenger_user_id :bigint(8)
 #
 class TextMessage < ApplicationRecord
+  # associations
   has_one :message, as: :content, dependent: :destroy
   has_many :steps, through: :message
 

@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Role < ApplicationRecord
+  # associations
   has_many :users
   has_many :role_variables
   has_many :variables, through: :role_variables
