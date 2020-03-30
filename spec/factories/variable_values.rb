@@ -23,6 +23,6 @@ FactoryBot.define do
     raw_value { "MyString" }
     mapping_value { "MyString" }
     status { 1 }
-    variable { nil }
+    association :variable
   end
 end
