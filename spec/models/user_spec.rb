@@ -33,10 +33,9 @@
 #
 #  fk_rails_...  (role_id => roles.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  it { is_expected.to define_enum_for(:role).with_values(%i[site_ombudsman site_admin system_admin]) }
   it { is_expected.to define_enum_for(:status).with_values(%i[enable disable]) }
   it { is_expected.to have_many(:identities).dependent(:destroy) }
   it { is_expected.to belong_to(:site).optional }

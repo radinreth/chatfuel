@@ -16,27 +16,27 @@
 require "rails_helper"
 
 RSpec.describe Message do
-  describe 'associations' do
+  describe "associations" do
     it { should have_many(:steps) }
     it { should belong_to(:content) }
   end
 
-  describe 'delegates' do
+  describe "delegates" do
     it { should delegate_method(:type).to(:content) }
     it { should delegate_method(:session_id).to(:content) }
   end
 
-  describe '.create_or_return' do
+  describe ".create_or_return" do
     let(:content) { build(:voice_message) }
 
-    context 'existence' do
-      it 'create a new message if not exist' do
+    context "existence" do
+      it "create a new message if not exist" do
         expect {
           described_class.create_or_return(content)
         }.to(change { Message.count })
       end
 
-      it 'returns if already created' do
+      it "returns if already created" do
         create(:message, content: content)
 
         expect do
@@ -45,18 +45,18 @@ RSpec.describe Message do
       end
     end
 
-    context 'completion' do
+    context "completion" do
       before do
         @message = create(:message, content: content)
       end
 
-      it 'returns if incompleted' do
+      it "returns if incompleted" do
         expect do
           described_class.create_or_return(content)
         end.not_to(change { Message.count })
       end
 
-      it 'creates if completed' do
+      it "creates if completed" do
         create(:message, content: content, status: :completed)
 
         expect do
@@ -66,7 +66,7 @@ RSpec.describe Message do
     end
   end
 
-  describe '#completed?' do
+  describe "#completed?" do
     let(:voice_message) { build(:voice_message) }
     let(:message) { build(:message, content: voice_message, status: :completed) }
 
@@ -74,11 +74,11 @@ RSpec.describe Message do
       @message = create(:message, content: voice_message)
     end
 
-    it 'is not complete' do
+    it "is not complete" do
       expect(@message).not_to be_completed
     end
 
-    it 'considers completed if their steps contains done=true' do
+    it "considers completed if their steps contains done=true" do
       expect(message).to be_completed
     end
   end
