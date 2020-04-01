@@ -33,4 +33,8 @@ class Message < ApplicationRecord
     message = create(content: content) if !message || message&.completed?
     message
   end
+
+  def self.complete_all
+    all.map(&:completed!)
+  end
 end
