@@ -21,7 +21,8 @@ module Bots::Messages
       end
 
       def set_step
-        @message.steps.create(value: @variable_value, site: @site)
+        @step = @message.steps.create(value: @variable_value)
+        @step.update(site: @site) if @site
       end
 
       def set_site
@@ -29,12 +30,8 @@ module Bots::Messages
       end
 
       def set_variable
-        @variable = TextVariable.find_or_create_by(name: variable_params[:name])
-        @variable_value = @variable.values.find_or_create_by(raw_value: variable_params[:value])
-      end
-
-      def variable_params
-        params.permit(:name, :value)
+        @variable = TextVariable.find_or_create_by(name: params[:name])
+        @variable_value = @variable.values.find_or_create_by(raw_value: params[:value])
       end
   end
 end
