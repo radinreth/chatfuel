@@ -14,7 +14,7 @@ class Role < ApplicationRecord
   has_many :variables, through: :role_variables
 
   def grade
-    {"site ombudsman": 0, "site admin": 1, "system admin": 2}[name.to_sym]
+    { "site ombudsman": 0, "site admin": 1, "system admin": 2 }[name.to_sym]
   end
 
   def system_admin?
