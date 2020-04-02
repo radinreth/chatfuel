@@ -10,7 +10,7 @@
     #v-pills-tabContent.tab-content
       - @variables.each_with_index do |variable, index|
         .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
-          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
+          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline', "data-variable_id": variable.id }, remote: false do |f|
             .card.w-100
               .card-body
                 - if current_user.system_admin?
@@ -19,6 +19,11 @@
                       %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
                         = image_tag "#{role.name}.png", size: "32x32", class: "border border-secondary rounded-circle", style: "background-color: #fff"
                         = role.name.capitalize
+
+                  .report-column.form-check.d-inline
+                    = f.input_field :report_enabled, as: :boolean, checked: variable.report_enabled, class: "form-check-input report-enabled-col"
+                    %label.form-check-label.d-inline{for: "dictionaries_report_enabled"} report column
+
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
                     %th Raw value

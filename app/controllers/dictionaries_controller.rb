@@ -24,7 +24,10 @@ class DictionariesController < ApplicationController
     @variable = Variable.find(params[:id])
     authorize @variable
     if @variable.update(variable_params)
-      redirect_to dictionaries_path, status: :moved_permanently, notice: "Updated successfully!"
+      respond_to do |format|
+        format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: "Updated successfully!" }
+        format.js
+      end
     else
       render json: @variable.errors, status: :unprocessable_entity, notice: "Updated fail!"
     end

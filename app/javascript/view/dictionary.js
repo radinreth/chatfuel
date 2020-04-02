@@ -76,6 +76,21 @@ document.addEventListener('turbolinks:load', function() {
       console.log("done", msg)
     });
   })
+
+  $(".report-enabled-col").click(function(){
+    let $form = $(this.form)
+    let variableId = $form.data("variable_id")
+    let csrfToken = $('meta[name="csrf-token"]').attr("content")
+
+    $.ajax({
+      url: "/dictionaries/" +variableId,
+      type: "PUT",
+      dataType: "script",
+      beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', csrfToken);},
+      data: { variable: { report_enabled: this.checked }},
+      success: function(data) { console.log(data) }
+    });
+  })
 })
 
 
