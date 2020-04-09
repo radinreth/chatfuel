@@ -18,9 +18,15 @@ class Variable < ApplicationRecord
                     autosave: true
 
   # validations
+  validate :only_one_report_column
   validates :type, presence: true
   validates :name, presence: true, uniqueness: true
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
                               message: "only allows numbers or letters" }
+
+  private
+    def only_one_report_column
+      errors.add(:report_enabled, "Must be enable only one") if report_enabled == true && Variable.exists?(report_enabled: true)
+    end
 end

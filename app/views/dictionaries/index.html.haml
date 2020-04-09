@@ -21,7 +21,7 @@
                         = role.name.capitalize
 
                   .report-column.form-check.d-inline
-                    = f.input_field :report_enabled, as: :boolean, checked: variable.report_enabled, class: "form-check-input report-enabled-col"
+                    = f.input_field :report_enabled, as: :boolean, checked: variable.report_enabled, class: "form-check-input report-enabled-col", "data-variable": variable.id, id: "report-enabled-col#{variable.id}"
                     %label.form-check-label.d-inline{for: "dictionaries_report_enabled"} report column
 
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
