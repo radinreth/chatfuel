@@ -69,8 +69,13 @@ document.addEventListener('turbolinks:load', function() {
     var variableId = $(this).data("variable_id")
 
     $.ajax({
-      method: "PUT",
-      url: `/dictionaries/${variableId}/roles/${roleId}`
+      url: `/dictionaries/${variableId}/roles/${roleId}`,
+      type: 'PUT',
+      dataType: 'script',
+      success: function(data) { console.log("data", data) },
+      error: function(xhr, status, err) {
+        console.log("error", err)
+      }
     })
     .done(function( msg ) {
       console.log("done", msg)
@@ -88,7 +93,10 @@ document.addEventListener('turbolinks:load', function() {
       dataType: "script",
       beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', csrfToken);},
       data: { variable: { report_enabled: this.checked }},
-      success: function(data) { console.log(data) }
+      success: function(data) { console.log(data) },
+      error: function(xhr, status, err) {
+        console.log(err)
+      }
     });
   })
 })

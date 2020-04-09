@@ -1,1 +1,6 @@
-toastr.success('Report enabled {<%= j(@variable.report_enabled)%>} for <%= j(@variable.name)%>', 'Success!')
+<% if @variable.errors.any? %>
+  $("#report-enabled-col<%= j(@variable.id)%>").prop("checked", <%= j(@revert) %>)
+  toastr.error('Report enabled {<%= j(@variable.errors.full_messages.to_sentence) %>}', 'Fail!')
+<% else %>
+  toastr.success('Report column updated successful', 'success!')
+<% end%>
