@@ -24,6 +24,7 @@ class BaseCollectionDecorator
   end
 
   def data
+    return [] if collection.count.zero?
     collection.group_by_period(period.name, :created_at, range: period.date_range).count
   end
 end
