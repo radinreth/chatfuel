@@ -36,7 +36,7 @@
 #  fk_rails_...  (role_id => roles.id)
 #
 class User < ApplicationRecord
-  enum status: %i[enable disable]
+  enum status: %i[disable enable]
 
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

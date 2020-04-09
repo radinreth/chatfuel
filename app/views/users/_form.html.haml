@@ -1,14 +1,13 @@
-= render partial: "shared/page_header", locals: { title: "Create new", link: nil }
+= render partial: "shared/page_header", locals: { title: title, link: nil }
 
 = simple_form_for @user do |f|
   .row
-    .col-md-3
-      #role-component
-  = f.label :status, class: "mb-0 mt-3"
-  = f.input :status, as: :boolean, label: 'Enable', wrapper_html: { class: "mb-3" }
-  = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
-  = f.submit "Create user", class: "btn btn-primary"
+    .col-md-4
+      -# #role-component
+      = f.input :role, as: :select, collection: Role.all, selected: @user.role_id, input_html: { name: "user[role_id]" }
+      = f.label :status, class: "mb-0 mt-3"
+      = f.input :status, as: :boolean, label: 'Enable', input_html: { checked: @user.enable? }, wrapper_html: { class: "mb-3" }
+      = f.input :email, readonly: true
+  = f.submit class: "btn btn-primary"
 
-= javascript_pack_tag 'user_roles'
+-# = javascript_pack_tag 'user_roles'
