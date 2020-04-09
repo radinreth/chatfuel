@@ -3,6 +3,14 @@ class UserPolicy < ApplicationPolicy
     !user.site_ombudsman?
   end
 
+  def edit?
+    !user.site_ombudsman?
+  end
+
+  def update?
+    !user.site_ombudsman?
+  end
+
   def create?
     !user.site_ombudsman? && (user.role.grade >= record.role&.grade.to_i)
   end

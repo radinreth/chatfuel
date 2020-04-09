@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
   def new
     @user = User.new
     authorize @user
@@ -38,7 +43,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, status: :moved_permanently, notice: "update successfully"
     else
-      render :show, alert: "update failed"
+      render :edit, alert: "update failed"
     end
   end
 
@@ -55,6 +60,8 @@ class UsersController < ApplicationController
 
     def user_params
       status = params[:user][:status].to_i
-      params.require(:user).permit(:role, :site_id, :email, :password, :password_confirmation).merge(status: status)
+      role_id = params[:user][:role_id].to_i
+
+      params.require(:user).permit(:role_id, :status, :site_id, :email, :password, :password_confirmation).merge(status: status, role_id: role_id)
     end
 end
