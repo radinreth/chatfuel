@@ -25,11 +25,15 @@ class StepValue < ApplicationRecord
   belongs_to :site, optional: true
 
   def self.satisfied
+    return [] unless report_column
+
     satisfied = report_column.values.satisfied
     joins(:variable_value).where("variable_values.id in (?)", satisfied.ids)
   end
 
   def self.disatisfied
+    return [] unless report_column
+
     disatisfied = report_column.values.disatisfied
     joins(:variable_value).where("variable_values.id in (?)", disatisfied.ids)
   end
