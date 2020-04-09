@@ -27,4 +27,10 @@ class Track < ApplicationRecord
   def site_code
     code[0...4]
   end
+
+  def variable_name
+    "tracking_ticket"
+  end
+
+  alias_attribute :display_value, :code
 end

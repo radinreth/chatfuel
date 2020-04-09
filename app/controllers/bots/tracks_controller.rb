@@ -29,7 +29,7 @@ module Bots
       end
 
       def decorator
-        @decorator ||= TicketDecorator.new(@ticket || @invalid_ticket)
+        @decorator ||= TicketDecorator.new(@ticket || invalid_ticket)
       end
 
       def invalid_ticket
@@ -37,9 +37,13 @@ module Bots
       end
 
       def normalized_code
-        code = params[:code]
-        code[4] = "-" if code[4] != "-"
-        code
+        begin
+          code = params[:code]
+          code.insert(4, "-") if code[4] != "-"
+          code
+        rescue
+          code
+        end
       end
   end
 end

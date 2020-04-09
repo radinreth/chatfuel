@@ -35,7 +35,7 @@ class StepValue < ApplicationRecord
   end
 
   private
-    def report_column
+    def self.report_column
       @report_column ||= Variable.find_by(report_enabled: true)
     end
 end
