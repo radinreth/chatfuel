@@ -4,3 +4,13 @@
 <% else %>
   toastr.success('Report column updated successful', 'success!')
 <% end%>
+
+console.log(<%= @enabled %>)
+
+<% if @enabled == true %>
+  $(".satisfy-col<%= j(@variable.id)%>")
+    .removeClass("invisible")
+<% else %>
+  $(".satisfy-col<%= j(@variable.id)%>")
+    .addClass("invisible")
+<% end%>
