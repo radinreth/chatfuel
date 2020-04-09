@@ -22,5 +22,5 @@
           - current_user.role.variables.pluck(:name).each do |var_name|
             %td{align: "center"}
               - message.steps.each do |step|
-                = valueize(step.value.display_value) if var_name == step.value.variable.name
+                = valueize(step.value.display_value) if var_name == step.value.variable_name
   != pagy_bootstrap_nav(@pagy)

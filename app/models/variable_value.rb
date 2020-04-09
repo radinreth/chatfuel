@@ -35,4 +35,6 @@ class VariableValue < ApplicationRecord
   def display_value
     mapping_value.presence || raw_value
   end
+
+  delegate :name, to: :variable, prefix: true
 end
