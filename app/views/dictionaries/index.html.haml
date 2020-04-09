@@ -28,9 +28,8 @@
                   %tr
                     %th Raw value
                     %th Mapping value
-                    %th.text-center
-                      - if variable.report_enabled?
-                        Satisfied
+                    %th.text-center{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
+                      Satisfied
 
                   - # data rows 
                   - variable.values.each do |var_value|
@@ -44,18 +43,17 @@
                           = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: 'form-control string required mr-sm-2', label: false, readonly: true
                       %td  
                         = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: 'mr-sm-2' }, label: false
-                      %td
-                        - if variable.report_enabled?
-                          .form-check.form-check-inline
-                            %table.rating
-                              %tr
-                                %td= image_tag "disatisfied.png", size: "26x26"
-                                %td= image_tag "normal.png", size: "24x24"
-                                %td= image_tag "satisfied.png", size: "24x24"
-                              %tr
-                                %td= f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", checked: var_value.disatisfied?
-                                %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
-                                %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
+                      %td{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
+                        .form-check.form-check-inline
+                          %table.rating
+                            %tr
+                              %td= image_tag "disatisfied.png", size: "26x26"
+                              %td= image_tag "normal.png", size: "24x24"
+                              %td= image_tag "satisfied.png", size: "24x24"
+                            %tr
+                              %td= f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", checked: var_value.disatisfied?
+                              %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
+                              %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
                               
 
                   %tr

@@ -25,10 +25,12 @@ class DictionariesController < ApplicationController
     authorize @variable
     respond_to do |format|
       if @variable.update(variable_params)
+        @enabled = @variable.reload.report_enabled
         format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: "Updated successfully!" }
         format.js
       else
         @revert = !variable_params[:report_enabled]
+        @enabled = @variable.reload.report_enabled
         format.html { render json: @variable.errors, status: :unprocessable_entity, notice: "Updated fail!" }
         format.js
       end
