@@ -7,25 +7,30 @@ module Bots
     before_action :set_step
 
     def create
-      render json: json_response, status: :ok
+      render json: send("#{params[:bot_platform]}_response".to_sym), status: :ok
     end
 
     private
       def set_track
-        @track = Track.new(code: params[:code], site: @site, ticket: @ticket)
+        @track = Track.create(code: params[:code], site: @site, ticket: @ticket)
       end
 
       def set_step
-        @step = @message.steps.create(track: @track)
+        @step = @message.steps.build(track: @track)
+        @step.save
       end
 
-      def json_response
+      def _response
         {
           "messages": [
             { "text": decorator.status },
             { "text": decorator.description }
           ]
         }
+      end
+
+      def telegram_response
+        { "messages": "#{decorator.status}. #{decorator.description}" }
       end
 
       def decorator
