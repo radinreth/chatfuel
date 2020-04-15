@@ -30,6 +30,8 @@
             = check_box_tag "site_setting[site_settings_telegram_chat_groups_attributes][#{index}][telegram_chat_group_id]", chat_group.id, setting_chat_groups.collect(&:telegram_chat_group_id).include?(chat_group.id), class: 'form-check-input', id: dom_id(chat_group)
             %label.form-check-label{for: dom_id(chat_group)}= chat_group.title
 
+      = f.input :message_frequency, collection: SiteSetting.message_frequencies, selected: @setting.message_frequency_before_type_cast.to_s
+
       .actions
         = f.submit t("shared.save"), class: "btn btn-primary"
         = link_to t("shared.cancel"), site_setting_path(@site), class: "btn btn-secondary"

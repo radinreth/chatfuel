@@ -31,8 +31,7 @@ class SiteSetting < ApplicationRecord
   enum message_frequency: {
     immediately: 1,
     daily: 2,
-    weekly: 3,
-    monthly: 4
+    weekly: 3
   }
 
   FEEDBACK_AUDIO = "{{feedback_audio}}"
@@ -55,5 +54,10 @@ class SiteSetting < ApplicationRecord
 
   def notification_digest_message
     digest_message_template
+  end
+
+  def message_frequency=(value)
+    value = value.to_i if value.is_a? String
+    super(value)
   end
 end
