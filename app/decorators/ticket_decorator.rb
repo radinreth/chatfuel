@@ -8,10 +8,13 @@ class TicketDecorator
   delegate :status, :description, to: :klazz
   delegate_missing_to :ticket
 
-  private
-
-  def klazz
-    @klazz ||= "#{ticket.status}_status".classify.constantize
-    @klazz.new(self)
+  def invalid?
+    @ticket.status == "invalid"
   end
+
+  private
+    def klazz
+      @klazz ||= "#{ticket.status}_status".classify.constantize
+      @klazz.new(self)
+    end
 end
