@@ -13,7 +13,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  web: &rails
+  app: &rails
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -39,5 +39,3 @@ services:
 
   redis:
     image: redis:5.0.7
-
-  
