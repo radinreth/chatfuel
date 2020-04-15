@@ -4,6 +4,6 @@ class AlertWeeklyNotificationJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    # Do something later
+    AlertNotificationService.new.send_weekly_notification
   end
 end

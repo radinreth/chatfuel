@@ -48,4 +48,12 @@ class SiteSetting < ApplicationRecord
   def digest_message_variables
     [FEEDBACK_AUDIO_COUNT, FEEDBACK_TEXT_COUNT, FEEDBACK_FREEQUENCY]
   end
+
+  def notification_message
+    message_template
+  end
+
+  def notification_digest_message
+    digest_message_template
+  end
 end
