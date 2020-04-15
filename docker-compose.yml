@@ -13,7 +13,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  web: &rails
+  app: &rails
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -27,6 +27,14 @@ services:
       - db
       - redis
     env_file: docker-env
+    environment:
+      - LANG=C.UTF-8
+      - DATABASE_URL=postgres://postgres@CHANGEME/outbreak_mapping
+      - RAILS_SERVE_STATIC_FILES=true
+      - VIRTUAL_HOST=owso-stg.ilabsea.org
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=owso-stg.ilabsea.org
+      - LETSENCRYPT_EMAIL=kakada@instedd.org
     tty: true
     stdin_open: true
     ports:
