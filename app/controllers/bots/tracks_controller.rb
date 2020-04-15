@@ -7,7 +7,7 @@ module Bots
     before_action :set_step
 
     def create
-      render json: send("#{params[:bot_platform]}_response".to_sym), status: :ok
+      render json: send("#{@message.platform_name}_response".to_sym), status: :ok
     end
 
     private
@@ -21,11 +21,26 @@ module Bots
       end
 
       def _response
-        {
+        @_resp ||= {
           "messages": [
             { "text": decorator.status },
             { "text": decorator.description }
           ]
+        }
+
+        @_resp[:messages].push(resp_attachment) if decorator.invalid?
+        @_resp
+      end
+      alias_method :chatfuel_response, :_response
+
+      def resp_attachment
+        {
+          "attachment": {
+            "type": "image",
+            "payload": {
+              "url": "https://rockets.chatfuel.com/assets/welcome.png"
+            }
+          }
         }
       end
 
