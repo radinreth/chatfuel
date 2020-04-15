@@ -24,6 +24,13 @@ class AlertNotificationService
     end
   end
 
+  def send_weekly_notification
+    SiteSetting.weekly.each do |setting|
+      site = setting.site
+      next if site.feedbacks.last_week.count.zero?
+    end
+  end
+
   private
     def channel_factory(channel_name)
       channel_name.constantize.new
