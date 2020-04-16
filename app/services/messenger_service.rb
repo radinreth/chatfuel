@@ -2,7 +2,7 @@ class MessengerService
   def self.notify(completed)
     completed.find_each do |ticket|
       RestClient.post url, params(ticket) if ENV["ENABLE_FB_NOTIFY"] == "enable"
-      ticket.notified!
+      # ticket.notified!
     end
   end
 
