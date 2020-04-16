@@ -1,0 +1,4 @@
+= simple_form_for @ticket do |f|
+  = f.input :code
+  = f.input :status, as: :select, collection: Ticket.statuses
+  = f.submit
