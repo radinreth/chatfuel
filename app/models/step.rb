@@ -28,7 +28,7 @@ class Step < ApplicationRecord
 
   def self.accessed
     owso_options = Variable.find_by(name: "owso_options")
-    joins(:value).where("variable_values.id in (?)", owso_options.values.ids)
+    joins(:value).where("variable_values.id in (?)", owso_options&.values&.ids)
   end
 
   def value

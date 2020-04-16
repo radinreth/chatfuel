@@ -33,7 +33,6 @@ services:
     env_file: docker-env
     environment:
       - LANG=C.UTF-8
-      - DATABASE_URL=postgres://postgres@CHANGEME/outbreak_mapping
       - RAILS_SERVE_STATIC_FILES=true
       - VIRTUAL_HOST=owso-stg.ilabsea.org
       - VIRTUAL_PORT=3000
