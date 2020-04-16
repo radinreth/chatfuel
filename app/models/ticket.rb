@@ -28,5 +28,6 @@ class Ticket < ApplicationRecord
   scope :completed_with_session, -> { completed.joins(:message) }
 
   # validations
+  validates :code, presence: true
   validates :status, inclusion: { in: statuses.keys }
 end

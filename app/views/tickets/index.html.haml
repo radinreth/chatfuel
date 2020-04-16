@@ -1,0 +1,17 @@
+%h1 Tickets
+
+= link_to "New ticket", new_ticket_path, class: "btn btn-primary mb-3"
+
+%table.table
+  %tr
+    %th code
+    %th status
+    %th created_at
+    %th
+
+  - @tickets.each do |ticket|
+    %tr
+      %td= ticket.code
+      %td= ticket.status
+      %td= ticket.created_at
+      %td= link_to "x", ticket_path(ticket), method: :delete, data: { confirm: "are you sure?" }
