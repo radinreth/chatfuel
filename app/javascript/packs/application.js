@@ -11,4 +11,5 @@ toastr = require("toastr")
 
 require("shared/sidebar")
 require("view/dictionary")
+require("view/ticket")
 require("view/daterangepicker")

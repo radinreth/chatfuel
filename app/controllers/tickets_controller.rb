@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.order(:code)
   end
 
   def new
@@ -14,6 +14,11 @@ class TicketsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    @ticket = Ticket.find(params[:id])
+    @ticket.update(ticket_params)
   end
 
   def destroy
