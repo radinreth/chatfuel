@@ -1,0 +1,9 @@
+%h1 Templates
+= link_to "New template", new_template_path, class: "btn btn-primary mb-3"
+
+- @templates.each do |t|
+  .card.mb-3
+    .card-body
+      = link_to "Edit", edit_template_path(t), class: "card-link"
+    .card-body
+      = t.content
