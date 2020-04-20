@@ -1,10 +1,10 @@
 class TicketPolicy < ApplicationPolicy
   def index?
-    true
+    user.system_admin?
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(id: record.id).exists?
   end
 
   def create?

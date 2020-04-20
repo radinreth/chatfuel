@@ -1,6 +1,8 @@
 class TicketsController < ApplicationController
+  before_action :set_ticket, only: [:edit, :update, :destroy]
+
   def index
-    @tickets = Ticket.order(:code)
+    @tickets = authorize Ticket.order(:code)
   end
 
   def new
@@ -20,18 +22,21 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket = Ticket.find(params[:id])
     @ticket.update(ticket_params)
     redirect_to tickets_path, status: :moved_permanently
   end
 
   def destroy
-    @ticket = Ticket.find(params[:id])
     @ticket.destroy
     redirect_to tickets_path
   end
 
   private
+    def set_ticket
+      @ticket ||= Ticket.find(params[:id])
+      authorize(@ticket) && @ticket
+    end
+
     def ticket_params
       status = params[:ticket][:status].to_i
       params.require(:ticket).permit(:code, :status).merge(status: status)
