@@ -1,4 +1,6 @@
 class TemplatesController < ApplicationController
+  before_action :set_template, only: [:edit, :update, :destroy]
+
   def index
     @templates = Template.all
   end
@@ -8,25 +10,31 @@ class TemplatesController < ApplicationController
   end
 
   def edit
-    @template = Template.find(params[:id])
   end
 
   def update
-    @template = Template.find(params[:id])
-
     if @template.update(template_params)
-      redirect_to templates_path
+      redirect_to templates_path, status: :moved_permanently
     end
   end
 
   def create
     @template = Template.new(template_params)
     if @template.save
-      redirect_to templates_path
+      redirect_to templates_path, status: :moved_permanently
     end
   end
 
+  def destroy
+    @template.destroy
+    redirect_to templates_path, status: :moved_permanently
+  end
+
   private
+    def set_template
+      @template = Template.find(params[:id])
+    end
+
     def template_params
       params.require(:template).permit(:content)
     end
