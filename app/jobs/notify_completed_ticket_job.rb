@@ -5,6 +5,6 @@ class NotifyCompletedTicketJob < ApplicationJob
   def perform
     completed = Ticket.completed_with_session.limit(20)
 
-    MessengerService.notify(completed)
+    NotifierService.notify(completed)
   end
 end
