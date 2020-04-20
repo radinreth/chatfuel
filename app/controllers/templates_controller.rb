@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = Template.all
+    @templates = authorize Template.all
   end
 
   def new
@@ -32,7 +32,8 @@ class TemplatesController < ApplicationController
 
   private
     def set_template
-      @template = Template.find(params[:id])
+      @template ||= Template.find(params[:id])
+      authorize(@template) && @template
     end
 
     def template_params
