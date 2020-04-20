@@ -13,7 +13,7 @@ class Template < ApplicationRecord
 
   private
     def only_one_template
-      errors.add(:base, "multiple templates is not allowed") if Template.count > 1
+      errors.add(:base, "multiple templates is not allowed") if Template.count >= 1
       throw :abort
     end
 end
