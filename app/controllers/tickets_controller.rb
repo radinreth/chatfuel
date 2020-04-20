@@ -7,6 +7,9 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
+  def edit
+  end
+
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
@@ -19,6 +22,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:id])
     @ticket.update(ticket_params)
+    redirect_to tickets_path, status: :moved_permanently
   end
 
   def destroy
