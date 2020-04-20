@@ -17,9 +17,7 @@ RSpec.describe Template, type: :model do
     before { create(:template) }
 
     it "does not create template" do
-      expect {
-        create(:template)
-      }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: multiple templates is not allowed")
+      expect { create(:template) }.to raise_error(ActiveRecord::RecordNotSaved, "Failed to save the record")
     end
   end
 end
