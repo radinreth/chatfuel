@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :template do
-    content { "MyString" }
+    content { "My template" }
   end
 end
