@@ -9,11 +9,13 @@
 #
 class Template < ApplicationRecord
   validates :content, presence: true
-  validate :only_one_template
+  before_create :only_one_template
 
   private
     def only_one_template
-      errors.add(:base, "multiple templates is not allowed") if Template.count >= 1
+      return unless Template.exists?
+
+      errors.add(:base, "multiple templates is not allowed")
       throw :abort
     end
 end

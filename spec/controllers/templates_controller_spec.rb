@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe TemplatesController, type: :controller do
   setup_system_admin
 
+  let(:template) { create(:template) }
+
   context "html" do
     it "GET :index" do
       get :index
@@ -18,7 +20,7 @@ RSpec.describe TemplatesController, type: :controller do
   end
 
   it "GET :edit" do
-    get :edit, params: { id: create(:template).id }
+    get :edit, params: { id: template.id }
 
     expect(response).to render_template("edit")
   end
