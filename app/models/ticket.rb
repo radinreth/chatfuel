@@ -30,4 +30,6 @@ class Ticket < ApplicationRecord
   # validations
   validates :code, presence: true
   validates :status, inclusion: { in: statuses.keys }
+
+  delegate :platform_name, to: :message
 end

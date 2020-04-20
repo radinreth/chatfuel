@@ -2,7 +2,8 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:edit, :update, :destroy]
 
   def index
-    @tickets = authorize Ticket.order(:code)
+    @tickets = Ticket.order(:code)
+    authorize @tickets
   end
 
   def new

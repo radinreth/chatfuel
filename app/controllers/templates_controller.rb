@@ -2,7 +2,8 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = authorize Template.all
+    @templates = Template.all
+    authorize @templates
   end
 
   def new
