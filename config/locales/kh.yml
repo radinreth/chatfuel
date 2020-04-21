@@ -1,19 +1,121 @@
 kh:
-  not_authorized: "You are not authorized"
+  copyright: បង្កើតឡើងនៅឆ្នាំ ២០២០ InSTEDD
+  role: "តួនាទី៖ %{name}"
+  login_as: "បានចូលជា៖ %{as}"
+  sidebar:
+    home: ទំព័រដើម
+    sites: ការិយាល័យ
+    dictionaries: ពាក្យគន្លឹះ
+    reports: របាយការណ៏
+    users: អ្នកប្រើប្រាស់
+    logout: ចាកចេញ
+    signin: ចូលប្រើ
+  signin: ចូលប្រើ
+  not_authorized: អ្នកមិនត្រូវបានអនុញ្ញាតទេ
+  created:
+    success: បានបង្កើតដោយជោគជ័យ
+    fail: បានបរាជ័យក្នុងការបង្កើត
+  updated:
+    success: បានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ
+    fail: បានបរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាព
+  deleted:
+    success: បានលុបដោយជោគជ័យ
+    fail: បានបរាជ័យក្នុងការលុប
+  imported:
+    success: បាននាំចូលដោយជោគជ័យ
+    fail: បានបរាជ័យក្នុងការនាំចូល
+  required:
+    file: ឯកសារចាំបាច់
+  new_dictionary: ពាក្យគន្លឹះថ្មី
+  new_site: ការិយាល័យថ្មី
+  update: ធ្វើបច្ចុប្បន្នភាព
   decorators:
     concerns:
       completed_status:
-        status: "រួចរាល់"
-        description: "ឯកសារបានធ្វើរួចហើយ នៅថ្ងៃ %{datetime}"
+        status: បានបញ្ចប់
+        description: "សំបុត្ររបស់អ្នកបានបញ្ចប់តាំងពី %{datetime}"
       invalid_status:
-        status: "លេខកូដឯកសារមិនមានក្នុងប្រព័ន្ធ"
-        description: "សូមត្រួតពិនិត្យ ហើយបញ្ចូលម្ដងទៀតនៅពេលក្រោយ"
+        status: សំបុត្រមិនត្រឹមត្រូវឬមិនមាន
+        description: សូម​ព្យាយាម​ម្តង​ទៀត​នៅ​ពេល​ក្រោយ
       notified_status:
-        status: "បានជូនដំណឹងរួច"
-        description: "ឯកសារបានធ្វើរួច និងបានជូនដំណឹង!"
+        status: ជូនដំណឹងរួចហើយ
+        description: សំបុត្ររបស់អ្នកត្រូវបានបញ្ចប់និងជូនដំណឹង!
       picked_up_status:
-        status: "បានទៅទទួលរួចរាល់"
-        description: "ឯកសារបានទទួលរួចហើយ នៅថ្ងៃ %{datetime}"
+        status: ជូនដំណឹងរួចហើយ
+        description: សំបុត្ររបស់អ្នកត្រូវបានទទួលរួចរាល់
       submitted_status:
-        status: "បានប្រគល់"
-        description: "ឯកសារបានដាក់ពាក្យ នៅថ្ងៃ %{datetime}"
+        status: បានដាក់ស្នើរួចហើយ
+        description: សំបុត្ររបស់អ្នកត្រូវបានដាក់ស្នើរួចរាល់នៅការិយាល័យច្រក
+  site:
+    invalid_code: លេខកូដការិយាល័យច្រកត្រូវតែមានចំនួន ៤ ខ្ទង់ប៉ុណ្ណោះ
+  variable:
+    invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
+    only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
+  dictionaries:
+    index:
+      raw: តម្លៃដើម
+      raw: តម្លៃសម្រេច
+      satisfied: ពេញចិត្ត
+      wait: រង់ចាំ ...
+      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
+      add_pair: + បញ្ចូលតម្លៃ
+    new:
+      new: ពាក្យគន្លឹះថ្មី
+      create: បង្កើតពាក្យគន្លឹះ
+    mark_dictionary_as_report_column:
+      report_column: យកធ្វើរបាយការណ៏
+  homes:
+    show:
+      empty: ប្រអប់ទទួលរបស់អ្នកទទេ
+      session_id: លេខ​សម្គាល់​
+      type: ប្រភេទ
+  reports:
+    accessed_submitted_completed_line_chart:
+      no_data: គ្មាន​ទិន្នន័យ
+    accessed_submitted_completed_summary_table:
+      accessed: បានចូលប្រើ
+      submitted: បានដាក់ស្នើ
+      completed: បានបញ្ចប់
+      total: សរុប
+      average: មធ្យម
+    complaints_summary_table:
+      satisfied: ពេញចិត្ត
+      disatisfied: មិនពេញចិត្ត
+      total: សរុប
+      average: មធ្យម
+    index:
+      complaints: បណ្តឹង
+  sites:
+    form:
+      enable?: បើកដំណើរការ?
+    edit:
+      edit: កែសម្រួល
+    index:
+      name: ឈ្មោះ
+      code: លេខកូដ
+      track_count: ចំនួនអ្នកតាមដានឯកសារ
+      action: សកម្មភាព
+      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
+    new_import:
+      title: នាំចូល
+      import: នាំចូល
+    new:
+      title: + នាំចូល
+      new: ការិយាល័យថ្មី
+    show:
+      title: ចំនួនបទតាមស្រុកនីមួយៗ
+  users:
+    form:
+      enable: បើកដំណើរការ
+    edit:
+      update: ធ្វើបច្ចុប្បន្នភាព
+    index:
+      users: អ្នកប្រើប្រាស់
+      no: លេខរៀង
+      email: អ៊ីមែល
+      role: តួនាទី
+      action: សកម្មភាព
+    new:
+      create: បង្កើតថ្មី
+    show:
+      update: ធ្វើបច្ចុប្បន្នភាព
