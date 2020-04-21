@@ -1,4 +1,16 @@
 en:
+  copyright: Developed by 2020 InSTEDD
+  role: "Role: %{name}"
+  login_as: "Logged in as: %{as}"
+  sidebar:
+    home: Home
+    sites: Sites
+    dictionaries: Dictionaries
+    reports: Reports
+    users: Users
+    logout: Logout
+    signin: Signin
+  signin: Sign in
   not_authorized: "You are not authorized"
   created:
     success: "Successfully created!"
@@ -52,3 +64,58 @@ en:
       create: Create dictionary
     mark_dictionary_as_report_column:
       report_column: "Report column"
+  homes:
+    show:
+      empty: Your inbox is empty
+      session_id: Session Id
+      type: Type
+  reports:
+    accessed_submitted_completed_line_chart:
+      no_data: No data
+    accessed_submitted_completed_summary_table:
+      accessed: Accessed
+      submitted: Submitted
+      completed: Completed
+      total: Total
+      average: Average
+    complaints_summary_table:
+      satisfied: Satisfied
+      disatisfied: Disatisfied
+      total: Total
+      average: Average
+    index:
+      complaints: Complaints
+  sites:
+    form:
+      enable?: Enable?
+    edit:
+      edit: Edit site
+    index:
+      name: Name
+      code: Code
+      track_count: Track count
+      action: Action
+      confirm: Are you sure?
+    new_import:
+      title: Import sites
+      import: Import
+    new:
+      title: + Import sites
+      new: New site
+    show:
+      title: Number of tracks by each district
+  users:
+    form:
+      enable: Enable
+    edit:
+      update: Update user
+    index:
+      users: Users
+      no: No.
+      email: Email
+      role: Role
+      action: Action
+    new:
+      create: Create user
+    show:
+      update: Update user
