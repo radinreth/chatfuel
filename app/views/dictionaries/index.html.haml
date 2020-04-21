@@ -17,12 +17,11 @@
 
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr
-                    %th Raw value
-                    %th Mapping value
-                    %th.text-center{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
-                      Satisfied
+                    %th= t(".raw")
+                    %th= t(".mapping")
+                    %th.text-center{ class: "satisfy-col#{variable.id} #{toggle_class_name("invisible", !variable.report_enabled?) }"}
+                      = t(".satisfied")
 
-                  - # data rows 
                   - variable.values.each do |var_value|
                     %tr
                       %td
@@ -30,15 +29,15 @@
                         .input-group
                           .input-group-prepend
                             .input-group-text
-                              = link_to "X", dictionary_value_path(variable, var_value), method: :delete, data: { disable_with: "wait...", confirm: "Are you sure?" }, remote: true
-                          = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: 'form-control string required mr-sm-2', label: false, readonly: true
+                              = link_to fa_icon("times"), dictionary_value_path(variable, var_value), method: :delete, data: { disable_with: t(".wait"), confirm: t(".confirm") }, remote: true
+                          = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: "form-control string required mr-sm-2", label: false, readonly: true
                       %td  
-                        = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: 'mr-sm-2' }, label: false
+                        = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: "mr-sm-2" }, label: false
                       %td{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
                         .form-check.form-check-inline
                           %table.rating
                             %tr
-                              %td= image_tag "disatisfied.png", size: "26x26"
+                              %td= image_tag "disatisfied.png", size: "24x24"
                               %td= image_tag "normal.png", size: "24x24"
                               %td= image_tag "satisfied.png", size: "24x24"
                             %tr
@@ -46,10 +45,9 @@
                               %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
                               %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
                               
-
                   %tr
                     %td{ colspan: 2 }
-                      = link_to "+ Add pair", "#", class: "btn btn-add", "data-name": variable.name
+                      = link_to t(".add_pair"), "#", class: "btn btn-add", "data-name": variable.name
                     %td
-                      = f.submit "Update", class: "btn btn-primary pull-right"
+                      = f.submit t("update"), class: "btn btn-primary pull-right"
 .clearfix

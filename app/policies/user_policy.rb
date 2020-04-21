@@ -15,6 +15,7 @@ class UserPolicy < ApplicationPolicy
     !user.site_ombudsman? && (user.role.grade >= record.role&.grade.to_i)
   end
 
+  # TODO: cleanup
   def roles
     Role.all.map do |r|
       key = r.name.parameterize(separator: "_")

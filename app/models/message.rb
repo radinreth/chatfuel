@@ -22,7 +22,7 @@ class Message < ApplicationRecord
   belongs_to :content, polymorphic: true, dependent: :destroy
 
   # scopes
-  default_scope -> { order(updated_at: "desc") }
+  default_scope -> { order(updated_at: :desc) }
   delegate :type, :session_id, to: :content
 
   # validations
