@@ -4,10 +4,15 @@ class SubmittedStatus
   end
 
   def status
-    'មិនទាន់រួចរាល់'
+    I18n.t(".status", scope: i18n_scope)
   end
 
   def description
-    "ឯកសារបានដាក់ពាក្យ នៅថ្ងៃ #{@decorator.submitted_at || @decorator.created_at}"
+    I18n.t(".description", datetime: @decorator.submitted_at, scope: i18n_scope)
   end
+
+  private
+    def i18n_scope
+      [:decorators, :concerns, :submitted_status]
+    end
 end

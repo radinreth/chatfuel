@@ -14,3 +14,20 @@ en:
     fail: "Failed to import!"
   required:
     file: "File required!"
+  decorators:
+    concerns:
+      completed_status:
+        status: "Completed!"
+        description: "Your ticket is completed since %{datetime}"
+      invalid_status:
+        status: "Ticket is invalid or not exists!"
+        description: "Please try again later."
+      notified_status:
+        status: "Already notified!"
+        description: "Your ticket is completed & notified!"
+      picked_up_status:
+        status: "Already notified!"
+        description: "Your ticket is picked up!"
+      submitted_status:
+        status: "Already submitted!"
+        description: "Your ticket is submitted!"
