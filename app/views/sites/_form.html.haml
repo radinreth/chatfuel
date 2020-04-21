@@ -1,5 +1,5 @@
 = simple_form_for @site do |f|
-  = f.input :status, as: :boolean, label: "Enable?", input_html: { checked: @site.enable? }
+  = f.input :status, as: :boolean, label: t(".enable?"), input_html: { checked: @site.enable? }
   = f.input :name
   = f.input :code
-  = f.button :submit, class: 'btn btn-primary'
+  = f.button :submit, class: "btn btn-primary"
