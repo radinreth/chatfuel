@@ -4,4 +4,8 @@ module HomeHelper
 
     audio_tag str, controls: true, style: "width: 200px"
   end
+
+  def no_messages
+    @messages.count == 0
+  end
 end

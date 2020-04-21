@@ -1,34 +1,34 @@
 %nav#sidebar
   #sidebarCollapse.sidebar-header
-    %h3= 'OWSO'.upcase
+    %h3= "OWSO".upcase
 
-    %strong= 'OW<br/>SO'.html_safe
-    = fa_icon 'align-left', class: 'toggle-align'
+    %strong= "OW<br/>SO".html_safe
+    = fa_icon "align-left", class: "toggle-align"
 
   %ul.list-unstyled.components
     - if policy(:admin).show?
-      %li{ class: toggle_class_name("active", controller_name == 'homes') }
+      %li{ class: active_if(homes?)  }
         = link_to root_path do
-          = fa_icon 'home'
-          = t('sidebar.home')
+          = fa_icon "home"
+          = t("sidebar.home")
     - if policy(:system_admin).show?
-      %li{ class: toggle_class_name("active", controller_name == 'sites') }
+      %li{ class: active_if(sites?) }
         = link_to sites_path do
-          = fa_icon 'sitemap'
-          = t('sidebar.sites')
-      %li{ class: toggle_class_name("active", controller_name == 'dictionaries') }
+          = fa_icon "sitemap"
+          = t("sidebar.sites")
+      %li{ class: active_if(dictionaries?) }
         = link_to dictionaries_path do
-          = fa_icon 'book'
-          = t('sidebar.dictionary')
-    %li{ class: toggle_class_name("active", controller_name == 'reports') }
+          = fa_icon "book"
+          = t("sidebar.dictionaries")
+    %li{ class: active_if(reports?) }
       = link_to reports_path do
-        = fa_icon 'line-chart'
-        = t('sidebar.report')
+        = fa_icon "line-chart"
+        = t("sidebar.reports")
     - if policy(:admin).show?
-      %li{ class: toggle_class_name("active", controller_name == 'users') }
+      %li{ class: active_if(users?) }
         = link_to users_path do
           = fa_icon 'user'
-          = t('sidebar.manage_user')
+          = t('sidebar.users')
     - if policy(:admin).show?
       %li
         = link_to settings_path do
@@ -37,15 +37,15 @@
     %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do
-          = fa_icon 'sign-out'
-          = t('sidebar.logout')
+          = fa_icon "sign-out"
+          = t("sidebar.logout")
       - else
         = link_to new_user_session_path do
-          = fa_icon 'sign-in'
-          = t('sidebar.signin')
+          = fa_icon "sign-in"
+          = t("sidebar.signin")
 
   %small{ style: "font-size: 10px; padding: 10px" }
-    %div= "Logged in as : #{current_user&.email}"
-    %div= "Role: #{current_user&.role.name}"
+    %div= t("login_as", as: current_user&.email)
+    %div= t("role", name: current_user&.role_name)
   .copyright
-    Developed by 2020 InSTEDD
+    = t("copyright")

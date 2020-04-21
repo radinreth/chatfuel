@@ -49,4 +49,5 @@ class User < ApplicationRecord
   belongs_to :role
 
   delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role
+  delegate :name, to: :role, prefix: true
 end
