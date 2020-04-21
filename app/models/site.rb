@@ -27,5 +27,5 @@ class Site < ApplicationRecord
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
-                      message: "site code must be exactly 4 digits number" }
+                      message: I18n.t("site.invalid_code") }
 end

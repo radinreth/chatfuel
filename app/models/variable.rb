@@ -23,10 +23,10 @@ class Variable < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
-                              message: "only allows numbers or letters" }
+                              message: I18n.t("variable.invalid_name") }
 
   private
     def only_one_report_column
-      errors.add(:report_enabled, "Must be enable only one") if report_enabled == true && Variable.exists?(report_enabled: true)
+      errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled == true && Variable.exists?(report_enabled: true)
     end
 end

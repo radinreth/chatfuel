@@ -14,6 +14,9 @@ en:
     fail: "Failed to import!"
   required:
     file: "File required!"
+  new_dictionary: "New Dictionary"
+  new_site: "New Site"
+  update: Update
   decorators:
     concerns:
       completed_status:
@@ -31,3 +34,21 @@ en:
       submitted_status:
         status: "Already submitted!"
         description: "Your ticket is submitted!"
+  site:
+    invalid_code: "Site code must be exactly 4 digits number"
+  variable:
+    invalid_name: "Only allows numbers or letters"
+    only_one_report_col: "Must be enable only one"
+  dictionaries:
+    index:
+      raw: Raw value
+      raw: Mapping value
+      satisfied: Satisfied
+      wait: wait...
+      confirm: Are you sure?
+      add_pair: + Add pair
+    new:
+      new: New dictionary
+      create: Create dictionary
+    mark_dictionary_as_report_column:
+      report_column: "Report column"
