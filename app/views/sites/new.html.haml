@@ -1,4 +1,4 @@
-= link_to "+ Import sites", new_import_sites_path, style: "text-decoration: underline"
-= render partial: "shared/page_header", locals: { title: "New site", link: nil }
+= link_to t(".title"), new_import_sites_path, style: "text-decoration: underline"
+= render partial: "shared/page_header", locals: { title: t(".new"), link: nil }
 .col-sm-4
-  = render 'form'
+  = render "form"
