@@ -1,11 +1,11 @@
-%table.table.table-sm{ style: 'font-size: 13px' }
+%table.table.table-sm{ style: "font-size: 13px" }
   %tr
     %td
-    %td Satisfied
-    %td Disatisfied
+    %td= t(".satisfied") 
+    %td= t(".disatisfied")
 
   - [:total, :average].each do |group|
     %tr
-      %td= "#{group.to_s.titleize}:"
+      %td= t(".#{group.to_s}")
       - @complaints.each do |complaint|
         %td= complaint.send(group)

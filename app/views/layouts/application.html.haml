@@ -5,13 +5,13 @@
     %title owso | InSTEDD iLab Southeast Asia
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_pack_tag "application", "data-turbolinks-track": "reload"
+    = javascript_include_tag "application"
   %body{ id: css_class_name }
     .wrapper
-      = render 'shared/sidebar'
+      = render "shared/sidebar"
       #content
         .clearfix
-        = render 'shared/notify_message'
+        = render "shared/notify_message"
         = yield

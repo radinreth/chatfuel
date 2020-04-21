@@ -14,4 +14,10 @@ module ApplicationHelper
   def render_alert
     content_tag(:div, alert, class: "alert alert-danger", role: "alert") if alert
   end
+
+  %w(homes sites dictionaries reports users).each do |ctrl|
+    define_method "#{ctrl}?".to_sym do
+      controller_name == ctrl
+    end
+  end
 end
