@@ -1,2 +1,19 @@
 kh:
   not_authorized: "You are not authorized"
+  decorators:
+    concerns:
+      completed_status:
+        status: "រួចរាល់"
+        description: "ឯកសារបានធ្វើរួចហើយ នៅថ្ងៃ %{datetime}"
+      invalid_status:
+        status: "លេខកូដឯកសារមិនមានក្នុងប្រព័ន្ធ"
+        description: "សូមត្រួតពិនិត្យ ហើយបញ្ចូលម្ដងទៀតនៅពេលក្រោយ"
+      notified_status:
+        status: "បានជូនដំណឹងរួច"
+        description: "ឯកសារបានធ្វើរួច និងបានជូនដំណឹង!"
+      picked_up_status:
+        status: "បានទៅទទួលរួចរាល់"
+        description: "ឯកសារបានទទួលរួចហើយ នៅថ្ងៃ %{datetime}"
+      submitted_status:
+        status: "បានប្រគល់"
+        description: "ឯកសារបានដាក់ពាក្យ នៅថ្ងៃ %{datetime}"
