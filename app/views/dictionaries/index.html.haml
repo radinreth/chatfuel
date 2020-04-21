@@ -1,11 +1,9 @@
-= render "shared/page_header", title: "Dictionary", link: link_to_new('dictionary')
+= render "shared/page_header", title: "Dictionary", link: link_to_new("dictionary")
 
 .row
   .col-3
-    %div.d-none{ style: "height: 520px; overflow-y: scroll"}
-    #v-pills-tab.nav.flex-column.nav-pills
-      - @variables.each_with_index do |v, index|
-        = link_to v.name, "#v-pills-#{v.name}", class: "nav-link #{toggle_class_name("active", index.zero?)}", "data-toggle" => "pill"
+    = render "nav"
+  
   .col-9
     #v-pills-tabContent.tab-content
       - @variables.each_with_index do |variable, index|
@@ -14,34 +12,8 @@
             .card.w-100
               .card-body
                 - if current_user.system_admin?
-                  .btn-group.btn-group-sm.mb-3
-                    - Role.all.each do |role|
-                      %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
-                        = image_tag "#{role.name}.png", size: "32x32", class: "border border-secondary rounded-circle", style: "background-color: #fff"
-                        = role.name.capitalize
-
-                  .report-column.form-check.d-inline
-                    = f.input_field :report_enabled, as: :boolean, checked: variable.report_enabled, class: "form-check-input report-enabled-col", "data-variable": variable.id, id: "report-enabled-col#{variable.id}"
-                    %label.form-check-label.d-inline{for: "dictionaries_report_enabled"} report column
-  .result-map
-    - @variables.select('name').distinct.each_with_index do |v, index|
-      = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
-        %table.table{ class: "dict-item-#{v.name} #{ toggle_class_name('d-none', !index.zero?) }" }
-          %tr
-            %th Value
-            %th Text
-          - @variables.order(value: :asc).each do |sub|
-            - if sub.name == v.name
-              %tr
-                %td
-                  = f.input :id, as: :hidden, input_html: { value: sub.id, name: "variable[][id]" }
-                  = f.input :value, input_html: { value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, readonly: true, label: false
-                %td  
-                  = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
-
-          %tr
-            %td{ colspan: 2}
-              = f.submit "Update", class: "btn btn-primary pull-right"
+                  = render "dictionaries_by_role", variable: variable # view data: limit view data base on role
+                  = render "mark_dictionary_as_report_column", f: f, variable: variable
 
                 %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
                   %tr

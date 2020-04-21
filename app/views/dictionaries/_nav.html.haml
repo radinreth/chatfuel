@@ -1,0 +1,4 @@
+%div.d-none{ style: "height: 520px; overflow-y: scroll"}
+#v-pills-tab.nav.flex-column.nav-pills
+  - @variables.each_with_index do |var, index|
+    = link_to var.name, "#v-pills-#{var.name}", class: "nav-link #{ active_if(index == 0) }", "data-toggle" => "pill"
