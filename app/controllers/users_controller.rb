@@ -30,9 +30,9 @@ class UsersController < ApplicationController
     @user.skip_confirmation!
     byebug
     if @user.save
-      redirect_to users_path, status: :moved_permanently, notice: "Created successfully"
+      redirect_to users_path, status: :moved_permanently, notice: t("created.success")
     else
-      render :new, alert: "created failed"
+      render :new, alert: t("created.fail")
     end
   end
 
@@ -41,16 +41,16 @@ class UsersController < ApplicationController
     @user.skip_reconfirmation!
 
     if @user.update(user_params)
-      redirect_to @user, status: :moved_permanently, notice: "update successfully"
+      redirect_to @user, status: :moved_permanently, notice: t("updated.success")
     else
-      render :edit, alert: "update failed"
+      render :edit, alert: t("updated.fail")
     end
   end
 
   def destroy
     authorize @user
     @user.destroy
-    redirect_to users_path, status: :moved_permanently, notice: "delete successfully"
+    redirect_to users_path, status: :moved_permanently, notice: t("deleted.success")
   end
 
   private

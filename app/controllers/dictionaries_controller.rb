@@ -14,9 +14,9 @@ class DictionariesController < ApplicationController
     authorize @variable
 
     if @variable.save
-      redirect_to dictionaries_path, status: :moved_permanently, notice: "create success!"
+      redirect_to dictionaries_path, status: :moved_permanently, notice: t("created.success")
     else
-      render :new, status: :unprocessable_entity, alert: "create failed!"
+      render :new, status: :unprocessable_entity, alert: t("created.fail")
     end
   end
 
@@ -26,12 +26,12 @@ class DictionariesController < ApplicationController
     respond_to do |format|
       if @variable.update(variable_params)
         @enabled = @variable.reload.report_enabled
-        format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: "Updated successfully!" }
+        format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: t("updated.success") }
         format.js
       else
         @revert = !variable_params[:report_enabled]
         @enabled = @variable.reload.report_enabled
-        format.html { render json: @variable.errors, status: :unprocessable_entity, notice: "Updated fail!" }
+        format.html { render json: @variable.errors, status: :unprocessable_entity, alert: t("updated.fail") }
         format.js
       end
     end
@@ -46,7 +46,7 @@ class DictionariesController < ApplicationController
     end
 
     if updates.all?(true)
-      options[:notice] = "update success"
+      options[:notice] = t("updated.success")
     end
 
     redirect_to dictionaries_path, options
