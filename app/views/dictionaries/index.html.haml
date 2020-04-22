@@ -1,4 +1,4 @@
-= render "shared/page_header", title: "Dictionary", link: link_to_new("dictionary")
+= render "shared/page_header", title: t(".title"), link: link_to_new("dictionary")
 
 .row
   .col-3
@@ -8,14 +8,14 @@
     #v-pills-tabContent.tab-content
       - @variables.each_with_index do |variable, index|
         .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
-          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline', "data-variable_id": variable.id }, remote: false do |f|
+          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline', "data-variable-id": variable.id }, remote: false do |f|
             .card.w-100
               .card-body
                 - if current_user.system_admin?
                   = render "dictionaries_by_role", variable: variable # view data: limit view data base on role
                   = render "mark_dictionary_as_report_column", f: f, variable: variable
 
-                %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
+                %table.table{ class: "dict-item-#{variable.name}", "data-variable-id": variable.id }
                   %tr
                     %th= t(".raw")
                     %th= t(".mapping")
