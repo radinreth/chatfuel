@@ -68,7 +68,7 @@ class SitesController < ApplicationController
       begin
         file_params
       rescue
-        redirect_to(sites_path, status: :moved_permanently, alert: t("File required!")) && return
+        redirect_to(sites_path, status: :moved_permanently, alert: t("required.file")) && return
       end
     end
 

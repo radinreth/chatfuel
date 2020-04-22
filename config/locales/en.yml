@@ -54,7 +54,7 @@ en:
   dictionaries:
     index:
       raw: Raw value
-      raw: Mapping value
+      mapping: Mapping value
       satisfied: Satisfied
       wait: wait...
       confirm: Are you sure?
@@ -69,6 +69,7 @@ en:
       empty: Your inbox is empty
       session_id: Session Id
       type: Type
+      all: All messages
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data

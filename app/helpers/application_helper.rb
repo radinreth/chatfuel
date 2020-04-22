@@ -15,6 +15,14 @@ module ApplicationHelper
     content_tag(:div, alert, class: "alert alert-danger", role: "alert") if alert
   end
 
+  def locale_name(locale)
+    { en: "English", kh: "ខ្មែរ" }[locale]
+  end
+
+  def locale_choices
+    I18n.available_locales - [I18n.locale]
+  end
+
   %w(homes sites dictionaries reports users).each do |ctrl|
     define_method "#{ctrl}?".to_sym do
       controller_name == ctrl

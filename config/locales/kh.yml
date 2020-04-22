@@ -54,7 +54,7 @@ kh:
   dictionaries:
     index:
       raw: តម្លៃដើម
-      raw: តម្លៃសម្រេច
+      mapping: តម្លៃសម្រេច
       satisfied: ពេញចិត្ត
       wait: រង់ចាំ ...
       confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
@@ -69,6 +69,7 @@ kh:
       empty: ប្រអប់ទទួលរបស់អ្នកទទេ
       session_id: លេខ​សម្គាល់​
       type: ប្រភេទ
+      all: សារទាំងអស់
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មាន​ទិន្នន័យ
@@ -111,7 +112,7 @@ kh:
       update: ធ្វើបច្ចុប្បន្នភាព
     index:
       users: អ្នកប្រើប្រាស់
-      no: លេខរៀង
+      'no': លេខរៀង
       email: អ៊ីមែល
       role: តួនាទី
       action: សកម្មភាព
