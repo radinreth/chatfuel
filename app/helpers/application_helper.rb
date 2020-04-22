@@ -16,11 +16,11 @@ module ApplicationHelper
   end
 
   def locale_name(locale)
-    { en: "English", kh: "ខ្មែរ" }[locale]
+    { en: "English", km: "ខ្មែរ" }[locale]
   end
 
   def locale_choices
-    %I(en kh) - [I18n.locale]
+    %I(en km) - [I18n.locale]
   end
 
   %w(homes sites dictionaries reports users).each do |ctrl|
