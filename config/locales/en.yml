@@ -92,6 +92,7 @@ en:
     edit:
       edit: Edit site
     index:
+      title: Sites
       name: Name
       code: Code
       track_count: Track count
