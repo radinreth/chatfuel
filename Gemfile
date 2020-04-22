@@ -30,6 +30,7 @@ gem "bootstrap-daterangepicker-rails", "~> 3.0.4"
 gem "pundit", "~> 1.1.0"
 gem "active_storage_validations", "~> 0.8.7"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "i18n-js", "~> 3.5.1"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
