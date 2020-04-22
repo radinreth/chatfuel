@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def locale_choices
-    I18n.available_locales - [I18n.locale]
+    %I(en kh) - [I18n.locale]
   end
 
   %w(homes sites dictionaries reports users).each do |ctrl|
