@@ -1,3 +1,3 @@
-var item = $(".btn-role[data-role_id=<%= j(@role.id) %>][data-variable_id=<%= j(@variable.id) %>]")
+var item = $(".btn-role[data-role-id=<%= j(@role.id) %>][data-variable-id=<%= j(@variable.id) %>]")
 item.toggleClass("active")
-toastr.success('update variable <%= j(@variable.name)%> for <%= j(@role.name)%>', 'Success!')
+toastr.success(I18n.t("js.updates_success_desc", { var_name: '<%= j(@variable.name) %>', role_name: '<%= j(@role.name) %>'}), I18n.t("js.updates_success_title"))

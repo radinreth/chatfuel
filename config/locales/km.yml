@@ -67,6 +67,7 @@ km:
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
   dictionaries:
     index:
+      title: ពាក្យគន្លឹះ
       raw: តម្លៃដើម
       mapping: តម្លៃសម្រេច
       satisfied: ពេញចិត្ត
@@ -135,3 +136,6 @@ km:
       create: បង្កើតថ្មី
     show:
       update: ធ្វើបច្ចុប្បន្នភាព
+  js:
+    updates_success_desc: បានធ្វើបច្ចុប្បន្នភាព %{var_name} ដោយជោគជ័យសម្រាប់ %{role_name}
+    updates_success_title: ជោគជ័យ!
