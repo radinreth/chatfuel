@@ -15,7 +15,7 @@ document.addEventListener('turbolinks:load', function() {
     e.preventDefault()
 
     var name = $(this).data("name")
-    var variableId = $(this).closest("table").data("variable_id")
+    var variableId = $(this).closest("table").data("variable-id")
     var index = $(".tr-js").last().data("index")
 
     if(index == undefined) index = 1
@@ -65,8 +65,8 @@ document.addEventListener('turbolinks:load', function() {
 
   $(".btn-role").click(function(e){
     e.preventDefault()
-    var roleId = $(this).data("role_id")
-    var variableId = $(this).data("variable_id")
+    var roleId = $(this).data("role-id")
+    var variableId = $(this).data("variable-id")
 
     $.ajax({
       url: `/dictionaries/${variableId}/roles/${roleId}`,
@@ -84,7 +84,7 @@ document.addEventListener('turbolinks:load', function() {
 
   $(".report-enabled-col").click(function(){
     let $form = $(this.form)
-    let variableId = $form.data("variable_id")
+    let variableId = $form.data("variable-id")
     let csrfToken = $('meta[name="csrf-token"]').attr("content")
 
     $.ajax({
