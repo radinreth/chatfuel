@@ -7,7 +7,7 @@ module Bots
     before_action :set_step
 
     def create
-      render json: send("#{@message.platform_name}_response".to_sym), status: :ok
+      render json: send("#{@message.platform_name.downcase}_response".to_sym), status: :ok
     end
 
     private
@@ -31,7 +31,7 @@ module Bots
         @_resp[:messages].push(resp_attachment) if decorator.invalid?
         @_resp
       end
-      alias_method :chatfuel_response, :_response
+      alias_method :messenger_response, :_response
 
       def resp_attachment
         {
