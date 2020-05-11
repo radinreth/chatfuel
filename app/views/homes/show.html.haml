@@ -14,7 +14,7 @@
     - @messages.each do |message|
       %tr
         %td{align: "center"}= message.session_id
-        %td{align: "center"}= message.type
+        %td{align: "center"}= message.platform_name
         - current_user.role.variables.pluck(:name).each do |var_name|
           %td{align: "center"}
             - message.steps.each do |step|
