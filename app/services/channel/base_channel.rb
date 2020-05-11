@@ -1,6 +1,6 @@
 module Channel
   class BaseChannel
-    attr_accessor :url, :template, :params
+    attr_accessor :ticket
 
     def initialize(ticket)
       @ticket = ticket
@@ -9,7 +9,7 @@ module Channel
     def send
       return false if ENV["ENABLE_FB_NOTIFY"] == "disable"
       platform.send
-      @ticket.notified!
+      ticket.notified!
     end
 
     private

@@ -1,8 +1,8 @@
 module Channel
   class TelegramChannel < BaseChannel
     def send
-      RestClient.post(url, params(ticket), content_type: "application/json")
-      Rails.logger.debug "sent: #{url} #{params(@ticket)}"
+      RestClient.post(url, params, content_type: "application/json")
+      Rails.logger.debug "sent: #{url} #{params}"
     end
 
     private
@@ -10,7 +10,7 @@ module Channel
         @url ||= "https://api.telegram.org/bot#{ENV['TELEGRAM_TOKEN']}/sendMessage"
       end
 
-      def params(ticket)
+      def params
         {
           chat_id: ticket.message.session_id,
           text: text_message,
