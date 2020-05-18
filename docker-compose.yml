@@ -2,8 +2,7 @@ version: '3'
 
 volumes:
   db:
-  node_modules:
-  bundle:
+  rdb:
   nginx-certs:
   nginx-dhparam:
   nginx-vhost:
@@ -17,39 +16,42 @@ services:
     environment:
       POSTGRES_PASSWORD: dbpass
 
-  app: &rails
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+  web: &rails
+    image: radinreth/chatfuel:0.0.1
+    restart: unless-stopped
     volumes:
-      - .:/app
-      - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
-    tmpfs: /app/tmp
+      - /tmp/pids:/app/tmp/pids
     depends_on:
       - db
       - redis
-    env_file: docker-env
     environment:
       - LANG=C.UTF-8
       - RAILS_SERVE_STATIC_FILES=true
+      - DATABASE_URL=postgres://postgres:123456@db/chatfuel
       - VIRTUAL_HOST=owso-stg.ilabsea.org
-      - VIRTUAL_PORT=3000
+      - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=owso-stg.ilabsea.org
-      - LETSENCRYPT_EMAIL=kakada@instedd.org
-    tty: true
-    stdin_open: true
-    expose:
-      - "3000"
+      - LETSENCRYPT_EMAIL=radin@instedd.org
+      - REDIS_URL=redis://redis:6379
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '5'
+    command:
+    - /bin/sh
+    - -c
+    - bundle exec puma --preload -e production -b tcp://0.0.0.0:80
+    
+  redis:
+    image: redis:5.0.7
+    volumes:
+      - rdb:/data
 
   sidekiq:
     <<: *rails
-    command: bundle exec sidekiq -C config/sidekiq.yml
+    command: bundle exec sidekiq
     ports: []
-
-  redis:
-    image: redis:5.0.7
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -66,15 +68,15 @@ services:
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
     depends_on:
-      - app
+      - web
 
-  letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    depends_on:
-      - nginx-proxy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - nginx-certs:/etc/nginx/certs:rw
-      - nginx-dhparam:/etc/nginx/dhparam
-      - nginx-vhost:/etc/nginx/vhost.d
-      - nginx-html:/usr/share/nginx/html
+    letsencrypt:
+     image: jrcs/letsencrypt-nginx-proxy-companion
+     depends_on:
+       - nginx-proxy
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock:ro
+       - nginx-certs:/etc/nginx/certs:rw
+       - nginx-dhparam:/etc/nginx/dhparam
+       - nginx-vhost:/etc/nginx/vhost.d
+       - nginx-html:/usr/share/nginx/html

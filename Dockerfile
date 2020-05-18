@@ -2,22 +2,26 @@ FROM ruby:2.6.5
 
 LABEL maintainer="Radin <radin@instedd.org>"
 
+# Updating nodejs version
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-  apt-get update -qq && \
-  apt-get install -y nodejs yarn postgresql-client && \
+  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+
+# Install dependencies
+RUN apt-get update && \
+  apt-get install -y nodejs yarn postgresql-client vim && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir /app
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock /app/
+# Install gem bundle
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 
-RUN gem install bundler:2.1.4 && \
-  bundle config set deployment 'true' && \
-  bundle install --jobs 10
+RUN gem install bundler && \
+  bundle install --jobs 20 --deployment --without development test
 
 # Install the application
 COPY . /app
@@ -26,12 +30,14 @@ COPY . /app
 RUN if [ -d .git ]; then git describe --always > VERSION; fi
 
 # Precompile assets
-RUN bundle exec rake assets:precompile RAILS_ENV=production && \
-  rm config/credentials/production.key
+RUN SECRET_KEY_BASE=`cat config/master.key` bundle exec rake assets:precompile RAILS_ENV=production
 
 ENV RAILS_LOG_TO_STDOUT=true
 ENV RACK_ENV=production
 ENV RAILS_ENV=production
 EXPOSE 80
 
-CMD ["puma", "-e", "production", "-b", "tcp://0.0.0.0:80"]
+# Add scripts
+COPY docker/database.yml /app/config/database.yml
+
+CMD ["bundle", "exec", "puma", "-e", "production", "-b", "tcp://0.0.0.0:80"]
