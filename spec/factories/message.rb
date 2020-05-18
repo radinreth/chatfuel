@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :message do
+    platform_name { 'chatfuel' }
+
     trait :text do
       association :content, factory: :text_message
     end

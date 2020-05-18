@@ -27,6 +27,7 @@ class Message < ApplicationRecord
 
   # validations
   validates :content, presence: true
+  validates :platform_name, inclusion: { in: %w(chatfuel telegram), message: 'Platform name %{value} is invalid' }
 
   # methods
   def self.create_or_return(platform_name, content)

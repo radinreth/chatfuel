@@ -39,3 +39,4 @@ chatfuel_*.gz
 public/javascripts/
 
 spec/failed_examples.txt
+coverage

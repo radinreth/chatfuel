@@ -61,4 +61,5 @@ group :test do
   gem "webdrivers", "~> 4.2.0"
   gem "rspec-sidekiq", "~> 3.0.3"
   gem "pundit-matchers", "~> 1.6.0"
+  gem 'simplecov', require: false
 end
