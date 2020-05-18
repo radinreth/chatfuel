@@ -29,6 +29,9 @@ gem "momentjs-rails", "~> 2.20.1"
 gem "bootstrap-daterangepicker-rails", "~> 3.0.4"
 gem "pundit", "~> 1.1.0"
 gem "active_storage_validations", "~> 0.8.7"
+gem "coveralls", "~> 0.8.21", require: false
+gem 'simplecov', "~> 0.16.1", require: false
+
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
@@ -61,5 +64,4 @@ group :test do
   gem "webdrivers", "~> 4.2.0"
   gem "rspec-sidekiq", "~> 3.0.3"
   gem "pundit-matchers", "~> 1.6.0"
-  gem 'simplecov', require: false
 end

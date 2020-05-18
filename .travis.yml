@@ -1,27 +1,21 @@
-language: minimal
-sudo: required
+language: ruby
+rvm:
+  - 2.6.5
 
 services:
-  - docker
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.25.4
-
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - cp app.env.example app.env
-
-install:
-  - docker-compose pull
+  - postgresql
 
 before_script:
-  - docker-compose build
-  - docker-compose run --rm web yarn install --check-files
-  - docker-compose run --rm web rails db:prepare
+  - psql -c 'create database chatfuel_test;' -U postgres
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-  # - docker-compose run --rm web rubocop
-  - docker-compose run --rm web rspec
+  - bundle exec rspec
+
+after_success:
+  - coveralls
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

@@ -40,3 +40,4 @@ public/javascripts/
 
 spec/failed_examples.txt
 coverage
+cc-test-reporter
