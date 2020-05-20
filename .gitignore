@@ -43,3 +43,6 @@ spec/failed_examples.txt
 app/assets/javascripts/i18n/
 public/javascripts/
 chatfuel_*.gz
+
+app/assets/javascripts/i18n/
+public/javascripts/
