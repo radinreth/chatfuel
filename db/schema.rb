@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
   create_table "settings", force: :cascade do |t|
     t.text "incompleted_text"
     t.text "completed_text"
+  end
+  
+  create_table "quota", force: :cascade do |t|
+    t.string "platform_name", default: "messenger"
+    t.integer "threshold", default: 0
+    t.float "secure_zone", default: 0.75
+    t.string "on_reach_threshold", default: "delay"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -186,7 +193,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.bigint "site_id"
-    t.bigint "role_id", default: 1, null: false
+    t.bigint "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
