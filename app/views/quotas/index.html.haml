@@ -1,0 +1,26 @@
+= render partial: "shared/page_header", locals: { title: t(".quota"), link: nil }
+%span Max number of messages that allowed to broadcast to user.
+
+.mt-3
+  %span sent 10 in 100 ( 200 limitation )
+
+.mt-3
+  %span quota: 100
+  %strong block: 2%
+
+%div 
+  %p API detail
+
+  %ul
+    %li
+      Rate Limit:
+      - rate_limit = 'https://developers.facebook.com/docs/messenger-platform/reference/send-api'
+      = link_to rate_limit, rate_limit, target: '_blank'
+
+    %li
+      Block Rate:
+      - block_url = 'https://www.facebook.com/Owso-105474597800095/insights/?section=navMessages'
+      = link_to block_url, block_url, target: '_blank'
+      
+
+

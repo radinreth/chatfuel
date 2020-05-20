@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "name": "page_total_messaging_connections",
+      "period": "day",
+      "values": [
+        {
+          "value": "200",
+          "end_time": "<UTC_TIMESTAMP>"
+        }
+      ]
+    }
+  ]
+}
