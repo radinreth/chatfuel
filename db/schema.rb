@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.string "platform_name", default: "messenger"
     t.integer "threshold", default: 0
     t.float "secure_zone", default: 0.75
+    t.integer "total_sent", default: 0
     t.string "on_reach_threshold", default: "delay"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
