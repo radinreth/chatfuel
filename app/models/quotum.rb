@@ -12,4 +12,23 @@
 #  updated_at         :datetime         not null
 #
 class Quotum < ApplicationRecord
+  validate :ensure_threshold_gte_total_sent
+  validates :on_reach_threshold, inclusion: { in: %w(delay drop) }
+
+  def remain_size
+    threshold - total_sent
+  end
+
+  def sentable_size(max = 1000)
+    remain_size > max ? max : remain_size
+  end
+
+  def drop?
+    on_reach_threshold == "drop"
+  end
+
+  private
+    def ensure_threshold_gte_total_sent
+      errors.add(:total_sent, "Cannot sent ticket more than threshold") if total_sent > threshold
+    end
 end
