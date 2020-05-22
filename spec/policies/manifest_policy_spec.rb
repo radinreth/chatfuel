@@ -6,13 +6,13 @@ RSpec.describe ManifestPolicy do
   context "being an site_ombudsman" do
     let(:user) { build(:user, :site_ombudsman) }
 
-    it { is_expected.to forbid_action(:show) }
+    it { is_expected.to permit_action(:show) }
   end
 
   context "being a site_admin" do
     let(:user) { build(:user, :site_admin) }
 
-    it { is_expected.to forbid_action(:show) }
+    it { is_expected.to permit_action(:show) }
   end
 
   context "being a system admin" do
