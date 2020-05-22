@@ -28,7 +28,7 @@ gem "groupdate", "~> 5.0.0"
 gem "momentjs-rails", "~> 2.20.1"
 gem "bootstrap-daterangepicker-rails", "~> 3.0.4"
 gem "pundit", "~> 1.1.0"
-
+gem "active_storage_validations", "~> 0.8.7"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
@@ -39,6 +39,7 @@ group :development, :test do
   gem "sidekiq-scheduler", "~> 3.0.1"
   gem "rubocop-rails", "~> 2.4.2"
   gem "rubocop-performance", "~> 1.5.2"
+  gem "guard-rspec", require: false
 end
 
 group :development do
@@ -47,6 +48,7 @@ group :development do
   gem "spring", "~> 2.1.0"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "annotate", "~> 3.1.0"
+  gem "solargraph", "~> 0.38.5"
 end
 
 group :test do

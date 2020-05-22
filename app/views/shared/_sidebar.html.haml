@@ -29,6 +29,11 @@
         = link_to users_path do
           = fa_icon 'user'
           = t('sidebar.manage_user')
+    - if policy(:admin).show?
+      %li
+        = link_to settings_path do
+          = fa_icon 'cog'
+          = t('sidebar.setting')
     %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do
