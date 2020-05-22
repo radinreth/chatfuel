@@ -7,13 +7,10 @@
     .card-body
       = fa_icon "send"
       %span
-        = "Sent #{@quota.total_sent} in #{ (200 * @quota.threshold * 0.75).to_i }"
+        = "Queue: #{@queue.size}, Sent #{@quota.total_sent} in #{ (200 * @quota.threshold * 0.75).to_i }"
       
-      %span.formula
-        (facebook coef * total engages * margin)
-
+      %span.formula (facebook coef * total engages * margin)
       %p.note Note:
-
       %ul.note-detail
         %li Facebook coef: facebook coefficient (200)
         %li
@@ -22,7 +19,6 @@
 
 .mt-5
   %p.api-detail API Detail:
-
   %ul
     %li
       Rate Limit:
