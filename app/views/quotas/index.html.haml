@@ -3,16 +3,7 @@
   Max number of messages that allowed to broadcast to user.
 
 .mt-3
-
-  .on-reach-threshold
-    %p.title On reach threshold:
-    Delay
-    %label.switch
-      %input{ type: 'checkbox', checked: @quota.drop? }
-      %span.slider.round
-    Drop
-
-  .card.mt-3
+  .card
     .card-body
       = fa_icon "send"
       %span
