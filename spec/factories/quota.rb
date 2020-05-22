@@ -16,6 +16,6 @@ FactoryBot.define do
     platform_name { "MyString" }
     threshold { 1 }
     secure_zone { 1.5 }
-    on_reach_threshold { "MyString" }
+    on_reach_threshold { "delay" }
   end
 end
