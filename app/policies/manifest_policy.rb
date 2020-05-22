@@ -1,5 +1,5 @@
 class ManifestPolicy < Struct.new(:user, :manifest)
   def show?
-    true
+    user.system_admin?
   end
 end
