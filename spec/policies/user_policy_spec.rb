@@ -10,8 +10,8 @@ RSpec.describe UserPolicy do
   permissions :new? do
     let(:new_user) { build(:user) }
 
-    context "being an ombudsman" do
-      let(:user) { build(:user, :ombudsman) }
+    context "being an site_ombudsman" do
+      let(:user) { build(:user, :site_ombudsman) }
 
       it { is_expected.to forbid_action(:new) }
     end
@@ -32,8 +32,8 @@ RSpec.describe UserPolicy do
   permissions :create? do
     let(:new_user) { build(:user) }
 
-    context "being an ombudsman" do
-      let(:user) { build(:user, :ombudsman) }
+    context "being an site_ombudsman" do
+      let(:user) { build(:user, :site_ombudsman) }
 
       it { is_expected.to forbid_action(:create) }
     end
@@ -43,8 +43,8 @@ RSpec.describe UserPolicy do
 
       it { is_expected.to permit_action(:create) }
 
-      context "create ombudsman" do
-        let(:new_user) { build(:user, :ombudsman) }
+      context "create site_ombudsman" do
+        let(:new_user) { build(:user, :site_ombudsman) }
 
         it { is_expected.to permit_action(:create) }
       end
@@ -67,8 +67,8 @@ RSpec.describe UserPolicy do
 
       it { is_expected.to permit_action(:create) }
 
-      context "create ombudsman" do
-        let(:new_user) { build(:user, :ombudsman) }
+      context "create site_ombudsman" do
+        let(:new_user) { build(:user, :site_ombudsman) }
 
         it { is_expected.to permit_action(:create) }
       end
@@ -94,7 +94,7 @@ RSpec.describe UserPolicy do
       let(:user) { build(:user, :site_admin) }
 
       it "excludes system admin" do
-        expect(subject.roles).to eq([["ombudsman", "ombudsman"], ["site_admin", "site_admin"]])
+        expect(subject.roles).to eq([["site_ombudsman", "site_ombudsman"], ["site_admin", "site_admin"]])
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe UserPolicy do
       let(:user) { build(:user, :system_admin) }
 
       it "returns full roles" do
-        expect(subject.roles).to eq({ "ombudsman"=>0, "site_admin"=>1, "system_admin"=>2 })
+        expect(subject.roles).to eq({ "site_ombudsman"=>0, "site_admin"=>1, "system_admin"=>2 })
       end
     end
   end
@@ -110,8 +110,8 @@ RSpec.describe UserPolicy do
   permissions ".scope" do
     let(:new_user) { create(:user) }
 
-    context "ombudsman" do
-      let(:user) { build(:user, :ombudsman) }
+    context "site_ombudsman" do
+      let(:user) { build(:user, :site_ombudsman) }
 
       it "not includes new user" do
         expect(resolved_scope).not_to include(new_user)

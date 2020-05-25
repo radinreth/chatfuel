@@ -1,12 +1,25 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UsersController, type: :controller do
   setup_system_admin
-  
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+
+  context "html" do
+    describe "GET #index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  context "json" do
+    describe "GET :index" do
+      it "returns json" do
+        get :index, format: :json
+
+        expect(response.headers["Content-Type"]).to include("application/json")
+        expect(response.body).to include("site_ombudsman", "site_admin", "system_admin")
+      end
     end
   end
 
@@ -23,5 +36,4 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end
