@@ -64,12 +64,13 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
-<<<<<<< HEAD
   create_table "settings", force: :cascade do |t|
     t.text "incompleted_text"
     t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+  
   create_table "ratings", force: :cascade do |t|
     t.bigint "feedback_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -79,8 +80,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
   end
 
-=======
->>>>>>> Remove unused schema
   create_table "role_variables", force: :cascade do |t|
     t.bigint "role_id", null: false
     t.bigint "variable_id", null: false

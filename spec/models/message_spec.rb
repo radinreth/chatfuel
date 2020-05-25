@@ -33,7 +33,7 @@ RSpec.describe Message do
     context "existence" do
       it "create a new message if not exist" do
         expect {
-          described_class.create_or_return(content)
+          described_class.create_or_return("messenger", content)
         }.to(change { Message.count })
       end
 
@@ -41,7 +41,7 @@ RSpec.describe Message do
         create(:message, content: content)
 
         expect do
-          described_class.create_or_return(content)
+          described_class.create_or_return("messenger", content)
         end.not_to(change { Message.count })
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe Message do
 
       it "returns if incompleted" do
         expect do
-          described_class.create_or_return(content)
+          described_class.create_or_return("messenger", content)
         end.not_to(change { Message.count })
       end
 
@@ -61,7 +61,7 @@ RSpec.describe Message do
         create(:message, content: content, status: :completed)
 
         expect do
-          described_class.create_or_return(content)
+          described_class.create_or_return("messenger", content)
         end.to(change { Message.count })
       end
     end
