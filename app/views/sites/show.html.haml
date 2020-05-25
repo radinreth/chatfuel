@@ -1,4 +1,5 @@
-%h3= "#{@site.name}(#{@site.tracks_count})"
+= render partial: "shared/page_header", locals: { title: "#{@site.name}(#{@site.tracks_count})", link: nil }
+
 %span.text-hint Number of tracks by each district
 .mb-2
 

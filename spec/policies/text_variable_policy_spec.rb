@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe VoiceVariablePolicy do
+RSpec.describe TextVariablePolicy do
   subject { described_class.new(user, nil) }
 
   permissions :update? do

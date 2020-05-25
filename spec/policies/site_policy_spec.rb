@@ -6,8 +6,8 @@ RSpec.describe SitePolicy do
   let(:site) { build(:site) }
   let(:site_actions) { %i[index new edit update destroy] }
 
-  context "being a ombudsman" do
-    let(:user) { build(:user, :ombudsman) }
+  context "being a site_ombudsman" do
+    let(:user) { build(:user, :site_ombudsman) }
 
     it { is_expected.to forbid_actions(site_actions) }
   end
