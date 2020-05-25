@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+  
   create_table "ratings", force: :cascade do |t|
     t.bigint "feedback_id", null: false
     t.datetime "created_at", precision: 6, null: false
