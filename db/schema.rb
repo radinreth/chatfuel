@@ -64,13 +64,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.text "incompleted_text"
-    t.text "completed_text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-  
   create_table "ratings", force: :cascade do |t|
     t.bigint "feedback_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -91,6 +84,13 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.text "incompleted_text"
+    t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
