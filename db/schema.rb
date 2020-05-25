@@ -95,6 +95,15 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "feedback_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "variable_value_id", null: false
+    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
+    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
+  end
+
   create_table "role_variables", force: :cascade do |t|
     t.bigint "role_id", null: false
     t.bigint "variable_id", null: false
@@ -106,6 +115,13 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.text "incompleted_text"
+    t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -194,7 +210,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.bigint "site_id"
-    t.bigint "role_id"
+    t.bigint "role_id", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
