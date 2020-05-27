@@ -6,6 +6,6 @@ class TicketCollectionDecorator < BaseCollectionDecorator
   end
 
   def to_partial_path
-    'tickets/ticket'
+    "tickets/ticket"
   end
 end

@@ -1,6 +1,7 @@
 = render partial: "shared/page_header", locals: { title: "#{@site.name}(#{@site.tracks_count})", link: nil }
 
-%span.text-hint Number of tracks by each district
+%span.text-hint
+  = t(".title")
 .mb-2
 
 %ul

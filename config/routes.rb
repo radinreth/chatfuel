@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show]
-  resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
+  resources :dictionaries, only: [:index, :new, :create, :update] do
     put :batch_update, on: :collection
-    resources :values, only: [:destroy]
-    resources :roles, only: [:update]
   end
+
+  resources :reports, only: [:index]
 
   resources :reports, only: [:index]
   resources :sites do
@@ -44,7 +44,6 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:create] do
       collection do
         post "ivr", to: "feedbacks/ivr#create"
-        # post "chatbot", to: "feedbacks/chatbot#create"
       end
     end
 
@@ -62,4 +61,26 @@ Rails.application.routes.draw do
       put :template
     end
   end
+  
+  namespace :bots do
+
+    resources :voice_feedbacks, only: [:create]
+    resources :feedbacks, only: [:create]
+
+    resources :messages, only: [:create] do
+      collection do
+        post "ivr", to: "messages/ivr#create"
+        post "chatbot", to: "messages/chatbot#create"
+      end
+    end
+
+    # Tracking
+    resources :tracks, only: [:create] do
+      collection do
+        post "ivr", to: "tracks/ivr#create"
+        post "chatbot", to: "tracks/chatbot#create"
+      end
+    end
+  end
+
 end

@@ -1,33 +1,141 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  pagy:
+    item_name:
+      one: "item"
+      other: "items"
+    nav:
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Next&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      no_items: "No %{item_name} found"
+      single_page: "Displaying <b>%{count}</b> %{item_name}"
+      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
+    combo_nav_js: "Page %{page_input} of %{pages}"
+    items_selector_js: "Show %{items_input} %{item_name} per page"
+  copyright: Developed by 2020 InSTEDD
+  role: "Role: %{name}"
+  login_as: "Logged in as: %{as}"
+  sidebar:
+    home: Home
+    sites: Sites
+    dictionaries: Dictionaries
+    reports: Reports
+    users: Users
+    logout: Logout
+    signin: Signin
+  signin: Sign in
+  not_authorized: "You are not authorized"
+  created:
+    success: "Successfully created!"
+    fail: "Failed to create!"
+  updated:
+    success: "Successfully updated!"
+    fail: "Failed to update!"
+  deleted:
+    success: "Successfully deleted!"
+    fail: "Failed to delete!"
+  imported:
+    success: "Successfully imported!"
+    fail: "Failed to import!"
+  required:
+    file: "File required!"
+  new_dictionary: "New Dictionary"
+  new_site: "New Site"
+  update: Update
+  decorators:
+    concerns:
+      completed_status:
+        status: "Completed!"
+        description: "Your ticket is completed since %{datetime}"
+      invalid_status:
+        status: "Ticket is invalid or not exists!"
+        description: "Please try again later."
+      notified_status:
+        status: "Already notified!"
+        description: "Your ticket is completed & notified!"
+      picked_up_status:
+        status: "Already notified!"
+        description: "Your ticket is picked up!"
+      submitted_status:
+        status: "Already submitted!"
+        description: "Your ticket is submitted!"
+  site:
+    invalid_code: "Site code must be exactly 4 digits number"
+  variable:
+    invalid_name: "Only allows numbers or letters"
+    only_one_report_col: "Must be enable only one"
+  dictionaries:
+    index:
+      title: Dictionary
+      raw: Raw value
+      mapping: Mapping value
+      satisfied: Satisfied
+      wait: wait...
+      confirm: Are you sure?
+      add_pair: + Add pair
+    new:
+      new: New dictionary
+      create: Create dictionary
+    mark_dictionary_as_report_column:
+      report_column: "Report column"
+  homes:
+    show:
+      empty: Your inbox is empty
+      session_id: Session Id
+      type: Type
+      all: All messages
+  reports:
+    accessed_submitted_completed_line_chart:
+      no_data: No data
+    accessed_submitted_completed_summary_table:
+      accessed: Accessed
+      submitted: Submitted
+      completed: Completed
+      total: Total
+      average: Average
+    complaints_summary_table:
+      satisfied: Satisfied
+      disatisfied: Disatisfied
+      total: Total
+      average: Average
+    index:
+      complaints: Complaints
+  sites:
+    form:
+      enable?: Enable?
+    edit:
+      edit: Edit site
+    index:
+      title: Sites
+      name: Name
+      code: Code
+      track_count: Track count
+      action: Action
+      confirm: Are you sure?
+    new_import:
+      title: Import sites
+      import: Import
+    new:
+      title: + Import sites
+      new: New site
+    show:
+      title: Number of tracks by each district
+  users:
+    form:
+      enable: Enable
+    edit:
+      update: Update user
+    index:
+      users: Users
+      no: No.
+      email: Email
+      role: Role
+      action: Action
+    new:
+      create: Create user
+    show:
+      update: Update user
+  js:
+    updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
+    updates_success_title: Success!

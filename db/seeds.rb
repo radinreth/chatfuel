@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-paths = Rails.root.join('db', 'seed', '**', '*.rb')
+paths = Rails.root.join("db", "seed", "**", "*.rb")
 Dir[paths].each { |f| require f }
 
 %w[Variable Ticket Site Message Track].each do |model|

@@ -23,6 +23,9 @@ module Chatfuel
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = %w(en km)
+    config.middleware.use I18n::JS::Middleware
 
     config.generators do |generate|
       generate.test_framework :rspec, fixtures: false, helper_specs: false, routing_specs: false

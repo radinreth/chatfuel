@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -33,10 +35,10 @@
 #
 #  fk_rails_...  (role_id => roles.id)
 #
-require "rails_helper"
+require 'test_helper'
 
-RSpec.describe User, type: :model do
-  it { is_expected.to define_enum_for(:status).with_values(%i[enable disable]) }
-  it { is_expected.to have_many(:identities).dependent(:destroy) }
-  it { is_expected.to belong_to(:site).optional }
+class UserTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

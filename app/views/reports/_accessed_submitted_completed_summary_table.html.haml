@@ -1,12 +1,12 @@
-%table.table.table-sm{ style: 'font-size: 13px' }
+%table.table.table-sm{ style: "font-size: 13px" }
   %tr
     %td
-    %td Accessed
-    %td Submitted
-    %td Completed
+    %td= t(".accessed")
+    %td= t(".submitted")
+    %td= t(".completed")
 
   - [:total, :average].each do |group|
     %tr
-      %td= "#{group.to_s.titleize}:"
+      %td= t(".#{group.to_s}")
       - @goals.each do |goal|
         %td= goal.send(group)
