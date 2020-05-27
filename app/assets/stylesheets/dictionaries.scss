@@ -47,18 +47,9 @@
     }
   }
 
-  .btn-role {
-    @extend .btn;
-    @extend .btn-outline-secondary;
-    
-    & > img {
-      @extend .border; 
-      @extend .border-secondary;
-      @extend .rounded-circle;
-
-      width: 32px;
-      height: 32px;
-      background-color: #fff;
-    }
+  .btn-role > img {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
   }
 }
