@@ -2,7 +2,6 @@
 #
 # Table name: messages
 #
-<<<<<<< HEAD
 #  id            :bigint(8)        not null, primary key
 #  content_type  :string
 #  platform_name :string           default("")
@@ -10,14 +9,6 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  content_id    :integer(4)
-=======
-#  id           :bigint(8)        not null, primary key
-#  content_type :string
-#  status       :integer(4)       default("0")
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  content_id   :integer(4)
->>>>>>> Refactor message
 #
 # Indexes
 #
