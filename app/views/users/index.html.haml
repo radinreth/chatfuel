@@ -1,9 +1,9 @@
-= render partial: "shared/page_header", locals: { title: "Users", link: nil }
+= render partial: "shared/page_header", locals: { title: t(".users"), link: nil }
 
 %table.table
   %tr
-    %th No.
-    %th Email
-    %th Role
-    %th{colspan: 2} action
+    %th= t(".no")
+    %th= t(".email")
+    %th= t(".role")
+    %th{colspan: 2}= t(".action")
   = render @users

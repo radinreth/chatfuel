@@ -1,11 +1,11 @@
-= render partial: "shared/page_header", locals: { title: "Sites", link: link_to_new('site') }
+= render partial: "shared/page_header", locals: { title: t(".title"), link: link_to_new("site") }
 
 %table.table
   %tr
-    %th Name
-    %th Code
-    %th Tracks count
-    %th Action
+    %th= t(".name")
+    %th= t(".code")
+    %th= t(".track_count")
+    %th= t(".action")
 
     - @sites.each do |site|
       %tr
@@ -14,7 +14,7 @@
         %td= site.tracks_count
         %td
           .btn-group.btn-group-sm
-            = link_to fa_icon('pencil'), edit_site_path(site), class: "btn btn-outline-secondary" 
-            = link_to fa_icon('trash'), site_path(site), class: "btn btn-outline-secondary" , method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to fa_icon("pencil"), edit_site_path(site), class: "btn btn-outline-secondary" 
+            = link_to fa_icon("trash"), site_path(site), class: "btn btn-outline-secondary" , method: :delete, data: { confirm: t(".confirm") }
 
 != pagy_bootstrap_nav(@pagy)

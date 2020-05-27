@@ -13,9 +13,7 @@
 #  index_ratings_on_feedback_id        (feedback_id)
 #  index_ratings_on_variable_value_id  (variable_value_id)
 #
-FactoryBot.define do
-  factory :rating do
-    feedback { nil }
-    answer_variable { nil }
-  end
+class Rating < ApplicationRecord
+  belongs_to :feedback
+  belongs_to :variable_value
 end

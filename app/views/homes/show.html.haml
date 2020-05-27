@@ -1,26 +1,22 @@
+= render "empty" if no_messages
 
-- if @messages.count.zero?
-  .d-flex.h-100.justify-content-center.align-items-center.flex-column
-    = image_tag "empty.png", width: "400"
-    %p Your inbox is empty.
-- else
-  = render partial: "shared/page_header", locals: { title: "All messages", link: nil }
+= render partial: "shared/page_header", locals: { title: t(".all"), link: nil }
 
-  %table.table.table-striped
-    %thead
+%table.table.table-striped
+  %thead
+    %tr
+      %th{:scope => "col"}= t(".session_id")
+      %th{:scope => "col"}= t(".type")
+      - current_user.role.variables.each do |variable|
+        %th{:scope => "col"}= variable.name
+
+  %tbody
+    - @messages.each do |message|
       %tr
-        %th{:scope => "col"} Session id
-        %th{:scope => "col"} Type
-        - current_user.role.variables.each do |variable|
-          %th{:scope => "col"}= variable.name
-
-    %tbody
-      - @messages.each do |message|
-        %tr
-          %td{align: "center"}= message.session_id
-          %td{align: "center"}= message.type
-          - current_user.role.variables.pluck(:name).each do |var_name|
-            %td{align: "center"}
-              - message.steps.each do |step|
-                = valueize(step.value.display_value) if var_name == step.value.variable_name
-  != pagy_bootstrap_nav(@pagy)
+        %td{align: "center"}= message.session_id
+        %td{align: "center"}= message.platform_name
+        - current_user.role.variables.pluck(:name).each do |var_name|
+          %td{align: "center"}
+            - message.steps.each do |step|
+              = valueize(step.value.display_value) if var_name == step.value.variable_name
+!= pagy_bootstrap_nav(@pagy)

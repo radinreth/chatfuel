@@ -4,10 +4,15 @@ class PickedUpStatus
   end
 
   def status
-    'បានទទួល'
+    I18n.t(".status", scope: i18n_scope)
   end
 
   def description
-    "ឯកសារបានទទួលរួចហើយ នៅថ្ងៃ #{@decorator.picked_up_at || @decorator.created_at}"
+    I18n.t(".description", datetime: @decorator.picked_up_at, scope: i18n_scope)
   end
+
+  private
+    def i18n_scope
+      [:decorators, :concerns, :completed_status]
+    end
 end

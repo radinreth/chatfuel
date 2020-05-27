@@ -1,11 +1,17 @@
 #homes-show {
   th {
-      font-size: 0.8em;
-      vertical-align: middle;
-      text-align: center;
-    }
+    font-size: 0.8em;
+    vertical-align: middle;
+    text-align: center;
+  }
 
   td {
     font-size: 0.7em;
+  }
+
+  .empty {
+    & > img {
+      width: 400px;
+    }
   }
 }

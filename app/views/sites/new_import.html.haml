@@ -1,5 +1,5 @@
-%h3.mb-3 Import sites
+%h3.mb-3= t(".title")
 
 = simple_form_for :site, url: import_sites_path do |f|
   = f.input :file, as: :file, label: false
-  = f.submit "Import", class: 'btn btn-primary'
+  = f.submit t(".import"), class: "btn btn-primary"

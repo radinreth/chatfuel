@@ -6,6 +6,6 @@ class StepCollectionDecorator < BaseCollectionDecorator
   end
 
   def to_partial_path
-    'steps/step'
+    "steps/step"
   end
 end

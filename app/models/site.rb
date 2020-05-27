@@ -20,11 +20,12 @@ class Site < ApplicationRecord
   # associations
   has_many :tracks, dependent: :destroy
   has_many :users
+  has_many :feedbacks
 
   # validations
   validates :name, presence: true
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
-                      message: "site code must be exactly 4 digits number" }
+                      message: I18n.t("site.invalid_code") }
 end

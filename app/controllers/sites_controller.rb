@@ -28,29 +28,35 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     if @site.save
-      redirect_to @site, status: :moved_permanently, notice: "site created successfully!"
+      redirect_to @site, status: :moved_permanently, notice: t("created.success")
     else
-      render :new, status: :unprocessable_entity, alert: "save fail"
+      render :new, status: :unprocessable_entity, alert: t("created.fail")
     end
   end
 
   def import
-    tempfile = file_params[:file]
-    ::SiteService.import(tempfile.path)
-    redirect_to sites_path, status: :moved_permanently, notice: "Successfully imported"
+    begin
+      tempfile = file_params[:file]
+      ::SiteService.import(tempfile.path)
+      redirect_to sites_path, status: :moved_permanently, notice: t("imported.success")
+    rescue
+      redirect_to sites_path, status: :moved_permanently, alert: t("imported.fail")
+    end
   end
 
   def update
     authorize @site
     if @site.update(site_params)
-      redirect_to @site, status: :moved_permanently, notice: "site updated successfully!"
+      redirect_to @site, status: :moved_permanently, notice: t("updated.success")
+    else
+      render :edit, alert: t("updated.fail")
     end
   end
 
   def destroy
     authorize @site
     @site.destroy
-    redirect_to sites_path, status: :moved_permanently, notice: "destroy successfully"
+    redirect_to sites_path, status: :moved_permanently, notice: t("deleted.success")
   end
 
   private
@@ -62,7 +68,7 @@ class SitesController < ApplicationController
       begin
         file_params
       rescue
-        redirect_to(sites_path, status: :moved_permanently, alert: "File required!") && return
+        redirect_to(sites_path, status: :moved_permanently, alert: t("required.file")) && return
       end
     end
 

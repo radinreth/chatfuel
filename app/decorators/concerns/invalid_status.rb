@@ -4,10 +4,15 @@ class InvalidStatus
   end
 
   def status
-    "លេខកូដឯកសារមិនមានក្នុងប្រព័ន្ធ"
+    I18n.t(".status", scope: i18n_scope)
   end
 
   def description
-    "សូមត្រួតពិនិត្យ ហើយបញ្ចូលម្ដងទៀតនៅពេលក្រោយ"
+    I18n.t(".description", scope: i18n_scope)
   end
+
+  private
+    def i18n_scope
+      [:decorators, :concerns, :invalid_status]
+    end
 end

@@ -4,6 +4,10 @@ module DictionaryHelper
   end
 
   def link_to_new(resource)
-    link_to "New #{resource}", send(:"new_#{resource}_path"), class: "btn btn-primary"
+    link_to t("new_#{resource}"), send(:"new_#{resource}_path"), class: "btn btn-primary"
+  end
+
+  def active_if(bool)
+    toggle_class_name("active", bool)
   end
 end
