@@ -20,10 +20,11 @@ class BaseCollectionDecorator
   def average
     avg = period.duration_in_day > 0 ? (total / period.duration_in_day) : 100
 
-    number_to_percentage(avg, precision: 1)
+    number_to_percentage(avg*100, precision: 1)
   end
 
   def data
+    return [] if collection.count.zero?
     collection.group_by_period(period.name, :created_at, range: period.date_range).count
   end
 end

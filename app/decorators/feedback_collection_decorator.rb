@@ -1,9 +1,9 @@
 class FeedbackCollectionDecorator < BaseCollectionDecorator
   def collection
-    Feedback.send(@sym)
+    StepValue.send(@sym)
   end
 
   def to_partial_path
-    'tickets/ticket'
+    "tickets/ticket"
   end
 end

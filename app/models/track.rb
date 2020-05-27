@@ -17,6 +17,7 @@
 #  index_tracks_on_ticket_id  (ticket_id)
 #
 class Track < ApplicationRecord
+  # associations
   belongs_to :site, counter_cache: true, optional: true
   belongs_to :step, optional: true
   belongs_to :ticket, optional: true
@@ -26,4 +27,10 @@ class Track < ApplicationRecord
   def site_code
     code[0...4]
   end
+
+  def variable_name
+    "tracking_ticket"
+  end
+
+  alias_attribute :display_value, :code
 end

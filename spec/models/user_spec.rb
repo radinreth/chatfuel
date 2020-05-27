@@ -19,19 +19,24 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role_id                :bigint(8)        default("1"), not null
 #  site_id                :bigint(8)
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_role_id               (role_id)
 #  index_users_on_site_id               (site_id)
 #
-require 'rails_helper'
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
+#
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  it { is_expected.to define_enum_for(:role).with_values(%i[site_ombudsman site_admin system_admin]) }
-  it { is_expected.to define_enum_for(:status).with_values(%i[enable disable]) }
+  it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) }
   it { is_expected.to have_many(:identities).dependent(:destroy) }
   it { is_expected.to belong_to(:site).optional }
 end

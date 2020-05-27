@@ -1,10 +1,10 @@
-require 'csv'
-require_relative 'time_parser'
+require "csv"
+require "time_parser"
 
 module Seed
   class Track
     def self.generate!
-      CSV.foreach('db/seed/assets/tracks.csv', headers: true) do |row|
+      CSV.foreach("db/seed/assets/tracks.csv", headers: true) do |row|
         hash = row.to_hash
 
         site_ids = ::Site.ids

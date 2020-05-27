@@ -2,33 +2,40 @@
 #
 # Table name: messages
 #
-#  id           :bigint(8)        not null, primary key
-#  content_type :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  content_id   :integer(4)
+#  id            :bigint(8)        not null, primary key
+#  content_type  :string
+#  platform_name :string           default("")
+#  status        :integer(4)       default("0")
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  content_id    :integer(4)
 #
 # Indexes
 #
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
 class Message < ApplicationRecord
-  has_many :steps, dependent: :destroy
+  enum status: %i[incomplete completed]
+
+  # associations
+  has_many :steps, dependent: :destroy, autosave: true
   belongs_to :content, polymorphic: true, dependent: :destroy
 
-  default_scope -> { order(updated_at: 'desc') }
+  # scopes
+  default_scope -> { order(updated_at: "desc") }
   delegate :type, :session_id, to: :content
 
   # validations
   validates :content, presence: true
 
-  def self.create_or_return(content)
+  # methods
+  def self.create_or_return(platform_name, content)
     message = find_by(content: content)
-    message = create(content: content) if !message || message.completed?
+    message = create(platform_name: platform_name, content: content) if !message || message&.completed?
     message
   end
 
-  def completed?
-    steps.where(act: 'done', value: 'true').present?
+  def self.complete_all
+    all.map(&:completed!)
   end
 end

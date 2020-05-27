@@ -13,11 +13,20 @@
   .result-map {
     float: left;
     min-height: 380px;
-    background-color: #ccc;
+    min-width: 689px;
+    background-color: #e6e6e6;
+  }
+
+  .rating {
+    td { 
+      text-align: center;
+      padding: 0 15px;
+      border: 0;
+     }
   }
 
   .active {
-    background-color: #ccc;
+    // background-color: #e6e6e6;
   }
 
   .arrow-shape {
