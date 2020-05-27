@@ -13,11 +13,6 @@
 #  index_ratings_on_feedback_id        (feedback_id)
 #  index_ratings_on_variable_value_id  (variable_value_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (feedback_id => feedbacks.id)
-#  fk_rails_...  (variable_value_id => variable_values.id)
-#
 FactoryBot.define do
   factory :rating do
     feedback { nil }

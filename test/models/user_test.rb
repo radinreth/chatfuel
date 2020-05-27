@@ -21,13 +21,19 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role_id                :bigint(8)        default("1"), not null
 #  site_id                :bigint(8)
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_role_id               (role_id)
 #  index_users_on_site_id               (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
 #
 require 'test_helper'
 

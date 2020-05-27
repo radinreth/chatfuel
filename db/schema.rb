@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_064153) do
+ActiveRecord::Schema.define(version: 2020_05_20_095547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,25 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
+  create_table "quota", force: :cascade do |t|
+    t.string "platform_name", default: "messenger"
+    t.integer "threshold", default: 0
+    t.float "secure_zone", default: 0.75
+    t.integer "total_sent", default: 0
+    t.string "on_reach_threshold", default: "delay"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "feedback_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "variable_value_id", null: false
+    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
+    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
+  end
+
   create_table "role_variables", force: :cascade do |t|
     t.bigint "role_id", null: false
     t.bigint "variable_id", null: false
@@ -92,11 +111,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.text "completed_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "variable_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
-    t.index ["variable_id"], name: "index_ratings_on_variable_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -123,6 +137,12 @@ ActiveRecord::Schema.define(version: 2020_04_14_064153) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_steps_on_message_id"
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string "content", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "text_messages", force: :cascade do |t|
