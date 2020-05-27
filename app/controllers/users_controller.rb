@@ -22,20 +22,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def create
-    @user = User.new(user_params)
-
-    authorize @user
-    # TODO: remove #skip_confirmation!
-    @user.skip_confirmation!
-    byebug
-    if @user.save
-      redirect_to users_path, status: :moved_permanently, notice: t("created.success")
-    else
-      render :new, alert: t("created.fail")
-    end
-  end
-
   def update
     authorize @user
     @user.skip_reconfirmation!
