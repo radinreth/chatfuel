@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_022152) do
+ActiveRecord::Schema.define(version: 2020_04_14_064153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,33 @@ ActiveRecord::Schema.define(version: 2020_03_13_022152) do
     t.integer "content_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
+    t.string "platform_name", default: ""
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "feedback_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "variable_value_id", null: false
+    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
+    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
+  end
+
+  create_table "role_variables", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_role_variables_on_role_id"
+    t.index ["variable_id"], name: "index_role_variables_on_variable_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -79,9 +105,16 @@ ActiveRecord::Schema.define(version: 2020_03_13_022152) do
     t.index ["name"], name: "index_sites_on_name"
   end
 
+  create_table "step_values", force: :cascade do |t|
+    t.bigint "step_id", null: false
+    t.bigint "variable_value_id", null: false
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_step_values_on_site_id"
+    t.index ["step_id"], name: "index_step_values_on_step_id"
+    t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
+  end
+
   create_table "steps", force: :cascade do |t|
-    t.string "act", null: false
-    t.string "value"
     t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -89,20 +122,11 @@ ActiveRecord::Schema.define(version: 2020_03_13_022152) do
   end
 
   create_table "text_messages", force: :cascade do |t|
-    t.bigint "messenger_user_id"
+    t.string "messenger_user_id", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
     t.string "profile_pic_url"
-    t.string "timezone"
-    t.string "locale"
-    t.string "source"
-    t.string "last_seen"
-    t.string "signed_up"
-    t.string "sessions"
-    t.string "last_visited_block_name"
-    t.string "last_visited_block_id"
-    t.string "last_clicked_button_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -149,19 +173,29 @@ ActiveRecord::Schema.define(version: 2020_03_13_022152) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.bigint "site_id"
+    t.bigint "role_id", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["site_id"], name: "index_users_on_site_id"
+  end
+
+  create_table "variable_values", force: :cascade do |t|
+    t.string "raw_value", null: false
+    t.string "mapping_value", default: ""
+    t.integer "status", default: 0
+    t.bigint "variable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 
   create_table "variables", force: :cascade do |t|
     t.string "type", null: false
     t.string "name"
-    t.string "value"
-    t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["type", "name", "value"], name: "index_variables_on_type_and_name_and_value", unique: true
+    t.boolean "report_enabled", default: false
   end
 
   create_table "voice_messages", force: :cascade do |t|
@@ -176,5 +210,12 @@ ActiveRecord::Schema.define(version: 2020_03_13_022152) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
+  add_foreign_key "role_variables", "roles"
+  add_foreign_key "role_variables", "variables"
+  add_foreign_key "step_values", "sites"
+  add_foreign_key "step_values", "steps"
+  add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"
+  add_foreign_key "users", "roles"
+  add_foreign_key "variable_values", "variables"
 end

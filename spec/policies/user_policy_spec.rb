@@ -87,31 +87,11 @@ RSpec.describe UserPolicy do
     end
   end
 
-  context "#roles" do
-    let(:new_user) { nil }
-
-    context "site admin" do
-      let(:user) { build(:user, :site_admin) }
-
-      it "excludes system admin" do
-        expect(subject.roles).to eq([["site_ombudsman", "site_ombudsman"], ["site_admin", "site_admin"]])
-      end
-    end
-
-    context "system admin" do
-      let(:user) { build(:user, :system_admin) }
-
-      it "returns full roles" do
-        expect(subject.roles).to eq({ "site_ombudsman"=>0, "site_admin"=>1, "system_admin"=>2 })
-      end
-    end
-  end
-
   permissions ".scope" do
-    let(:new_user) { create(:user) }
+    let(:new_user) { create(:user, :site_ombudsman) }
 
     context "site_ombudsman" do
-      let(:user) { build(:user, :site_ombudsman) }
+      let(:user) { create(:user, :site_ombudsman) }
 
       it "not includes new user" do
         expect(resolved_scope).not_to include(new_user)
@@ -119,7 +99,7 @@ RSpec.describe UserPolicy do
     end
 
     context "site admin" do
-      let(:user) { build(:user, :site_admin) }
+      let(:user) { create(:user, :site_admin) }
 
       it "includes created user" do
         expect(resolved_scope).to include(new_user)
@@ -127,7 +107,7 @@ RSpec.describe UserPolicy do
     end
 
     context "system admin" do
-      let(:user) { build(:user, :system_admin) }
+      let(:user) { create(:user, :system_admin) }
 
       it "includes created user" do
         expect(resolved_scope).to include(new_user)

@@ -1,0 +1,16 @@
+<% if @variable.errors.any? %>
+  $("#report-enabled-col<%= j(@variable.id)%>").prop("checked", <%= j(@revert) %>)
+  toastr.error('Report enabled {<%= j(@variable.errors.full_messages.to_sentence) %>}', 'Fail!')
+<% else %>
+  toastr.success('Report column updated successful', 'success!')
+<% end%>
+
+console.log(<%= @enabled %>)
+
+<% if @enabled == true %>
+  $(".satisfy-col<%= j(@variable.id)%>")
+    .removeClass("invisible")
+<% else %>
+  $(".satisfy-col<%= j(@variable.id)%>")
+    .addClass("invisible")
+<% end%>

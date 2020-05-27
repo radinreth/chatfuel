@@ -8,6 +8,6 @@ class SubmittedStatus
   end
 
   def description
-    "ឯកសារបានដាក់ពាក្យ នៅថ្ងៃ #{@decorator.submitted_at}"
+    "ឯកសារបានដាក់ពាក្យ នៅថ្ងៃ #{@decorator.submitted_at || @decorator.created_at}"
   end
 end

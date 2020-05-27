@@ -3,6 +3,11 @@ require "rails_helper"
 RSpec.describe UsersController, type: :controller do
   setup_system_admin
 
+  before do
+    create(:role, :site_ombudsman)
+    create(:role, :site_admin)
+  end
+
   context "html" do
     describe "GET #index" do
       it "returns http success" do

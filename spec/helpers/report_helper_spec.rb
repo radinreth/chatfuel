@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ReportHelper do
   let(:content) { build(:text_message) }
   let(:message) { build(:message, content: content) }
@@ -5,7 +7,8 @@ RSpec.describe ReportHelper do
   let(:steps) { StepCollectionDecorator.new :accessed, period }
 
   before do
-    create(:step, act: "owso_options", message: message)
+    # create(:step, act: "owso_options", message: message)
+    create(:step, :accessed)
   end
 
   it "#chart_data" do

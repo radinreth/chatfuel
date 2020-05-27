@@ -8,6 +8,6 @@ class PickedUpStatus
   end
 
   def description
-    "ឯកសារបានទទួលរួចហើយ នៅថ្ងៃ #{@decorator.picked_up_at}"
+    "ឯកសារបានទទួលរួចហើយ នៅថ្ងៃ #{@decorator.picked_up_at || @decorator.created_at}"
   end
 end

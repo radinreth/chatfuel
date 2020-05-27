@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :step do
-    act { FFaker::Name::suffix }
+    association :message, :text
+
+    trait :accessed do
+      association :value, factory: :variable_value
+    end
   end
 end

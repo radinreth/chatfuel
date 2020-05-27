@@ -16,19 +16,44 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show]
-  resources :voice_messages, only: [:create]
-  resources :dictionaries, only: [:index, :new, :create, :update]
-  resources :tracks, only: [:create]
-  resources :reports, only: [:index]
-
-  resources :sites do
-    post "import", on: :collection
+  resources :dictionaries, only: [:index, :new, :create, :update, :destroy] do
+    put :batch_update, on: :collection
+    resources :values, only: [:destroy]
+    resources :roles, only: [:update]
   end
 
-  resources :messages, only: [:create] do
+  resources :reports, only: [:index]
+  resources :sites do
     collection do
-      post :continue
-      post :done
+      get :new_import
+      post :import
+    end
+  end
+
+  namespace :bots do
+    # Message
+    resources :messages, only: [:create] do
+      collection do
+        post "ivr", to: "messages/ivr#create"
+        post "chatbot", to: "messages/chatbot#create"
+        post "chatbot/done", to: "messages/chatbot#done"
+      end
+    end
+
+    # Feedback
+    resources :feedbacks, only: [:create] do
+      collection do
+        post "ivr", to: "feedbacks/ivr#create"
+        # post "chatbot", to: "feedbacks/chatbot#create"
+      end
+    end
+
+    # Track
+    resources :tracks, only: [:create] do
+      collection do
+        post "ivr", to: "tracks/ivr#create"
+        post "chatbot", to: "tracks/chatbot#create"
+      end
     end
   end
 

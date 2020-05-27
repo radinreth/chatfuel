@@ -2,11 +2,13 @@
 #
 # Table name: messages
 #
-#  id           :bigint(8)        not null, primary key
-#  content_type :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  content_id   :integer(4)
+#  id            :bigint(8)        not null, primary key
+#  content_type  :string
+#  platform_name :string           default("")
+#  status        :integer(4)       default("0")
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  content_id    :integer(4)
 #
 # Indexes
 #

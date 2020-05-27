@@ -21,23 +21,29 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role_id                :bigint(8)        default("1"), not null
 #  site_id                :bigint(8)
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_role_id               (role_id)
 #  index_users_on_site_id               (site_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
+#
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable
-  enum role: %i[site_ombudsman site_admin system_admin]
-  enum status: %i[enable disable]
+  enum status: %i[disable enable]
 
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :identities, dependent: :destroy
   belongs_to :site, optional: true
+  belongs_to :role
+
+  delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role
 end

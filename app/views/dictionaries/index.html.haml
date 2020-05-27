@@ -1,27 +1,64 @@
 = render "shared/page_header", title: "Dictionary", link: link_to_new('dictionary')
 
-%div
-  %ul.dict-list
-    - @variables.select('name').distinct.each_with_index do |v, index|
-      %li.dict-item{ 'data-name': v.name, class: toggle_class_name('active', index.zero?) }
-        = link_to v.name.titleize, '#'
-        .arrow-shape.arrow-shape__top
-        .arrow-shape.arrow-shape__bottom
+.row
+  .col-3
+    %div.d-none{ style: "height: 520px; overflow-y: scroll"}
+    #v-pills-tab.nav.flex-column.nav-pills
+      - @variables.each_with_index do |v, index|
+        = link_to v.name, "#v-pills-#{v.name}", class: "nav-link #{toggle_class_name("active", index.zero?)}", "data-toggle" => "pill"
+  .col-9
+    #v-pills-tabContent.tab-content
+      - @variables.each_with_index do |variable, index|
+        .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
+          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline', "data-variable_id": variable.id }, remote: false do |f|
+            .card.w-100
+              .card-body
+                - if current_user.system_admin?
+                  .btn-group.btn-group-sm.mb-3
+                    - Role.all.each do |role|
+                      %button.btn-role.btn.btn-outline-secondary{ class: toggle_class_name("active", variable.roles.include?(role)), "data-role_id": role.id, "data-variable_id": variable.id }
+                        = image_tag "#{role.name}.png", size: "32x32", class: "border border-secondary rounded-circle", style: "background-color: #fff"
+                        = role.name.capitalize
 
-  .result-map
-    - @variables.select('name').distinct.each_with_index do |v, index|
-      %table.table{ class: "dict-item-#{v.name} #{ toggle_class_name('d-none', !index.zero?) }" }
-        %tr
-          %th Value
-          %th Text
-          %th Action
-        - @variables.order(value: :asc).each do |sub|
-          - if sub.name == v.name
-            %tr
-              %td{ colspan: 3 }
-                = simple_form_for sub, url: dictionary_path(sub), html: { class: 'form-inline'}, remote: true do |f|
-                  = f.input :value, input_html: { id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, readonly: true, label: false
-                  = f.input :text, input_html: { name: 'variable[text]', id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
-                  = f.submit 'Update', name: "commit_#{sub.id}", class: 'btn btn-primary'
+                  .report-column.form-check.d-inline
+                    = f.input_field :report_enabled, as: :boolean, checked: variable.report_enabled, class: "form-check-input report-enabled-col", "data-variable": variable.id, id: "report-enabled-col#{variable.id}"
+                    %label.form-check-label.d-inline{for: "dictionaries_report_enabled"} report column
 
+                %table.table{ class: "dict-item-#{variable.name}", "data-variable_id": variable.id }
+                  %tr
+                    %th Raw value
+                    %th Mapping value
+                    %th.text-center{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
+                      Satisfied
+
+                  - # data rows 
+                  - variable.values.each do |var_value|
+                    %tr
+                      %td
+                        = f.input :id, as: :hidden, input_html: { value: variable.id, name: "variable_value[][variable_id]" }   
+                        .input-group
+                          .input-group-prepend
+                            .input-group-text
+                              = link_to "X", dictionary_value_path(variable, var_value), method: :delete, data: { disable_with: "wait...", confirm: "Are you sure?" }, remote: true
+                          = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: 'form-control string required mr-sm-2', label: false, readonly: true
+                      %td  
+                        = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: 'mr-sm-2' }, label: false
+                      %td{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
+                        .form-check.form-check-inline
+                          %table.rating
+                            %tr
+                              %td= image_tag "disatisfied.png", size: "26x26"
+                              %td= image_tag "normal.png", size: "24x24"
+                              %td= image_tag "satisfied.png", size: "24x24"
+                            %tr
+                              %td= f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", checked: var_value.disatisfied?
+                              %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
+                              %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
+                              
+
+                  %tr
+                    %td{ colspan: 2 }
+                      = link_to "+ Add pair", "#", class: "btn btn-add", "data-name": variable.name
+                    %td
+                      = f.submit "Update", class: "btn btn-primary pull-right"
 .clearfix

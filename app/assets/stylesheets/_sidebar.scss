@@ -34,8 +34,8 @@ a:focus {
 }
 
 #sidebar {
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 220px;
+  max-width: 220px;
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
@@ -91,7 +91,7 @@ a:focus {
   ul li.active>a,
   a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #3449a7;// #6d7fcc;
   }
 
   .switch-language {
