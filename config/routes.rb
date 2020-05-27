@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require "sidekiq/web"
+require_relative "whitelist"
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
@@ -15,10 +16,11 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resource :manifest, only: [:show]
-  resources :dictionaries, only: [:index, :new, :create, :update] do
-    put :batch_update, on: :collection
-  end
+  resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
+  resources :voice_messages, only: [:create]
+  resources :dictionaries, only: [:index, :new, :create, :update]
+  resources :tracks, only: [:create]
+  resources :reports, only: [:index]
 
   resources :reports, only: [:index]
 
