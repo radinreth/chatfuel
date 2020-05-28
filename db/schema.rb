@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_04_17_030807) do
+ActiveRecord::Schema.define(version: 2020_05_20_095547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +37,19 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.integer "status", default: 0
-    t.string "media_url"
     t.bigint "step_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "difficulty"
+    t.string "additional_info"
+    t.string "overall"
+    t.string "efficiency"
+    t.string "working_time"
+    t.string "attitude"
+    t.string "provide_info"
+    t.string "process"
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_feedbacks_on_site_id"
     t.index ["step_id"], name: "index_feedbacks_on_step_id"
   end
 
@@ -65,26 +72,6 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
-  create_table "role_variables", force: :cascade do |t|
-    t.bigint "role_id", null: false
-    t.bigint "variable_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["role_id"], name: "index_role_variables_on_role_id"
-    t.index ["variable_id"], name: "index_role_variables_on_variable_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "settings", force: :cascade do |t|
-    t.text "incompleted_text"
-    t.text "completed_text"
-  end
-  
   create_table "quota", force: :cascade do |t|
     t.string "platform_name", default: "messenger"
     t.integer "threshold", default: 0
