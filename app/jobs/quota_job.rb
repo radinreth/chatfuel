@@ -15,7 +15,7 @@ class QuotaJob < ApplicationJob
         connection["values"][0]["value"]
       end
     rescue StandardError => e
-      p e.message
+      Rails.logger.info e.message
     end
   end
 

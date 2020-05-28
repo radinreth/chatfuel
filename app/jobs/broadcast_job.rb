@@ -5,7 +5,7 @@ class BroadcastJob < ApplicationJob
     RestClient.post url, params(ticket)
     ticket.notified!
     rescue StandardError => e
-      p "Cannot notified ticket: #{ticket.it} with exception: #{e.message}"
+      Rails.logger.info "Cannot notified ticket: #{ticket.code} with exception: #{e.message}"
   end
 
   private
