@@ -1,0 +1,31 @@
+= render partial: "shared/page_header", locals: { title: t(".quota"), link: nil }
+%span.quota-explain
+  Max number of messages that allowed to broadcast to user.
+
+.mt-3
+  .card
+    .card-body
+      = fa_icon "send"
+      %span
+        = "Queue: #{@queue.size}, Sent #{@quota.total_sent} in #{ (200 * @quota.threshold * 0.75).to_i }"
+      
+      %span.formula (facebook coef * total engages * margin)
+      %p.note Note:
+      %ul.note-detail
+        %li Facebook coef: facebook coefficient (200)
+        %li
+          = "Total enagate: The number of people your business can send messages to (#{@quota.threshold})"
+        %li Margin: secure zone (75%)
+
+.mt-5
+  %p.api-detail API Detail:
+  %ul
+    %li
+      Rate Limit:
+      - rate_limit = 'https://developers.facebook.com/docs/messenger-platform/reference/send-api'
+      = link_to 'Facebook developer', rate_limit, target: '_blank', style: 'text-decoration: underline'
+
+    %li
+      Block Rate:
+      - block_url = 'https://www.facebook.com/Owso-105474597800095/insights/?section=navMessages'
+      = link_to 'OWSO', block_url, target: '_blank', style: 'text-decoration: underline'

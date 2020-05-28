@@ -9,5 +9,3 @@
       = f.input :status, as: :boolean, label: t(".enable"), input_html: { checked: @user.enable? }, wrapper_html: { class: "mb-3" }
       = f.input :email, readonly: true
   = f.submit class: "btn btn-primary"
-
--# = javascript_pack_tag 'user_roles'

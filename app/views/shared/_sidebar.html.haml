@@ -44,6 +44,10 @@
         = link_to templates_path do
           = fa_icon 'envelope'
           = t('sidebar.templates')
+      %li{ class: toggle_class_name("active", controller_name == 'quotas') }
+        = link_to quotas_path do
+          = fa_icon 'tachometer'
+          = t('sidebar.quotas')
     %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do

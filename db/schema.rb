@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_030807) do
+ActiveRecord::Schema.define(version: 2020_05_20_095547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,19 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.integer "status", default: 0
-    t.string "media_url"
     t.bigint "step_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "difficulty"
+    t.string "additional_info"
+    t.string "overall"
+    t.string "efficiency"
+    t.string "working_time"
+    t.string "attitude"
+    t.string "provide_info"
+    t.string "process"
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_feedbacks_on_site_id"
     t.index ["step_id"], name: "index_feedbacks_on_step_id"
   end
 
@@ -62,6 +70,25 @@ ActiveRecord::Schema.define(version: 2020_04_17_030807) do
     t.integer "status", default: 0
     t.string "platform_name", default: ""
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "quota", force: :cascade do |t|
+    t.string "platform_name", default: "messenger"
+    t.integer "threshold", default: 0
+    t.float "secure_zone", default: 0.75
+    t.integer "total_sent", default: 0
+    t.string "on_reach_threshold", default: "delay"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "feedback_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "variable_value_id", null: false
+    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
+    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
   end
 
   create_table "role_variables", force: :cascade do |t|
