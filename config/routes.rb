@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
   resources :tickets
   resources :templates
+  resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
   resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :update] do

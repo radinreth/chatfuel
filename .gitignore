@@ -38,10 +38,11 @@ app.env
 app/assets/javascripts/i18n/
 chatfuel_*.gz
 public/javascripts/
-
 spec/failed_examples.txt
-
-
 # i18n-js
+app/assets/javascripts/i18n/
+public/javascripts/
+chatfuel_*.gz
+
 app/assets/javascripts/i18n/
 public/javascripts/

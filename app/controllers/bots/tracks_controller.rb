@@ -11,6 +11,14 @@ module Bots
     end
 
     private
+      def set_site
+        @site = Site.find_by(code: params[:code][0...4])
+      end
+
+      def set_ticket
+        @ticket ||= Ticket.find_by(code: normalized_code)
+      end
+
       def set_track
         @track = Track.create(code: params[:code], site: @site, ticket: @ticket)
       end
@@ -57,24 +65,10 @@ module Bots
       end
 
       def normalized_code
-        begin
-          code = params[:code]
-          code.insert(4, "-") if code[4] != "-"
-          code
-        rescue
-          code
-        end
-      end
-
-      def refined_code
         code = params[:code]
-        code[4] = "-" if code[4] != "-"
+        code.insert(4, "-") if code[4] != "-"
         code
-      end
-
-      def refined_code
-        code = params[:code]
-        code[4] = "-" if code[4] != "-"
+      rescue
         code
       end
   end
