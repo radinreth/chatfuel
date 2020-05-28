@@ -25,8 +25,11 @@ class Ticket < ApplicationRecord
   has_one :message, through: :step
 
   # scopes
-  scope :completed_with_session, -> { completed.joins(:message) }
+  scope :completed_with_session, -> { completed.joins(:message).distinct }
 
   # validations
+  validates :code, presence: true
   validates :status, inclusion: { in: statuses.keys }
+
+  delegate :platform_name, to: :message
 end

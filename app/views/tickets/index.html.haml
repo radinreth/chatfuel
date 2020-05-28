@@ -1,0 +1,19 @@
+%h1 Tickets
+
+= link_to "New ticket", new_ticket_path, class: "btn btn-primary mb-3"
+
+= simple_form_for Ticket.new do |f|
+  %table.table
+    %tr
+      %th code
+      %th status
+      %th created_at
+      %th
+
+    - @tickets.each do |ticket|
+      %tr
+        %td= ticket.code
+        %td
+          = f.input :status, as: :select, collection: Ticket.statuses, selected: Ticket.statuses[ticket.status], label: false, input_html: { class: "ticket-status", "data-id": ticket.id }
+        %td= ticket.created_at
+        %td= link_to "x", ticket_path(ticket), method: :delete, data: { confirm: "are you sure?" }

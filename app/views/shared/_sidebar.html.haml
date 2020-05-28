@@ -34,6 +34,16 @@
         = link_to settings_path do
           = fa_icon 'cog'
           = t('sidebar.setting')
+    - if policy(:admin).show?
+      %li{ class: toggle_class_name("active", controller_name == 'tickets') }
+        = link_to tickets_path do
+          = fa_icon 'envelope'
+          = t('sidebar.tickets')
+    - if policy(:admin).show?
+      %li{ class: toggle_class_name("active", controller_name == 'templates') }
+        = link_to templates_path do
+          = fa_icon 'envelope'
+          = t('sidebar.templates')
     %li
       - if user_signed_in?
         = link_to destroy_user_session_path, method: :delete do
