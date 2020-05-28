@@ -38,6 +38,7 @@ class DictionariesController < ApplicationController
   end
 
   def batch_update
+
     updates = []
     options = { status: :moved_permanently }
 
@@ -55,6 +56,15 @@ class DictionariesController < ApplicationController
   def destroy
     @variable = Variable.find(params[:id])
     @variable.destroy
+  end
+
+  def batch_update
+    batch_params.each do |_param|
+      id, text = _fetch(_param)
+      update_variable(id, text)
+    end
+
+    redirect_to dictionaries_path, status: :moved_permanently, notice: "update successful!"
   end
 
   def batch_update

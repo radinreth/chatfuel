@@ -1,6 +1,6 @@
 # TODO split model feedback into text, voice
 class FeedbacksController < ApplicationController
-  skip_before_action :authenticate_user_without_guisso!
+  skip_before_action :authenticate_user_with_guisso!
   skip_before_action :verify_authenticity_token
 
   before_action :set_dictionary
@@ -21,7 +21,6 @@ class FeedbacksController < ApplicationController
   private
     def set_dictionary
       klass = "#{params[:klass]}Variable".constantize
-
       @dictionary ||= klass.create_with(value: params[:value]).find_or_create_by(variable_params)
     end
 

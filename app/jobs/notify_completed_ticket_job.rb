@@ -3,8 +3,8 @@ class NotifyCompletedTicketJob < ApplicationJob
 
   # TODO: use system setting instead of predefine setting in config/sidekiq.yml
   def perform
-    completed = Ticket.completed_with_session
+    completed = Ticket.completed_with_session.limit(20)
 
-    MessengerService.notify(completed)
+    NotifierService.notify(completed)
   end
 end
