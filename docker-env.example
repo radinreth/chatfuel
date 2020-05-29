@@ -1,0 +1,12 @@
+# Rails configuration
+DB_HOST=
+DB_USER=
+DB_PWD=
+RAILS_MAX_THREADS=
+REDIS_URL=
+GUISSO_CLIENT_ID=
+GUISSO_CLIENT_SECRET=
+SENTRY_DSN=
+
+# Shell with unicode support
+LANG=C.UTF-8
