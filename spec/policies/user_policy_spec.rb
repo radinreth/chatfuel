@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe UserPolicy do
-  subject { described_class.new(user, new_user) }
+  subject { described_class.new(user, record) }
 
   let(:resolved_scope) do
     described_class::Scope.new(user, User.all).resolve
   end
 
   permissions :new? do
-    let(:new_user) { build(:user) }
+    let(:record) { build(:user) }
 
     context "being an site_ombudsman" do
       let(:user) { build(:user, :site_ombudsman) }
@@ -30,7 +30,7 @@ RSpec.describe UserPolicy do
   end
 
   permissions :create? do
-    let(:new_user) { build(:user) }
+    let(:record) { build(:user) }
 
     context "being an site_ombudsman" do
       let(:user) { build(:user, :site_ombudsman) }
@@ -41,22 +41,20 @@ RSpec.describe UserPolicy do
     context "being a site admin" do
       let(:user) { build(:user, :site_admin) }
 
-      it { is_expected.to permit_action(:create) }
-
       context "create site_ombudsman" do
-        let(:new_user) { build(:user, :site_ombudsman) }
+        let(:record) { build(:user, :site_ombudsman) }
 
         it { is_expected.to permit_action(:create) }
       end
 
       context "create site admin" do
-        let(:new_user) { build(:user, :site_admin) }
+        let(:record) { build(:user, :site_admin) }
 
-        it { is_expected.to permit_action(:create) }
+        it { is_expected.to forbid_action(:create) }
       end
 
       context "create system admin" do
-        let(:new_user) { build(:user, :system_admin) }
+        let(:record) { build(:user, :system_admin) }
 
         it { is_expected.to forbid_action(:create) }
       end
@@ -65,22 +63,14 @@ RSpec.describe UserPolicy do
     context "being a system admin" do
       let(:user) { build(:user, :system_admin) }
 
-      it { is_expected.to permit_action(:create) }
-
       context "create site_ombudsman" do
-        let(:new_user) { build(:user, :site_ombudsman) }
+        let(:record) { build(:user, :site_ombudsman) }
 
         it { is_expected.to permit_action(:create) }
       end
 
       context "create site admin" do
-        let(:new_user) { build(:user, :site_admin) }
-
-        it { is_expected.to permit_action(:create) }
-      end
-
-      context "create system admin" do
-        let(:new_user) { build(:user, :system_admin) }
+        let(:record) { build(:user, :site_admin) }
 
         it { is_expected.to permit_action(:create) }
       end
@@ -89,14 +79,6 @@ RSpec.describe UserPolicy do
 
   permissions ".scope" do
     let(:new_user) { create(:user, :site_ombudsman) }
-
-    context "site_ombudsman" do
-      let(:user) { create(:user, :site_ombudsman) }
-
-      it "not includes new user" do
-        expect(resolved_scope).not_to include(new_user)
-      end
-    end
 
     context "site admin" do
       let(:user) { create(:user, :site_admin) }
