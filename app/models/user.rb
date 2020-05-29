@@ -46,8 +46,8 @@ class User < ApplicationRecord
 
   has_many :identities, dependent: :destroy
   belongs_to :site, optional: true
-  belongs_to :role
+  belongs_to :role, optional: true
 
-  delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role
-  delegate :name, to: :role, prefix: true
+  delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role, allow_nil: true
+  delegate :name, to: :role, prefix: true, allow_nil: true
 end

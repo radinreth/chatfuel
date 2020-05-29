@@ -39,4 +39,5 @@ RSpec.describe User, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[enable disable]) }
   it { is_expected.to have_many(:identities).dependent(:destroy) }
   it { is_expected.to belong_to(:site).optional }
+  it { is_expected.to belong_to(:role).optional }
 end
