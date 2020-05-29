@@ -37,8 +37,7 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable 
-  enum role: %i[ombudsman site_admin system_admin]
+  # :lockable, :timeoutable, :trackable
   enum status: %i[enable disable]
 
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -49,5 +48,5 @@ class User < ApplicationRecord
   belongs_to :role, optional: true
 
   delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role, allow_nil: true
-  delegate :name, to: :role, prefix: true, allow_nil: true
+  delegate :name, :position_level, to: :role, prefix: true, allow_nil: true
 end

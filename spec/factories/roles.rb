@@ -11,15 +11,15 @@ FactoryBot.define do
   factory :role do
 
     trait :site_ombudsman do
-      name { "site ombudsman" }
+      name { "site_ombudsman" }
     end
 
     trait :site_admin do
-      name { "site admin" }
+      name { "site_admin" }
     end
 
     trait :system_admin do
-      name { "system admin" }
+      name { "system_admin" }
     end
   end
 end

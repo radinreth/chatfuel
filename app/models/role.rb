@@ -8,24 +8,25 @@
 #  updated_at :datetime         not null
 #
 class Role < ApplicationRecord
+  ROLE_NAMES = %w(site_ombudsman site_admin system_admin)
+
   # associations
   has_many :users
   has_many :role_variables
   has_many :variables, through: :role_variables
 
-  def grade
-    { "site ombudsman": 0, "site admin": 1, "system admin": 2 }[name.to_sym]
+  # validations
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, inclusion: { in: ROLE_NAMES,
+                                message: "%{value} is not a valid role name" }
+
+  def position_level
+    ROLE_NAMES.index name
   end
 
-  def system_admin?
-    name == "system admin"
-  end
-
-  def site_admin?
-    name == "site admin"
-  end
-
-  def site_ombudsman?
-    name == "site ombudsman"
+  ROLE_NAMES.each do |role_name|
+    define_method "#{role_name}?".to_sym do
+      role_name == name
+    end
   end
 end
