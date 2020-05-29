@@ -41,8 +41,13 @@ module Chatfuel
     end
 
     config.active_job.queue_adapter = :sidekiq
+    config.filter_parameters << :password
     config.to_prepare do
       Devise::SessionsController.layout "devise"
     end
   end
+end
+
+Raven.configure do |config|
+  config.dsn = ENV["SENTRY_DSN"]
 end
