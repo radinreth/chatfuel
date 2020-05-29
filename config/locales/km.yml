@@ -16,6 +16,9 @@ km:
   copyright: បង្កើតឡើងនៅឆ្នាំ ២០២០ InSTEDD
   role: "តួនាទី៖ %{name}"
   login_as: "បានចូលជា៖ %{as}"
+  oops: អីយ៉ា!
+  no_role_or_site: អ្នកមិនត្រូវបានចាត់តាំងតួនាទី ឬ ការិយាល័យណាមួយទេ
+  contact_admin: សូមទាក់ទងអ្នកគ្រប់គ្រង
   sidebar:
     home: ទំព័រដើម
     sites: ការិយាល័យ

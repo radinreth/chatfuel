@@ -16,6 +16,9 @@ en:
   copyright: Developed by 2020 InSTEDD
   role: "Role: %{name}"
   login_as: "Logged in as: %{as}"
+  oops: Oops!
+  no_role_or_site: Currently, You are not assigned any role or site.
+  contact_admin: Please contact administrator.
   sidebar:
     home: Home
     sites: Sites
