@@ -4,7 +4,7 @@
 #
 #  id            :bigint(8)        not null, primary key
 #  content       :string           default("")
-#  platform_name :string           not null
+#  platform_name :string           default("0")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

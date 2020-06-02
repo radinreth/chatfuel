@@ -1,9 +1,21 @@
 %h1 Templates
 = link_to "New template", new_template_path, class: "btn btn-primary mb-3"
 
-- @templates.each do |t|
-  .card.mb-3
-    .card-body
-      = link_to "Edit", edit_template_path(t), class: "card-link"
-    .card-body
-      = t.content
+.row
+  - @templates.each do |t|
+    .col-4
+      .card.mb-3
+        .card-body
+          - icons = { 'messenger'=> 'facebook-square', 'telegram' => 'telegram', 'verboice' => 'phone-square' }
+          %h5.mb-4.card-title
+            = fa_icon icons[t.platform_name]
+            = t.platform_name.humanize
+          - if t.audio.attached?
+            = audio_tag rails_blob_url(t.audio), controls: true, class: "d-block mb-3 audio-player-preview"
+          %p
+            = t.content
+        .card-footer
+          = link_to edit_template_path(t), class: "btn btn-sm btn-outline-secondary mr-1" do
+            = fa_icon "pencil"
+          = link_to template_path(t), method: :delete, "data-confirm": "are you sure?", class: "btn btn-sm btn-outline-danger" do
+            = fa_icon "times"
