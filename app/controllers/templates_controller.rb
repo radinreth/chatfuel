@@ -40,6 +40,6 @@ class TemplatesController < ApplicationController
     end
 
     def template_params
-      params.require(:template).permit(:content, :platform_name, :audio)
+      params.require(:template).permit(:content, :platform_name, :audio, :status)
     end
 end
