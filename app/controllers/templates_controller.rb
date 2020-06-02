@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = Template.all
+    @templates = Template.order(platform_name: :asc)
     authorize @templates
   end
 
@@ -22,7 +22,9 @@ class TemplatesController < ApplicationController
   def create
     @template = Template.new(template_params)
     if @template.save
-      redirect_to templates_path, status: :moved_permanently
+      redirect_to templates_path, status: :moved_permanently, notice: t("created.success")
+    else
+      render :new, status: :unprocessable_entity, alert: t("created.fail")
     end
   end
 
@@ -38,6 +40,6 @@ class TemplatesController < ApplicationController
     end
 
     def template_params
-      params.require(:template).permit(:content)
+      params.require(:template).permit(:content, :platform_name, :audio)
     end
 end

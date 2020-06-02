@@ -1,3 +1,5 @@
 = simple_form_for @template do |f|
+  = f.input :platform_name, as: :select, collection: ::Template.platform_names, selected: @template.platform_value
+  = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
   = f.input :content
   = f.submit
