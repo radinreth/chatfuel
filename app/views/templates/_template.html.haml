@@ -1,9 +1,8 @@
 .col-4
   .card.mb-3
     .card-body
-      - icons = { 'messenger'=> 'facebook-square', 'telegram' => 'telegram', 'verboice' => 'phone-square' }
       %h5.mb-4.card-title
-        = fa_icon icons[template.platform_name]
+        = fa_icon icon_name(template.platform_name)
         = template.platform_name.humanize
       - if template.audio.attached?
         = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
@@ -12,5 +11,5 @@
     .card-footer
       = link_to edit_template_path(template), class: "btn btn-sm btn-outline-secondary mr-1" do
         = fa_icon "pencil"
-      = link_to template_path(template), method: :delete, "data-confirm": "are you sure?", class: "btn btn-sm btn-outline-danger" do
+      = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-sm btn-outline-danger" do
         = fa_icon "times"
