@@ -2,10 +2,13 @@
 = link_to t(".new"), new_template_path, class: "btn btn-primary mb-3"
 
 %h5= t(".incomplete")
-.row= render @templates.incomplete
+.row.card-deck
+  = render @templates.incomplete
 
 %h5= t(".complete")
-.row= render @templates.completed
+.row.card-deck
+  = render @templates.completed
 
 %h5= t(".invalid")
-.row= render @templates.incorrect
+.row.card-deck
+  = render @templates.incorrect
