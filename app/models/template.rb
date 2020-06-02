@@ -19,6 +19,7 @@ class Template < ApplicationRecord
   # validations
   validates :content, presence: true
   validates :status, uniqueness: { scope: :platform_name }
+  validates :platform_name, presence: true
   validates :platform_name, inclusion: {  in: %w(messenger telegram verboice),
                                           message: "%{value} is not valid platform name" }
 
