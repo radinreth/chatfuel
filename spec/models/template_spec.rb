@@ -16,15 +16,24 @@ RSpec.describe Template, type: :model do
   it { is_expected.to validate_presence_of(:content) }
   it { is_expected.to define_enum_for(:status).with_values(incomplete: "0", completed: "1", incorrect: "2").backed_by_column_of_type(:string) }
 
-  it "#platform_value" do
-    template = build(:template)
+  describe "methods" do
+    let(:template) { build(:template) }
 
-    expect(template.platform_value).to eq 0
+    it "#platform_value" do
+      expect(template.platform_value).to eq 0
+    end
+
+    it "#status_value" do
+      template.completed!
+
+      expect(template.status_value).to eq "1"
+    end
+
+    it ".platform_names" do
+      platform_names = [["Messenger", "MessengerTemplate"], ["Telegram", "TelegramTemplate"], ["Verboice", "VerboiceTemplate"]]
+      expect(described_class.platform_names).to eq platform_names
+    end
   end
 
-  it "#status_value" do
-    template = build(:template, status: :completed)
-
-    expect(template.status_value).to eq "1"
-  end
+  
 end
