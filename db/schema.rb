@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(version: 2020_05_29_100113) do
     t.string "content", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "platform_name", default: "0"
     t.string "status", default: "0"
+    t.string "type", null: false
   end
 
   create_table "text_messages", force: :cascade do |t|

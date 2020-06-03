@@ -9,9 +9,15 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-FactoryBot.define do
-  factory :template do
-    content { "My template" }
-    type { "MessengerTemplate" }
+class TelegramTemplate < Template
+  def self.model_name
+    Template.model_name
+  end
+  
+  def platform_value
+    1
+  end
+  def human_name
+    "telegram"
   end
 end

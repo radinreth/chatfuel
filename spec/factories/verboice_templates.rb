@@ -10,8 +10,7 @@
 #  updated_at :datetime         not null
 #
 FactoryBot.define do
-  factory :template do
-    content { "My template" }
-    type { "MessengerTemplate" }
+  factory :verboice_template do
+    
   end
 end
