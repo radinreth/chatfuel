@@ -1,8 +1,8 @@
 .col-sm-6.col-md-3.card.mb-3.px-0
   .card-body
     %h5.mb-4.card-title
-      = image_tag template.platform_name, size: "32x32"
-      = template.platform_name.humanize
+      = image_tag template.human_name, size: "32x32"
+      = template.human_name.capitalize
     - if template.audio.attached?
       = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
     %p= template.content

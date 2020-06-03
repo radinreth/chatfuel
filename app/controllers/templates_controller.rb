@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = Template.order(platform_name: :asc)
+    @templates = Template.order(type: :asc)
     authorize @templates
   end
 
@@ -40,6 +40,6 @@ class TemplatesController < ApplicationController
     end
 
     def template_params
-      params.require(:template).permit(:content, :platform_name, :audio, :status)
+      params.require(:template).permit(:content, :type, :audio, :status)
     end
 end
