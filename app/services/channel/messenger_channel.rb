@@ -1,6 +1,6 @@
 module Channel
   class MessengerChannel < BaseChannel
-    def send
+    def send_message
       RestClient.post(url, params, content_type: "application/json")
       Rails.logger.debug "sent: #{url} #{params}"
     end

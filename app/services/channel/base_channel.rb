@@ -6,10 +6,10 @@ module Channel
       @ticket = ticket
     end
 
-    def send
+    def send_message
       return false if ENV["ENABLE_FB_NOTIFY"] != "enable"
 
-      platform.send
+      platform.send_message
       ticket.notified!
     end
 
