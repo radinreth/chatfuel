@@ -1,7 +1,7 @@
 :dynamic: true
 :schedule:
   completed_ticket:
-    cron: ['0 * * * *', first_in: '0s']
+    cron: ['* * * * *', first_in: '0s']
     class: NotifyCompletedTicketJob
     description: "For tickets that are completed will be notified by messenger"
   quota:

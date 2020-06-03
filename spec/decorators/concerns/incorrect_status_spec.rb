@@ -1,4 +1,4 @@
-RSpec.describe PickedUpStatus do
+RSpec.describe IncorrectStatus do
   let(:ticket) { build(:ticket) }
   let(:decorator) { TicketDecorator.new(ticket) }
 

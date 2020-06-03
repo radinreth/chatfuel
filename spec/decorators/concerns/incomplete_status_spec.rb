@@ -1,4 +1,4 @@
-RSpec.describe SubmittedStatus do
+RSpec.describe IncompleteStatus do
   let(:ticket) { build(:ticket) }
   let(:decorator) { TicketDecorator.new(ticket) }
 
