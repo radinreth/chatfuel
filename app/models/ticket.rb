@@ -26,6 +26,7 @@ class Ticket < ApplicationRecord
 
   # scopes
   scope :completed_with_session, -> { completed.joins(:message).distinct }
+  scope :completed_in_time_range, -> { completed_with_session.where("DATE(messages.last_interaction_at) > DATE(?)", ENV["FB_MESSAGE_QUOTA_IN_DAY"].to_i.days.ago) }
 
   # validations
   validates :code, presence: true

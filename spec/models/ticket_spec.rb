@@ -35,16 +35,17 @@ RSpec.describe Ticket, type: :model do
   end
 
   context "scopes" do
-    let(:incomplete) { create(:ticket, status: :incomplete) }
-    let(:completed) { create(:ticket, status: :completed) }
+    let(:recent_message) { build(:message, :text, last_interaction_at: 1.days.ago) }
+    let(:recent_step) { build(:step, message: recent_message) }
+    let(:recent_ticket) { build(:ticket, :completed) }
 
-    let(:text_message) { build(:text_message) }
-    let(:message) { build(:message, content: text_message) }
-    let(:step) { build(:step, message: message) }
+    let(:late_message) { build(:message, :text, last_interaction_at: 10.days.ago) }
+    let(:late_step) { build(:step, message: late_message) }
+    let(:late_ticket) { build(:ticket, :completed) }
 
     before do
-      create(:track, step: step, ticket: incomplete)
-      create(:track, step: step, ticket: completed)
+      create(:track, step: recent_step, ticket: recent_ticket)
+      create(:track, step: late_step, ticket: late_ticket)
     end
 
     it ".count" do
@@ -52,7 +53,11 @@ RSpec.describe Ticket, type: :model do
     end
 
     it ".completed_with_session" do
-      expect(described_class.completed_with_session).to match_array([completed])
+      expect(described_class.completed_with_session).to match_array([recent_ticket, late_ticket])
+    end
+
+    it ".completed_in_time_range" do
+      expect(described_class.completed_in_time_range).to match_array([recent_ticket])
     end
   end
 
