@@ -13,5 +13,10 @@ FactoryBot.define do
   factory :template do
     content { "My template" }
     type { "MessengerTemplate" }
+
+    trait :incomplete do
+      status { :incomplete }
+      content { "your ticket is incomplete" }
+    end
   end
 end
