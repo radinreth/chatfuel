@@ -27,7 +27,7 @@ RSpec.describe TemplatesController, type: :controller do
 
   it "POST :create" do
     expect do
-      post :create, params: { template: { content: "new template" } }
+      post :create, params: { template: { content: "new template", type: "MessengerTemplate" } }
     end.to change { Template.count }.by(1)
   end
 

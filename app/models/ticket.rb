@@ -6,9 +6,9 @@
 #  actual_completed_at :date
 #  code                :string           not null
 #  completed_at        :date
-#  picked_up_at        :date
+#  incomplete_at       :date
+#  incorrect_at        :date
 #  status              :integer(4)       default("0")
-#  submitted_at        :date
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
@@ -17,7 +17,7 @@
 #  index_tickets_on_code  (code)
 #
 class Ticket < ApplicationRecord
-  enum status: %i[submitted completed notified picked_up]
+  enum status: %i[incomplete completed incorrect notified]
 
   # associations
   has_one :track, dependent: :destroy
@@ -31,5 +31,5 @@ class Ticket < ApplicationRecord
   validates :code, presence: true
   validates :status, inclusion: { in: statuses.keys }
 
-  delegate :platform_name, to: :message
+  delegate :platform_name, to: :message, allow_nil: true
 end

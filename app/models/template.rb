@@ -4,18 +4,34 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  content    :string           default("")
+#  status     :string           default("0")
+#  type       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class Template < ApplicationRecord
+  enum status: { incomplete: "0", completed: "1", incorrect: "2" }
+
+  # associations
+  has_one_attached :audio
+
+  # validations
   validates :content, presence: true
-  before_create :only_one_template
+  validates :status, uniqueness: { scope: :type }
 
-  private
-    def only_one_template
-      return unless Template.exists?
+  def platform_value
+    0
+  end
 
-      errors.add(:base, "multiple templates is not allowed")
-      throw :abort
-    end
+  def self.platform_names
+    [
+      ["Messenger", "MessengerTemplate"],
+      ["Telegram", "TelegramTemplate"],
+      ["Verboice", "VerboiceTemplate"]
+    ]
+  end
+
+  def status_value
+    self.class.statuses[status]
+  end
 end

@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :message do
+    platform_name { "Messenger" }
+    
     trait :text do
       association :content, factory: :text_message
     end

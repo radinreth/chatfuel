@@ -2,33 +2,9 @@ class BroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(ticket)
-    RestClient.post url, params(ticket)
-    ticket.notified!
-    rescue StandardError => e
-      Rails.logger.info "Cannot notified ticket: #{ticket.code} with exception: #{e.message}"
+    channel = Channel::BaseChannel.get(ticket.platform)
+    channel.send_message ticket
+  rescue StandardError => e
+    Rails.logger.info "Cannot notified ticket: #{ticket.code} with exception: #{e.message}"
   end
-
-  private
-    def url
-      # move to ENV
-      # share with read_insight
-      host = "https://graph.facebook.com"
-      path = "v6.0/me/messages"
-      token = ENV["FB_PAGE_TOKEN"]
-
-      @url ||= "#{host}/#{path}?access_token=#{token}"
-    end
-
-    # TODO: response with pre-defined template
-    def params(ticket)
-      {
-        message_type: "RESPONSE",
-        recipient: {
-          id: ticket.message.session_id
-        },
-        message: {
-          text: "#{ticket.code} is completed!"
-        }
-      }
-    end
 end
