@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title owso | InSTEDD iLab Southeast Asia
     = csrf_meta_tags
     = csp_meta_tag
@@ -9,15 +9,38 @@
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
     = javascript_include_tag "application"
   %body{ id: css_class_name }
-    .wrapper
-      = render "shared/sidebar"
-      #content
-        .clearfix
-        = render "shared/notify_message"
-        = yield
+    #wrapper
+      / Sidebar
+      = render "shared/sb-admin/sidebar"
+      / Content Wrapper
+      #content-wrapper.d-flex.flex-column
+        / Main Content
+        #content
+          = render "shared/sb-admin/topbar"
+          .container-fluid
+            = render "shared/sb-admin/page_heading"
+            = render "shared/sb-admin/earnings"
+            = render "shared/sb-admin/earnings_overview"
+            -# = render "shared/sb-admin/project_cards"
+        = render "shared/sb-admin/footer"
 
-    = javascript_include_tag "i18n"
-    = javascript_include_tag "i18n/translations", skip_pipeline: true
-    :javascript
-      I18n.defaultLocale = "#{I18n.default_locale}";
-      I18n.locale = "#{I18n.locale}";
+
+
+
+
+
+
+
+
+    -# .wrapper
+    -#   = render "shared/sidebar"
+    -#   #content
+    -#     .clearfix
+    -#     = render "shared/notify_message"
+    -#     = yield
+
+    -# = javascript_include_tag "i18n"
+    -# = javascript_include_tag "i18n/translations", skip_pipeline: true
+    -# :javascript
+    -#   I18n.defaultLocale = "#{I18n.default_locale}";
+    -#   I18n.locale = "#{I18n.locale}";

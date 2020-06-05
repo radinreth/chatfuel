@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   guisso_for :user
 
   root "homes#show"
+  get :dashboard, to: "home#show"
+  get :home, to: "home#show"
 
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
