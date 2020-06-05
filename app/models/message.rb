@@ -27,6 +27,8 @@ class Message < ApplicationRecord
 
   # validations
   validates :content, presence: true
+  validates :platform_name, inclusion: {  in: %w(Messenger Telegram Verboice),
+                                          message: "%{value} is not a valid platform name" }
 
   # methods
   def self.create_or_return(platform_name, content)

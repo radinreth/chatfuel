@@ -1,8 +1,8 @@
-module Channel
+module Channels
   class MessengerChannel < BaseChannel
-    def send
-      RestClient.post(url, params, content_type: "application/json")
-      Rails.logger.debug "sent: #{url} #{params}"
+    def send_message(ticket)
+      RestClient.post(url, params(ticket), content_type: "application/json")
+      Rails.logger.info "Sent: #{url} #{params}"
     end
 
     private
@@ -10,7 +10,8 @@ module Channel
         @uri ||= "https://graph.facebook.com/v6.0/me/messages?access_token=#{ENV["FB_PAGE_TOKEN"]}"
       end
 
-      def params
+      def params(ticket)
+        template = response_template ticket
         {
           messaging_type: "MESSAGE_TAG",
           tag: "CONFIRMED_EVENT_UPDATE",
@@ -18,7 +19,7 @@ module Channel
             id: ticket.message.session_id
           },
           message: {
-            text: text_message
+            text: text_message(template)
           }
         }
       end

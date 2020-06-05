@@ -1,4 +1,4 @@
-class PickedUpStatus
+class IncompleteStatus
   def initialize(decorator)
     @decorator = decorator
   end
@@ -8,11 +8,11 @@ class PickedUpStatus
   end
 
   def description
-    I18n.t(".description", datetime: @decorator.picked_up_at, scope: i18n_scope)
+    I18n.t(".description", datetime: @decorator.incomplete_at, scope: i18n_scope)
   end
 
   private
     def i18n_scope
-      [:decorators, :concerns, :completed_status]
+      [:decorators, :concerns, :submitted_status]
     end
 end

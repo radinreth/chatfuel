@@ -38,6 +38,7 @@ en:
   deleted:
     success: "Successfully deleted!"
     fail: "Failed to delete!"
+    confirm: "Are you sure?"
   imported:
     success: "Successfully imported!"
     fail: "Failed to import!"
@@ -139,6 +140,13 @@ en:
       create: Create user
     show:
       update: Update user
+  templates:
+    index:
+      title: Templates
+      new: New template
+      incomplete: Incomplete
+      complete: Complete
+      invalid: Invalid
   js:
     updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
     updates_success_title: Success!

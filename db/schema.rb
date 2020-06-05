@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_095547) do
+ActiveRecord::Schema.define(version: 2020_06_03_035403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,8 @@ ActiveRecord::Schema.define(version: 2020_05_20_095547) do
     t.string "content", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "0"
+    t.string "type", null: false
   end
 
   create_table "text_messages", force: :cascade do |t|
@@ -158,12 +160,12 @@ ActiveRecord::Schema.define(version: 2020_05_20_095547) do
   create_table "tickets", force: :cascade do |t|
     t.string "code", null: false
     t.integer "status", default: 0
-    t.date "submitted_at"
     t.date "completed_at"
     t.date "actual_completed_at"
-    t.date "picked_up_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "incomplete_at"
+    t.date "incorrect_at"
     t.index ["code"], name: "index_tickets_on_code"
   end
 

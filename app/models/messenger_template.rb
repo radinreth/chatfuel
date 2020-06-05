@@ -9,14 +9,16 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-FactoryBot.define do
-  factory :template do
-    content { "My template" }
-    type { "MessengerTemplate" }
+class MessengerTemplate < Template
+  def self.model_name
+    Template.model_name
+  end
 
-    trait :incomplete do
-      status { :incomplete }
-      content { "your ticket is incomplete" }
-    end
+  def platform_value
+    0
+  end
+
+  def human_name
+    "messenger"
   end
 end
