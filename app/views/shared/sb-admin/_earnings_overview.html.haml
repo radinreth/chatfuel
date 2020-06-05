@@ -1,0 +1,86 @@
+.row
+  / Area Chart
+  -# .col-xl-8.col-lg-7
+  -#   .card.shadow.mb-4
+  -#     / Card Header - Dropdown
+  -#     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+  -#       %h6.m-0.font-weight-bold.text-primary Earnings Overview
+  -#       .dropdown.no-arrow
+  -#         %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+  -#           %i.fas.fa-ellipsis-v.fa-sm.fa-fw.text-gray-400
+  -#         .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in{"aria-labelledby" => "dropdownMenuLink"}
+  -#           .dropdown-header Dropdown Header:
+  -#           %a.dropdown-item{:href => "#"} Action
+  -#           %a.dropdown-item{:href => "#"} Another action
+  -#           .dropdown-divider
+  -#           %a.dropdown-item{:href => "#"} Something else here
+  -#     / Card Body
+  -#     .card-body
+  -#       .chart-area
+  -#         %canvas#myAreaChart
+  / Pie Chart
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      / Card Header - Dropdown
+      .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+        .h5.m-0.font-weight-bold.text-primary Total User Visit (Each Function)
+        .dropdown.no-arrow
+          %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %i.fas.fa-ellipsis-v.fa-sm.fa-fw.text-gray-400
+          .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in{"aria-labelledby" => "dropdownMenuLink"}
+            .dropdown-header Dropdown Header:
+            %a.dropdown-item{:href => "#"} Action
+            %a.dropdown-item{:href => "#"} Another action
+            .dropdown-divider
+            %a.dropdown-item{:href => "#"} Something else here
+      / Card Body
+      .card-body
+        .chart-pie.pt-4.pb-2
+          %canvas#myPieChart
+        .mt-4.text-center.small
+          %span.mr-2
+            %i.fas.fa-circle.text-primary
+            Direct
+          %span.mr-2
+            %i.fas.fa-circle.text-success
+            Social
+          %span.mr-2
+            %i.fas.fa-circle.text-info
+            Referral
+
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      / Card Header - Dropdown
+      .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+        .h5.m-0.font-weight-bold.text-primary Total User Feedbacks (Overall OWSO Service Delivery)
+        .dropdown.no-arrow
+          %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %i.fas.fa-ellipsis-v.fa-sm.fa-fw.text-gray-400
+          .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in{"aria-labelledby" => "dropdownMenuLink"}
+            .dropdown-header Dropdown Header:
+            %a.dropdown-item{:href => "#"} Action
+            %a.dropdown-item{:href => "#"} Another action
+            .dropdown-divider
+            %a.dropdown-item{:href => "#"} Something else here
+      / Card Body
+      .card-body
+        .chart-pie.pt-4.pb-2
+          %canvas#myPieChart
+        .mt-4.text-center.small
+          %span.mr-2
+            %i.fas.fa-circle.text-primary
+            Direct
+          %span.mr-2
+            %i.fas.fa-circle.text-success
+            Social
+          %span.mr-2
+            %i.fas.fa-circle.text-info
+            Referral
+
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      .card-header.py-3
+        .h5.m-0.font-weight-bold.text-primary Number of Ticket(Successfully Tracked)
+      .card-body
+        .chart-bar
+          %canvas#myBarChart
