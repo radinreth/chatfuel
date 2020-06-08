@@ -30,15 +30,19 @@
 
   .province__select-option {
     display: inline;
-    padding: 3px;
+    padding: 0 10px;
     background-color: white;
     border: 1px solid #efefef;
     border-radius: 7px;
-    margin-right: 2em;
+    margin-right: 1em;
   }
 
   .date-filter__choose-option input {
-    border: 1px solid #efefef;
-    border-radius: 7px;
+    border: 0;
+    background-color: #fff
+  }
+  .date-filter__choose-option .input-group-text {
+    border: 0;
+    background-color: #fff;
   }
 }
