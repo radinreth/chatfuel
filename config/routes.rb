@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
-  root "homes#show"
+  root "dashboard#show"
+  get :dashboard, to: "dashboard#show"
+  get :home, to: "home#show"
 
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"

@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
-  $('.datepicker_date').daterangepicker({
+  let daterangepicker = new DateRangePicker('.datepicker_date', {
     locale: { format: 'DD/MM/YYYY'},
     cancelLabel: 'Clear',
     alwaysShowCalendars: true,

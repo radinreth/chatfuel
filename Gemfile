@@ -26,7 +26,6 @@ gem "dotenv-rails", "~> 2.7.5"
 gem "chartkick", "~> 3.3.1"
 gem "groupdate", "~> 5.0.0"
 gem "momentjs-rails", "~> 2.20.1"
-gem "bootstrap-daterangepicker-rails", "~> 3.0.4"
 gem "pundit", "~> 1.1.0"
 gem "active_storage_validations", "~> 0.8.7"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]

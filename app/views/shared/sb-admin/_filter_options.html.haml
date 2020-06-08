@@ -1,0 +1,27 @@
+.row.my-4
+  .col-lg-6
+    %ul.list-inline.platform-list
+      %li.list-inline-item.active Both
+      %li.list-inline-item IVR
+      %li.list-inline-item Chatbot
+
+  .col-lg-6
+    .d-flex
+      .province.d-flex.align-items-center
+        .province__label
+          %span.mr-2 Province
+        .province__select-option
+          %select{style: "border: 0"}
+            %option 
+            %option Phnom Penh
+            %option Kandal
+
+      .date-filter.d-flex.align-items-center
+        .date-filter__label
+          %span.mr-2 Show
+        .date-filter__choose-option
+          .input-group
+            %input.datepicker_date
+            .input-group-append
+              .input-group-text
+                %i.fas.fa-calendar-week.fa-sm

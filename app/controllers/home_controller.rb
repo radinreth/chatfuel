@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class HomeController < ApplicationController
   def show
     @pagy, @messages = pagy(Message.all)
     authorize :menu_item
