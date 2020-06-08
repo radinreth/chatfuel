@@ -18,6 +18,7 @@
   .platform-list {
     border-bottom: 1px solid #ccc;
     max-width: 60%;
+    font-size: 0.7em;
     
     .list-inline-item:not(:last-child) {
       margin-right: 1.5em;
@@ -44,5 +45,10 @@
   .date-filter__choose-option .input-group-text {
     border: 0;
     background-color: #fff;
+  }
+  .province__label,
+  .date-filter__label,
+  .datepicker_date {
+    font-size: 0.7em;
   }
 }
