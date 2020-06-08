@@ -1,0 +1,37 @@
+%ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+  = link_to root_path, class: "sidebar-brand d-flex align-items-center justify-content-center" do
+    .sidebar-brand-text1.mx-3
+      OWSO
+
+  %hr.sidebar-divider.my-0
+  %li.nav-item.active
+    = link_to dashboard_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-tachometer-alt
+      %span Dashboard
+
+    = link_to home_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-home
+      %span Home
+
+    = link_to sites_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-sitemap
+      %span Sites
+
+    = link_to dictionaries_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-book
+      %span Dictionaries
+
+    = link_to users_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-user
+      %span Users
+
+    = link_to tickets_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-envelope
+      %span Tickets
+
+    = link_to templates_path, class: "nav-link" do
+      %i.fas.fa-fw.fa-file-alt
+      %span Templates
+  
+  .text-center.d-none.d-md-inline
+    %button#sidebarToggle.rounded-circle.border-0

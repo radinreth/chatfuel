@@ -1,0 +1,24 @@
+.row
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+        .h5.m-0.font-weight-bold.text-primary Total User Visit (Each Function)
+      .card-body
+        .chart-pie.pt-4.pb-2
+          %canvas#total-visitors
+
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+        .h5.m-0.font-weight-bold.text-primary Total User Feedbacks (Overall OWSO Service Delivery)
+      .card-body
+        .chart-pie.pt-4.pb-2
+          %canvas#total-feedbacks
+
+  .col-xl-6.col-lg-5
+    .card.shadow.mb-4
+      .card-header.py-3
+        .h5.m-0.font-weight-bold.text-primary Number of Ticket(Successfully Tracked)
+      .card-body
+        .chart-bar
+          %canvas#total-tracked-tickets
