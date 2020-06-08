@@ -109,10 +109,6 @@ document.addEventListener('turbolinks:load', function() {
             max: 15000,
             maxTicksLimit: 5,
             padding: 10,
-            // Include a dollar sign in the ticks
-            // callback: function(value, index, values) {
-            //   return '$' + number_format(value);
-            // }
           },
           gridLines: {
             color: "rgb(234, 236, 244)",
@@ -138,12 +134,6 @@ document.addEventListener('turbolinks:load', function() {
         yPadding: 15,
         displayColors: false,
         caretPadding: 10,
-        // callbacks: {
-        //   label: function(tooltipItem, chart) {
-        //     var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-        //     return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
-        //   }
-        // }
       },
     }
   });
