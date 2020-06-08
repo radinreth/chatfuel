@@ -15,9 +15,13 @@
             %option 
             %option Phnom Penh
             %option Kandal
-    
+
       .date-filter.d-flex
         .date-filter__label
           %span.mr-2 Show
         .date-filter__choose-option
-          %input.w-100
+          .input-group
+            %input.datepicker_date.w-75
+            .input-group-append
+              .input-group-text
+                %i.fas.fa-calendar-week.fa-sm
