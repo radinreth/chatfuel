@@ -9,19 +9,13 @@
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
   %body{ id: css_class_name }
     #wrapper
-      / Sidebar
       = render "shared/sb-admin/sidebar"
-      / Content Wrapper
       #content-wrapper.d-flex.flex-column
-        / Main Content
         #content
           = render "shared/sb-admin/topbar"
           .container-fluid
             = render "shared/sb-admin/page_heading"
-            = render "shared/sb-admin/filter_options"
-            = render "shared/sb-admin/earnings"
-            = render "shared/sb-admin/earnings_overview"
-            -# = render "shared/sb-admin/project_cards"
+            = yield
         = render "shared/sb-admin/footer"
 
 

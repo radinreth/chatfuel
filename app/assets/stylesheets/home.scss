@@ -15,40 +15,4 @@
     }
   }
 
-  .platform-list {
-    border-bottom: 1px solid #ccc;
-    max-width: 60%;
-    font-size: 0.7em;
-    
-    .list-inline-item:not(:last-child) {
-      margin-right: 1.5em;
-    }
-
-    .active {
-      border-bottom: 3px solid #496edc;
-    }
-  }
-
-  .province__select-option {
-    display: inline;
-    padding: 0 10px;
-    background-color: white;
-    border: 1px solid #efefef;
-    border-radius: 7px;
-    margin-right: 1em;
-  }
-
-  .date-filter__choose-option input {
-    border: 0;
-    background-color: #fff
-  }
-  .date-filter__choose-option .input-group-text {
-    border: 0;
-    background-color: #fff;
-  }
-  .province__label,
-  .date-filter__label,
-  .datepicker_date {
-    font-size: 0.7em;
-  }
 }
