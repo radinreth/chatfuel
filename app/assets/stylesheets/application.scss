@@ -6,30 +6,6 @@
 @import "startbootstrap-sb-admin-2/css/sb-admin-2.min";
 @import "daterangepicker/daterangepicker";
 
-.text-xs {
-  font-size: 0.5rem;
-}
-
-.h5 {
-  font-size: 0.8rem;
-}
-
-@media (min-width: 768px) {
-  .sidebar {
-    width: 9rem !important;
-  }
-}
-
-// @import "daterangepicker";
-// @import "font-awesome";
-// @import "toastr/toastr";
-// @import "@yaireo/tagify/dist/tagify";
-
-// @import "base";
-// @import "share";
+@import "sb-admin-custom";
 @import "home";
 @import "dashboard";
-// @import "sidebar";
-// @import "dictionaries";
-// @import "settings";
-// @import "quotum";
