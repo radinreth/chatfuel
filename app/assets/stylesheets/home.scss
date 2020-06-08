@@ -14,4 +14,31 @@
       width: 400px;
     }
   }
+
+  .platform-list {
+    border-bottom: 1px solid #ccc;
+    max-width: 60%;
+    
+    .list-inline-item:not(:last-child) {
+      margin-right: 1.5em;
+    }
+
+    .active {
+      border-bottom: 3px solid #496edc;
+    }
+  }
+
+  .province__select-option {
+    display: inline;
+    padding: 3px;
+    background-color: white;
+    border: 1px solid #efefef;
+    border-radius: 7px;
+    margin-right: 2em;
+  }
+
+  .date-filter__choose-option input {
+    border: 1px solid #efefef;
+    border-radius: 7px;
+  }
 }
