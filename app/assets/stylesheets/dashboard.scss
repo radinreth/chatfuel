@@ -15,17 +15,23 @@
 
   .province__select-option {
     display: inline;
-    padding: 0 10px;
+    padding: 6px 10px;
     background-color: white;
     border: 1px solid #efefef;
     border-radius: 7px;
     margin-right: 1em;
+    font-size: 0.7em;
+    select {
+      color: rgba(25,32,56,0.8);
+      outline: none;
+    }
   }
 
   .date-filter__choose-option input {
     border: 0;
     background-color: #fff;
     outline: none;
+    min-width: 225px;
   }
   .date-filter__choose-option .input-group-text {
     border: 0;
@@ -45,6 +51,6 @@
   }
 
   .datepicker_date {
-    color: rgba(25, 32, 56, 0.8);
+    color: rgba(25,32,56,0.8);
   }
 }
