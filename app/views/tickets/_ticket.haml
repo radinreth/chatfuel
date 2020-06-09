@@ -1,0 +1,9 @@
+%tr
+  %td= ticket.code
+  %td= ticket.status
+  %td= ticket.created_at
+  %td
+    %ul.list-inline
+      %li.list-inline-item 
+        = link_to ticket, class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, "data-confirm": t("deleted.confirm") do
+          %i.fas.fa-trash.fa-fw

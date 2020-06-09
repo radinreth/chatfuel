@@ -1,19 +1,30 @@
-%h1 Tickets
+= render "shared/sb-admin/page_heading", title: t(".title")
 
-= link_to "New ticket", new_ticket_path, class: "btn btn-primary mb-3"
+.card.shadow.mb-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary All tickets
+  .card-body
+    .my-4
+      .d-flex.align-items-center.justify-content-between
+        .d-flex.align-items-center
+          %span.mr-2 Search:
+          %input.form-control.form-control-sm
 
-= simple_form_for Ticket.new do |f|
-  %table.table
-    %tr
-      %th code
-      %th status
-      %th created_at
-      %th
+        .actions
+          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newTicketModal" } do
+            %i.fas.fa-plus.fa-fw
+            = t('.new_ticket')
+          = render "create-new-ticket-modal", ticket: Ticket.new
+          
+    .table-responsive
+      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+        %thead
+          %tr
+            %th Code
+            %th Status
+            %th Created at
+            %th Action
+        %tbody
+          = render @tickets
 
-    - @tickets.each do |ticket|
-      %tr
-        %td= ticket.code
-        %td
-          = f.input :status, as: :select, collection: Ticket.statuses, selected: Ticket.statuses[ticket.status], label: false, input_html: { class: "ticket-status", "data-id": ticket.id }
-        %td= ticket.created_at
-        %td= link_to "x", ticket_path(ticket), method: :delete, data: { confirm: "are you sure?" }
+!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
