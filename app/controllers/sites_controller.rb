@@ -4,6 +4,7 @@ class SitesController < ApplicationController
 
   def index
     @pagy, @sites = pagy(Site.order(tracks_count: :desc))
+    @site = Site.new
     authorize @sites
     respond_to do |format|
       format.html
