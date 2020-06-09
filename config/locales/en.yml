@@ -147,6 +147,10 @@ en:
       incomplete: Incomplete
       complete: Complete
       invalid: Invalid
+  tickets:
+    index:
+      title: Tickets
+      new: New ticket
   js:
     updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
     updates_success_title: Success!

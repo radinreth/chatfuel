@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:edit, :update, :destroy]
 
   def index
-    @tickets = Ticket.order(:code)
+    @pagy, @tickets = pagy(Ticket.order(created_at: :desc))
     authorize @tickets
   end
 
@@ -15,10 +15,17 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    if @ticket.save
-      redirect_to tickets_path
-    else
-      render :new
+
+    respond_to do |format|
+      if @ticket.save
+        format.html { redirect_to tickets_path, status: :created, notice: t("created.success") }
+        format.js
+        format.json { render json: @ticket, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.js
+        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+      end
     end
   end
 
