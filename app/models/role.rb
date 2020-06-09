@@ -26,7 +26,7 @@ class Role < ApplicationRecord
 
   ROLE_NAMES.each do |role_name|
     define_method "#{role_name}?".to_sym do
-      role_name == name
+      role_name == name.sub(/\s/, '_')
     end
   end
 end
