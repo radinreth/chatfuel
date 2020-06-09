@@ -1,0 +1,15 @@
+#userModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "userLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered{:role => "document"}
+    .modal-content
+      = simple_form_for user do |f|
+        .modal-header
+          %h5#userLabel.modal-title Edit user
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          = f.input :role, as: :select, collection: @roles, selected: @user.role_id, input_html: { name: "user[role_id]" }
+          = f.input :email
+          = f.input :status, as: :boolean
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+          = f.submit "Save changes", class: "btn btn-primary"
