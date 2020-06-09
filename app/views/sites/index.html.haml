@@ -33,14 +33,14 @@
         %tbody
           - @sites.each do |site|
             %tr
-              %td= link_to site.name, site
+              %td= site.name
               %td --
               %td= site.code
               %td= site.tracks_count
               %td
                 %ul.list-inline
                   %li.list-inline-item 
-                    = link_to site_path(site), class: "btn-circle btn-sm btn-info text-decoration-none" do
+                    = link_to site, class: "btn-circle btn-sm btn-info text-decoration-none" do
                       %i.fas.fa-eye.fa-fw
                   %li.list-inline-item 
                     = link_to site_path(site), class: "btn-circle btn-sm btn-warning text-decoration-none" do
