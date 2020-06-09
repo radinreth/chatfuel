@@ -11,5 +11,5 @@
           %i.fas.fa-edit.fa-fw
         = render "user-form-modal", user: user
       %li.list-inline-item 
-        = link_to user_path(user), class: "btn-circle btn-sm btn-danger text-decoration-none" do
+        = link_to user_path(user), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, "data-confirm": t('deleted.confirm') do
           %i.fas.fa-trash.fa-fw
