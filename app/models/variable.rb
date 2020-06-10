@@ -20,6 +20,8 @@ class Variable < ApplicationRecord
                     dependent: :destroy,
                     autosave: true
 
+  accepts_nested_attributes_for :values
+
   # validations
   validate :only_one_report_column
   validates :type, presence: true
