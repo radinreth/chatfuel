@@ -8,6 +8,6 @@
     %p= template.content
   .card-footer
     = link_to edit_template_path(template), class: "btn btn-sm btn-outline-secondary mr-1" do
-      = fa_icon "pencil"
+      %i.fas.fa-fw.fa-pen
     = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-sm btn-outline-danger" do
-      = fa_icon "times"
+      %i.fas.fa-fw.fa-times
