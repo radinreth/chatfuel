@@ -1,6 +1,7 @@
 class DictionariesController < ApplicationController
   def index
-    @variables = Variable.where.not(name: "done").order(name: :asc)
+    @pagy, @variables = pagy(Variable.except_done)
+    @variable = Variable.new
     authorize @variables
   end
 
