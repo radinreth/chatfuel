@@ -7,6 +7,13 @@ class DictionariesController < ApplicationController
 
   def new
     @variable = Variable.new
+    @variable.values.build
+    authorize @variable
+  end
+
+  def edit
+    @variable = Variable.find(params[:id])
+    @variable.values.build
     authorize @variable
   end
 

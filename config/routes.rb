@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
   resources :voice_feedbacks, only: [:create]
-  resources :dictionaries, only: [:index, :new, :create, :update] do
+  resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
     put :batch_update, on: :collection
   end
   resources :tracks, only: [:create]

@@ -1,0 +1,40 @@
+.d-sm-flex.align-items-center.justify-content-between.mb-4
+  %h1.h3.mb-0.text-gray-800= @variable.name
+  = link_to "Unmark as feedback", "#", class: "btn btn-success"
+
+.card.shadow.mb-4
+  .card-body
+    .my-4
+      .table-responsive
+        = simple_form_for @variable, url: dictionaries_path do |f|
+          %table.table{:cellspacing => "0", :width => "100%"}
+            %thead
+              %tr
+                %th.w-25 Raw value
+                %th.w-25 Mapping value
+                %th Satisfied
+                %th
+            %tbody
+              = f.simple_fields_for :values do |value_form|
+                %tr
+                  %td= value_form.input :raw_value, label: false
+                  %td= value_form.input :mapping_value, label: false
+                  %td
+                    %table.w-75.rate{cellspacing: 0, cellpadding: 0}
+                      %tr
+                        %td 😍
+                        %td 😊
+                        %td 😞
+                      %tr
+                        %td= value_form.radio_button :status, 2
+                        %td= value_form.radio_button :status, 0
+                        %td= value_form.radio_button :status, 1
+                  %td
+                    = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none" do
+                      %i.fa.fa-fw.fa-trash
+            %tfoot
+              %tr
+                %td{ colspan: 4 }
+                  = link_to "#" do
+                    %i.fa.fa-sm.fa-plus-circle.fa-fw
+                    Add pair
