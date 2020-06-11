@@ -61,6 +61,34 @@
     text-align: center;
   }
 
+  th {
+    font-size: 0.8em;
+  }
+
+  .permission-title {
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .custom-checkbox .custom-control-label::before {
+    border-radius: .25rem;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  table.rate {
+    
+
+    th, td {
+      padding: 0;
+      margin: 0;
+      border-collapse: collapse;
+      line-height: 1em;
+    }
+  }
+
   tfoot {
     border-bottom: 1px solid #dddfeb;
   }

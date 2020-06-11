@@ -10,9 +10,9 @@
           %table.table{:cellspacing => "0", :width => "100%"}
             %thead
               %tr
-                %th.w-25 Raw value
-                %th.w-25 Mapping value
-                %th Satisfied
+                %th Raw value
+                %th Mapping value
+                %th.w-25.px-4 Satisfied
                 %th
             %tbody
               = f.simple_fields_for :values do |value_form|
@@ -29,7 +29,7 @@
                         %td= value_form.radio_button :status, 2
                         %td= value_form.radio_button :status, 0
                         %td= value_form.radio_button :status, 1
-                  %td
+                  %td.text-right
                     = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none" do
                       %i.fa.fa-fw.fa-trash
             %tfoot
@@ -39,7 +39,13 @@
                     %i.fa.fa-sm.fa-plus-circle.fa-fw
                     Add pair
       
-        .h5 Permision
-        = f.association :roles, as: :check_boxes, label: "", wrapper: false
+        %h6.mt-4.permission-title Permission
+        %ul.list-inline
+          - Role.all.each do |role|
+            %li.list-inline-item
+              .custom-control.custom-checkbox
+                %input.custom-control-input{ id: role.id, type: "checkbox" }
+                %label.custom-control-label{ for: role.id }
+                  %span= role.name
 
-        = f.submit "update", class: "btn btn-primary float-right"
+        = f.submit "Update", class: "btn btn-primary float-right"
