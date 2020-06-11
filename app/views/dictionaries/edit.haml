@@ -5,8 +5,8 @@
 .card.shadow.mb-4
   .card-body
     .my-4
-      .table-responsive
-        = simple_form_for @variable, url: dictionaries_path do |f|
+      = simple_form_for @variable, url: dictionaries_path do |f|
+        .table-responsive
           %table.table{:cellspacing => "0", :width => "100%"}
             %thead
               %tr
@@ -38,3 +38,8 @@
                   = link_to "#", class: "text-decoration-none" do
                     %i.fa.fa-sm.fa-plus-circle.fa-fw
                     Add pair
+      
+        .h5 Permision
+        = f.association :roles, as: :check_boxes, label: "", wrapper: false
+
+        = f.submit "update", class: "btn btn-primary float-right"
