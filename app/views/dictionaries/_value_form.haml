@@ -1,0 +1,16 @@
+%tr.value-row
+  %td= value_form.input :raw_value, label: false, disabled: true
+  %td= value_form.input :mapping_value, label: false
+  %td
+    %table.w-75.rate{cellspacing: 0, cellpadding: 0}
+      %tr
+        %td 😍
+        %td 😊
+        %td 😞
+      %tr
+        %td= value_form.radio_button :status, 2
+        %td= value_form.radio_button :status, 0
+        %td= value_form.radio_button :status, 1
+  %td.text-right
+    = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none dictionary-remove-pair" do
+      %i.fa.fa-fw.fa-trash
