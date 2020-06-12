@@ -16,26 +16,11 @@
                 %th
             %tbody
               = f.simple_fields_for :values do |value_form|
-                %tr
-                  %td= value_form.input :raw_value, label: false
-                  %td= value_form.input :mapping_value, label: false
-                  %td
-                    %table.w-75.rate{cellspacing: 0, cellpadding: 0}
-                      %tr
-                        %td 😍
-                        %td 😊
-                        %td 😞
-                      %tr
-                        %td= value_form.radio_button :status, 2
-                        %td= value_form.radio_button :status, 0
-                        %td= value_form.radio_button :status, 1
-                  %td.text-right
-                    = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none" do
-                      %i.fa.fa-fw.fa-trash
+                = render "value_form", value_form: value_form
             %tfoot
               %tr
                 %td{ colspan: 4 }
-                  = link_to "#", class: "text-decoration-none" do
+                  = link_to "#", class: "text-decoration-none dictionary-add-pair" do
                     %i.fa.fa-sm.fa-plus-circle.fa-fw
                     Add pair
       
