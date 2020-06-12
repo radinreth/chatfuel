@@ -1,12 +1,14 @@
 document.addEventListener("turbolinks:load", function(){
 
-  var OwsoApp = (function($){
+  Owso = (function($){
     var app = {}
     
     function addPair() {
       console.log($)
     }
 
+
+    // Dictionaries
     $(".table").on("click", ".dictionary-add-pair", function(e) {
       e.preventDefault()
       var lastChild = $(".value-row:last-of-type")
