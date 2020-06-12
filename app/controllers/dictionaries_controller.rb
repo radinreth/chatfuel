@@ -21,10 +21,16 @@ class DictionariesController < ApplicationController
     @variable = Variable.new(variable_params)
     authorize @variable
 
-    if @variable.save
-      redirect_to dictionaries_path, status: :moved_permanently, notice: t("created.success")
-    else
-      render :new, status: :unprocessable_entity, alert: t("created.fail")
+    respond_to do |format|
+      if @variable.save
+        format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: t("created.success") }
+        format.json { render json: @variable, status: :created, location: @variable }
+        format.js
+      else
+        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
+        format.json { render json: @variable.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
@@ -46,7 +52,6 @@ class DictionariesController < ApplicationController
   end
 
   def batch_update
-
     updates = []
     options = { status: :moved_permanently }
 
@@ -102,6 +107,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled, role_ids: [])
+      params.require(:variable).permit(:type, :name)
     end
 end
