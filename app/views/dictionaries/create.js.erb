@@ -1,0 +1,5 @@
+<% if @variable.errors.any? %>
+  $("#new_variable").html("<%= escape_javascript(render 'form', dictionary: @variable) %>");
+<% else %>
+  $("[data-dismiss]").click();
+<% end %>

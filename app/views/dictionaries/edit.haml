@@ -1,11 +1,15 @@
-.d-sm-flex.align-items-center.justify-content-between.mb-4
-  %h1.h3.mb-0.text-gray-800= @variable.name
-  = link_to "Unmark as feedback", "#", class: "btn btn-success"
+= simple_form_for @variable, url: dictionary_path do |f|
+  .d-sm-flex.align-items-center.justify-content-between.mb-4
+    %h1.h3.mb-0.text-gray-800= @variable.name
+    -# = link_to "Unmark as feedback", "#", class: "btn btn-success"
+    .btn-group-toggle{ "data-toggle": "buttons" }
+      %label.btn.btn-success.active
+        = f.input_field :report_enabled
+        Unmark as Feedback
 
-.card.shadow.mb-4
-  .card-body
-    .my-4
-      = simple_form_for @variable, url: dictionaries_path do |f|
+  .card.shadow.mb-4
+    .card-body
+      .my-4
         .table-responsive
           %table.table{:cellspacing => "0", :width => "100%"}
             %thead
@@ -25,11 +29,12 @@
                     Add pair
       
         %h6.mt-4.permission-title Permission
+
         %ul.list-inline
           - Role.all.each do |role|
             %li.list-inline-item
               .custom-control.custom-checkbox
-                %input.custom-control-input{ id: role.id, type: "checkbox" }
+                %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "#{@variable.class.name.underscore}[role_ids][]" }
                 %label.custom-control-label{ for: role.id }
                   %span= role.name
 
