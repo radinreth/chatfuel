@@ -1,16 +1,19 @@
 %tr.value-row
-  %td= value_form.input :raw_value, label: false
-  %td= value_form.input :mapping_value, label: false
+  - child_index = value_form.options[:child_index]
+  %td= value_form.input :raw_value, label: false, input_html: { "data-index": child_index, name: "variable[values_attributes][#{child_index}][raw_value]" }
+  %td= value_form.input :mapping_value, label: false, input_html: { "data-index": child_index, name: "variable[values_attributes][#{child_index}][mapping_value]" }
   %td
+    = value_form.input :id, as: :hidden, input_html: { name: "variable[values_attributes][#{child_index}][id]" }
+    = value_form.input :_destroy, as: :hidden, input_html: { class: "variable-destroy", name: "variable[values_attributes][#{child_index}][_destroy]" }
     %table.w-75.rate{cellspacing: 0, cellpadding: 0}
       %tr
         %td 😍
         %td 😊
         %td 😞
       %tr
-        %td= value_form.radio_button :status, 2
-        %td= value_form.radio_button :status, 0
-        %td= value_form.radio_button :status, 1
+        %td= value_form.radio_button :status, 0, checked: value_form.object.satisfied?, name: "variable[values_attributes][#{child_index}][status]"
+        %td= value_form.radio_button :status, 1, checked: value_form.object.normal?, name: "variable[values_attributes][#{child_index}][status]"
+        %td= value_form.radio_button :status, 2, checked: value_form.object.disatisfied?, name: "variable[values_attributes][#{child_index}][status]"
   %td.text-right
     = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none dictionary-remove-pair" do
       %i.fa.fa-fw.fa-trash
