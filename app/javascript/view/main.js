@@ -7,6 +7,16 @@ document.addEventListener("turbolinks:load", function(){
       console.log($)
     }
 
+    function factory(dom) {
+      let newIndex = +$(dom).data("index") + 1
+
+      return {
+        object: $(dom),
+        name: dom.name.replace(/\d+/, newIndex),
+        id: dom.id.replace(/\d+/, newIndex),
+        index: newIndex
+      }
+    }
 
     // Dictionaries
     $(".table").on("click", ".dictionary-add-pair", function(e) {
@@ -14,26 +24,15 @@ document.addEventListener("turbolinks:load", function(){
 
       var lastChild = $(".value-row:last-of-type")
       var newChild = lastChild.clone()
-
       var input = newChild.find("input.form-control")
-      var raw = $(input[0])
-      var mapping = $(input[1])
-      var newAttrDataIndex = +raw.data("index") + 1
-      
-      var oldAttrName = input[0].name
-      var oldAttrId = input[0].id
 
-      var newAttrName = oldAttrName.replace(/\d+/, newAttrDataIndex)
-      var newAttrId = oldAttrId.replace(/\d+/, newAttrDataIndex)
+      var dom = factory(input[0])
+      dom.object.attr({ name: dom.name, id: dom.id, "data-index": dom.index })
 
-      raw.attr({
-       name: newAttrName,
-       id: newAttrId,
-       "data-index": newAttrDataIndex 
-      })
+      dom = factory(input[1])
+      dom.object.attr({ name: dom.name, id: dom.id, "data-index": dom.index })
 
       lastChild.after(newChild)
-
     })
 
     $(".table").on("click", ".dictionary-remove-pair", function(e) {
