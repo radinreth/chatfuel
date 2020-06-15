@@ -5,7 +5,7 @@
 #  id            :bigint(8)        not null, primary key
 #  mapping_value :string           default("")
 #  raw_value     :string           not null
-#  status        :integer(4)       default("0")
+#  status        :string           default("1")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  variable_id   :bigint(8)        not null
