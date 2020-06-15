@@ -11,10 +11,29 @@ document.addEventListener("turbolinks:load", function(){
     // Dictionaries
     $(".table").on("click", ".dictionary-add-pair", function(e) {
       e.preventDefault()
-      var lastChild = $(".value-row:last-of-type")
-      var html = lastChild.get(0).outerHTML
 
-      lastChild.after(html)
+      var lastChild = $(".value-row:last-of-type")
+      var newChild = lastChild.clone()
+
+      var input = newChild.find("input.form-control")
+      var raw = $(input[0])
+      var mapping = $(input[1])
+      var newAttrDataIndex = +raw.data("index") + 1
+      
+      var oldAttrName = input[0].name
+      var oldAttrId = input[0].id
+
+      var newAttrName = oldAttrName.replace(/\d+/, newAttrDataIndex)
+      var newAttrId = oldAttrId.replace(/\d+/, newAttrDataIndex)
+
+      raw.attr({
+       name: newAttrName,
+       id: newAttrId,
+       "data-index": newAttrDataIndex 
+      })
+
+      lastChild.after(newChild)
+
     })
 
     $(".table").on("click", ".dictionary-remove-pair", function(e) {
