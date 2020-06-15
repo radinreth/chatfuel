@@ -2,8 +2,11 @@
   %td= dictionary.name
   %td
     - dictionary.roles.each do |role|
-      = role.name
-  %td= dictionary.report_enabled
+      %span.badge.badge-pill.badge-primary
+        = role.name
+  %td
+    - if dictionary.report_enabled?
+      %small Mark as Feedback
   %td
     %ul.list-inline.m-0
       %li.list-inline-item 
