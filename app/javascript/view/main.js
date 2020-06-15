@@ -9,6 +9,8 @@ document.addEventListener("turbolinks:load", function(){
 
     function factory(dom) {
       let newIndex = +$(dom).data("index") + 1
+      $(dom).prop("disabled", false)
+            .val("")
 
       return {
         object: $(dom),
@@ -41,7 +43,8 @@ document.addEventListener("turbolinks:load", function(){
 
       console.log( row.closest("tbody").children(".value-row").length )
       if( row.closest("tbody").children(".value-row").length > 1 ) {
-        row.remove()
+        row.find(".variable-destroy").val(true)
+        row.hide()
       } else {
         alert("Unable to empty dictionary")
       }
