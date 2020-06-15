@@ -20,7 +20,8 @@ class Variable < ApplicationRecord
                     dependent: :destroy,
                     autosave: true
 
-  accepts_nested_attributes_for :values
+  accepts_nested_attributes_for :values,  allow_destroy: true, 
+                                          reject_if: :rejected_values
 
   # validations
   validate :only_one_report_column
@@ -37,5 +38,9 @@ class Variable < ApplicationRecord
   private
     def only_one_report_column
       errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && Variable.exists?(report_enabled: true)
+    end
+
+    def rejected_values(attributes)
+      attributes["raw_value"].blank?
     end
 end
