@@ -12,6 +12,7 @@ class DictionariesController < ApplicationController
   end
 
   def edit
+    @roles = Role.all
     @variable = Variable.find(params[:id])
     @variable.values.build
     authorize @variable
@@ -36,16 +37,15 @@ class DictionariesController < ApplicationController
 
   def update
     @variable = Variable.find(params[:id])
+    @roles = Role.all
+
     authorize @variable
     respond_to do |format|
-      if @variable.update(variable_params)
-        @enabled = @variable.reload.report_enabled
+      if @variable.update(variable_nested_params)
         format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: t("updated.success") }
         format.js
       else
-        @revert = !variable_params[:report_enabled]
-        @enabled = @variable.reload.report_enabled
-        format.html { render json: @variable.errors, status: :unprocessable_entity, alert: t("updated.fail") }
+        format.html { render :edit, status: :unprocessable_entity, alert: t("updated.fail") }
         format.js
       end
     end
@@ -108,5 +108,9 @@ class DictionariesController < ApplicationController
 
     def variable_params
       params.require(:variable).permit(:type, :name)
+    end
+
+    def variable_nested_params
+      params.require(:variable).permit(:report_enabled, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy])
     end
 end
