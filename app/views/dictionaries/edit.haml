@@ -34,7 +34,7 @@
           - @roles.each do |role|
             %li.list-inline-item
               .custom-control.custom-checkbox
-                %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]" }
+                %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: f.object.role_ids.include?(role.id) }
                 %label.custom-control-label{ for: role.id }
                   %span= role.name
 
