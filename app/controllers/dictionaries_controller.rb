@@ -107,7 +107,7 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name)
+      params.require(:variable).permit(:type, :name, :report_enabled, role_ids: [])
     end
 
     def variable_nested_params
