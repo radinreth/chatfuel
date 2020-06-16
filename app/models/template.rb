@@ -17,6 +17,7 @@ class Template < ApplicationRecord
 
   # validations
   validates :content, presence: true
+  validates :type, presence: true
   validates :status, uniqueness: { scope: :type }
 
   def platform_value

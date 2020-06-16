@@ -1,8 +1,26 @@
 .d-sm-flex.align-items-center.justify-content-between.mb-4
   %h1.h3.mb-0.text-gray-800= t(".title")
-  = link_to new_template_path, class: "btn btn-primary mb-3" do
+  = link_to "#", class: "btn btn-primary mb-3", data: { toggle: "modal", target: "#newTemplateModal" } do
     %i.fa.fa-fw.fa-plus
     = t(".new")
+  #newTemplateModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "newTemplateLabel", :role => "dialog", :tabindex => "-1"}
+    = simple_form_for @template do |f|
+      .modal-dialog.modal-dialog-centered{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5.modal-title New template
+            %button.close{ type: "button", "data-dismiss": "modal", "aria-label": "Close" }
+              %span{ "aria-hidden": true }
+                %i.fa.fa-fw.fa-times
+          .modal-body
+            = f.input :type, as: :select, collection: ::Template.platform_names, selected: @template.platform_value
+            = f.input :content, as: :text
+            = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
+            = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+            = f.submit "Create template", class: "btn btn-primary", type: "button"
+
 
 %h6.text-dark
   = t(".incomplete")
