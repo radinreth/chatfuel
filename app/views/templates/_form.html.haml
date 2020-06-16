@@ -1,6 +1,6 @@
-= simple_form_for @template do |f|
-  = f.input :type, as: :select, collection: ::Template.platform_names, select: @template.platform_value
-  = f.input :status, as: :radio_buttons, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
-  = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
-  = f.input :content
+= simple_form_for template do |f|
+  = f.input :type, as: :select, collection: ::Template.platform_names, selected: template.platform_value
+  = f.input :content, as: :text
+  = f.input :audio, as: :file, value: template&.audio.try(:signed_id)
+  = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
   = f.submit

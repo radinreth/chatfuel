@@ -2,6 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
+    @template = Template.new
     @templates = Template.order(type: :asc)
     authorize @templates
   end
