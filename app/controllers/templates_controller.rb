@@ -22,10 +22,14 @@ class TemplatesController < ApplicationController
 
   def create
     @template = Template.new(template_params)
-    if @template.save
-      redirect_to templates_path, status: :moved_permanently, notice: t("created.success")
-    else
-      render :new, status: :unprocessable_entity, alert: t("created.fail")
+    respond_to do |format|
+      if @template.save
+        format.html { redirect_to templates_path, status: :moved_permanently, notice: t("created.success") }
+        format.js
+      else
+        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
+        format.js
+      end
     end
   end
 
