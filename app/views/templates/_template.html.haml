@@ -1,13 +1,15 @@
 .col-sm-6.col-md-3.card.mb-3.px-0
   .card-body
-    %h5.mb-4.card-title
-      = image_tag template.human_name, size: "32x32"
-      = template.human_name.capitalize
+    .mb-4.card-title.d-flex.align-items-center
+      = image_tag "#{template.human_name}.svg", class: "mr-2", width: 27
+
+      %h6.m-0
+        = template.human_name.capitalize
     - if template.audio.attached?
       = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
     %p= template.content
   .card-footer
-    = link_to edit_template_path(template), class: "btn btn-sm btn-outline-secondary mr-1" do
+    = link_to edit_template_path(template), class: "btn btn-circle btn-sm btn-warning mr-1" do
       %i.fas.fa-fw.fa-pen
-    = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-sm btn-outline-danger" do
-      %i.fas.fa-fw.fa-times
+    = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-circle btn-sm btn-danger" do
+      %i.fas.fa-fw.fa-trash

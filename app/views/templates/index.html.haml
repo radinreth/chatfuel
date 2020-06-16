@@ -1,14 +1,20 @@
-%h1= t(".title")
-= link_to t(".new"), new_template_path, class: "btn btn-primary mb-3"
+.d-sm-flex.align-items-center.justify-content-between.mb-4
+  %h1.h3.mb-0.text-gray-800= t(".title")
+  = link_to new_template_path, class: "btn btn-primary mb-3" do
+    %i.fa.fa-fw.fa-plus
+    = t(".new")
 
-%h5= t(".incomplete")
-.row.card-deck
+%h6.text-dark
+  = t(".incomplete")
+.row.card-deck.mb-5
   = render partial: "template", collection: @templates.incomplete
 
-%h5= t(".complete")
-.row.card-deck
+%h6.text-dark
+  = t(".complete")
+.row.card-deck.mb-5
   = render partial: "template", collection: @templates.completed
 
-%h5= t(".invalid")
-.row.card-deck
+%h6.text-dark
+  = t(".invalid")
+.row.card-deck.mb-5
   = render partial: "template", collection: @templates.incorrect
