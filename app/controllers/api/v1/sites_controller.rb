@@ -7,8 +7,8 @@ module Api
       def update
         if  @site && @site.valid_token?(bearer_token)
           begin
-            puts site_params
             @site.update(site_params)
+            @history_log = SyncHistoryLog.create(payload: site_params)
             render json: @site, location: @site, status: :ok
           rescue => e
             render json: { message: e.message }, status: :unprocessable_entity
