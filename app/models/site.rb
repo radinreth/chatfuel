@@ -35,4 +35,11 @@ class Site < ApplicationRecord
                     format: {
                       with: /\A\d{4}\z/,
                       message: I18n.t("site.invalid_code") }
+
+  def generate_token
+    self.token = SecureRandom.alphanumeric
+    generate_token if Site.exists?(token: self.token)
+
+    self.token
+  end
 end
