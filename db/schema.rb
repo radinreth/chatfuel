@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_06_29_043200) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -149,6 +150,16 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+  
+  create_table "sync_history_logs", force: :cascade do |t|
+    t.string "uuid", default: "", null: false
+    t.hstore "payload", default: {}, null: false
+    t.integer "success_count", default: 0
+    t.integer "failure_count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
   end
 
   create_table "templates", force: :cascade do |t|
