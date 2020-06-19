@@ -176,7 +176,9 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "incomplete_at"
     t.date "incorrect_at"
+    t.bigint "site_id", null: false
     t.index ["code"], name: "index_tickets_on_code"
+    t.index ["site_id"], name: "index_tickets_on_site_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -254,6 +256,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"
+  add_foreign_key "tickets", "sites"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
 end
