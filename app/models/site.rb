@@ -25,7 +25,10 @@ class Site < ApplicationRecord
   has_many :tracks, dependent: :destroy
   has_many :users
   has_many :feedbacks
+
+  # api
   has_many :tickets
+  accepts_nested_attributes_for :tickets
 
   has_one :site_setting, dependent: :destroy
 

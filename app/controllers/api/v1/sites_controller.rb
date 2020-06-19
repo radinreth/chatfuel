@@ -7,7 +7,8 @@ module Api
       def update
         if  @site && @site.valid_token?(bearer_token)
           begin
-            @site.update(sync_status: params[:site][:sync_status])
+            puts site_params
+            @site.update(site_params)
             render json: @site, location: @site, status: :ok
           rescue => e
             render json: { message: e.message }, status: :unprocessable_entity
@@ -32,6 +33,10 @@ module Api
           pattern = /^Bearer /
           header  = request.headers["Authorization"]
           header.gsub(pattern, "") if header && header.match(pattern)
+        end
+
+        def site_params
+          params.require(:site).permit(:sync_status, tickets_attributes: [:id, :code, :status])
         end
     end
   end
