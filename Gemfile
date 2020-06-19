@@ -39,6 +39,7 @@ gem "sidekiq-scheduler", "~> 3.0.1"
 gem "strip_attributes", "~> 1.11.0"
 # api
 gem 'rack-cors'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
