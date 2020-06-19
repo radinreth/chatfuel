@@ -2,12 +2,31 @@ module Api
   module V1
     class SitesController < ActionController::Base
       skip_before_action :verify_authenticity_token
+      before_action :set_site
 
       def update
-        render json: { message: bearer_token }, status: :created
+        if  @site && @site.valid_token?(bearer_token)
+          if @site.update(sync_status: params[:sync_status])
+            render json: @site, status: :ok
+          else
+            render json: @site.errors, status: :unprocessable_entity
+          end
+        else
+          render json:  { message: "Bad Request", 
+                          errors: [{
+                            resource: "Site",
+                            field: "token",
+                            message: "Not found or Token is not matched"
+                          }]
+                        }, status: :bad_request
+        end
       end
 
       private
+
+      def set_site
+        @site ||= Site.find_by(code: params[:code])
+      end
 
       def bearer_token
         pattern = /^Bearer /
