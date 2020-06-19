@@ -42,4 +42,8 @@ class Site < ApplicationRecord
 
     self.token
   end
+
+  def valid_token?(bearer_token)
+    token == bearer_token
+  end
 end
