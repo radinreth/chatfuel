@@ -6,10 +6,12 @@ module Api
 
       def update
         if  @site && @site.valid_token?(bearer_token)
-          if @site.update(sync_status: params[:sync_status])
-            render json: @site, status: :ok
-          else
-            render json: @site.errors, status: :unprocessable_entity
+          
+          begin
+            @site.update(sync_status: params[:sync_status])
+            render json: @site, location: @site, status: :ok
+          rescue => e
+            render json: { message: e.message }, status: :unprocessable_entity
           end
         else
           render json:  { message: "Bad Request", 
