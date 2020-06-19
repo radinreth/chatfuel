@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
+    t.string "sync_status", default: "1", null: false
     t.index ["name"], name: "index_sites_on_name"
   end
 
