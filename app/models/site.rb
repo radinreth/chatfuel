@@ -23,6 +23,7 @@ class Site < ApplicationRecord
   has_many :tracks, dependent: :destroy
   has_many :users
   has_many :feedbacks
+  has_many :tickets
 
   has_one :site_setting, dependent: :destroy
 

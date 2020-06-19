@@ -11,10 +11,16 @@
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  site_id             :bigint(8)        not null
 #
 # Indexes
 #
-#  index_tickets_on_code  (code)
+#  index_tickets_on_code     (code)
+#  index_tickets_on_site_id  (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (site_id => sites.id)
 #
 require "rails_helper"
 
