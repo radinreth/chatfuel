@@ -9,6 +9,8 @@ module Api
           begin
             @site.update(site_params)
             @history_log = SyncHistoryLog.create(payload: site_params)
+            SyncHistoryJob.perform_later(@history_log.uuid)
+
             render json: @site, location: @site, status: :ok
           rescue => e
             render json: { message: e.message }, status: :unprocessable_entity
