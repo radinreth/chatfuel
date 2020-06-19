@@ -46,6 +46,6 @@ class Site < ApplicationRecord
 
   def valid_token?(bearer_token)
     token == bearer_token
-    true
+    true # TODO remove (just for test)
   end
 end

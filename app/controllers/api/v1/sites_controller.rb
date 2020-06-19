@@ -6,15 +6,14 @@ module Api
 
       def update
         if  @site && @site.valid_token?(bearer_token)
-          
           begin
-            @site.update(sync_status: params[:sync_status])
+            @site.update(sync_status: params[:site][:sync_status])
             render json: @site, location: @site, status: :ok
           rescue => e
             render json: { message: e.message }, status: :unprocessable_entity
           end
         else
-          render json:  { message: "Bad Request", 
+          render json:  { message: "Bad Request",
                           errors: [{
                             resource: "Site",
                             field: "token",
@@ -25,16 +24,15 @@ module Api
       end
 
       private
+        def set_site
+          @site ||= Site.find_by(code: params[:code])
+        end
 
-      def set_site
-        @site ||= Site.find_by(code: params[:code])
-      end
-
-      def bearer_token
-        pattern = /^Bearer /
-        header  = request.headers['Authorization']
-        header.gsub(pattern, '') if header && header.match(pattern)
-      end
+        def bearer_token
+          pattern = /^Bearer /
+          header  = request.headers["Authorization"]
+          header.gsub(pattern, "") if header && header.match(pattern)
+        end
     end
   end
 end
