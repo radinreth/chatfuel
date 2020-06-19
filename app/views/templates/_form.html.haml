@@ -1,8 +1,11 @@
-= simple_form_for @template, remote: true do |f|
-  = f.input :type, as: :select, collection: ::Template.platform_names, selected: @template.platform_value
-  = f.input :content, as: :text
-  = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
-  = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
+-# = react_component "template_form"
 
-  %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-  = f.submit "Create template", class: "btn btn-primary"
+-# = simple_form_for @template, remote: true do |f|
+-#   -# = react_component("TemplateTypeSelector")
+-#   = f.input :type, as: :select, collection: ::Template.platform_names, selected: @template.platform_value
+-#   = f.input :content, as: :text
+-#   = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
+-#   = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
+
+-#   %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+-#   = f.submit "Create template", class: "btn btn-primary"

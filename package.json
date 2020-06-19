@@ -2,7 +2,7 @@
   "name": "chatfuel",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-react": "^7.10.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -18,14 +18,15 @@
     "moment": "^2.26.0",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react_ujs": "^2.6.1",
     "startbootstrap-sb-admin-2": "^4.0.7",
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.10.1"
+    "webpack-dev-server": "^3.11.0"
   }
 }
