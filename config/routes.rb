@@ -102,8 +102,10 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :v1 do
-    concerns :api_base
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      concerns :api_base
+    end
   end
 
 end
