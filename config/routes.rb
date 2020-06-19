@@ -96,4 +96,14 @@ Rails.application.routes.draw do
 
   # Telegram
   telegram_webhook TelegramWebhooksController
+  concern :api_base do
+    resources :sites, only: [:update] do # site code, site status
+      resources :tickets, only: [:create, :update] # ticket code, ticket status, date
+    end
+  end
+
+  namespace :v1 do
+    concerns :api_base
+  end
+
 end
