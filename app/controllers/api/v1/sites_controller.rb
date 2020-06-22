@@ -9,7 +9,7 @@ module Api
         if @site.valid_token?(bearer_token)
           begin
             @history_log = SyncHistoryLog.create(payload: site_params)
-            if @site.update!(sync_status: params[:site][:sync_status])
+            if @site.update!(site_params.except(:tickets_attributes))
               SyncHistoryJob.perform_later(@history_log.uuid)
             end
 
@@ -40,7 +40,7 @@ module Api
         end
 
         def site_params
-          params.require(:site).permit(:sync_status, tickets_attributes: [:id, :code, :status])
+          params.require(:site).permit(:status, :sync_status, tickets_attributes: [:id, :code, :status])
         end
 
         def site_not_found(exception)
