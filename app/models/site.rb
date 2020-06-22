@@ -15,6 +15,8 @@
 #  index_sites_on_name  (name)
 #
 class Site < ApplicationRecord
+  attr_accessor :file
+
   enum status: %i[disable enable]
 
   # associations
