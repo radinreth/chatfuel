@@ -9,7 +9,7 @@ module Api
         if @site.valid_token?(bearer_token)
           begin
             @history_log = SyncHistoryLog.create(payload: site_params)
-            if @site.update(sync_status: params[:site][:sync_status])
+            if @site.update!(sync_status: params[:site][:sync_status])
               SyncHistoryJob.perform_later(@history_log.uuid)
             end
 
