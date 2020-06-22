@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
-    @users = policy_scope(User)
+    @pagy, @users = pagy(User.all)
+    authorize @users
+    @user = User.new
+    @roles = Role.distinct
+
     respond_to do |format|
       format.html
       format.json { render json: policy(User).roles }
