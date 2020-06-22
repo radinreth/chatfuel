@@ -3,13 +3,15 @@ module Api
     class SitesController < ActionController::Base
       skip_before_action :verify_authenticity_token
       before_action :set_site
+      rescue_from ActiveRecord::RecordNotFound, with: :site_not_found
 
       def update
-        if  @site && @site.valid_token?(bearer_token)
+        if @site.valid_token?(bearer_token)
           begin
-            @site.update(site_params)
             @history_log = SyncHistoryLog.create(payload: site_params)
-            SyncHistoryJob.perform_later(@history_log.uuid)
+            if @site.update(sync_status: params[:site][:sync_status])
+              SyncHistoryJob.perform_later(@history_log.uuid)
+            end
 
             render json: @site, location: @site, status: :ok
           rescue => e
@@ -20,7 +22,7 @@ module Api
                           errors: [{
                             resource: "Site",
                             field: "token",
-                            message: "Not found or Token is not matched"
+                            message: "Token is not matched"
                           }]
                         }, status: :bad_request
         end
@@ -28,7 +30,7 @@ module Api
 
       private
         def set_site
-          @site ||= Site.find_by(code: params[:code])
+          @site ||= Site.find_by!(code: params[:code])
         end
 
         def bearer_token
@@ -39,6 +41,17 @@ module Api
 
         def site_params
           params.require(:site).permit(:sync_status, tickets_attributes: [:id, :code, :status])
+        end
+
+        def site_not_found(exception)
+          logger.info "[#{controller_path}] Exception #{exception.class}: #{exception.message}"
+          render json:  { message: "Bad Request",
+            errors: [{
+              resource: "Site",
+              field: "code",
+              message: "Not found"
+            }]
+          }, status: :bad_request
         end
     end
   end
