@@ -1,5 +1,3 @@
-require 'oj'
-
 class SyncHistoryJob < ApplicationJob
   queue_as :default
 
