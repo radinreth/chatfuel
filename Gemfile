@@ -40,6 +40,7 @@ gem "strip_attributes", "~> 1.11.0"
 # api
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'oj', '~> 3.10', '>= 3.10.6'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

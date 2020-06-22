@@ -35,7 +35,8 @@ class Site < ApplicationRecord
 
   # validations
   validates :name, presence: true
-  validates :sync_status, inclusion: { in: sync_statuses.keys }
+  validates :sync_status, inclusion: { in: sync_statuses.keys,
+                                        message: "'%value' is not a valid sync_status (#{sync_statuses.keys.join(', ')})" }
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
