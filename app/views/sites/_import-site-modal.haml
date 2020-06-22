@@ -1,0 +1,22 @@
+#importSiteModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "importSiteLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered{:role => "document"}
+    .modal-content
+      = simple_form_for site do |f|
+        .modal-header
+          %h5#importSiteLabel.modal-title Import site
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          .form-group
+            %label.d-block File
+            %label.btn.btn-secondary.m-0
+              Choose file
+              = f.input_field :file, as: :file, label: false, class: "d-none"
+
+          .mt-4
+            = link_to "#" do
+              %i.fas.fa-fw.fa-download
+              Download Template
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+          = f.submit "Import Site", class: "btn btn-primary"

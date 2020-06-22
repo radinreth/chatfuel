@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
     end
 
     def submitted
-      @submitted = TicketCollectionDecorator.new(:submitted, period)
+      @submitted = TicketCollectionDecorator.new(:incomplete, period)
     end
 
     def completed
