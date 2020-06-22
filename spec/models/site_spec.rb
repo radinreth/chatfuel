@@ -6,7 +6,7 @@
 #  code         :string           default("")
 #  name         :string           not null
 #  status       :integer(4)       default("0")
-#  sync_status  :string           default("1"), not null
+#  sync_status  :integer(4)       default("1"), not null
 #  token        :string           default("")
 #  tracks_count :integer(4)       default("0")
 #  created_at   :datetime         not null

@@ -6,7 +6,7 @@
 #  code         :string           default("")
 #  name         :string           not null
 #  status       :integer(4)       default("0")
-#  sync_status  :string           default("1"), not null
+#  sync_status  :integer(4)       default("1"), not null
 #  token        :string           default("")
 #  tracks_count :integer(4)       default("0")
 #  created_at   :datetime         not null
@@ -35,8 +35,6 @@ class Site < ApplicationRecord
 
   # validations
   validates :name, presence: true
-  validates :sync_status, inclusion: { in: sync_statuses.keys,
-                                        message: "'%value' is not a valid sync_status (#{sync_statuses.keys.join(', ')})" }
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
@@ -45,12 +43,10 @@ class Site < ApplicationRecord
   def generate_token
     self.token = SecureRandom.alphanumeric
     generate_token if Site.exists?(token: self.token)
-
-    self.token
+    save && self.token
   end
 
   def valid_token?(bearer_token)
     token == bearer_token
-    true # TODO remove (just for test)
   end
 end
