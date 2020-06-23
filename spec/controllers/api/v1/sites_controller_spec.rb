@@ -6,6 +6,23 @@ RSpec.describe Api::V1::SitesController, type: :controller do
     it { should route(:patch, "/api/v1/sites/0202").to(action: :update, site_code: "0202", format: :json)  }
   end
 
+  describe "PUT :check" do
+    let(:site) { create(:site, code: "0202", sync_status: "failure") }
+
+    before do
+      site.generate_token
+      request.headers['Authorization'] = "Bearer #{site.token}"
+    end
+
+    it "updates site :sync_status" do
+      expected = { message: site.id, status: "ok" }
+      put :check, params: { site_code: "0202", sync_status: "success" }
+
+      expect(JSON.parse(response.body)).to include(expected.as_json)
+      expect(site.reload.sync_status).to eq "success"
+    end
+  end
+
   describe "PATCH :update" do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
 
