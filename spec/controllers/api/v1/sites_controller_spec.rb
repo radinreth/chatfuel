@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe Api::V1::SitesController, type: :controller do
   describe "routes" do
-    it { should route(:patch, "/api/v1/sites/0202").to(action: :update, site_code: "0202", format: "json")  }
+    it { should route(:put, "/api/v1/me").to(action: :check, format: :json) }
+    it { should route(:patch, "/api/v1/sites/0202").to(action: :update, site_code: "0202", format: :json)  }
   end
 
   describe "PATCH :update" do
