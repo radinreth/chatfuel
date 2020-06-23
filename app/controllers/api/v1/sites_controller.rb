@@ -40,7 +40,7 @@ module Api
         end
 
         def site_params
-          params.permit(body: [:code, :status])
+          params.permit(tickets: [:code, :status])
         end
 
         def site_not_found(exception)
