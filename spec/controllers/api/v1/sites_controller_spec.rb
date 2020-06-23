@@ -26,6 +26,13 @@ RSpec.describe Api::V1::SitesController, type: :controller do
   describe "PATCH :update" do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
 
+    it "success" do
+      request.headers['Authorization'] = "Bearer #{site.token}"
+      patch :update, params: { site_code: site.code }
+
+      expect(response.status).to eq 200
+    end
+
     context "site not found" do
 
       before do
