@@ -16,9 +16,9 @@ module Api
       end
 
       def check
-        @site.update(sync_status: params[:sync_status])
+        @site.update!(sync_status: params[:sync_status])
         render json: { message: @site.id, status: :ok } and return
-      rescue ArgumentError => e
+      rescue => e
         render json: { message: e.message, status: :bad_request } and return
       end
 
