@@ -16,9 +16,8 @@
 #
 FactoryBot.define do
   factory :sync_history_log do
-    uuid { "MyString" }
     payload { "" }
-    num_success { 1 }
-    num_fail { 1 }
+    success_count { 0 }
+    failure_count { 0 }
   end
 end
