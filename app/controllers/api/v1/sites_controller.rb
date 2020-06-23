@@ -8,7 +8,7 @@ module Api
 
       def update
         @history_log = SyncHistoryLog.create(payload: site_params)
-        SyncHistoryJob.perform_later(@history_log.uuid)
+        SyncHistoryJob.perform_later(@site.id, @history_log.uuid)
 
         render json: @site, location: @site, status: :ok
       rescue => e
@@ -40,7 +40,7 @@ module Api
         end
 
         def site_params
-          params.require(:site).permit(:sync_status, tickets_attributes: [:id, :code, :status])
+          params.permit(body: [:code, :status])
         end
 
         def site_not_found(exception)
