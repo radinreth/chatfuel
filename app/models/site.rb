@@ -35,6 +35,7 @@ class Site < ApplicationRecord
 
   # validations
   validates :name, presence: true
+  validates :sync_status, inclusion: { in: sync_statuses.keys }
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
