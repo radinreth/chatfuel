@@ -17,5 +17,22 @@
 require 'rails_helper'
 
 RSpec.describe SyncHistoryLog, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to have_attribute(:failure_count) }
+  it { is_expected.to have_attribute(:success_count) }
+  it { is_expected.to have_attribute(:uuid) }
+  it { is_expected.to have_attribute(:payload) }
+
+  describe "#uuid" do
+    let(:sync_history) { build(:sync_history_log) }
+
+    it "ensures empty" do
+      expect(sync_history.uuid).to be_empty
+    end
+
+    it "ensures present" do
+      sync_history.save
+
+      expect(sync_history.uuid).to be_present
+    end
+  end
 end
