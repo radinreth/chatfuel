@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Api::V1::SitesController, type: :controller do
   describe "routes" do
-    it { should route(:patch, "/api/v1/sites/0202").to(action: :update, code: "0202", format: "json")  }
+    it { should route(:patch, "/api/v1/sites/0202").to(action: :update, site_code: "0202", format: "json")  }
   end
 
   describe "PATCH :update" do
@@ -15,7 +15,7 @@ RSpec.describe Api::V1::SitesController, type: :controller do
       end
 
       it "response not found" do
-        patch :update, params: { code: "0000" }
+        patch :update, params: { site_code: "0000" }
 
         expect(response).to have_http_status(:bad_request)
         expect(response.content_type).to eq("application/json; charset=utf-8")
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::SitesController, type: :controller do
 
       it "invalid token" do
         site.generate_token
-        patch :update, params: { code: site.code, site: { status: "enable", sync_status: "success" } }
+        patch :update, params: { site_code: site.code, site: { status: "enable", sync_status: "success" } }
 
         expect(response).to have_http_status(:bad_request)
         expect(response.content_type).to include("application/json")
@@ -47,15 +47,15 @@ RSpec.describe Api::V1::SitesController, type: :controller do
         expected = {
           errors: [{
             field: "token", 
-            message: "Token is not matched", 
+            message: "Not match", 
             resource: "Site" }], 
           message: "Bad Request" }
         expect(JSON.parse(response.body)).to include(expected.as_json)
       end
 
       it "valid token" do
-        expected = { name: "kamrieng", status: "enable", sync_status: "success" }
-        patch :update, params: { code: site.code, site: { status: "enable", sync_status: "success" } }
+        expected = { name: "kamrieng", sync_status: "success" }
+        patch :update, params: { site_code: site.code, site: { sync_status: "success" } }
 
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to include("application/json")
