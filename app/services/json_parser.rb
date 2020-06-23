@@ -3,7 +3,7 @@ require "oj"
 class JsonParser
   attr_reader :hash
 
-  def initializer(hash)
+  def initialize(hash)
     @hash = hash
   end
 
