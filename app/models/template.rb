@@ -20,6 +20,7 @@ class Template < ApplicationRecord
   validate :voice_template, if: :voice_template?
 
   validates :type, presence: true
+  validates :content, presence: true
   validates :type,  allow_blank: true,
                     inclusion: {
                       in: %w(MessengerTemplate TelegramTemplate VerboiceTemplate),

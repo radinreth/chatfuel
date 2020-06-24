@@ -1,11 +1,32 @@
 -# = react_component "template_form"
 
--# = simple_form_for @template, remote: true do |f|
--#   -# = react_component("TemplateTypeSelector")
--#   = f.input :type, as: :select, collection: ::Template.platform_names, selected: @template.platform_value
--#   = f.input :content, as: :text
--#   = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
--#   = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
+= simple_form_for @template, remote: true do |f|
+  -# = react_component("TemplateTypeSelector")
+  = f.input :type, as: :select, label: "Type*", collection: ::Template.platform_names, selected: @template.platform_value, input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
+  = f.input :content, label: "Content*", input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
+  .form-group
+    %label.form-label Audio
+    %label.d-block
+      .btn.btn-secondary.btn-sm.btn-choose-file Choose file
+      = f.input_field :audio, as: :file, value: @template&.audio.try(:signed_id), class: "d-none"
+  -# = f.input :status, as: :radio_buttons, label: false, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
+  .form-group
+    .d-flex.justify-content-around.my-4
+      %label.item.text-center
+        = image_tag "incomplete.svg"
+        %p.status-text.m-0 Incomplete
+        %input{ type: "radio", value: 0, name: "template[status]" }
 
--#   %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
--#   = f.submit "Create template", class: "btn btn-primary"
+      %label.item.text-center
+        = image_tag "complete.svg"
+        %p.status-text.m-0 Complete
+        %input{ type: "radio", value: 0, name: "template[status]" }
+
+      %label.item.text-center
+        = image_tag "incorrect.svg"
+        %p.status-text.m-0 Incorrect
+        %input{ type: "radio", value: 0, name: "template[status]" }
+
+  .text-right
+    %button.btn.btn-secondary.btn-sm{"data-dismiss" => "modal", :type => "button"} Cancel
+    = f.submit "Create template", class: "btn btn-primary btn-sm"
