@@ -16,8 +16,8 @@ class Template < ApplicationRecord
   has_one_attached :audio
 
   # validations
-  validate :text_template, if: :text_template?
-  validate :voice_template, if: :voice_template?
+  before_save :ensure_audio_empty_when_choose_text_template
+  before_save :ensure_content_empty_when_choose_voice_template
 
   validates :type, presence: true
   validates :type,  allow_blank: true,
@@ -45,16 +45,13 @@ class Template < ApplicationRecord
   end
 
   private
-    def text_template
-      return if !audio.attached? && content.present?
 
-      errors.add(:content, "content cannot be blank")
+    def ensure_audio_empty_when_choose_text_template
+      audio.purge if audio.attached? && text_template?
     end
 
-    def voice_template
-      return if audio.attached? && content.blank?
-
-      errors.add(:audio, "audio cannot be blank")
+    def ensure_content_empty_when_choose_voice_template
+      self.content = "" if voice_template?
     end
 
     def text_template?

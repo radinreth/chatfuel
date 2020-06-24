@@ -5,6 +5,7 @@ require("channels")
 
 window.$ = require("jquery")
 require("bootstrap")
+
 require("moment")
 require("chartkick")
 require("chart.js")
