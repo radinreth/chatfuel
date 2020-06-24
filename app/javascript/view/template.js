@@ -1,5 +1,32 @@
 document.addEventListener('turbolinks:load', function() {
-  var input = document.getElementById('template_content')
+
+  $("#template_type").change(function() {
+    var val = $(this).val()
+
+    $(".template_content, .template_audio").hide()
+
+    if( val == "MessengerTemplate" || val == "TelegramTemplate" ) {
+      $(".template_content").show()
+    } else {
+      $(".template_audio").show()
+    }
+  })
+
+  $("#template_type").trigger("change")
+
+  // $("#template_type").select()
+  // var input = document.getElementById('template_content'),
+  //     tagify = new Tagify(input, {
+  //     mode: 'mix',
+  //     pattern: /{{/,
+  //     mixTagsInterpolator: ['{{', '}}'],
+  //     maxTags: 10,
+  //     dropdown: {
+  //       enabled: 1,
+  //       position: "text",
+  //       highlightFirst: true
+  //     }
+  //   })
   
   if( input ) {
     var tagify = new Tagify(input, {

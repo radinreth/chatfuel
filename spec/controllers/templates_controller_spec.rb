@@ -19,12 +19,6 @@ RSpec.describe TemplatesController, type: :controller do
     expect(response).to render_template("new")
   end
 
-  it "GET :edit" do
-    get :edit, params: { id: template.id }
-
-    expect(response).to render_template("edit")
-  end
-
   it "POST :create" do
     expect do
       post :create, params: { template: { content: "new template", type: "MessengerTemplate" } }
