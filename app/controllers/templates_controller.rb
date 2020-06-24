@@ -15,8 +15,16 @@ class TemplatesController < ApplicationController
   end
 
   def update
-    if @template.update(template_params)
-      redirect_to templates_path, status: :moved_permanently
+    respond_to do |format|
+      if @template.update(template_params)
+        format.html { redirect_to templates_path, status: :moved_permanently }
+        format.js { redirect_to templates_path, status: :moved_permanently }
+        format.json { head :no_content }
+      else
+        format.js
+        format.json { render  json: @template.errors,
+                              status: :unprocessable_entity }
+      end
     end
   end
 
