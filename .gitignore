@@ -48,8 +48,8 @@ app/assets/javascripts/i18n/
 public/javascripts/
 IDEA/
 
-/config/master.key
-
-/config/credentials/development.key
-
-/config/credentials/staging.key
+config/master.key
+config/credentials.yml.enc
+config/credentials/development.key
+config/credentials/staging.key
+config/credentials/production.key
