@@ -1,14 +1,18 @@
 class UserPolicy < Struct.new(:user, :record)
-  def new?
+  def index?
     !user.site_ombudsman?
+  end
+
+  def new?
+    index?
   end
 
   def edit?
-    !user.site_ombudsman?
+    index?
   end
 
   def update?
-    !user.site_ombudsman?
+    index?
   end
 
   def create?

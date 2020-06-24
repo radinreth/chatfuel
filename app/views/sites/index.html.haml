@@ -1,20 +1,52 @@
-= render partial: "shared/page_header", locals: { title: t(".title"), link: link_to_new("site") }
+= render "shared/sb-admin/page_heading", title: "Sites"
 
-%table.table
-  %tr
-    %th= t(".name")
-    %th= t(".code")
-    %th= t(".track_count")
-    %th= t(".action")
+.card.shadow.mb-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary All sites
+  .card-body
+    .my-4
+      .d-flex.align-items-center.justify-content-between
+        .d-flex.align-items-center
+          %span.mr-2 Search:
+          %input.form-control.form-control-sm
 
-    - @sites.each do |site|
-      %tr
-        %td= link_to site.name, site, style: "text-decoration: underline"
-        %td= site.code
-        %td= site.tracks_count
-        %td
-          = link_to fa_icon('pencil'), edit_site_path(site), class: "btn btn-sm btn-outline-primary"
-          = link_to fa_icon('trash'), site_path(site), class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' }
-          = link_to fa_icon('cog'), site_setting_path(site), class: "btn btn-sm btn-outline-secondary"
+        .actions
+          = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
+            %i.fas.fa-file-upload.fa-fw
+            Import sites
+          = render "import-site-modal", site: @site
 
-!= pagy_bootstrap_nav(@pagy)
+          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newSiteModal" } do
+            %i.fas.fa-plus.fa-fw
+            New site
+          = render "create-new-site-modal", site: @site
+
+    .table-responsive
+      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+        %thead
+          %tr
+            %th District
+            %th Province
+            %th Code
+            %th Track count
+            %th Action
+        %tbody
+          - @sites.each do |site|
+            %tr
+              %td= site.name
+              %td --
+              %td= site.code
+              %td= site.tracks_count
+              %td
+                %ul.list-inline
+                  %li.list-inline-item
+                    = link_to site, class: "btn-circle btn-sm btn-info text-decoration-none" do
+                      %i.fas.fa-eye.fa-fw
+                  %li.list-inline-item
+                    = link_to site_path(site), class: "btn-circle btn-sm btn-warning text-decoration-none" do
+                      %i.fas.fa-edit.fa-fw
+                  %li.list-inline-item
+                    = link_to site_path(site), class: "btn-circle btn-sm btn-danger text-decoration-none" do
+                      %i.fas.fa-trash.fa-fw
+
+!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

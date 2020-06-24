@@ -1,9 +1,22 @@
-= render partial: "shared/page_header", locals: { title: "#{@site.name}(#{@site.tracks_count})", link: nil }
+.container-fluid
+  .row
+    .col-lg-12
+      = render "shared/sb-admin/page_heading", title: @site.name
 
-%span.text-hint
-  = t(".title")
-.mb-2
+      %span.text-hint
+        = t(".title")
 
-%ul
-- @tracks.each do |track|
-  %li= track.code
+    .col-lg-4
+      %table.table.mt-4
+        %tbody
+          %tr
+            %td 12121
+          %tr
+            %td 23423
+          %tr
+            %td 09234
+          %tr
+            %td 23479
+          - @tracks.each do |track|
+            %tr
+              %td= track.code

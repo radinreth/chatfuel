@@ -49,4 +49,8 @@ class User < ApplicationRecord
 
   delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role, allow_nil: true
   delegate :name, :position_level, to: :role, prefix: true, allow_nil: true
+
+  def display_name
+    email.split("@").first
+  end
 end
