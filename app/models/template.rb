@@ -20,7 +20,6 @@ class Template < ApplicationRecord
   validate :voice_template, if: :voice_template?
 
   validates :type, presence: true
-  validates :content, presence: true
   validates :type,  allow_blank: true,
                     inclusion: {
                       in: %w(MessengerTemplate TelegramTemplate VerboiceTemplate),
@@ -49,13 +48,13 @@ class Template < ApplicationRecord
     def text_template
       return if !audio.attached? && content.present?
 
-      errors.add(:base, "invalid template provided")
+      errors.add(:content, "content cannot be blank")
     end
 
     def voice_template
       return if audio.attached? && content.blank?
 
-      errors.add(:base, "invalid template provided")
+      errors.add(:audio, "audio cannot be blank")
     end
 
     def text_template?

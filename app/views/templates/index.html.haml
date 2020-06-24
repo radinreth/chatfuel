@@ -16,15 +16,15 @@
 
 %h5.text-header
   = t(".incomplete")
-.row.card-deck.mb-5
+#incomplete.row.card-deck.mb-5
   = render partial: "template", collection: @templates.incomplete
 
 %h6.text-header
   = t(".complete")
-.row.card-deck.mb-5
+#completed.row.card-deck.mb-5
   = render partial: "template", collection: @templates.completed
 
 %h6.text-header
   = t(".invalid")
-.row.card-deck.mb-5
+#incorrect.row.card-deck.mb-5
   = render partial: "template", collection: @templates.incorrect
