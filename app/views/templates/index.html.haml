@@ -1,6 +1,6 @@
 .d-sm-flex.align-items-center.justify-content-between.mb-4
-  %h1.h3.mb-0.text-gray-800= t(".title")
-  = link_to "#", class: "btn btn-primary mb-3", data: { toggle: "modal", target: "#newTemplateModal" } do
+  %h4.h4.mb-0.text-gray-800= t(".title")
+  = link_to "#", class: "btn btn-primary mb-3 btn-sm", data: { toggle: "modal", target: "#newTemplateModal" } do
     %i.fa.fa-fw.fa-plus
     = t(".new")
   #newTemplateModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "newTemplateLabel", :role => "dialog", :tabindex => "-1"}
@@ -14,17 +14,17 @@
         .modal-body
           = render "form"
 
-%h6.text-dark
+%h5.text-header
   = t(".incomplete")
 .row.card-deck.mb-5
   = render partial: "template", collection: @templates.incomplete
 
-%h6.text-dark
+%h6.text-header
   = t(".complete")
 .row.card-deck.mb-5
   = render partial: "template", collection: @templates.completed
 
-%h6.text-dark
+%h6.text-header
   = t(".invalid")
 .row.card-deck.mb-5
   = render partial: "template", collection: @templates.incorrect
