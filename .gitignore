@@ -47,3 +47,9 @@ chatfuel_*.gz
 app/assets/javascripts/i18n/
 public/javascripts/
 IDEA/
+
+/config/master.key
+
+/config/credentials/development.key
+
+/config/credentials/staging.key
