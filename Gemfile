@@ -8,7 +8,6 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.3"
 gem "sass-rails", ">= 6"
 gem "webpacker", "~> 4.0"
-gem 'react-rails'
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "alto_guisso", github: "instedd/alto_guisso", branch: "master"
