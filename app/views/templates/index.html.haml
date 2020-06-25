@@ -3,28 +3,8 @@
   = link_to "#", class: "btn btn-primary mb-3 btn-sm", data: { toggle: "modal", target: "#newTemplateModal" } do
     %i.fa.fa-fw.fa-plus
     = t(".new")
-  #newTemplateModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "newTemplateLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog.modal-dialog-centered{:role => "document"}
-      .modal-content
-        .modal-header
-          %h5.modal-title New template
-          %button.close{ type: "button", "data-dismiss": "modal", "aria-label": "Close" }
-            %span{ "aria-hidden": true }
-              &times;
-        .modal-body
-          = render "form"
+  = render "modal"
 
-%h5.text-header
-  = t(".incomplete")
-#incomplete.row.card-deck.mb-5
-  = render partial: "template", collection: @templates.incomplete
-
-%h6.text-header
-  = t(".complete")
-#completed.row.card-deck.mb-5
-  = render partial: "template", collection: @templates.completed
-
-%h6.text-header
-  = t(".invalid")
-#incorrect.row.card-deck.mb-5
-  = render partial: "template", collection: @templates.incorrect
+= render "templates", collection: :incomplete
+= render "templates", collection: :completed
+= render "templates", collection: :incorrect
