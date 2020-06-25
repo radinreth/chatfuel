@@ -108,4 +108,5 @@ Rails.application.routes.draw do
     end
   end
 
+  mount Pumi::Engine => "/pumi"
 end
