@@ -1,0 +1,13 @@
+en:
+  site_setting:
+    telegram_push_notification: Telegram Push Notification
+    message_template: Message template
+    digest_message_template: Digest message template
+    message_frequency: Message frequency
+    chat_group: Telegram group chat
+    edit_setting: Edit setting
+    enable_notification: Enable Notification
+    no_site_setting_yet: No site setting yet
+    create_site_setting_description: Create site setting to manage message template and alert frequency.
+    enable: 'On'
+    disable: 'Off'

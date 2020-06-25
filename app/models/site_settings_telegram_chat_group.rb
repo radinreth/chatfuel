@@ -11,7 +11,4 @@
 class SiteSettingsTelegramChatGroup < ApplicationRecord
   belongs_to :site_setting
   belongs_to :telegram_chat_group
-
-  validates :site_setting, :telegram_chat_group, presence: true
-  validates_uniqueness_of :site_setting_id, scope: :telegram_chat_group_id
 end

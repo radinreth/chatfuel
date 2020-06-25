@@ -36,23 +36,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.bigint "step_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "difficulty"
-    t.string "additional_info"
-    t.string "overall"
-    t.string "efficiency"
-    t.string "working_time"
-    t.string "attitude"
-    t.string "provide_info"
-    t.string "process"
-    t.bigint "site_id"
-    t.index ["site_id"], name: "index_feedbacks_on_site_id"
-    t.index ["step_id"], name: "index_feedbacks_on_step_id"
-  end
-
   create_table "identities", force: :cascade do |t|
     t.string "provider"
     t.string "token"
@@ -80,15 +63,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
     t.string "on_reach_threshold", default: "delay"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.bigint "feedback_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "variable_value_id", null: false
-    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
-    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
   end
 
   create_table "role_variables", force: :cascade do |t|

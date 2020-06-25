@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :sites do
-      resource :setting
+      resource :setting, only: [:show, :create, :update]
     end
   end
 

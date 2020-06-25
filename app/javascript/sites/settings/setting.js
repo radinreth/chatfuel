@@ -6,7 +6,11 @@ OWSO.SiteSettings = (() => {
   function init() {
     addEventToMessageVariable();
     addEventToDigestMessageVariable();
-    initSelectPicker();
+    initBootstrapToggle();
+  }
+
+  function initBootstrapToggle() {
+    $('#toggle-notification').bootstrapToggle();
   }
 
   function addEventToMessageVariable() {
@@ -34,14 +38,6 @@ OWSO.SiteSettings = (() => {
     input.selectionStart = input.selectionEnd = start + textToInsert.length;
   }
 
-  function initSelectPicker() {
-    // debugger
-    $.fn.selectpicker.Constructor.BootstrapVersion = "4.4.3"
-    $(".selectpicker").selectpicker();
-  }
 })();
 
-OWSO.SitesSettingsNew = OWSO.SiteSettings
-OWSO.SitesSettingsCreate = OWSO.SiteSettings
-OWSO.SitesSettingsEdit = OWSO.SiteSettings
-OWSO.SitesSettingsUpdate = OWSO.SiteSettings
+OWSO.SitesSettingsShow = OWSO.SiteSettings

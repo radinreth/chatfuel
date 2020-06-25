@@ -1,32 +1,50 @@
-.header
-  .header-body
-    %h4.header-title Site Setting
+= render "shared/sb-admin/page_heading", title: "Site Setting"
 
-- if @setting.present?
+%ol.breadcrumb.mb-4
+  %li.breadcrumb-item
+    = link_to 'Sites', sites_path
+  %li.breadcrumb-item.active
+    Site Setting
+
+- if @setting.present? && @setting.persisted?
   .card
-    .card-body
-      .row
-        .col-md-3
-          message template:
-        .col-md-8
-          = simple_format @setting.message_template
+    .card-header.py-3
+      %h6.m-0.font-weight-bold.text-primary= t('settings.telegram_push_notification')
 
-      .row
-        .col-md-3
-          digest message template:
+    .card-body.telegram-card-body
+      .row.mb-3
+        .col-md-3= "#{t('site_setting.enable_notification')}:"
         .col-md-8
-          = simple_format @setting.digest_message_template
-      .row
-        .col-md-3
-          message frequency:
-        .col-md-8
-          = @setting.message_frequency
+          - if @setting.enable_notification?
+            %span.text-primary= t('site_setting.enable')
+          - else
+            %span.text-danger= t('site_setting.disable')
 
-      = link_to t("sites.update_setting"), edit_site_setting_path(@site), class: "btn btn-outline-secondary"
+      .row.mb-3
+        .col-md-3= "#{t('site_setting.message_template')}:"
+        .col-md-8= @setting.message_template.presence || '-'
+
+      .row.mb-3
+        .col-md-3= "#{t('site_setting.digest_message_template')}:"
+        .col-md-8= @setting.digest_message_template.presence || '-'
+
+      .row.mb-3
+        .col-md-3= "#{t('site_setting.chat_group')}:"
+        .col-md-8= @setting.telegram_chat_groups.pluck(:title).join(", ").presence || '-'
+
+      .row.mb-3
+        .col-md-3= "#{t('site_setting.message_frequency')}:"
+        .col-md-8= @setting.message_frequency.titlecase
+
+      %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("site_setting.edit_setting")
 
 - else
   .card.card-inactive
     .card-body.text-center
-      %h4 No site setting yet
-      %p.text-description Create site setting to manage message template and alert frequency.
-      = link_to t("sites.create_setting"), new_site_setting_path(@site), class: "btn btn-primary"
+      %h4= t('site_setting.no_site_setting_yet')
+      %p.text-description= t('site_setting.create_site_setting_description')
+      %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("sites.create_setting")
+
+= render 'form_modal'

@@ -3,39 +3,32 @@
 module Sites
   class SettingsController < ApplicationController
     before_action :set_site
-    def show
-      @setting = @site.site_setting
-    end
 
-    def new
-      @setting = @site.build_site_setting
-      @setting.site_settings_telegram_chat_groups.build
+    def show
+      @setting = @site.site_setting || @site.build_site_setting
     end
 
     def create
       @setting = @site.build_site_setting(site_setting_params)
       if @setting.save
-        redirect_to site_setting_path(@site), flash: { notice: I18n.t("sites.succesfully_create_setting") }
+        flash[:notice] = I18n.t("sites.succesfully_create_setting")
       else
-        flash.now[:alert] = I18n.t("sites.erorr_create_setting")
-        render :new
+        flash[:alert] = I18n.t("sites.erorr_create_setting")
       end
-    end
 
-    def edit
-      @setting = @site.site_setting
-      @setting.site_settings_telegram_chat_groups || @setting.site_settings_telegram_chat_groups.build
+      redirect_to site_setting_path(@site)
     end
 
     def update
       @setting = @site.site_setting
 
       if @setting.update(site_setting_params)
-        redirect_to site_setting_path(@site), flash: { notice: I18n.t("sites.succesfully_update_setting") }
+        flash[:notice] = I18n.t("sites.succesfully_update_setting")
       else
-        flash.now[:alert] = I18n.t("sites.erorr_update_setting")
-        render :edit
+        flash[:alert] = I18n.t("sites.erorr_update_setting")
       end
+
+      redirect_to site_setting_path(@site)
     end
 
     private
@@ -44,8 +37,9 @@ module Sites
       end
 
       def site_setting_params
-        params.require(:site_setting).permit(:id, :message_template, :message_frequency, :digest_message_template,
-          :enable_notification, site_settings_telegram_chat_groups_attributes: [:id, :site_setting_id, :telegram_chat_group_id]
+        params.require(:site_setting).permit(:id, :message_template,
+          :message_frequency, :digest_message_template,
+          :enable_notification, telegram_chat_group_ids: []
         )
       end
   end
