@@ -9,7 +9,6 @@
       = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
     %p= template.content
   .card-footer
-    -# = link_to "#", class: "btn btn-circle btn-small btn-warning mr-1", data: { toggle: "modal", id: template.id, target: "#newTemplateModal" } do
     = link_to edit_template_path(template), remote: true, class: "btn btn-circle btn-small btn-warning mr-1" do
       %i.fas.fa-fw.fa-pen
     = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-circle btn-small btn-danger" do
