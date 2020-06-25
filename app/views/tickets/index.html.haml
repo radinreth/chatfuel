@@ -7,11 +7,11 @@
     .my-4
       .d-flex.align-items-center.justify-content-between
         .d-flex.align-items-center
-          %span.mr-2 Search:
-          %input.form-control.form-control-sm
+          = simple_form_for :search, url: search_tickets_path, method: :get, html: { class: "form-inline" } do |f|
+            = f.input :q, label: "Search", input_html: { value: @q, class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
 
         .actions
-          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newTicketModal" } do
+          = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newTicketModal" } do
             %i.fas.fa-plus.fa-fw
             = t('.new_ticket')
           = render "create-new-ticket-modal", ticket: Ticket.new

@@ -19,6 +19,10 @@ class TicketPolicy < ApplicationPolicy
     index?
   end
 
+  def search?
+    index?
+  end
+
   def edit?
     update?
   end
