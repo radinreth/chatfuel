@@ -29,6 +29,12 @@ class TicketsController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:search][:q]
+    @pagy, @tickets = pagy(Ticket.order(created_at: :desc).where("code LIKE ?", "%#{@q}%"))
+    render :index
+  end
+
   def update
     @ticket.update(ticket_params)
     redirect_to tickets_path, status: :moved_permanently

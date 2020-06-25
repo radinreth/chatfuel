@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
-  resources :tickets
+  resources :tickets do
+    get :search, on: :collection
+  end
   resources :templates
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
