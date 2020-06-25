@@ -47,6 +47,8 @@ km:
   new_dictionary: ពាក្យគន្លឹះថ្មី
   new_site: ការិយាល័យថ្មី
   update: ធ្វើបច្ចុប្បន្នភាព
+  cancel: បិទ
+  delete: លុបចេញ
   decorators:
     concerns:
       completed_status:
