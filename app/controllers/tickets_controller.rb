@@ -36,7 +36,10 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_path
+    respond_to do |format|
+      format.html { redirect_to tickets_path }
+      format.js
+    end
   end
 
   private
