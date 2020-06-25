@@ -2,18 +2,18 @@
 
 .card.shadow.mb-4
   .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All Dictionaries
+    %h6.subtitle.text-primary List of all dictionaries
   .card-body
     .my-4
       .d-flex.align-items-center.justify-content-between
         .d-flex.align-items-center
-          %span.mr-2 Search:
-          %input.form-control.form-control-sm
+          = simple_form_for :search, url: search_dictionaries_path, method: :get, html: { class: "form-inline" } do |f|
+            = f.input :q, label: "Search", input_html: { value: @q, class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
 
         .actions
-          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newDictionaryModal" } do
+          = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
             %i.fas.fa-plus.fa-fw
-            New dictionary
+            New Dictionary
           = render "create-new-dictionary-modal", dictionary: @variable
           
     .table-responsive
