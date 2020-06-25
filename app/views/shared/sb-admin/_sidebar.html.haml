@@ -1,37 +1,45 @@
-%ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
   = link_to root_path, class: "sidebar-brand d-flex align-items-center justify-content-center" do
     .sidebar-brand-text1.mx-3
       OWSO
 
   %hr.sidebar-divider.my-0
-  %li.nav-item.active
-    = link_to dashboard_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-tachometer-alt
-      %span Dashboard
+  %ul.list-unstyled
+    %li.nav-item
+      = link_to dashboard_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-tachometer-alt
+        %span Dashboard
 
-    = link_to home_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-home
-      %span Home
-
-    = link_to sites_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-sitemap
-      %span Sites
-
-    = link_to dictionaries_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-book
-      %span Dictionaries
-
-    = link_to users_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-user
-      %span Users
-
-    = link_to tickets_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-envelope
-      %span Tickets
-
-    = link_to templates_path, class: "nav-link" do
-      %i.fas.fa-fw.fa-file-alt
-      %span Templates
+    %li.nav-item.active
+      = link_to home_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-home
+        %span Home
+    %li.nav-item
+      = link_to sites_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-sitemap
+        %span Sites
+    %li.nav-item
+      = link_to dictionaries_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-book
+        %span Dictionaries
+    %li.nav-item
+      = link_to users_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-user
+        %span Users
+    %li.nav-item
+      = link_to tickets_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-envelope
+        %span Tickets
+    %li.nav-item
+      = link_to templates_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-file-alt
+        %span Templates
   
-  .text-center.d-none.d-md-inline
+  .text-center.d-none.d-md-inline.mb-auto
     %button#sidebarToggle.rounded-circle.border-0
+
+  .developed-by
+    %p Developed by
+    = image_tag "instedd.png", class: "w-100"
+    %hr
+    %p Version 1.0
