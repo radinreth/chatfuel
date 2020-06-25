@@ -27,7 +27,10 @@ Rails.application.routes.draw do
   resources :voice_messages, only: [:create]
   resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
-    put :batch_update, on: :collection
+    collection do
+      put :batch_update
+      get :search
+    end
   end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
