@@ -1,0 +1,5 @@
+- if @templates.send(collection).count > 0
+  %h5.text-header
+    = t(".#{collection.to_s}")
+  #incomplete.row.card-deck.mb-5
+    = render partial: "template", collection: @templates.send(collection)
