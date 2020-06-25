@@ -10,11 +10,8 @@
       .province.d-flex.align-items-center
         .province__label
           %span.mr-2 Province
-        .province__select-option
-          %select{style: "border: 0"}
-            %option 
-            %option Phnom Penh
-            %option Kandal
+
+        = select_tag 'province', options_for_select( Pumi::Province.all.pluck('name_en', 'id')), class: 'province__select-option'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label
