@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :settings, only: [:index] do
     collection do
-      put :template
+      put :telegram_bot
     end
   end
 
@@ -72,13 +72,6 @@ Rails.application.routes.draw do
         post "ivr", to: "tracks/ivr#create"
         post "chatbot", to: "tracks/chatbot#create"
       end
-    end
-  end
-
-  resources :settings, only: [:index] do
-    collection do
-      put :template
-      put :telegram_bot
     end
   end
 
