@@ -3,7 +3,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require("jquery")
+window.$ = require("jquery")
 require("bootstrap")
 require("moment")
 require("chartkick")

@@ -1,0 +1,3 @@
+$(".destroyModal").modal("hide").on("hidden.bs.modal", function(e) {
+  $("#tr_<%= @ticket.id %>").remove()
+})
