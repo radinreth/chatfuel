@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotifyCompletedTicketJob < ApplicationJob
   queue_as :default
 

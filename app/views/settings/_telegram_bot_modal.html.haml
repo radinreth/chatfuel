@@ -1,0 +1,17 @@
+#telegram-bot-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      = simple_form_for @telegram_bot, url: telegram_bot_settings_path, method: :put, class: 'setting' do |f|
+        .modal-header
+          %h5#exampleModalLabel.modal-title= t('settings.telegram_bot')
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+
+        .modal-body
+          = f.input :id, as: :hidden
+          = f.input :username
+          = f.input :token
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"}= t("shared.cancel")
+          = f.submit t("shared.save"), class: "btn btn-primary"

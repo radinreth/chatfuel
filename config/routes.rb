@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       get :new_import
       post :import
     end
+
+    scope module: :sites do
+      resource :setting, only: [:show, :create, :update]
+    end
   end
 
   namespace :bots do
@@ -65,10 +69,10 @@ Rails.application.routes.draw do
 
   resources :settings, only: [:index] do
     collection do
-      put :template
+      put :telegram_bot
     end
   end
-  
+
   namespace :bots do
 
     resources :voice_feedbacks, only: [:create]
@@ -90,4 +94,6 @@ Rails.application.routes.draw do
     end
   end
 
+  # Telegram
+  telegram_webhook TelegramWebhooksController
 end
