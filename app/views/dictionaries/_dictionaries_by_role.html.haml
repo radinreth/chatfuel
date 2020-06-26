@@ -1,6 +1,0 @@
-.btn-group.btn-group-sm.mb-3
-  - Role.all.each do |role|
-    - viewable = variable.roles.include?(role)
-    %button.btn.btn-outline-secondary.btn-role{ class: active_if(viewable), data: { role_id: role.id, variable_id: variable.id } }
-      = image_tag "#{role.name}.png", class: "border border-secondary rounded-circle"
-      = role.name.capitalize
