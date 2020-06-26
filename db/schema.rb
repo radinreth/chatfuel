@@ -231,7 +231,6 @@ ActiveRecord::Schema.define(version: 2020_06_26_041813) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "report_enabled", default: false
     t.boolean "feedback_message", default: false
-    t.integer "site_id"
   end
 
   create_table "voice_messages", force: :cascade do |t|

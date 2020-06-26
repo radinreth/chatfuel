@@ -9,7 +9,6 @@
 #  type             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  site_id          :integer(4)
 #
 RSpec.describe Variable do
   describe 'attributes' do
