@@ -1,14 +1,13 @@
 %tr
-  %td{ style: "vertical-align: middle" }
-    = dictionary.name
-  %td{ style: "vertical-align: middle" }
+  %td= dictionary.name
+  %td
     - dictionary.roles.each do |role|
       %span.badge.badge-pill.p-2{ class: role.name == 'system_admin' ? 'badge-secondary' : 'badge-danger ' }
         = role.name.humanize
-  %td{ style: "vertical-align: middle" }
+  %td
     - if dictionary.report_enabled?
       %small Mark as Feedback
-  %td{ style: "vertical-align: middle; padding: 10px 15px" }
+  %td{ style: "padding: 10px 15px" }
     %ul.list-inline.m-0
       %li.list-inline-item 
         = link_to edit_dictionary_path(dictionary), class: "btn-circle btn-edit btn-warning text-decoration-none" do

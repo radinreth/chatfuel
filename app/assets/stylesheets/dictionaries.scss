@@ -7,6 +7,7 @@
 
   .table td {
     padding: 0.5rem;
+    vertical-align: middle;
   }
   
   .btn-edit {
@@ -77,11 +78,6 @@
     }
   }
 
-  .btn-role > img {
-    width: 32px;
-    height: 32px;
-    background-color: #fff;
-  }
 }
 
 #dictionaries-edit,
