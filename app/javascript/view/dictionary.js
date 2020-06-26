@@ -8,5 +8,6 @@ document.addEventListener('turbolinks:load', function() {
     }
 
     checkbox.next(".report-label").text(reportLabel)
+    $(".td-satisfied").toggleClass("invisible")
   })
 })
