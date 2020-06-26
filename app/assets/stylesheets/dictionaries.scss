@@ -1,8 +1,15 @@
+#dictionaries-update,
 #dictionaries-index {
   .subtitle {
     margin: 0;
     font-weight: 700;
     font-size: 20px;
+  }
+
+  .invalid-message {
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #e74a3b;
   }
 
   .table td {

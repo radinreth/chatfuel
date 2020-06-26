@@ -20,7 +20,7 @@
       = f.input_field :report_enabled, label: false, name: "variable[report_enabled]"
       %span.slider.round
     %span Report enabled
-    %div{ style: "margin-top: .25rem; font-size: 80%; color: #e74a3b;" }
+    %div.invalid-message
       = dictionary.errors.full_messages_for(:report_enabled).to_sentence
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
