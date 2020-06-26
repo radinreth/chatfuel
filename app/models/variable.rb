@@ -9,7 +9,6 @@
 #  type             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  site_id          :integer(4)
 #
 class Variable < ApplicationRecord
   default_scope { order(name: :asc) }
@@ -21,7 +20,6 @@ class Variable < ApplicationRecord
   has_many :values, class_name: "VariableValue",
                     dependent: :destroy,
                     autosave: true
-  belongs_to :site, optional: true
 
   accepts_nested_attributes_for :values,  allow_destroy: true,
                                           reject_if: :rejected_values
