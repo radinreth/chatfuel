@@ -17,7 +17,9 @@
               %tr
                 %th Raw value
                 %th Mapping value
-                %th.w-25.px-4 Satisfied
+                %th.w-25.px-4
+                  .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
+                    Satisfied
                 %th
             %tbody
               = f.simple_fields_for :values, include_id: false do |value_form|
