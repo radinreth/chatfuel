@@ -2,12 +2,14 @@
 #
 # Table name: variables
 #
-#  id             :bigint(8)        not null, primary key
-#  name           :string
-#  report_enabled :boolean          default("false")
-#  type           :string           not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id               :bigint(8)        not null, primary key
+#  feedback_message :boolean          default("false")
+#  name             :string
+#  report_enabled   :boolean          default("false")
+#  type             :string           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  site_id          :integer(4)
 #
 class Variable < ApplicationRecord
   default_scope { order(name: :asc) }
@@ -19,8 +21,9 @@ class Variable < ApplicationRecord
   has_many :values, class_name: "VariableValue",
                     dependent: :destroy,
                     autosave: true
+  belongs_to :site, optional: true
 
-  accepts_nested_attributes_for :values,  allow_destroy: true, 
+  accepts_nested_attributes_for :values,  allow_destroy: true,
                                           reject_if: :rejected_values
 
   # validations
@@ -30,6 +33,8 @@ class Variable < ApplicationRecord
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
                               message: I18n.t("variable.invalid_name") }
+
+  delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   def to_partial_path
     "dictionaries/dictionary"

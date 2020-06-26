@@ -37,4 +37,14 @@ class VariableValue < ApplicationRecord
   end
 
   delegate :name, to: :variable, prefix: true
+  delegate :feedback_message?, to: :variable, prefix: false
+
+  after_create :push_notification, if: -> { feedback_message? }
+
+  private
+    def push_notification
+      return unless (variable.site.present? && variable.site.site_setting.present? && variable.site.site_setting.message_frequency == 'immediately')
+
+      TelegramNotificationWorker.perform_async(id)
+    end
 end
