@@ -2,7 +2,6 @@ version: '3'
 
 volumes:
   db:
-  node_modules:
   bundle:
 
 services:
@@ -21,7 +20,7 @@ services:
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
+      - ./node_modules:/app/node_modules
     tmpfs: /app/tmp
     depends_on:
       - db
@@ -39,3 +38,10 @@ services:
 
   redis:
     image: redis:5.0.7
+
+  ngrok:
+    image: wernight/ngrok
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_PORT: 'web:3000'

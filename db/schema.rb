@@ -88,6 +88,22 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "site_settings", force: :cascade do |t|
+    t.text "message_template"
+    t.text "digest_message_template"
+    t.integer "message_frequency"
+    t.boolean "enable_notification", default: false
+    t.bigint "site_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_site_settings_on_site_id"
+  end
+
+  create_table "site_settings_telegram_chat_groups", id: :serial, force: :cascade do |t|
+    t.bigint "site_setting_id", null: false
+    t.bigint "telegram_chat_group_id", null: false
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "name", null: false
     t.string "code", default: ""
@@ -112,6 +128,23 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_steps_on_message_id"
+  end
+
+  create_table "telegram_bots", force: :cascade do |t|
+    t.string "username"
+    t.string "token"
+    t.boolean "actived", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "telegram_chat_groups", force: :cascade do |t|
+    t.string "title"
+    t.integer "chat_id"
+    t.boolean "is_active"
+    t.text "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "templates", force: :cascade do |t|
@@ -213,6 +246,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
   add_foreign_key "identities", "users"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
+  add_foreign_key "site_settings", "sites"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"

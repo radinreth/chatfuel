@@ -34,6 +34,9 @@ gem "liquid", "~> 4.0", ">= 4.0.3"
 gem "tilt", "~> 2.0", ">= 2.0.10"
 gem "sentry-raven", "~> 3.0"
 
+gem "telegram-bot", "~> 0.14.3"
+gem "sidekiq-scheduler", "~> 3.0.1"
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.beta4"

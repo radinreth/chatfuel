@@ -8,3 +8,11 @@
     cron: '0 0,12 * * *'
     class: QuotaJob
     description: "Quota to broadcasting message to messenger users each day"
+
+  alert_daily_notification:
+    cron: "0 8 * * *"
+    class: AlertDailyNotificationJob
+
+  alert_weekly_notification:
+    cron: "0 8 * * 1"
+    class: AlertWeeklyNotificationJob

@@ -24,6 +24,8 @@ class Site < ApplicationRecord
   has_many :users
   has_many :feedbacks
 
+  has_one :site_setting, dependent: :destroy
+
   # validations
   validates :name, presence: true
   validates :code, uniqueness: true,
