@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', function() {
     var checkbox = $('.variable-report-enabled')
     var reportLabel = "Mark as Feedback"
 
-    if( checkbox[0].checked ) {
+    if( checkbox[0] && checkbox[0].checked ) {
       reportLabel = "Unmark as Feedback"
     }
 

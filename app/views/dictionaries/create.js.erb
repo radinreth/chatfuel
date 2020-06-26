@@ -1,5 +1,6 @@
 <% if @variable.errors.any? %>
-  $("#new_variable").html("<%= escape_javascript(render 'form', dictionary: @variable) %>");
+  $("#new_variable").html("<%= j(render 'form', dictionary: @variable) %>");
 <% else %>
+  $("#dataTable tbody").prepend("<%= j(render 'dictionary', dictionary: @variable) %>")
   $("[data-dismiss]").click();
 <% end %>
