@@ -82,26 +82,17 @@ document.addEventListener('turbolinks:load', function() {
     });
   })
 
-  $(".report-enabled-col").click(function(){
-    let $form = $(this.form)
-    let variableId = $form.data("variable-id")
-    let csrfToken = $('meta[name="csrf-token"]').attr("content")
+  $(document).on("click", ".variable_report_enabled", function(){
+    var checkbox = $('.variable-report-enabled')
+    var reportLabel = "Mark as Feedback"
 
-    $.ajax({
-      url: "/dictionaries/" +variableId,
-      type: "PUT",
-      dataType: "script",
-      beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', csrfToken);},
-      data: { variable: { report_enabled: this.checked }},
-      success: function(data) { console.log(data) },
-      error: function(xhr, status, err) {
-        console.log(err)
-      }
-    });
+    if( checkbox[0].checked ) {
+      reportLabel = "Unmark as Feedback"
+    }
+
+    checkbox.next(".report-label").text(reportLabel)
   })
 })
-
-
 
 document.addEventListener('turbolinks:before-render', function() {
   $(".dict-item").removeClass('active');

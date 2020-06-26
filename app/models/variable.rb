@@ -37,7 +37,11 @@ class Variable < ApplicationRecord
 
   private
     def only_one_report_column
-      errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && Variable.exists?(report_enabled: true)
+      errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && report_already_set?
+    end
+
+    def report_already_set?
+      Variable.where.not(id: self).exists?(report_enabled: true)
     end
 
     def rejected_values(attributes)

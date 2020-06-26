@@ -29,98 +29,98 @@
     font-weight: 600;
   }
 
-//   .dict-list {
-//     float: left;
-//   }
+  .dict-list {
+    float: left;
+  }
 
-//   .dict-item {
-//     margin-bottom: 5px;
-//     padding: 5px;
-//     position: relative;
-//     padding-right: 20px;
-//   }
+  .dict-item {
+    margin-bottom: 5px;
+    padding: 5px;
+    position: relative;
+    padding-right: 20px;
+  }
 
-//   .result-map {
-//     float: left;
-//     min-height: 380px;
-//     min-width: 689px;
-//     background-color: #e6e6e6;
-//   }
+  .result-map {
+    float: left;
+    min-height: 380px;
+    min-width: 689px;
+    background-color: #e6e6e6;
+  }
 
-//   .rating {
-//     td { 
-//       text-align: center;
-//       padding: 0 15px;
-//       border: 0;
-//      }
-//   }
+  .rating {
+    td { 
+      text-align: center;
+      padding: 0 15px;
+      border: 0;
+     }
+  }
 
-//   .active {
-//     // background-color: #e6e6e6;
-//   }
+  .active {
+    // background-color: #e6e6e6;
+  }
 
-//   .arrow-shape {
-//     width: 0;
-//     height: 0;
-//     border-left: 22px solid transparent;
-//     position: absolute;
-//     right: 0;
+  .arrow-shape {
+    width: 0;
+    height: 0;
+    border-left: 22px solid transparent;
+    position: absolute;
+    right: 0;
 
-//     &__top {
-//       border-top: 22px solid white;
-//       top: 0;
-//     }
+    &__top {
+      border-top: 22px solid white;
+      top: 0;
+    }
 
-//     &__bottom {
-//       border-bottom: 22px solid white;
-//     bottom: 0;
-//     }
-//   }
+    &__bottom {
+      border-bottom: 22px solid white;
+    bottom: 0;
+    }
+  }
 
-//   .btn-role > img {
-//     width: 32px;
-//     height: 32px;
-//     background-color: #fff;
-//   }
-// }
+  .btn-role > img {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+  }
+}
 
-// #dictionaries-edit,
-// #dictionaries-update {
-//   table.rate td {
-//     padding: 0;
-//     border: 0;
-//     text-align: center;
-//   }
+#dictionaries-edit,
+#dictionaries-update {
+  table.rate td {
+    padding: 0;
+    border: 0;
+    text-align: center;
+  }
 
-//   th {
-//     font-size: 0.8em;
-//   }
+  th {
+    font-size: 0.8em;
+  }
 
-//   .permission-title {
-//     font-weight: bold;
-//     font-size: 1em;
-//   }
+  .permission-title {
+    font-weight: bold;
+    font-size: 1em;
+  }
 
-//   .custom-checkbox .custom-control-label::before {
-//     border-radius: .25rem;
-//   }
+  .custom-checkbox .custom-control-label::before {
+    border-radius: .25rem;
+  }
 
-//   .form-group {
-//     margin-bottom: 0;
-//   }
+  .form-group {
+    margin-bottom: 0;
+  }
 
-//   table.rate {
+  table.rate {
     
 
-//     th, td {
-//       padding: 0;
-//       margin: 0;
-//       border-collapse: collapse;
-//       line-height: 1em;
-//     }
-//   }
+    th, td {
+      padding: 0;
+      margin: 0;
+      border-collapse: collapse;
+      line-height: 1em;
+    }
+  }
 
-//   tfoot {
-//     border-bottom: 1px solid #dddfeb;
-//   }
+  tfoot {
+    border-bottom: 1px solid #dddfeb;
+  }
 }
