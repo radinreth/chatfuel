@@ -35,6 +35,13 @@ class DictionariesController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:search][:q]
+    @variable = Variable.new
+    @pagy, @variables = pagy(Variable.except_done.where("name LIKE ?", "%#{@q}%"))
+    render :index
+  end
+
   def update
     @variable = Variable.find(params[:id])
     @roles = Role.all
