@@ -26,22 +26,19 @@ class SiteSetting < ApplicationRecord
   has_many :site_settings_telegram_chat_groups
   has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
 
-  accepts_nested_attributes_for :site_settings_telegram_chat_groups, allow_destroy: true
-
   enum message_frequency: {
     immediately: 1,
     daily: 2,
     weekly: 3
   }
 
-  FEEDBACK_AUDIO = "{{feedback_audio}}"
-  FEEDBACK_TEXT = "{{feedback_text}}"
-  FEEDBACK_AUDIO_COUNT = "{{feedback_text_count}}"
+  FEEDBACK_MESSAGE = "{{feedback_message}}"
+  FEEDBACK_AUDIO_COUNT = "{{feedback_audio_count}}"
   FEEDBACK_TEXT_COUNT = "{{feedback_text_count}}"
   FEEDBACK_FREEQUENCY = "{{feedback_frequency}}"
 
   def message_variables
-    [FEEDBACK_AUDIO, FEEDBACK_TEXT]
+    [FEEDBACK_MESSAGE]
   end
 
   def digest_message_variables
