@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.string "profile_pic_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "location_name"
   end
 
   create_table "tickets", force: :cascade do |t|
