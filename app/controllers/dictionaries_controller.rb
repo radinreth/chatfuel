@@ -3,11 +3,10 @@ class DictionariesController < ApplicationController
   before_action :set_new_variable, only: [:index, :search]
 
   def index
-    @q = params[:q]
     @variables = Variable.except_done.order(created_at: :desc)
-
-    if @q
-      @variables = @variables.where("name LIKE ?", "%#{@q}%")
+    
+    if params[:q].present?
+      @variables = @variables.where("name LIKE ?", "%#{params[:q]}%")
     end
 
     @pagy, @variables = pagy(@variables)
