@@ -19,6 +19,7 @@ en:
   oops: Oops!
   no_role_or_site: Currently, You are not assigned any role or site.
   contact_admin: Please contact administrator.
+  cancel: Cancel
   sidebar:
     home: Home
     sites: Sites
@@ -27,6 +28,7 @@ en:
     users: Users
     logout: Logout
     signin: Signin
+    confirm_logout: Are you sure you want to logout?
   signin: Sign in
   not_authorized: "You are not authorized"
   created:
