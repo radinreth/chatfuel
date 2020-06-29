@@ -1,0 +1,5 @@
+<% if @ticket.errors.any? %>
+  $("#new_ticket").html("<%= escape_javascript(render 'form', ticket: @ticket) %>");
+<% else %>
+  $("[data-dismiss]").click()
+<% end %>

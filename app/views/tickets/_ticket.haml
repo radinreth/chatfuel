@@ -1,0 +1,25 @@
+%tr{ id: "tr_#{ticket.id}" }
+  %td= ticket.code
+  %td
+    %span.badge.badge-pill.badge-primary.p-2
+      = ticket.status
+  %td= ticket.created_at
+  %td
+    %ul.list-inline.m-0
+      %li.list-inline-item 
+        = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none", data: { toggle: "modal", target: ".destroyModal" } do
+          %i.fas.fa-trash.fa-fw
+        .destroyModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "destroyLabel", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-dialog-centered{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5.modal-title= t("delete")
+                %button.close{ type: "button", "data-dismiss": "modal", "aria-label": "Close" }
+                  %span{ "aria-hidden": true }
+                    &times;
+              .modal-body
+                %p= t("deleted.confirm")
+              .modal-footer
+                %button.btn.btn-secondary{ type: "button", data: { dismiss: "modal" } }
+                  = t("cancel")
+                = link_to t("delete"), ticket, class: "btn btn-danger", method: :delete, remote: true
