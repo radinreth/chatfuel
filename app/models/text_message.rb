@@ -6,6 +6,7 @@
 #  first_name        :string
 #  gender            :string
 #  last_name         :string
+#  location_name     :string
 #  profile_pic_url   :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
