@@ -27,11 +27,18 @@
           = current_user.display_name
         %img.img-profile.rounded-circle{:src => "https://source.unsplash.com/QAB-WJcbgJk/60x60"}/
       .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "userDropdown"}
-        - if user_signed_in?
-          %a.dropdown-item{"data-target" => "#logoutModal", "data-toggle" => "modal", :href => "#"}
-            %i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
-            Logout
-        - else
-          = link_to new_user_session_path do
-            %i.fas.fa-sign-in-alt.fa-sm.fa-fw.mr-2.text-gray-400
-            = t("sidebar.signin")
+        %a.dropdown-item{"data-target" => "#logoutModal", "data-toggle" => "modal", :href => "#"}
+          %i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
+          = t("sidebar.logout")
+      #logoutModal.modal.fade{"aria-labelledby" => "exampleModalLabel", "aria-modal" => "true", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-dialog-centered{:role => "document"}
+          .modal-content
+            .modal-header
+              %h5#exampleModalLabel.modal-title= t("sidebar.logout")
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+            .modal-body= t("sidebar.confirm_logout")
+            .modal-footer
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("cancel")
+              = link_to t("sidebar.logout"), destroy_user_session_path, method: :delete, class: "btn btn-primary"
+
