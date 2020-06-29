@@ -33,24 +33,24 @@ class SiteSetting < ApplicationRecord
   }
 
   FEEDBACK_MESSAGE = "{{feedback_message}}"
-  FEEDBACK_AUDIO_COUNT = "{{feedback_audio_count}}"
-  FEEDBACK_TEXT_COUNT = "{{feedback_text_count}}"
-  FEEDBACK_FREEQUENCY = "{{feedback_frequency}}"
+  FEEDBACK_COUNT = "{{feedback_count}}"
+
+  scope :enable_notification, -> { where(enable_notification: true) }
 
   def message_variables
     [FEEDBACK_MESSAGE]
   end
 
   def digest_message_variables
-    [FEEDBACK_AUDIO_COUNT, FEEDBACK_TEXT_COUNT, FEEDBACK_FREEQUENCY]
+    [FEEDBACK_COUNT]
   end
 
-  def notification_message
-    message_template
+  def notification_message(value)
+    message_template.gsub(/#{FEEDBACK_MESSAGE}/, "<b>#{value}</b>")
   end
 
-  def notification_digest_message
-    digest_message_template
+  def notification_digest_message(value)
+    digest_message_template.to_s.gsub(/#{FEEDBACK_COUNT}/, "<b>#{value}</b>")
   end
 
   def message_frequency=(value)

@@ -3,6 +3,8 @@
 # Table name: step_values
 #
 #  id                :bigint(8)        not null, primary key
+#  created_at        :datetime
+#  updated_at        :datetime
 #  site_id           :bigint(8)
 #  step_id           :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
@@ -50,6 +52,6 @@ class StepValue < ApplicationRecord
     def push_notification
       return unless (site_setting.present? && site_setting.message_frequency == 'immediately')
 
-      TelegramNotificationWorker.perform_async(id)
+      AlertNotificationJob.perform_later(id)
     end
 end
