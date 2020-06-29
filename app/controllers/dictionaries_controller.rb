@@ -3,7 +3,14 @@ class DictionariesController < ApplicationController
   before_action :set_new_variable, only: [:index, :search]
 
   def index
-    @pagy, @variables = pagy(Variable.except_done.order(created_at: :desc))
+    @q = params[:q]
+    @variables = Variable.except_done.order(created_at: :desc)
+
+    if @q
+      @variables = @variables.where("name LIKE ?", "%#{@q}%")
+    end
+
+    @pagy, @variables = pagy(@variables)
     authorize @variables
   end
 
@@ -26,12 +33,6 @@ class DictionariesController < ApplicationController
         format.js
       end
     end
-  end
-
-  def search
-    @q = params[:search][:q]
-    @pagy, @variables = pagy(Variable.except_done.where("name LIKE ?", "%#{@q}%"))
-    render :index
   end
 
   def update

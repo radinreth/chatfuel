@@ -7,8 +7,8 @@
     .my-4
       .d-flex.align-items-center.justify-content-between
         .d-flex.align-items-center
-          = simple_form_for :search, url: search_dictionaries_path, method: :get, html: { class: "form-inline" } do |f|
-            = f.input :q, label: "Search", input_html: { value: @q, class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
+          = simple_form_for :search, url: dictionaries_path, method: :get, html: { class: "form-inline" } do |f|
+            = f.input :q, label: "Search", input_html: { name: "q", value: @q, class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
 
         .actions
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
