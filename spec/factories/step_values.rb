@@ -23,7 +23,8 @@
 #
 FactoryBot.define do
   factory :step_value do
-    step { nil }
-    variable_value { nil }
+    step
+    variable_value
+    site
   end
 end
