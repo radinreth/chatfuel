@@ -19,6 +19,7 @@ km:
   oops: អីយ៉ា!
   no_role_or_site: អ្នកមិនត្រូវបានចាត់តាំងតួនាទី ឬ ការិយាល័យណាមួយទេ
   contact_admin: សូមទាក់ទងអ្នកគ្រប់គ្រង
+  cancel: បោះបង់
   sidebar:
     home: ទំព័រដើម
     sites: ការិយាល័យ
@@ -27,6 +28,7 @@ km:
     users: អ្នកប្រើប្រាស់
     logout: ចាកចេញ
     signin: ចូលប្រើ
+    confirm_logout: តើអ្នកពិតជាចង់ចាកចេញឬ?
   signin: ចូលប្រើ
   not_authorized: អ្នកមិនត្រូវបានអនុញ្ញាតទេ
   created:
