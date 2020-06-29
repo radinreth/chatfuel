@@ -3,6 +3,8 @@
 # Table name: step_values
 #
 #  id                :bigint(8)        not null, primary key
+#  created_at        :datetime
+#  updated_at        :datetime
 #  site_id           :bigint(8)
 #  step_id           :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null

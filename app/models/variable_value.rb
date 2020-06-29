@@ -25,8 +25,6 @@ class VariableValue < ApplicationRecord
   belongs_to :variable
   has_many :step_values
   has_many :steps, through: :step_values
-  has_many :ratings, dependent: :destroy
-  has_many :feedbacks, through: :ratings
 
   # validations
   validates :raw_value, presence: true, uniqueness: { scope: :variable_id }
