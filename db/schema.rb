@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_033511) do
+ActiveRecord::Schema.define(version: 2020_06_15_071243) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -37,23 +36,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.bigint "step_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "difficulty"
-    t.string "additional_info"
-    t.string "overall"
-    t.string "efficiency"
-    t.string "working_time"
-    t.string "attitude"
-    t.string "provide_info"
-    t.string "process"
-    t.bigint "site_id"
-    t.index ["site_id"], name: "index_feedbacks_on_site_id"
-    t.index ["step_id"], name: "index_feedbacks_on_step_id"
-  end
-
   create_table "identities", force: :cascade do |t|
     t.string "provider"
     t.string "token"
@@ -70,8 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-06-04 06:26:05"
-    t.string "last_visited_block_name", default: ""
+    t.datetime "last_interaction_at", default: "2020-06-30 04:09:55"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -83,15 +64,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.string "on_reach_threshold", default: "delay"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.bigint "feedback_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "variable_value_id", null: false
-    t.index ["feedback_id"], name: "index_ratings_on_feedback_id"
-    t.index ["variable_value_id"], name: "index_ratings_on_variable_value_id"
   end
 
   create_table "role_variables", force: :cascade do |t|
@@ -123,8 +95,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
-    t.integer "sync_status", default: 1, null: false
-    t.string "token", default: ""
     t.index ["name"], name: "index_sites_on_name"
   end
 
@@ -144,16 +114,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.index ["message_id"], name: "index_steps_on_message_id"
   end
 
-  create_table "sync_history_logs", force: :cascade do |t|
-    t.string "uuid", default: "", null: false
-    t.hstore "payload", default: {}, null: false
-    t.integer "success_count", default: 0
-    t.integer "failure_count", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
-  end
-
   create_table "templates", force: :cascade do |t|
     t.string "content", default: ""
     t.datetime "created_at", precision: 6, null: false
@@ -170,7 +130,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.string "profile_pic_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "location_name"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -182,9 +141,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "incomplete_at"
     t.date "incorrect_at"
-    t.bigint "site_id", null: false
     t.index ["code"], name: "index_tickets_on_code"
-    t.index ["site_id"], name: "index_tickets_on_site_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -260,7 +217,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_033511) do
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"
-  add_foreign_key "tickets", "sites"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
 end
