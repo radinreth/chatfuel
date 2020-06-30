@@ -1,4 +1,42 @@
+#dictionaries-update,
 #dictionaries-index {
+  .subtitle {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .invalid-message {
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #e74a3b;
+  }
+
+  .table td {
+    padding: 0.5rem;
+    vertical-align: middle;
+  }
+  
+  .btn-edit {
+    height: 1.3rem;
+    width: 1.3rem;
+    font-size: 0.6rem;
+
+    i {
+      margin-left: 3px;
+    }
+  }
+
+  .table td,
+  .table th,
+  .search-label {
+    font-size: 18px;
+  }
+
+  .search-label {
+    font-weight: 600;
+  }
+
   .dict-list {
     float: left;
   }
@@ -47,9 +85,45 @@
     }
   }
 
-  .btn-role > img {
-    width: 32px;
-    height: 32px;
-    background-color: #fff;
+}
+
+#dictionaries-edit,
+#dictionaries-update {
+  table.rate td {
+    padding: 0;
+    border: 0;
+    text-align: center;
+  }
+
+  th {
+    font-size: 0.8em;
+  }
+
+  .permission-title {
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .custom-checkbox .custom-control-label::before {
+    border-radius: .25rem;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  table.rate {
+    
+
+    th, td {
+      padding: 0;
+      margin: 0;
+      border-collapse: collapse;
+      line-height: 1em;
+    }
+  }
+
+  tfoot {
+    border-bottom: 1px solid #dddfeb;
   }
 }

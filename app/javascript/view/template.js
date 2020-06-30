@@ -1,6 +1,8 @@
 document.addEventListener('turbolinks:load', function() {
-  var input = document.getElementById('template_content'),
-      tagify = new Tagify(input, {
+  var input = document.getElementById('template_content')
+  
+  if( input ) {
+    var tagify = new Tagify(input, {
       mode: 'mix',
       pattern: /{{/,
       mixTagsInterpolator: ['{{', '}}'],
@@ -11,8 +13,9 @@ document.addEventListener('turbolinks:load', function() {
         highlightFirst: true
       }
     })
+  }
   
-  if( tagify.on != undefined ) {
+  if( tagify && tagify.on != undefined ) {
     input.value = normalize(input)
     tagify.on('add', (e) => {
       input.value = normalize(input)
