@@ -27,7 +27,7 @@ class Variable < ApplicationRecord
   # validations
   validate :only_one_report_column
   validates :type, presence: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :type }
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
                               message: I18n.t("variable.invalid_name") }

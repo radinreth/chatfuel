@@ -5,7 +5,8 @@
         .h5.m-0.font-weight-bold.text-primary Total User Visit (Each Function)
       .card-body
         .chart-pie.pt-4.pb-2
-          %canvas#total-visitors
+          -# %canvas#total-visitors
+          =line_chart Message.group_by_day(:created_at).count
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
