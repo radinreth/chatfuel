@@ -39,7 +39,8 @@
     %button#sidebarToggle.rounded-circle.border-0
 
   .developed-by
-    %p Developed by
+    %p= t("developed_by")
     = image_tag "instedd.png", class: "w-100"
     %hr
-    %p Version 1.0
+    %p
+      = t("app_version", version: ENV['APP_VERSION'])

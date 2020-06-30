@@ -20,6 +20,8 @@ en:
   no_role_or_site: Currently, You are not assigned any role or site.
   contact_admin: Please contact administrator.
   cancel: Cancel
+  developed_by: Developed by
+  app_version: Version %{version}
   sidebar:
     home: Home
     sites: Sites
