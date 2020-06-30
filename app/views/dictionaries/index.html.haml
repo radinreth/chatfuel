@@ -1,72 +1,30 @@
-= render "shared/page_header", title: t(".title"), link: link_to_new("dictionary")
+= render "shared/sb-admin/page_heading", title: t(".title")
 
-.row
-  .col-3
-    = render "nav"
-  
-  .col-9
-    #v-pills-tabContent.tab-content
-      - @variables.each_with_index do |variable, index|
-        .tab-pane.fade{ id: "v-pills-#{variable.name}", class: "#{toggle_class_name("active show", index.zero?)}" }
-          = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline', "data-variable-id": variable.id }, remote: false do |f|
-            .card.w-100
-              .card-body
-                - if current_user.system_admin?
-                  = render "dictionaries_by_role", variable: variable # view data: limit view data base on role
-                  = render "mark_dictionary_as_report_column", f: f, variable: variable
+.card.shadow.mb-4
+  .card-header.py-3
+    %h6.subtitle.text-primary List of all dictionaries
+  .card-body
+    .my-4
+      .d-flex.align-items-center.justify-content-between
+        .d-flex.align-items-center
+          = simple_form_for :search, url: dictionaries_path, method: :get, html: { class: "form-inline" } do |f|
+            = f.input :q, label: "Search", input_html: { name: "q", value: params[:q], class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
 
-                %table.table{ class: "dict-item-#{variable.name}", "data-variable-id": variable.id }
-                  %tr
-                    %th= t(".raw")
-                    %th= t(".mapping")
-                    %th.text-center{ class: "satisfy-col#{variable.id} #{toggle_class_name("invisible", !variable.report_enabled?) }"}
-                      = t(".satisfied")
-  .result-map
-    - @variables.select('name').distinct.each_with_index do |v, index|
-      = simple_form_for :dictionaries, url: batch_update_dictionaries_path, method: :put, html: { class: 'form-inline'}, remote: false do |f|
-        %table.table{ class: "dict-item-#{v.name} #{ toggle_class_name('d-none', !index.zero?) }" }
+        .actions
+          = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
+            %i.fas.fa-plus.fa-fw
+            New Dictionary
+          = render "create-new-dictionary-modal", dictionary: @variable
+          
+    .table-responsive
+      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+        %thead
           %tr
-            %th Value
-            %th Text
-          - @variables.order(value: :asc).each do |sub|
-            - if sub.name == v.name
-              %tr
-                %td
-                  = f.input :id, as: :hidden, input_html: { value: sub.id, name: "variable[][id]" }
-                  = f.input :value, input_html: { value: sub.value, name: "variable[][value]", id: "variable_value_#{sub.id}", class: 'mr-sm-2' }, readonly: true, label: false
-                %td  
-                  = f.input :text, input_html: { value: sub.text, name: "variable[][text]", id: "variable_text_#{sub.id}", class: 'mr-sm-2' }, label: false
-
-          %tr
-            %td{ colspan: 2}
-              = f.submit "Update", class: "btn btn-primary pull-right"
-
-                  - variable.values.each do |var_value|
-                    %tr
-                      %td
-                        = f.input :id, as: :hidden, input_html: { value: variable.id, name: "variable_value[][variable_id]" }   
-                        .input-group
-                          .input-group-prepend
-                            .input-group-text
-                              = link_to fa_icon("times"), dictionary_value_path(variable, var_value), method: :delete, data: { disable_with: t(".wait"), confirm: t(".confirm") }, remote: true
-                          = f.input_field :raw_value, value: var_value.raw_value, name: "variable_value[][raw_value]", id: "variable_value_#{var_value.id}", class: "form-control string required mr-sm-2", label: false, readonly: true
-                      %td  
-                        = f.input :mapping_value, input_html: { value: var_value.mapping_value, name: "variable_value[][mapping_value]", id: "variable_text_#{var_value.id}", class: "mr-sm-2" }, label: false
-                      %td{ class: "satisfy-col#{variable.id} #{toggle_class_name('invisible', !variable.report_enabled?) }"}
-                        .form-check.form-check-inline
-                          %table.rating
-                            %tr
-                              %td= image_tag "disatisfied.png", size: "24x24"
-                              %td= image_tag "normal.png", size: "24x24"
-                              %td= image_tag "satisfied.png", size: "24x24"
-                            %tr
-                              %td= f.radio_button :status, 2, name: "variable_value[][status#{var_value.id}]", checked: var_value.disatisfied?
-                              %td= f.radio_button :status, 0, name: "variable_value[][status#{var_value.id}]", checked: var_value.normal?
-                              %td= f.radio_button :status, 1, name: "variable_value[][status#{var_value.id}]", checked: var_value.satisfied?
-                              
-                  %tr
-                    %td{ colspan: 2 }
-                      = link_to t(".add_pair"), "#", class: "btn btn-add", "data-name": variable.name
-                    %td
-                      = f.submit t("update"), class: "btn btn-primary pull-right"
-.clearfix
+            %th Code
+            %th Permission
+            %th Satisfied
+            %th Action
+        %tbody
+          = render @variables
+            
+!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

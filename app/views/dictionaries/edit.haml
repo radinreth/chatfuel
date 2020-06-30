@@ -1,0 +1,47 @@
+= simple_form_for @variable, url: dictionary_path do |f|
+  .d-sm-flex.align-items-center.justify-content-between.mb-4
+    %h1.h3.mb-0.text-gray-800
+      = @variable.name
+    .btn-group-toggle.text-right{ "data-toggle": "buttons" }
+      %label.variable_report_enabled.btn.btn-success.btn-sm{ class: toggle_class_name("active", @variable.report_enabled?) }
+        = f.input_field :report_enabled, checked: @variable.report_enabled?, name: "variable[report_enabled]", class: "variable-report-enabled"
+        %span.report-label
+          = @variable.report_enabled? ? 'Unmark as Feedback' : 'Mark as Feedback'
+      %div.invalid-message
+        %small= @variable.errors.full_messages_for(:report_enabled).to_sentence
+
+  .card.shadow.mb-4
+    .card-body
+      .my-4
+        .table-responsive
+          %table.w-100.table{ cellspacing: 0 }
+            %thead
+              %tr
+                %th Raw value
+                %th Mapping value
+                %th.w-25.px-4
+                  .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
+                    Satisfied
+                %th
+            %tbody
+              = f.simple_fields_for :values, include_id: false do |value_form|
+                = render "value_form", value_form: value_form
+            %tfoot
+              %tr
+                %td{ colspan: 4 }
+                  = link_to "#", class: "text-decoration-none dictionary-add-pair" do
+                    %i.fa.fa-sm.fa-plus-circle.fa-fw
+                    Add pair
+      
+        %h6.mt-4.permission-title Permission
+
+        %ul.list-inline
+          = hidden_field_tag('variable[role_ids][]', nil)
+          - @roles.each do |role|
+            %li.list-inline-item
+              .custom-control.custom-checkbox
+                %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: f.object.role_ids.include?(role.id) }
+                %label.custom-control-label{ for: role.id }
+                  %span= role.name.humanize
+
+        = f.submit "Update", class: "btn btn-primary float-right"

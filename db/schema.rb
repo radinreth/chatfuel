@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_035403) do
+ActiveRecord::Schema.define(version: 2020_06_15_071243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_035403) do
   create_table "variable_values", force: :cascade do |t|
     t.string "raw_value", null: false
     t.string "mapping_value", default: ""
-    t.integer "status", default: 0
+    t.string "status", default: "1"
     t.bigint "variable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

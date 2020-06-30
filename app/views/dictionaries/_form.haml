@@ -1,0 +1,27 @@
+= simple_form_for dictionary, url: dictionaries_path, remote: true do |f|
+  .modal-header
+    %h5#newDictionaryLabel.modal-title New Dictionary
+    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+  .modal-body
+    = f.input :type, as: :select, collection: { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second, selected: 1, input_html: { name: "variable[type]" }
+    = f.input :name, input_html: { name: "variable[name]" }
+
+    .form-group
+      %label Roles
+      %ul.list-unstyled
+        - @roles.each do |role|
+          %li
+            .custom-control.custom-checkbox
+              %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: dictionary.role_ids.include?(role.id) }
+              %label.custom-control-label{ for: role.id }
+                %span= role.name.humanize
+    %label.switch.m-0
+      = f.input_field :report_enabled, label: false, name: "variable[report_enabled]"
+      %span.slider.round
+    %span Report enabled
+    %div.invalid-message
+      = dictionary.errors.full_messages_for(:report_enabled).to_sentence
+  .modal-footer
+    %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+    = f.submit "Save changes", class: "btn btn-primary"
