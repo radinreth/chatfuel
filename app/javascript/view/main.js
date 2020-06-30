@@ -3,10 +3,6 @@ document.addEventListener("turbolinks:load", function(){
   Owso = (function($){
     var app = {}
     
-    function addPair() {
-      console.log($)
-    }
-
     function factory(dom) {
       let newIndex = +$(dom).data("index") + 1
       $(dom).prop("disabled", false)
@@ -41,7 +37,6 @@ document.addEventListener("turbolinks:load", function(){
       e.preventDefault()
       var row = $(this).closest("tr")
 
-      console.log( row.closest("tbody").children(".value-row").length )
       if( row.closest("tbody").children(".value-row").length > 1 ) {
         row.find(".variable-destroy").val(true)
         row.hide()
@@ -49,8 +44,6 @@ document.addEventListener("turbolinks:load", function(){
         alert("Unable to empty dictionary")
       }
     })
-
-    app.addPair = addPair
 
     return app
   }(jQuery))
