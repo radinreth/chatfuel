@@ -14,17 +14,17 @@ OWSO.SiteSettings = (() => {
   }
 
   function addEventToMessageVariable() {
-    $(".message-setting-variable").click((e) => {
-      messageVarible = $(e.target).text();
-      messageTemplateDom = $("#site_setting_message_template")
-      insertAtCursor(messageTemplateDom[0], messageVarible);
-    });
+    onClickMessageVariables('.message-setting-variable', '#site_setting_message_template');
   }
 
   function addEventToDigestMessageVariable() {
-    $(".digest-message-setting-variable").click((e) => {
+    onClickMessageVariables('.digest-message-setting-variable', '#site_setting_digest_message_template');
+  }
+
+  function onClickMessageVariables(selectorKlass, domId) {
+    $(selectorKlass).click((e) => {
       digestMessageVariable = $(e.target).text();
-      digestMessageTemplateDom = $("#site_setting_digest_message_template")
+      digestMessageTemplateDom = $(domId);
       insertAtCursor(digestMessageTemplateDom[0], digestMessageVariable);
     });
   }
