@@ -2,6 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
+    @template = Template.new
     @templates = Template.order(type: :asc)
     authorize @templates
   end
@@ -14,17 +15,31 @@ class TemplatesController < ApplicationController
   end
 
   def update
-    if @template.update(template_params)
-      redirect_to templates_path, status: :moved_permanently
+    respond_to do |format|
+      if @template.update(template_params)
+        format.html { redirect_to templates_path, status: :moved_permanently }
+        format.js { redirect_to templates_path, status: :moved_permanently }
+        format.json { head :no_content }
+      else
+        format.js
+        format.json { render  json: @template.errors,
+                              status: :unprocessable_entity }
+      end
     end
   end
 
   def create
+    @templates = Template.order(type: :asc)
     @template = Template.new(template_params)
-    if @template.save
-      redirect_to templates_path, status: :moved_permanently, notice: t("created.success")
-    else
-      render :new, status: :unprocessable_entity, alert: t("created.fail")
+
+    respond_to do |format|
+      if @template.save
+        format.html { redirect_to templates_path, status: :moved_permanently, notice: t("created.success") }
+        format.js
+      else
+        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
+        format.js
+      end
     end
   end
 

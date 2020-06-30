@@ -1,0 +1,6 @@
+<% if @template.errors.any? %>
+  $("#new_template").html("<%= escape_javascript(render 'form') %>");
+<% else %>
+  $("#<%= @template.status %>").html("<%= escape_javascript(render partial: "template", collection: @templates.send("#{@template.status}".to_sym)) %>");
+  $("[data-dismiss]").click()
+<% end %>
