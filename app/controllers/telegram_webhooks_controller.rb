@@ -11,14 +11,14 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
-    return unless is_bot_added(message)
+    return unless bot_added?(message)
 
     group = TelegramChatGroup.find_or_initialize_by(chat_id: chat["id"])
     group.update(title: chat["title"], is_active: true)
   end
 
   private
-    def is_bot_added(message)
+    def bot_added?(message)
       new_member = message["new_chat_member"]
       message["group_chat_created"] || new_member.try(:[], "username") == TelegramBot.first.username
     end
