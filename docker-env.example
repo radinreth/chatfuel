@@ -7,6 +7,7 @@ REDIS_URL=
 GUISSO_CLIENT_ID=
 GUISSO_CLIENT_SECRET=
 SENTRY_DSN=
+TELEGRAM_CALLBACK_URL=https://ngrok.io/telegram
 
 # Shell with unicode support
 LANG=C.UTF-8

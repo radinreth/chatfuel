@@ -12,7 +12,15 @@ require("daterangepicker")
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
 
 require("toastr")
-Tagify = require("@yaireo/tagify")
+// Tagify = require("@yaireo/tagify")
+
+import "bootstrap-toggle/js/bootstrap-toggle"
+
+require("application/namespace")
+require("application/util")
+require("application/loader")
+
+require("sites/settings/setting")
 
 require("shared/sidebar")
 require("view/dictionary")

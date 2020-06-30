@@ -6,6 +6,11 @@
 @import "startbootstrap-sb-admin-2/css/sb-admin-2.min";
 @import "daterangepicker/daterangepicker";
 
+@import "bootstrap-toggle/css/bootstrap-toggle";
+@import "bootstrap-toggle-custom";
+@import "base";
+@import "share";
+
 @import "sb-admin-custom";
 @import "sb-admin-sidebar";
 @import "home";
@@ -14,3 +19,4 @@
 @import "dictionaries";
 @import "switch";
 @import "template";
+@import "site_setting";

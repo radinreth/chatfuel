@@ -1,0 +1,7 @@
+en:
+  sites:
+    update_setting: Update site setting
+    erorr_create_setting: cannot create site setting
+    successful_create_setting: successfully created site setting
+    succesfully_update_setting: successfully updated site setting
+    erorr_update_setting: cannot update site setting
