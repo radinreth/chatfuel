@@ -20,6 +20,8 @@ km:
   no_role_or_site: អ្នកមិនត្រូវបានចាត់តាំងតួនាទី ឬ ការិយាល័យណាមួយទេ
   contact_admin: សូមទាក់ទងអ្នកគ្រប់គ្រង
   cancel: បោះបង់
+  developed_by: អភិវឌ្ឍន៍​ដោយ
+  app_version: កំណែ %{version}
   sidebar:
     home: ទំព័រដើម
     sites: ការិយាល័យ
