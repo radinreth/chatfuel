@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_071243) do
+ActiveRecord::Schema.define(version: 2020_06_29_043200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,22 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "site_settings", force: :cascade do |t|
+    t.text "message_template"
+    t.text "digest_message_template"
+    t.integer "message_frequency"
+    t.boolean "enable_notification", default: false
+    t.bigint "site_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_site_settings_on_site_id"
+  end
+
+  create_table "site_settings_telegram_chat_groups", id: :serial, force: :cascade do |t|
+    t.bigint "site_setting_id", null: false
+    t.bigint "telegram_chat_group_id", null: false
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "name", null: false
     t.string "code", default: ""
@@ -102,6 +118,8 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.bigint "step_id", null: false
     t.bigint "variable_value_id", null: false
     t.bigint "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["site_id"], name: "index_step_values_on_site_id"
     t.index ["step_id"], name: "index_step_values_on_step_id"
     t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
@@ -112,6 +130,23 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_steps_on_message_id"
+  end
+
+  create_table "telegram_bots", force: :cascade do |t|
+    t.string "username"
+    t.string "token"
+    t.boolean "actived", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "telegram_chat_groups", force: :cascade do |t|
+    t.string "title"
+    t.integer "chat_id"
+    t.boolean "is_active"
+    t.text "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "templates", force: :cascade do |t|
@@ -197,6 +232,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "report_enabled", default: false
+    t.boolean "feedback_message", default: false
   end
 
   create_table "voice_messages", force: :cascade do |t|
@@ -213,6 +249,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_071243) do
   add_foreign_key "identities", "users"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
+  add_foreign_key "site_settings", "sites"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"

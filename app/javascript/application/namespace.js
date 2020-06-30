@@ -1,0 +1,1 @@
+window.OWSO = window.OWSO || {}

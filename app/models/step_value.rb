@@ -3,6 +3,8 @@
 # Table name: step_values
 #
 #  id                :bigint(8)        not null, primary key
+#  created_at        :datetime
+#  updated_at        :datetime
 #  site_id           :bigint(8)
 #  step_id           :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
@@ -24,6 +26,10 @@ class StepValue < ApplicationRecord
   belongs_to :variable_value
   belongs_to :site, optional: true
 
+  delegate :site_setting, to: :site, prefix: false, allow_nil: true
+
+  after_create :push_notification, if: -> { variable_value.feedback_message? }
+
   def self.satisfied
     return [] unless report_column
 
@@ -41,5 +47,11 @@ class StepValue < ApplicationRecord
   private
     def self.report_column
       @report_column ||= Variable.find_by(report_enabled: true)
+    end
+
+    def push_notification
+      return unless (site_setting.present? && site_setting.message_frequency == 'immediately')
+
+      AlertNotificationJob.perform_later(id)
     end
 end
