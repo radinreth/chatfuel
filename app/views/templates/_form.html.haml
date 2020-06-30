@@ -1,6 +1,33 @@
-= simple_form_for @template do |f|
-  = f.input :type, as: :select, collection: ::Template.platform_names, select: @template.platform_value
-  = f.input :status, as: :radio_buttons, collection: ::Template.statuses, label_method: lambda{ |t| t.first.capitalize }, checked: @template.status_value
-  = f.input :audio, as: :file, value: @template&.audio.try(:signed_id)
-  = f.input :content
-  = f.submit
+= simple_form_for @template, remote: true do |f|
+  = f.input :type, as: :select, label: "Type*", collection: ::Template.platform_names, selected: ::Template.platform_names[@template.platform_value][1], input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
+  = f.input :content, label: "Content*", input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
+  .form-group.template_audio
+    %label.form-label Audio
+    %label.d-block
+      .btn.btn-secondary.btn-sm.btn-choose-file Choose file
+      = f.input_field :audio, as: :file, value: @template&.audio.try(:signed_id), name: "template[audio]", class: "d-none", accept: "audio/mp3"
+    .fail-validation.invalid-audio
+      = f.object.errors.full_messages_for(:audio).to_sentence
+  .form-group
+    .d-flex.justify-content-around.my-4
+      %label.item.text-center
+        = image_tag "incomplete.svg"
+        %p.status-text.m-0 Incomplete
+        %input{ type: "radio", value: 0, name: "template[status]", checked: @template.incomplete? }
+
+      %label.item.text-center
+        = image_tag "complete.svg"
+        %p.status-text.m-0 Complete
+        %input{ type: "radio", value: 1, name: "template[status]", checked: @template.completed? }
+
+      %label.item.text-center
+        = image_tag "incorrect.svg"
+        %p.status-text.m-0 Incorrect
+        %input{ type: "radio", value: 2, name: "template[status]", checked: @template.incorrect? }
+
+    .fail-validation.invalid-status
+      = f.object.errors.full_messages_for(:status).to_sentence
+
+  .text-right
+    %button.btn.btn-secondary.btn-sm{"data-dismiss" => "modal", :type => "button"} Cancel
+    = f.submit "Create template", class: "btn btn-primary btn-sm"

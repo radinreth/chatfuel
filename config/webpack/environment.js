@@ -7,7 +7,7 @@ environment.plugins.prepend('Provide',
     moment: 'moment/moment',
     toastr: 'toastr/toastr',
     DateRangePicker: 'daterangepicker/daterangepicker',
-    Popper: ['popper.js', 'default']
+    Popper: ['popper.js', 'default'],
   })
 )
 module.exports = environment

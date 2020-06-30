@@ -1,0 +1,77 @@
+#templates-index {
+  .text-header {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    color: #5a5c69;
+  }
+
+  .platform-name {
+    color: #5a5c69;
+    font-size: 0.8rem;
+  }
+
+  .btn-small {
+    height: 1.5rem;
+    width: 1rem;
+    font-size: 0.55rem;
+
+    &.btn-danger {
+      background-color: #d23528;
+      border-color: #d23528;
+    }
+  }
+
+
+  .modal-title {
+    margin-top: 7px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #5a5c69;
+  }
+
+  .modal-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .btn-choose-file {
+    border-radius: 4px;
+    border: solid 1px #dddfeb;
+    background-color: #dfdfdf;
+    color: #5a5c69;
+  }
+
+  .form-label {
+    font-size: 18px;
+    color: #5a5c69;
+    font-weight: bold;
+
+    abbr {
+      display: none;
+    }
+  }
+
+  .status-text {
+    font-size: 16px;
+    color: #5a5c69;
+  }
+
+  .item {
+    border: 1px solid transparent;
+    min-width: 120px;
+    border-radius: 4px;
+    transition: all 0.4s;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #5a5c69;
+    }
+  }
+
+  .fail-validation {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #e74a3b;
+  }
+}
