@@ -27,6 +27,8 @@ RSpec.describe Api::V1::SitesController, type: :controller do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
 
     it "success" do
+      site.generate_token
+
       request.headers['Authorization'] = "Bearer #{site.token}"
       patch :update, params: { site_code: site.code }
 
