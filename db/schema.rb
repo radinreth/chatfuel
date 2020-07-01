@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2020_07_09_072006) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -200,7 +199,6 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.date "incorrect_at"
     t.bigint "site_id"
     t.index ["code"], name: "index_tickets_on_code"
-    t.index ["site_id"], name: "index_tickets_on_site_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -279,7 +277,6 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
   add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "steps", "messages"
-  add_foreign_key "tickets", "sites"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
 end
