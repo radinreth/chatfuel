@@ -36,8 +36,13 @@ class Message < ApplicationRecord
   # methods
   def self.create_or_return(platform_name, content)
     message = find_by(content: content)
-    message = create(platform_name: platform_name, content: content) if !message || message&.completed?
-    message.touch :last_interaction_at
+
+    if !message || message&.completed?
+      message = create(platform_name: platform_name, content: content) 
+    else
+      message.touch :last_interaction_at
+    end
+    
     message
   end
 
