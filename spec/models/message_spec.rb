@@ -60,6 +60,7 @@ RSpec.describe Message do
 
       it "creates if completed" do
         create(:message, content: content, status: :completed)
+        Message.complete_all
 
         expect do
           described_class.create_or_return("Messenger", content)
