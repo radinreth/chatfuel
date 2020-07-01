@@ -129,6 +129,56 @@ text_messages = [
     messenger_user_id: 18,
     platform_name: "Messenger",
     code: ticket_codes[7]
+  },
+
+  # feedback
+  {
+    messenger_user_id: 19,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_challenge",
+    raw_value: "high_price"
+  },
+  {
+    messenger_user_id: 20,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_challenge",
+    raw_value: "form_complicate"
+  },
+  {
+    messenger_user_id: 21,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_challenge",
+    raw_value: "take long time"
+  },
+  {
+    messenger_user_id: 211,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_challenge",
+    raw_value: "take long time"
+  },
+  {
+    messenger_user_id: 212,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_challenge",
+    raw_value: "take long time"
+  },
+  {
+    messenger_user_id: 22,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_q2",
+    raw_value: "working_time"
+  },
+  {
+    messenger_user_id: 23,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_q2",
+    raw_value: "speech"
+  },
+  {
+    messenger_user_id: 24,
+    platform_name: "Messenger",
+    dictionary_name: "feedback_q2",
+    raw_value: "provide info"
   }
 ]
 
