@@ -6,7 +6,7 @@
       .card-body
         .chart-pie.pt-4.pb-2
           -# %canvas#total-visitors
-          =line_chart Message.group_by_day(:created_at).count
+          = pie_chart StepValue.joins(:variable_value).where("variable_values.raw_value in (?)", ['owso_info', 'tracking', 'feedback']).group(:raw_value).count, donut: true
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -22,4 +22,7 @@
         .h5.m-0.font-weight-bold.text-primary Number of Ticket(Successfully Tracked)
       .card-body
         .chart-bar
-          %canvas#total-tracked-tickets
+          -# %canvas#total-tracked-tickets
+          -# = column_chart [{ name: 'tracking', data: { complete: 123, incomplete: 232 } }]
+          = column_chart [{name: nil, data: Track.joins(:ticket).where("tickets.status in (?)", [0, 2]).group(:status).count }]
+          -# = column_chart Track.joins(:ticket).where("tickets.status in (?)", [0, 2]).group(:status).count, pointSize: 12

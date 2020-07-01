@@ -15,12 +15,7 @@
 #
 # Indexes
 #
-#  index_tickets_on_code     (code)
-#  index_tickets_on_site_id  (site_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (site_id => sites.id)
+#  index_tickets_on_code  (code)
 #
 require "rails_helper"
 

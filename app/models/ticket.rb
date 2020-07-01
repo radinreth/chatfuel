@@ -15,12 +15,7 @@
 #
 # Indexes
 #
-#  index_tickets_on_code     (code)
-#  index_tickets_on_site_id  (site_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (site_id => sites.id)
+#  index_tickets_on_code  (code)
 #
 class Ticket < ApplicationRecord
   enum status: %i[incomplete completed incorrect notified]
