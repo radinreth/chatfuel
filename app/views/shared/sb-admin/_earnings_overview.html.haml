@@ -5,8 +5,19 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.total_user_visit")
       .card-body
-        .chart-pie.pt-4.pb-2
-          = pie_chart total_users_visit_each_functions, donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
+        .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+          %ul.list-unstyled
+            %li
+              %span.oval.oval--green
+              %span.oval-label OWSO Info
+            %li
+              %span.oval.oval--blue
+              %span.oval-label Feedback
+            %li
+              %span.oval.oval--yellow
+              %span.oval-label Ticket Tracking
+          
+          = pie_chart total_users_visit_each_functions, width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -14,8 +25,22 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.total_user_feedback")
       .card-body
-        .chart-pie.pt-4.pb-2
-          = pie_chart total_users_feedback, donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
+        .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+          %ul.list-unstyled
+            %li
+              %span.oval.oval--green
+              %span.oval-emoji 😍
+              %span.oval-label-km ពេញចិត្ត
+            %li
+              %span.oval.oval--blue
+              %span.oval-emoji 😊
+              %span.oval-label-km អាចទទួលយកបាន
+            %li
+              %span.oval.oval--yellow
+              %span.oval-emoji 😞
+              %span.oval-label-km មិនពេញចិត្ត
+
+          = pie_chart total_users_feedback, width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -23,5 +48,4 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.number_of_tracked_ticket")
       .card-body
-        .chart-bar
-          = column_chart number_of_tracking_tickets
+        = column_chart number_of_tracking_tickets
