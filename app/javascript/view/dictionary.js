@@ -10,4 +10,15 @@ document.addEventListener('turbolinks:load', function() {
     checkbox.next(".report-label").text(reportLabel)
     $(".td-satisfied").toggleClass("invisible")
   })
+
+  $(document).on("change", "#province", function(e) {
+    var province = $(this).val()
+
+    var params = new URLSearchParams(location.search)
+    params.set('location', province);
+
+    var url = `${location.pathname}?${params}`
+    window.history.replaceState({}, '', url);
+    document.location = url;
+  })
 })
