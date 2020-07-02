@@ -15,7 +15,7 @@ Seed::Ticket.generate!
 
 
 Message.destroy_all
-ticket_codes = Ticket.take(10).pluck(:code)
+ticket_codes = Ticket.take(100).pluck(:code)
 
 text_messages = [
   { 
@@ -137,6 +137,46 @@ text_messages = [
     platform_name: "Messenger",
     code: ticket_codes[7]
   },
+  {
+    messenger_user_id: 181,
+    platform_name: "Messenger",
+    code: ticket_codes[8]
+  },
+  {
+    messenger_user_id: 182,
+    platform_name: "Messenger",
+    code: ticket_codes[9]
+  },
+  {
+    messenger_user_id: 183,
+    platform_name: "Messenger",
+    code: ticket_codes[10]
+  },
+  {
+    messenger_user_id: 184,
+    platform_name: "Messenger",
+    code: ticket_codes[11]
+  },
+  {
+    messenger_user_id: 185,
+    platform_name: "Messenger",
+    code: ticket_codes[12]
+  },
+  {
+    messenger_user_id: 186,
+    platform_name: "Messenger",
+    code: ticket_codes[13]
+  },
+  {
+    messenger_user_id: 187,
+    platform_name: "Messenger",
+    code: ticket_codes[14]
+  },
+  {
+    messenger_user_id: 188,
+    platform_name: "Messenger",
+    code: ticket_codes[15]
+  },
 
   # feedback
   {
@@ -197,7 +237,7 @@ text_messages.each do |message|
     code = message.delete(:code)
 
     if message[:messenger_user_id].present?
-      content = TextMessage.create(message.merge(location_name: ["Kandal", "Takeo", "Banteay Meanchey"].sample))
+      content = TextMessage.create(message.merge(location_name: ["Kandal", "Banteay Meanchey"].sample))
     elsif message[:callsid].present?
       content = VoiceMessage.create(message)
     else
