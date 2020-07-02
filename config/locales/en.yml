@@ -104,6 +104,19 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+  dashboard:
+    total_user_visit: Total User Visit (Each Function)
+    total_user_feedback: Total User Feedbacks (Overall OWSO Service Delivery)
+    number_of_tracked_ticket: Number of Ticket(Successfully Tracked)
+    both: Both
+    ivr: IVR
+    chatbot: Chatbot
+    province: Province
+    show: Show
+    active_user: Active User
+    total_user: Total User
+    average_using_time: Average Using Time
+    most_request_service: Most Request Services
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
