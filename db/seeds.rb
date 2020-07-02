@@ -49,6 +49,13 @@ text_messages = [
     raw_value: "owso_info"
   },
 
+  { 
+    callsid: 5,
+    platform_name: "Verboice",
+    dictionary_name: "main_menu",
+    raw_value: "owso_info"
+  },
+
 
 
   { 
@@ -189,7 +196,13 @@ text_messages.each do |message|
     raw_value = message.delete(:raw_value)
     code = message.delete(:code)
 
-    content = TextMessage.create(message)
+    if message[:messenger_user_id].present?
+      content = TextMessage.create(message.merge(location_name: ["Kandal", "Takeo", "Banteay Meanchey"].sample))
+    elsif message[:callsid].present?
+      content = VoiceMessage.create(message)
+    else
+      raise "Invalid message"
+    end
 
     msg = Message.create(platform_name: platform, content: content)
 

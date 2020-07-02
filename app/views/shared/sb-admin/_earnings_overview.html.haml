@@ -5,8 +5,7 @@
         .h5.m-0.font-weight-bold.text-primary Total User Visit (Each Function)
       .card-body
         .chart-pie.pt-4.pb-2
-          -# %canvas#total-visitors
-          = pie_chart StepValue.joins(:variable_value).where("variable_values.raw_value in (?)", ['owso_info', 'tracking', 'feedback']).group(:raw_value).count, donut: true, legend: false, library: { cutoutPercentage: 80 }
+          = pie_chart total_users_visit_each_functions, donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -14,8 +13,7 @@
         .h5.m-0.font-weight-bold.text-primary Total User Feedbacks (Overall OWSO Service Delivery)
       .card-body
         .chart-pie.pt-4.pb-2
-          -# %canvas#total-feedbacks
-          = pie_chart StepValue.joins(variable_value: :variable).where("variables.report_enabled=?", true).group("variable_values.status").count, donut: true, legend: false, library: { cutoutPercentage: 80 }
+          = pie_chart total_users_feedback, donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -23,7 +21,4 @@
         .h5.m-0.font-weight-bold.text-primary Number of Ticket(Successfully Tracked)
       .card-body
         .chart-bar
-          -# %canvas#total-tracked-tickets
-          -# = column_chart [{ name: 'tracking', data: { complete: 123, incomplete: 232 } }]
-          = column_chart [{name: nil, data: Track.joins(:ticket).where("tickets.status in (?)", Ticket.statuses.fetch_values(:incomplete, :completed)).group(:status).count }]
-          -# = column_chart Track.joins(:ticket).where("tickets.status in (?)", [0, 2]).group(:status).count, pointSize: 12
+          = column_chart number_of_tracking_tickets
