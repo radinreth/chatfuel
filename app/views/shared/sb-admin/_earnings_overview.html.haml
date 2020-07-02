@@ -30,15 +30,18 @@
             %li
               %span.oval.oval--green
               %span.oval-emoji 😍
-              %span.oval-label-km ពេញចិត្ត
+              %span.oval-label-km
+                = t("dashboard.like")
             %li
               %span.oval.oval--blue
               %span.oval-emoji 😊
-              %span.oval-label-km អាចទទួលយកបាន
+              %span.oval-label-km
+                = t("dashboard.acceptable")
             %li
               %span.oval.oval--yellow
               %span.oval-emoji 😞
-              %span.oval-label-km មិនពេញចិត្ត
+              %span.oval-label-km
+                = t("dashboard.dislike")
 
           = pie_chart total_users_feedback, width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
