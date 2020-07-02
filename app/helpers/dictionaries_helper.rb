@@ -5,17 +5,9 @@ module DictionariesHelper
       .joins(steps: { step_value: :variable_value })\
       .where("variable_values.raw_value IN (?)", ["owso_info", "tracking", "feedback"])
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @start_date, @end_date)
+      .order(:raw_value)
       .group(:raw_value)
       .count
-  end
-
-  def total_users_visit_each_functions_sql
-    Message
-      .merge(send("join_#{@message_type}_message".to_sym))
-      .joins(steps: { step_value: :variable_value })
-      .where("variable_values.raw_value IN (?)", ["owso_info", "tracking", "feedback"])
-      .where("DATE(step_values.created_at) BETWEEN ? AND ?", @start_date, @end_date)
-      .group(:raw_value).to_sql
   end
 
   def join_text_message
