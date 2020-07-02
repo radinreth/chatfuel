@@ -105,6 +105,7 @@ km:
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
   dashboard:
+    title: ផ្ទាំងគ្រប់គ្រង
     total_user_visit: ចំនួនអ្នកទស្សនារបស់អ្នកប្រើប្រាស់សរុប (មុខងារនីមួយៗ)
     total_user_feedback: ការឆ្លើយតបរបស់អ្នកប្រើប្រាស់សរុប (ការផ្តល់សេវាការិយាល័យច្រកចេញចូលតែមួយ)
     number_of_tracked_ticket: ចំនួនសំបុត្រ (តាមដានដោយជោគជ័យ)
@@ -117,6 +118,9 @@ km:
     total_user: អ្នកប្រើប្រាស់សរុប
     average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
     most_request_service: សេវាកម្មស្នើសុំច្រើនជាងគេ
+    like: ពេញចិត្ត
+    acceptable: អាចទទួលយកបាន
+    dislike: មិនពេញចិត្ត
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ
