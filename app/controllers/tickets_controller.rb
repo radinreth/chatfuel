@@ -56,6 +56,6 @@ class TicketsController < ApplicationController
 
     def ticket_params
       status = params[:ticket][:status].to_i
-      params.require(:ticket).permit(:code, :status).merge(status: status)
+      params.require(:ticket).permit(:code, :status, :site_id).merge(status: status)
     end
 end

@@ -23,7 +23,7 @@ RSpec.describe TicketsController, type: :controller do
 
   it "POST :create" do
     expect do
-      post :create, params: { ticket: { code: "123" } }
+      post :create, params: { ticket: { code: "123", site_id: create(:site).id } }
     end.to change { Ticket.count }.by(1)
   end
 
