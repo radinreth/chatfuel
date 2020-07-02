@@ -98,7 +98,7 @@ text_messages = [
 
   # track
   {
-    messenger_user_id: 11,
+    messenger_user_id: 111,
     platform_name: "Messenger",
     code: ticket_codes[0]
   },
@@ -252,15 +252,15 @@ text_messages.each do |message|
       step.value = variable.values.find_or_create_by raw_value: raw_value
     else
       site = Site.find_by(code: code[0...4])
-      ticket = Ticket.find_by(code: code)
+      ticket = Ticket.find_by(code: code, site: site)
       track = Track.create(code: code, site: site, ticket: ticket)
       step.track = track
     end
 
     step.save
-  rescue
+  rescue => e
+    p e.inspect
     p msg&.errors
     p variable&.errors
-    p variable_value&.errors
   end
 end
