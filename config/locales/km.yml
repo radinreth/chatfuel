@@ -97,16 +97,29 @@ km:
     index:
       title: ទំព័រដើម
       empty: ប្រអប់ទទួលរបស់អ្នកទទេ
-      session_id: លេខ​សម្គាល់​
+      session_id: លេខសម្គាល់
       type: ប្រភេទ
       all: សារទាំងអស់
       search: ស្វែងរក
       session_id: អត្តលេខ
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
+  dashboard:
+    total_user_visit: ចំនួនអ្នកទស្សនារបស់អ្នកប្រើប្រាស់សរុប (មុខងារនីមួយៗ)
+    total_user_feedback: ការឆ្លើយតបរបស់អ្នកប្រើប្រាស់សរុប (ការផ្តល់សេវាការិយាល័យច្រកចេញចូលតែមួយ)
+    number_of_tracked_ticket: ចំនួនសំបុត្រ (តាមដានដោយជោគជ័យ)
+    both: ទាំងពីរ
+    ivr: ខលចូល
+    chatbot: ឆាតបត
+    province: ខេត្ត
+    show: បង្ហាញ
+    active_user: អ្នកប្រើប្រាស់សកម្ម
+    total_user: អ្នកប្រើប្រាស់សរុប
+    average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
+    most_request_service: សេវាកម្មស្នើសុំច្រើនជាងគេ
   reports:
     accessed_submitted_completed_line_chart:
-      no_data: គ្មាន​ទិន្នន័យ
+      no_data: គ្មានទិន្នន័យ
     accessed_submitted_completed_summary_table:
       accessed: បានចូលប្រើ
       submitted: បានដាក់ស្នើ

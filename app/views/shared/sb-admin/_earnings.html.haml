@@ -4,7 +4,8 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1 Active User
+            .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
+              = t("dashboard.active_user")
             .h5.mb-0.font-weight-bold.text-gray-800 N/A
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
@@ -13,7 +14,8 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 Total User
+            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 
+              = t("dashboard.total_user")
             .h5.mb-0.font-weight-bold.text-gray-800
               = @user_count
           .col-auto
@@ -23,7 +25,8 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1 Average Using Time
+            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1 
+              = t("dashboard.average_using_time")
             .row.no-gutters.align-items-center
               .col-auto
                 .h5.mb-0.mr-3.font-weight-bold.text-gray-800 N/A
@@ -34,7 +37,8 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1 Most Request Services
+            .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
+              = t("dashboard.most_request_service")
             .h5.mb-0.font-weight-bold.text-gray-800 Certify Document
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
