@@ -121,6 +121,9 @@ en:
     like: Like
     acceptable: Acceptable
     dislike: Dislike
+    owso_info: OWSO Info
+    feedback: Feedback
+    ticket_tracking: Ticket Tracking
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data

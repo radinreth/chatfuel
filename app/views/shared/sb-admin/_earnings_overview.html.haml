@@ -9,13 +9,16 @@
           %ul.list-unstyled
             %li
               %span.oval.oval--green
-              %span.oval-label OWSO Info
+              %span.oval-label
+                = t("dashboard.owso_info")
             %li
               %span.oval.oval--blue
-              %span.oval-label Feedback
+              %span.oval-label
+                = t("dashboard.feedback")
             %li
               %span.oval.oval--yellow
-              %span.oval-label Ticket Tracking
+              %span.oval-label
+                = t("dashboard.ticket_tracking")
 
           = pie_chart total_users_visit_each_functions, colors: ['#4e73df', '#1cc88a', '#f6c23e'], width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
@@ -51,4 +54,4 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.number_of_tracked_ticket")
       .card-body
-        = column_chart number_of_tracking_tickets, library: { scales: { xAxes: [{ barThickness: 30 }] } }
+        = column_chart number_of_tracking_tickets.transform_keys(&:capitalize), library: { scales: { xAxes: [{ barThickness: 30 }] } }
