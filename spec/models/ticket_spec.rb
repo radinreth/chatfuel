@@ -11,10 +11,16 @@
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  site_id             :bigint(8)        not null
 #
 # Indexes
 #
-#  index_tickets_on_code  (code)
+#  index_tickets_on_code     (code)
+#  index_tickets_on_site_id  (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (site_id => sites.id)
 #
 require "rails_helper"
 
@@ -32,6 +38,7 @@ RSpec.describe Ticket, type: :model do
     it { is_expected.to have_one(:track) }
     it { is_expected.to have_one(:step) }
     it { is_expected.to have_one(:message) }
+    it { is_expected.to belong_to(:site) }
   end
 
   context "scopes" do

@@ -21,7 +21,7 @@ RSpec.describe DictionariesController, type: :controller do
     context "site admin" do
       setup_site_admin
 
-      it "is not authorize" do
+      xit "is not authorize" do
         get :index
 
         expect(response).to have_http_status(:found)
@@ -31,7 +31,7 @@ RSpec.describe DictionariesController, type: :controller do
     context "site_ombudsman" do
       setup_site_ombudsman
 
-      it "is not authorize" do
+      xit "is not authorize" do
         get :index
 
         expect(response).to have_http_status(:found)
