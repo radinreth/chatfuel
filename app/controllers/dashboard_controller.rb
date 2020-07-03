@@ -5,6 +5,6 @@ class DashboardController < ApplicationController
     @start_date = params[:start_date] || 7.days.ago
     @end_date = params[:end_date] || Time.current
 
-    @user_count = Message.count
+    @user_count = Message.merge(helpers.join_both_message).count
   end
 end
