@@ -27,10 +27,6 @@
         %i.fas.fa-fw.fa-user
         %span Users
 
-    - if policy(:admin).show?
-      = link_to settings_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-cog
-        %span Setting
     %li.nav-item
       = link_to tickets_path, class: "nav-link" do
         %i.fas.fa-fw.fa-envelope
@@ -39,6 +35,12 @@
       = link_to templates_path, class: "nav-link" do
         %i.fas.fa-fw.fa-file-alt
         %span Templates
+
+    - if policy(:admin).show?
+      %li.nav-item
+        = link_to settings_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-wrench
+          %span Setting
 
   .text-center.d-none.d-md-inline.mb-auto
     %button#sidebarToggle.rounded-circle.border-0
