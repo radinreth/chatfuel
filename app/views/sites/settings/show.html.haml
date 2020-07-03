@@ -2,9 +2,9 @@
   %li.breadcrumb-item
     = link_to 'Sites', sites_path
   %li.breadcrumb-item.active
-    Site Setting
+    Notification Setting
 
-= render "shared/sb-admin/page_heading", title: "Site Setting"
+= render "shared/sb-admin/page_heading", title: "Notification Setting"
 
 - if @setting.present? && @setting.persisted?
   .card
