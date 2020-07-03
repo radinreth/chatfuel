@@ -25,6 +25,8 @@ class SiteSetting < ApplicationRecord
   belongs_to :site
   has_many :site_settings_telegram_chat_groups
   has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
+  validates :message_template, presence: true, if: -> { immediately? }
+  validates :digest_message_template, presence: true, unless: -> { immediately? }
 
   enum message_frequency: {
     immediately: 1,
