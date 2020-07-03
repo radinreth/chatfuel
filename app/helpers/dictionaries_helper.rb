@@ -11,20 +11,20 @@ module DictionariesHelper
   end
 
   def join_text_message
-    Message
-      .joins("INNER JOIN text_messages ON text_messages.id=messages.content_id")
+    Message\
+      .joins("INNER JOIN text_messages ON text_messages.id=messages.content_id")\
       .where("text_messages.location_name=?", @location)
   end
 
   def join_voice_message
-    Message
+    Message\
       .joins("INNER JOIN voice_messages ON voice_messages.id=messages.content_id")
   end
 
   def join_both_message
-    inner_query = Message
-          .merge(join_voice_message)
-          .joins("UNION SELECT messages.* FROM messages")
+    inner_query = Message\
+          .merge(join_voice_message)\
+          .joins("UNION SELECT messages.* FROM messages")\
           .merge(join_text_message)
 
     Message.unscoped.select("*").from(inner_query, :messages)

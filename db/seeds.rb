@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 paths = Rails.root.join("db", "seed", "**", "*.rb")
 Dir[paths].each { |f| require f }
 
@@ -12,7 +13,6 @@ Dir[paths].each { |f| require f }
 
 Seed::Site.generate!
 Seed::Ticket.generate!
-
 
 Message.destroy_all
 ticket_codes = Ticket.take(100).pluck(:code)
