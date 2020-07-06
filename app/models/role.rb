@@ -24,6 +24,10 @@ class Role < ApplicationRecord
     ROLE_NAMES.index name
   end
 
+  def variable_names
+    variables.pluck(:name)
+  end
+
   ROLE_NAMES.each do |role_name|
     define_method "#{role_name}?".to_sym do
       role_name == name.sub(/\s/, "_")

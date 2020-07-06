@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @pagy, @messages = pagy(Message.joins(steps: { value: :variable }).where("variables.name IN (?)", current_user.role.variables.pluck(:name)))
+    @pagy, @messages = pagy(Message.load_by_role(current_user.role))
     authorize :menu_item
 
     render :no_message if @messages.count.zero?
