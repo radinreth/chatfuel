@@ -19,7 +19,7 @@
         .col-md-8= @site.token
 
       = simple_form_for @site, url: site_api_key_path(@site) do |f|
-        = f.submit t('sites.regenerate_api_key'), class: "btn btn-outline-primary mt-3", data: { confirm: t('sites.are_you_sure') }
+        = f.submit t('sites.regenerate_api_key'), class: "btn btn-outline-primary mt-3", data: { confirm: t('sites.are_you_sure_to_regenerate_api') }
 
 - else
   .card.card-inactive
