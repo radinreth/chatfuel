@@ -89,12 +89,16 @@ en:
       create: Create dictionary
     mark_dictionary_as_report_column:
       report_column: "Report column"
-  homes:
-    show:
+  home:
+    index:
+      title: Home
       empty: Your inbox is empty
       session_id: Session Id
       type: Type
       all: All messages
+      search: Search
+      session_id: Session ID
+      type: Type
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
