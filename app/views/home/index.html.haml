@@ -1,20 +1,21 @@
-= render "shared/sb-admin/page_heading", title: "Home"
+= render "shared/sb-admin/page_heading", title: t(".title")
 
 .card.shadow.mb-4
   .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All messages
+    %h6.m-0.font-weight-bold.text-primary
+      = t(".all")
   .card-body
     .row.my-4
       .col-lg-4
         .d-flex.align-items-center
-          %span.mr-2 Search:
+          %span.mr-2= t(".search")
           %input.form-control.form-control-sm
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
           %tr
-            %th Session ID
-            %th Type
+            %th= t(".session_id")
+            %th= t(".type")
             - current_user.role.variables.each do |variable|
               %th= variable.name
         %tbody
