@@ -90,10 +90,9 @@ RSpec.describe Message do
     let(:variable) { build(:variable, roles: [role]) }
     let(:variable_value) { build(:variable_value, variable: variable) }
     let(:step) { build(:step, value: variable_value) }
-    let(:message) { create(:message, :text) }
+    let!(:message) { create(:message, :text) }
 
     it "return empty message" do
-      message
       expect(Message.load_by_role(role)).to eq []
     end
 

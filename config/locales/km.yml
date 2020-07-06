@@ -99,6 +99,7 @@ km:
       search: ស្វែងរក
       session_id: អត្តលេខ
       type: ប្រភេទ
+      created_date: កាលបរិច្ឆេទបង្កើត
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មាន​ទិន្នន័យ

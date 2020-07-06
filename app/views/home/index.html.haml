@@ -15,14 +15,16 @@
         %thead
           %tr
             %th= t(".session_id")
-            %th= t(".type")
+            %th= t(".created_date")
             - current_user.role_variable_names.each do |variable_name|
               %th= variable_name
         %tbody
           - @messages.each do |message|
             %tr
-              %td= message.session_id
-              %td= message.type
+              %td
+                = image_tag "#{message.platform_name.downcase}.svg", width: 18
+                = message.session_id
+              %td= message.created_at.strftime("%Y-%m-%d")
               - current_user.role_variable_names.each do |variable_name|
                 - message.steps.each do |step|
                   %td

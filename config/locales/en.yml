@@ -99,6 +99,7 @@ en:
       search: Search
       session_id: Session ID
       type: Type
+      created_date: Created Date
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
