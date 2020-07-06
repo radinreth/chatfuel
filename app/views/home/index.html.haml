@@ -16,14 +16,17 @@
           %tr
             %th= t(".session_id")
             %th= t(".type")
-            - current_user.role.variables.each do |variable|
-              %th= variable.name
+            - current_user.role_variable_names.each do |variable_name|
+              %th= variable_name
         %tbody
           - @messages.each do |message|
             %tr
               %td= message.session_id
               %td= message.type
-              - message.steps.each do |step|
-                %td= step.value.display_value
+              - current_user.role_variable_names.each do |variable_name|
+                - message.steps.each do |step|
+                  %td
+                    - if step.value.variable.name == variable_name
+                      = step.value.display_value
 
 != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
