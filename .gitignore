@@ -19,9 +19,6 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
-/config/credentials/production.key
-
 /public/packs
 /public/packs-test
 /node_modules
@@ -48,8 +45,5 @@ app/assets/javascripts/i18n/
 public/javascripts/
 IDEA/
 
-config/master.key
-config/credentials.yml.enc
-config/credentials/development.key
-config/credentials/staging.key
-config/credentials/production.key
+# Ignore key for decrypting credentials
+/config/credentials/production.key
