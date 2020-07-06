@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def show
+  def index
     @pagy, @messages = pagy(Message.all)
     authorize :menu_item
 
