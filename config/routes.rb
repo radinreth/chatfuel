@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root "dashboard#show"
   get :dashboard, to: "dashboard#show"
-  get :home, to: "home#show"
+  get :home, to: "home#index"
 
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
