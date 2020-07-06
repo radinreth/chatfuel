@@ -1,0 +1,34 @@
+= render "shared/sb-admin/page_heading", title: t(".title")
+
+.card.shadow.mb-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary
+      = t(".all")
+  .card-body
+    .row.my-4
+      .col-lg-4
+        .d-flex.align-items-center
+          %span.mr-2= t(".search")
+          %input.form-control.form-control-sm
+    .table-responsive
+      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+        %thead
+          %tr
+            %th= t(".session_id")
+            %th= t(".created_date")
+            - current_user.role_variable_names.each do |variable_name|
+              %th= variable_name
+        %tbody
+          - @messages.each do |message|
+            %tr
+              %td
+                = image_tag "#{message.platform_name.downcase}.svg", width: 18
+                = message.session_id
+              %td= message.created_at.strftime("%Y-%m-%d")
+              - current_user.role_variable_names.each do |variable_name|
+                - message.steps.each do |step|
+                  %td
+                    - if step.value.variable.name == variable_name
+                      = step.value.display_value
+
+!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

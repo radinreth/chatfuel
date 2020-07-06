@@ -84,4 +84,21 @@ RSpec.describe Message do
       expect(message).to be_completed
     end
   end
+
+  describe ".load_by_role" do
+    let(:role) { build(:role, :site_admin) }
+    let(:variable) { build(:variable, roles: [role]) }
+    let(:variable_value) { build(:variable_value, variable: variable) }
+    let(:step) { build(:step, value: variable_value) }
+    let!(:message) { create(:message, :text) }
+
+    it "return empty message" do
+      expect(Message.load_by_role(role)).to eq []
+    end
+
+    it "includes by assigned role" do
+      message.steps << step
+      expect(Message.load_by_role(role)).to eq [message]
+    end
+  end
 end

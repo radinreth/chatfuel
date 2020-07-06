@@ -89,12 +89,17 @@ km:
       create: បង្កើតពាក្យគន្លឹះ
     mark_dictionary_as_report_column:
       report_column: យកធ្វើរបាយការណ៏
-  homes:
-    show:
+  home:
+    index:
+      title: ទំព័រដើម
       empty: ប្រអប់ទទួលរបស់អ្នកទទេ
       session_id: លេខ​សម្គាល់​
       type: ប្រភេទ
       all: សារទាំងអស់
+      search: ស្វែងរក
+      session_id: អត្តលេខ
+      type: ប្រភេទ
+      created_date: កាលបរិច្ឆេទបង្កើត
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មាន​ទិន្នន័យ

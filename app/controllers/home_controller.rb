@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  def show
-    @pagy, @messages = pagy(Message.all)
+  def index
+    @pagy, @messages = pagy(Message.load_by_role(current_user.role))
     authorize :menu_item
 
     render :no_message if @messages.count.zero?
