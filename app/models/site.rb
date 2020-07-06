@@ -41,17 +41,17 @@ class Site < ApplicationRecord
                       with: /\A\d{4}\z/,
                       message: I18n.t("site.invalid_code") }
 
-  def generate_token
-    self.token = SecureRandom.alphanumeric
-    generate_token if Site.exists?(token: self.token)
-    save && self.token
+  before_create :generate_token
+
+  def regenerate_token
+    generate_token
+    self.save
   end
 
-  def valid_token?(bearer_token)
-    token == bearer_token
-  end
-
-  def invalid_token?(bearer_token)
-    !valid_token?(bearer_token)
-  end
+  private
+    def generate_token
+      begin
+        self.token = SecureRandom.hex
+      end while self.class.exists?(token: token)
+    end
 end
