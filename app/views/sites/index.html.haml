@@ -33,23 +33,29 @@
         %tbody
           - @sites.each do |site|
             %tr
-              %td= site.name
+              %td= link_to site.name, site_path(site)
               %td --
               %td= site.code
               %td= site.tracks_count
-              %td
-                %ul.list-inline
-                  %li.list-inline-item
-                    = link_to site, class: "btn-circle btn-sm btn-info text-decoration-none" do
-                      %i.fas.fa-eye.fa-fw
-                  %li.list-inline-item
-                    = link_to site_setting_path(site), class: "btn-circle btn-sm btn-secondary text-decoration-none" do
-                      %i.fas.fa-fw.fa-cog
-                  %li.list-inline-item
-                    = link_to site_path(site), class: "btn-circle btn-sm btn-warning text-decoration-none" do
-                      %i.fas.fa-edit.fa-fw
-                  %li.list-inline-item
-                    = link_to site_path(site), class: "btn-circle btn-sm btn-danger text-decoration-none" do
-                      %i.fas.fa-trash.fa-fw
+              %td.text-right
+                %button.btn{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  %i.fas.fa-ellipsis-v
+
+                .dropdown-menu.dropdown-menu-right
+                  = link_to site_api_key_path(site), class: "btn dropdown-item" do
+                    %i.fas.fa-key
+                    %span= t('sites.api_key')
+
+                  = link_to site_setting_path(site), class: "btn dropdown-item" do
+                    %i.fab.fa-telegram
+                    %span= t('sites.telegram_notification')
+
+                  = link_to site_path(site), class: "btn dropdown-item" do
+                    %i.fas.fa-edit
+                    %span= t('shared.edit')
+
+                  = link_to site_path(site), class: "btn dropdown-item", method: :delete, data: { confirm: t('site.are_you_sure') } do
+                    %i.fas.fa-trash
+                    %span= t('shared.delete')
 
 != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

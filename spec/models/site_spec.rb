@@ -23,28 +23,14 @@ RSpec.describe Site, type: :model do
   it { is_expected.to have_attribute(:code) }
   it { is_expected.to have_attribute(:status) }
   it { is_expected.to have_attribute(:sync_status) }
-  it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) } 
+  it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) }
   it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:tickets) }
-  it { is_expected.to respond_to(:generate_token) }
-  it { is_expected.to respond_to(:valid_token?) }
+  it { is_expected.to respond_to(:regenerate_token) }
 
-  describe "uniqueness" do
-    before do
-      create(:site, code: "0212")
-    end
+  describe '#before create, generate_token' do
+    let(:site) { create(:site, token: nil) }
 
-    it "valid" do
-      site = build(:site, code: "0211")
-
-      expect(site).to be_valid
-    end
-
-    it "invalid" do
-      site = build(:site, code: "0212")
-
-      expect(site).to be_invalid
-      expect(site.errors[:code]).to eq ["has already been taken"]
-    end
+    it { expect(site.token).not_to be_nil }
   end
 end

@@ -11,7 +11,7 @@
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  site_id             :bigint(8)        not null
+#  site_id             :bigint(8)
 #
 # Indexes
 #
