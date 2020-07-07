@@ -1,0 +1,30 @@
+#form-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      = simple_form_for @site, url: site_api_key_path(@site) do |f|
+        .modal-header
+          %h5#exampleModalLabel.modal-title= t('sites.api_key')
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+
+        .modal-body
+          - if token = @site.token.presence
+            .form-group
+              %label= t('sites.access_token')
+              .form-row
+                .col-md-8
+                  .form-control.access-token-view= token
+                  = f.input :token, as: :hidden, input_html: { class: 'access-token' }
+
+                .col-md-4
+                  %button.btn.btn-sm.btn-light.btn-regenerate-token{type: 'button', style: 'height: 38px; font-size: 13px;'}
+                    %i.fas.fa-redo-alt
+                    = t('sites.regenerate_token')
+
+          = f.input :whitelist, label: t('sites.whitelist'), wrapper_html: {class: 'mb-0'}
+          .mb-3
+            %small.text-muted= t('sites.whitelist_example')
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"}= t("shared.cancel")
+          = f.submit t("shared.save"), class: "btn btn-primary", data: { confirm: t('sites.are_you_sure_to_regenerate_api') }

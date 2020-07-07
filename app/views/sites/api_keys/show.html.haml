@@ -16,15 +16,24 @@
     .card-body.telegram-card-body
       .row.mb-3
         .col-md-3= "#{t('sites.access_token')} :"
-        .col-md-8= @site.token
+        .col-md-8
+          %span.token= @site.token
+          %button.btn.btn-copy{ 'data-toggle' => 'tooltip', title: t('sites.copy') }
+            %i.fas.fa-copy
 
-      = simple_form_for @site, url: site_api_key_path(@site) do |f|
-        = f.submit t('sites.regenerate_api_key'), class: "btn btn-outline-primary mt-3", data: { confirm: t('sites.are_you_sure_to_regenerate_api') }
+      .row.mb-3
+        .col-md-3= "#{t('sites.whitelist')} :"
+        .col-md-8= @site.whitelist || '-'
+
+      %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("shared.edit")
 
 - else
   .card.card-inactive
     .card-body.text-center
       %h4= t('sites.no_data')
       %p.text-descriptiont= t('sites.create_api_key_description')
-      = simple_form_for @site, url: site_api_key_path(@site) do |f|
-        = f.submit t('sites.generate_api_key'), class: "btn btn-primary mt-3"
+      %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("sites.generate_api_key")
+
+= render 'form_modal'

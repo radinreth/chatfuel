@@ -8,8 +8,8 @@ module Sites
     end
 
     def update
-      if @site.regenerate_token
-        flash[:notice] = I18n.t("sites.generate_api_success")
+      if @site.update_attributes(site_params)
+        flash[:notice] = I18n.t("sites.update_api_success")
       else
         flash[:alert] = @site.errors.full_messages
       end
@@ -20,6 +20,10 @@ module Sites
     private
       def set_site
         @site = Site.find(params[:site_id])
+      end
+
+      def site_params
+        params.require(:site).permit(:id, :token, :whitelist)
       end
   end
 end

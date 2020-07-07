@@ -9,8 +9,8 @@ module Api
 
       private
         def restrict_access
-          authenticate_or_request_with_http_token do |token, options|
-            @site = Site.find_by(token: token)
+          authenticate_or_request_with_http_token do |token, _options|
+            @site = Site.find_with_whitelist(token, request.remote_ip)
             @site.present?
           end
         end

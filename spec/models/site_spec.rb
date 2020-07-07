@@ -9,6 +9,7 @@
 #  sync_status  :integer(4)       default("1"), not null
 #  token        :string           default("")
 #  tracks_count :integer(4)       default("0")
+#  whitelist    :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -26,11 +27,63 @@ RSpec.describe Site, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) }
   it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:tickets) }
-  it { is_expected.to respond_to(:regenerate_token) }
 
-  describe '#before create, generate_token' do
+  describe '#before create, generate_token, whitelist' do
     let(:site) { create(:site, token: nil) }
 
     it { expect(site.token).not_to be_nil }
+    it { expect(site.whitelist).to eq('*') }
+  end
+
+  describe 'validation token and whitelist presence on update' do
+    let(:site) { create(:site) }
+
+    it { expect(site.update_attributes(token: nil)).to eq(false)}
+    it { expect(site.update_attributes(whitelist: nil)).to eq(false)}
+  end
+
+  describe '#whitelist_format' do
+    context 'when *' do
+      let(:site) { build(:site, whitelist: '*') }
+
+      it { expect(site.valid?).to eq(true) }
+    end
+
+    context 'when an ip address' do
+      let(:site) { build(:site, whitelist: '192.168.1.1') }
+
+      it { expect(site.valid?).to eq(true) }
+    end
+
+    context 'when more ip addresses' do
+      let(:site) { build(:site, whitelist: '192.168.1.1; 192.168.1.2;') }
+
+      it { expect(site.valid?).to eq(true) }
+    end
+
+    context 'a wrong ip address' do
+      let(:site) { build(:site, whitelist: '192.168.1.299') }
+
+      it { expect(site.valid?).to eq(false) }
+    end
+
+    context 'one wrong within ip addresses' do
+      let(:site) { build(:site, whitelist: '192.168.1.1; 192.168.1.299') }
+
+      it { expect(site.valid?).to eq(false) }
+      it 'has whitelist errors' do
+        site.valid?
+        expect(site.errors).to include(:whitelist)
+      end
+    end
+  end
+
+  describe '.find_with_whitelist' do
+    let!(:site1) { create(:site, whitelist: '*') }
+    let!(:site2) { create(:site, whitelist: '192.168.1.1; 192.168.1.2')}
+
+    it { expect(Site.find_with_whitelist(site1.token, '1.1.1.1')).to eq(site1) }
+    it { expect(Site.find_with_whitelist(site2.token, '1.1.1.1')).to be_nil }
+    it { expect(Site.find_with_whitelist(site2.token, '192.168.1.2')).to eq(site2) }
   end
 end
