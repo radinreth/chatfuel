@@ -1,5 +1,3 @@
-# TODO: filter by type : text, voice or both
-#       add line chart
 module DictionariesHelper
   def total_users_visit_each_functions
     result = StepValue\
@@ -29,15 +27,6 @@ module DictionariesHelper
       .where("DATE(voice_messages.created_at) BETWEEN ? and ?", @start_date, @end_date)
   end
 
-  def join_both_message
-    inner_query = Message\
-          .merge(join_voice_message)\
-          .joins("UNION SELECT messages.* FROM messages")\
-          .merge(join_text_message)
-
-    Message.unscoped.select("*").from(inner_query, :messages)
-  end
-
   def total_users_feedback
     StepValue
       .joins(variable_value: :variable)
@@ -58,5 +47,15 @@ module DictionariesHelper
       .group(:status)
       .count
       .transform_keys { |k| statuses.key(k).capitalize }
+  end
+
+  def most_requested_service
+    StepValue\
+      .joins(variable_value: :variable)\
+      .where(variables: { name: "owso_info" })\
+      .order("count_all DESC")\
+      .group("variable_values.raw_value")\
+      .limit(1)\
+      .count
   end
 end

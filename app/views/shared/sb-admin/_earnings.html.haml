@@ -39,6 +39,7 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")
-            .h5.mb-0.font-weight-bold.text-gray-800 Certify Document
+            .h5.mb-0.font-weight-bold.text-gray-800 
+              = @most_request_service.keys.first
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
