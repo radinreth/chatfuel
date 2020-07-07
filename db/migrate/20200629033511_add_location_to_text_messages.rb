@@ -1,5 +1,5 @@
 class AddLocationToTextMessages < ActiveRecord::Migration[6.0]
   def change
-    add_column :text_messages, :location_name, :string
+    add_column :messages, :location_name, :string
   end
 end

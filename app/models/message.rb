@@ -23,7 +23,7 @@ class Message < ApplicationRecord
   belongs_to :content, polymorphic: true, dependent: :destroy
 
   # scopes
-  # default_scope -> { order(updated_at: :desc) }
+  default_scope -> { order(updated_at: :desc) }
   scope :load_by_role, -> (role) {  joins(steps: { value: :variable })\
                                     .where("variables.name IN (?)", role.variable_names) }
   delegate :type, :session_id, to: :content
@@ -42,7 +42,7 @@ class Message < ApplicationRecord
     else
       message.touch :last_interaction_at
     end
-    
+
     message
   end
 

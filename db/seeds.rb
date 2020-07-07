@@ -273,14 +273,14 @@ text_messages.each do |message|
     code = message.delete(:code)
 
     if message[:messenger_user_id].present?
-      content = TextMessage.create(message.merge(location_name: ["Kandal", "Banteay Meanchey"].sample))
+      content = TextMessage.create(message)
     elsif message[:callsid].present?
       content = VoiceMessage.create(message)
     else
       raise "Invalid message"
     end
 
-    msg = Message.create(platform_name: platform, content: content)
+    msg = Message.create(platform_name: platform, location_name: ["Kandal", "Banteay Meanchey"].sample, content: content)
 
     step = msg.steps.build
     if dictionary_name.present?
