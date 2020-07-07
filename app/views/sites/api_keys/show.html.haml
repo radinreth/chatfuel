@@ -1,0 +1,39 @@
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to 'Sites', sites_path
+  %li.breadcrumb-item
+    = link_to @site.name, site_path(@site)
+  %li.breadcrumb-item.active
+    = t('sites.api_key')
+
+= render "shared/sb-admin/page_heading", title: t('sites.api_key')
+
+- if @site.token.present?
+  .card
+    .card-header.py-3
+      %h6.m-0.font-weight-bold.text-primary= t('sites.api_key')
+
+    .card-body.telegram-card-body
+      .row.mb-3
+        .col-md-3= "#{t('sites.access_token')} :"
+        .col-md-8
+          %span.token= @site.token
+          %button.btn.btn-copy{ 'data-toggle' => 'tooltip', title: t('sites.copy') }
+            %i.fas.fa-copy
+
+      .row.mb-3
+        .col-md-3= "#{t('sites.whitelist_ip')} :"
+        .col-md-8= @site.whitelist || '-'
+
+      %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("shared.edit")
+
+- else
+  .card.card-inactive
+    .card-body.text-center
+      %h4= t('sites.no_data')
+      %p.text-descriptiont= t('sites.create_api_key_description')
+      %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+        = t("sites.generate_api_key")
+
+= render 'form_modal'

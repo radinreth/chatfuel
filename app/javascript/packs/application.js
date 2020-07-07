@@ -21,6 +21,7 @@ require("application/util")
 require("application/loader")
 
 require("sites/settings/setting")
+require("sites/api_keys/show")
 
 require("shared/sidebar")
 require("view/dictionary")

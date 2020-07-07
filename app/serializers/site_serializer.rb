@@ -9,6 +9,7 @@
 #  sync_status  :integer(4)       default("1"), not null
 #  token        :string           default("")
 #  tracks_count :integer(4)       default("0")
+#  whitelist    :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
