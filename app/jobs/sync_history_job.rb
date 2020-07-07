@@ -9,8 +9,9 @@ class SyncHistoryJob < ApplicationJob
     parser = JsonParser.new(tickets)
 
     parser.to_json.values.each do |ticket_attribute|
-      ticket = site.tickets.build(ticket_attribute)
-      if ticket.save
+      ticket = site.tickets.find_or_initiliaze_by(code: ticket_attribute[:code])
+
+      if ticket.update_attributes(ticket_attribute)
         sync_history.increment! :success_count
       else
         sync_history.increment! :failure_count
