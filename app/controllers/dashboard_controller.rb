@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @end_date = params[:end_date] || Time.current
 
     @user_count = (helpers.join_text_message + helpers.join_voice_message).count
+    @most_request_service = helpers.most_requested_service
   end
 
   private

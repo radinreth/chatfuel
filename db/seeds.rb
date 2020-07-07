@@ -19,31 +19,67 @@ ticket_codes = Ticket.take(100).pluck(:code)
 
 text_messages = [
   { 
-    messenger_user_id: 1,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "owso_info",
-    raw_value: "certify doc"
+    raw_value: "certify_doc"
   },
   { 
-    messenger_user_id: 2,
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "main_dbs"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "main_construction"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "main_dbs"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "main_construction"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "main_dbs"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "owso_info",
+    raw_value: "certify_doc"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_dbs",
     raw_value: "main_dbs 1"
   },
   { 
-    messenger_user_id: 3,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_level",
     raw_value: "province"
   },
   { 
-    messenger_user_id: 4,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_construction",
     raw_value: "construction 1"
   },
   { 
-    messenger_user_id: 5,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "owso_info"
@@ -59,38 +95,38 @@ text_messages = [
 
 
   { 
-    messenger_user_id: 6,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "owso_info"
   },
   { 
-    messenger_user_id: 7,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "owso_info"
   },
   { 
-    messenger_user_id: 8,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "tracking"
   },
 
   { 
-    messenger_user_id: 9,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "feedback"
   },
   { 
-    messenger_user_id: 10,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "owso_info"
   },
   { 
-    messenger_user_id: 11,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "main_menu",
     raw_value: "tracking"
@@ -98,131 +134,131 @@ text_messages = [
 
   # track
   {
-    messenger_user_id: 111,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[0]
   },
   {
-    messenger_user_id: 12,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[1]
   },
   {
-    messenger_user_id: 13,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[2]
   },
   {
-    messenger_user_id: 14,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[3]
   },
   {
-    messenger_user_id: 15,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[4]
   },
   {
-    messenger_user_id: 16,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[5]
   },
   {
-    messenger_user_id: 17,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[6]
   },
   {
-    messenger_user_id: 18,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[7]
   },
   {
-    messenger_user_id: 181,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[8]
   },
   {
-    messenger_user_id: 182,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[9]
   },
   {
-    messenger_user_id: 183,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[10]
   },
   {
-    messenger_user_id: 184,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[11]
   },
   {
-    messenger_user_id: 185,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[12]
   },
   {
-    messenger_user_id: 186,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[13]
   },
   {
-    messenger_user_id: 187,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[14]
   },
   {
-    messenger_user_id: 188,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     code: ticket_codes[15]
   },
 
   # feedback
   {
-    messenger_user_id: 19,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_challenge",
     raw_value: "high_price"
   },
   {
-    messenger_user_id: 20,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_challenge",
     raw_value: "form_complicate"
   },
   {
-    messenger_user_id: 21,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_challenge",
     raw_value: "take long time"
   },
   {
-    messenger_user_id: 211,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_challenge",
     raw_value: "take long time"
   },
   {
-    messenger_user_id: 212,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_challenge",
     raw_value: "take long time"
   },
   {
-    messenger_user_id: 22,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_q2",
     raw_value: "working_time"
   },
   {
-    messenger_user_id: 23,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_q2",
     raw_value: "speech"
   },
   {
-    messenger_user_id: 24,
+    messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
     dictionary_name: "feedback_q2",
     raw_value: "provide info"
