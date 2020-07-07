@@ -46,7 +46,7 @@
               %span.oval-label-km
                 = t("dashboard.dislike")
 
-          = pie_chart total_users_feedback, width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
+          = pie_chart total_users_feedback, colors: ['#4e73df', '#1cc88a', '#f6c23e'], width: "200px", height: "200px", donut: true, legend: false, messages: { empty: "no data" }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -54,4 +54,4 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.number_of_tracked_ticket")
       .card-body
-        = column_chart number_of_tracking_tickets.transform_keys(&:capitalize), library: { scales: { xAxes: [{ barThickness: 30 }] } }
+        = column_chart number_of_tracking_tickets, library: { scales: { xAxes: [{ barThickness: 80 }] } }

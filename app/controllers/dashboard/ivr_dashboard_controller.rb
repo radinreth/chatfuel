@@ -2,8 +2,8 @@ module Dashboard
   class IvrDashboardController < DashboardController
     def show
       super
-      @message_type = "voice"
-      @user_count = VoiceMessage.where("DATE(created_at) BETWEEN ? AND ?", @start_date, @end_date).count
+      @platform_name = ["Verboice"]
+      @user_count = helpers.join_voice_message.count
     end
   end
 end
