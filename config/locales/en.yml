@@ -124,6 +124,7 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
+    overview: Overview (Accessed, Submitted, Completed)
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
