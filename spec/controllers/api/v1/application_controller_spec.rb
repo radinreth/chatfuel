@@ -28,11 +28,13 @@ RSpec.describe BaseController, type: :controller do
     end
 
     context 'when wrong site' do
-      it 'returns 401' do
+      before {
+
         request.headers['Authorization'] = "Bearer #{SecureRandom.hex}"
         get :index
-        expect(response.status).to eq(401)
-      end
+      }
+
+      it { expect(response.status).to eq(401) }
     end
 
     context 'when valid token' do
@@ -50,6 +52,30 @@ RSpec.describe BaseController, type: :controller do
       it 'returns 201' do
         post :create
         expect(response.status).to eq(201)
+      end
+    end
+
+    describe 'restrict ip address' do
+      let! (:site) { create(:site, whitelist: '192.168.1.1; 192.168.1.2') }
+
+      context 'wrong ip address' do
+        before {
+          controller.request.remote_addr = '1.1.1.1'
+          request.headers['Authorization'] = "Bearer #{site.token}"
+          get :index
+        }
+
+        it { expect(response.status).to eq(401) }
+      end
+
+      context 'valid ip address' do
+        before {
+          controller.request.remote_addr = '192.168.1.2'
+          request.headers['Authorization'] = "Bearer #{site.token}"
+          get :index
+        }
+
+        it { expect(response.status).to eq(200) }
       end
     end
   end

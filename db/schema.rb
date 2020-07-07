@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_043200) do
+ActiveRecord::Schema.define(version: 2020_07_07_031600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "api_keys", force: :cascade do |t|
+    t.string "access_token"
+    t.integer "site_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "identities", force: :cascade do |t|
     t.string "provider"
     t.string "token"
@@ -53,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-06-30 04:09:55"
+    t.datetime "last_interaction_at", default: "2020-07-03 03:23:38"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -114,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.integer "status", default: 0
     t.integer "sync_status", default: 1, null: false
     t.string "token", default: ""
+    t.text "whitelist"
     t.index ["name"], name: "index_sites_on_name"
   end
 
@@ -135,6 +143,16 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.index ["message_id"], name: "index_steps_on_message_id"
   end
 
+  create_table "sync_history_logs", force: :cascade do |t|
+    t.string "uuid", default: "", null: false
+    t.hstore "payload", default: {}, null: false
+    t.integer "success_count", default: 0
+    t.integer "failure_count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
+  end
+
   create_table "telegram_bots", force: :cascade do |t|
     t.string "username"
     t.string "token"
@@ -150,16 +168,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-  
-  create_table "sync_history_logs", force: :cascade do |t|
-    t.string "uuid", default: "", null: false
-    t.hstore "payload", default: {}, null: false
-    t.integer "success_count", default: 0
-    t.integer "failure_count", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
   end
 
   create_table "templates", force: :cascade do |t|
@@ -189,7 +197,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_043200) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "incomplete_at"
     t.date "incorrect_at"
-    t.bigint "site_id", null: false
+    t.bigint "site_id"
     t.index ["code"], name: "index_tickets_on_code"
     t.index ["site_id"], name: "index_tickets_on_site_id"
   end
