@@ -29,7 +29,6 @@ RSpec.describe BaseController, type: :controller do
 
     context 'when wrong site' do
       before {
-
         request.headers['Authorization'] = "Bearer #{SecureRandom.hex}"
         get :index
       }

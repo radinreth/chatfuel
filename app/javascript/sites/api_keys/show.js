@@ -21,7 +21,6 @@ OWSO.SitesApi_keysShow = (() => {
   }
 
   function onClickBtnRegenerateToken() {
-    $(document).off('click', '.btn-regenerate-token');
     $(document).on('click', '.btn-regenerate-token', function(event) {
       let key = hex(32);
       $('.access-token-view').html(key);
@@ -29,7 +28,6 @@ OWSO.SitesApi_keysShow = (() => {
     })
   }
   function onClickBtnCopyToken() {
-    $(document).off('click', '.btn-copy');
     $(document).on('click', '.btn-copy', function(event) {
       const el = document.createElement('textarea');
       el.value = $('.token').html();
