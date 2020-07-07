@@ -5,3 +5,18 @@ en:
     successful_create_setting: successfully created site setting
     succesfully_update_setting: successfully updated site setting
     erorr_update_setting: cannot update site setting
+    update_api_success: Save api key successfully
+    telegram_notification: Telegram Notification
+    api_key: Api Key
+    no_data: No api key yet
+    create_api_key_description: Create Api Key to allow client push data to the system.
+    generate_api_key: Generate Api Key
+    regenerate_api_key: Regenerate Api Key
+    are_you_sure_to_regenerate_api: Are you sure to regenerate a new api key?
+    access_token: Access token
+    are_you_sure_to_delete_site: Are you sure to delete the site?
+    whitelist: Whitelist
+    whitelist_ip: Whitelist IP(s)
+    copy: Copy
+    whitelist_example: 'Example: * or 192.168.1.1; 192.168.1.2 (use semicolon seperator for multiple IPs)'
+
