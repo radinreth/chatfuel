@@ -124,7 +124,10 @@ km:
     owso_info: ពត៍មានអំពីច្រក
     feedback: ការវាយតម្លៃ
     ticket_tracking: ការតាមដានឯកសារ
-    overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរ, ការដាក់ស្នើ, ការបញ្ចប់)
+    overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរការ, ការដាក់ស្នើ, ការបញ្ចប់)
+    accessed: ចូលដំណើរការ
+    submitted: ការដាក់ស្នើ
+    completed: ការបញ្ចប់
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ
