@@ -20,8 +20,11 @@ km:
   no_role_or_site: អ្នកមិនត្រូវបានចាត់តាំងតួនាទី ឬ ការិយាល័យណាមួយទេ
   contact_admin: សូមទាក់ទងអ្នកគ្រប់គ្រង
   cancel: បោះបង់
+  save_changes: រក្សាទុក
   developed_by: អភិវឌ្ឍន៍​ដោយ
   app_version: កំណែ %{version}
+  not_available: មិនមាន
+  no_data: មិនមានទិន្នន័យ
   sidebar:
     dashboard: Dashbaord
     home: ទំព័រដើម
@@ -128,6 +131,7 @@ km:
     accessed: ចូលដំណើរការ
     submitted: ការដាក់ស្នើ
     completed: ការបញ្ចប់
+    choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ

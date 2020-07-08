@@ -20,8 +20,11 @@ en:
   no_role_or_site: Currently, You are not assigned any role or site.
   contact_admin: Please contact administrator.
   cancel: Cancel
+  save_changes: Save changes
   developed_by: Developed by
   app_version: Version %{version}
+  not_available: N/A
+  no_data: No data
   sidebar:
     dashboard: Dashbaord
     home: Home
@@ -128,6 +131,7 @@ en:
     accessed: Accessed
     submitted: Submitted
     completed: Completed
+    choose_dictionary_name: Choose dictionary name
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
