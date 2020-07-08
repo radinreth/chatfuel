@@ -35,11 +35,11 @@ RSpec.describe Site, type: :model do
     it { expect(site.whitelist).to eq('*') }
   end
 
-  describe 'validation token and whitelist presence on update' do
+  describe "validation token and whitelist presence on update" do
     let(:site) { create(:site) }
 
-    it { expect(site.update_attributes(token: nil)).to eq(false)}
-    it { expect(site.update_attributes(whitelist: nil)).to eq(false)}
+    it { expect(site.update(token: nil)).to eq(false) }
+    it { expect(site.update(whitelist: nil)).to eq(false) }
   end
 
   describe '#whitelist_format' do
