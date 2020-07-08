@@ -23,6 +23,21 @@
     color: #333;
   }
 
+  .value-list {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+
+  input[type=radio] {
+    vertical-align: middle;
+  }
+
+  .accordion {
+    height: 450px;
+    overflow-y: scroll;
+  }
+
   .oval {
     width: 10px;
     height: 10px;

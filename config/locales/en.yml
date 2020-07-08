@@ -132,6 +132,7 @@ en:
     submitted: Submitted
     completed: Completed
     choose_dictionary_name: Choose dictionary name
+    type_search: Type your search...
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
