@@ -1,6 +1,5 @@
 en:
   site_setting:
-    telegram_push_notification: Telegram Push Notification
     message_template: Message template
     digest_message_template: Digest message template
     message_frequency: Message frequency
