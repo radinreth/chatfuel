@@ -125,6 +125,9 @@ en:
     feedback: Feedback
     ticket_tracking: Ticket Tracking
     overview: Overview (Accessed, Submitted, Completed)
+    accessed: Accessed
+    submitted: Submitted
+    completed: Completed
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data

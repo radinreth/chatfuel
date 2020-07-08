@@ -13,14 +13,14 @@ class DashboardController < ApplicationController
 
   private
     def accessed
-      { name: "accessed", data: StepValue.joins(:variable_value).where(variable_values: { raw_value: "owso_info" }).group_by_day(:created_at).count }
+      { name: t("dashboard.accessed"), data: StepValue.joins(:variable_value).where(variable_values: { raw_value: "owso_info" }).group_by_day(:created_at).count }
     end
 
     def submitted
-      { name: "submitted", data: Ticket.incomplete.group_by_day(:created_at).count }
+      { name: t("dashboard.submitted"), data: Ticket.incomplete.group_by_day(:created_at).count }
     end
 
     def completed
-      { name: "completed", data: Ticket.completed.group_by_day(:created_at).count }
+      { name: t("dashboard.completed"), data: Ticket.completed.group_by_day(:created_at).count }
     end
 end
