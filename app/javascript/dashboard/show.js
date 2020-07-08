@@ -2,6 +2,7 @@ OWSO.DashboardShow = (() => {
   
   function init() {
     attachEventToCollapsedButton()
+    attachEventToVariableFilter()
   }
 
   function attachEventToCollapsedButton() {
@@ -9,8 +10,18 @@ OWSO.DashboardShow = (() => {
       e.preventDefault()
       $("input[type=radio]").attr("checked", false)
 
-      let checkbox = $(this).children("input[type=radio]")
+      let checkbox = $(this).prev("input[type=radio]")
       checkbox.attr("checked", true)
+    })
+  }
+
+  function attachEventToVariableFilter() {
+    $("#variable_filter").keyup(function(e) {
+      var value = e.target.value.toLowerCase();
+
+      $(".accordion .card").filter(function() {
+        $(this).toggle($(this).find("button").text().trim().toLowerCase().indexOf(value) > -1)
+      })
     })
   }
 

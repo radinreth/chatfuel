@@ -132,6 +132,7 @@ km:
     submitted: ការដាក់ស្នើ
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
+    type_search: វាយពាក្យស្វែងរករបស់អ្នក...
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ
