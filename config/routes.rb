@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get :home, to: "home#index"
 
   namespace :dashboard do
-    get 'chatbot', action: :show, controller: 'chatbot_dashboard'
-    get 'ivr', action: :show, controller: 'ivr_dashboard'
+    get "chatbot", action: :show, controller: "chatbot_dashboard"
+    get "ivr", action: :show, controller: "ivr_dashboard"
   end
 
   authenticate :user, ->(user) { user.system_admin? } do
@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
   resources :voice_feedbacks, only: [:create]
-  resources :dictionaries, only: [:index, :new, :create, :edit, :update]
+  resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
+    post :set_most_request, on: :collection
+  end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
   resources :reports, only: [:index]

@@ -4,7 +4,7 @@ class DictionariesController < ApplicationController
 
   def index
     @variables = Variable.except_done.order(created_at: :desc)
-    
+
     if params[:q].present?
       @variables = @variables.where("name LIKE ?", "%#{params[:q]}%")
     end
@@ -49,7 +49,21 @@ class DictionariesController < ApplicationController
     end
   end
 
+  def set_most_request
+    most_request_params.each do |attribute|
+      id = attribute.delete(:id)
+      variable = Variable.find id
+      variable.update attribute
+    end
+
+    redirect_to dashboard_path
+  end
+
   private
+    def most_request_params
+      params.require(:variable).permit(attributes: [:id, :is_most_request])["attributes"].reject{ |a| a[:is_most_request].blank? }.map{ |a| a.to_h }
+    end
+
     def set_roles
       @roles = Role.all
     end

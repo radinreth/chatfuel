@@ -43,7 +43,7 @@ module DictionariesHelper
     StepValue\
       .joins(step: :message, variable_value: :variable)\
       .where(messages: { platform_name: @platform_name, location_name: @location })\
-      .where(variables: { name: "owso_info" })\
+      .where(variables: { is_most_request: true })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @start_date, @end_date)
       .order("count_all DESC")\
       .group("variable_values.raw_value")\
