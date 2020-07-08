@@ -4,7 +4,8 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-07-03 03:23:38.104596")
+#  last_interaction_at :datetime         default("2020-06-30 04:09:55.715753")
+#  location_name       :string
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null

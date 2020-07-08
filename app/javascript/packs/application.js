@@ -22,7 +22,8 @@ require("application/loader")
 
 require("sites/settings/setting")
 require("sites/api_keys/show")
-require("templates")
+require("templates/index")
+require("dashboard/show")
 
 require("shared/sidebar")
 require("view/dictionary")

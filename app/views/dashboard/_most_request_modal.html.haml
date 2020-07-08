@@ -1,0 +1,26 @@
+#mostRequest.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newSiteLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered{:role => "document"}
+    .modal-content
+      = simple_form_for :variable, url: set_most_request_dictionaries_path do |f|
+        .modal-header
+          .modal-title Choose dictionary name
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          #accordionExample.accordion
+            - Variable.includes(:values).all.each do |variable|
+              .card
+                #headingOne.card-header.p-1
+                  %h2.mb-0
+                    %button.text-decoration-none.btn.btn-link.collapse-most-request{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-target" => "#collapse#{variable.name}", "data-toggle" => "collapse", :type => "button" }
+                      = hidden_field nil, "variable[attributes][][id]", value: variable.id
+                      = radio_button nil, "variable[attributes][][is_most_request]", variable.id, checked: variable.is_most_request?
+                      = variable.name
+                .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
+                  .card-body
+                    %ul
+                      - variable.values.each do |value|
+                        %li= value.raw_value
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+          = f.submit "Save changes", class: "btn btn-primary"
