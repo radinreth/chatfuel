@@ -7,7 +7,7 @@
       .btn.btn-secondary.btn-sm.btn-choose-file Choose file
       = f.input_field :audio, as: :file, value: @template&.audio.try(:signed_id), name: "template[audio]", class: "d-none", accept: "audio/mp3"
     .audio-container
-      - audio_blob_url = @template.audio.attached? ? rails_blob_url(@template.audio) : ''
+      - audio_blob_url = @template.audio.attached? ? url_for(@template.audio) : ''
       %audio#audio.mt-3.audio-player-preview{ controls: "controls", src: audio_blob_url }
       %p#audio-name.m-0{ style: "font-size: 16px;color: #757575;" }
 
