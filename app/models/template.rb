@@ -16,8 +16,8 @@ class Template < ApplicationRecord
   has_one_attached :audio
 
   # validations
-  # before_save :ensure_audio_empty_when_choose_text_template
-  # before_save :ensure_content_empty_when_choose_voice_template
+  before_save :ensure_text_template_dont_have_audio
+  before_save :ensure_voice_template_dont_have_text_content
 
   validates :type, presence: true
   validates :type,  allow_blank: true,
@@ -46,13 +46,14 @@ class Template < ApplicationRecord
   end
 
   private
-    # def ensure_audio_empty_when_choose_text_template
-    #   audio.purge if audio.attached? && text_template?
-    # end
 
-    # def ensure_content_empty_when_choose_voice_template
-    #   self.content = "" if voice_template?
-    # end
+    def ensure_text_template_dont_have_audio
+      audio.purge_later if audio.attached? && text_template?
+    end
+
+    def ensure_voice_template_dont_have_text_content
+      self.content = "" if voice_template?
+    end
 
     def text_template?
       type == "MessengerTemplate" ||
