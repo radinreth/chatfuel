@@ -4,13 +4,8 @@ OWSO.UsersIndex = (() => {
   }
 
   function init() {
-    initBootstrapToggle();
     onChangeAvataFile();
     onClickButtonDeleteAvatar();
-  }
-
-  function initBootstrapToggle() {
-    $('#actived-user').bootstrapToggle();
   }
 
   function onClickButtonDeleteAvatar() {

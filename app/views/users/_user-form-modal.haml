@@ -20,9 +20,10 @@
           = f.input :role_id, as: :select, collection: @roles, selected: user.role_id, label: t('users.role')
           = f.input :email, label: t('users.email')
 
-          .d-flex
-            %label.flex-grow-1= t('users.active_user')
-            = f.input :actived, label: false, input_html: { id: 'actived-user' }
+          %label.switch.mt-2
+            = f.input_field :actived
+            %span.slider.round
+          %span= t('users.active_user')
 
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
