@@ -16,12 +16,11 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer(4)       default("0")
 #  status                 :integer(4)       default("0")
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  role_id                :bigint(8)        default("1"), not null
+#  role_id                :integer(4)
 #  site_id                :bigint(8)
 #
 # Indexes
