@@ -1,3 +1,4 @@
-$('.modal-title').html("Edit Template");
+$('.modal-title').html("<%= t("templates.edit") %>");
 $('.modal-body').html('<%= j render("form") %>');
 $("#newTemplateModal").modal("show");
+$("#template_type").trigger("change")
