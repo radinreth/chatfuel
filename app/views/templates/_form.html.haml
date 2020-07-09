@@ -1,4 +1,8 @@
 = simple_form_for @template, remote: true do |f|
+  .fail-validation.invalid-audio
+    = f.object.errors.full_messages_for(:content).to_sentence
+    = f.object.errors.full_messages_for(:audio).to_sentence
+
   = f.input :type, as: :select, label: t("templates.type"), collection: ::Template.platform_names, selected: ::Template.platform_names[@template.platform_value][1], input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
   = f.input :content, label: t("templates.content"), input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
   .form-group.template_audio

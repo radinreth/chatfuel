@@ -4,3 +4,5 @@
   $("#<%= @template.status %>").html("<%= escape_javascript(render partial: "template", collection: @templates.send("#{@template.status}".to_sym)) %>");
   $("[data-dismiss]").click()
 <% end %>
+
+$("#template_type").trigger("change")

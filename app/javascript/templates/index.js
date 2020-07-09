@@ -1,15 +1,13 @@
 OWSO.TemplatesIndex = (() => {
   function init() {
-    // attachEventToTemplateType()
+    attachEventToTemplateType()
     attachEventToAudio()
   }
 
   function attachEventToTemplateType() {
-    $("#template_type").change(function() {
+    $(document).on("change", "#template_type", function(e) {
       var val = $(this).val()
-  
       $(".template_content, .template_audio").hide()
-  
       if( val == "MessengerTemplate" || val == "TelegramTemplate" ) {
         $(".template_content").show()
       } else {
