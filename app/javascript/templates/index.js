@@ -1,6 +1,6 @@
 OWSO.TemplatesIndex = (() => {
   function init() {
-    attachEventToTemplateType()
+    // attachEventToTemplateType()
     attachEventToAudio()
   }
 
@@ -21,11 +21,12 @@ OWSO.TemplatesIndex = (() => {
   }
 
   function attachEventToAudio() {
-    $("#template_audio").change(function(e) {
+    $(document).on("change", "#template_audio", function(e) {
+      
       var target = e.currentTarget
       var file = target.files[0]
-      var $audio = $("#audio")
-      var $audioName = $("#audio-name")
+      var $audio = $(".modal-body").find("audio")
+      var $audioName = $(".modal-body").find("#audio-name")
 
       if (target.files && file) {
         var reader = new FileReader();
