@@ -19,7 +19,7 @@ RSpec.describe UserPolicy do
     context "being a site admin" do
       let(:user) { build(:user, :site_admin) }
 
-      it { is_expected.to permit_action(:new) }
+      it { is_expected.to forbid_action(:new) }
     end
 
     context "being a system admin" do
@@ -44,7 +44,7 @@ RSpec.describe UserPolicy do
       context "create site_ombudsman" do
         let(:record) { build(:user, :site_ombudsman) }
 
-        it { is_expected.to permit_action(:create) }
+        it { is_expected.to forbid_action(:create) }
       end
 
       context "create site admin" do
