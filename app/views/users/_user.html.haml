@@ -11,7 +11,7 @@
   %td
     %ul.list-inline
       %li.list-inline-item
-        = link_to user_path(user), class: "btn-circle btn-sm btn-warning text-decoration-none", data: { toggle: "modal", target: "#userModal" } do
+        = link_to user_path(user), class: "btn-circle btn-sm btn-warning text-decoration-none", data: { toggle: "modal", target: "#userModal#{user.id}" } do
           %i.fas.fa-edit.fa-fw
         = render "user-form-modal", user: user
       %li.list-inline-item
