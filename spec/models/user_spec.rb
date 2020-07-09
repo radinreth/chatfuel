@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :bigint(8)        not null, primary key
+#  actived                :boolean
+#  avatar                 :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
