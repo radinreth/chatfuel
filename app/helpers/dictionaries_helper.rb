@@ -2,7 +2,7 @@ module DictionariesHelper
   def total_users_visit_each_functions
     result = StepValue\
       .joins(step: :message, variable_value: :variable)\
-      .where(variables: { name: "main_menu" })\
+      .where(variables: { is_user_visit: true })\
       .where(messages: { platform_name: @platform_name, location_name: @location })
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @start_date, @end_date)\
       .order(:raw_value)\
@@ -10,9 +10,17 @@ module DictionariesHelper
       .count
 
     return {} if result.blank?
-    # prevent inconsistent chartjs color
-    default = { "feedback" => 0, "owso_info" => 0, "tracking" => 0 }
-    default.merge(result)
+
+    default_chartjs_color_mapping.merge(result)
+  end
+
+  # prevent inconsistent chartjs color
+  def default_chartjs_color_mapping
+    return {} unless @user_visit_variable.present?
+
+    default = {}
+    @user_visit_variable.values.each { |val| default[val.raw_value] = 0 }
+    default
   end
 
   def total_users_feedback
@@ -32,7 +40,7 @@ module DictionariesHelper
     Track
       .joins(:ticket, step: :message)\
       .where(messages: { platform_name: @platform_name, location_name: @location })\
-      .where(tickets: { status: status_values })
+      .where(tickets: { status: [status_values] })
       .where("DATE(tracks.created_at) BETWEEN ? AND ?", @start_date, @end_date)
       .group("tickets.status")
       .count
@@ -62,5 +70,9 @@ module DictionariesHelper
     Message\
       .joins("INNER JOIN voice_messages ON voice_messages.id=messages.content_id")
       .where("DATE(voice_messages.created_at) BETWEEN ? and ?", @start_date, @end_date)
+  end
+
+  def chartjs_colors
+    @chartjs_colors ||= %w(#1cc88a #4e73df #f63e3e #7400b8 #bdb2ff #bc6c25 #5e6472 #ff5d8f #fee440 #1a936f)
   end
 end

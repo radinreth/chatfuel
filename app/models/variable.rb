@@ -5,6 +5,7 @@
 #  id               :bigint(8)        not null, primary key
 #  feedback_message :boolean          default("false")
 #  is_most_request  :boolean          default("false")
+#  is_user_visit    :boolean          default("false")
 #  name             :string
 #  report_enabled   :boolean          default("false")
 #  type             :string           not null
@@ -27,6 +28,7 @@ class Variable < ApplicationRecord
 
   # callbacks
   before_save :ensure_only_one_is_most_request
+  before_save :ensure_only_one_is_user_visit
 
   # validations
   validate :only_one_report_column
@@ -44,7 +46,13 @@ class Variable < ApplicationRecord
 
   private
     def ensure_only_one_is_most_request
+      return unless is_most_request_changed?
       sibling.update_all(is_most_request: false)
+    end
+
+    def ensure_only_one_is_user_visit
+      return unless is_user_visit_changed?
+      sibling.update_all(is_user_visit: false)
     end
 
     def only_one_report_column

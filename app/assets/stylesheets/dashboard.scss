@@ -33,7 +33,7 @@
     vertical-align: middle;
   }
 
-  .accordion {
+  #accordionExample.accordion {
     height: 450px;
     overflow-y: scroll;
   }
@@ -55,7 +55,7 @@
     }
 
     &--yellow {
-      background-color: #f6c23e;
+      background-color: #f63e3e;
     }
   }
 

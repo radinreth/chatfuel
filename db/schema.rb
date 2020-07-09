@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.boolean "report_enabled", default: false
     t.boolean "feedback_message", default: false
     t.boolean "is_most_request", default: false
+    t.boolean "is_user_visit", default: false
   end
 
   create_table "voice_messages", force: :cascade do |t|

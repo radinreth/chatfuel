@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
     post :set_most_request, on: :collection
+    post :set_user_visit, on: :collection
   end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
