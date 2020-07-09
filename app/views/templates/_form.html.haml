@@ -11,11 +11,12 @@
     %label.d-block
       .btn.btn-secondary.btn-sm.btn-choose-file
         = t("templates.choose_audio")
+      %span#audio-name
       = f.input_field :audio, as: :file, value: @template&.audio.try(:signed_id), name: "template[audio]", class: "d-none", accept: "audio/mp3"
     .audio-container
       - audio_blob_url = @template.audio.attached? ? url_for(@template.audio) : ''
-      %audio#audio.mt-3.audio-player-preview{ controls: "controls", src: audio_blob_url }
-      %p#audio-name.m-0{ style: "font-size: 16px;color: #757575;" }
+      %audio#audio.mt-1.audio-player-preview{ controls: "controls", src: audio_blob_url }
+      
 
     .fail-validation.invalid-audio
       = f.object.errors.full_messages_for(:audio).to_sentence
