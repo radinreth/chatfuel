@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_031600) do
+ActiveRecord::Schema.define(version: 2020_07_09_072006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -229,10 +229,11 @@ ActiveRecord::Schema.define(version: 2020_07_07_031600) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.integer "role", default: 0
     t.integer "status", default: 0
     t.bigint "site_id"
-    t.bigint "role_id", default: 1, null: false
+    t.integer "role_id"
+    t.string "avatar"
+    t.boolean "actived"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"

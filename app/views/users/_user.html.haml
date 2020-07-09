@@ -1,15 +1,20 @@
 %tr
-  %td= user_counter + 1 
+  %td= user_counter + 1
   %td= user.email
   %td
     %span.p-2.badge.badge-pill.badge-primary
       = user.role_name
   %td
-    %ul.list-inline
-      %li.list-inline-item 
-        = link_to user_path(user), class: "btn-circle btn-sm btn-warning text-decoration-none", data: { toggle: "modal", target: "#userModal" } do
-          %i.fas.fa-edit.fa-fw
-        = render "user-form-modal", user: user
-      %li.list-inline-item 
-        = link_to user_path(user), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, "data-confirm": t('deleted.confirm') do
-          %i.fas.fa-trash.fa-fw
+    %span.badge{class: (user.actived? ? 'badge-info' : 'badge-danger')}
+      = user.actived? ? 'Actived' : 'Inactived'
+
+  %td
+    - if policy(user).update?
+      %ul.list-inline
+        %li.list-inline-item
+          = link_to user_path(user), class: "btn-circle btn-sm btn-warning text-decoration-none", data: { toggle: "modal", target: "#userModal#{user.id}" } do
+            %i.fas.fa-edit.fa-fw
+          = render "user-form-modal", user: user
+        %li.list-inline-item
+          = link_to user_path(user), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, "data-confirm": t('deleted.confirm') do
+            %i.fas.fa-trash.fa-fw
