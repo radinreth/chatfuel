@@ -7,6 +7,27 @@ OWSO.SiteSettings = (() => {
     addEventToMessageVariable();
     addEventToDigestMessageVariable();
     initBootstrapToggle();
+    handleSwitchingMessageTemplate();
+    onChangeMessageFrequency();
+  }
+
+  function onChangeMessageFrequency() {
+    $('#site_setting_message_frequency').on('change', (e) => {
+      handleSwitchingMessageTemplate(e.currentTarget.value)
+    })
+  }
+
+  function handleSwitchingMessageTemplate(value) {
+    let selectedValue = value || $('#site_setting_message_frequency').val();
+
+    if (selectedValue == '1') {
+      $('.site_setting_message_template').show();
+      $('.site_setting_digest_message_template').hide();
+      return
+    }
+
+    $('.site_setting_message_template').hide();
+    $('.site_setting_digest_message_template').show();
   }
 
   function initBootstrapToggle() {
