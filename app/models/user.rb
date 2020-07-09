@@ -5,6 +5,8 @@
 # Table name: users
 #
 #  id                     :bigint(8)        not null, primary key
+#  actived                :boolean
+#  avatar                 :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -16,12 +18,11 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer(4)       default("0")
 #  status                 :integer(4)       default("0")
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  role_id                :bigint(8)        default("1"), not null
+#  role_id                :integer(4)
 #  site_id                :bigint(8)
 #
 # Indexes
@@ -38,6 +39,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable
+  mount_uploader :avatar, AvatarUploader
+
   enum status: %i[enable disable]
 
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -52,5 +55,19 @@ class User < ApplicationRecord
 
   def display_name
     email.split("@").first
+  end
+
+  def self.from_omniauth(auth)
+    identity = Identity.where(provider: auth['provider'], token: auth['uid']).first
+    user = identity.try(:user) || User.find_or_initialize_by(email: auth["info"][:email])
+
+    unless user.persisted?
+      user.password = Devise.friendly_token
+      user.confirmed_at = Time.now
+      user.save
+      user.identities.create(provider: auth['provider'], token: auth['uid'])
+    end
+
+    user
   end
 end

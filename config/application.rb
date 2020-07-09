@@ -24,6 +24,7 @@ module Chatfuel
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.i18n.default_locale = :en
+    config.i18n.fallbacks = [:en]
     config.i18n.available_locales = %w(en km)
     config.middleware.use I18n::JS::Middleware
 

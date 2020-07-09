@@ -5,42 +5,41 @@
 
   %hr.sidebar-divider.my-0
   %ul.list-unstyled
-    %li.nav-item
+    %li.nav-item{ class: css_active_class('dashboard') }
       = link_to dashboard_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
-        %span Dashboard
-
-    %li.nav-item.active
+        %span= t('sidebar.dashboard')
+    %li.nav-item{ class: css_active_class('home') }
       = link_to home_path, class: "nav-link" do
         %i.fas.fa-fw.fa-home
-        %span Home
-    %li.nav-item
+        %span= t('sidebar.home')
+    %li.nav-item{ class: css_active_class('sites') }
       = link_to sites_path, class: "nav-link" do
         %i.fas.fa-fw.fa-sitemap
-        %span Sites
-    %li.nav-item
+        %span= t('sidebar.sites')
+    %li.nav-item{ class: css_active_class('dictionaries') }
       = link_to dictionaries_path, class: "nav-link" do
         %i.fas.fa-fw.fa-book
-        %span Dictionaries
-    %li.nav-item
-      = link_to users_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-user
-        %span Users
-
-    %li.nav-item
+        %span= t('sidebar.dictionaries')
+    - if policy(User).index?
+      %li.nav-item{ class: css_active_class('users') }
+        = link_to users_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-user
+          %span= t('sidebar.users')
+    %li.nav-item{ class: css_active_class('tickets') }
       = link_to tickets_path, class: "nav-link" do
         %i.fas.fa-fw.fa-envelope
-        %span Tickets
-    %li.nav-item
+        %span= t('sidebar.tickets')
+    %li.nav-item{ class: css_active_class('templates') }
       = link_to templates_path, class: "nav-link" do
         %i.fas.fa-fw.fa-file-alt
-        %span Templates
+        %span= t('sidebar.templates')
 
     - if policy(:admin).show?
-      %li.nav-item
+      %li.nav-item{ class: css_active_class('settings') }
         = link_to settings_path, class: "nav-link" do
           %i.fas.fa-fw.fa-wrench
-          %span Setting
+          %span= t('sidebar.setting')
 
   .text-center.d-none.d-md-inline.mb-auto
     %button#sidebarToggle.rounded-circle.border-0

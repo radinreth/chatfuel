@@ -23,11 +23,14 @@ km:
   developed_by: អភិវឌ្ឍន៍​ដោយ
   app_version: កំណែ %{version}
   sidebar:
+    dashboard: Dashbaord
     home: ទំព័រដើម
     sites: ការិយាល័យ
     dictionaries: ពាក្យគន្លឹះ
     reports: របាយការណ៏
     users: អ្នកប្រើប្រាស់
+    templates: គំរូ
+    setting: កំណត់
     logout: ចាកចេញ
     signin: ចូលប្រើ
     confirm_logout: តើអ្នកពិតជាចង់ចាកចេញឬ?
@@ -72,6 +75,7 @@ km:
         description: សំបុត្ររបស់អ្នកត្រូវបានដាក់ស្នើរួចរាល់នៅការិយាល័យច្រក
   site:
     invalid_code: លេខកូដការិយាល័យច្រកត្រូវតែមានចំនួន ៤ ខ្ទង់ប៉ុណ្ណោះ
+    invalid_whitelist: "ត្រូវបញ្ចូល ip addresses ឬ សញ្ញាផ្កាយ(*)"
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
@@ -137,6 +141,10 @@ km:
     show:
       title: ចំនួនបទតាមស្រុកនីមួយៗ
   users:
+    edit_user: កែតម្រូវអ្នកប្រើប្រាស់
+    role: តួនាទី
+    email: អ៊ីមែល
+    active_user: អ្នកប្រើប្រាស់សកម្ម?
     form:
       enable: បើកដំណើរការ
     edit:
@@ -147,6 +155,7 @@ km:
       email: អ៊ីមែល
       role: តួនាទី
       action: សកម្មភាព
+      status: ស្ថានភាព
     new:
       create: បង្កើតថ្មី
     show:
@@ -161,3 +170,6 @@ km:
   js:
     updates_success_desc: បានធ្វើបច្ចុប្បន្នភាព %{var_name} ដោយជោគជ័យសម្រាប់ %{role_name}
     updates_success_title: ជោគជ័យ!
+  language:
+    km: 'ភាសាខ្មែរ'
+    en: 'English'

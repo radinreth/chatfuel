@@ -33,6 +33,7 @@ docker-env
 app.env
 
 app/assets/javascripts/i18n/
+public/uploads/
 chatfuel_*.gz
 public/javascripts/
 spec/failed_examples.txt
