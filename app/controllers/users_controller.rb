@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def index
     @pagy, @users = pagy(User.all)
     authorize @users
-    @user = User.new
     @roles = Role.distinct
 
     respond_to do |format|
@@ -28,13 +27,14 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    @user.skip_reconfirmation!
 
     if @user.update(user_params)
-      redirect_to @user, status: :moved_permanently, notice: t("updated.success")
+      flash[:notice] = t("updated.success")
     else
-      render :edit, alert: t("updated.fail")
+      flash[:alert] = t("updated.fail")
     end
+
+    redirect_to users_url
   end
 
   def destroy
@@ -45,13 +45,10 @@ class UsersController < ApplicationController
 
   private
     def set_user
-      @user ||= User.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     def user_params
-      status = params[:user][:status].to_i
-      role_id = params[:user][:role_id].to_i
-
-      params.require(:user).permit(:role_id, :status, :site_id, :email, :password, :password_confirmation).merge(status: status, role_id: role_id)
+      params.require(:user).permit(:role_id, :site_id, :email, :password, :password_confirmation, :avatar, :remove_avatar, :role_id, :actived)
     end
 end

@@ -141,6 +141,10 @@ km:
     show:
       title: ចំនួនបទតាមស្រុកនីមួយៗ
   users:
+    edit_user: កែតម្រូវអ្នកប្រើប្រាស់
+    role: តួនាទី
+    email: អ៊ីមែល
+    active_user: អ្នកប្រើប្រាស់សកម្ម?
     form:
       enable: បើកដំណើរការ
     edit:
@@ -151,6 +155,7 @@ km:
       email: អ៊ីមែល
       role: តួនាទី
       action: សកម្មភាព
+      status: ស្ថានភាព
     new:
       create: បង្កើតថ្មី
     show:

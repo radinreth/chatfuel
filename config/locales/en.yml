@@ -141,6 +141,10 @@ en:
     show:
       title: Number of tracks by each district
   users:
+    edit_user: Edit user
+    role: Role
+    email: Email
+    active_user: Actived user?
     form:
       enable: Enable
     edit:
@@ -151,6 +155,7 @@ en:
       email: Email
       role: Role
       action: Action
+      status: Status
     new:
       create: Create user
     show:
