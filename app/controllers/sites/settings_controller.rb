@@ -13,7 +13,7 @@ module Sites
       if @setting.save
         flash[:notice] = I18n.t("sites.succesfully_create_setting")
       else
-        flash[:alert] = I18n.t("sites.erorr_create_setting")
+        flash[:alert] = @setting.errors.full_messages
       end
 
       redirect_to site_setting_path(@site)
@@ -25,7 +25,7 @@ module Sites
       if @setting.update(site_setting_params)
         flash[:notice] = I18n.t("sites.succesfully_update_setting")
       else
-        flash[:alert] = I18n.t("sites.erorr_update_setting")
+        flash[:alert] = @setting.errors.full_messages
       end
 
       redirect_to site_setting_path(@site)
