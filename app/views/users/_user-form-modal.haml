@@ -1,4 +1,4 @@
-#userModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "userLabel", :role => "dialog", :tabindex => "-1"}
+.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "userLabel", :role => "dialog", :tabindex => "-1", id: "userModal#{user.id}"}
   .modal-dialog.modal-dialog-centered{:role => "document"}
     .modal-content
       = simple_form_for user do |f|
