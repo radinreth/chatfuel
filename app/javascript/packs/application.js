@@ -22,11 +22,11 @@ require("application/loader")
 
 require("sites/settings/setting")
 require("sites/api_keys/show")
+require("templates")
 
 require("shared/sidebar")
 require("view/dictionary")
 require("view/ticket")
-require("view/template")
 require("view/chart")
 require("view/daterangepicker")
 require("view/sidebar_toggle")

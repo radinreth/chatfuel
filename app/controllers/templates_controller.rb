@@ -31,7 +31,6 @@ class TemplatesController < ApplicationController
   def create
     @templates = Template.order(type: :asc)
     @template = Template.new(template_params)
-
     respond_to do |format|
       if @template.save
         format.html { redirect_to templates_path, status: :moved_permanently, notice: t("created.success") }

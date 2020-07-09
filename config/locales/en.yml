@@ -161,12 +161,19 @@ en:
     show:
       update: Update user
   templates:
+    create: Create template
+    new: New template
+    edit: Edit template
+    audio: Audio
+    choose_audio: Choose audio
+    type: Type*
+    content: Content*
     index:
       title: Templates
       new: New template
       incomplete: Incomplete
       complete: Complete
-      invalid: Invalid
+      incorrect: Incorrect
   tickets:
     index:
       title: Tickets

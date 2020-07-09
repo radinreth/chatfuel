@@ -52,7 +52,7 @@ RSpec.describe Template, type: :model do
         it "without :content" do
           template.content = ""
 
-          expect(template).to be_valid
+          expect { template.save! }.to raise_error
         end
 
         it "without :type" do
@@ -69,17 +69,18 @@ RSpec.describe Template, type: :model do
           expect(template.errors.messages[:type]).to eq ["InvalidTemplate is not a valid type"]
         end
 
-        it "VerboiceTemplate has text :content" do
+        # https://github.com/rails/rails/issues/38681
+        xit "VerboiceTemplate has text :content" do
           template.type = "VerboiceTemplate"
           template.content = "should not have"
-          template.save
+          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mp3", content_type: "audio/mp3", identify: false)
 
-          expect(template.reload.content).to eq ""
+          expect(template).to be_invalid
         end
 
         # issue: https://github.com/rails/rails/issues/37069
         xit "MessengerTemplate has :audio" do
-          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mpg", content_type: "audio/mpeg")
+          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mp3", content_type: "audio/mp3")
 
           expect(template).to be_invalid
           expect(template.errors.messages[:base]).to eq ["invalid template provided"]
