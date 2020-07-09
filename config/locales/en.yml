@@ -110,7 +110,7 @@ en:
   dashboard:
     title: Dashboard
     total_user_visit: Total User Visit (Each Function)
-    total_user_feedback: Total User Feedbacks (Overall OWSO Service Delivery)
+    total_user_feedback: Total User Feedbacks (%{name})
     number_of_tracked_ticket: Number of Ticket(Successfully Tracked)
     both: Both
     ivr: IVR

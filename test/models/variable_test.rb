@@ -5,6 +5,7 @@
 #  id               :bigint(8)        not null, primary key
 #  feedback_message :boolean          default("false")
 #  is_most_request  :boolean          default("false")
+#  is_user_visit    :boolean          default("false")
 #  name             :string
 #  report_enabled   :boolean          default("false")
 #  type             :string           not null

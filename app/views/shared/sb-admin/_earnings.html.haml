@@ -35,7 +35,7 @@
             %i.fas.fa-clock.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
     .card.border-left-warning.shadow.h-100.py-2
-      = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
+      = link_to "#", data: { toggle: "modal", target: "#mostRequest", id: @most_request_variable&.id, name: "variable[attributes][][is_most_request]", url: set_most_request_dictionaries_path } do
         %i.fas.fa-cog.cog
       .card-body
         .row.no-gutters.align-items-center
