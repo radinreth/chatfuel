@@ -1,6 +1,6 @@
 class UserPolicy < Struct.new(:user, :record)
   def index?
-    !user.site_ombudsman?
+    user.system_admin?
   end
 
   def new?
@@ -11,35 +11,27 @@ class UserPolicy < Struct.new(:user, :record)
     index?
   end
 
-  def update?
+  def create?
     index?
   end
 
-  def create?
-    (user.system_admin? || user.site_admin?) && \
-    user.role_position_level > record.role_position_level
+  def update?
+    return false if record.id == user.id
+
+    user.system_admin?
   end
 
-  # TODO: cleanup
-  def roles
-    Role.all.map do |r|
-      key = r.name.parameterize(separator: "_")
-      key
-    end
-    # return User.roles if user.system_admin?
+  def destroy?
+    update?
+  end
 
-    # User.roles.keys.reject { |r| r == "system_admin" }.map { |r| [r, r] }
+  def roles
+    Role.all.map { |role| role.name.parameterize(separator: "_") }
   end
 
   class Scope < ::ApplicationPolicy::Scope
     def resolve
-      if user.system_admin?
-        scope.all
-      elsif user.site_admin?
-        scope.joins(:role).where("roles.name in (?)", ["site_admin", "site_ombudsman"])
-      else
-        scope.none
-      end
+      scope.all
     end
   end
 end

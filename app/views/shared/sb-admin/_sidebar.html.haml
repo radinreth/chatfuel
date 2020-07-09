@@ -21,10 +21,11 @@
       = link_to dictionaries_path, class: "nav-link" do
         %i.fas.fa-fw.fa-book
         %span= t('sidebar.dictionaries')
-    %li.nav-item{ class: css_active_class('users') }
-      = link_to users_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-user
-        %span= t('sidebar.users')
+    - if policy(User).index?
+      %li.nav-item{ class: css_active_class('users') }
+        = link_to users_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-user
+          %span= t('sidebar.users')
     %li.nav-item{ class: css_active_class('tickets') }
       = link_to tickets_path, class: "nav-link" do
         %i.fas.fa-fw.fa-envelope
