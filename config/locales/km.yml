@@ -152,12 +152,19 @@ km:
     show:
       update: ធ្វើបច្ចុប្បន្នភាព
   templates:
+    create: បង្កើតគំរូ
+    new: គំរូថ្មី
+    edit: កែគំរូ
+    audio: សំលេង
+    choose_audio: ជ្រើសរើសសំលេង
+    type: ប្រភេទ*
+    content: ប្រយោគ*
     index:
       title: ពុម្ព
       new: ពុម្ពថ្មី
       incomplete: មិនទាន់រួចរាល់
       complete: បានរួចរាល់
-      invalid: មិនត្រឹមត្រូវ
+      incorrect: មិនត្រឹមត្រូវ
   js:
     updates_success_desc: បានធ្វើបច្ចុប្បន្នភាព %{var_name} ដោយជោគជ័យសម្រាប់ %{role_name}
     updates_success_title: ជោគជ័យ!
