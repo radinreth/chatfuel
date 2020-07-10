@@ -4,8 +4,10 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1 Active User
-            .h5.mb-0.font-weight-bold.text-gray-800 203
+            .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
+              = t("dashboard.active_user")
+            .h5.mb-0.font-weight-bold.text-gray-800
+              = t("not_available")
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
@@ -13,8 +15,10 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 Total User
-            .h5.mb-0.font-weight-bold.text-gray-800 909
+            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 
+              = t("dashboard.total_user")
+            .h5.mb-0.font-weight-bold.text-gray-800
+              = @query.user_count
           .col-auto
             %i.fas.fa-users.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
@@ -22,18 +26,24 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1 Average Using Time
+            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1 
+              = t("dashboard.average_using_time")
             .row.no-gutters.align-items-center
               .col-auto
-                .h5.mb-0.mr-3.font-weight-bold.text-gray-800 3 minutes
+                .h5.mb-0.mr-3.font-weight-bold.text-gray-800 N/A
           .col-auto
             %i.fas.fa-clock.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
     .card.border-left-warning.shadow.h-100.py-2
+      = link_to "#", data: { toggle: "modal", target: "#mostRequest", id: @most_request_variable&.id, name: "variable[attributes][][is_most_request]", url: set_most_request_dictionaries_path } do
+        %i.fas.fa-cog.cog
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1 Most Request Services
-            .h5.mb-0.font-weight-bold.text-gray-800 Certify Document
+            .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
+              = t("dashboard.most_request_service")
+            .h5.mb-0.font-weight-bold.text-gray-800 
+              = @query.most_request_service.keys.first
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
+            = render "most_request_modal"

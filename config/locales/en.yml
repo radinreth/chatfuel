@@ -20,8 +20,11 @@ en:
   no_role_or_site: Currently, You are not assigned any role or site.
   contact_admin: Please contact administrator.
   cancel: Cancel
+  save_changes: Save changes
   developed_by: Developed by
   app_version: Version %{version}
+  not_available: N/A
+  no_data: No data
   sidebar:
     dashboard: Dashbaord
     home: Home
@@ -104,6 +107,32 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+  dashboard:
+    title: Dashboard
+    total_user_visit: Total User Visit (Each Function)
+    total_user_feedback: Total User Feedbacks (%{name})
+    number_of_tracked_ticket: Number of Ticket(Successfully Tracked)
+    both: Both
+    ivr: IVR
+    chatbot: Chatbot
+    province: Province
+    show: Show
+    active_user: Active User
+    total_user: Total User
+    average_using_time: Average Using Time
+    most_request_service: Most Request Services
+    like: Like
+    acceptable: Acceptable
+    dislike: Dislike
+    owso_info: OWSO Info
+    feedback: Feedback
+    ticket_tracking: Ticket Tracking
+    overview: Overview (Accessed, Submitted, Completed)
+    accessed: Accessed
+    submitted: Submitted
+    completed: Completed
+    choose_dictionary_name: Choose dictionary name
+    type_search: Type your search...
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data

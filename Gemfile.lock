@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/dwilkie/pumi.git
+  revision: a6433457ee53072df47e6bd23df3ef3636913939
+  specs:
+    pumi (0.3.0)
+
+GIT
   remote: https://github.com/instedd/alto_guisso.git
   revision: f9452bb8eb0b8a2788b3f290d5bdb4f545f89427
   branch: master
@@ -530,6 +536,7 @@ DEPENDENCIES
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.3)
+  pumi!
   pundit (~> 1.1.0)
   pundit-matchers (~> 1.6.0)
   rack-cors

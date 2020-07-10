@@ -23,6 +23,10 @@ module ApplicationHelper
     %I(en km) - [I18n.locale]
   end
 
+  def get_css_active_class(name)
+    return 'active' if params['controller'] == name
+  end
+
   %w(homes sites dictionaries reports users).each do |ctrl|
     define_method "#{ctrl}?".to_sym do
       controller_name == ctrl

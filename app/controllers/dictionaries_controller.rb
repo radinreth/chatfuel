@@ -4,7 +4,7 @@ class DictionariesController < ApplicationController
 
   def index
     @variables = Variable.except_done.order(created_at: :desc)
-    
+
     if params[:q].present?
       @variables = @variables.where("name LIKE ?", "%#{params[:q]}%")
     end
@@ -49,7 +49,41 @@ class DictionariesController < ApplicationController
     end
   end
 
+  def set_most_request
+    update_variable(most_request_params[0])
+
+    redirect_to dashboard_path
+  end
+
+  def set_user_visit
+    update_variable(user_visit_params[0])
+
+    redirect_to dashboard_path
+  end
+
   private
+    def update_variable(attribute)
+      id = attribute.delete(:id)
+      variable = Variable.find(id)
+      variable.update(attribute)
+    end
+
+    def most_request_params
+      @most_request_params = params.require(:variable).permit(attributes: [:id, :is_most_request])
+      filter_params(@most_request_params, :is_most_request)
+    end
+
+    def user_visit_params
+      @user_visit_params = params.require(:variable).permit(attributes: [:id, :is_user_visit])
+      filter_params(@user_visit_params, :is_user_visit)
+    end
+
+    def filter_params(modal_params, key)
+      modal_params["attributes"]\
+        .reject { |a| a[key].blank? }\
+        .map { |a| a.to_h }
+    end
+
     def set_roles
       @roles = Role.all
     end

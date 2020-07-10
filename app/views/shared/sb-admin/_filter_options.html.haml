@@ -1,24 +1,26 @@
 .row.my-4
   .col-lg-6
     %ul.list-inline.platform-list
-      %li.list-inline-item.active Both
-      %li.list-inline-item IVR
-      %li.list-inline-item Chatbot
+      %li.list-inline-item{class: get_css_active_class('dashboard')}
+        = link_to t("dashboard.both"), dashboard_path, class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('dashboard/ivr_dashboard')}
+        = link_to t("dashboard.ivr"), dashboard_ivr_path, class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('dashboard/chatbot_dashboard')}
+        = link_to t("dashboard.chatbot"), dashboard_chatbot_path, class: 'text-decoration-none'
 
   .col-lg-6
     .d-flex
       .province.d-flex.align-items-center
         .province__label
-          %span.mr-2 Province
-        .province__select-option
-          %select{style: "border: 0"}
-            %option 
-            %option Phnom Penh
-            %option Kandal
+          %span.mr-2
+            =t("dashboard.province")
+
+        = select_tag 'province', options_for_select( Pumi::Province.all.pluck('name_en', 'name_en'), @location), class: 'province__select-option'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label
-          %span.mr-2 Show
+          %span.mr-2
+            =t("dashboard.show")
         .date-filter__choose-option
           .input-group
             %input.datepicker_date

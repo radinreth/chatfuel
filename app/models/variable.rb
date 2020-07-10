@@ -4,6 +4,8 @@
 #
 #  id               :bigint(8)        not null, primary key
 #  feedback_message :boolean          default("false")
+#  is_most_request  :boolean          default("false")
+#  is_user_visit    :boolean          default("false")
 #  name             :string
 #  report_enabled   :boolean          default("false")
 #  type             :string           not null
@@ -24,10 +26,14 @@ class Variable < ApplicationRecord
   accepts_nested_attributes_for :values,  allow_destroy: true,
                                           reject_if: :rejected_values
 
+  # callbacks
+  before_save :ensure_only_one_is_most_request
+  before_save :ensure_only_one_is_user_visit
+
   # validations
   validate :only_one_report_column
   validates :type, presence: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :type }
   validates :name,  allow_blank: true,
                     format: { with: /\A\w+\z/,
                               message: I18n.t("variable.invalid_name") }
@@ -39,12 +45,26 @@ class Variable < ApplicationRecord
   end
 
   private
+    def ensure_only_one_is_most_request
+      return unless is_most_request_changed?
+      sibling.update_all(is_most_request: false)
+    end
+
+    def ensure_only_one_is_user_visit
+      return unless is_user_visit_changed?
+      sibling.update_all(is_user_visit: false)
+    end
+
     def only_one_report_column
       errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && report_already_set?
     end
 
     def report_already_set?
-      Variable.where.not(id: self).exists?(report_enabled: true)
+      sibling.exists?(report_enabled: true)
+    end
+
+    def sibling
+      Variable.where.not(id: self)
     end
 
     def rejected_values(attributes)

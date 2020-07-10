@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#show"
   get :home, to: "home#index"
 
+  namespace :dashboard do
+    get "chatbot", action: :show, controller: "chatbot_dashboard"
+    get "ivr", action: :show, controller: "ivr_dashboard"
+  end
+
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
@@ -26,7 +31,10 @@ Rails.application.routes.draw do
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]
   resources :voice_feedbacks, only: [:create]
-  resources :dictionaries, only: [:index, :new, :create, :edit, :update]
+  resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
+    post :set_most_request, on: :collection
+    post :set_user_visit, on: :collection
+  end
   resources :tracks, only: [:create]
   resources :feedbacks, only: [:create]
   resources :reports, only: [:index]
@@ -108,4 +116,5 @@ Rails.application.routes.draw do
     end
   end
 
+  mount Pumi::Engine => "/pumi"
 end

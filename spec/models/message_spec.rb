@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-07-03 03:23:38.104596")
+#  last_interaction_at :datetime         default("2020-07-10 03:35:23.002959")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -60,6 +60,7 @@ RSpec.describe Message do
 
       it "creates if completed" do
         create(:message, content: content, status: :completed)
+        Message.complete_all
 
         expect do
           described_class.create_or_return("Messenger", content)

@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-07-03 03:23:38.104596")
+#  last_interaction_at :datetime         default("2020-07-10 03:35:23.002959")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -36,8 +36,13 @@ class Message < ApplicationRecord
   # methods
   def self.create_or_return(platform_name, content)
     message = find_by(content: content)
-    message = create(platform_name: platform_name, content: content) if !message || message&.completed?
-    message.touch :last_interaction_at
+
+    if !message || message&.completed?
+      message = create(platform_name: platform_name, content: content) 
+    else
+      message.touch :last_interaction_at
+    end
+
     message
   end
 
