@@ -11,8 +11,9 @@ class DashboardQuery
   def total_users_visit_each_functions
     result = StepValue\
       .joins(step: :message, variable_value: :variable)\
-      .where(variables: { is_user_visit: true })\
-      .where(messages: { platform_name: @options[:platform_name], location_name: @options[:location] })
+      .where(variables: { is_user_visit: true, name: "location_name" })\
+      .where(variable_values: { raw_value: @options[:location] })\
+      .where(messages: { platform_name: @options[:platform_name] })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
       .order(:raw_value)\
       .group(:raw_value)\
@@ -37,8 +38,10 @@ class DashboardQuery
     status_values = statuses.fetch_values(:incomplete, :completed)
 
     Track\
-      .joins(:ticket, step: :message)\
-      .where(messages: { platform_name: @options[:platform_name], location_name: @options[:location] })\
+      .joins(:ticket, step: [:message, step_value: { variable_value: :variable }])\
+      .where(messages: { platform_name: @options[:platform_name] })\
+      .where(variables: { name: "location_name" })\
+      .where(variable_values: { raw_value: @options[:location] })\
       .where(tickets: { status: status_values })
       .where("DATE(tracks.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
       .group("tickets.status")
@@ -47,10 +50,12 @@ class DashboardQuery
   end
 
   def join_text_message
-    Message\
-      .joins("INNER JOIN text_messages ON text_messages.id=messages.content_id")\
-      .where("messages.location_name=?", @options[:location])
-      .where("DATE(text_messages.created_at) BETWEEN ? and ?", @options[:start_date], @options[:end_date])
+    @relation\
+      .joins(step: :message, variable_value: :variable)\
+      .where(variables: { is_user_visit: true, name: "location_name" })\
+      .where(variable_values: { raw_value: @options[:location] })\
+      .where(messages: { platform_name: @options[:platform_name] })
+      .where("DATE(messages.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
   end
 
   def join_voice_message
@@ -62,8 +67,9 @@ class DashboardQuery
   def total_users_feedback
     @relation\
       .joins(step: :message, variable_value: :variable)\
-      .where(messages: { platform_name: @options[:platform_name], location_name: @options[:location] })\
-      .where(variables: { report_enabled: true })\
+      .where(messages: { platform_name: @options[:platform_name] })\
+      .where(variables: { report_enabled: true, name: "location_name" })\
+      .where(variable_values: { raw_value: @options[:location] })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
       .group(:raw_value)\
       .count
@@ -72,8 +78,9 @@ class DashboardQuery
   def most_request_service
     @relation\
       .joins(step: :message, variable_value: :variable)\
-      .where(messages: { platform_name: @options[:platform_name], location_name: @options[:location] })\
-      .where(variables: { is_most_request: true })\
+      .where(messages: { platform_name: @options[:platform_name] })\
+      .where(variables: { is_most_request: true, name: "location_name" })\
+      .where(variable_values: { raw_value: @options[:location] })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
       .order("count_all DESC")\
       .group("variable_values.raw_value")\
@@ -101,17 +108,34 @@ class DashboardQuery
   private
     # TODO: filter :platform, location, start date , end date
     def accessed
-      data = StepValue.joins(:variable_value).where(variable_values: { raw_value: "owso_info" }).group_by_day(:created_at).count
+      data = StepValue.joins(step: :message, variable_value: :variable)\
+                      .where(messages: { platform_name: @options[:platform_name] })\
+                      .where("variable_values.raw_value=:access_key OR
+                              ( variables.name='location_name' AND
+                                variable_values.raw_value=:location_value )", access_key: "owso_info", location_value: @options[:location])\
+                      .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
+                      .group_by_day(:created_at)\
+                      .count
       { name: I18n.t("dashboard.accessed"), data: data } if data.present?
     end
 
+    # Ticket does not need to care about about platform(both, chatbot, ivr)
+    # because it syncs from desktop app).
+    # TODO: location#name=>province, Site#name=>district
     def submitted
-      data = Ticket.incomplete.group_by_day(:created_at).count
+      data = Ticket.incomplete
+                .where("DATE(updated_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
+                .group_by_day(:updated_at)
+                .count
       { name: I18n.t("dashboard.submitted"), data: data } if data.present?
     end
 
+    # TODO: location#name=>province, Site#name=>district
     def completed
-      data = Ticket.completed.group_by_day(:created_at).count
+      data = Ticket.completed
+                .where("DATE(updated_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
+                .group_by_day(:updated_at)
+                .count
       { name: I18n.t("dashboard.completed"), data: data } if data.present?
     end
 

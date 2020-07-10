@@ -53,8 +53,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-06-30 04:09:55"
-    t.string "location_name"
+    t.datetime "last_interaction_at", default: "2020-07-10 03:35:23"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
