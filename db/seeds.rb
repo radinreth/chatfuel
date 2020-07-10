@@ -11,10 +11,13 @@ Dir[paths].each { |f| require f }
 #   end
 # end
 
+Ticket.destroy_all
+Site.destroy_all
+Message.destroy_all
+
 Seed::Site.generate!
 Seed::Ticket.generate!
 
-Message.destroy_all
 ticket_codes = Ticket.take(100).pluck(:code)
 
 text_messages = [
@@ -293,7 +296,7 @@ text_messages.each do |message|
       step.track = track
     end
 
-    step.save
+    step.save!
   rescue => e
     p e.inspect
     p msg&.errors
