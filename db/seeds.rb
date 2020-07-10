@@ -30,6 +30,18 @@ text_messages = [
   { 
     messenger_user_id: FFaker::Code.ean,
     platform_name: "Messenger",
+    dictionary_name: "gender",
+    raw_value: "m"
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
+    dictionary_name: "location_name",
+    raw_value: ["Kandal", "Banteay Meanchey"].sample
+  },
+  { 
+    messenger_user_id: FFaker::Code.ean,
+    platform_name: "Messenger",
     dictionary_name: "owso_info",
     raw_value: "main_dbs"
   },
@@ -283,7 +295,7 @@ text_messages.each do |message|
       raise "Invalid message"
     end
 
-    msg = Message.create(platform_name: platform, location_name: ["Kandal", "Banteay Meanchey"].sample, content: content)
+    msg = Message.create(platform_name: platform, content: content)
 
     step = msg.steps.build
     if dictionary_name.present?

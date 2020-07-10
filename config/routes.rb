@@ -51,9 +51,6 @@ Rails.application.routes.draw do
   end
 
   namespace :bots do
-    resource :gender, only: [:create]
-    resource :location, only: [:create]
-
     # Message
     resources :messages, only: [:create] do
       collection do
