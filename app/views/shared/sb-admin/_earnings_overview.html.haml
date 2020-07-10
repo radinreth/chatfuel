@@ -8,24 +8,24 @@
             %i.fas.fa-cog.cog
       .card-body
         .pt-4.pb-2.d-flex.justify-content-around.align-items-center
-          - if @user_visit_variable.present?
+          - if @query.total_users_visit_each_functions.present?
             %ul.list-unstyled
-              - @user_visit_variable.values.each_with_index do |value, index|
+              - @query.user_visit.values.each_with_index do |value, index|
                 %li
                   %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
                   %span.oval-label
                     = value.raw_value
 
-          = pie_chart total_users_visit_each_functions, colors: @user_visit_variable && chartjs_colors.take(@user_visit_variable.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
+          = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
       .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
         .h5.m-0.font-weight-bold.text-primary
-          = t("dashboard.total_user_feedback", name: @report_enabled_variable&.name)
+          = t("dashboard.total_user_feedback", name: @query.report_enabled&.name)
       .card-body
         .pt-4.pb-2.d-flex.justify-content-around.align-items-center
-          - if @report_enabled_variable.present?
+          - if @query.total_users_feedback.present?
             %ul.list-unstyled
               %li
                 %span.oval.oval--green
@@ -43,7 +43,7 @@
                 %span.oval-label-km
                   = t("dashboard.dislike")
 
-          = pie_chart total_users_feedback, colors: ['#4e73df', '#1cc88a', '#f63e3e'], width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
+          = pie_chart @query.total_users_feedback, colors: chartjs_colors.take(3), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -51,7 +51,7 @@
         .h5.m-0.font-weight-bold.text-primary
           = t("dashboard.number_of_tracked_ticket")
       .card-body
-        = column_chart number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
+        = column_chart @query.number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4
@@ -60,5 +60,5 @@
           = t("dashboard.overview")
       .card-body
         .pt-4.pb-2.d-flex.justify-content-around.align-items-center
-          = line_chart @goals.map { |goal| { name: goal[:name], data: goal[:data] } }, height: "250px"
+          = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, height: "250px"
 
