@@ -8,6 +8,7 @@ GUISSO_CLIENT_ID=
 GUISSO_CLIENT_SECRET=
 SENTRY_DSN=
 TELEGRAM_CALLBACK_URL=https://ngrok.io/telegram
+NUMBER_OF_SYNC_LOG=5
 
 # Shell with unicode support
 LANG=C.UTF-8

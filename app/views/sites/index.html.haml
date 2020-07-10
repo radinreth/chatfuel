@@ -23,6 +23,7 @@
           %strong.custom-col= t('sites.province')
           %strong.custom-col= t('sites.code')
           %strong.custom-col= t('sites.track_count')
+          %strong.custom-col= t('sites.sync_status')
           %strong.custom-col= t('sites.action')
 
         - @provinces.each_with_index do |province, index|
@@ -35,6 +36,7 @@
             .custom-col
             .custom-col
             .custom-col
+            .custom-col
 
           .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
 
@@ -43,6 +45,12 @@
                 .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link'
                 .custom-col= site['code']
                 .custom-col= site['tracks_count']
+                .custom-col
+                  = site.sync_status
+                  - if site.sync_logs.present?
+                    %span{"data-content" => site.sync_log_html_tags, "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => "Sync History"}
+                      %i.fas.fa-info-circle
+
                 .custom-col
                   %ul.list-inline.mb-0
                     %li.list-inline-item

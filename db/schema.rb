@@ -147,6 +147,13 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
   end
 
+  create_table "sync_logs", force: :cascade do |t|
+    t.integer "site_id"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "telegram_bots", force: :cascade do |t|
     t.string "username"
     t.string "token"

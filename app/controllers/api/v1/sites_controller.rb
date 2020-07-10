@@ -12,6 +12,7 @@ module Api
 
       def check
         @site.update!(sync_status: params[:sync_status])
+        @site.sync_logs.create(status: params[:sync_status])
 
         render json: { message: @site.id, status: :ok }
       rescue => e
