@@ -1,9 +1,11 @@
-#dashboard-show {
+#dashboard-show,
+#dashboard-ivr_dashboard-show,
+#dashboard-chatbot_dashboard-show {
   .platform-list {
     border-bottom: 1px solid #ccc;
     max-width: 60%;
     font-size: 0.7em;
-    
+
     .list-inline-item:not(:last-child) {
       margin-right: 1.5em;
     }
@@ -11,6 +13,67 @@
     .active {
       border-bottom: 3px solid #496edc;
     }
+  }
+
+  .cog {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 23px;
+    color: #333;
+  }
+
+  .value-list {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+
+  input[type=radio] {
+    vertical-align: middle;
+  }
+
+  #accordionExample.accordion {
+    height: 450px;
+    overflow-y: scroll;
+  }
+
+  .oval {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-bottom: 1px;
+    margin-right: 7px;
+
+    &--green {
+      background-color: #1cc88a;
+    }
+
+    &--blue {
+      background-color: #4e73df;
+    }
+
+    &--yellow {
+      background-color: #f63e3e;
+    }
+  }
+
+  .oval-label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #5a5c69;
+  }
+
+  .oval-emoji {
+    font-size: 21px;
+    vertical-align: middle;
+  }
+
+  .oval-label-km {
+    font-size: 16px;
+    font-weight: normal;
+    color: #5a5c69;
   }
 
   .province__select-option {

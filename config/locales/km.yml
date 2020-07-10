@@ -20,8 +20,11 @@ km:
   no_role_or_site: អ្នកមិនត្រូវបានចាត់តាំងតួនាទី ឬ ការិយាល័យណាមួយទេ
   contact_admin: សូមទាក់ទងអ្នកគ្រប់គ្រង
   cancel: បោះបង់
+  save_changes: រក្សាទុក
   developed_by: អភិវឌ្ឍន៍​ដោយ
   app_version: កំណែ %{version}
+  not_available: មិនមាន
+  no_data: មិនមានទិន្នន័យ
   sidebar:
     dashboard: Dashbaord
     home: ទំព័រដើម
@@ -97,16 +100,42 @@ km:
     index:
       title: ទំព័រដើម
       empty: ប្រអប់ទទួលរបស់អ្នកទទេ
-      session_id: លេខ​សម្គាល់​
+      session_id: លេខសម្គាល់
       type: ប្រភេទ
       all: សារទាំងអស់
       search: ស្វែងរក
       session_id: អត្តលេខ
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
+  dashboard:
+    title: ផ្ទាំងគ្រប់គ្រង
+    total_user_visit: ចំនួនអ្នកទស្សនារបស់អ្នកប្រើប្រាស់សរុប (មុខងារនីមួយៗ)
+    total_user_feedback: ការឆ្លើយតបរបស់អ្នកប្រើប្រាស់សរុប (%{name})
+    number_of_tracked_ticket: ចំនួនសំបុត្រ (តាមដានដោយជោគជ័យ)
+    both: ទាំងពីរ
+    ivr: ខលចូល
+    chatbot: ឆាតបត
+    province: ខេត្ត
+    show: បង្ហាញ
+    active_user: អ្នកប្រើប្រាស់សកម្ម
+    total_user: អ្នកប្រើប្រាស់សរុប
+    average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
+    most_request_service: សេវាកម្មស្នើសុំច្រើនជាងគេ
+    like: ពេញចិត្ត
+    acceptable: អាចទទួលយកបាន
+    dislike: មិនពេញចិត្ត
+    owso_info: ពត៍មានអំពីច្រក
+    feedback: ការវាយតម្លៃ
+    ticket_tracking: ការតាមដានឯកសារ
+    overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរការ, ការដាក់ស្នើ, ការបញ្ចប់)
+    accessed: ចូលដំណើរការ
+    submitted: ការដាក់ស្នើ
+    completed: ការបញ្ចប់
+    choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
+    type_search: វាយពាក្យស្វែងរករបស់អ្នក...
   reports:
     accessed_submitted_completed_line_chart:
-      no_data: គ្មាន​ទិន្នន័យ
+      no_data: គ្មានទិន្នន័យ
     accessed_submitted_completed_summary_table:
       accessed: បានចូលប្រើ
       submitted: បានដាក់ស្នើ
