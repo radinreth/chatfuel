@@ -48,7 +48,7 @@
                 .custom-col
                   = site.sync_status
                   - if site.sync_logs.present?
-                    %span{"data-content" => site.sync_log_html_tags, "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => "Sync History"}
+                    %span{"data-content" => site.sync_log_html_tags, "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => t('sites.sync_status_history')}
                       %i.fas.fa-info-circle
 
                 .custom-col

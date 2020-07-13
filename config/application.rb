@@ -48,7 +48,6 @@ module Chatfuel
     end
 
     config.time_zone = 'Bangkok'
-    config.active_record.default_timezone = :local
   end
 end
 
