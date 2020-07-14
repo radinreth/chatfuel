@@ -67,6 +67,10 @@ class Site < ApplicationRecord
     lat.present? && lng.present?
   end
 
+  def map_url
+    "https://www.google.com/maps/@#{lat},#{lng},18z"
+  end
+
   private
     def whitelist_format
       return true if whitelist == '*'
