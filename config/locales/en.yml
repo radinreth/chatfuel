@@ -150,6 +150,16 @@ en:
     index:
       complaints: Complaints
   sites:
+    title: Sites
+    all: All sites
+    search: Search
+    new_site: New site
+    code: Code
+    district: District
+    province: Province
+    location: Location(lat/lng)
+    action: Action
+    track_count: Track count
     form:
       enable?: Enable?
     edit:
