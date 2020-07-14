@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :sites do
     collection do
       get :new_import
+      get :download
       post :import
     end
 
