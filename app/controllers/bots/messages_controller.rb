@@ -37,14 +37,14 @@ module Bots
               image_aspect_ratio: "horizontal",
               elements: [
                 {
-                  title: "ទីតាំងការិយាល័យច្រក",
-                  subtitle: "សម្រាប់ពត៍មានបន្ថែមសូមចុចតំនរភ្ជាប់ខាងក្រោម 👇",
-                  image_url: sample_map_image_url,
+                  title: I18n.t("chatfuel.map.title"),
+                  subtitle: I18n.t("chatfuel.map.subtitle"),
+                  image_url: ENV["SAMPLE_MAP_IMAGE"],
                   buttons: [
                     {
                       type: "web_url",
                       url: "https://www.google.com/maps/place/#{params[:location]}",
-                      title: "មើលលើផែនទី!"
+                      title: I18n.t("chatfuel.map.button_title")
                     }
                   ]
                 }
@@ -52,10 +52,6 @@ module Bots
             }
           }
         }
-      end
-
-      def sample_map_image_url
-        @sample_map_image_url ||= "https://dl.dropbox.com/s/0efkg615shrabhu/Google%20Maps%202020-07-10%2014-49-51.png?dl=0"
       end
   end
 end

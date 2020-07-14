@@ -160,6 +160,7 @@ en:
     location: Location(lat/lng)
     action: Action
     track_count: Track count
+    create_new: Create site
     form:
       enable?: Enable?
     edit:
@@ -223,3 +224,8 @@ en:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  chatfuel:
+    map:
+      title: ទីតាំងការិយាល័យច្រក
+      subtitle: សម្រាប់ពត៍មានបន្ថែមសូមចុចតំនរភ្ជាប់ខាងក្រោម 👇
+      button_title: មើលលើផែនទី!

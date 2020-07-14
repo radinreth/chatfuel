@@ -3,7 +3,8 @@
     .modal-content
       = simple_form_for site do |f|
         .modal-header
-          %h5#newSiteLabel.modal-title Create new site
+          %h5#newSiteLabel.modal-title
+            = t("sites.create_new")
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} ×
         .modal-body
@@ -13,5 +14,6 @@
           = f.input :lng
           = f.input :status, as: :boolean
         .modal-footer
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-          = f.submit "Save changes", class: "btn btn-primary"
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+            = t("cancel")
+          = f.submit t("sites.save_changes"), class: "btn btn-primary"
