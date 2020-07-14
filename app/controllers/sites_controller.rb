@@ -59,6 +59,11 @@ class SitesController < ApplicationController
     redirect_to sites_path, status: :moved_permanently, notice: t("deleted.success")
   end
 
+  def download
+    csv = Rails.root.join("db", "seed", "assets", "site.csv")
+    send_file csv, filename: "sample.csv", disposition: "attachment", type: "text/csv"
+  end
+
   private
     def set_site
       @site ||= Site.find(params[:id])
