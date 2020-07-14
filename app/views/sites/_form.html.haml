@@ -2,4 +2,6 @@
   = f.input :status, as: :boolean, label: t(".enable?"), input_html: { checked: @site.enable? }
   = f.input :name
   = f.input :code
+  = f.input :lat
+  = f.input :lng
   = f.button :submit, class: "btn btn-primary"

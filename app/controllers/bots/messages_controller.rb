@@ -34,7 +34,7 @@ module Bots
             type: "template",
             payload: {
               template_type: "generic",
-              image_aspect_ratio: "square",
+              image_aspect_ratio: "horizontal",
               elements: [
                 {
                   title: "ទីតាំងការិយាល័យច្រក",

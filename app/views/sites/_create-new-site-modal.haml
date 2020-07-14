@@ -9,6 +9,8 @@
         .modal-body
           = f.input :name
           = f.input :code
+          = f.input :lat
+          = f.input :lng
           = f.input :status, as: :boolean
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel

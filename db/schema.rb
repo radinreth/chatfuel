@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.string "token", default: ""
     t.text "whitelist"
     t.string "province_id"
+    t.string "lat", default: ""
+    t.string "lng", default: ""
     t.index ["name"], name: "index_sites_on_name"
   end
 
