@@ -160,6 +160,7 @@ km:
     location: ទីតាំង(lat/lng)
     action: សកម្មភាព
     track_count: ចំនួនតាមដាន
+    create_new: បង្កើតថ្មី
     form:
       enable?: បើកដំណើរការ?
     edit:
