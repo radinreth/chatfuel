@@ -6,12 +6,13 @@
 #  code         :string           default("")
 #  name         :string           not null
 #  status       :integer(4)       default("0")
-#  sync_status  :integer(4)       default("1"), not null
+#  sync_status  :integer(4)
 #  token        :string           default("")
 #  tracks_count :integer(4)       default("0")
 #  whitelist    :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  province_id  :string
 #
 # Indexes
 #
@@ -36,7 +37,7 @@ class Site < ApplicationRecord
 
   # validations
   validates :name, presence: true
-  validates :sync_status, inclusion: { in: sync_statuses.keys }
+  validates :sync_status, inclusion: { in: sync_statuses.keys }, allow_nil: true
   validates :code, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
@@ -47,6 +48,7 @@ class Site < ApplicationRecord
 
   before_validation :generate_whitelist, on: :create
   before_create :generate_token
+  before_create :assign_province_id
 
   def self.find_with_whitelist(token, ip)
     where(token: token, whitelist: '*').or(where('token = ? AND whitelist LIKE ?', token, "%#{ip}%")).first
@@ -73,5 +75,9 @@ class Site < ApplicationRecord
 
     def generate_whitelist
       self.whitelist ||= '*'
+    end
+
+    def assign_province_id
+      self.province_id = code[0..1]
     end
 end

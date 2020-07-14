@@ -1,14 +1,10 @@
-= render "shared/sb-admin/page_heading", title: "Sites"
-
 .card.shadow.mb-4
   .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All sites
+    %h6.m-0.font-weight-bold.text-primary= t('sites.list_of_all_list')
   .card-body
     .my-4
       .d-flex.align-items-center.justify-content-between
-        .d-flex.align-items-center
-          %span.mr-2 Search:
-          %input.form-control.form-control-sm
+        = render 'filter'
 
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
@@ -21,41 +17,54 @@
             New site
           = render "create-new-site-modal", site: @site
 
-    .table-responsive
-      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
-        %thead
-          %tr
-            %th District
-            %th Province
-            %th Code
-            %th Track count
-            %th Action
-        %tbody
-          - @sites.each do |site|
-            %tr
-              %td= link_to site.name, site_path(site)
-              %td --
-              %td= site.code
-              %td= site.tracks_count
-              %td.text-right
-                %button.btn{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                  %i.fas.fa-ellipsis-v
+    %div
+      .custom-table.table.table-bordered
+        .custom-row
+          %strong.custom-col= t('sites.province')
+          %strong.custom-col= t('sites.code')
+          %strong.custom-col= t('sites.track_count')
+          %strong.custom-col= t('sites.action')
 
-                .dropdown-menu.dropdown-menu-right
-                  = link_to site_api_key_path(site), class: "btn dropdown-item" do
-                    %i.fas.fa-key
-                    %span= t('sites.api_key')
+        - @provinces.each_with_index do |province, index|
+          .custom-row.accordion-toggle.pointer{"data-target" => "#row-#{index}", "data-toggle" => "collapse"}
+            .custom-col.d-flex
+              %span.flex-grow-1
+                = "<strong>#{province['name_km']}</strong> (#{province['sites_count']})".html_safe
+              %span.btn-toggle
+                %i.fas.fa-chevron-down
+            .custom-col
+            .custom-col
+            .custom-col
 
-                  = link_to site_setting_path(site), class: "btn dropdown-item" do
-                    %i.fab.fa-telegram
-                    %span= t('sites.telegram_notification')
+          .custom-table.accordion-body.collapse{id: "row-#{index}", style: 'background-color: #f7f7f7; color: #5a5c69'}
 
-                  = link_to site_path(site), class: "btn dropdown-item" do
-                    %i.fas.fa-edit
-                    %span= t('shared.edit')
+            - province['sites'].each do |site|
+              .custom-row
+                .custom-col.pl-4= site['name']
+                .custom-col= site['code']
+                .custom-col= site['tracks_count']
+                .custom-col
+                  %ul.list-inline.mb-0
+                    %li.list-inline-item
+                      = link_to site_path(site['id']), class: "btn-circle btn-sm btn-info text-decoration-none", data: { toggle: 'tooltip', title: t('sites.detail')} do
+                        %i.fas.fa-eye
 
-                  = link_to site_path(site), class: "btn dropdown-item", method: :delete, data: { confirm: t('sites.are_you_sure_to_delete_site') } do
-                    %i.fas.fa-trash
-                    %span= t('shared.delete')
+                    %li.list-inline-item
+                      = link_to site_api_key_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.api_key')} do
+                        %i.fas.fa-key
 
-!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+                    %li.list-inline-item
+                      = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
+                        %i.fab.fa-telegram-plane
+
+                    %li.list-inline-item
+                      = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
+                        %i.fas.fa-edit
+
+                    %li.list-inline-item
+                      = link_to site_path(site['id']), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, data: { confirm: t('sites.are_you_sure_to_delete_site'), toggle: 'tooltip', title: t('shared.delete') } do
+                        %i.fas.fa-trash
+
+
+- if @pagy.pages > 1
+  != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

@@ -3,18 +3,9 @@ class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @sites = pagy(Site.order(tracks_count: :desc))
+    authorize Site
+    @pagy, @provinces = pagy_array(SiteService.new.provinces)
     @site = Site.new
-    authorize @sites
-    respond_to do |format|
-      format.html
-      format.json { render json: @sites }
-    end
-  end
-
-  def new
-    @site = Site.new(status: 1)
-    authorize @site
   end
 
   def show
@@ -22,17 +13,17 @@ class SitesController < ApplicationController
     @tracks = @site.tracks
   end
 
-  def edit
-    authorize @site
-  end
-
   def create
     @site = Site.new(site_params)
+    authorize @site
+
     if @site.save
-      redirect_to @site, status: :moved_permanently, notice: t("created.success")
+      flash[:notice] = t("created.success")
     else
-      render :new, status: :unprocessable_entity, alert: t("created.fail")
+      flash[:alert] = @site.errors.full_messages
     end
+
+    redirect_to sites_path
   end
 
   def import
@@ -47,11 +38,14 @@ class SitesController < ApplicationController
 
   def update
     authorize @site
+
     if @site.update(site_params)
-      redirect_to @site, status: :moved_permanently, notice: t("updated.success")
+      flash[:notice] = t("updated.success")
     else
-      render :edit, alert: t("updated.fail")
+      flash[:alert] = @site.errors.full_messages
     end
+
+    redirect_to sites_path
   end
 
   def destroy
