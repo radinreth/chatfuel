@@ -1,0 +1,3 @@
+<% if @site.errors.any? %>
+  $("#new_site").html("<%= j(render 'form', site: @site) %>");
+<% end %>

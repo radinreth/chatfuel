@@ -47,6 +47,8 @@ class Site < ApplicationRecord
                       message: I18n.t("site.invalid_code") }
   validates :token, presence: true, if: :persisted?
   validates :whitelist, presence: true, if: :persisted?
+  validates :lat, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }, allow_blank: true
+  validates :lng, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
   validate :whitelist_format
 
   before_validation :generate_whitelist, on: :create

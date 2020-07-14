@@ -17,10 +17,15 @@ class SitesController < ApplicationController
     @site = Site.new(site_params)
     authorize @site
 
-    if @site.save
-      flash[:notice] = t("created.success")
-    else
-      flash[:alert] = @site.errors.full_messages
+    respond_to do |format|
+      if @site.save
+        flash[:notice] = t("created.success")
+        format.js { redirect_to @site, status: :moved_permanently, notice: t("created.success") }
+      else
+        flash[:alert] = @site.errors.full_messages
+        format.js
+        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
+      end
     end
 
     redirect_to sites_path

@@ -57,7 +57,7 @@ Rails.application.routes.draw do
         post "ivr", to: "messages/ivr#create"
         post "chatbot", to: "messages/chatbot#create"
         post "chatbot/done", to: "messages/chatbot#done"
-        get  "chatbot/preview_map", to: "messages/map_preview#index"
+        get  "chatbot/preview_map", to: "messages/map_preview#index", defaults: { locale: "km" }
       end
     end
 
