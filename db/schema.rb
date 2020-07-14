@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.integer "sync_status", default: 1, null: false
     t.string "token", default: ""
     t.text "whitelist"
+    t.string "province_id"
     t.index ["name"], name: "index_sites_on_name"
   end
 
