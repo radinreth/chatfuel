@@ -63,6 +63,10 @@ class Site < ApplicationRecord
     scope
   end
 
+  def map_position?
+    lat.present? && lng.present?
+  end
+
   private
     def whitelist_format
       return true if whitelist == '*'

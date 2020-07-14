@@ -150,6 +150,16 @@ km:
     index:
       complaints: បណ្តឹង
   sites:
+    title: ការិយាល័យ
+    all: ការិយាល័យទាំងអស់
+    search: ស្វែងរក
+    new_site: ការិយាល័យថ្មី
+    code: កូដ
+    district: ស្រុក
+    province: ខេត្ត
+    location: ទីតាំង(lat/lng)
+    action: សកម្មភាព
+    track_count: ចំនួនតាមដាន
     form:
       enable?: បើកដំណើរការ?
     edit:

@@ -9,12 +9,12 @@
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
             %i.fas.fa-file-upload.fa-fw
-            Import sites
+            = t("sites.new_import.title")
           = render "import-site-modal", site: @site
 
           = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newSiteModal" } do
             %i.fas.fa-plus.fa-fw
-            New site
+            = t("sites.new_site")
           = render "create-new-site-modal", site: @site
 
     %div
