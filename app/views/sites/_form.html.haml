@@ -1,7 +1,16 @@
-= simple_form_for @site do |f|
-  = f.input :status, as: :boolean, label: t(".enable?"), input_html: { checked: @site.enable? }
-  = f.input :name
-  = f.input :code
-  = f.input :lat
-  = f.input :lng
-  = f.button :submit, class: "btn btn-primary"
+= simple_form_for site, remote: true do |f|
+  .modal-header
+    %h5#newSiteLabel.modal-title
+      = t("sites.create_new")
+    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+  .modal-body
+    = f.input :name
+    = f.input :code
+    = f.input :lat
+    = f.input :lng
+    = f.input :status, as: :boolean
+  .modal-footer
+    %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+      = t("cancel")
+    = f.submit t("save_changes"), class: "btn btn-primary"

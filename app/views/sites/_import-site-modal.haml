@@ -1,7 +1,7 @@
 #importSiteModal.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "importSiteLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-dialog-centered{:role => "document"}
     .modal-content
-      = simple_form_for site do |f|
+      = simple_form_for site, html: { id: "new_import_site" } do |f|
         .modal-header
           %h5#importSiteLabel.modal-title Import site
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
