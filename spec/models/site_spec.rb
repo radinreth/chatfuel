@@ -29,11 +29,12 @@ RSpec.describe Site, type: :model do
   it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:tickets) }
 
-  describe '#before create, generate_token, whitelist' do
-    let(:site) { create(:site, token: nil) }
+  describe '#before create, generate_token, whitelist, province_id' do
+    let(:site) { create(:site, token: nil, code: '0102') }
 
     it { expect(site.token).not_to be_nil }
     it { expect(site.whitelist).to eq('*') }
+    it { expect(site.province_id).to eq('01') }
   end
 
   describe "validation token and whitelist presence on update" do

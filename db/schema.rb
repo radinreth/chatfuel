@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_072006) do
+ActiveRecord::Schema.define(version: 2020_07_14_064423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_072006) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-07-10 03:35:23"
+    t.datetime "last_interaction_at", default: "2020-07-15 03:02:47"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
