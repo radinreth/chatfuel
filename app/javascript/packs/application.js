@@ -22,6 +22,7 @@ require("application/loader")
 
 require("sites/settings/setting")
 require("sites/api_keys/show")
+require("sites/index")
 require("templates/index")
 require("dashboard/show")
 
@@ -33,3 +34,8 @@ require("view/daterangepicker")
 require("view/sidebar_toggle")
 require("view/main")
 require("view/users")
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="popover"]').popover()
+})
