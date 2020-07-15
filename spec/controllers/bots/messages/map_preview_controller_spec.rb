@@ -27,6 +27,6 @@ RSpec.describe Bots::Messages::MapPreviewController, type: :controller do
                 }]
               }
 
-    expect(JSON.parse(response.body)).to eq(expected.as_json)
+    expect(JSON.parse(response.body)).to include(expected.as_json)
   end
 end

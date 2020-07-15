@@ -15,10 +15,8 @@
           = link_to new_site_path, remote: true, class: "btn btn-primary" do
             %i.fas.fa-plus.fa-fw
             = t("sites.new_site")
-
           = render "create-new-site-modal", site: @site
 
-<<<<<<< HEAD
     %div
       .custom-table.table.table-bordered
         .custom-row
@@ -60,40 +58,13 @@
                     %li.list-inline-item
                       = link_to site_api_key_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.api_key')} do
                         %i.fas.fa-key
-=======
-    .table-responsive
-      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
-        %thead
-          %tr
-            %th= t("sites.code")
-            %th= t("sites.district")
-            %th= t("sites.province")
-            %th= t("sites.location")
-            %th= t("sites.track_count")
-            %th= t("sites.action")
-        %tbody
-          - @sites.each do |site|
-            %tr
-              %td= site.code
-              %td
-                = link_to site.name, site_path(site)
-              %td.text-center --
-              %td.text-center
-                - if site.map_position?
-                  = link_to site.map_url, class: "text-decoration-none", target: "_blank" do
-                    %i.fas.fa-map-marker.fa-fw.fa-1x
-              %td= site.tracks_count
-              %td.text-right
-                %button.btn.btn-sm.p-0{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                  %i.fas.fa-ellipsis-v
->>>>>>> enh style
 
                     %li.list-inline-item
                       = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
                         %i.fab.fa-telegram-plane
 
                     %li.list-inline-item
-                      = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
+                      = link_to edit_site_path(site['id']), remote: true, class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
                         %i.fas.fa-edit
 
                     %li.list-inline-item

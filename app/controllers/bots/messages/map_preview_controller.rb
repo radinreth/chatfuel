@@ -33,7 +33,7 @@ module Bots::Messages
 
       def map_element
         {
-          title: I18n.t("chatfuel.map.title"),
+          title: I18n.t("chatfuel.map.title", district: @site.name),
           subtitle: I18n.t("chatfuel.map.subtitle"),
           image_url: ENV["SAMPLE_MAP_IMAGE"],
           buttons: [
