@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-07-15 03:02:47"
+    t.datetime "last_interaction_at", default: "2020-07-15 06:31:07"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
-    t.integer "sync_status", default: 1, null: false
+    t.integer "sync_status"
     t.string "token", default: ""
     t.text "whitelist"
     t.string "province_id"
@@ -145,6 +145,13 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
+  end
+
+  create_table "sync_logs", force: :cascade do |t|
+    t.integer "site_id"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "telegram_bots", force: :cascade do |t|
