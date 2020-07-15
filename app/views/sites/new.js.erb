@@ -1,0 +1,3 @@
+$("#new_site").replaceWith("<%= j render("form", site: @site) %>");
+$(".modal-title").html("<%= t("sites.new_site") %>");
+$("#newSiteModal").modal("show");
