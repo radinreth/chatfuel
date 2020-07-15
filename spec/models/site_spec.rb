@@ -26,6 +26,8 @@ RSpec.describe Site, type: :model do
   it { is_expected.to have_attribute(:name) }
   it { is_expected.to have_attribute(:code) }
   it { is_expected.to have_attribute(:status) }
+  it { is_expected.to have_attribute(:lat) }
+  it { is_expected.to have_attribute(:lng) }
   it { is_expected.to have_attribute(:sync_status) }
   it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) }
   it { is_expected.to have_many(:users) }
