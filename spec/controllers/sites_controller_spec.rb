@@ -27,6 +27,13 @@ RSpec.describe SitesController, type: :controller do
     expect(response).to render_template("show")
   end
 
+  it "GET :download" do
+    get :download
+
+    expect(response.status).to eq 200
+    expect(response.headers["Content-Type"]).to eq "text/csv"
+  end
+
   describe "POST :import" do
     context "success" do
       it "attach a file" do
