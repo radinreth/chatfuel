@@ -6,19 +6,25 @@ RSpec.describe SitesController, type: :controller do
   it "GET :index" do
     get :index
 
-    expect(response).to render_template("index")
+      expect(response).to render_template("index")
+    end
+  end
+
+  context "json" do
+    before { create(:site, name: "kamrieng") }
+
+    it "GET :index" do
+      get :index, format: :json
+
+      expect(response.headers["Content-Type"]).to include "application/json"
+      expect(response.body).to include("kamrieng")
+    end
   end
 
   it "GET :show" do
     get :show, params: { id: create(:site).id }
 
     expect(response).to render_template("show")
-  end
-
-  it "POST :create" do
-    expect do
-      post :create, params: { site: { name: "new site", code: "0212" } }
-    end.to change { Site.count }.by(1)
   end
 
   describe "POST :import" do

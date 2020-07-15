@@ -24,7 +24,7 @@ class SitesController < ApplicationController
       else
         flash[:alert] = @site.errors.full_messages
         format.js
-        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
+        format.html { redirect_to sites_path, alert: t("created.fail") }
       end
     end
 

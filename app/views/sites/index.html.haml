@@ -12,9 +12,10 @@
             = t("sites.new_import.title")
           = render "import-site-modal", site: @site
 
-          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newSiteModal" } do
+          = link_to new_site_path, remote: true, class: "btn btn-primary" do
             %i.fas.fa-plus.fa-fw
             = t("sites.new_site")
+
           = render "create-new-site-modal", site: @site
 
     %div
