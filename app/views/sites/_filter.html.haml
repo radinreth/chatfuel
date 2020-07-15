@@ -2,7 +2,7 @@
   .form-group.mb-0.d-flex.align-items-center
     %span.mr-2 Search:
     .input-group
-      = text_field_tag(:keyword, params[:keyword], class: 'form-control')
+      = text_field_tag(:keyword, params[:keyword], class: 'form-control site-filter', placeholder: t('sites.insert_name_or_code'))
 
       %a#info.input-group-append
         .input-group-text
