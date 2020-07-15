@@ -4,15 +4,19 @@ class SitePolicy < ApplicationPolicy
   end
 
   def new?
+    create?
+  end
+
+  def create?
     user.system_admin?
   end
 
   def edit?
-    user.system_admin?
+    update?
   end
 
   def update?
-    user.system_admin?
+    create?
   end
 
   def destroy?

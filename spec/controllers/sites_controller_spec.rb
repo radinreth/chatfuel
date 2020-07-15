@@ -3,35 +3,10 @@ require "rails_helper"
 RSpec.describe SitesController, type: :controller do
   setup_system_admin
 
-  context "html" do
-    it "GET :index" do
-      get :index
+  it "GET :index" do
+    get :index
 
-      expect(response).to render_template("index")
-    end
-  end
-
-  context "json" do
-    before { create(:site, name: "kamrieng") }
-
-    it "GET :index" do
-      get :index, format: :json
-
-      expect(response.headers["Content-Type"]).to include "application/json"
-      expect(response.body).to include("kamrieng")
-    end
-  end
-
-  it "GET :new" do
-    get :new
-
-    expect(response).to render_template("new")
-  end
-
-  it "GET :edit" do
-    get :edit, params: { id: create(:site).id }
-
-    expect(response).to render_template("edit")
+    expect(response).to render_template("index")
   end
 
   it "GET :show" do
@@ -73,7 +48,6 @@ RSpec.describe SitesController, type: :controller do
 
       updated = assigns(:site)
 
-      expect(response).to have_http_status(:moved_permanently)
       expect(updated.name).to eq "bavil"
       expect(updated.code).to eq "0211"
     end
