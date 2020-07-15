@@ -14,6 +14,6 @@ class SyncLog < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def html_tag
-    "<li><span class='status #{status == 'success' ? 'text-success' : 'text-danger'}'>#{status}</span>: #{I18n.l(created_at, format: :long)}</li>"
+    "<li class='list-group-item'><span>#{I18n.l(created_at, format: :long)}<span> :<span class='ml-1 #{status == 'success' ? 'text-success' : 'text-danger'}'>#{status}</span></li>"
   end
 end
