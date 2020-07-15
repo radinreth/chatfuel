@@ -41,7 +41,7 @@
           .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
             - province['sites'].each do |site|
               .custom-row
-                .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link'
+                .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
                 .custom-col= site['code']
                 .custom-col= site['tracks_count']
                 .custom-col
