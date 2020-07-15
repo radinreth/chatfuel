@@ -8,6 +8,11 @@ class SitesController < ApplicationController
     @site = Site.new
   end
 
+  def new
+    @site = Site.new(status: 1)
+    authorize @site
+  end
+
   def show
     authorize @site
     @tracks = @site.tracks
@@ -19,26 +24,19 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        flash[:notice] = t("created.success")
         format.js { redirect_to @site, status: :moved_permanently, notice: t("created.success") }
       else
-        flash[:alert] = @site.errors.full_messages
         format.js
-        format.html { redirect_to sites_path, alert: t("created.fail") }
       end
     end
-
-    redirect_to sites_path
   end
 
   def import
-    begin
-      tempfile = file_params[:file]
-      ::SiteService.import(tempfile.path)
-      redirect_to sites_path, status: :moved_permanently, notice: t("imported.success")
-    rescue
-      redirect_to sites_path, status: :moved_permanently, alert: t("imported.fail")
-    end
+    tempfile = file_params[:file]
+    ::SiteService.import(tempfile.path)
+    redirect_to sites_path, status: :moved_permanently, notice: t("imported.success")
+  rescue
+    redirect_to sites_path, status: :moved_permanently, alert: t("imported.fail")
   end
 
   def update
