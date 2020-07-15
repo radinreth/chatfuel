@@ -15,7 +15,8 @@
           %span.mr-2
             =t("dashboard.province")
 
-        = select_tag 'province', options_for_select( Pumi::Province.all.pluck('name_en', 'name_en'), @location), class: 'province__select-option'
+        - provinces = Pumi::Province.all.pluck('name_en', 'id').prepend(['All', nil])
+        = select_tag 'province', options_for_select( provinces, params[:location]), class: 'province__select-option'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label

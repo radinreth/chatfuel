@@ -46,6 +46,8 @@ module Chatfuel
     config.to_prepare do
       Devise::SessionsController.layout "devise"
     end
+
+    config.time_zone = 'Bangkok'
   end
 end
 

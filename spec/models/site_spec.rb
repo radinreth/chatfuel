@@ -28,6 +28,8 @@ RSpec.describe Site, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[disable enable]) }
   it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:tickets) }
+  it { is_expected.to have_many(:sync_logs) }
+  it { is_expected.to define_enum_for(:sync_status).with_values(%w(failure success)) }
 
   describe '#before create, generate_token, whitelist, province_id' do
     let(:site) { create(:site, token: nil, code: '0102') }

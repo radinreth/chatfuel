@@ -33,10 +33,10 @@ class SiteService
     end
 
     def get_sites_in_province(province_id)
-      sites_in_provinces.select { |site| site.province_id == province_id }.as_json
+      sites_in_provinces.select { |site| site.province_id == province_id }
     end
 
     def sites_in_provinces
-      @sites_in_province ||= Site.filter(@options).where(province_id: site_count_in_province.keys)
+      @sites_in_province ||= Site.filter(@options).where(province_id: site_count_in_province.keys).includes(:sync_logs)
     end
 end
