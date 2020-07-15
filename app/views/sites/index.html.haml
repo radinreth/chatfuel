@@ -36,19 +36,15 @@
             .custom-col
             .custom-col
 
-          .custom-table.accordion-body.collapse{id: "row-#{index}", style: 'background-color: #f7f7f7; color: #5a5c69'}
+          .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
 
             - province['sites'].each do |site|
               .custom-row
-                .custom-col.pl-4= site['name']
+                .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link'
                 .custom-col= site['code']
                 .custom-col= site['tracks_count']
                 .custom-col
                   %ul.list-inline.mb-0
-                    %li.list-inline-item
-                      = link_to site_path(site['id']), class: "btn-circle btn-sm btn-info text-decoration-none", data: { toggle: 'tooltip', title: t('sites.detail')} do
-                        %i.fas.fa-eye
-
                     %li.list-inline-item
                       = link_to site_api_key_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.api_key')} do
                         %i.fas.fa-key

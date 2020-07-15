@@ -2,6 +2,10 @@ require "csv"
 require_relative "time_parser"
 
 class SiteService
+  def initialize(options = {})
+    @options = options
+  end
+
   def self.import(path)
     ::CSV.foreach(path, headers: true, encoding: "bom|utf-8") do |row|
       hash = row.to_hash
@@ -25,7 +29,7 @@ class SiteService
     end
 
     def site_count_in_province
-      @site_count_in_province ||= Site.group(:province_id).count
+      @site_count_in_province ||= Site.filter(@options).group(:province_id).count
     end
 
     def get_sites_in_province(province_id)
@@ -33,6 +37,6 @@ class SiteService
     end
 
     def sites_in_provinces
-      @sites_in_province ||= Site.where(province_id: site_count_in_province.keys)
+      @sites_in_province ||= Site.filter(@options).where(province_id: site_count_in_province.keys)
     end
 end
