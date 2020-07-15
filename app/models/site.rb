@@ -54,6 +54,12 @@ class Site < ApplicationRecord
     where(token: token, whitelist: '*').or(where('token = ? AND whitelist LIKE ?', token, "%#{ip}%")).first
   end
 
+  def self.filter(params = {})
+    scope = all
+    scope = scope.where('LOWER(name) LIKE ? OR code = ?', "%#{params[:keyword].downcase}%", params[:keyword]) if params[:keyword].present?
+    scope
+  end
+
   private
     def whitelist_format
       return true if whitelist == '*'

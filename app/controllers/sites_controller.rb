@@ -4,7 +4,7 @@ class SitesController < ApplicationController
 
   def index
     authorize Site
-    @pagy, @provinces = pagy_array(SiteService.new.provinces)
+    @pagy, @provinces = pagy_array(SiteService.new(params).provinces)
     @site = Site.new
   end
 
