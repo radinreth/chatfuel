@@ -3,7 +3,7 @@ module Bots::Messages
     def create
       head :ok
     end
-    
+
     private
       def set_variable
         @variable = TextVariable.find_or_create_by(name: params[:name])

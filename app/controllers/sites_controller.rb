@@ -8,6 +8,11 @@ class SitesController < ApplicationController
     @site = Site.new
   end
 
+  def new
+    @site = Site.new(status: :enable)
+    authorize @site
+  end
+
   def show
     authorize @site
     @tracks = @site.tracks
@@ -17,23 +22,21 @@ class SitesController < ApplicationController
     @site = Site.new(site_params)
     authorize @site
 
-    if @site.save
-      flash[:notice] = t("created.success")
-    else
-      flash[:alert] = @site.errors.full_messages
+    respond_to do |format|
+      if @site.save
+        format.js { redirect_to @site, status: :moved_permanently, notice: t("created.success") }
+      else
+        format.js
+      end
     end
-
-    redirect_to sites_path
   end
 
   def import
-    begin
-      tempfile = file_params[:file]
-      ::SiteService.import(tempfile.path)
-      redirect_to sites_path, status: :moved_permanently, notice: t("imported.success")
-    rescue
-      redirect_to sites_path, status: :moved_permanently, alert: t("imported.fail")
-    end
+    tempfile = file_params[:file]
+    ::SiteService.import(tempfile.path)
+    redirect_to sites_path, status: :moved_permanently, notice: t("imported.success")
+  rescue
+    redirect_to sites_path, status: :moved_permanently, alert: t("imported.fail")
   end
 
   def update
@@ -54,6 +57,11 @@ class SitesController < ApplicationController
     redirect_to sites_path, status: :moved_permanently, notice: t("deleted.success")
   end
 
+  def download
+    csv = Rails.root.join("db", "seed", "assets", "site.csv")
+    send_file csv, filename: "sample.csv", disposition: "attachment", type: "text/csv"
+  end
+
   private
     def set_site
       @site ||= Site.find(params[:id])
@@ -72,6 +80,6 @@ class SitesController < ApplicationController
     end
 
     def site_params
-      params.require(:site).permit(:name, :code).merge(status: params[:site][:status].to_i)
+      params.require(:site).permit(:name, :code, :lat, :lng).merge(status: params[:site][:status].to_i)
     end
 end

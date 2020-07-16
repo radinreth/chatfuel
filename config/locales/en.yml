@@ -150,6 +150,18 @@ en:
     index:
       complaints: Complaints
   sites:
+    title: Sites
+    all: All sites
+    search: Search
+    new_site: New site
+    edit_site: Edit site
+    code: Code
+    district: District
+    province: Province
+    location: Location(lat/lng)
+    action: Action
+    track_count: Track count
+    create_new: Create site
     form:
       enable?: Enable?
     edit:
@@ -213,3 +225,8 @@ en:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  chatfuel:
+    map:
+      title: OWSO office
+      subtitle: For more information, please click link below 👇
+      button_title: See on Map!

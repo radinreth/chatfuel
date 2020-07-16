@@ -150,6 +150,18 @@ km:
     index:
       complaints: បណ្តឹង
   sites:
+    title: ការិយាល័យ
+    all: ការិយាល័យទាំងអស់
+    search: ស្វែងរក
+    new_site: ការិយាល័យថ្មី
+    edit_site: កែការិយាល័យ
+    code: កូដ
+    district: ស្រុក
+    province: ខេត្ត
+    location: ទីតាំង(lat/lng)
+    action: សកម្មភាព
+    track_count: ចំនួនតាមដាន
+    create_new: បង្កើតថ្មី
     form:
       enable?: បើកដំណើរការ?
     edit:
@@ -209,3 +221,8 @@ km:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  chatfuel:
+    map:
+      title: ទីតាំងការិយាល័យច្រកចេញចូលតែមួយ %{district}
+      subtitle: ដើម្បីបើកទីតាំងក្នុងផែនទី Google អ្នកអាចចុចនៅតំណរភ្ជាប់ខាងក្រោមបាន 👇
+      button_title: មើលលើផែនទី!
