@@ -4,8 +4,8 @@
 #
 #  id           :bigint(8)        not null, primary key
 #  code         :string           default("")
-#  lat          :string           default("")
-#  lng          :string           default("")
+#  lat          :float
+#  lng          :float
 #  name         :string           not null
 #  status       :integer(4)       default("0")
 #  sync_status  :integer(4)
