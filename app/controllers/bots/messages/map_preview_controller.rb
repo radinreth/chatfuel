@@ -35,7 +35,7 @@ module Bots::Messages
         {
           title: I18n.t("chatfuel.map.title", district: @site.name),
           subtitle: I18n.t("chatfuel.map.subtitle"),
-          image_url: ENV["SAMPLE_MAP_IMAGE"],
+          image_url: helpers.asset_url("google-map-image-sample.png"),
           buttons: [
             {
               type: "web_url",

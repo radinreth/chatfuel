@@ -15,7 +15,7 @@ RSpec.describe Bots::Messages::MapPreviewController, type: :controller do
                       elements: [{
                         title: "OWSO office",
                         subtitle: "For more information, please click link below 👇",
-                        image_url: "https://dl.dropbox.com/s/0efkg615shrabhu/Google%20Maps%202020-07-10%2014-49-51.png?dl=0",
+                        image_url: controller.helpers.asset_url("google-map-image-sample.png"),
                         buttons: [{
                           type: "web_url",
                           url: "https://www.google.com/maps/@1.0,1.2,18z",
