@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :sites do
     collection do
       get :new_import
+      get :download
       post :import
     end
 
@@ -57,6 +58,7 @@ Rails.application.routes.draw do
         post "ivr", to: "messages/ivr#create"
         post "chatbot", to: "messages/chatbot#create"
         post "chatbot/done", to: "messages/chatbot#done"
+        get  "chatbot/preview_map", to: "messages/map_preview#index", defaults: { locale: "km" }
       end
     end
 

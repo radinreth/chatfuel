@@ -9,12 +9,12 @@
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
             %i.fas.fa-file-upload.fa-fw
-            Import sites
+            = t("sites.new_import.title")
           = render "import-site-modal", site: @site
 
-          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newSiteModal" } do
+          = link_to new_site_path, remote: true, class: "btn btn-primary" do
             %i.fas.fa-plus.fa-fw
-            New site
+            = t("sites.new_site")
           = render "create-new-site-modal", site: @site
 
     %div
@@ -64,7 +64,7 @@
                         %i.fab.fa-telegram-plane
 
                     %li.list-inline-item
-                      = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
+                      = link_to edit_site_path(site['id']), remote: true, class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
                         %i.fas.fa-edit
 
                     %li.list-inline-item

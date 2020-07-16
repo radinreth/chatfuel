@@ -3,22 +3,17 @@ require "rails_helper"
 RSpec.describe SitesController, type: :controller do
   setup_system_admin
 
-  it "GET :index" do
-    get :index
-
-    expect(response).to render_template("index")
-  end
-
   it "GET :show" do
     get :show, params: { id: create(:site).id }
 
     expect(response).to render_template("show")
   end
 
-  it "POST :create" do
-    expect do
-      post :create, params: { site: { name: "new site", code: "0212" } }
-    end.to change { Site.count }.by(1)
+  it "GET :download" do
+    get :download
+
+    expect(response.status).to eq 200
+    expect(response.headers["Content-Type"]).to eq "text/csv"
   end
 
   describe "POST :import" do

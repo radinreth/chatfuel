@@ -4,6 +4,8 @@
 #
 #  id           :bigint(8)        not null, primary key
 #  code         :string           default("")
+#  lat          :float
+#  lng          :float
 #  name         :string           not null
 #  status       :integer(4)       default("0")
 #  sync_status  :integer(4)
@@ -45,6 +47,8 @@ class Site < ApplicationRecord
                       message: I18n.t("site.invalid_code") }
   validates :token, presence: true, if: :persisted?
   validates :whitelist, presence: true, if: :persisted?
+  validates :lat, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }, allow_blank: true
+  validates :lng, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
   validate :whitelist_format
 
   before_validation :generate_whitelist, on: :create
@@ -59,6 +63,14 @@ class Site < ApplicationRecord
     scope = all
     scope = scope.where('LOWER(name) LIKE ? OR code = ?', "%#{params[:keyword].downcase}%", params[:keyword]) if params[:keyword].present?
     scope
+  end
+
+  def map_position?
+    lat.present? && lng.present?
+  end
+
+  def map_url
+    "https://www.google.com/maps/@#{lat},#{lng},18z"
   end
 
   private
