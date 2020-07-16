@@ -5,7 +5,7 @@ module Bots::Messages
     before_action :set_site
 
     def index
-      if params[:location] && @site.present?
+      if @site.present?
         render json: { messages: [ gallery ] }, status: :ok
       else
         head :ok
@@ -14,7 +14,7 @@ module Bots::Messages
 
     private
       def set_site
-        @site = Site.find_by(name: params[:location])
+        @site = Site.find_by(code: params[:location_code])
       end
 
       # ref: https://docs.chatfuel.com/en/articles/735122-json-api
