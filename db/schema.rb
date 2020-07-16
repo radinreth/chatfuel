@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.integer "sync_status"
     t.string "token", default: ""
     t.text "whitelist"
-    t.string "lat", default: ""
-    t.string "lng", default: ""
     t.string "province_id"
+    t.float "lat"
+    t.float "lng"
     t.index ["name"], name: "index_sites_on_name"
   end
 

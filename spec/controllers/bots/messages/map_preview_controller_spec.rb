@@ -1,10 +1,10 @@
 require "rails_helper"
 
 RSpec.describe Bots::Messages::MapPreviewController, type: :controller do
-  let!(:site) { create(:site, name: "komrieng", lat: 1.0, lng: 1.2) }
+  let!(:site) { create(:site, code: "0212", lat: 1.0, lng: 1.2) }
 
   it "response" do
-    get :index, params: { location: "komrieng" }
+    get :index, params: { location_code: "0212" }
 
     expected = { messages: [{
                   attachment: {
