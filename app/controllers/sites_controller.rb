@@ -9,7 +9,7 @@ class SitesController < ApplicationController
   end
 
   def new
-    @site = Site.new(status: 1)
+    @site = Site.new(status: :enable)
     authorize @site
   end
 
