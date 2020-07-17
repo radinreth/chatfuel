@@ -25,6 +25,6 @@ en:
     track_count: Track Count
     action: Action
     list_of_all_list: List of all sites
-    insert_name_or_code: Insert site name or code
+    type_name_or_code: Type site name or code
     healthcheck: Healthcheck
     healthcheck_history: Healthcheck History
