@@ -1,11 +1,10 @@
 %tr{ id: "tr_#{ticket.id}" }
 
   %td= ticket.code
-  %td
-    %span.badge.badge-pill.badge-primary.p-2= ticket.status
+  %td= ticket.status
   %td= ticket.tell
   %td= ticket.dist_gis
   %td= ticket.service_description
-  %td= ticket.requested_date
-  %td= ticket.approval_date
-  %td= ticket.delivery_date
+  %td= display_datetime(ticket.requested_date)
+  %td= display_datetime(ticket.approval_date)
+  %td= display_datetime(ticket.delivery_date)

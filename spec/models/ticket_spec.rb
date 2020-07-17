@@ -34,10 +34,6 @@ RSpec.describe Ticket, type: :model do
   describe "attributes" do
     it { is_expected.to have_attribute(:code) }
     it { is_expected.to have_attribute(:status) }
-    it { is_expected.to have_attribute(:incomplete_at) }
-    it { is_expected.to have_attribute(:completed_at) }
-    it { is_expected.to have_attribute(:actual_completed_at) }
-    it { is_expected.to have_attribute(:incorrect_at) }
   end
 
   describe "associations" do
@@ -74,9 +70,13 @@ RSpec.describe Ticket, type: :model do
     # end
   end
 
-  describe "validations" do
-    statuses = %w(accepted paid approved rejected delivered)
+  describe "before validations" do
+    let(:ticket) { create(:ticket) }
 
-    # it { is_expected.to define_enum_for(:status).with_values(statuses) }
+    it { expect(ticket.status).to eq('accepted') }
+    it {
+      ticket.update(status: 'Paid')
+      expect(ticket.status).to eq('paid')
+    }
   end
 end
