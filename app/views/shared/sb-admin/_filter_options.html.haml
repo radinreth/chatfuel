@@ -9,7 +9,7 @@
         = link_to t("dashboard.chatbot"), dashboard_chatbot_path, class: 'text-decoration-none'
 
   .col-lg-6
-    .d-flex
+    %form.form.d-flex{ action: '/dashboard' }
       .province.d-flex.align-items-center
         .province__label
           %span.mr-2
@@ -24,7 +24,7 @@
             =t("dashboard.show")
         .date-filter__choose-option
           .input-group
-            %input.datepicker_date
+            %input.datepicker_date{:name => "daterange", :value => "#{@date_range}"}
             .input-group-append
               .input-group-text
                 %i.fas.fa-calendar-week.fa-sm
