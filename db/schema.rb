@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_064423) do
+ActiveRecord::Schema.define(version: 2020_07_14_064424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "api_keys", force: :cascade do |t|
+    t.string "access_token"
+    t.integer "site_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "identities", force: :cascade do |t|
     t.string "provider"
     t.string "token"
@@ -53,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-07-10 03:35:23"
+    t.datetime "last_interaction_at", default: "2020-07-03 03:23:38"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -115,9 +122,9 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
     t.integer "sync_status"
     t.string "token", default: ""
     t.text "whitelist"
-    t.string "province_id"
     t.float "lat"
     t.float "lng"
+    t.string "province_id"
     t.index ["name"], name: "index_sites_on_name"
   end
 
@@ -193,14 +200,20 @@ ActiveRecord::Schema.define(version: 2020_07_14_064423) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "code", null: false
-    t.integer "status", default: 0
+    t.string "status"
     t.date "completed_at"
     t.date "actual_completed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "incomplete_at"
     t.date "incorrect_at"
-    t.bigint "site_id", null: false
+    t.bigint "site_id"
+    t.string "tell"
+    t.string "service_description"
+    t.string "dist_gis"
+    t.datetime "requested_date"
+    t.datetime "approval_date"
+    t.datetime "delivery_date"
     t.index ["code"], name: "index_tickets_on_code"
     t.index ["site_id"], name: "index_tickets_on_site_id"
   end

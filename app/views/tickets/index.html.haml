@@ -1,30 +1,25 @@
-= render "shared/sb-admin/page_heading", title: t(".title")
-
 .card.shadow.mb-4
   .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All tickets
+    %h6.m-0.font-weight-bold.text-primary All tickets list
   .card-body
     .my-4
       .d-flex.align-items-center.justify-content-between
-        .d-flex.align-items-center
-          = simple_form_for :search, url: search_tickets_path, method: :get, html: { class: "form-inline" } do |f|
-            = f.input :q, label: "Search", input_html: { value: @q, class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
+        = render 'filter'
 
-        .actions
-          = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newTicketModal" } do
-            %i.fas.fa-plus.fa-fw
-            = t('.new_ticket')
-          = render "create-new-ticket-modal", ticket: Ticket.new
-          
     .table-responsive
-      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+      %table#dataTable.table.table-bordered.w-100{:cellspacing => "0"}
         %thead
           %tr
-            %th Code
-            %th Status
-            %th Created at
-            %th Action
+            %th= t('tickets.code')
+            %th= t('tickets.status')
+            %th= t('tickets.tell')
+            %th= t('tickets.district')
+            %th= t('tickets.service_description')
+            %th= t('tickets.requested_date')
+            %th= t('tickets.approval_date')
+            %th= t('tickets.delivery_date')
         %tbody
           = render @tickets
 
-!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+- if @pagy.page > 1
+  != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

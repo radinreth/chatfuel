@@ -1,0 +1,11 @@
+en:
+  tickets:
+    all_tickets_list: All tickets list
+    code: Code
+    status: Status
+    tell: Tell
+    district: District
+    service_description: Service Description
+    requested_date: Requested Date
+    approval_date: Approval Date
+    delivery_date: Delivery Date

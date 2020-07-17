@@ -6,7 +6,9 @@
 // })
 
 $( document ).on('turbolinks:load', function() {
-  // $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+
   let currentPage = OWSO.Util.getCurrentPage();
   !!OWSO[currentPage] && OWSO[currentPage].init();
 })

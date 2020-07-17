@@ -6,10 +6,10 @@ class SyncHistoryJob < ApplicationJob
     sync_history = SyncHistoryLog.find_by(uuid: sync_history_uuid)
 
     tickets = sync_history.payload["tickets"]
-    parser = JsonParser.new(tickets)
+    parser = TicketParser.new(tickets)
 
-    parser.to_json.values.each do |ticket_attribute|
-      ticket = site.tickets.find_or_initiliaze_by(code: ticket_attribute[:code])
+    parser.to_json.each do |ticket_attribute|
+      ticket = site.tickets.find_or_initialize_by(code: ticket_attribute[:code])
 
       if ticket.update_attributes(ticket_attribute)
         sync_history.increment! :success_count

@@ -1,0 +1,9 @@
+%form{ action: tickets_path, method: 'get' }
+  .form-group.mb-0.d-flex.align-items-center
+    %span.mr-2 Search:
+    .input-group
+      = text_field_tag(:keyword, params[:keyword], class: 'form-control site-filter', placeholder: 'Insert ticket code')
+
+      %a#info.input-group-append
+        .input-group-text
+          %i.fas.fa-search

@@ -21,7 +21,7 @@ module Api
 
       private
         def site_params
-          params.permit(tickets: [:code, :status])
+          params.permit(tickets: [:TicketID, :Tell, :ServiceDescription, :Status, :RequestedDate, :ApprovalDate, :DeliveryDate])
         end
     end
   end
