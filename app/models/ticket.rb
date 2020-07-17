@@ -4,14 +4,20 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  actual_completed_at :date
+#  approval_date       :datetime
 #  code                :string           not null
 #  completed_at        :date
+#  delivery_date       :datetime
+#  dist_gis            :string
 #  incomplete_at       :date
 #  incorrect_at        :date
-#  status              :integer(4)       default("0")
+#  requested_date      :datetime
+#  service_description :string
+#  status              :string
+#  tell                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  site_id             :bigint(8)        not null
+#  site_id             :bigint(8)
 #
 # Indexes
 #
@@ -23,7 +29,9 @@
 #  fk_rails_...  (site_id => sites.id)
 #
 class Ticket < ApplicationRecord
-  enum status: %i[incomplete completed incorrect notified]
+  # enum status: %i[incomplete completed incorrect notified]
+
+  STATUSES = %w(accepted paid approved rejected delivered)
 
   # associations
   has_one :track, dependent: :destroy
@@ -37,27 +45,20 @@ class Ticket < ApplicationRecord
 
   # validations
   validates :code, presence: true
-  validates :status, inclusion: { in: statuses.keys }
+  validates :status, inclusion: { in: STATUSES }
 
   delegate :platform_name, to: :message, allow_nil: true
+
+  before_validation :set_status
+
+  def self.filter(params = {})
+    scope = all
+    scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope
+  end
+
+  private
+    def set_status
+      self.status = status.try(:downcase) || STATUSES[0]
+    end
 end
-
-
-# completed => approved_at
-# incomplete_at => submitted/accepted_at
-# picked_up_at => delivered_at
-
-# tickets: [
-#   {
-#     id: "836E4FE2-0710-41B0-8045-D65EC06356A7",
-#     serviceDescription:  "សេចក្តីចម្លងសំបុត្រកំណើត ឬសំបុត្របញ្ជាក់កំណើត",
-#     createdAt: "7/1/2020 11:19:05 AM",
-#     requestedDate: "7/1/2020 11:18:11 AM",
-#     Tel: "010 993 333",
-#     VillGis: "12140207",
-#     Name: "ញឹក បុរិន្ទ",
-#     Status: "30",
-#     ApprovedDate: "10/16/2019",
-#     DeliveryDate: "10/16/2019"
-#   }
-# ]
