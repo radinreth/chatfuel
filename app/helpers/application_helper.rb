@@ -36,4 +36,10 @@ module ApplicationHelper
   def css_active_class(controller_name)
     return 'active' if params['controller'].split('/')[0] == controller_name
   end
+
+  def display_datetime(datetime, format = :long)
+    return '-' if datetime.blank?
+
+    I18n.l(datetime, format: format)
+  end
 end
