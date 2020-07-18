@@ -3,6 +3,8 @@
 paths = Rails.root.join("db", "seed", "**", "*.rb")
 Dir[paths].each { |f| require f }
 
+require_relative "district.rb"
+
 # variables : text, voice
 Track.destroy_all
 Ticket.destroy_all
@@ -11,6 +13,7 @@ Variable.destroy_all
 TextMessage.destroy_all
 VoiceMessage.destroy_all
 Message.destroy_all
+Site.destroy_all
 User.where.not("email LIKE ?", "%instedd%").destroy_all
 # Role.destroy_all
 variables = [
@@ -579,15 +582,20 @@ end
 # site
 # setup site with latlng
 puts "creating sites"
-Pumi::District.all.each do |district|
-  site = Site.new do |s|
-    s.name = district.name_latin
-    s.code = district.id
-    s.status = :enable
-  end
+@districts.each do |district|
+  pumi = Pumi::District.find_by_id district[:code]
 
-  site.save
+  if pumi
+    Site.create! do |site|
+      site.name = pumi.name_latin
+      site.code = pumi.id
+      site.status = :enable
+      site.lat = district[:lat]
+      site.lng = district[:lng]
+    end
+  end
 end
+
 
 # users
 role_ids = Role.ids
