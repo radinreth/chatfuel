@@ -8,11 +8,11 @@ class DashboardQuery
     @options[:user_count].map { |key| send(key).count }.inject(:+)
   end
 
+  # not support :location_code
   def total_users_visit_each_functions
     result = StepValue\
       .joins(step: :message, variable_value: :variable)\
-      .where(variables: { is_user_visit: true, name: "location_name" })\
-      .where(variable_values: { raw_value: @options[:location] })\
+      .where(variables: { is_user_visit: true })\
       .where(messages: { platform_name: @options[:platform_name] })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
       .order(:raw_value)\
@@ -37,50 +37,66 @@ class DashboardQuery
     statuses = Ticket.statuses
     status_values = statuses.fetch_values(:incomplete, :completed)
 
-    Track\
-      .joins(:ticket, step: [:message, step_value: { variable_value: :variable }])\
+    # Track\
+    #   .joins(:ticket, step: [:message, step_value: { variable_value: :variable }])\
+    #   .where(messages: { platform_name: @options[:platform_name] })\
+    #   .where(variables: { name: "location_name" })\
+    #   .where(variable_values: { raw_value: @options[:location] })\
+    #   .where(tickets: { status: status_values })
+    #   .where("DATE(tracks.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
+    #   .group("tickets.status")
+    #   .count
+    #   .transform_keys { |k| statuses.key(k).capitalize }
+    StepValue.joins(step: :message, variable_value: :variable)\
+      .joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
       .where(messages: { platform_name: @options[:platform_name] })\
-      .where(variables: { name: "location_name" })\
-      .where(variable_values: { raw_value: @options[:location] })\
-      .where(tickets: { status: status_values })
-      .where("DATE(tracks.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
-      .group("tickets.status")
+      .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
+      .group("tickets.status")\
       .count
       .transform_keys { |k| statuses.key(k).capitalize }
   end
 
   def join_text_message
-    @relation\
-      .joins(step: :message, variable_value: :variable)\
-      .where(variables: { is_user_visit: true, name: "location_name" })\
-      .where(variable_values: { raw_value: @options[:location] })\
+    # @relation\
+    #   .joins(step: :message, variable_value: :variable)\
+    #   .where(variables: { is_user_visit: true, name: "location_code" })\
+    #   .where(variable_values: { raw_value: @options[:location] })\
+    #   .where(messages: { platform_name: @options[:platform_name] })
+    #   .where("DATE(messages.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
+    TextMessage.joins(message: { steps: { value: :variable } })\
+      .where(variables: { name: "location_code" })
+      .where("variable_values.raw_value LIKE ?", "#{@options[:location][0...2]}%")
       .where(messages: { platform_name: @options[:platform_name] })
-      .where("DATE(messages.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
+      .where("DATE(messages.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
   end
 
   def join_voice_message
-    Message\
-      .joins("INNER JOIN voice_messages ON voice_messages.id=messages.content_id")
-      .where("DATE(voice_messages.created_at) BETWEEN ? and ?", @options[:start_date], @options[:end_date])
+    # Message\
+    #   .joins("INNER JOIN voice_messages ON voice_messages.id=messages.content_id")
+    #   .where("DATE(voice_messages.created_at) BETWEEN ? and ?", @options[:start_date], @options[:end_date])
+    VoiceMessage.joins(message: { steps: { value: :variable } })\
+      .where(variables: { name: "location_code" })
+      .where("variable_values.raw_value LIKE ?", "#{@options[:location][0...2]}%")
+      .where(messages: { platform_name: @options[:platform_name] })
+      .where("DATE(messages.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
   end
 
   def total_users_feedback
     @relation\
       .joins(step: :message, variable_value: :variable)\
       .where(messages: { platform_name: @options[:platform_name] })\
-      .where(variables: { report_enabled: true, name: "location_name" })\
-      .where(variable_values: { raw_value: @options[:location] })\
+      .where(variables: { report_enabled: true })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
       .group(:raw_value)\
       .count
   end
 
+  # currently , not support base on location
   def most_request_service
     @relation\
       .joins(step: :message, variable_value: :variable)\
       .where(messages: { platform_name: @options[:platform_name] })\
-      .where(variables: { is_most_request: true, name: "location_name" })\
-      .where(variable_values: { raw_value: @options[:location] })\
+      .where(variables: { is_most_request: true })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
       .order("count_all DESC")\
       .group("variable_values.raw_value")\
