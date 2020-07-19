@@ -48,6 +48,8 @@ module Chatfuel
     end
 
     config.time_zone = 'Bangkok'
+
+    config.action_dispatch.rescue_responses["OmniauthCallbacksController::Forbidden"] = :forbidden
   end
 end
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  class Forbidden < StandardError; end
+
   skip_before_action :authenticate_user_with_guisso!
   skip_before_action :verify_authenticity_token
   skip_before_action :check_guisso_cookie
@@ -15,7 +17,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       next_url = root_path if next_url == new_user_session_path
       redirect_to next_url
     else
-      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+      raise Forbidden, "You are not allowed to access this page."
     end
   end
 end
