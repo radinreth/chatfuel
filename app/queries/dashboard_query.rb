@@ -8,6 +8,7 @@ class DashboardQuery
     @options[:user_count].map { |key| send(key).count }.inject(:+)
   end
 
+  # @Todo: make it support location_code by adding province_id_to_message.rb
   def total_users_visit_each_functions
     result = StepValue\
       .joins(step: :message, variable_value: :variable)\
@@ -33,15 +34,12 @@ class DashboardQuery
   end
 
   def number_of_tracking_tickets
-    statuses = Ticket.statuses
-
     StepValue.joins(step: :message, variable_value: :variable)\
-      .joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
+      .joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")\
       .where(messages: { platform_name: @options[:platform_name] })\
       .where("DATE(step_values.created_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])\
       .group("tickets.status")\
       .count
-      .transform_keys { |k| statuses.key(k).capitalize }
   end
 
   def join_text_message
@@ -70,6 +68,7 @@ class DashboardQuery
       .count
   end
 
+  # currently , not support base on location
   def most_request_service
     @relation\
       .joins(step: :message, variable_value: :variable)\
@@ -117,7 +116,8 @@ class DashboardQuery
     # because it syncs from desktop app).
     # TODO: location#name=>province, Site#name=>district
     def submitted
-      data = Ticket.incomplete
+      # data = Ticket.incomplete
+      data = Ticket
                 .where("DATE(updated_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
                 .group_by_day(:updated_at)
                 .count
@@ -126,7 +126,8 @@ class DashboardQuery
 
     # TODO: location#name=>province, Site#name=>district
     def completed
-      data = Ticket.completed
+      # data = Ticket.completed
+      data = Ticket
                 .where("DATE(updated_at) BETWEEN ? AND ?", @options[:start_date], @options[:end_date])
                 .group_by_day(:updated_at)
                 .count
