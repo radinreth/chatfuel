@@ -72,6 +72,3 @@ OWSO.DashboardShow = (() => {
 
   return { init }
 })();
-
-OWSO.DashboardChatbot_dashboardShow = OWSO.DashboardShow
-OWSO.DashboardIvr_dashboardShow = OWSO.DashboardShow
