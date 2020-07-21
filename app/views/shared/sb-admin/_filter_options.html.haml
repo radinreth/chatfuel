@@ -2,19 +2,20 @@
   .col-lg-6
     %ul.list-inline.platform-list
       - param = {province: params[:province], daterange: params[:daterange]}
-      %li.list-inline-item{class: get_css_active_class('dashboard')}
+      %li.list-inline-item{class: ('active' if params[:platform].blank?)}
         = link_to t("dashboard.both"), dashboard_path(param), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('dashboard/ivr_dashboard')}
-        = link_to t("dashboard.ivr"), dashboard_ivr_path(param), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('dashboard/chatbot_dashboard')}
-        = link_to t("dashboard.chatbot"), dashboard_chatbot_path(param), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('ivr')}
+        = link_to t("dashboard.ivr"), dashboard_path(param.merge(platform: 'ivr')), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('chatbot')}
+        = link_to t("dashboard.chatbot"), dashboard_path(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
   .col-lg-6
-    %form.form.d-flex{ action: url_for }
+    %form.form.d-flex{ action: dashboard_path }
       .province.d-flex.align-items-center
+        = hidden_field '', :platform, value: params[:platform]
+
         .province__label
-          %span.mr-2
-            =t("dashboard.province")
+          %span.mr-2=t("dashboard.province")
 
         - provinces = Pumi::Province.all.pluck('name_en', 'id').prepend(['All', nil])
         = select_tag 'province', options_for_select( provinces, params[:province]), class: 'province__select-option'
