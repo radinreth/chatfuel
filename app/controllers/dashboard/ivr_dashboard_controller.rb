@@ -3,7 +3,7 @@ module Dashboard
     def show
       super
       @options[:platform_name] = ["Verboice"]
-      @options[:user_count] = [:voice_message_count]
+      @options[:user_count] = 'VoiceMessage'
     end
   end
 end

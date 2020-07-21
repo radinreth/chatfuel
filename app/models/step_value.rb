@@ -87,11 +87,11 @@ class StepValue < ApplicationRecord
 
   def self.default_join
     scope = all
-    scope.joins(step: [:message, :text_message], variable_value: :variable)
+    scope.joins(step: :message, variable_value: :variable)
   end
 
   def self.filter(scope, params={})
-    scope = scope.where(text_messages: { province_id: params[:province_id] }) if params[:province_id].present?
+    scope = scope.where(messages: { province_id: params[:province_id] }) if params[:province_id].present?
     scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope

@@ -10,6 +10,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  content_id          :integer(4)
+#  province_id         :string
 #
 # Indexes
 #

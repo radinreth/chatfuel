@@ -6,8 +6,7 @@ class DashboardController < ApplicationController
       province_id: params['province'],
       platform_name: ["Messenger", "Telegram", "Verboice"],
       start_date: @start_date,
-      end_date: @end_date,
-      user_count: [:text_message_count, :voice_message_count]
+      end_date: @end_date
     }
     @query = DashboardQuery.new(@options)
   end

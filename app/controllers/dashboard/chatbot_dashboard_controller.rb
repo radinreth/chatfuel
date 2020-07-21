@@ -3,7 +3,7 @@ module Dashboard
     def show
       super
       @options[:platform_name] = ["Messenger", "Telegram"]
-      @options[:user_count] = [:text_message_count]
+      @options[:user_count] = 'TextMessage'
     end
   end
 end
