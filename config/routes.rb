@@ -10,11 +10,6 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#show"
   get :home, to: "home#index"
 
-  namespace :dashboard do
-    get "chatbot", action: :show, controller: "chatbot_dashboard"
-    get "ivr", action: :show, controller: "ivr_dashboard"
-  end
-
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end

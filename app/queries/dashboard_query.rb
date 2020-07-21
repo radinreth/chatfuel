@@ -1,7 +1,9 @@
 class DashboardQuery
   def initialize(options = {})
     @options = options
-    @options[:content_type] = @options[:user_count]
+    platform = platform_param[@options[:platform].try(:to_sym)]
+    @options[:platform_name] = ["Messenger", "Telegram", "Verboice"]
+    @options.merge!(platform) if platform.present?
   end
 
   def user_count
@@ -50,6 +52,13 @@ class DashboardQuery
   end
 
   private
+    def platform_param
+      {
+        ivr: { platform_name: ["Verboice"], content_type: 'VoiceMessage' },
+        chatbot: { platform_name: ["Messenger", "Telegram"], content_type: 'TextMessage' }
+      }
+    end
+
     def accessed
       data = StepValue.accessed(@options)
 

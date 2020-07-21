@@ -4,9 +4,9 @@ class DashboardController < ApplicationController
   def show
     @options = {
       province_id: params['province'],
-      platform_name: ["Messenger", "Telegram", "Verboice"],
       start_date: @start_date,
-      end_date: @end_date
+      end_date: @end_date,
+      platform: params[:platform]
     }
     @query = DashboardQuery.new(@options)
   end
