@@ -30,8 +30,4 @@ class Step < ApplicationRecord
     owso_options = Variable.find_by(name: "owso_options")
     joins(:value).where("variable_values.id in (?)", owso_options&.values&.ids)
   end
-
-  def value
-    super || track
-  end
 end

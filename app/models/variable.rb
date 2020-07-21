@@ -35,7 +35,7 @@ class Variable < ApplicationRecord
   validates :type, presence: true
   validates :name, presence: true, uniqueness: { scope: :type }
   validates :name,  allow_blank: true,
-                    format: { with: /\A\w+\z/,
+                    format: { with: /\A[\w|\s|-]+\z/,
                               message: I18n.t("variable.invalid_name") }
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true

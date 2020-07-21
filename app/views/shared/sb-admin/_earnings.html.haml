@@ -43,7 +43,11 @@
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")
             .h5.mb-0.font-weight-bold.text-gray-800 
-              = @query.most_request_service.keys.first
+              - most_req = @query.most_request_service.keys.first
+              - if most_req.present?
+                = most_req
+              - else
+                = t("not_available")
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
             = render "most_request_modal"
