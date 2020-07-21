@@ -1,11 +1,10 @@
 class DashboardQuery
   def initialize(options = {})
     @options = options
+    @options[:content_type] = @options[:user_count]
   end
 
   def user_count
-    @options[:content_type] = @options[:user_count]
-
     Message.user_count(@options)
   end
 

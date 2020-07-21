@@ -91,6 +91,7 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
+    scope = scope.where(messages: { content_type: params[:content_type] }) if params[:content_type].present?
     scope = scope.where(messages: { province_id: params[:province_id] }) if params[:province_id].present?
     scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
