@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_080623) do
+ActiveRecord::Schema.define(version: 2020_07_21_043700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(version: 2020_07_20_080623) do
     t.boolean "feedback_message", default: false
     t.boolean "is_most_request", default: false
     t.boolean "is_user_visit", default: false
+    t.boolean "is_location"
   end
 
   create_table "voice_messages", force: :cascade do |t|
