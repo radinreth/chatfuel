@@ -10,6 +10,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  messenger_user_id :string           not null
+#  province_id       :string
 #
 RSpec.describe TextMessage do
   describe 'associations' do

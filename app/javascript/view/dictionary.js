@@ -11,14 +11,14 @@ document.addEventListener('turbolinks:load', function() {
     $(".td-satisfied").toggleClass("invisible")
   })
 
-  $(document).on("change", "#province", function(e) {
-    var province = $(this).val()
+  // $(document).on("change", "#province", function(e) {
+  //   var province = $(this).val()
 
-    var params = new URLSearchParams(location.search)
-    params.set('location', province);
+  //   var params = new URLSearchParams(location.search)
+  //   params.set('location', province);
 
-    var url = `${location.pathname}?${params}`
-    window.history.replaceState({}, '', url);
-    document.location = url;
-  })
+  //   var url = `${location.pathname}?${params}`
+  //   window.history.replaceState({}, '', url);
+  //   document.location = url;
+  // })
 })

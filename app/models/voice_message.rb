@@ -21,4 +21,13 @@ class VoiceMessage < ApplicationRecord
   def type
     "IVR"
   end
+
+  def self.user_count(params = {})
+    scope = all
+    scope = scope.joins(message: { steps: { value: :variable } })
+    # scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
+    scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
+    scope = scope.where("DATE(messages.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope.count
+  end
 end
