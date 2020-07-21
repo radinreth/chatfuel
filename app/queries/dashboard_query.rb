@@ -4,7 +4,9 @@ class DashboardQuery
   end
 
   def user_count
-    @options[:user_count].map { |key| send(key) }.inject(:+)
+    @options[:content_type] = @options[:user_count]
+
+    Message.user_count(@options)
   end
 
   def total_users_visit_each_functions
@@ -28,14 +30,6 @@ class DashboardQuery
     StepValue.number_of_tracking_tickets(@options)
   end
 
-  def text_message_count
-    TextMessage.user_count(@options)
-  end
-
-  def voice_message_count
-    VoiceMessage.user_count(@options)
-  end
-
   def total_users_feedback
     StepValue.total_users_feedback(@options)
   end
@@ -50,10 +44,6 @@ class DashboardQuery
 
   def user_visit
     @user_visit ||= Variable.find_by(is_user_visit: true)
-  end
-
-  def most_request
-    @most_request ||= Variable.find_by(is_most_request: true)
   end
 
   def report_enabled

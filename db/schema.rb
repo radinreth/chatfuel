@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_07_20_080623) do
     t.integer "status", default: 0
     t.string "platform_name", default: ""
     t.datetime "last_interaction_at", default: "2020-07-03 03:23:38"
+    t.string "province_id"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
@@ -196,7 +197,6 @@ ActiveRecord::Schema.define(version: 2020_07_20_080623) do
     t.string "profile_pic_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "province_id"
   end
 
   create_table "tickets", force: :cascade do |t|
