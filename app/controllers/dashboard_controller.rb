@@ -3,11 +3,11 @@ class DashboardController < ApplicationController
 
   def show
     @options = {
-      location: (params[:location] || "Banteay Meanchey"),
+      province_id: params['province'],
       platform_name: ["Messenger", "Telegram", "Verboice"],
       start_date: @start_date,
       end_date: @end_date,
-      user_count: [:join_text_message, :join_voice_message]
+      user_count: [:text_message_count, :voice_message_count]
     }
     @query = DashboardQuery.new(@options)
   end

@@ -51,9 +51,15 @@ class Ticket < ApplicationRecord
 
   before_validation :set_status
 
+  scope :accepted, -> { where(status: 'accepted') }
+  scope :delivered, -> { where(status: 'delivered') }
+
   def self.filter(params = {})
     scope = all
+    scope = scope.joins(step: [:message, :text_message]) if params[:province_id].present?
+    scope = scope.where(text_messages: { province_id: params[:province_id] }) if params[:province_id].present?
     scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope = scope.where("DATE(tickets.updated_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end
 

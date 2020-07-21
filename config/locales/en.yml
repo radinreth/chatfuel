@@ -130,6 +130,7 @@ en:
     overview: Overview (Accessed, Submitted, Completed)
     accessed: Accessed
     submitted: Submitted
+    delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name
     type_search: Type your search...

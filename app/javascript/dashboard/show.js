@@ -5,6 +5,7 @@ OWSO.DashboardShow = (() => {
     attachEventToVariableFilter()
     dynamicFormUrl()
     renderDatetimepicker()
+    onChangeProvince()
   }
 
   function renderDatetimepicker() {
@@ -24,6 +25,12 @@ OWSO.DashboardShow = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
+      $('.form').submit();
+    })
+  }
+
+  function onChangeProvince() {
+    $(document).on("change", "#province", function(e) {
       $('.form').submit();
     })
   }
@@ -65,3 +72,6 @@ OWSO.DashboardShow = (() => {
 
   return { init }
 })();
+
+OWSO.DashboardChatbot_dashboardShow = OWSO.DashboardShow
+OWSO.DashboardIvr_dashboardShow = OWSO.DashboardShow

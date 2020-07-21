@@ -17,6 +17,7 @@
 #
 class Step < ApplicationRecord
   belongs_to :message
+  has_one :text_message, through: :message, source: :content, source_type: 'TextMessage'
 
   # associations
   has_one :step_value, dependent: :destroy
