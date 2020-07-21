@@ -6,7 +6,7 @@ xml.tag! "verboice-service" do
   end
 
   xml.steps do
-    xml.step name: "api gender", icon: "robot", type: "callback", "display-name": "Gender", "callback-url": "http://{service_domain}/bots/messages/ivr/" do
+    xml.step name: "api gender", icon: "robot", type: "callback", "display-name": "Gender", "callback-url": "https://{service_domain}/bots/messages/ivr/" do
       xml.settings do
         xml.variable name: "name", "display-name": "name", type: "string"
         xml.variable name: "value", "display-name": "value", type: "string"
