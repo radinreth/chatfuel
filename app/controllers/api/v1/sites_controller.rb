@@ -2,10 +2,9 @@ module Api
   module V1
     class SitesController < ApplicationController
       def update
-        @history_log = SyncHistoryLog.create(payload: site_params)
-        SyncHistoryJob.perform_later(@site.id, @history_log.uuid)
+        SyncHistoryLog.create(payload: ticket_params, site_id: @site.id)
 
-        render json: @site, location: @site, status: :ok
+        head :ok
       rescue => e
         render json: { message: e.message }, status: :unprocessable_entity
       end
@@ -20,7 +19,7 @@ module Api
       end
 
       private
-        def site_params
+        def ticket_params
           params.permit(tickets: [:TicketID, :Tell, :ServiceDescription, :Status, :RequestedDate, :ApprovalDate, :DeliveryDate])
         end
     end
