@@ -10,3 +10,18 @@ en:
     approval_date: Approval Date
     delivery_date: Delivery Date
     type_ticket_code: Type ticket code
+    status_accepted:
+      status: Accepted
+      description: "Your ticket is accepted"
+    status_paid:
+      status: Paid
+      description: "Your ticket is paid"
+    status_approved:
+      status: Approved
+      description: "Your ticket is approved at %{approval_date}"
+    status_rejected:
+      status: Rejected
+      description: "Your ticket is rejected at %{approval_date}"
+    status_delivered:
+      status: Delivered
+      description: "Your ticket is delivered at %{delivery_date}"

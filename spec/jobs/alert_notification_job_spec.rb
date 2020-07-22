@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe AlertNotificationJob, type: :job do
   describe "#perform_later" do
     it "should send push notification" do
-      variable = create(:variable, feedback_message: true)
+      variable = create(:variable, report_enabled: true)
       variable_value = create(:variable_value, variable_id: variable.id)
       setting = create(:site_setting, message_frequency: 1)
       step_value = create(:step_value, variable_value: variable_value, site: setting.site )
