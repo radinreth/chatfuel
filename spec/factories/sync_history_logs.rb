@@ -9,6 +9,7 @@
 #  uuid          :string           default(""), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  site_id       :integer(4)
 #
 # Indexes
 #
@@ -19,5 +20,6 @@ FactoryBot.define do
     payload { "" }
     success_count { 0 }
     failure_count { 0 }
+    site
   end
 end
