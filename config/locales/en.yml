@@ -91,6 +91,7 @@ en:
       wait: wait...
       confirm: Are you sure?
       add_pair: + Add pair
+      search_placeholder: Type name
     new:
       new: New dictionary
       create: Create dictionary
