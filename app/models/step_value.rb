@@ -29,6 +29,7 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
+  after_create :set_message_province_id, if: -> { variable_value.is_location? }
 
   def self.satisfied
     return [] unless report_column
@@ -107,5 +108,12 @@ class StepValue < ApplicationRecord
       return unless (site_setting.present? && site_setting.message_frequency == 'immediately')
 
       AlertNotificationJob.perform_later(id)
+    end
+
+    def set_message_province_id
+      message = step.try(:message)
+      return if message.nil?
+
+      message.update(province_id: variable_value.display_value[0..1])
     end
 end

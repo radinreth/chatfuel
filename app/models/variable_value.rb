@@ -36,14 +36,5 @@ class VariableValue < ApplicationRecord
 
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
-
-  after_commit :set_messaeg_province_id, if: -> { variable.is_location? }
-
-  private
-    def set_messaeg_province_id
-      message = steps.first.try(:message)
-      return if message.nil?
-
-      message.update(province_id: value[0..1])
-    end
+  delegate :is_location?, to: :variable, prefix: false
 end
