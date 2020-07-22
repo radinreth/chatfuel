@@ -12,6 +12,7 @@
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
             %i.fas.fa-plus.fa-fw
             New Dictionary
+
           = render "create-new-dictionary-modal", dictionary: @variable
 
     .table-responsive

@@ -3,14 +3,9 @@ class DictionariesController < ApplicationController
   before_action :set_new_variable, only: [:index, :search]
 
   def index
-    @variables = Variable.except_done.order(created_at: :desc)
+    authorize Variable
 
-    if params[:q].present?
-      @variables = @variables.where("name LIKE ?", "%#{params[:q]}%")
-    end
-
-    @pagy, @variables = pagy(@variables)
-    authorize @variables
+    @pagy, @variables = pagy(Variable.filter(params).except_done.order(created_at: :desc))
   end
 
   def edit
@@ -93,6 +88,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy])
+      params.require(:variable).permit(:type, :name, :report_enabled, :is_location, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy])
     end
 end

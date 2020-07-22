@@ -16,12 +16,20 @@
               %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: dictionary.role_ids.include?(role.id) }
               %label.custom-control-label{ for: role.id }
                 %span= role.name.humanize
-    %label.switch.m-0
-      = f.input_field :report_enabled, label: false, name: "variable[report_enabled]"
-      %span.slider.round
-    %span Report enabled
+    .d-flex.align-items-center.mb-2
+      %label.switch.m-0
+        = f.input_field :report_enabled, label: false, name: "variable[report_enabled]"
+        %span.slider.round
+      %span.ml-1 Report enabled
     %div.invalid-message
       = dictionary.errors.full_messages_for(:report_enabled).to_sentence
+
+    .d-flex.align-items-center
+      %label.switch.m-0
+        = f.input_field :is_location, label: false
+        %span.slider.round
+      %span.ml-1 Mark as location field
+
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
     = f.submit "Save changes", class: "btn btn-primary"

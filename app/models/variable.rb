@@ -48,6 +48,12 @@ class Variable < ApplicationRecord
     report_enabled
   end
 
+  def self.filter(params)
+    scope = all
+    scope = scope.where("name LIKE ?", "%#{params[:q]}%") if params[:q].present?
+    scope
+  end
+
   private
     def ensure_only_one_is_most_request
       return unless is_most_request_changed?
