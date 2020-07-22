@@ -54,6 +54,14 @@ class Ticket < ApplicationRecord
   scope :accepted, -> { where(status: 'accepted') }
   scope :delivered, -> { where(status: 'delivered') }
 
+  # Instand methods
+  def progress_status
+    return 'incomplete' if %w(accepted paid).include?(status)
+
+    'completed'
+  end
+
+  # Class methods
   def self.filter(params = {})
     scope = all
     scope = scope.joins(step: :message) if params[:province_id].present? || params[:content_type].present?
