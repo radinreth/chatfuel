@@ -1,10 +1,10 @@
+= render "shared/sb-admin/page_heading", title: t("sites.sites")
+
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary= t('sites.list_of_all_list')
   .card-body
-    .my-4
+    .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'filter'
+        = render 'shared/sb-admin/filter_search', placeholder: t('sites.insert_name_or_code'), url: sites_path
 
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do

@@ -11,12 +11,12 @@
     = javascript_include_tag 'application'
 
   %body{ id: css_class_name }
-    #wrapper
+    #wrapper.d-flex.h-100
       = render "shared/sb-admin/sidebar"
+
       #content-wrapper.d-flex.flex-column
         #content
           = render "shared/sb-admin/topbar"
           .container-fluid
             = render "shared/notify_message"
             = yield
-        = render "shared/sb-admin/footer"

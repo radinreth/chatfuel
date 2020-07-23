@@ -70,4 +70,10 @@ class User < ApplicationRecord
 
     user
   end
+
+  def self.filter(params)
+    scope = all
+    scope = scope.where('email LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope
+  end
 end
