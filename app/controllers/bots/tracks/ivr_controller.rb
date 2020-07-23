@@ -1,7 +1,7 @@
 module Bots::Tracks
   class IvrController < ::Bots::TracksController
     def create
-      render xml: { Play: "https://api.twilio.com/cowbell.mp3" }.to_xml(root: "Response")
+      render xml: { Play: helpers.audio_url("completed.mp3") }.to_xml(root: "Response")
     end
 
     private

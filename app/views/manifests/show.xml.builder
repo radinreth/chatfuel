@@ -24,7 +24,7 @@ xml.tag! "verboice-service" do
       xml.response type: "none"
     end
 
-    xml.step name: "api audio complete", icon: "robot", type: "callback", "display-name": "Main Menu", "callback-url": "http://{service_domain}/bots/tracks/ivr/" do
+    xml.step name: "api audio complete", icon: "robot", type: "callback", "display-name": "Tracking audio", "callback-url": "http://{service_domain}/bots/tracks/ivr/" do
       xml.response type: "flow"
     end
 
