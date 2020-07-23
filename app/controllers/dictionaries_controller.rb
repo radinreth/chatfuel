@@ -3,14 +3,9 @@ class DictionariesController < ApplicationController
   before_action :set_new_variable, only: [:index, :search]
 
   def index
-    @variables = Variable.except_done.order(created_at: :desc)
+    authorize Variable
 
-    if params[:q].present?
-      @variables = @variables.where("name LIKE ?", "%#{params[:q]}%")
-    end
-
-    @pagy, @variables = pagy(@variables)
-    authorize @variables
+    @pagy, @variables = pagy(Variable.filter(params).except_done.order(created_at: :desc))
   end
 
   def edit
@@ -50,38 +45,22 @@ class DictionariesController < ApplicationController
   end
 
   def set_most_request
-    update_variable(most_request_params[0])
+    variable = Variable.find(variable_id)
+    variable.update(is_most_request: true)
 
-    redirect_to dashboard_path
+    head :ok
   end
 
   def set_user_visit
-    update_variable(user_visit_params[0])
+    variable = Variable.find(variable_id)
+    variable.update(is_user_visit: true)
 
-    redirect_to dashboard_path
+    head :ok
   end
 
   private
-    def update_variable(attribute)
-      id = attribute.delete(:id)
-      variable = Variable.find(id)
-      variable.update(attribute)
-    end
-
-    def most_request_params
-      @most_request_params = params.require(:variable).permit(attributes: [:id, :is_most_request])
-      filter_params(@most_request_params, :is_most_request)
-    end
-
-    def user_visit_params
-      @user_visit_params = params.require(:variable).permit(attributes: [:id, :is_user_visit])
-      filter_params(@user_visit_params, :is_user_visit)
-    end
-
-    def filter_params(modal_params, key)
-      modal_params["attributes"]\
-        .reject { |a| a[key].blank? }\
-        .map { |a| a.to_h }
+    def variable_id
+      params.require(:variable).permit(:id)[:id]
     end
 
     def set_roles
@@ -93,6 +72,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy])
+      params.require(:variable).permit(:type, :name, :report_enabled, :is_location, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy])
     end
 end

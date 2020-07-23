@@ -15,7 +15,7 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 
+            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
               = t("dashboard.total_user")
             .h5.mb-0.font-weight-bold.text-gray-800
               = @query.user_count
@@ -26,7 +26,7 @@
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
-            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1 
+            .text-xs.font-weight-bold.text-info.text-uppercase.mb-1
               = t("dashboard.average_using_time")
             .row.no-gutters.align-items-center
               .col-auto
@@ -35,14 +35,14 @@
             %i.fas.fa-clock.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
     .card.border-left-warning.shadow.h-100.py-2
-      = link_to "#", data: { toggle: "modal", target: "#mostRequest", id: @most_request_variable&.id, name: "variable[attributes][][is_most_request]", url: set_most_request_dictionaries_path } do
+      = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
         %i.fas.fa-cog.cog
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")
-            .h5.mb-0.font-weight-bold.text-gray-800 
+            .h5.mb-0.font-weight-bold.text-gray-800
               - most_req = @query.most_request_service.keys.first
               - if most_req.present?
                 = most_req
@@ -50,4 +50,5 @@
                 = t("not_available")
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
-            = render "most_request_modal"
+            = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :is_most_request, modal_id: 'mostRequest'
+

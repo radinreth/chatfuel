@@ -5,16 +5,22 @@ class TicketDecorator
     @ticket = ticket
   end
 
-  delegate :status, :description, to: :klazz
   delegate_missing_to :ticket
+
+  def status
+    I18n.t("tickets.status_#{ticket.status}.status")
+  end
+
+  def description
+    I18n.t(
+      "tickets.status_#{ticket.status}.description",
+      requested_date: ticket.requested_date,
+      approved_date: ticket.approved_date,
+      delivery_date: ticket.delivery_date
+    )
+  end
 
   def invalid?
     @ticket.status == "invalid"
   end
-
-  private
-    def klazz
-      @klazz ||= "#{ticket.status}_status".classify.constantize
-      @klazz.new(self)
-    end
 end

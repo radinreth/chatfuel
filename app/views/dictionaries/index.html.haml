@@ -1,30 +1,28 @@
-= render "shared/sb-admin/page_heading", title: t(".title")
-
 .card.shadow.mb-4
   .card-header.py-3
     %h6.subtitle.text-primary List of all dictionaries
   .card-body
     .my-4
       .d-flex.align-items-center.justify-content-between
-        .d-flex.align-items-center
-          = simple_form_for :search, url: dictionaries_path, method: :get, html: { class: "form-inline" } do |f|
-            = f.input :q, label: "Search", input_html: { name: "q", value: params[:q], class: "form-control-sm" }, label_html: { class: "mr-2 search-label" }
+        = render 'filter'
 
         .actions
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
             %i.fas.fa-plus.fa-fw
             New Dictionary
+
           = render "create-new-dictionary-modal", dictionary: @variable
-          
+
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
           %tr
-            %th Code
+            %th Name
             %th Permission
-            %th Satisfied
+            %th Mark as feedback
+            %th Mark as location
             %th Action
         %tbody
           = render @variables
-            
+
 != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

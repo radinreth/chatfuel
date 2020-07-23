@@ -6,8 +6,6 @@
   %li.breadcrumb-item.active
     = t('sites.api_key')
 
-= render "shared/sb-admin/page_heading", title: t('sites.api_key')
-
 - if @site.token.present?
   .card
     .card-header.py-3

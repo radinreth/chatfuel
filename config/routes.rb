@@ -10,11 +10,6 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#show"
   get :home, to: "home#index"
 
-  namespace :dashboard do
-    get "chatbot", action: :show, controller: "chatbot_dashboard"
-    get "ivr", action: :show, controller: "ivr_dashboard"
-  end
-
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
@@ -24,9 +19,7 @@ Rails.application.routes.draw do
   end
 
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
-  resources :tickets do
-    get :search, on: :collection
-  end
+  resources :tickets, only: [:index]
   resources :templates
   resources :quotas, only: [:index]
   resources :voice_messages, only: [:create]

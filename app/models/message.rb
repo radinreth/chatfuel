@@ -4,12 +4,13 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-07-10 03:35:23.002959")
+#  last_interaction_at :datetime         default("2020-07-03 03:23:38.104596")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  content_id          :integer(4)
+#  province_id         :string
 #
 # Indexes
 #
@@ -38,7 +39,7 @@ class Message < ApplicationRecord
     message = find_by(content: content)
 
     if !message || message&.completed?
-      message = create(platform_name: platform_name, content: content) 
+      message = create(platform_name: platform_name, content: content)
     else
       message.touch :last_interaction_at
     end
@@ -48,5 +49,15 @@ class Message < ApplicationRecord
 
   def self.complete_all
     all.map(&:completed!)
+  end
+
+  def self.user_count(params = {})
+    scope = all
+    scope = scope.joins(:steps)
+    scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
+    scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
+    scope = scope.where(platform_name: params[:platform_name]) if params[:platform_name].present?
+    scope = scope.where("DATE(messages.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope.count
   end
 end

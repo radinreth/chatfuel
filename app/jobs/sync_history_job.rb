@@ -1,20 +1,11 @@
 class SyncHistoryJob < ApplicationJob
   queue_as :default
 
-  def perform(site_id, sync_history_uuid)
-    site = Site.find(site_id)
-    sync_history = SyncHistoryLog.find_by(uuid: sync_history_uuid)
+  def perform(sync_history_log_id)
+    sync_history = SyncHistoryLog.find_by(id: sync_history_log_id)
 
-    tickets = sync_history.payload["tickets"]
-    parser = JsonParser.new(tickets)
+    return if sync_history.nil?
 
-    parser.to_json.values.each do |ticket_attribute|
-      ticket = site.tickets.build(ticket_attribute)
-      if ticket.save
-        sync_history.increment! :success_count
-      else
-        sync_history.increment! :failure_count
-      end
-    end
+    sync_history.upsert_tickets_to_site
   end
 end

@@ -29,6 +29,7 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
+  after_create :set_message_province_id, if: -> { variable_value.is_location? }
 
   def self.satisfied
     return [] unless report_column
@@ -44,6 +45,60 @@ class StepValue < ApplicationRecord
     joins(:variable_value).where("variable_values.id in (?)", disatisfied.ids)
   end
 
+  def self.total_users_visit_each_functions(params = {})
+    scope = default_join
+    scope = filter(scope, params)
+    scope = scope.where(variables: { is_user_visit: true })
+    scope = scope.order(:raw_value)
+    scope = scope.group(:raw_value)
+    scope.count
+  end
+
+  def self.number_of_tracking_tickets(params = {})
+    scope = default_join.joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
+    scope = filter(scope, params)
+    scope = scope.group("tickets.status")
+    scope.count
+  end
+
+  def self.total_users_feedback(params = {})
+    scope = default_join
+    scope = filter(scope, params)
+    scope = scope.where(variables: { report_enabled: true })
+    scope = scope.group(:raw_value)
+    scope.count
+  end
+
+  def self.most_request_service(params = {})
+    scope = default_join
+    scope = filter(scope, params)
+    scope = scope.where(variables: { is_most_request: true })
+    scope = scope.order("count_all DESC")
+    scope = scope.group("variable_values.raw_value").limit(1)
+    scope.count
+  end
+
+  def self.accessed(params = {})
+    scope = default_join
+    scope = filter(scope, params)
+    scope = scope.where("variable_values.raw_value = ?", "owso_info")
+    scope = scope.group_by_day(:created_at)
+    scope.count
+  end
+
+  def self.default_join
+    scope = all
+    scope.joins(step: :message, variable_value: :variable)
+  end
+
+  def self.filter(scope, params={})
+    scope = scope.where(messages: { content_type: params[:content_type] }) if params[:content_type].present?
+    scope = scope.where(messages: { province_id: params[:province_id] }) if params[:province_id].present?
+    scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
+    scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope
+  end
+
   private
     def self.report_column
       @report_column ||= Variable.find_by(report_enabled: true)
@@ -53,5 +108,12 @@ class StepValue < ApplicationRecord
       return unless (site_setting.present? && site_setting.message_frequency == 'immediately')
 
       AlertNotificationJob.perform_later(id)
+    end
+
+    def set_message_province_id
+      message = step.try(:message)
+      return if message.nil?
+
+      message.update(province_id: variable_value.display_value[0..1])
     end
 end
