@@ -29,8 +29,6 @@
 #  fk_rails_...  (site_id => sites.id)
 #
 class Ticket < ApplicationRecord
-  # enum status: %i[incomplete completed incorrect notified]
-
   STATUSES = %w(accepted paid approved rejected delivered)
 
   # associations
