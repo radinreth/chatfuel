@@ -6,7 +6,7 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
               = t("dashboard.active_user")
-            .h5.mb-0.font-weight-bold.text-gray-800
+            .h4.mb-0.font-weight-bold.text-gray-800
               = t("not_available")
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
@@ -17,7 +17,7 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
               = t("dashboard.total_user")
-            .h5.mb-0.font-weight-bold.text-gray-800
+            .h4.mb-0.font-weight-bold.text-gray-800
               = @query.user_count
           .col-auto
             %i.fas.fa-users.fa-2x.text-gray-300
@@ -30,7 +30,7 @@
               = t("dashboard.average_using_time")
             .row.no-gutters.align-items-center
               .col-auto
-                .h5.mb-0.mr-3.font-weight-bold.text-gray-800 N/A
+                .h4.mb-0.mr-3.font-weight-bold.text-gray-800 N/A
           .col-auto
             %i.fas.fa-clock.fa-2x.text-gray-300
   .col-xl-3.col-md-6.mb-4
@@ -42,7 +42,8 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")
-            .h5.mb-0.font-weight-bold.text-gray-800
+
+            .h4.mb-0.font-weight-bold.text-gray-800
               - most_req = @query.most_request_service.keys.first
               - if most_req.present?
                 = most_req

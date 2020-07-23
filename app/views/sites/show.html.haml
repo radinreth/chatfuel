@@ -1,12 +1,21 @@
-.container-fluid
-  .row
-    .col-lg-12
-      = render "shared/sb-admin/page_heading", title: @site.name
-      %span.text-hint
-        = t(".title")
-    .col-lg-4
-      %table.table.mt-4
+= render "shared/sb-admin/page_heading", title: "#{@site.name} (#{@site.tracks.size})"
+
+.card.shadow.mb-4
+  .card-body
+    .mb-4
+      .d-flex.align-items-center.justify-content-between
+        = render 'shared/sb-admin/filter_search', placeholder: t('sites.type_track_code'), url: site_path
+
+    .table-responsive
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th Track Code
+
         %tbody
           - @tracks.each do |track|
             %tr
               %td= track.code
+
+    - if @pagy.pages > 1
+      != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
