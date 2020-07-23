@@ -3,7 +3,7 @@
   %td= user.email
   %td
     - if user.role_name.present?
-      %span.badge.badge-pill.badge-primary= user.role_name
+      = role_html(user.role_name).html_safe
     - else
       = "-"
   %td
