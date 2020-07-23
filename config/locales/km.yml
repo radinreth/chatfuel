@@ -203,6 +203,7 @@ km:
     show:
       update: ធ្វើបច្ចុប្បន្នភាព
   templates:
+    not_available: ទំព័រគំរូមិនមានទេ
     create: បង្កើតគំរូ
     new: គំរូថ្មី
     edit: កែគំរូ

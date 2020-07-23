@@ -207,6 +207,7 @@ en:
     show:
       update: Update user
   templates:
+    not_available: Template is not exist
     create: Create template
     new: New template
     edit: Edit template
