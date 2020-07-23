@@ -15,5 +15,5 @@
           %th{colspan: 2}= t(".action")
         = render @users
 
-- if @pagy.pages > 1
-  != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+    - if @pagy.pages > 1
+      != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

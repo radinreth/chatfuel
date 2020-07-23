@@ -1,9 +1,9 @@
 %tr
-  %td= user_counter + 1
+  %td= @pagy.from + user_counter
   %td= user.email
   %td
     - if user.role_name.present?
-      %span.p-2.badge.badge-pill.badge-primary= user.role_name
+      %span.badge.badge-pill.badge-primary= user.role_name
     - else
       = "-"
   %td
@@ -12,7 +12,7 @@
 
   %td
     - if policy(user).update?
-      %ul.list-inline
+      %ul.list-inline.mb-0
         %li.list-inline-item
           = link_to user_path(user), class: "btn-circle btn-sm btn-warning text-decoration-none", data: { toggle: "modal", target: "#userModal#{user.id}" } do
             %i.fas.fa-edit.fa-fw
