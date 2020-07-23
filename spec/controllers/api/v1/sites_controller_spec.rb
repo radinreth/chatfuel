@@ -21,10 +21,15 @@ RSpec.describe Api::V1::SitesController, type: :controller do
 
   describe "PATCH :update" do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
+    let(:params) {
+      { site_code: site.code, tickets: [
+        { TicketID: '0102-001', Tell: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
+      ]}
+    }
 
     before {
       request.headers['Authorization'] = "Bearer #{site.token}"
-      patch :update, params: { site_code: site.code }
+      patch :update, params: params
     }
 
     it { expect(response.status).to eq 200 }

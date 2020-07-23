@@ -1,22 +1,24 @@
 .row.my-4
   .col-lg-6
     %ul.list-inline.platform-list
-      %li.list-inline-item{class: get_css_active_class('dashboard')}
-        = link_to t("dashboard.both"), dashboard_path, class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('dashboard/ivr_dashboard')}
-        = link_to t("dashboard.ivr"), dashboard_ivr_path, class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('dashboard/chatbot_dashboard')}
-        = link_to t("dashboard.chatbot"), dashboard_chatbot_path, class: 'text-decoration-none'
+      - param = {province: params[:province], daterange: params[:daterange]}
+      %li.list-inline-item{class: ('active' if params[:platform].blank?)}
+        = link_to t("dashboard.both"), dashboard_path(param), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('ivr')}
+        = link_to t("dashboard.ivr"), dashboard_path(param.merge(platform: 'ivr')), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('chatbot')}
+        = link_to t("dashboard.chatbot"), dashboard_path(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
   .col-lg-6
-    .d-flex
+    %form.form.d-flex{ action: dashboard_path }
       .province.d-flex.align-items-center
+        = hidden_field '', :platform, value: params[:platform]
+
         .province__label
-          %span.mr-2
-            =t("dashboard.province")
+          %span.mr-2=t("dashboard.province")
 
         - provinces = Pumi::Province.all.pluck('name_en', 'id').prepend(['All', nil])
-        = select_tag 'province', options_for_select( provinces, params[:location]), class: 'province__select-option'
+        = select_tag 'province', options_for_select( provinces, params[:province]), class: 'province__select-option'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label
@@ -24,7 +26,7 @@
             =t("dashboard.show")
         .date-filter__choose-option
           .input-group
-            %input.datepicker_date
+            %input.datepicker_date{:name => "daterange", :value => "#{@date_range}"}
             .input-group-append
               .input-group-text
                 %i.fas.fa-calendar-week.fa-sm

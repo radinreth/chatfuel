@@ -2,6 +2,7 @@
   .d-sm-flex.align-items-center.justify-content-between.mb-4
     %h1.h3.mb-0.text-gray-800
       = @variable.name
+
     .btn-group-toggle.text-right{ "data-toggle": "buttons" }
       %label.variable_report_enabled.btn.btn-success.btn-sm{ class: toggle_class_name("active", @variable.report_enabled?) }
         = f.input_field :report_enabled, checked: @variable.report_enabled?, name: "variable[report_enabled]", class: "variable-report-enabled"
@@ -32,7 +33,7 @@
                   = link_to "#", class: "text-decoration-none dictionary-add-pair" do
                     %i.fa.fa-sm.fa-plus-circle.fa-fw
                     Add pair
-      
+
         %h6.mt-4.permission-title Permission
 
         %ul.list-inline
@@ -43,5 +44,11 @@
                 %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: f.object.role_ids.include?(role.id) }
                 %label.custom-control-label{ for: role.id }
                   %span= role.name.humanize
+
+        .d-flex.align-items-center
+          %label.switch.m-0
+            = f.input_field :is_location, label: false
+            %span.slider.round
+          %span.ml-1 Mark as location field
 
         = f.submit "Update", class: "btn btn-primary float-right"

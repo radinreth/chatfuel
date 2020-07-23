@@ -24,5 +24,16 @@
 require 'rails_helper'
 
 RSpec.describe StepValue, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.after_create, set_message_province_id' do
+    let(:step_value) { build(:step_value) }
+
+    before {
+      step_value.variable_value.mapping_value = '01'
+      variable = step_value.variable_value.variable
+      variable.is_location = true
+      step_value.save
+    }
+
+    it { expect(step_value.step.message.province_id).to eq('01') }
+  end
 end

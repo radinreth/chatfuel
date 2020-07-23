@@ -91,6 +91,7 @@ en:
       wait: wait...
       confirm: Are you sure?
       add_pair: + Add pair
+      search_placeholder: Type name
     new:
       new: New dictionary
       create: Create dictionary
@@ -130,6 +131,7 @@ en:
     overview: Overview (Accessed, Submitted, Completed)
     accessed: Accessed
     submitted: Submitted
+    delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name
     type_search: Type your search...

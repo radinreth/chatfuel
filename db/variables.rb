@@ -2,7 +2,6 @@ variables = [
   {
     name: "main_menu",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: true,
     is_user_visit: false,
     report_enabled: false,
@@ -25,7 +24,6 @@ variables = [
   {
     name: "owso_info",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: true,
     report_enabled: false,
@@ -60,7 +58,6 @@ variables = [
   {
     name: "certify_docs",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -79,7 +76,6 @@ variables = [
   {
     name: "main_dbs",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -98,7 +94,6 @@ variables = [
   {
     name: "dbs_btn1",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -121,7 +116,6 @@ variables = [
   {
     name: "dbs_btn2",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -148,7 +142,6 @@ variables = [
   {
     name: "dbs_btn2_2",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -167,7 +160,6 @@ variables = [
   {
     name: "main_construction",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -189,7 +181,6 @@ variables = [
   {
     name: "construction_1",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -211,7 +202,6 @@ variables = [
   {
     name: "construction_2",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -233,7 +223,6 @@ variables = [
   {
     name: "construction_3",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -256,7 +245,6 @@ variables = [
   {
     name: "main_land_title",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -278,7 +266,6 @@ variables = [
   {
     name: "land title 1",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -300,7 +287,6 @@ variables = [
   {
     name: "land title 2",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -322,7 +308,6 @@ variables = [
   {
     name: "land title 3",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -345,7 +330,6 @@ variables = [
   {
     name: "main_refill_title",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -363,7 +347,6 @@ variables = [
   {
     name: "land_refill 1",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -381,7 +364,6 @@ variables = [
   {
     name: "land_refill 2",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -403,7 +385,6 @@ variables = [
   {
     name: "feedback-intro",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -412,7 +393,6 @@ variables = [
   {
     name: "feedback_level",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -430,7 +410,6 @@ variables = [
   {
     name: "feedback_challenge",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: true,
@@ -452,7 +431,6 @@ variables = [
   {
     name: "feedback_q2_like",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -474,7 +452,6 @@ variables = [
   {
     name: "feedback_q3_dislike",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -496,7 +473,6 @@ variables = [
   {
     name: "public_transport",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,
@@ -514,7 +490,6 @@ variables = [
   {
     name: "tracking",
     type: "TextVariable",
-    feedback_message: false,
     is_most_request: false,
     is_user_visit: false,
     report_enabled: false,

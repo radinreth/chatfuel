@@ -36,4 +36,5 @@ class VariableValue < ApplicationRecord
 
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
+  delegate :is_location?, to: :variable, prefix: false
 end
