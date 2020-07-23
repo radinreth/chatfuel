@@ -42,4 +42,13 @@ module ApplicationHelper
 
     I18n.l(datetime, format: format)
   end
+
+  def role_html(role_name)
+    icons = { site_ombudsman: 'fa-user', site_admin: 'fa-user-friends', system_admin: 'fa-users-cog' }
+
+    dom = "<span class='badge badge-pill badge-primary p-2 role-#{role_name}'>"
+    dom += "<i class='fas #{icons[role_name.to_sym]}'></i> #{role_name}"
+    dom += "</span>"
+    dom
+  end
 end
