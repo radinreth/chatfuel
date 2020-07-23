@@ -1,13 +1,18 @@
 module Bots::Tracks
   class IvrController < ::Bots::TracksController
+    before_action :set_template
+
     def create
-      render xml: { Play: helpers.audio_url("completed.mp3") }.to_xml(root: "Response")
+      if @template && @template.audio.attached?
+        render xml: { Play: helpers.url_for(@template.audio) }.to_xml(root: "Response")
+      else
+        render xml: { Play: helpers.audio_url("wrong-id.mp3") }.to_xml(root: "Response")
+      end
     end
 
     private
-      def set_message
-        @content = VoiceMessage.find_or_create_by(callsid: params[:CallSid])
-        @message = Message.create_or_return(params[:platform_name], @content)
+      def set_template
+        @template = VerboiceTemplate.find_by(status: @ticket.progress_status)
       end
   end
 end

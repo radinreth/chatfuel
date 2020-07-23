@@ -39,8 +39,7 @@ module Bots::Tracks
       end
 
       def set_template
-        type = "#{params[:platform_name]}Template"
-        @template = Template.find_by!(status: @ticket.progress_status, type: type)
+        @template = MessengerTemplate.find_by!(status: @ticket.progress_status)
       rescue
         @template = OpenStruct.new content: I18n.t("templates.not_available", status: "wrong-id")
       end
