@@ -1,5 +1,5 @@
 # ticket
-statuses = Ticket.statuses.keys
+statuses = Ticket::STATUSES
 site_ids = Site.ids
 
 puts "creating tickets"
