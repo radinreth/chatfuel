@@ -84,7 +84,7 @@ en:
     only_one_report_col: "Must be enable only one"
   dictionaries:
     index:
-      title: Dictionary
+      title: Dictionaries
       raw: Raw value
       mapping: Mapping value
       satisfied: Satisfied
@@ -188,6 +188,7 @@ en:
     role: Role
     email: Email
     active_user: Actived user?
+    type_email: Type email
     form:
       enable: Enable
     edit:
@@ -221,6 +222,7 @@ en:
     index:
       title: Tickets
       new: New ticket
+      type_code: Type code
   js:
     updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
     updates_success_title: Success!

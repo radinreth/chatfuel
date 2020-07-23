@@ -1,10 +1,15 @@
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All tickets list
   .card-body
-    .my-4
+    .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'filter'
+        .d-flex.align-items-center
+          = render 'shared/sb-admin/filter_search', placeholder: t('tickets.index.type_code'), url: tickets_path
+
+        .actions
+          = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newTicketModal" } do
+            %i.fas.fa-plus.fa-fw
+            = t('.new_ticket')
+          = render "create-new-ticket-modal", ticket: Ticket.new
 
     .table-responsive
       %table#dataTable.table.table-bordered.w-100{:cellspacing => "0"}

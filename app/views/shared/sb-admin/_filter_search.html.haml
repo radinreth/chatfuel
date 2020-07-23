@@ -1,8 +1,8 @@
-%form{ action: '/sites', method: 'get' }
+%form{ action: url, method: 'get' }
   .form-group.mb-0.d-flex.align-items-center
     %span.mr-2= "#{t('shared.search')}:"
     .input-group
-      = text_field_tag(:keyword, params[:keyword], class: 'form-control site-filter', placeholder: t('sites.type_name_or_code'))
+      = text_field_tag(:keyword, params[:keyword], class: 'form-control', placeholder: placeholder, style: 'width: 250px;')
 
       %a#info.input-group-append
         .input-group-text

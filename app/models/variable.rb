@@ -50,7 +50,7 @@ class Variable < ApplicationRecord
 
   def self.filter(params)
     scope = all
-    scope = scope.where("name LIKE ?", "%#{params[:q]}%") if params[:q].present?
+    scope = scope.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
     scope
   end
 

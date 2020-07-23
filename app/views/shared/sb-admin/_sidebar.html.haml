@@ -4,7 +4,7 @@
       OWSO
 
   %hr.sidebar-divider.my-0
-  %ul.list-unstyled
+  %ul.list-unstyled.list-items
     %li.nav-item{ class: css_active_class('dashboard') }
       = link_to dashboard_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
@@ -44,9 +44,5 @@
   .text-center.d-none.d-md-inline.mb-auto
     %button#sidebarToggle.rounded-circle.border-0
 
-  .developed-by
-    %p= t("developed_by")
-    = image_tag "instedd.png", class: "w-100"
-    %hr
-    %p
-      = t("app_version", version: ENV['APP_VERSION'])
+  .sidebar-footer
+    %small.text-white= t("app_version", version: ENV['APP_VERSION'])

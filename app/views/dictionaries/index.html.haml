@@ -1,10 +1,9 @@
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.subtitle.text-primary List of all dictionaries
   .card-body
-    .my-4
+    .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'filter'
+        .d-flex.align-items-center
+          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.index.type_name'), url: dictionaries_path
 
         .actions
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do

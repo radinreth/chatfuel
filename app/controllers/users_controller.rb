@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
-    @pagy, @users = pagy(User.all)
+    @pagy, @users = pagy(User.filter(params))
     authorize @users
     @roles = Role.distinct
 
