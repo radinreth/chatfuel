@@ -4,7 +4,7 @@
   .card-body
     .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'shared/sb-admin/filter_search', placeholder: t('sites.insert_name_or_code'), url: sites_path
+        = render 'shared/sb-admin/filter_search', placeholder: t('sites.type_name_or_code'), url: sites_path
 
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do

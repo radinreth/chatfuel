@@ -1,9 +1,11 @@
+= render "shared/sb-admin/page_heading", title: t(".dictionaries")
+
 .card.shadow.mb-4
   .card-body
     .mb-4
       .d-flex.align-items-center.justify-content-between
         .d-flex.align-items-center
-          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.index.type_name'), url: dictionaries_path
+          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.index.search_placeholder'), url: dictionaries_path
 
         .actions
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
