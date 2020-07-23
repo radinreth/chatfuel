@@ -49,8 +49,9 @@ class Ticket < ApplicationRecord
 
   before_validation :set_status
 
-  scope :accepted, -> { where(status: 'accepted') }
+  scope :accepted,  -> { where(status: 'accepted') }
   scope :delivered, -> { where(status: 'delivered') }
+  scope :completed, -> { where(status: ['approved', 'delivered']) }
 
   # Instand methods
   def progress_status
