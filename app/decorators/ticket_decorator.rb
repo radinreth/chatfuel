@@ -15,7 +15,7 @@ class TicketDecorator
     I18n.t(
       "tickets.status_#{ticket.status}.description",
       requested_date: ticket.requested_date,
-      approval_date: ticket.approval_date,
+      approved_date: ticket.approved_date,
       delivery_date: ticket.delivery_date
     )
   end

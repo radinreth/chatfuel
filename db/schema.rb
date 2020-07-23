@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_092048) do
     t.string "service_description"
     t.string "dist_gis"
     t.datetime "requested_date"
-    t.datetime "approval_date"
+    t.datetime "approved_date"
     t.datetime "delivery_date"
     t.index ["code"], name: "index_tickets_on_code"
     t.index ["site_id"], name: "index_tickets_on_site_id"

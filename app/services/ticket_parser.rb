@@ -25,7 +25,7 @@ class TicketParser
         service_description: "ServiceDescription",
         status: "Status",
         requested_date: "RequestedDate",
-        approval_date: "ApprovalDate",
+        approved_date: "ApprovedDate",
         delivery_date: "DeliveryDate",
         dist_gis: "DistGis",
         tell: "Tell"

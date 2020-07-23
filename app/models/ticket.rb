@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  actual_completed_at :date
-#  approval_date       :datetime
+#  approved_date       :datetime
 #  code                :string           not null
 #  completed_at        :date
 #  delivery_date       :datetime
