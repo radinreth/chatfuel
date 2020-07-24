@@ -37,8 +37,9 @@ en:
     logout: Logout
     signin: Signin
     confirm_logout: Are you sure you want to logout?
+    tickets: Tickets
   signin: Sign in
-  not_authorized: "You are not authorized"
+  not_authorized: "You are not authorized to perform this action."
   created:
     success: "Successfully created!"
     fail: "Failed to create!"
@@ -84,7 +85,7 @@ en:
     only_one_report_col: "Must be enable only one"
   dictionaries:
     index:
-      title: Dictionary
+      title: Dictionaries
       raw: Raw value
       mapping: Mapping value
       satisfied: Satisfied
@@ -108,6 +109,7 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+      type_session_id: Type session id
   dashboard:
     title: Dashboard
     total_user_visit: Total User Visit (Each Function)
@@ -188,6 +190,7 @@ en:
     role: Role
     email: Email
     active_user: Actived user?
+    type_email: Type email
     form:
       enable: Enable
     edit:
@@ -221,6 +224,7 @@ en:
     index:
       title: Tickets
       new: New ticket
+      type_code: Type code
   js:
     updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
     updates_success_title: Success!

@@ -5,7 +5,7 @@ class DictionariesController < ApplicationController
   def index
     authorize Variable
 
-    @pagy, @variables = pagy(Variable.filter(params).except_done.order(created_at: :desc))
+    @pagy, @variables = pagy(Variable.filter(params).except_done.order(created_at: :desc).includes(:roles))
   end
 
   def edit
@@ -64,7 +64,7 @@ class DictionariesController < ApplicationController
     end
 
     def set_roles
-      @roles = Role.all
+      @roles = Role.where.not(name: 'system_admin')
     end
 
     def set_new_variable

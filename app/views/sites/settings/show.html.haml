@@ -6,11 +6,10 @@
   %li.breadcrumb-item.active
     = t('sites.telegram_notification')
 
+= render "shared/sb-admin/page_heading", title: t("settings.telegram_notification")
+
 - if @setting.present? && @setting.persisted?
   .card
-    .card-header.py-3
-      %h6.m-0.font-weight-bold.text-primary= t('settings.telegram_notification')
-
     .card-body.telegram-card-body
       .row.mb-3
         .col-md-3= "#{t('site_setting.enable_notification')}:"

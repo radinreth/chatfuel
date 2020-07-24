@@ -28,3 +28,4 @@ en:
     type_name_or_code: Type site name or code
     healthcheck: Healthcheck
     healthcheck_history: Healthcheck History
+    type_track_code: Type track code

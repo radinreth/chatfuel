@@ -1,5 +1,11 @@
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   color: #212529;
+  overflow: hidden;
 }
 
 .text-hint {
@@ -19,11 +25,11 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+// custom table
 .table {
+  margin-bottom: 0;
   color: #5a5c69;
 }
-
-// custom table
 
 .custom-table {
   color: #5a5c69;
@@ -31,14 +37,29 @@ body {
   flex-direction: column;
   flex-grow: 1;
 
+  &.table-bordered {
+    border: 1px solid #e3e6f0;
+  }
+
   .custom-row {
     display: flex;
     flex-direction: row;
+    border-top: 1px solid #e3e6f0;
 
     .custom-col {
       width: 20%;
       padding: .75rem;
-      border: 1px solid #e3e6f0;
+      border-right: 1px solid #e3e6f0;
+    }
+
+    .custom-col:last-child {
+      border-right: none;
     }
   }
+
+  .custom-row.thead {
+    border-top: none;
+    border-bottom: 1px solid #e3e6f0;
+  }
 }
+

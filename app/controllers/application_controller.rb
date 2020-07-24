@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
     def user_not_authorized
       flash[:alert] = t("not_authorized")
-      redirect_to(reports_path) && return
+      redirect_to(request.referrer || root_path)
     end
 
     def switch_locale(&action)

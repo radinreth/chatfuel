@@ -1,10 +1,11 @@
+= render "shared/sb-admin/page_heading", title: t("tickets.title")
+
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary All tickets list
   .card-body
-    .my-4
+    .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'filter'
+        .d-flex.align-items-center
+          = render 'shared/sb-admin/filter_search', placeholder: t('tickets.index.type_code'), url: tickets_path
 
     .table-responsive
       %table#dataTable.table.table-bordered.w-100{:cellspacing => "0"}
@@ -21,5 +22,5 @@
         %tbody
           = render @tickets
 
-- if @pagy.page > 1
-  != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+    - if @pagy.page > 1
+      != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
