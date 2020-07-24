@@ -1,10 +1,10 @@
+= render "shared/sb-admin/page_heading", title: t("sites.sites")
+
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary= t('sites.list_of_all_list')
   .card-body
-    .my-4
+    .mb-4
       .d-flex.align-items-center.justify-content-between
-        = render 'filter'
+        = render 'shared/sb-admin/filter_search', placeholder: t('sites.type_name_or_code'), url: sites_path
 
         .actions
           = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
@@ -17,60 +17,58 @@
             = t("sites.new_site")
           = render "create-new-site-modal", site: @site
 
-    %div
-      .custom-table.table.table-bordered
-        .custom-row
-          %strong.custom-col= t('sites.province')
-          %strong.custom-col= t('sites.code')
-          %strong.custom-col= t('sites.track_count')
-          %strong.custom-col= t('sites.healthcheck')
-          %strong.custom-col= t('sites.action')
+    .custom-table.table.table-bordered
+      .custom-row.thead
+        %strong.custom-col= t('sites.province')
+        %strong.custom-col= t('sites.code')
+        %strong.custom-col= t('sites.track_count')
+        %strong.custom-col= t('sites.healthcheck')
+        %strong.custom-col= t('sites.action')
 
-        - @provinces.each_with_index do |province, index|
-          .custom-row.accordion-toggle.pointer{"data-target" => "#row-#{index}", "data-toggle" => "collapse"}
-            .custom-col.d-flex
-              %span.flex-grow-1
-                = "<strong>#{province['name_km']}</strong> (#{province['sites_count']})".html_safe
-              %span.btn-toggle
-                %i.fas.fa-chevron-down
-            .custom-col
-            .custom-col
-            .custom-col
-            .custom-col
+      - @provinces.each_with_index do |province, index|
+        .custom-row.accordion-toggle.pointer{"data-target" => "#row-#{index}", "data-toggle" => "collapse"}
+          .custom-col.d-flex
+            %span.flex-grow-1
+              = "<strong>#{province['name_km']}</strong> (#{province['sites_count']})".html_safe
+            %span.btn-toggle
+              %i.fas.fa-chevron-down
+          .custom-col
+          .custom-col
+          .custom-col
+          .custom-col
 
-          .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
-            - province['sites'].each do |site|
-              .custom-row
-                .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
-                .custom-col= site['code']
-                .custom-col= site['tracks_count']
-                .custom-col
-                  - if site.sync_status.present?
-                    %span{ class: (site.sync_status == 'success' ? 'text-success' : 'text-danger') }= site.sync_status
-                    - if site.sync_logs.present?
-                      %span{ "data-content" => popover_html(site), "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => t('sites.healthcheck_history') }
-                        %i.fas.fa-info-circle
-                  - else
-                    = '-'
+        .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
+          - province['sites'].each do |site|
+            .custom-row
+              .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
+              .custom-col= site['code']
+              .custom-col= site['tracks_count']
+              .custom-col
+                - if site.sync_status.present?
+                  %span{ class: (site.sync_status == 'success' ? 'text-success' : 'text-danger') }= site.sync_status
+                  - if site.sync_logs.present?
+                    %span{ "data-content" => popover_html(site), "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => t('sites.healthcheck_history') }
+                      %i.fas.fa-info-circle
+                - else
+                  = '-'
 
-                .custom-col
-                  %ul.list-inline.mb-0
-                    %li.list-inline-item
-                      = link_to site_api_key_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.api_key')} do
-                        %i.fas.fa-key
+              .custom-col
+                %ul.list-inline.mb-0
+                  %li.list-inline-item
+                    = link_to site_api_key_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.api_key')} do
+                      %i.fas.fa-key
 
-                    %li.list-inline-item
-                      = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
-                        %i.fab.fa-telegram-plane
+                  %li.list-inline-item
+                    = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
+                      %i.fab.fa-telegram-plane
 
-                    %li.list-inline-item
-                      = link_to edit_site_path(site['id']), remote: true, class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
-                        %i.fas.fa-edit
+                  %li.list-inline-item
+                    = link_to edit_site_path(site['id']), remote: true, class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
+                      %i.fas.fa-edit
 
-                    %li.list-inline-item
-                      = link_to site_path(site['id']), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, data: { confirm: t('sites.are_you_sure_to_delete_site'), toggle: 'tooltip', title: t('shared.delete') } do
-                        %i.fas.fa-trash
+                  %li.list-inline-item
+                    = link_to site_path(site['id']), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, data: { confirm: t('sites.are_you_sure_to_delete_site'), toggle: 'tooltip', title: t('shared.delete') } do
+                      %i.fas.fa-trash
 
-
-- if @pagy.pages > 1
-  != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+    - if @pagy.pages > 1
+      != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

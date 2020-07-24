@@ -38,8 +38,34 @@ module ApplicationHelper
   end
 
   def display_datetime(datetime, format = :long)
-    return '-' if datetime.blank?
+    return '' if datetime.blank?
 
     I18n.l(datetime, format: format)
   end
+
+  def role_html(role_name)
+    role = get_role(role_name)
+
+    dom = "<span class='badge badge-pill badge-primary p-2' style='background-color: #{role[:color]}'>"
+    dom += "<i class='#{role[:icon]}'></i> #{role_name.humanize}"
+    dom += "</span>"
+    dom
+  end
+
+  def role_icon(role_name)
+    role = get_role(role_name)
+
+    "<i class='#{role[:icon]}' style='color: #{role[:color]}'></i>"
+  end
+
+  private
+    def get_role(role_name)
+      roles = {
+        site_ombudsman: { icon: 'fas fa-user', color: '#d23528' },
+        site_admin: { icon: 'fas fa-user-friends', color: '#b620e0' },
+        system_admin: { icon: 'fas fa-users-cog', color: '#4e73df' }
+      }
+
+      roles[role_name.to_sym]
+    end
 end

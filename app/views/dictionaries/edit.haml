@@ -35,20 +35,20 @@
                     Add pair
 
         %h6.mt-4.permission-title Permission
-
-        %ul.list-inline
+        .d-flex.mb-4
           = hidden_field_tag('variable[role_ids][]', nil)
           - @roles.each do |role|
-            %li.list-inline-item
-              .custom-control.custom-checkbox
-                %input.custom-control-input{ value: role.id, id: role.id, type: "checkbox", name: "variable[role_ids][]", checked: f.object.role_ids.include?(role.id) }
-                %label.custom-control-label{ for: role.id }
-                  %span= role.name.humanize
+            .d-flex.flex-column.align-items-center.mr-5{for: role.id}
+              %label.mb-0{for: role.id}= role_icon(role.name).html_safe
+              %label{for: role.id}= role.name.humanize
+              %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: f.object.role_ids.include?(role.id)}
 
+
+        %h6.mt-4.permission-title Location
         .d-flex.align-items-center
           %label.switch.m-0
-            = f.input_field :is_location, label: false
+            = f.input_field :is_location, label: false, name: 'variable[is_location]'
             %span.slider.round
-          %span.ml-1 Mark as location field
+          %span.ml-1 Mark as site location
 
         = f.submit "Update", class: "btn btn-primary float-right"

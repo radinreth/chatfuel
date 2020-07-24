@@ -1,14 +1,26 @@
 .sidebar {
-  .developed-by {
-    padding: 1rem;
-    color: #fff;
+  .sidebar-footer {
+    margin: 10px;
+    margin-left: 16px;
+    color: rgba(255, 255, 255, 0.8);
+  }
 
-    hr {
-      border-color: #fff;
+  .list-items {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .nav-item .nav-link {
+    padding-top: 30px;
+
+    span {
+      font-size: 1em;
     }
-    
-    p {
-      font-size: 16px;
+  }
+
+  &.toggled .nav-item .nav-link {
+    span {
+      font-size: 0.875em;
     }
   }
 }

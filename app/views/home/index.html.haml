@@ -1,15 +1,7 @@
 = render "shared/sb-admin/page_heading", title: t(".title")
 
 .card.shadow.mb-4
-  .card-header.py-3
-    %h6.m-0.font-weight-bold.text-primary
-      = t(".all")
   .card-body
-    .row.my-4
-      .col-lg-4
-        .d-flex.align-items-center
-          %span.mr-2= t(".search")
-          %input.form-control.form-control-sm
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
@@ -32,8 +24,5 @@
                     - value = step.value.display_value
                     - break
                 %td=value
-                  
-                  
-                    
 
-!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
+    != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}

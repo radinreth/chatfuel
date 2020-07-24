@@ -37,6 +37,7 @@ km:
     logout: ចាកចេញ
     signin: ចូលប្រើ
     confirm_logout: តើអ្នកពិតជាចង់ចាកចេញឬ?
+    tickets: សំបុត្រ
   signin: ចូលប្រើ
   not_authorized: អ្នកមិនត្រូវបានអនុញ្ញាតទេ
   created:

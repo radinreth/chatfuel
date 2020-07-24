@@ -1,0 +1,9 @@
+%form{ action: url, method: 'get' }
+  .form-group.mb-0.d-flex.align-items-center
+    %span.mr-2= "#{t('shared.search')}:"
+    .input-group
+      = text_field_tag(:keyword, params[:keyword], class: 'form-control', placeholder: placeholder, style: 'width: 250px; border-right: none;')
+
+      %a#info.input-group-append
+        .input-group-text.bg-transparent
+          %i.fas.fa-search

@@ -4,18 +4,21 @@ class SitesController < ApplicationController
 
   def index
     authorize Site
+
     @pagy, @provinces = pagy_array(SiteService.new(params).provinces)
     @site = Site.new
   end
 
   def new
     @site = Site.new(status: :enable)
+
     authorize @site
   end
 
   def show
     authorize @site
-    @tracks = @site.tracks
+
+    @pagy, @tracks = pagy(Track.filter(params).where(site_id: @site.id))
   end
 
   def create

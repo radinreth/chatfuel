@@ -24,6 +24,8 @@ class Track < ApplicationRecord
 
   validates :code, presence: true
 
+  alias_attribute :display_value, :code
+
   def site_code
     code[0...4]
   end
@@ -32,5 +34,9 @@ class Track < ApplicationRecord
     "tracking_ticket"
   end
 
-  alias_attribute :display_value, :code
+  def self.filter(params = {})
+    scope = all
+    scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope
+  end
 end
