@@ -13,7 +13,7 @@ module Bots::Messages
       end
 
       def set_message
-        content = VoiceMessage.find_or_create_by(callsid: params[:callsid])
+        content = VoiceMessage.create_with(address: params[:address]).find_or_create_by(callsid: params[:CallSid])
         @message = Message.create_or_return(params[:platform_name], content)
       end
   end
