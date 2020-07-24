@@ -108,6 +108,7 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+      type_session_id: Type session id
   dashboard:
     title: Dashboard
     total_user_visit: Total User Visit (Each Function)
