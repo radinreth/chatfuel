@@ -25,6 +25,9 @@ xml.tag! "verboice-service" do
     end
 
     xml.step name: "api audio complete", icon: "robot", type: "callback", "display-name": "Tracking audio", "callback-url": "http://{service_domain}/bots/tracks/ivr/" do
+      xml.settings do
+        xml.variable name: "code", "display-name": "code", type: "string"
+      end
       xml.response type: "flow"
     end
 
