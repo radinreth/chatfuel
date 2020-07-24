@@ -14,6 +14,7 @@ class Template < ApplicationRecord
 
   # associations
   has_one_attached :audio
+  has_one_attached :image
 
   # validations
   before_save :ensure_text_template_dont_have_audio

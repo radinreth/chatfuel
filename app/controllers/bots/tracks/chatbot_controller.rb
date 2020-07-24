@@ -17,25 +17,24 @@ module Bots::Tracks
       end
 
       def messenger_response
-        {
-          "messages": [
-            { "attachment": attachment },
-            { "text": @template.content }
-          ]
-        }
+        response = { messages: [] }
+        response[:messages] << { attachment: attachment } if attachment
+        response[:messages] << { text: @template.content }
+        response
       end
 
       def attachment
-        attachment_url = helpers.asset_url("ticket-responses/#{@template.status}")
+        return unless @template.image.attached?
 
+        attachment_url = helpers.polymorphic_url(@template.image)
         {
-          "type": "image",
-          "payload": { "url": attachment_url }
+          type: "image",
+          payload: { url: attachment_url }
         }
       end
 
       def telegram_response
-        { "messages": @template.content }
+        { messages: @template.content }
       end
 
       def set_template
