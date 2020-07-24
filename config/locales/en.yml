@@ -39,7 +39,7 @@ en:
     confirm_logout: Are you sure you want to logout?
     tickets: Tickets
   signin: Sign in
-  not_authorized: "You are not authorized"
+  not_authorized: "You are not authorized to perform this action."
   created:
     success: "Successfully created!"
     fail: "Failed to create!"

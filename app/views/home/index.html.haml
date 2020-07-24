@@ -2,10 +2,6 @@
 
 .card.shadow.mb-4
   .card-body
-    .mb-4
-      .d-flex.align-items-center.justify-content-between
-        = render 'shared/sb-admin/filter_search', placeholder: t('home.index.type_session_id'), url: home_path
-
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead

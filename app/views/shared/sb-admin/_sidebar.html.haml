@@ -5,35 +5,47 @@
 
   %hr.sidebar-divider.my-0
   %ul.list-unstyled.list-items
-    %li.nav-item{ class: css_active_class('dashboard') }
-      = link_to dashboard_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-tachometer-alt
-        %span= t('sidebar.dashboard')
-    %li.nav-item{ class: css_active_class('home') }
-      = link_to home_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-home
-        %span= t('sidebar.home')
-    %li.nav-item{ class: css_active_class('sites') }
-      = link_to sites_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-sitemap
-        %span= t('sidebar.sites')
-    %li.nav-item{ class: css_active_class('dictionaries') }
-      = link_to dictionaries_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-book
-        %span= t('sidebar.dictionaries')
+    - if policy(:dashboard).show?
+      %li.nav-item{ class: css_active_class('dashboard') }
+        = link_to dashboard_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-tachometer-alt
+          %span= t('sidebar.dashboard')
+
+    - if policy(Message).index?
+      %li.nav-item{ class: css_active_class('home') }
+        = link_to home_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-home
+          %span= t('sidebar.home')
+
+    - if policy(Site).index?
+      %li.nav-item{ class: css_active_class('sites') }
+        = link_to sites_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-sitemap
+          %span= t('sidebar.sites')
+
+    - if policy(Variable).index?
+      %li.nav-item{ class: css_active_class('dictionaries') }
+        = link_to dictionaries_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-book
+          %span= t('sidebar.dictionaries')
+
     - if policy(User).index?
       %li.nav-item{ class: css_active_class('users') }
         = link_to users_path, class: "nav-link" do
           %i.fas.fa-fw.fa-user
           %span= t('sidebar.users')
-    %li.nav-item{ class: css_active_class('tickets') }
-      = link_to tickets_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-envelope
-        %span= t('sidebar.tickets')
-    %li.nav-item{ class: css_active_class('templates') }
-      = link_to templates_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-file-alt
-        %span= t('sidebar.templates')
+
+    - if policy(Ticket).index?
+      %li.nav-item{ class: css_active_class('tickets') }
+        = link_to tickets_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-envelope
+          %span= t('sidebar.tickets')
+
+    - if policy(::Template).index?
+      %li.nav-item{ class: css_active_class('templates') }
+        = link_to templates_path, class: "nav-link" do
+          %i.fas.fa-fw.fa-file-alt
+          %span= t('sidebar.templates')
 
     - if policy(:admin).show?
       %li.nav-item{ class: css_active_class('settings') }
