@@ -64,7 +64,7 @@ class DictionariesController < ApplicationController
     end
 
     def set_roles
-      @roles = Role.all
+      @roles = Role.where.not(name: 'system_admin')
     end
 
     def set_new_variable
