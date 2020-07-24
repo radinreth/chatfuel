@@ -1,7 +1,7 @@
 %tr{ id: "tr_#{ticket.id}" }
 
   %td= ticket.code
-  %td= ticket.status
+  %td= status_html(ticket.status).html_safe
   %td= ticket.tell
   %td= ticket.dist_gis
   %td= ticket.service_description
