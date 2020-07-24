@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
-  root "dashboard#show"
+  root "home#index"
   get :dashboard, to: "dashboard#show"
   get :home, to: "home#index"
 
