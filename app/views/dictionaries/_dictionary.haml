@@ -2,8 +2,8 @@
   %td= dictionary.name
   %td
     - dictionary.roles.each do |role|
-      %span.badge.badge-pill.p-2{ class: role.name == 'system_admin' ? 'badge-secondary' : 'badge-danger ' }
-        = role.name.humanize
+      = role_html(role.name).html_safe
+
   %td
     - if dictionary.report_enabled?
       %small Mark as Feedback

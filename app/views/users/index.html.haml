@@ -7,13 +7,15 @@
 
     .table-responsive
       %table.table.table-bordered
-        %tr
-          %th= t(".no")
-          %th= t(".email")
-          %th= t(".role")
-          %th= t(".status")
-          %th{colspan: 2}= t(".action")
-        = render @users
+        %thead
+          %tr
+            %th= t(".no")
+            %th= t(".email")
+            %th= t(".role")
+            %th= t(".status")
+            %th= t(".action")
+        %tbody
+          = render @users
 
     - if @pagy.pages > 1
       != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
