@@ -9,10 +9,10 @@
       %small Mark as Feedback
   %td
     - if dictionary.is_location?
-      %small Mark as Location
+      %small Mark as site location
 
   %td{ style: "padding: 10px 15px" }
     %ul.list-inline.m-0
       %li.list-inline-item
-        = link_to edit_dictionary_path(dictionary), class: "btn-circle btn-edit btn-warning text-decoration-none" do
+        = link_to edit_dictionary_path(dictionary), class: "btn-circle btn-edit btn-warning text-decoration-none btn-sm" do
           %i.fas.fa-edit.fa-fw
