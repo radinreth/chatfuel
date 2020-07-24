@@ -4,7 +4,7 @@ module Bots::Tracks
 
     def create
       if @template && @template.audio.attached?
-        render xml: { Play: helpers.url_for(@template.audio) }.to_xml(root: "Response")
+        render xml: { Play: helpers.polymorphic_url(@template.audio) }.to_xml(root: "Response")
       else
         render xml: { Play: helpers.audio_url("wrong-id.mp3") }.to_xml(root: "Response")
       end
@@ -12,7 +12,7 @@ module Bots::Tracks
 
     private
       def set_template
-        @template = VerboiceTemplate.find_by(status: @ticket.progress_status)
+        @template = VerboiceTemplate.find_by(status: @ticket&.progress_status)
       end
   end
 end
