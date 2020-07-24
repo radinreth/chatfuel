@@ -41,7 +41,7 @@ class Site < ApplicationRecord
   # validations
   validates :name, presence: true
   validates :sync_status, inclusion: { in: sync_statuses.keys }, allow_nil: true
-  validates :code, uniqueness: true,
+  validates :code, presence: true, uniqueness: true,
                     format: {
                       with: /\A\d{4}\z/,
                       message: I18n.t("site.invalid_code") }

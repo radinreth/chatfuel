@@ -1,7 +1,6 @@
 en:
   tickets:
     title: Tickets
-    all_tickets_list: All tickets list
     code: Code
     status: Status
     tell: Tell

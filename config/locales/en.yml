@@ -37,6 +37,7 @@ en:
     logout: Logout
     signin: Signin
     confirm_logout: Are you sure you want to logout?
+    tickets: Tickets
   signin: Sign in
   not_authorized: "You are not authorized"
   created:
