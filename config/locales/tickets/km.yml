@@ -1,0 +1,27 @@
+km:
+  tickets:
+    title: សំបុត្រ
+    code: កូដ
+    status: ស្ថានភាព
+    tell: លេខទូរស័ព្ទ
+    district: ស្រុក
+    service_description: សេវាកម្
+    requested_date: កាលបរិច្ឆេទស្នើសុំ
+    approved_date: កាលបរិច្ឆេទនអនុម័ត
+    delivery_date: កាលបរិច្ឆេទដឹកជញ្ជូន
+    type_ticket_code: វាយបញ្ចូលលេខកូដសំបុត្រ
+    status_accepted:
+      status: Accepted
+      description: "សំបុត្ររបស់អ្នកត្រូវបានទទួលយក"
+    status_paid:
+      status: Paid
+      description: "សំបុត្ររបស់អ្នកត្រូវបានបង់ប្រាក់រួចរាល់"
+    status_approved:
+      status: Approved
+      description: "សំបុត្ររបស់អ្នកត្រូវបានយល់ព្រមនៅថ្ងៃទី %{approved_date}"
+    status_rejected:
+      status: Rejected
+      description: "សំបុត្ររបស់អ្នកត្រូវបានបដិសេធនៅនៅថ្ងៃទី %{approved_date}"
+    status_delivered:
+      status: Delivered
+      description: "សំបុត្ររបស់អ្នកត្រូវបានបញ្ជូនទៅនៅថ្ងៃទី %{delivery_date}"

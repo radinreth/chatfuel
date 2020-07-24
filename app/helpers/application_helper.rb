@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def display_datetime(datetime, format = :long)
-    return '-' if datetime.blank?
+    return '' if datetime.blank?
 
     I18n.l(datetime, format: format)
   end
