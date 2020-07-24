@@ -222,6 +222,12 @@ en:
       complete: Complete
       incorrect: Incorrect
   tickets:
+    incomplete: 
+      content: Your ticket is incomplete
+    completed: 
+      content: Your ticket is already completed
+    incorrect:
+      content: This ticket is not correct
     index:
       title: Tickets
       new: New ticket
