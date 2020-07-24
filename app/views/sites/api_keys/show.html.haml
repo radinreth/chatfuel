@@ -6,11 +6,10 @@
   %li.breadcrumb-item.active
     = t('sites.api_key')
 
+= render "shared/sb-admin/page_heading", title: t("sites.api_key")
+
 - if @site.token.present?
   .card
-    .card-header.py-3
-      %h6.m-0.font-weight-bold.text-primary= t('sites.api_key')
-
     .card-body.telegram-card-body
       .row.mb-3
         .col-md-3= "#{t('sites.access_token')} :"
