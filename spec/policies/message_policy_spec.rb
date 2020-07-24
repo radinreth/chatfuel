@@ -12,7 +12,7 @@ RSpec.describe MessagePolicy do
     let(:user) { build(:user, :site_ombudsman) }
 
     it "not includes message in resolved scope" do
-      expect(resolved_scope).not_to include(message)
+      expect(resolved_scope).to include(message)
     end
   end
 
