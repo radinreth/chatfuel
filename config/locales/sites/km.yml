@@ -1,4 +1,4 @@
-en:
+km:
   sites:
     successful_create_setting: បានបង្កើតដោយជោគជ័យ
     succesfully_update_setting: បានកែតម្រូវដោយជោគជ័យ
@@ -25,3 +25,32 @@ en:
     healthcheck: ត្រួតពិនិត្យ​សុខភាព
     healthcheck_history: ប្រវត្តិត្រួតពិនិត្យសុខភាព
     type_track_code: វាយបញ្ចូលលេខកូដ
+    sites: ការិយាល័យ
+    new_site: ការិយាល័យថ្មី
+    edit_site: កែការិយាល័យ
+    code: កូដ
+    district: ស្រុក
+    province: ខេត្ត
+    location: ទីតាំង(lat/lng)
+    action: សកម្មភាព
+    track_count: ចំនួនតាមដាន
+    create_new: បង្កើតថ្មី
+    form:
+      enable?: បើកដំណើរការ?
+    edit:
+      edit: កែសម្រួល
+    index:
+      title: ការិយាល័យ
+      name: ឈ្មោះ
+      code: លេខកូដ
+      track_count: ចំនួនអ្នកតាមដានឯកសារ
+      action: សកម្មភាព
+      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
+    new_import:
+      title: នាំចូល
+      import: នាំចូល
+    new:
+      title: + នាំចូល
+      new: ការិយាល័យថ្មី
+    show:
+      title: ចំនួនបទតាមស្រុកនីមួយៗ

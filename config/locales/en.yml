@@ -83,21 +83,6 @@ en:
   variable:
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
-  dictionaries:
-    index:
-      title: Dictionaries
-      raw: Raw value
-      mapping: Mapping value
-      satisfied: Satisfied
-      wait: wait...
-      confirm: Are you sure?
-      add_pair: + Add pair
-      search_placeholder: Type name
-    new:
-      new: New dictionary
-      create: Create dictionary
-    mark_dictionary_as_report_column:
-      report_column: "Report column"
   home:
     index:
       title: Home
@@ -109,7 +94,6 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
-      type_session_id: Type session id
   dashboard:
     title: Dashboard
     total_user_visit: Total User Visit (Each Function)
@@ -153,38 +137,6 @@ en:
       average: Average
     index:
       complaints: Complaints
-  sites:
-    title: Sites
-    all: All sites
-    search: Search
-    new_site: New site
-    edit_site: Edit site
-    code: Code
-    district: District
-    province: Province
-    location: Location(lat/lng)
-    action: Action
-    track_count: Track count
-    create_new: Create site
-    form:
-      enable?: Enable?
-    edit:
-      edit: Edit site
-    index:
-      title: Sites
-      name: Name
-      code: Code
-      track_count: Track count
-      action: Action
-      confirm: Are you sure?
-    new_import:
-      title: Import sites
-      import: Import
-    new:
-      title: + Import sites
-      new: New site
-    show:
-      title: Number of tracks by each district
   users:
     edit_user: Edit user
     role: Role
@@ -221,17 +173,12 @@ en:
       incomplete: Incomplete
       complete: Complete
       incorrect: Incorrect
-  tickets:
     incomplete: 
       content: Your ticket is incomplete
     completed: 
       content: Your ticket is already completed
     incorrect:
       content: This ticket is not correct
-    index:
-      title: Tickets
-      new: New ticket
-      type_code: Type code
   js:
     updates_success_desc: Successfully updated variable %{var_name} for %{role_name}
     updates_success_title: Success!
