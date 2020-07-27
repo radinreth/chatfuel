@@ -25,3 +25,32 @@ en:
     healthcheck: Healthcheck
     healthcheck_history: Healthcheck History
     type_track_code: Type track code
+    sites: Sites
+    new_site: New site
+    edit_site: Edit site
+    code: Code
+    district: District
+    province: Province
+    location: Location(lat/lng)
+    action: Action
+    track_count: Track count
+    create_new: Create site
+    form:
+      enable?: Enable?
+    edit:
+      edit: Edit site
+    index:
+      title: Sites
+      name: Name
+      code: Code
+      track_count: Track count
+      action: Action
+      confirm: Are you sure?
+    new_import:
+      title: Import sites
+      import: Import
+    new:
+      title: + Import sites
+      new: New site
+    show:
+      title: Number of tracks by each district

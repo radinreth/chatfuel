@@ -3,10 +3,10 @@
     = t('settings.telegram_bot')
   .card-body
     .row.mb-3
-      .col-md-5 Username:
+      .col-md-5= "#{t('settings.username')}:"
       .col-md-7.text-truncate= @telegram_bot.username.presence || '-'
     .row
-      .col-md-5 Token:
+      .col-md-5= "#{t('settings.token')}:"
       .col-md-7.text-truncate= @telegram_bot.token.presence || '-'
 
   .card-footer.text-muted
