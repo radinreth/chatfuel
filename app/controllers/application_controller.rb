@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   before_action :set_raven_context
   before_action :switch_locale
 
-  def default_url_options
-    { locale: I18n.locale, location: params[:location], start_date: params[:start_date], end_date: params[:end_date] }
-  end
-
   private
     def user_not_authorized
       flash[:alert] = t("not_authorized")
@@ -21,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
 
     def switch_locale
-      I18n.locale = Setting.default_locale || I18n.default_locale
+      I18n.locale = params[:locale] || Setting.default_locale || I18n.default_locale
     end
 
     def set_raven_context
