@@ -11,7 +11,7 @@ module Bots::Tracks
 
       return template.json_response if template
 
-      OpenStruct.new(content: I18n.t("tickets.#{ticket_status}.content", locale: :km))
+      Template.send_missing_response(ticket_status, params[:platform_name])
     end
 
     def ticket_status
