@@ -25,4 +25,9 @@ class TelegramTemplate < Template
   def json_response
     { messages: self.content }
   end
+
+  def self.missing_json_response status
+    { messages: I18n.t("tickets.#{status}.content", locale: :km) }
+  end
+
 end

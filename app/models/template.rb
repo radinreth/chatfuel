@@ -46,8 +46,12 @@ class Template < ApplicationRecord
     self.class.statuses[status]
   end
 
-  def self.for(status, platform_name = 'messenger')
+  def self.for(status, platform_name = :messenger)
     find_by(status: status, type: "#{platform_name.capitalize}Template")
+  end
+
+  def self.send_missing_response status, platform_name = :messenger
+    "#{platform_name.capitalize}Template".constantize.missing_json_response(status)
   end
 
   private
