@@ -6,12 +6,15 @@ class SitesController < ApplicationController
     authorize Site
 
     @pagy, @provinces = pagy_array(SiteService.new(params).provinces)
-    @site = Site.new
   end
 
   def new
     @site = Site.new(status: :enable)
 
+    authorize @site
+  end
+
+  def edit
     authorize @site
   end
 
@@ -27,7 +30,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.js { redirect_to @site, status: :moved_permanently, notice: t("created.success") }
+        format.js { redirect_to @site, notice: t("created.success") }
       else
         format.js
       end
@@ -45,13 +48,13 @@ class SitesController < ApplicationController
   def update
     authorize @site
 
-    if @site.update(site_params)
-      flash[:notice] = t("updated.success")
-    else
-      flash[:alert] = @site.errors.full_messages
+    respond_to do |format|
+      if @site.update(site_params)
+        format.js { redirect_to @site, notice: t("updated.success") }
+      else
+        format.js
+      end
     end
-
-    redirect_to sites_path
   end
 
   def destroy

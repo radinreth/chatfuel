@@ -1,3 +1,4 @@
-$("#new_site").replaceWith("<%= j render("form", site: @site) %>");
-$(".modal-title").html("<%= t("sites.edit_site") %>");
+$("#new_site").replaceWith("<%= j(render 'form', site: @site) %>");
+$(".modal-wrapper").html("<%= j(render 'site_modal') %>");
+$(".modal-title").html("<%= t('sites.edit_site') %>");
 $("#newSiteModal").modal("show");
