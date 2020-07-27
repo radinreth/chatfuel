@@ -1,11 +1,12 @@
 .d-sm-flex.align-items-center
   = render "shared/sb-admin/page_heading", title: t(".title")
   .flex-grow-1
-  = link_to "#", class: "btn btn-primary m-0 btn-sm", data: { toggle: "modal", target: "#newTemplateModal" } do
+  = link_to new_template_path, remote: true, class: "btn btn-primary m-0 btn-sm" do
     %i.fa.fa-fw.fa-plus
     = t(".new")
+
   = render "modal"
 
-= render "templates", collection: :incomplete
-= render "templates", collection: :completed
-= render "templates", collection: :incorrect
+= render "templates", status: :incomplete
+= render "templates", status: :completed
+= render "templates", status: :incorrect

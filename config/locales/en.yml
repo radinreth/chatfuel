@@ -207,7 +207,9 @@ en:
     show:
       update: Update user
   templates:
-    not_available: Template is not exist
+    updated_success: Successfully updated
+    created_success: Successfully created
+    destroy_success: Successfully deleted
     create: Create template
     new: New template
     edit: Edit template
