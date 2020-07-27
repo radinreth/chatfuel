@@ -27,6 +27,7 @@ require("templates/index")
 require("dashboard/show")
 
 require("shared/sidebar")
+require("shared/set_language")
 require("view/dictionary")
 require("view/ticket")
 require("view/chart")
