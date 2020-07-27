@@ -203,7 +203,9 @@ km:
     show:
       update: ធ្វើបច្ចុប្បន្នភាព
   templates:
-    not_available: ទំព័រគំរូមិនមានទេ
+    updated_success: បានកែតម្រូវដោយជោគជ័យ
+    created_success: បានបង្កើតដោយជោគជ័យ
+    destroy_success: បានលុបដោយជោគជ័យ
     create: បង្កើតគំរូ
     new: គំរូថ្មី
     edit: កែគំរូ

@@ -1,5 +1,8 @@
-- if @templates.send(collection).count > 0
+- collection = @templates.select{ |temp| temp.status == status.to_s }
+
+- if collection.length > 0
   %h5.text-header
-    = t(".#{collection.to_s}")
-  .row.card-deck.mb-5{ id: collection }
-    = render partial: "template", collection: @templates.send(collection)
+    = t(".#{status.to_s}")
+
+  .row.card-deck.mb-5{ id: status }
+    = render partial: "template", collection: collection
