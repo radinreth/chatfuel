@@ -1,10 +1,7 @@
 en:
   sites:
-    update_setting: Update site setting
-    erorr_create_setting: cannot create site setting
     successful_create_setting: successfully created site setting
     succesfully_update_setting: successfully updated site setting
-    erorr_update_setting: cannot update site setting
     update_api_success: Save api key successfully
     telegram_notification: Telegram Notification
     api_key: Api Key
@@ -24,7 +21,6 @@ en:
     code: Code
     track_count: Track Count
     action: Action
-    list_of_all_list: List of all sites
     type_name_or_code: Type site name or code
     healthcheck: Healthcheck
     healthcheck_history: Healthcheck History

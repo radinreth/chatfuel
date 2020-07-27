@@ -5,8 +5,8 @@
     %li.nav-item.dropdown.no-arrow.mx-1
       %a#messagesDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
         - language = { en: "english.png", km: "khmer.png" }
-        = image_tag language[Setting.default_locale.to_sym], alt: "locale", size: "24x24", class: "mr-2"
-        %span= t("language.#{Setting.default_locale.to_sym}")
+        = image_tag language[I18n.locale], alt: "locale", size: "24x24", class: "mr-2"
+        %span= t("language.#{I18n.locale}")
         %i.fas.fa-angle-down.fa-fw
 
       .dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
