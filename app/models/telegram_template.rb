@@ -21,4 +21,8 @@ class TelegramTemplate < Template
   def human_name
     "telegram"
   end
+
+  def json_response
+    { messages: self.content }
+  end
 end

@@ -36,64 +36,23 @@ RSpec.describe Template, type: :model do
     end
   end
 
-  describe "validations" do
-    describe "#content" do
-      context "valid" do
-        it "MessengerTemplate with content" do
-          template = build(:template, content: "test", type: "MessengerTemplate")
+  context 'for' do
+    context 'messenger' do
+      let!(:template) { create(:template, :messenger) }
 
-          expect(template).to be_valid
-        end
-      end
+      it { expect(Template.for(:incomplete, :messenger)).to be_a(MessengerTemplate) }
+    end
 
-      context "invalid" do
-        let(:template) { create(:template) }
+    context 'telegram' do
+      let!(:template) { create(:template, :telegram) }
 
-        it "without :content" do
-          template.content = ""
+      it { expect(Template.for(:incomplete, :telegram)).to be_a(TelegramTemplate) }
+    end
 
-          expect { template.save! }.to raise_error
-        end
+    context 'telegram' do
+      let!(:template) { create(:template, :verboice) }
 
-        it "without :type" do
-          template.type = ""
-
-          expect(template).to be_invalid
-          expect(template.errors.messages[:type]).to eq ["can't be blank"]
-        end
-
-        it "unexpected :type" do
-          template.type = "InvalidTemplate"
-
-          expect(template).to be_invalid
-          expect(template.errors.messages[:type]).to eq ["InvalidTemplate is not a valid type"]
-        end
-
-        # https://github.com/rails/rails/issues/38681
-        xit "VerboiceTemplate has text :content" do
-          template.type = "VerboiceTemplate"
-          template.content = "should not have"
-          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mp3", content_type: "audio/mp3", identify: false)
-
-          expect(template).to be_invalid
-        end
-
-        # issue: https://github.com/rails/rails/issues/37069
-        xit "MessengerTemplate has :audio" do
-          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mp3", content_type: "audio/mp3")
-
-          expect(template).to be_invalid
-          expect(template.errors.messages[:base]).to eq ["invalid template provided"]
-        end
-
-        # issue: https://github.com/rails/rails/issues/37069
-        xit "TelegramTemplate has :audio" do
-          template.type = "TelegramTemplate"
-          template.audio.attach(io: File.open(file_path("completed_audio.mp3")), filename: "audio.mpg", content_type: "audio/mpeg")
-
-          expect(template).to be_invalid
-        end
-      end
+      it { expect(Template.for(:incomplete, :verboice)).to be_a(VerboiceTemplate) }
     end
   end
 

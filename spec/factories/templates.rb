@@ -18,5 +18,18 @@ FactoryBot.define do
       status { :incomplete }
       content { "your ticket is incomplete" }
     end
+
+    [:messenger, :telegram].each do |platform|
+      trait platform do
+        incomplete
+        type { "#{platform.to_s.capitalize}Template" }
+      end
+    end
+
+    trait :verboice do
+      incomplete
+      type { "VerboiceTemplate" }
+      audio { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'incompleted_audio.mp3'), 'audio/mp3') }
+    end
   end
 end

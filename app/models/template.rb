@@ -46,6 +46,10 @@ class Template < ApplicationRecord
     self.class.statuses[status]
   end
 
+  def self.for(status, platform_name = 'messenger')
+    find_by(status: status, type: "#{platform_name.capitalize}Template")
+  end
+
   private
 
     def ensure_text_template_dont_have_audio
@@ -64,4 +68,5 @@ class Template < ApplicationRecord
     def voice_template?
       type == "VerboiceTemplate"
     end
+
 end
