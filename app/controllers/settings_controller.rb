@@ -5,6 +5,12 @@ class SettingsController < ApplicationController
     @telegram_bot = TelegramBot.first || TelegramBot.new
   end
 
+  def set_language
+    Setting.default_locale = params[:locale]
+
+    head :ok
+  end
+
   def telegram_bot
     @telegram_bot = TelegramBot.find_or_initialize_by(id: telegram_bot_params[:id])
 

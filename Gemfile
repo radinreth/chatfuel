@@ -44,6 +44,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'oj', '~> 3.10', '>= 3.10.6'
 
 gem 'carrierwave', '~> 2.0'
+gem 'rails-settings-cached', '~> 2.0'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

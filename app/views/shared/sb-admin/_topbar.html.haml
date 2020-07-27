@@ -5,18 +5,18 @@
     %li.nav-item.dropdown.no-arrow.mx-1
       %a#messagesDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
         - language = { en: "english.png", km: "khmer.png" }
-        = image_tag language[I18n.locale], alt: "locale", size: "24x24", class: "mr-2"
-        %span= t("language.#{I18n.locale}")
+        = image_tag language[Setting.default_locale.to_sym], alt: "locale", size: "24x24", class: "mr-2"
+        %span= t("language.#{Setting.default_locale.to_sym}")
         %i.fas.fa-angle-down.fa-fw
 
       .dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
-        %a.dropdown-item.d-flex.align-items-center{:href => url_for( :locale => 'km' )}
+        = link_to set_language_settings_path(locale: 'km'), method: :put, remote: true, class: 'switch-language dropdown-item d-flex align-items-center' do
           .dropdown-list-image.mr-3
             = image_tag "khmer.png", alt: "locale", size: "24x24", class: "mr-2"
           .font-weight-bold
             .text-truncate= t('language.km')
 
-        %a.dropdown-item.d-flex.align-items-center{:href => url_for( :locale => 'en' )}
+        = link_to set_language_settings_path(locale: 'en'), method: :put, remote: true, class: 'switch-language dropdown-item d-flex align-items-center' do
           .dropdown-list-image.mr-3
             = image_tag "english.png", alt: "locale", size: "24x24", class: "mr-2"
           .font-weight-bold
