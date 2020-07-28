@@ -48,7 +48,6 @@ module Chatfuel
     end
 
     config.time_zone = 'Bangkok'
-    config.hosts << "owso-dev.ilabsea.org"
     config.action_dispatch.rescue_responses["OmniauthCallbacksController::Forbidden"] = :forbidden
   end
 end
