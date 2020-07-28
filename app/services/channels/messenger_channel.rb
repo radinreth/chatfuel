@@ -1,6 +1,8 @@
 module Channels
   class MessengerChannel < BaseChannel
     def send_message(ticket)
+      return unless ticket.message.reachable_period?
+
       RestClient.post(url, params(ticket), content_type: "application/json")
       Rails.logger.info "Sent: #{url} #{params}"
     end
