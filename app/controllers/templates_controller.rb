@@ -19,6 +19,8 @@ class TemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @template.update(template_params)
+        @template.image.purge if params[:purge_image].present?
+
         format.js { redirect_to templates_path, notice: t("templates.updated_success") }
       else
         format.js

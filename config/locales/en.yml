@@ -169,15 +169,18 @@ en:
     choose_audio: Choose audio
     type: Type*
     content: Content*
+    image: Image
     index:
       title: Templates
       new: New template
       incomplete: Incomplete
       complete: Complete
       incorrect: Incorrect
-    incomplete: 
+    incomplete:
+  tickets:
+    incomplete:
       content: Your ticket is incomplete
-    completed: 
+    completed:
       content: Your ticket is already completed
     incorrect:
       content: This ticket is not correct
