@@ -20,12 +20,6 @@ RSpec.describe Channels::TelegramChannel do
       expect(channel.send(:params, ticket)).to eq response
     end
 
-    it "#url" do
-      ENV["TELEGRAM_TOKEN"] = "abc"
-      channel = described_class.new
-      expect(channel.send(:url)).to eq "https://api.telegram.org/botabc/sendMessage"
-    end
-
     it "respond_to?" do
       channel = described_class.new
       expect(channel.respond_to?(:send_message)).to be_truthy
