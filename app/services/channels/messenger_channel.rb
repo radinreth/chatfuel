@@ -1,19 +1,17 @@
 module Channels
   class MessengerChannel < BaseChannel
     def send_message(ticket)
-      return if !ticket.message.reachable_period? || (ENV["ENABLE_FB_NOTIFY"] != "enable")
+      return if !ticket.message || (ENV["ENABLE_FB_NOTIFY"] != "enable")
 
-      RestClient.post(url, params(ticket), content_type: "application/json")
-      Rails.logger.info "Sent: #{url} #{params}"
+      if ticket.message.reachable_period?
+        RestClient.post(ENV['FB_MESSAGING_ENDPOINT'], params(ticket), content_type: "application/json")
+        Rails.logger.info "Sent: #{ENV['FB_MESSAGING_ENDPOINT']} #{params(ticket)}"
+      end
     end
 
     private
-      def url
-        @uri ||= ENV['FB_MESSAGING_ENDPOINT']
-      end
-
       def params(ticket)
-        template = response_template ticket
+        template = response_template(ticket)
         {
           messaging_type: "MESSAGE_TAG",
           tag: "CONFIRMED_EVENT_UPDATE",

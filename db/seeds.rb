@@ -146,12 +146,19 @@ begin
   variable = Variable.find_by!(name: "tracking")
   tracking_steps = []
   values = variable.values.map(&:raw_value)
+
+  # tracking for random tickets
   20.times.each do
     site_code = site_codes.sample
     ticket_code = "#{site_code}#{FFaker::Code.ean[0...8]}"
     site = Site.find_by code: site_code
     Ticket.create code: ticket_code, site_id: site.id, status: [:incomplete, :completed].sample
     tracking_steps << { name: variable.name, value: ticket_code }
+  end
+
+  # tracking for exist tickets
+  Ticket.all.each do |ticket|
+    tracking_steps << { name: variable.name, value: ticket.code }
   end
 
   messages_total_user_feedback = [
