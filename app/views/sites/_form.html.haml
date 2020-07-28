@@ -1,4 +1,4 @@
-= simple_form_for site, remote: true do |f|
+= simple_form_for site, remote: true, html: {class: 'site-form'} do |f|
   .modal-header
     %h5#newSiteLabel.modal-title
       = t("sites.create_new")

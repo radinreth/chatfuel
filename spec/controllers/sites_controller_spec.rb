@@ -39,7 +39,7 @@ RSpec.describe SitesController, type: :controller do
     let(:kamrieng) { create(:site, name: "kamrieng", code: "0212") }
 
     it "PUT :update" do
-      put :update, params: { id: kamrieng.id, site: { name: "bavil", code: "0211" } }
+      put :update, params: { id: kamrieng.id, site: { name: "bavil", code: "0211" } }, format: :js
 
       updated = assigns(:site)
 

@@ -15,7 +15,8 @@
           = link_to new_site_path, remote: true, class: "btn btn-primary" do
             %i.fas.fa-plus.fa-fw
             = t("sites.new_site")
-          = render "create-new-site-modal", site: @site
+
+          .modal-wrapper
 
     .custom-table.table.table-bordered
       .custom-row.thead
