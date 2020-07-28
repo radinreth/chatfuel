@@ -29,7 +29,8 @@
 #  fk_rails_...  (site_id => sites.id)
 #
 class Ticket < ApplicationRecord
-  STATUSES = %w(accepted paid approved rejected delivered)
+  STATUSES = %w(accepted paid approved rejected notified delivered)
+  INCOMPLETE_STATUSES = %w(accepted paid)
 
   belongs_to :site
 
@@ -42,10 +43,13 @@ class Ticket < ApplicationRecord
   validates :code, presence: true
   validates :status, inclusion: { in: STATUSES }
   before_validation :set_status
+  after_update :notify_completed_to_bot_user, if: :just_completed?
+
+  delegate :platform_name, to: :message, allow_nil: true
 
   # Instant methods
   def progress_status
-    return 'incomplete' if %w(accepted paid).include?(status)
+    return 'incomplete' if INCOMPLETE_STATUSES.include?(status)
 
     'completed'
   end
@@ -63,6 +67,15 @@ class Ticket < ApplicationRecord
     scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
     scope = scope.where("DATE(requested_date) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
+  end
+
+  def notify_completed_to_bot_user
+    BroadcastJob.perform_later(self)
+  end
+
+  def just_completed?
+    progress_status == 'completed' && \
+    INCOMPLETE_STATUSES.include?(status_previous_change)
   end
 
   private

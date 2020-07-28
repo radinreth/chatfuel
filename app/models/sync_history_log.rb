@@ -42,4 +42,19 @@ class SyncHistoryLog < ApplicationRecord
     def upsert_tickets_to_site_async
       SyncHistoryJob.perform_later(id)
     end
+
+    # accepted paid => incomplete
+    # approved rejected delivered = completed
+
+    # move to call back 
+    # x after changes from accepted -> approved
+    # x current status is completed
+    # x last interact within 7 days
+    #   > update to notified
+    #   > reuse :completed template if exist
+    #   > response based on type of those who has tracked
+
+    # xafter sync
+    #   challenge1: use async when don't know when it will be finish
+    # xcollection: completed
 end
