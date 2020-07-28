@@ -27,12 +27,6 @@ RSpec.describe Channels::MessengerChannel do
       expect(channel.send(:params, ticket)).to eq response
     end
 
-    it "#url" do
-      ENV["FB_PAGE_TOKEN"] = "abc"
-      channel = described_class.new
-      expect(channel.send(:url)).to eq "https://graph.facebook.com/v6.0/me/messages?access_token=abc"
-    end
-
     it "respond_to?" do
       channel = described_class.new
       expect(channel.respond_to?(:send_message)).to be_truthy

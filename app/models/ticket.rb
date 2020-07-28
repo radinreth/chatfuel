@@ -34,20 +34,20 @@ class Ticket < ApplicationRecord
 
   belongs_to :site
 
-  scope :accepted,  -> { where(status: 'accepted') }
-  scope :delivered, -> { where(status: 'delivered') }
-  scope :completed, -> { where(status: ['approved', 'delivered']) }
-
-  delegate :platform_name, to: :message, allow_nil: true
-
+  # validations
   validates :code, presence: true
   validates :status, inclusion: { in: STATUSES }
   before_validation :set_status
   after_update :notify_completed_to_bot_user, if: :just_completed?
 
+  # scopes
+  scope :accepted, -> { where(status: 'accepted') }
+  scope :delivered, -> { where(status: 'delivered') }
+  scope :completed, -> { where(status: ['approved', 'delivered']) }
+
   delegate :platform_name, to: :message, allow_nil: true
 
-  # Instant methods
+  # Instand methods
   def progress_status
     return 'incomplete' if INCOMPLETE_STATUSES.include?(status)
 
@@ -69,17 +69,17 @@ class Ticket < ApplicationRecord
     scope
   end
 
-  def notify_completed_to_bot_user
-    BroadcastJob.perform_later(self)
-  end
-
-  def just_completed?
-    progress_status == 'completed' && \
-    INCOMPLETE_STATUSES.include?(status_previous_change)
-  end
-
   private
     def set_status
       self.status = status.try(:downcase) || STATUSES[0]
+    end
+
+    def notify_completed_to_bot_user
+      BroadcastJob.perform_later(self)
+    end
+
+    def just_completed?
+      progress_status == 'completed' && \
+      INCOMPLETE_STATUSES.include?(status_previous_change)
     end
 end
