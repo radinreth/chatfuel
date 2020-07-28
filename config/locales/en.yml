@@ -207,6 +207,7 @@ en:
     show:
       update: Update user
   templates:
+    not_available: Template is not exist
     create: Create template
     new: New template
     edit: Edit template
@@ -221,6 +222,12 @@ en:
       complete: Complete
       incorrect: Incorrect
   tickets:
+    incomplete: 
+      content: Your ticket is incomplete
+    completed: 
+      content: Your ticket is already completed
+    incorrect:
+      content: This ticket is not correct
     index:
       title: Tickets
       new: New ticket

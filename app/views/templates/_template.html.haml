@@ -7,6 +7,8 @@
         = template.human_name.capitalize
     - if template.audio.attached?
       = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
+    - if template.image.attached?
+      = image_tag url_for(template.image), class: "img-fluid"
     %p= template.content
 
   .card-footer
