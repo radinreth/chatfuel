@@ -203,6 +203,7 @@ km:
     show:
       update: ធ្វើបច្ចុប្បន្នភាព
   templates:
+    not_available: ទំព័រគំរូមិនមានទេ
     create: បង្កើតគំរូ
     new: គំរូថ្មី
     edit: កែគំរូ
@@ -216,6 +217,16 @@ km:
       incomplete: មិនទាន់រួចរាល់
       complete: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
+  tickets:
+    incomplete: 
+      content: សំបុត្ររបស់អ្នកមិនទាន់រួចរាល់ទេ
+    completed: 
+      content: សំបុត្ររបស់អ្នកបានរួចរាល់ហើយ
+    incorrect:
+      content: សំបុត្រមិនត្រឹមត្រូវ
+    index:
+      title: សំបុត្រ
+      new: សំបុត្រថ្មី
   js:
     updates_success_desc: បានធ្វើបច្ចុប្បន្នភាព %{var_name} ដោយជោគជ័យសម្រាប់ %{role_name}
     updates_success_title: ជោគជ័យ!

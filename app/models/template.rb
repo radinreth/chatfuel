@@ -14,6 +14,7 @@ class Template < ApplicationRecord
 
   # associations
   has_one_attached :audio
+  has_one_attached :image
 
   # validations
   before_save :ensure_text_template_dont_have_audio
@@ -45,6 +46,14 @@ class Template < ApplicationRecord
     self.class.statuses[status]
   end
 
+  def self.for(status, platform_name = :messenger)
+    find_by(status: status, type: "#{platform_name.capitalize}Template")
+  end
+
+  def self.send_missing_response status, platform_name = :messenger
+    "#{platform_name.capitalize}Template".constantize.missing_json_response(status)
+  end
+
   private
 
     def ensure_text_template_dont_have_audio
@@ -63,4 +72,5 @@ class Template < ApplicationRecord
     def voice_template?
       type == "VerboiceTemplate"
     end
+
 end

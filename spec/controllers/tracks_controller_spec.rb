@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Bots::Tracks::ChatbotController, type: :controller do
+  let!(:template) { create(:template, status: "incomplete", type: "MessengerTemplate") }
+
   before do
     content = create(:text_message, messenger_user_id: 123)
     create(:message, content: content)
@@ -8,7 +10,7 @@ RSpec.describe Bots::Tracks::ChatbotController, type: :controller do
   end
 
   it "POST :create" do
-    params = { klass: "Text", messenger_user_id: 123, code: "1234-56789" }
+    params = { platform_name: "Messenger", messenger_user_id: 123, code: "1234-56789" }
 
     post :create, params: params
 

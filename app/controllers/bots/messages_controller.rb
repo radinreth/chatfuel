@@ -5,6 +5,10 @@ module Bots
     before_action :set_site
     before_action :set_step
 
+    def create
+      head :ok
+    end
+
     def done
       @message.completed! if params[:name] == "done" && params[:value] == "true"
       head :ok
