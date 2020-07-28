@@ -10,5 +10,9 @@ FactoryBot.define do
     trait :incomplete do
       status { "accepted" }
     end
+
+    trait :incomplete do
+      status { "accepted" }
+    end
   end
 end

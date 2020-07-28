@@ -20,7 +20,7 @@ RSpec.describe Channels::MessengerChannel do
             text: "your ticket is incomplete"
           },
         messaging_type: "MESSAGE_TAG",
-        recipient: { id: "123" },
+        recipient: { id: message.session_id },
         tag: "CONFIRMED_EVENT_UPDATE"
       }
 

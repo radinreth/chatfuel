@@ -12,7 +12,7 @@ RSpec.describe Channels::TelegramChannel do
     it "#params" do
       channel = described_class.new
       response = {
-        chat_id: "123",
+        chat_id: message.session_id,
         disable_notification: true,
         text: "your ticket is incomplete"
       }
