@@ -9,7 +9,7 @@ module Channels
 
     private
       def url
-        @uri ||= "https://graph.facebook.com/v6.0/me/messages?access_token=#{ENV["FB_PAGE_TOKEN"]}"
+        @uri ||= ENV['FB_MESSAGING_ENDPOINT']
       end
 
       def params(ticket)
