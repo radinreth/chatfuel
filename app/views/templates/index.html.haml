@@ -1,7 +1,7 @@
 .d-sm-flex.align-items-center
   = render "shared/sb-admin/page_heading", title: t(".title")
   .flex-grow-1
-  = link_to new_template_path, remote: true, class: "btn btn-primary m-0 btn-sm" do
+  = link_to new_template_path, remote: true, class: "btn btn-primary m-0" do
     %i.fa.fa-fw.fa-plus
     = t(".new")
 
