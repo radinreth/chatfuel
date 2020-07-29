@@ -21,7 +21,7 @@ RSpec.describe TemplatesController, type: :controller do
 
   it "POST :create" do
     expect do
-      post :create, params: { template: { content: "new template", type: "MessengerTemplate" } }
+      post :create, params: { template: { content: "new template", type: "MessengerTemplate" } }, format: :js
     end.to change { Template.count }.by(1)
   end
 
@@ -29,11 +29,10 @@ RSpec.describe TemplatesController, type: :controller do
     let(:new_template) { create(:template, content: "new template") }
 
     it "PUT :update" do
-      put :update, params: { id: new_template.id, template: { content: "template" } }
+      put :update, params: { id: new_template.id, template: { content: "template" } }, format: :js
 
       updated = assigns(:template)
 
-      expect(response).to have_http_status(:moved_permanently)
       expect(updated.content).to eq "template"
     end
   end
