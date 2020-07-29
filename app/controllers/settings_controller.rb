@@ -5,13 +5,19 @@ class SettingsController < ApplicationController
     @telegram_bot = TelegramBot.first || TelegramBot.new
   end
 
+  def set_language
+    Setting.default_locale = params[:locale]
+
+    head :ok
+  end
+
   def telegram_bot
     @telegram_bot = TelegramBot.find_or_initialize_by(id: telegram_bot_params[:id])
 
     if @telegram_bot.update(telegram_bot_params)
       flash[:notice] = I18n.t("settings.successful_update_bot")
     else
-      flash[:alert] = I18n.t("settings.failure_update_bot")
+      flash[:alert] = @telegram_bot.errors.full_messages
     end
 
     redirect_to settings_path

@@ -1,14 +1,14 @@
 = simple_form_for dictionary, url: dictionaries_path, remote: true do |f|
   .modal-header
-    %h5#newDictionaryLabel.modal-title New Dictionary
+    %h5#newDictionaryLabel.modal-title= t('dictionaries.new_dictionary')
     %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
       %span{"aria-hidden" => "true"} ×
   .modal-body
-    = f.input :type, as: :select, collection: { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second, selected: 1, input_html: { name: "variable[type]" }
-    = f.input :name, input_html: { name: "variable[name]" }
+    = f.input :type, as: :select, collection: { "BothVariable": "Both", "TextVariable": "Text", "VoiceVariable": "Voice" }, value_method: :first, label_method: :second, selected: 1, input_html: { name: "variable[type]" }, label: t('dictionaries.type')
+    = f.input :name, input_html: { name: "variable[name]" }, label: t('dictionaries.name')
 
     .form-group
-      %label Permission
+      %label= t('dictionaries.permission')
       .d-flex.mb-4
         = hidden_field_tag('variable[role_ids][]', nil)
         - @roles.each do |role|
@@ -21,7 +21,7 @@
       %label.switch.m-0
         = f.input_field :report_enabled, label: false, name: "variable[report_enabled]"
         %span.slider.round
-      %span.ml-1 Report enabled
+      %span.ml-1= t('dictionaries.mark_as_feedback')
     %div.invalid-message
       = dictionary.errors.full_messages_for(:report_enabled).to_sentence
 
@@ -29,8 +29,8 @@
       %label.switch.m-0
         = f.input_field :is_location, label: false, name: 'variable[is_location]'
         %span.slider.round
-      %span.ml-1 Mark as site location
+      %span.ml-1= t('dictionaries.mark_as_site_location')
 
   .modal-footer
-    %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-    = f.submit "Save changes", class: "btn btn-primary"
+    %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
+    = f.submit t('shared.save'), class: "btn btn-primary"
