@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index] do
     collection do
       put :telegram_bot
+      put :set_language
     end
   end
 

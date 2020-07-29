@@ -83,20 +83,6 @@ km:
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
-  dictionaries:
-    index:
-      title: ពាក្យគន្លឹះ
-      raw: តម្លៃដើម
-      mapping: តម្លៃសម្រេច
-      satisfied: ពេញចិត្ត
-      wait: រង់ចាំ ...
-      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
-      add_pair: + បញ្ចូលតម្លៃ
-    new:
-      new: ពាក្យគន្លឹះថ្មី
-      create: បង្កើតពាក្យគន្លឹះ
-    mark_dictionary_as_report_column:
-      report_column: យកធ្វើរបាយការណ៏
   home:
     index:
       title: ទំព័រដើម
@@ -131,6 +117,7 @@ km:
     overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរការ, ការដាក់ស្នើ, ការបញ្ចប់)
     accessed: ចូលដំណើរការ
     submitted: ការដាក់ស្នើ
+    delivered: Delivered
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
@@ -150,43 +137,12 @@ km:
       average: មធ្យម
     index:
       complaints: បណ្តឹង
-  sites:
-    title: ការិយាល័យ
-    all: ការិយាល័យទាំងអស់
-    search: ស្វែងរក
-    new_site: ការិយាល័យថ្មី
-    edit_site: កែការិយាល័យ
-    code: កូដ
-    district: ស្រុក
-    province: ខេត្ត
-    location: ទីតាំង(lat/lng)
-    action: សកម្មភាព
-    track_count: ចំនួនតាមដាន
-    create_new: បង្កើតថ្មី
-    form:
-      enable?: បើកដំណើរការ?
-    edit:
-      edit: កែសម្រួល
-    index:
-      title: ការិយាល័យ
-      name: ឈ្មោះ
-      code: លេខកូដ
-      track_count: ចំនួនអ្នកតាមដានឯកសារ
-      action: សកម្មភាព
-      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
-    new_import:
-      title: នាំចូល
-      import: នាំចូល
-    new:
-      title: + នាំចូល
-      new: ការិយាល័យថ្មី
-    show:
-      title: ចំនួនបទតាមស្រុកនីមួយៗ
   users:
     edit_user: កែតម្រូវអ្នកប្រើប្រាស់
     role: តួនាទី
     email: អ៊ីមែល
     active_user: អ្នកប្រើប្រាស់សកម្ម?
+    type_email: វាយបញ្ចូលអ៊ីមែល
     form:
       enable: បើកដំណើរការ
     edit:

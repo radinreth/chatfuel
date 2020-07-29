@@ -1,28 +1,28 @@
-= render "shared/sb-admin/page_heading", title: t(".dictionaries")
+= render "shared/sb-admin/page_heading", title: t("dictionaries.dictionaries")
 
 .card.shadow.mb-4
   .card-body
     .mb-4
       .d-flex.align-items-center.justify-content-between
         .d-flex.align-items-center
-          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.index.search_placeholder'), url: dictionaries_path
+          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.type_name'), url: dictionaries_path
 
         .actions
           = link_to "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#newDictionaryModal" } do
             %i.fas.fa-plus.fa-fw
-            New Dictionary
+            = t('dictionaries.new_dictionary')
 
           = render "create-new-dictionary-modal", dictionary: @variable
 
     .table-responsive
-      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+      %table#dataTable.table.table-bordered.w-100
         %thead
           %tr
-            %th Name
-            %th Permission
-            %th Mark as feedback
-            %th Mark as site location
-            %th Action
+            %th= t('dictionaries.name')
+            %th= t('dictionaries.permission')
+            %th= t('dictionaries.mark_as_feedback')
+            %th= t('dictionaries.mark_as_site_location')
+            %th= t('dictionaries.action')
         %tbody
           = render @variables
 

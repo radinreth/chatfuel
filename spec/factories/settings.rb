@@ -2,11 +2,15 @@
 #
 # Table name: settings
 #
-#  id               :bigint(8)        not null, primary key
-#  completed_text   :text
-#  incompleted_text :text
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id         :bigint(8)        not null, primary key
+#  value      :text
+#  var        :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_settings_on_var  (var) UNIQUE
 #
 FactoryBot.define do
   factory :setting do

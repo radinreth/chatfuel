@@ -1,0 +1,17 @@
+km:
+  dictionaries:
+    name: ឈ្មោះ
+    permission: ការអនុញ្ញាត
+    mark_as_feedback: សម្គាល់ថាជាមតិប្រតិកម្ម
+    mark_as_site_location: សម្គាល់ជាទីតាំង
+    action: សកម្មភាព
+    new_dictionary: ពាក្យគន្លឹះថ្មី
+    type_name: វាយបញ្ចូលឈ្មោះ
+    dictionaries: ពាក្យគន្លឹះ
+    type: ប្រភេទ
+    location: ទីតាំង
+    unmark_as_feedback: មិនសម្គាល់ជាមតិប្រតិកម្ម
+    raw_value: តម្លៃដើម
+    mapping_value: តម្លៃផ្គូរផ្គង
+    add_pair: បន្ថែមគូតម្លៃ
+    satisfied: ពេញចិត្ត

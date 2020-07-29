@@ -1,10 +1,7 @@
 en:
   sites:
-    update_setting: Update site setting
-    erorr_create_setting: cannot create site setting
     successful_create_setting: successfully created site setting
     succesfully_update_setting: successfully updated site setting
-    erorr_update_setting: cannot update site setting
     update_api_success: Save api key successfully
     telegram_notification: Telegram Notification
     api_key: Api Key
@@ -24,8 +21,36 @@ en:
     code: Code
     track_count: Track Count
     action: Action
-    list_of_all_list: List of all sites
     type_name_or_code: Type site name or code
     healthcheck: Healthcheck
     healthcheck_history: Healthcheck History
     type_track_code: Type track code
+    sites: Sites
+    new_site: New site
+    edit_site: Edit site
+    code: Code
+    district: District
+    province: Province
+    location: Location(lat/lng)
+    action: Action
+    track_count: Track count
+    create_new: Create site
+    form:
+      enable?: Enable?
+    edit:
+      edit: Edit site
+    index:
+      title: Sites
+      name: Name
+      code: Code
+      track_count: Track count
+      action: Action
+      confirm: Are you sure?
+    new_import:
+      title: Import sites
+      import: Import
+    new:
+      title: + Import sites
+      new: New site
+    show:
+      title: Number of tracks by each district

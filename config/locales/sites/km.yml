@@ -1,0 +1,56 @@
+km:
+  sites:
+    successful_create_setting: បានបង្កើតដោយជោគជ័យ
+    succesfully_update_setting: បានកែតម្រូវដោយជោគជ័យ
+    update_api_success: រក្សា api key ដោយជោគជ័យ
+    telegram_notification: សេចក្តីជូនដំណឹងតាម Telegram
+    api_key: Api Key
+    no_data: មិនមានលេខកូដ Api នៅឡើយទេ
+    create_api_key_description: បង្កើត Api Key ដើម្បីអនុញ្ញាតឱ្យបញ្ជូនទិន្នន័យទៅប្រព័ន្ធ
+    generate_api_key: បង្កើត Api Key
+    regenerate_api_key: បង្កើត Api Key ឡើងវិញ
+    are_you_sure_to_regenerate_api: តើអ្នកប្រាកដជាបង្កើតលេខកូដ API ថ្មីឡើងវិញ?
+    access_token: និមិត្តសញ្ញាចូលប្រើ
+    are_you_sure_to_delete_site: តើអ្នកប្រាកដថានឹងលុបវាឬទេ?
+    whitelist: បញ្ជីស
+    whitelist_ip: Whitelist IP(s)
+    copy: ថតចម្លង
+    whitelist_example: 'ឧទាហរណ៍: * or 192.168.1.1; 192.168.1.2 (ប្រើប្រាស សញ្ញាក្បៀស សម្រាប់ IP ច្រើន)'
+    detail: ពត៌មានលំអិត
+    province: ខេត្ត
+    code: លេខកូដ
+    track_count: ចំនួនតាមដាន
+    action: សកម្មភាព
+    type_name_or_code: វាយបញ្ចូលឈ្មោះឬលេខកូដ
+    healthcheck: ត្រួតពិនិត្យ​សុខភាព
+    healthcheck_history: ប្រវត្តិត្រួតពិនិត្យសុខភាព
+    type_track_code: វាយបញ្ចូលលេខកូដ
+    sites: ការិយាល័យ
+    new_site: ការិយាល័យថ្មី
+    edit_site: កែការិយាល័យ
+    code: កូដ
+    district: ស្រុក
+    province: ខេត្ត
+    location: ទីតាំង(lat/lng)
+    action: សកម្មភាព
+    track_count: ចំនួនតាមដាន
+    create_new: បង្កើតថ្មី
+    form:
+      enable?: បើកដំណើរការ?
+    edit:
+      edit: កែសម្រួល
+    index:
+      title: ការិយាល័យ
+      name: ឈ្មោះ
+      code: លេខកូដ
+      track_count: ចំនួនអ្នកតាមដានឯកសារ
+      action: សកម្មភាព
+      confirm: តើ​អ្នក​ប្រាកដ​ឬ​អត់?
+    new_import:
+      title: នាំចូល
+      import: នាំចូល
+    new:
+      title: + នាំចូល
+      new: ការិយាល័យថ្មី
+    show:
+      title: ចំនួនបទតាមស្រុកនីមួយៗ
