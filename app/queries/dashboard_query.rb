@@ -63,7 +63,7 @@ class DashboardQuery
     end
 
     def accessed
-      data = StepValue.accessed(@options)
+      data = Message.accessed(@options)
 
       { name: I18n.t("dashboard.accessed"), data: data } if data.present?
     end
