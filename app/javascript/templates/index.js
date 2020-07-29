@@ -1,42 +1,92 @@
 OWSO.TemplatesIndex = (() => {
+  return {
+    init
+  }
+
   function init() {
     attachEventToTemplateType()
     attachEventToAudio()
+    attachEventToImage();
+    onClickDeleteImage();
   }
 
   function attachEventToTemplateType() {
     $(document).on("change", "#template_type", function(e) {
-      var val = $(this).val()
-      $(".template_content, .template_audio").hide()
-      if( val == "MessengerTemplate" || val == "TelegramTemplate" ) {
-        $(".template_content").show()
-      } else {
-        $(".template_audio").show()
+      $(".template_content, .template_audio, .template_image").hide();
+
+      if ($(this).val() == "VerboiceTemplate") {
+        return $(".template_audio").show();
       }
+
+      $(".template_content").show();
+      $('.template_image').show();
     })
-  
-    $("#template_type").trigger("change")
+
+    $("#template_type").trigger("change");
   }
 
   function attachEventToAudio() {
     $(document).on("change", "#template_audio", function(e) {
-      
-      var target = e.currentTarget
-      var file = target.files[0]
+      var input = e.currentTarget
       var $audio = $(".modal-body").find("audio")
       var $audioName = $(".modal-body").find("#audio-name")
 
-      if (target.files && file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $audio.attr("src" , e.target.result )
-          $audioName.text(file.name)
-        }
-        reader.readAsDataURL(file)
-      }
-      
+      readURL(input, function(result) {
+        $audio.attr("src" , result);
+        $audioName.text(input.files[0].name);
+      })
     })
   }
 
-  return { init }
+  function attachEventToImage() {
+    $(document).on("change", "#template_image", function(e) {
+      let input = e.currentTarget;
+
+      readURL(input, function(result) {
+        $('.image-preview').attr('src', result);
+        showButtonDeleteImage();
+        setUncheckDeleteImage();
+      })
+    })
+  }
+
+  function readURL(input, callback) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        !!callback && callback(e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function onClickDeleteImage() {
+    $(document).on('click', '.btn-delete', function(e) {
+      setPreviewToDefaultImage();
+      setCheckDeleteImage();
+      hideButtonDeleteImage();
+    })
+  }
+
+  function setUncheckDeleteImage() {
+    $('input[name=purge_image]').attr('checked', false);
+  }
+
+  function setPreviewToDefaultImage() {
+    $('.image-preview').attr('src', $('.image-preview').data('default'));
+  }
+
+  function setCheckDeleteImage() {
+    $('input[name=purge_image]').attr('checked', true);
+  }
+
+  function hideButtonDeleteImage() {
+    $('.btn-delete').addClass('d-none');
+  }
+
+  function showButtonDeleteImage() {
+    $('.btn-delete').removeClass('d-none');
+  }
 })()

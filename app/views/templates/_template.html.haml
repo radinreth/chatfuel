@@ -5,11 +5,16 @@
 
       %h6.mb-0.platform-name
         = template.human_name.capitalize
-    - if template.audio.attached?
-      = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block mb-3 audio-player-preview"
+
     - if template.image.attached?
-      = image_tag url_for(template.image), class: "img-fluid"
-    %p= template.content
+      - dimension = ActiveStorage::Analyzer::ImageAnalyzer.new(template.image).metadata
+      .image-wrapper.mb-2{ class: (dimension[:width] > dimension[:height] ? 'crop-width' : 'crop-height') }
+        = image_tag url_for(template.image)
+
+    - if template.audio.attached?
+      = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block audio-player-preview"
+
+    = template.content
 
   .card-footer
     = link_to edit_template_path(template), remote: true, class: "btn btn-circle btn-sm btn-warning mr-1" do
