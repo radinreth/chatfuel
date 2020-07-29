@@ -2,13 +2,15 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @template = Template.new
-    @templates = Template.order(type: :asc)
+    @templates = Template.order(type: :asc).includes(audio_attachment: :blob)
+
     authorize @templates
   end
 
   def new
     @template = Template.new
+
+    authorize @template
   end
 
   def edit
@@ -17,26 +19,20 @@ class TemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @template.update(template_params)
-        format.html { redirect_to templates_path, status: :moved_permanently }
-        format.js { redirect_to templates_path, status: :moved_permanently }
-        format.json { head :no_content }
+        format.js { redirect_to templates_path, notice: t("templates.updated_success") }
       else
         format.js
-        format.json { render  json: @template.errors,
-                              status: :unprocessable_entity }
       end
     end
   end
 
   def create
-    @templates = Template.order(type: :asc)
     @template = Template.new(template_params)
+
     respond_to do |format|
       if @template.save
-        format.html { redirect_to templates_path, status: :moved_permanently, notice: t("created.success") }
-        format.js
+        format.js { redirect_to templates_path, notice: t("templates.created_success") }
       else
-        format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
         format.js
       end
     end
@@ -44,7 +40,8 @@ class TemplatesController < ApplicationController
 
   def destroy
     @template.destroy
-    redirect_to templates_path, status: :moved_permanently
+
+    redirect_to templates_path, status: :moved_permanently, notice: t("templates.destroy_success")
   end
 
   private
