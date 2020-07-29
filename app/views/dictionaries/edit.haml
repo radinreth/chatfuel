@@ -1,4 +1,4 @@
-= simple_form_for @variable, url: dictionary_path do |f|
+= simple_form_for @variable, as: :variable, url: dictionary_path do |f|
   .d-sm-flex.align-items-center.justify-content-between.mb-4
     %h1.h3.mb-0.text-gray-800
       = @variable.name
@@ -25,14 +25,13 @@
 
                 %th
             %tbody
-              = f.simple_fields_for :values, include_id: false do |value_form|
-                = render "value_form", value_form: value_form
-            %tfoot
+              = f.simple_fields_for :values, include_id: false do |builder|
+                = render "value_fields", f: builder
+
               %tr
                 %td{ colspan: 4 }
-                  = link_to "#", class: "text-decoration-none dictionary-add-pair" do
-                    %i.fa.fa-sm.fa-plus-circle.fa-fw
-                    = t('dictionaries.add_pair')
+                  - title = "<i class='fa fa-sm fa-plus-circle fa-fw'></i> Add pair"
+                  = link_to_add_fields(title, f, :values)
 
         %h6.mt-4.permission-title= t('dictionaries.permission')
         .d-flex.mb-4
