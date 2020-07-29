@@ -1,6 +1,8 @@
 .card.mb-3
   .card-header
     = t('settings.telegram_bot')
+    = link_to 'Need help?', help_settings_path
+
   .card-body
     .row.mb-3
       .col-md-5= "#{t('settings.username')}:"
