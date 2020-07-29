@@ -5,26 +5,31 @@
 #  id                :bigint(8)        not null, primary key
 #  created_at        :datetime
 #  updated_at        :datetime
+#  message_id        :bigint(8)        not null
 #  site_id           :bigint(8)
-#  step_id           :bigint(8)        not null
+#  variable_id       :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
 #
 # Indexes
 #
+#  index_step_values_on_message_id         (message_id)
 #  index_step_values_on_site_id            (site_id)
-#  index_step_values_on_step_id            (step_id)
+#  index_step_values_on_variable_id        (variable_id)
 #  index_step_values_on_variable_value_id  (variable_value_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (message_id => messages.id)
 #  fk_rails_...  (site_id => sites.id)
-#  fk_rails_...  (step_id => steps.id)
+#  fk_rails_...  (variable_id => variables.id)
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
-  belongs_to :step
+  belongs_to :step, optional: true
   belongs_to :variable_value
   belongs_to :site, optional: true
+  belongs_to :message
+  belongs_to :variable
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
@@ -46,8 +51,9 @@ class StepValue < ApplicationRecord
   end
 
   def self.total_users_visit_each_functions(params = {})
-    scope = default_join
-    scope = filter(scope, params)
+    scope = all
+    scope = scope.joins(variable_value: :variable)
+    # scope = filter(scope, params)
     scope = scope.where(variables: { is_user_visit: true })
     scope = scope.order(:raw_value)
     scope = scope.group(:raw_value)
