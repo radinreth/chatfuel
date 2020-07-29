@@ -49,13 +49,13 @@
 
           = pie_chart @query.total_users_feedback, colors: chartjs_colors.take(3), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
 
-  .col-xl-6.col-lg-5
-    .card.shadow.mb-4
-      .card-header.py-3
-        .h5.m-0.font-weight-bold.text-primary
-          = t("dashboard.number_of_tracked_ticket")
-      .card-body
-        = column_chart @query.number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
+  / .col-xl-6.col-lg-5
+  /   .card.shadow.mb-4
+  /     .card-header.py-3
+  /       .h5.m-0.font-weight-bold.text-primary
+  /         = t("dashboard.number_of_tracked_ticket")
+  /     .card-body
+  /       = column_chart @query.number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
 
   .col-xl-6.col-lg-5
     .card.shadow.mb-4

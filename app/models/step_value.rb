@@ -25,7 +25,6 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
-  belongs_to :step, optional: true
   belongs_to :variable_value
   belongs_to :site, optional: true
   belongs_to :message
@@ -68,20 +67,31 @@ class StepValue < ApplicationRecord
   end
 
   def self.total_users_feedback(params = {})
-    scope = default_join
-    scope = filter(scope, params)
-    scope = scope.where(variables: { report_enabled: true })
-    scope = scope.group(:raw_value)
-    scope.count
+    scope = all
+    # scope = filter(scope, params)
+    scope = scope.where('variable_id': Variable.where(report_enabled: true))
+    scope = scope.group(:variable_value_id)
+    aggregate_result = scope.count
+
+    return {} if aggregate_result.nil? || aggregate_result.empty?
+
+    variable_value = VariableValue.find(aggregate_result.keys.first)
+    { variable_value.raw_value => aggregate_result.values.first }
   end
 
   def self.most_request_service(params = {})
-    scope = default_join
-    scope = filter(scope, params)
-    scope = scope.where(variables: { is_most_request: true })
-    scope = scope.order("count_all DESC")
-    scope = scope.group("variable_values.raw_value").limit(1)
-    scope.count
+    scope = all
+    # scope = filter(scope, params)
+    
+    scope = scope.where('variable_id': Variable.where(is_most_request: true))
+    scope = scope.order('count_all DESC')
+    scope = scope.group('variable_value_id').limit(1)
+    result = scope.count
+
+    return {} if result.nil? || result.empty?
+
+    variable_value = VariableValue.find(result.keys.first)
+    {variable_value.raw_value => result.values.first}
   end
 
   def self.accessed(params = {})
