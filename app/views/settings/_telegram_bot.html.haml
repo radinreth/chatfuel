@@ -2,6 +2,7 @@
   .card-header.d-flex
     = image_tag "telegram.svg", class: "mr-2", width: 27
     = t('settings.telegram_bot')
+    = bot_status_html(@telegram_bot).html_safe
     .flex-grow-1
     = link_to t('settings.need_help'), help_settings_path
 
