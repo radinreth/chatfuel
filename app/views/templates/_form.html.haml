@@ -1,9 +1,23 @@
-= simple_form_for @template, remote: true, html: { class: 'template-form' } do |f|
+= simple_form_for @template, as: :template, remote: true, html: { class: 'template-form' } do |f|
 
   = f.input :type, as: :select, label: t("templates.type"), collection: ::Template.platform_names, input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }, include_blank: false
 
-  = f.input :image, as: :file
   = f.input :content, label: t("templates.content"), input_html: { class: "form-control-sm" }, label_html: { class: "form-label" }
+
+  .form-group.template_image.mb-4
+    %label.form-label= t("templates.image")
+
+    .d-flex
+      .position-relative
+        %label.image-preview-wrapper.m-0
+          - image_url = @template.image.presence || 'default_image.png'
+          = image_tag image_url, class: 'image-preview', 'data-default' => image_path('default_image.png')
+
+          = f.input :image, as: :file, wrapper_html: { class: "d-none" }
+
+        .btn-delete.pointer.position-absolute.text-center{class: ('d-none' unless @template.image.present?) }
+          %i.fas.fa-trash-alt.text-white
+          %input.d-none{ type: :checkbox, name: "purge_image"}
 
   .form-group.template_audio
     %label.form-label

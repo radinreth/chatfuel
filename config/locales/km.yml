@@ -169,16 +169,17 @@ km:
     choose_audio: ជ្រើសរើសសំលេង
     type: ប្រភេទ*
     content: ប្រយោគ*
+    image: រូបភាព
     index:
-      title: ពុម្ព
-      new: ពុម្ពថ្មី
+      title: គំរូ
+      new: គំរូថ្មី
       incomplete: មិនទាន់រួចរាល់
       complete: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
   tickets:
-    incomplete: 
+    incomplete:
       content: សំបុត្ររបស់អ្នកមិនទាន់រួចរាល់ទេ
-    completed: 
+    completed:
       content: សំបុត្ររបស់អ្នកបានរួចរាល់ហើយ
     incorrect:
       content: សំបុត្រមិនត្រឹមត្រូវ
