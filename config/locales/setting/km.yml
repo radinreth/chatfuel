@@ -5,6 +5,8 @@ km:
     setting: កំណត់
     username: ឈ្មោះបត
     token: Token
+    need_help: ត្រូវការជំនួយ?
+
   telegram_bot:
     telegram_bot: 'Telegram Bot'
     token: 'Token'
@@ -29,7 +31,7 @@ km:
     copy_the_bot_access_token: "ចម្លង the Telegram bot's access token."
     token_note: "ចំណាំ: The token is a string along the lines of <code>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALD</code> saw that is required to authorize the bot and send requests to the Bot API. Keep your token secure and store it safely, it can be used by anyone to control your bot."
     enter_the_bot_token: "បញ្ចូល the Telegram bot's access token"
-    go_to_setting: "ចូលទៅកាន់ <b>Setting</b> ហើយចុចប៊ូតុង <b class='badge badge-info'>Edit</b>។"
+    go_to_setting: "ចូលទៅកាន់ <b>Setting</b> ហើយចុចប៊ូតុង <a class='btn-circle btn-sm btn-warning text-decoration-none'><i class='fas fa-edit fa-fw text-white'></i></a>។"
     fill_in_token: "បញ្ចូលព័ត៌មាន token និង username ហើយចុចប៊ូតុង <button class='btn btn-primary btn-sm'>save</button>"
     telegram_chat_group: 'ក្រុមជជែកក្នុង Telegram'
     to_add_group_chat: 'ដើម្បីបញ្ចូល Telegram bot ទៅក្នុងក្រុមជជែក Telegram, ដំបូងចូលទៅកាន់កម្មវិធី Telegram ហើយរើសក្រុមដែលអ្នកចង់បាន'
