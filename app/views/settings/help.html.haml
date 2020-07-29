@@ -1,7 +1,7 @@
 .d-flex
   = render "shared/sb-admin/page_heading", title: t('telegram_bot.telegram_bot')
   .flex-grow-1
-  %div= link_to t('shared.done'), settings_url, class: 'btn btn-primary'
+  %div= link_to t('shared.done'), settings_url, class: 'btn btn-primary btn-sm'
 
 .medium-width
   %p= t('telegram_bot.you_can_configure_your_bot')
@@ -9,7 +9,7 @@
   %div
     %h5= t('telegram_bot.visit_bot_father_to_create_newbot')
     %div
-      = link_to t('telegram_bot.create_new_bot'), 'https://telegram.me/botfather', class: 'btn btn-link'
+      = link_to t('telegram_bot.create_new_bot'), 'https://telegram.me/botfather', class: 'btn btn-link', target: '_blank'
       %span= t('telegram_bot.using_the_bot_father')
     = image_tag 'telegram_bot/bot_father.png', class: 'image'
 
