@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = Template.order(type: :asc).includes(audio_attachment: :blob)
+    @templates = Template.order(type: :asc).includes(audio_attachment: :blob, image_attachment: :blob)
 
     authorize @templates
   end
