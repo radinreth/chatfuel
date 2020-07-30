@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
     post :set_most_request, on: :collection
     post :set_user_visit, on: :collection
+    post :set_service_accessed, on: :collection
   end
   # resources :tracks, only: [:create]
   # resources :feedbacks, only: [:create]
