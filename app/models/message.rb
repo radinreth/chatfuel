@@ -46,10 +46,12 @@ class Message < ApplicationRecord
     message
   end
 
-  def self.accessed options = {}
+  def self.accessed(options = {})
+    variable = Variable.find_by(is_service_accessed: true)
+
     scope = all
     scope = filter(scope, options)
-    scope.count
+    scope.where(step_values: variable.step_values) if variable.present?
   end
 
   def self.complete_all
