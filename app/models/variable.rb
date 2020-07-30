@@ -32,6 +32,7 @@ class Variable < ApplicationRecord
   # callbacks
   before_save :ensure_only_one_is_most_request
   before_save :ensure_only_one_is_user_visit
+  before_save :ensure_only_one_is_service_accessed
 
   # validations
   validate :only_one_report_column
@@ -66,6 +67,11 @@ class Variable < ApplicationRecord
     def ensure_only_one_is_user_visit
       return unless is_user_visit_changed?
       sibling.update_all(is_user_visit: false)
+    end
+
+    def ensure_only_one_is_service_accessed
+      return unless is_service_accessed_changed?
+      sibling.update_all(is_service_accessed: false)
     end
 
     def only_one_report_column
