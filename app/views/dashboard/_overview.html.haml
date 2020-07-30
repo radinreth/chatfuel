@@ -1,0 +1,11 @@
+.col-xl-6.col-lg-5
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      .h5.m-0.font-weight-bold.text-primary
+        = t("dashboard.overview")
+        = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
+          %i.fas.fa-cog.cog
+    .card-body
+      .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+        = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :is_service_accessed, modal_id: 'chooseAccessed'
+        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, height: "250px"
