@@ -23,6 +23,8 @@ class SettingsController < ApplicationController
     redirect_to settings_path
   end
 
+  def help; end
+
   private
     def telegram_bot_params
       params.require(:telegram_bot).permit(:id, :username, :token)

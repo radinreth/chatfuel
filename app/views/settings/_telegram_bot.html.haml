@@ -1,6 +1,11 @@
-.card.mb-3
-  .card-header
+.setting-card.card.mb-3
+  .card-header.d-flex
+    = image_tag "telegram.svg", class: "mr-2", width: 27
     = t('settings.telegram_bot')
+    = bot_status_html(@telegram_bot).html_safe
+    .flex-grow-1
+    = link_to t('settings.need_help'), help_settings_path
+
   .card-body
     .row.mb-3
       .col-md-5= "#{t('settings.username')}:"
@@ -9,7 +14,7 @@
       .col-md-5= "#{t('settings.token')}:"
       .col-md-7.text-truncate= @telegram_bot.token.presence || '-'
 
-  .card-footer.text-muted
+  .card-footer
     = link_to '#', class: "btn-circle btn-sm btn-warning text-decoration-none", "data-target" => "#telegram-bot-modal", "data-toggle" => "modal" do
       %i.fas.fa-edit.fa-fw
 
