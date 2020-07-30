@@ -38,6 +38,7 @@ en:
     signin: Signin
     confirm_logout: Are you sure you want to logout?
     tickets: Tickets
+    about: About
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
   created:
@@ -195,3 +196,6 @@ en:
       title: OWSO office
       subtitle: For more information, please click link below 👇
       button_title: See on Map!
+  about:
+    introduction: "USAID’s One Window for Citizens (OW4C) is a three-year project (October 2019-September 2022) that uses technology to provide Cambodian citizens clear, transparent information on public services available to them through the government One Window Service Offices (OWSOs). In order to empower citizens and ensure accountability for OWSO services, OW4C technology offers real-time information explaining application processes for key services as well as the required documents, materials, and service fees. It also provides a safe space for citizens to voice their feedback on the quality of services received. OW4C will combine that feedback with measures of social accountability such as community scorecards to enable citizens to hold the government accountable for quality services."
+    funded_by: Funded by

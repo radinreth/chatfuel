@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resource :about, only: [:show]
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
   resources :tickets, only: [:index]
   resources :templates
