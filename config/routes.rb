@@ -75,6 +75,7 @@ Rails.application.routes.draw do
     collection do
       put :telegram_bot
       put :set_language
+      get :help
     end
   end
 
