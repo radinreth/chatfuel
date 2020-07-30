@@ -58,6 +58,14 @@ module ApplicationHelper
     "<i class='#{role[:icon]}' style='color: #{role[:color]}'></i>"
   end
 
+  def template_image_dimension(template)
+    dimension = ActiveStorage::Analyzer::ImageAnalyzer.new(template.image).metadata
+    w = dimension[:width] >= dimension[:height] ? (280 * dimension[:width] / dimension[:height]) : 280
+    h = dimension[:width] >= dimension[:height] ? 280 : (280 * dimension[:height] / dimension[:width])
+
+    { width: w, height: h }
+  end
+
   private
     def get_role(role_name)
       roles = {
