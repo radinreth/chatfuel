@@ -1,0 +1,24 @@
+.messenger.modal.fade{"aria-hidden" => "true", "data-backdrop": "static", "aria-labelledby" => "newTemplateLabel", :role => "dialog", :tabindex => "-1", id: "previewModal#{template.id}"}
+  .preview-modal-dialog.modal-dialog.modal-dialog-centered{:role => "document"}
+
+    .modal-content
+      .modal-header
+        %h5.modal-title Preview template
+        %button.close{ type: "button", "data-dismiss": "modal", "aria-label": "Close" }
+          %span{ "aria-hidden": true }
+            &times;
+
+      .modal-body
+        - if template.image.present?
+          .d-flex.mb-4
+            .preview-template-wrapper.position-relative
+              - dimension = template_image_dimension(template)
+              = image_tag(template.image, width: dimension[:width], height: dimension[:height])
+
+              .reaction-wrapper
+                .reaction
+                  %i.far.fa-smile
+
+        .d-flex
+          .content
+            = template.content

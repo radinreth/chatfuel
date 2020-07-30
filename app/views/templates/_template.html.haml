@@ -14,9 +14,16 @@
     - if template.audio.attached?
       = audio_tag rails_blob_url(template.audio), controls: true, class: "d-block audio-player-preview"
 
-    = template.content
+    .truncate-content
+      = template.content
 
   .card-footer
+    - if template.type == 'MessengerTemplate'
+      = link_to '#', class: 'btn btn-circle btn-sm btn-info mr-1', data: { toggle: "modal", target: "#previewModal#{template.id}" } do
+        %i.fas.fa-eye
+
+      = render 'proview_modal', template: template
+
     = link_to edit_template_path(template), remote: true, class: "btn btn-circle btn-sm btn-warning mr-1" do
       %i.fas.fa-edit.fa-fw
     = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-circle btn-sm btn-danger" do
