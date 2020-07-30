@@ -52,7 +52,7 @@ class StepValue < ApplicationRecord
   def self.total_users_visit_each_functions(params = {})
     scope = all
     scope = scope.joins(variable_value: :variable)
-    # scope = filter(scope, params)
+    scope = filter(scope, params)
     scope = scope.where(variables: { is_user_visit: true })
     scope = scope.order(:raw_value)
     scope = scope.group(:raw_value)
@@ -68,20 +68,19 @@ class StepValue < ApplicationRecord
 
   def self.total_users_feedback(params = {})
     scope = all
-    # scope = filter(scope, params)
-    scope = scope.where('variable_id': Variable.where(report_enabled: true))
+    scope = filter(scope, params)
+    report_variable = Variable.find_by(report_enabled: true)
+    scope = scope.where('variable_id': report_variable)
     scope = scope.group(:variable_value_id)
     aggregate_result = scope.count
 
-    return {} if aggregate_result.nil? || aggregate_result.empty?
-
-    variable_value = VariableValue.find(aggregate_result.keys.first)
-    { variable_value.raw_value => aggregate_result.values.first }
+    mapping = report_variable.values.pluck(:id, :raw_value).to_h
+    aggregate_result.transform_keys { |k| mapping[k] }
   end
 
   def self.most_request_service(params = {})
     scope = all
-    # scope = filter(scope, params)
+    scope = filter(scope, params)
     
     scope = scope.where('variable_id': Variable.where(is_most_request: true))
     scope = scope.order('count_all DESC')
@@ -108,9 +107,9 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
-    scope = scope.where(messages: { content_type: params[:content_type] }) if params[:content_type].present?
-    scope = scope.where(messages: { province_id: params[:province_id] }) if params[:province_id].present?
-    scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
+    scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
+    scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
+    scope = scope.where(message_id: Message.where(platform_name: params[:platform_name])) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end
