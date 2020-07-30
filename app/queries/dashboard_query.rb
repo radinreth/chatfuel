@@ -43,7 +43,7 @@ class DashboardQuery
   end
 
   def goals
-    @goals ||= [accessed, submitted, delivered].compact
+    @goals ||= [accessed, submitted].compact
   end
 
   def user_visit
@@ -63,7 +63,7 @@ class DashboardQuery
     end
 
     def accessed
-      data = Message.accessed(@options)
+      data = Message.unscope(:order).accessed(@options).group_by_day(:updated_at).count
 
       { name: I18n.t("dashboard.accessed"), data: data } if data.present?
     end
@@ -76,9 +76,9 @@ class DashboardQuery
       { name: I18n.t("dashboard.submitted"), data: data } if data.present?
     end
 
-    def delivered
-      data = Ticket.filter(@options).delivered.group_by_day(:updated_at).count
+    # def delivered
+    #   data = Ticket.filter(@options).delivered.group_by_day(:updated_at).count
 
-      { name: I18n.t("dashboard.delivered"), data: data } if data.present?
-    end
+    #   { name: I18n.t("dashboard.delivered"), data: data } if data.present?
+    # end
 end
