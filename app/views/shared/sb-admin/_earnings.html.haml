@@ -10,6 +10,7 @@
               = t("not_available")
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
+
   .col-xl-3.col-md-6.mb-4
     .card.border-left-success.shadow.h-100.py-2
       .card-body
@@ -21,6 +22,7 @@
               = @query.user_count
           .col-auto
             %i.fas.fa-users.fa-2x.text-gray-300
+
   .col-xl-3.col-md-6.mb-4
     .card.border-left-info.shadow.h-100.py-2
       .card-body
@@ -33,10 +35,15 @@
                 .h4.mb-0.mr-3.font-weight-bold.text-gray-800 N/A
           .col-auto
             %i.fas.fa-clock.fa-2x.text-gray-300
+
   .col-xl-3.col-md-6.mb-4
     .card.border-left-warning.shadow.h-100.py-2
-      = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
-        %i.fas.fa-cog.cog
+      - if policy(:dashboard).setting?
+        = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
+          %i.fas.fa-cog.cog
+
+        = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :is_most_request, modal_id: 'mostRequest'
+
       .card-body
         .row.no-gutters.align-items-center
           .col.mr-2
@@ -45,11 +52,7 @@
 
             .h4.mb-0.font-weight-bold.text-gray-800
               - most_req = @query.most_request_service.keys.first
-              - if most_req.present?
-                = most_req
-              - else
-                = t("not_available")
+              = most_req.presence || t("not_available")
+
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300
-            = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :is_most_request, modal_id: 'mostRequest'
-

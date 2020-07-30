@@ -60,6 +60,6 @@
       = f.object.errors.full_messages_for(:status).to_sentence
 
   .text-right
-    %button.btn.btn-secondary.btn-sm{"data-dismiss" => "modal", :type => "button"}
+    %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
       = t("shared.cancel")
-    = f.submit t("shared.save"), class: "btn btn-primary btn-sm"
+    = f.submit t("shared.save"), class: "btn btn-primary"
