@@ -4,6 +4,7 @@
 #
 #  id           :bigint(8)        not null, primary key
 #  code         :string           default("")
+#  deleted_at   :datetime
 #  lat          :float
 #  lng          :float
 #  name         :string           not null
@@ -18,7 +19,8 @@
 #
 # Indexes
 #
-#  index_sites_on_name  (name)
+#  index_sites_on_deleted_at  (deleted_at)
+#  index_sites_on_name        (name)
 #
 require "rails_helper"
 
@@ -93,5 +95,16 @@ RSpec.describe Site, type: :model do
     it { expect(Site.find_with_whitelist(site1.token, '1.1.1.1')).to eq(site1) }
     it { expect(Site.find_with_whitelist(site2.token, '1.1.1.1')).to be_nil }
     it { expect(Site.find_with_whitelist(site2.token, '192.168.1.2')).to eq(site2) }
+  end
+
+  describe 'soft delete' do
+    let(:site) { create(:site) }
+
+    before {
+      site.destroy
+    }
+
+    it { expect(Site.find_by(code: site.code)).to be_nil }
+    it { expect(Site.with_deleted.find_by(code: site.code)).not_to be_nil }
   end
 end

@@ -4,6 +4,7 @@
 #
 #  id           :bigint(8)        not null, primary key
 #  code         :string           default("")
+#  deleted_at   :datetime
 #  lat          :float
 #  lng          :float
 #  name         :string           not null
@@ -18,10 +19,14 @@
 #
 # Indexes
 #
-#  index_sites_on_name  (name)
+#  index_sites_on_deleted_at  (deleted_at)
+#  index_sites_on_name        (name)
 #
 class Site < ApplicationRecord
   attr_accessor :file
+
+  # soft delete
+  acts_as_paranoid
 
   enum status: %i[disable enable]
   enum sync_status: %i[failure success]
