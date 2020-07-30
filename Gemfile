@@ -46,6 +46,8 @@ gem 'oj', '~> 3.10', '>= 3.10.6'
 gem 'carrierwave', '~> 2.0'
 gem 'rails-settings-cached', '~> 2.0'
 
+gem 'paranoia', '~> 2.2'
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.beta4"
