@@ -6,6 +6,7 @@ en:
     username: Username
     token: Token
     need_help: Need help?
+    telegram_notification: Telegram notification
 
   telegram_bot:
     telegram_bot: 'Telegram Bot'

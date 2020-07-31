@@ -198,6 +198,8 @@ km:
     file: ឯកសារ
     choose_file: ជ្រើសរើសឯកសារ
     download_template: ទាញយកគំរូ
+    create_setting: កំណត់ setting
+    preview_template: មើលគំរូជាមុន
   roles:
     site_ombudsman: អ្នកអង្កេតការណ៏
     site_admin: រដ្ឋបាលការិយាល័យ
