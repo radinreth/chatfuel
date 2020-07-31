@@ -78,10 +78,4 @@ class DashboardQuery
 
       { name: I18n.t("dashboard.submitted"), data: data } if data.present?
     end
-
-    # def delivered
-    #   data = Ticket.filter(@options).delivered.group_by_day(:updated_at).count
-
-    #   { name: I18n.t("dashboard.delivered"), data: data } if data.present?
-    # end
 end
