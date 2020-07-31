@@ -44,9 +44,11 @@ class Site < ApplicationRecord
   has_one :site_setting, dependent: :destroy
 
   # validations
-  validates :name, presence: true
+  validates :name, presence: { message: I18n.t("site.presence_name") }
   validates :sync_status, inclusion: { in: sync_statuses.keys }, allow_nil: true
-  validates :code, presence: true, uniqueness: true,
+  validates :code, presence: { message: I18n.t("site.presence_name") }
+  validates :code,  uniqueness: true,
+                    allow_blank: true,
                     format: {
                       with: /\A\d{4}\z/,
                       message: I18n.t("site.invalid_code") }

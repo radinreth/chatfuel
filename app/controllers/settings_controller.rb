@@ -17,7 +17,7 @@ class SettingsController < ApplicationController
     if @telegram_bot.update(telegram_bot_params)
       flash[:notice] = I18n.t("settings.successful_update_bot")
     else
-      flash[:alert] = @telegram_bot.errors.full_messages
+      flash[:alert] = @telegram_bot.errors.full_messages.to_sentence
     end
 
     redirect_to settings_path

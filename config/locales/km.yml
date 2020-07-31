@@ -80,8 +80,10 @@ km:
   site:
     invalid_code: លេខកូដការិយាល័យច្រកត្រូវតែមានចំនួន ៤ ខ្ទង់ប៉ុណ្ណោះ
     invalid_whitelist: "ត្រូវបញ្ចូល ip addresses ឬ សញ្ញាផ្កាយ(*)"
+    presence_name: មិនអាចទទេ
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
+    presence_name: មិនអាចទទេ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
   home:
     index:
@@ -204,6 +206,7 @@ km:
     download_template: ទាញយកគំរូ
     create_setting: កំណត់ setting
     preview_template: មើលគំរូជាមុន
+    regenerate_token: បង្កើត token ថ្មី
   roles:
     site_ombudsman: អ្នកអង្កេតការណ៏
     site_admin: រដ្ឋបាលការិយាល័យ
@@ -219,6 +222,13 @@ km:
     attributes:
       site:
         name: ឈ្មោះ
-        code: កូដ
+        code: លេខកូដ
         lat: រយៈទទឹង
         lng: រយៈបណ្ដោយ
+      variable:
+        name: ពាក្យគន្លឹះ
+      template:
+        content: ប្រយោគ
+        status: ស្ថានភាព
+      TelegramBot:
+        'username': ឈ្មោះបត
