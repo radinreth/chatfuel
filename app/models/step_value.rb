@@ -74,14 +74,16 @@ class StepValue < ApplicationRecord
     scope = scope.group(:variable_value_id)
     aggregate_result = scope.count
 
-    mapping = report_variable.values.pluck(:id, :raw_value).to_h
-    aggregate_result.transform_keys { |k| mapping[k] }
+    if report_variable
+      mapping = report_variable.values.pluck(:id, :raw_value).to_h
+      aggregate_result.transform_keys { |k| mapping[k] }
+    end
   end
 
   def self.most_request_service(params = {})
     scope = all
     scope = filter(scope, params)
-    
+
     scope = scope.where('variable_id': Variable.where(is_most_request: true))
     scope = scope.order('count_all DESC')
     scope = scope.group('variable_value_id').limit(1)
