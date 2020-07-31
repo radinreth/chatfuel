@@ -26,7 +26,7 @@ km:
   not_available: មិនមាន
   no_data: មិនមានទិន្នន័យ
   sidebar:
-    dashboard: Dashbaord
+    dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
     sites: ការិយាល័យ
     dictionaries: ពាក្យគន្លឹះ
@@ -105,7 +105,8 @@ km:
     province: ខេត្ត
     show: បង្ហាញ
     active_user: អ្នកប្រើប្រាស់សកម្ម
-    total_user: អ្នកប្រើប្រាស់សរុប
+    total_users: អ្នកប្រើប្រាស់សរុប
+    total_uniq_users: អ្នកប្រើប្រាស់ប្លែកៗគ្នាសរុប
     average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
     most_request_service: សេវាកម្មស្នើសុំច្រើនជាងគេ
     like: ពេញចិត្ត
