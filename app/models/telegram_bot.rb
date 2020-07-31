@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class TelegramBot < ApplicationRecord
-  validates :token, :username, presence: true
+  validates :token, :username, presence: { message: I18n.t("telegram_bot.presence") }
 
   before_save :post_webhook_to_telegram
 
