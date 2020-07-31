@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit
 
-  before_action :authenticate_user_without_guisso!
+  before_action :authenticate_user_with_guisso!
   before_action :set_raven_context
   before_action :switch_locale
 
