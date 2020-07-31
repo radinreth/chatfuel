@@ -195,6 +195,8 @@ en:
     file: File
     choose_file: Choose file
     download_template: Download template
+    create_setting: Create setting
+    preview_template: Preview template
   roles:
     site_ombudsman: Site ombudsman
     site_admin: Site admin

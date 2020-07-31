@@ -6,6 +6,7 @@ km:
     username: ឈ្មោះបត
     token: Token
     need_help: ត្រូវការជំនួយ?
+    telegram_notification: ការជូនដំណឹង Telegram
 
   telegram_bot:
     telegram_bot: 'Telegram Bot'
