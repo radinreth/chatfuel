@@ -208,10 +208,3 @@ en:
       title: OWSO office
       subtitle: For more information, please click link below 👇
       button_title: See on Map!
-  activerecord:
-    attributes:
-      site:
-        name: ឈ្មោះ
-        code: កូដ
-        lat: រយៈទទឹង
-        lng: រយៈបណ្ដោយ

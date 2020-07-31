@@ -177,6 +177,10 @@ km:
       incomplete: មិនទាន់រួចរាល់
       completed: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
+    validation:
+      content_blank: មិនអាចទទេ
+      invalid_type: មិនត្រឹមត្រូវ
+      status_not_uniq: បានបង្កើតរួចហើយ
   tickets:
     incomplete:
       content: សំបុត្ររបស់អ្នកមិនទាន់រួចរាល់ទេ
@@ -211,3 +215,10 @@ km:
       title: ទីតាំងការិយាល័យច្រកចេញចូលតែមួយ %{district}
       subtitle: ដើម្បីបើកទីតាំងក្នុងផែនទី Google អ្នកអាចចុចនៅតំណរភ្ជាប់ខាងក្រោមបាន 👇
       button_title: មើលលើផែនទី!
+  activerecord:
+    attributes:
+      site:
+        name: ឈ្មោះ
+        code: កូដ
+        lat: រយៈទទឹង
+        lng: រយៈបណ្ដោយ
