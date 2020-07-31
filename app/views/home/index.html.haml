@@ -8,20 +8,20 @@
           %tr
             %th= t(".session_id")
             %th= t(".created_date")
-            - current_user.role_variable_names.each do |variable_name|
-              %th= variable_name
+            - @variables.each do |variable|
+              %th= variable.name
         %tbody
           - @messages.each do |message|
             %tr
               %td
                 = image_tag "#{message.platform_name.downcase}.svg", width: 18
                 = message.session_id
-              %td= message.created_at.strftime("%Y-%m-%d")
-              - current_user.role_variable_names.each do |variable_name|
+              %td= message.created_at.strftime("%d-%m-%y %H:%M")
+              - @variables.each do |variable|
                 - value = ''
-                - message.steps.each do |step|
-                  - if step.value.variable.name == variable_name
-                    - value = step.value.display_value
+                - message.step_values.each do |step|
+                  - if step.variable.name == variable.name
+                    - value = step.variable_value.display_value
                     - break
                 %td=value
 

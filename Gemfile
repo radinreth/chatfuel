@@ -57,6 +57,7 @@ group :development, :test do
   gem "rubocop-rails", "~> 2.4.2"
   gem "rubocop-performance", "~> 1.5.2"
   gem "guard-rspec", require: false
+  gem "factory_bot_rails", "~> 5.1.1"
 end
 
 group :development do
@@ -71,7 +72,6 @@ end
 group :test do
   gem "capybara", ">= 2.15"
   gem "shoulda-matchers", "~> 4.3.0"
-  gem "factory_bot_rails", "~> 5.1.1"
   gem "database_cleaner-active_record", "~> 1.8.0"
   gem "rails-controller-testing", "~> 1.0.4"
   gem "selenium-webdriver", "~> 3.142.7"

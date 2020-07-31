@@ -2,21 +2,24 @@
 #
 # Table name: variables
 #
-#  id              :bigint(8)        not null, primary key
-#  is_location     :boolean
-#  is_most_request :boolean          default("false")
-#  is_user_visit   :boolean          default("false")
-#  name            :string
-#  report_enabled  :boolean          default("false")
-#  type            :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                  :bigint(8)        not null, primary key
+#  is_location         :boolean
+#  is_most_request     :boolean          default("false")
+#  is_service_accessed :boolean          default("false")
+#  is_ticket_tracking  :boolean          default("false")
+#  is_user_visit       :boolean          default("false")
+#  name                :string
+#  report_enabled      :boolean          default("false")
+#  type                :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 class Variable < ApplicationRecord
   default_scope { order(name: :asc) }
   scope :except_done, -> { where.not(name: "done") }
 
   # associations
+  has_many :step_values, dependent: :destroy
   has_many :role_variables, dependent: :destroy
   has_many :roles, through: :role_variables
   has_many :values, class_name: "VariableValue",
@@ -29,6 +32,7 @@ class Variable < ApplicationRecord
   # callbacks
   before_save :ensure_only_one_is_most_request
   before_save :ensure_only_one_is_user_visit
+  before_save :ensure_only_one_is_service_accessed
 
   # validations
   validate :only_one_report_column
@@ -63,6 +67,11 @@ class Variable < ApplicationRecord
     def ensure_only_one_is_user_visit
       return unless is_user_visit_changed?
       sibling.update_all(is_user_visit: false)
+    end
+
+    def ensure_only_one_is_service_accessed
+      return unless is_service_accessed_changed?
+      sibling.update_all(is_service_accessed: false)
     end
 
     def only_one_report_column

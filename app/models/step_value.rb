@@ -5,26 +5,30 @@
 #  id                :bigint(8)        not null, primary key
 #  created_at        :datetime
 #  updated_at        :datetime
+#  message_id        :bigint(8)        not null
 #  site_id           :bigint(8)
-#  step_id           :bigint(8)        not null
+#  variable_id       :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
 #
 # Indexes
 #
+#  index_step_values_on_message_id         (message_id)
 #  index_step_values_on_site_id            (site_id)
-#  index_step_values_on_step_id            (step_id)
+#  index_step_values_on_variable_id        (variable_id)
 #  index_step_values_on_variable_value_id  (variable_value_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (message_id => messages.id)
 #  fk_rails_...  (site_id => sites.id)
-#  fk_rails_...  (step_id => steps.id)
+#  fk_rails_...  (variable_id => variables.id)
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
-  belongs_to :step
   belongs_to :variable_value
   belongs_to :site, optional: true
+  belongs_to :message
+  belongs_to :variable
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
@@ -46,7 +50,8 @@ class StepValue < ApplicationRecord
   end
 
   def self.total_users_visit_each_functions(params = {})
-    scope = default_join
+    scope = all
+    scope = scope.joins(variable_value: :variable)
     scope = filter(scope, params)
     scope = scope.where(variables: { is_user_visit: true })
     scope = scope.order(:raw_value)
@@ -62,20 +67,32 @@ class StepValue < ApplicationRecord
   end
 
   def self.total_users_feedback(params = {})
-    scope = default_join
+    scope = all
     scope = filter(scope, params)
-    scope = scope.where(variables: { report_enabled: true })
-    scope = scope.group(:raw_value)
-    scope.count
+    report_variable = Variable.find_by(report_enabled: true)
+    scope = scope.where('variable_id': report_variable)
+    scope = scope.group(:variable_value_id)
+    aggregate_result = scope.count
+
+    if report_variable
+      mapping = report_variable.values.pluck(:id, :raw_value).to_h
+      aggregate_result.transform_keys { |k| mapping[k] }
+    end
   end
 
   def self.most_request_service(params = {})
-    scope = default_join
+    scope = all
     scope = filter(scope, params)
-    scope = scope.where(variables: { is_most_request: true })
-    scope = scope.order("count_all DESC")
-    scope = scope.group("variable_values.raw_value").limit(1)
-    scope.count
+
+    scope = scope.where('variable_id': Variable.where(is_most_request: true))
+    scope = scope.order('count_all DESC')
+    scope = scope.group('variable_value_id').limit(1)
+    result = scope.count
+
+    return {} if result.nil? || result.empty?
+
+    variable_value = VariableValue.find(result.keys.first)
+    {variable_value.raw_value => result.values.first}
   end
 
   def self.accessed(params = {})
@@ -92,9 +109,9 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
-    scope = scope.where(messages: { content_type: params[:content_type] }) if params[:content_type].present?
-    scope = scope.where(messages: { province_id: params[:province_id] }) if params[:province_id].present?
-    scope = scope.where(messages: { platform_name: params[:platform_name] }) if params[:platform_name].present?
+    scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
+    scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
+    scope = scope.where(message_id: Message.where(platform_name: params[:platform_name])) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end

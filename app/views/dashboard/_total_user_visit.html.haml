@@ -1,0 +1,19 @@
+.col-xl-6.col-lg-5
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      .h5.m-0.font-weight-bold.text-primary
+        = t("dashboard.total_user_visit")
+        = link_to "#", data: { toggle: "modal", target: "#chooseDictionary" } do
+          %i.fas.fa-cog.cog
+    .card-body
+      .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+        - if @query.total_users_visit_each_functions.present?
+          %ul.list-unstyled
+            - @query.user_visit.values.each_with_index do |value, index|
+              %li
+                %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
+                %span.oval-label
+                  = value.raw_value
+
+        = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :is_user_visit, modal_id: 'chooseDictionary'
+        = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
