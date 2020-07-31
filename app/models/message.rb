@@ -60,7 +60,6 @@ class Message < ApplicationRecord
 
   def self.user_count(params = {})
     scope = all
-    # scope = scope.joins(:steps)
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(platform_name: params[:platform_name]) if params[:platform_name].present?
