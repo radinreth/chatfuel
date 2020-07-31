@@ -7,6 +7,14 @@ class DashboardQuery
   end
 
   def user_count
+    sessions.count
+  end
+
+  def user_uniq_count
+    sessions.select("DISTINCT ON (content_id, content_type) *").unscope(:order).length
+  end
+
+  def sessions
     Message.user_count(@options)
   end
 

@@ -10,7 +10,7 @@
         = link_to t("dashboard.chatbot"), dashboard_path(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
   .col-lg-6
-    %form.form.d-flex{ action: dashboard_path }
+    %form.float-right.form.d-flex{ action: dashboard_path }
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]
 
