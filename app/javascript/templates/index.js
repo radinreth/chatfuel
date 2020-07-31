@@ -28,8 +28,8 @@ OWSO.TemplatesIndex = (() => {
   function attachEventToAudio() {
     $(document).on("change", "#template_audio", function(e) {
       var input = e.currentTarget
-      var $audio = $(".modal-body").find("audio")
-      var $audioName = $(".modal-body").find("#audio-name")
+      var $audio = $("#newTemplateModal .modal-body").find("audio")
+      var $audioName = $("#newTemplateModal .modal-body").find("#audio-name")
 
       readURL(input, function(result) {
         $audio.attr("src" , result);
