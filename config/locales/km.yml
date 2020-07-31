@@ -175,7 +175,7 @@ km:
       title: គំរូ
       new: គំរូថ្មី
       incomplete: មិនទាន់រួចរាល់
-      complete: បានរួចរាល់
+      completed: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
   tickets:
     incomplete:
@@ -193,6 +193,17 @@ km:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  sites:
+    import: បញ្ជូនឯកសារ
+    file: ឯកសារ
+    choose_file: ជ្រើសរើសឯកសារ
+    download_template: ទាញយកគំរូ
+  roles:
+    site_ombudsman: អ្នកអង្កេតការណ៏
+    site_admin: រដ្ឋបាលការិយាល័យ
+    system_admin: រដ្ឋបាលប្រព័ន្ធ
+  provinces:
+    all: ទាំងអស់
   chatfuel:
     map:
       title: ទីតាំងការិយាល័យច្រកចេញចូលតែមួយ %{district}

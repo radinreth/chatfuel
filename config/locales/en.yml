@@ -150,7 +150,7 @@ en:
       update: Update user
     index:
       users: Users
-      no: No.
+      'no': No.
       email: Email
       role: Role
       action: Action
@@ -175,9 +175,8 @@ en:
       title: Templates
       new: New template
       incomplete: Incomplete
-      complete: Complete
+      completed: Complete
       incorrect: Incorrect
-    incomplete:
   tickets:
     incomplete:
       content: Your ticket is incomplete
@@ -191,8 +190,26 @@ en:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  sites:
+    import: Import site
+    file: File
+    choose_file: Choose file
+    download_template: Download template
+  roles:
+    site_ombudsman: Site ombudsman
+    site_admin: Site admin
+    system_admin: System admin
+  provinces:
+    all: All
   chatfuel:
     map:
       title: OWSO office
       subtitle: For more information, please click link below 👇
       button_title: See on Map!
+  activerecord:
+    attributes:
+      site:
+        name: ឈ្មោះ
+        code: កូដ
+        lat: រយៈទទឹង
+        lng: រយៈបណ្ដោយ
