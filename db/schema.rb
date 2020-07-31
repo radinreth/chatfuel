@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_074420) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-07-23 02:47:14"
+    t.datetime "last_interaction_at", default: "2020-07-30 10:54:16"
     t.string "province_id"
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_074420) do
     t.integer "sync_status"
     t.string "token", default: ""
     t.text "whitelist"
+    t.string "province_id"
     t.float "lat"
     t.float "lng"
     t.string "province_id"
@@ -126,21 +127,16 @@ ActiveRecord::Schema.define(version: 2020_07_30_074420) do
   end
 
   create_table "step_values", force: :cascade do |t|
-    t.bigint "step_id", null: false
     t.bigint "variable_value_id", null: false
     t.bigint "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["site_id"], name: "index_step_values_on_site_id"
-    t.index ["step_id"], name: "index_step_values_on_step_id"
-    t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
-  end
-
-  create_table "steps", force: :cascade do |t|
     t.bigint "message_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id"], name: "index_steps_on_message_id"
+    t.bigint "variable_id", null: false
+    t.index ["message_id"], name: "index_step_values_on_message_id"
+    t.index ["site_id"], name: "index_step_values_on_site_id"
+    t.index ["variable_id"], name: "index_step_values_on_variable_id"
+    t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
   end
 
   create_table "sync_history_logs", force: :cascade do |t|
@@ -273,6 +269,8 @@ ActiveRecord::Schema.define(version: 2020_07_30_074420) do
     t.boolean "is_most_request", default: false
     t.boolean "is_user_visit", default: false
     t.boolean "is_location"
+    t.boolean "is_ticket_tracking", default: false
+    t.boolean "is_service_accessed", default: false
   end
 
   create_table "voice_messages", force: :cascade do |t|
@@ -290,10 +288,10 @@ ActiveRecord::Schema.define(version: 2020_07_30_074420) do
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "site_settings", "sites"
+  add_foreign_key "step_values", "messages"
   add_foreign_key "step_values", "sites"
-  add_foreign_key "step_values", "steps"
   add_foreign_key "step_values", "variable_values"
-  add_foreign_key "steps", "messages"
+  add_foreign_key "step_values", "variables"
   add_foreign_key "tickets", "sites"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"

@@ -58,6 +58,13 @@ class DictionariesController < ApplicationController
     head :ok
   end
 
+  def set_service_accessed
+    variable = Variable.find(variable_id)
+    variable.update(is_service_accessed: true)
+
+    head :ok
+  end
+
   private
     def variable_id
       params.require(:variable).permit(:id)[:id]
