@@ -33,4 +33,6 @@ ENV RACK_ENV=production
 ENV RAILS_ENV=production
 EXPOSE 80
 
+COPY docker/database.yml /app/config/database.yml
+
 CMD ["puma", "-e", "production", "-b", "tcp://0.0.0.0:80"]
