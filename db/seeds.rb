@@ -173,34 +173,52 @@ puts "creating messages"
     platform_name = message_attributes.delete(:platform_name)
     steps = message_attributes.delete(:steps)
 
-    if platform_name == "Verboice"
+    if platform_name == 'Verbocie'
       callsid = FFaker::Code.ean[0...4]
       content = VoiceMessage.find_or_create_by(callsid: callsid)
-      message = Message.create_or_return(platform_name, content)
-
-      if steps.present?
-        steps.each do |step|
-          variable = VoiceVariable.find_or_create_by(name: step[:name])
-          variable_value = variable.values.find_or_create_by(raw_value: step[:value])
-          step = message.steps.create(value: variable_value)
-          step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
-        end
-      end
     else
       messenger_user_id = FFaker::Code.ean
       content = TextMessage.find_or_create_by(messenger_user_id: messenger_user_id)
-      message = Message.create_or_return(platform_name, content)
-
-      # .take(rand(1...steps.count))
-      if steps.present?
-        steps.each do |step|
-          variable = TextVariable.find_or_create_by(name: step[:name])
-          variable_value = variable.values.find_or_create_by(raw_value: step[:value])
-          step = message.steps.create(value: variable_value)
-          step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
-        end
-      end
     end
+
+    message = Message.create_or_return(platform_name, content)
+
+    steps.each do |step|
+      variable = VoiceVariable.find_or_create_by(name: step[:name])
+      variable_value = variable.values.find_or_create_by(raw_value: step[:value])
+      step = message.steps.create(value: variable_value)
+      step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
+    end if steps.present?
+
+    # if platform_name == "Verboice"
+    #   session_id = FFaker::Code.ean
+    #   # callsid = FFaker::Code.ean[0...4]
+    #   content = VoiceMessage.find_or_create_by(callsid: callsid)
+    #   message = Message.create_or_return(platform_name, content)
+
+    #   if steps.present?
+    #     steps.each do |step|
+    #       variable = VoiceVariable.find_or_create_by(name: step[:name])
+    #       variable_value = variable.values.find_or_create_by(raw_value: step[:value])
+    #       step = message.steps.create(value: variable_value)
+    #       step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
+    #     end
+    #   end
+    # else
+    #   messenger_user_id = FFaker::Code.ean
+    #   content = TextMessage.find_or_create_by(messenger_user_id: messenger_user_id)
+    #   message = Message.create_or_return(platform_name, content)
+
+    #   # .take(rand(1...steps.count))
+    #   if steps.present?
+    #     steps.each do |step|
+    #       variable = TextVariable.find_or_create_by(name: step[:name])
+    #       variable_value = variable.values.find_or_create_by(raw_value: step[:value])
+    #       step = message.steps.create(value: variable_value)
+    #       step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
+    #     end
+    #   end
+    # end
   end
 end
 
