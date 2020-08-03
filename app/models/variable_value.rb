@@ -27,7 +27,7 @@ class VariableValue < ApplicationRecord
   has_many :steps, through: :step_values
 
   # validations
-  validates :raw_value, presence: true, uniqueness: { scope: :variable_id }
+  validates :raw_value, presence: true
   default_scope -> { order(:raw_value) }
 
   def display_value

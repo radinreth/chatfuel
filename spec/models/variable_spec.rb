@@ -10,12 +10,64 @@
 #  is_user_visit       :boolean          default("false")
 #  name                :string
 #  report_enabled      :boolean          default("false")
-#  type                :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-RSpec.describe Variable do
-  describe 'attributes' do
-    it { should have_attribute(:type) }
+require "rails_helper"
+
+RSpec.describe Variable, type: :model do
+  describe '.validate_unique_raw_value' do
+    context 'valid' do
+      let(:variable) { Variable.new({
+          name: 'certify_document',
+          values_attributes: [
+            { raw_value: 'document 1' },
+            { raw_value: 'document 2'}
+          ]
+        })
+      }
+
+      it { expect(variable.valid?).to be_truthy }
+    end
+
+    context 'invalid' do
+      let(:variable) { Variable.new({
+          name: 'certify_document',
+          values_attributes: [
+            { raw_value: 'document 1'},
+            { raw_value: 'document 1'},
+            { raw_value: 'document 2'}
+          ]
+        })
+      }
+
+      before {
+        variable.valid?
+      }
+
+      it { expect(variable.valid?).to be_falsey }
+      it { expect(variable.errors).to include :variablevalues }
+      it { expect(variable.errors[:variablevalues]).to eq(["has already been taken"]) }
+    end
+
+    context 'update with existing' do
+      let(:variable) { Variable.create({
+          name: 'certify_document',
+          values_attributes: [
+            { raw_value: 'document 1' },
+            { raw_value: 'document 2'}
+          ]
+        })
+      }
+
+      before {
+        variable.values.new({ raw_value: 'document 1'})
+        variable.save
+      }
+
+      it { expect(variable.valid?).to be_falsey }
+      it { expect(variable.errors).to include :variablevalues }
+      it { expect(variable.errors[:variablevalues]).to eq(["has already been taken"]) }
+    end
   end
 end
