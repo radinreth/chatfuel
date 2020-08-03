@@ -83,6 +83,7 @@ en:
   variable:
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
+    already_taken: "has already been taken"
   home:
     index:
       title: Home
