@@ -8,7 +8,7 @@ module Seed
         hash = row.to_hash
 
         TimeParser.parse(hash) do |parsed|
-          variable = ::VoiceVariable.new(parsed)
+          variable = ::Variable.new(parsed)
 
           variable.save
         end

@@ -4,7 +4,7 @@ module Bots::Messages
   class IvrController < ::Bots::MessagesController
     private
       def set_variable
-        @variable = VoiceVariable.find_or_create_by(name: params[:name])
+        @variable = Variable.find_or_create_by(name: params[:name])
         @variable_value = @variable.values.find_or_create_by(raw_value: params[:value])
       end
 

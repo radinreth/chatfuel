@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Bots::Messages
   class ChatbotController < ::Bots::MessagesController
     private
       def set_variable
-        @variable = TextVariable.find_or_create_by(name: params[:name])
+        @variable = Variable.find_or_create_by(name: params[:name])
         @variable_value = @variable.values.find_or_create_by(raw_value: params[:value])
       end
 

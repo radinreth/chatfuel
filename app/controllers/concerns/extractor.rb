@@ -12,7 +12,7 @@ class Extractor
   end
 
   def set_dictionary
-    VoiceVariable.create_with(value: value).find_or_create_by(name: act, value: value)
+    Variable.find_or_create_by(name: act)
   end
 
   private
