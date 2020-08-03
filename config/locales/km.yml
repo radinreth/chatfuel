@@ -25,6 +25,7 @@ km:
   app_version: កំណែ %{version}
   not_available: មិនមាន
   no_data: មិនមានទិន្នន័យ
+  presence: តំរូវអោយបញ្ចូលតម្លៃ
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
@@ -80,10 +81,8 @@ km:
   site:
     invalid_code: លេខកូដការិយាល័យច្រកត្រូវតែមានចំនួន ៤ ខ្ទង់ប៉ុណ្ណោះ
     invalid_whitelist: "ត្រូវបញ្ចូល ip addresses ឬ សញ្ញាផ្កាយ(*)"
-    presence_name: មិនអាចទទេ
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
-    presence_name: មិនអាចទទេ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
   home:
     index:
@@ -180,7 +179,6 @@ km:
       completed: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
     validation:
-      content_blank: មិនអាចទទេ
       invalid_type: មិនត្រឹមត្រូវ
       status_not_uniq: បានបង្កើតរួចហើយ
   tickets:
