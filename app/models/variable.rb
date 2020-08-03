@@ -10,7 +10,6 @@
 #  is_user_visit       :boolean          default("false")
 #  name                :string
 #  report_enabled      :boolean          default("false")
-#  type                :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
@@ -26,9 +25,6 @@ class Variable < ApplicationRecord
                     dependent: :destroy,
                     autosave: true
 
-  accepts_nested_attributes_for :values,  allow_destroy: true,
-                                          reject_if: :rejected_values
-
   # callbacks
   before_save :ensure_only_one_is_most_request
   before_save :ensure_only_one_is_user_visit
@@ -36,11 +32,10 @@ class Variable < ApplicationRecord
 
   # validations
   validate :only_one_report_column
-  validates :type, presence: true
-  validates :name, presence: true, uniqueness: { scope: :type }
-  validates :name,  allow_blank: true,
-                    format: { with: /\A[\w|\s|-]+\z/,
-                              message: I18n.t("variable.invalid_name") }
+  validates :name, presence: true, uniqueness: true, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }
+  validate :validate_unique_raw_value
+
+  accepts_nested_attributes_for :values, allow_destroy: true, reject_if: :rejected_values
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
@@ -59,6 +54,10 @@ class Variable < ApplicationRecord
   end
 
   private
+    def validate_unique_raw_value
+      validate_uniqueness_of_in_memory(values, %i[raw_value], 'has already been taken')
+    end
+
     def ensure_only_one_is_most_request
       return unless is_most_request_changed?
       sibling.update_all(is_most_request: false)

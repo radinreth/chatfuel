@@ -180,7 +180,7 @@ puts "creating messages"
 
       if steps.present?
         steps.each do |step|
-          variable = VoiceVariable.find_or_create_by(name: step[:name])
+          variable = Variable.find_or_create_by(name: step[:name])
           variable_value = variable.values.find_or_create_by(raw_value: step[:value])
           step = message.steps.create(value: variable_value)
           step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
@@ -194,7 +194,7 @@ puts "creating messages"
       # .take(rand(1...steps.count))
       if steps.present?
         steps.each do |step|
-          variable = TextVariable.find_or_create_by(name: step[:name])
+          variable = Variable.find_or_create_by(name: step[:name])
           variable_value = variable.values.find_or_create_by(raw_value: step[:value])
           step = message.steps.create(value: variable_value)
           step.step_value.update(created_at: (0...6).to_a.sample.days.ago)
