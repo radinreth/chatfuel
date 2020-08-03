@@ -11,10 +11,11 @@
 #  updated_at        :datetime         not null
 #  messenger_user_id :string           not null
 #
+require 'rails_helper'
+
 RSpec.describe TextMessage do
   describe 'associations' do
     it { should have_one(:message).dependent(:destroy) }
-    it { should have_many(:steps).through(:message) }
   end
 
   it '#type' do

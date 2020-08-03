@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :variable do
-    type { "TextVariable" }
-    name { "owso_options" }
+    name { FFaker::Name.name }
   end
 end
