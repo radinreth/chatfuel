@@ -23,7 +23,7 @@ class Template < ApplicationRecord
   validates :type, presence: true
   validates :type,  allow_blank: true,
                     inclusion: {
-                      in: %w(MessengerTemplate VerboiceTemplate),
+                      in: %w(MessengerTemplate TelegramTemplate VerboiceTemplate),
                       message: I18n.t("templates.validation.invalid_type")
                     }
   validates :status, uniqueness: {
@@ -31,7 +31,7 @@ class Template < ApplicationRecord
                       message: I18n.t("templates.validation.status_not_uniq")
                     }
   validates :content, presence: {
-                        message: I18n.t("templates.validation.content_blank")
+                        message: I18n.t("presence")
                       }, if: :text_template?
   validates :audio, attached: true, if: :voice_template?
 

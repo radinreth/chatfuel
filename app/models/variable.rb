@@ -34,7 +34,7 @@ class Variable < ApplicationRecord
   validate :only_one_report_column
   validate :validate_unique_raw_value
   validates :name, presence: {
-                      message: I18n.t("variable.presence_name")
+                      message: I18n.t("presence")
                     }, uniqueness: { scope: :type }
   validates :name,  allow_blank: true,
                     format: { with: /\A[\w|\s|-]+\z/,
