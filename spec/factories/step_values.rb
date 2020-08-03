@@ -26,8 +26,9 @@
 #
 FactoryBot.define do
   factory :step_value do
-    step
     variable_value
     site
+    message
+    variable
   end
 end

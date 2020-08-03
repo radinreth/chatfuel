@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-08-03 02:11:23.406146")
+#  last_interaction_at :datetime         default("2020-08-03 09:02:40.841645")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -20,7 +20,6 @@ require "rails_helper"
 
 RSpec.describe Message do
   describe "associations" do
-    it { should have_many(:steps) }
     it { should belong_to(:content) }
   end
 
@@ -84,23 +83,6 @@ RSpec.describe Message do
 
     it "considers completed if their steps contains done=true" do
       expect(message).to be_completed
-    end
-  end
-
-  describe ".load_by_role" do
-    let(:role) { build(:role, :site_admin) }
-    let(:variable) { build(:variable, roles: [role]) }
-    let(:variable_value) { build(:variable_value, variable: variable) }
-    let(:step) { build(:step, value: variable_value) }
-    let!(:message) { create(:message, :text) }
-
-    it "return empty message" do
-      expect(Message.load_by_role(role)).to eq []
-    end
-
-    it "includes by assigned role" do
-      message.steps << step
-      expect(Message.load_by_role(role)).to eq [message]
     end
   end
 end

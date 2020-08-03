@@ -37,8 +37,6 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe "associations" do
-    it { is_expected.to have_one(:track) }
-    it { is_expected.to have_one(:step) }
     it { is_expected.to have_one(:message) }
     it { is_expected.to belong_to(:site) }
   end
