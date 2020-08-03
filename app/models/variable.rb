@@ -58,7 +58,7 @@ class Variable < ApplicationRecord
 
   private
     def validate_unique_raw_value
-      validate_uniqueness_of_in_memory(values, %i[raw_value], 'has already been taken')
+      validate_uniqueness_of_in_memory(values, %i[raw_value], t("variable.already_taken"))
     end
 
     def ensure_only_one_is_most_request

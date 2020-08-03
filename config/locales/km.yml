@@ -84,6 +84,7 @@ km:
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
+    already_taken: "ត្រូវបានគេយកទៅហើយ"
   home:
     index:
       title: ទំព័រដើម
