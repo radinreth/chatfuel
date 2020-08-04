@@ -16,7 +16,7 @@ module Channels
           messaging_type: "MESSAGE_TAG",
           tag: "CONFIRMED_EVENT_UPDATE",
           recipient: {
-            id: ticket.message.session_id
+            id: ticket.message.try(:session_id)
           },
           message: {
             text: text_message(template)
