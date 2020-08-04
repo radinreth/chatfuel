@@ -84,6 +84,7 @@ en:
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
     already_taken: "has already been taken"
+    presence: "can't be blank"
   home:
     index:
       title: Home
@@ -95,6 +96,8 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+    no_message:
+      empty: There is no data yet
   dashboard:
     title: Dashboard
     total_user_visit: Total User Visit (Each Function)
@@ -209,3 +212,4 @@ en:
       title: OWSO office
       subtitle: For more information, please click link below 👇
       button_title: See on Map!
+  presence: can't be blank
