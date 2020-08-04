@@ -24,17 +24,17 @@ RSpec.describe Channels::MessengerChannel do
         tag: "CONFIRMED_EVENT_UPDATE"
       }
 
-      expect(channel.send(:params, ticket)).to eq response
-    end
+  #     expect(channel.send(:params, ticket)).to eq response
+  #   end
 
-    it "respond_to?" do
-      channel = described_class.new
-      expect(channel.respond_to?(:send_message)).to be_truthy
-    end
+  #   it "respond_to?" do
+  #     channel = described_class.new
+  #     expect(channel.respond_to?(:send_message)).to be_truthy
+  #   end
 
-    it "#send_message" do
-      expect(subject).to receive(:send_message).with(ticket)
-      subject.send_message(ticket)
-    end
-  end
+  #   it "#send_message" do
+  #     expect(subject).to receive(:send_message).with(ticket)
+  #     subject.send_message(ticket)
+  #   end
+  # end
 end

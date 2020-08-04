@@ -1,5 +1,5 @@
 module Channels
-  class EmptyChannel
+  class InvalidChannel
     def send_message
       Rails.logger.debug "EmptyChannel: #{self}"
     end

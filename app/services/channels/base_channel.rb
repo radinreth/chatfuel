@@ -4,6 +4,7 @@ module Channels
       "Channels::#{platform}Channel".constantize.new
     rescue
       Rails.logger.warn "#{platform} doesn't exist"
+      Channels::InvalidChannel.new
     end
 
     def send_message(ticket); raise "you have to implement in subclass" end
