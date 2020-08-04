@@ -19,6 +19,16 @@ FactoryBot.define do
       content { "your ticket is incomplete" }
     end
 
+    trait :completed do
+      status { :completed }
+      content { "your ticket is completed" }
+    end
+
+    trait :incorrect do
+      status { :incorrect }
+      content { "your ticket is incorrect" }
+    end
+
     [:messenger, :telegram].each do |platform|
       trait platform do
         incomplete
