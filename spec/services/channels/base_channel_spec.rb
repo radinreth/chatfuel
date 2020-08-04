@@ -1,16 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Channels::BaseChannel do
-  
-  let(:message) { build(:message, :text) }
-  let(:step) { build(:step, message: message) }
-  let(:site) { build(:site) }
-  let(:ticket) { build(:ticket) }
-  let(:template) { build(:template) }
-
-  before do
-    @track = create(:track, step: step, site: site, ticket: ticket)
-  end
+  let!(:template) { create(:template) }
+  let!(:ticket) { build(:ticket, :incomplete) }
+  let!(:message) { build(:message, :text) }
+  let!(:variable_value) { build(:variable_value, raw_value: ticket.code) }
+  let!(:step_value) { create(:step_value, message: message, variable_value: variable_value)}
 
   it ".get" do
     channel = described_class.get(ticket.platform_name)
@@ -29,7 +24,6 @@ RSpec.describe Channels::BaseChannel do
   end
 
   it "#response_template" do
-    create(:template)
     template = subject.send(:response_template, ticket)
 
     expect(template).to be_kind_of(Template)

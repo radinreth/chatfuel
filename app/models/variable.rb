@@ -33,13 +33,11 @@ class Variable < ApplicationRecord
   # validations
   validate :only_one_report_column
   validate :validate_unique_raw_value
-  validates :name, presence: {
-                      message: I18n.t("presence")
-                    }, uniqueness: { scope: :type }
-  validates :name,  allow_blank: true,
-                    format: { with: /\A[\w|\s|-]+\z/,
-                              message: I18n.t("variable.invalid_name") }
+  validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
+  validates :name, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }, if: -> { name.present? }
+
   accepts_nested_attributes_for :values, allow_destroy: true, reject_if: :rejected_values
+
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   def to_partial_path
@@ -58,7 +56,7 @@ class Variable < ApplicationRecord
 
   private
     def validate_unique_raw_value
-      validate_uniqueness_of_in_memory(values, %i[raw_value], t("variable.already_taken"))
+      validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
 
     def ensure_only_one_is_most_request

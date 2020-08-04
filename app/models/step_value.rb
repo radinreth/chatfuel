@@ -128,7 +128,6 @@ class StepValue < ApplicationRecord
     end
 
     def set_message_province_id
-      message = step.try(:message)
       return if message.nil?
 
       message.update(province_id: variable_value.display_value[0..1])

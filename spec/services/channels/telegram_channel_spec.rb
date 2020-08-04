@@ -1,20 +1,14 @@
 require "rails_helper"
 
 RSpec.describe Channels::TelegramChannel do
-  let(:message) { build(:message, content: build(:text_message, messenger_user_id: 123)) }
-  let(:step) { build(:step, message: message) }
-  let(:site) { build(:site) }
-  let(:ticket) { build(:ticket) }
-
-  before do
-    @track = create(:track, step: step, site: site, ticket: ticket)
-  end
+  let!(:message) { create(:message, platform_name: 'Telegram', content: build(:text_message, messenger_user_id: 123)) }
+  let!(:site)    { create(:site) }
+  let!(:ticket)  { create(:ticket, :incomplete) }
+  let!(:template)       { create(:template, :incomplete, :telegram)}
+  let!(:variable_value) { create(:variable_value, raw_value: ticket.code) }
+  let!(:step_value)     { create(:step_value, message: message, variable_value: variable_value)}
 
   describe "invalid" do
-    before do
-      create(:template, :incomplete)
-    end
-
     it "#params" do
       channel = described_class.new
       response = {

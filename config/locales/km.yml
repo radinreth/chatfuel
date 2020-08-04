@@ -85,6 +85,7 @@ km:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
     already_taken: "ត្រូវបានគេយកទៅហើយ"
+    presence: មិនអាចទទេរ
   home:
     index:
       title: ទំព័រដើម
@@ -96,6 +97,8 @@ km:
       session_id: អត្តលេខ
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
+    no_message:
+      empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
     title: ផ្ទាំងគ្រប់គ្រង
     total_user_visit: ចំនួនអ្នកទស្សនារបស់អ្នកប្រើប្រាស់សរុប (មុខងារនីមួយៗ)

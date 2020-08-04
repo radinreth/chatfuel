@@ -37,6 +37,6 @@ RSpec.describe StepValue, type: :model do
       step_value.save
     }
 
-    it { expect(step_value.step.message.province_id).to eq('01') }
+    it { expect(step_value.message.province_id).to eq('01') }
   end
 end
