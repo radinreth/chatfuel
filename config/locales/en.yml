@@ -83,6 +83,7 @@ en:
   variable:
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
+    already_taken: "has already been taken"
   home:
     index:
       title: Home
@@ -150,7 +151,7 @@ en:
       update: Update user
     index:
       users: Users
-      no: No.
+      'no': No.
       email: Email
       role: Role
       action: Action
@@ -175,9 +176,8 @@ en:
       title: Templates
       new: New template
       incomplete: Incomplete
-      complete: Complete
+      completed: Complete
       incorrect: Incorrect
-    incomplete:
   tickets:
     incomplete:
       content: Your ticket is incomplete
@@ -191,6 +191,19 @@ en:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  sites:
+    import: Import site
+    file: File
+    choose_file: Choose file
+    download_template: Download template
+    create_setting: Create setting
+    preview_template: Preview template
+  roles:
+    site_ombudsman: Site ombudsman
+    site_admin: Site admin
+    system_admin: System admin
+  provinces:
+    all: All
   chatfuel:
     map:
       title: OWSO office

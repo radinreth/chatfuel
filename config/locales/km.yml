@@ -25,6 +25,7 @@ km:
   app_version: កំណែ %{version}
   not_available: មិនមាន
   no_data: មិនមានទិន្នន័យ
+  presence: តំរូវអោយបញ្ចូលតម្លៃ
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
@@ -83,6 +84,7 @@ km:
   variable:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
+    already_taken: "ត្រូវបានគេយកទៅហើយ"
   home:
     index:
       title: ទំព័រដើម
@@ -175,8 +177,11 @@ km:
       title: គំរូ
       new: គំរូថ្មី
       incomplete: មិនទាន់រួចរាល់
-      complete: បានរួចរាល់
+      completed: បានរួចរាល់
       incorrect: មិនត្រឹមត្រូវ
+    validation:
+      invalid_type: មិនត្រឹមត្រូវ
+      status_not_uniq: បានបង្កើតរួចហើយ
   tickets:
     incomplete:
       content: សំបុត្ររបស់អ្នកមិនទាន់រួចរាល់ទេ
@@ -193,8 +198,36 @@ km:
   language:
     km: 'ភាសាខ្មែរ'
     en: 'English'
+  sites:
+    import: បញ្ជូនឯកសារ
+    file: ឯកសារ
+    choose_file: ជ្រើសរើសឯកសារ
+    download_template: ទាញយកគំរូ
+    create_setting: កំណត់ setting
+    preview_template: មើលគំរូជាមុន
+    regenerate_token: បង្កើត token ថ្មី
+  roles:
+    site_ombudsman: អ្នកអង្កេតការណ៏
+    site_admin: រដ្ឋបាលការិយាល័យ
+    system_admin: រដ្ឋបាលប្រព័ន្ធ
+  provinces:
+    all: ទាំងអស់
   chatfuel:
     map:
       title: ទីតាំងការិយាល័យច្រកចេញចូលតែមួយ %{district}
       subtitle: ដើម្បីបើកទីតាំងក្នុងផែនទី Google អ្នកអាចចុចនៅតំណរភ្ជាប់ខាងក្រោមបាន 👇
       button_title: មើលលើផែនទី!
+  activerecord:
+    attributes:
+      site:
+        name: ឈ្មោះ
+        code: លេខកូដ
+        lat: រយៈទទឹង
+        lng: រយៈបណ្ដោយ
+      variable:
+        name: ពាក្យគន្លឹះ
+      template:
+        content: ប្រយោគ
+        status: ស្ថានភាព
+      TelegramBot:
+        'username': ឈ្មោះបត

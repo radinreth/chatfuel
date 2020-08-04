@@ -46,6 +46,6 @@
                 %span{"aria-hidden" => "true"} ×
             .modal-body= t("sidebar.confirm_logout")
             .modal-footer
-              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("cancel")
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("shared.cancel")
               = link_to t("sidebar.logout"), destroy_user_session_path, method: :delete, class: "btn btn-primary"
 

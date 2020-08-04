@@ -6,10 +6,10 @@
 
   %td
     - if dictionary.report_enabled?
-      %small Mark as Feedback
+      %small= t('dictionaries.mark_as_feedback')
   %td
     - if dictionary.is_location?
-      %small Mark as site location
+      %small= t('dictionaries.mark_as_site_location')
 
   %td{ style: "padding: 10px 15px" }
     %ul.list-inline.m-0

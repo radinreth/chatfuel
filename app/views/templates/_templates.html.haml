@@ -2,7 +2,7 @@
 
 - if collection.length > 0
   %h5.text-header
-    = t(".#{status.to_s}")
+    = t("templates.index.#{status.to_s}")
 
   .row.card-deck.mb-5{ id: status }
     = render partial: "template", collection: collection
