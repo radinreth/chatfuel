@@ -182,7 +182,7 @@ puts "creating messages"
         steps.each do |step|
           variable = Variable.find_or_create_by(name: step[:name])
           variable_value = variable.values.find_or_create_by(raw_value: step[:value])
-          step_value = message.step_values.create(variable_value: variable_value)
+          step_value = message.step_values.create(variable_value: variable_value, variable: variable)
           step_value.update(created_at: (0...6).to_a.sample.days.ago)
         end
       end
@@ -196,7 +196,7 @@ puts "creating messages"
         steps.each do |step|
           variable = Variable.find_or_create_by(name: step[:name])
           variable_value = variable.values.find_or_create_by(raw_value: step[:value])
-          step_value = message.step_values.create(variable_value: variable_value)
+          step_value = message.step_values.create(variable_value: variable_value, variable: variable)
           step_value.update(created_at: (0...6).to_a.sample.days.ago)
         end
       end
