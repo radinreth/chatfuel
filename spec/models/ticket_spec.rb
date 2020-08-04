@@ -37,35 +37,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe "associations" do
-    it { is_expected.to have_one(:message) }
     it { is_expected.to belong_to(:site) }
-  end
-
-  context "scopes" do
-    # let(:recent_message) { build(:message, :text, last_interaction_at: 1.days.ago) }
-    # let(:recent_step) { build(:step, message: recent_message) }
-    # let(:recent_ticket) { build(:ticket, :completed) }
-
-    # let(:late_message) { build(:message, :text, last_interaction_at: 10.days.ago) }
-    # let(:late_step) { build(:step, message: late_message) }
-    # # let(:late_ticket) { build(:ticket, :completed) }
-
-    # before do
-    #   create(:track, step: recent_step, ticket: recent_ticket)
-    #   create(:track, step: late_step, ticket: late_ticket)
-    # end
-
-    # it ".count" do
-    #   expect(described_class.count).to eq 2
-    # end
-
-    # it ".completed_with_session" do
-    #   expect(described_class.completed_with_session).to match_array([recent_ticket, late_ticket])
-    # end
-
-    # it ".completed_in_time_range" do
-    #   expect(described_class.completed_in_time_range).to match_array([recent_ticket])
-    # end
   end
 
   describe "before validations" do

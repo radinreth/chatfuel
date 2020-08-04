@@ -19,7 +19,6 @@
 class Track < ApplicationRecord
   # associations
   belongs_to :site, counter_cache: true, optional: true
-  belongs_to :step, optional: true
   belongs_to :ticket, optional: true
 
   validates :code, presence: true

@@ -33,24 +33,30 @@ class Ticket < ApplicationRecord
 
   belongs_to :site
 
-  scope :completed_with_session, -> { completed.joins(:message).distinct }
-  scope :completed_in_time_range, -> { completed_with_session.where("DATE(messages.last_interaction_at) > DATE(?)", ENV["FB_MESSAGE_QUOTA_IN_DAY"].to_i.days.ago) }
   scope :accepted,  -> { where(status: 'accepted') }
   scope :delivered, -> { where(status: 'delivered') }
   scope :completed, -> { where(status: ['approved', 'delivered']) }
+
+  delegate :platform_name, to: :message, allow_nil: true
 
   validates :code, presence: true
   validates :status, inclusion: { in: STATUSES }
   before_validation :set_status
 
-  delegate :platform_name, to: :message, allow_nil: true
-
+  # Instant methods
   def progress_status
     return 'incomplete' if %w(accepted paid).include?(status)
 
     'completed'
   end
 
+  def message
+    Message.joins(step_values: :variable_value ).\
+          order("messages.last_interaction_at DESC").\
+          find_by("variable_values.raw_value=?", code)
+  end
+
+  # Class methods
   def self.filter(params = {})
     scope = all
     scope = scope.where("LEFT(site_id, 2) = ?", params[:province_id]) if params[:province_id].present?
