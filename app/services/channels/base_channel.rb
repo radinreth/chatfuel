@@ -18,7 +18,7 @@ module Channels
         type = "#{ticket.platform_name}Template"
         @response_template ||= Template.find_by(type: type, status: ticket.progress_status)
       rescue
-        logger.warn "Template for: #{ticket.platform_name} doesn't exist"
+        Rails.logger.warn "Template for: #{ticket.platform_name} doesn't exist"
       end
   end
 end

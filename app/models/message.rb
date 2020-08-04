@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-08-03 02:11:23.406146")
+#  last_interaction_at :datetime         default("2020-08-04 06:52:29.44067")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -25,7 +25,7 @@ class Message < ApplicationRecord
 
   # scopes
   default_scope -> { order(updated_at: :desc) }
-  
+
   delegate :type, :session_id, to: :content
 
   # validations
@@ -63,7 +63,7 @@ class Message < ApplicationRecord
     scope = filter(scope, params)
     scope
   end
-    
+
   def self.filter(scope, params={})
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?

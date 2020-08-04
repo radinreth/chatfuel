@@ -25,7 +25,6 @@ RSpec.describe Track, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:site).optional }
-    it { is_expected.to belong_to(:step).optional }
     it { is_expected.to belong_to(:ticket).optional }
   end
 
@@ -35,7 +34,7 @@ RSpec.describe Track, type: :model do
 
   describe '#site_code' do
     let(:track) { build(:track, code: '1234-56789') }
-    
+
     it 'substring code to get site_code' do
       expect(track.site_code).to eq "1234"
     end
