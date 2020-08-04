@@ -1,8 +1,10 @@
 module Channels
   class TelegramChannel < BaseChannel
     def send_message(ticket)
-      RestClient.post(ENV['TG_MESSAGING_ENDPOINT'], params(ticket), content_type: "application/json")
-      Rails.logger.debug "sent: #{ENV['TG_MESSAGING_ENDPOINT']} #{params(ticket)}"
+      return if !ticket.message || (ENV["ENABLE_TG_NOTIFY"] != "enable")
+
+      RestClient.post("#{ENV['TG_MESSAGING_URL']}/#{ENV['TG_MESSAGING_TOKEN']}/sendMessage", params(ticket), content_type: "application/json")
+      Rails.logger.debug "sent: #{ENV['TG_MESSAGING_URL']} #{params(ticket)}"
     end
 
     private

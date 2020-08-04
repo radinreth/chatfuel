@@ -29,15 +29,8 @@
 #  fk_rails_...  (site_id => sites.id)
 #
 class Ticket < ApplicationRecord
-  STATUSES = %w(accepted paid approved rejected notified delivered)
+  STATUSES = %w(accepted paid approved rejected delivered)
   INCOMPLETE_STATUSES = %w(accepted paid)
-
-  # associations
-  def message
-    Message.joins(step_value: :variable_value).\
-      order("messages.last_interaction_at DESC").\
-      find_by("variable_values.raw_value=?", code)
-  end
 
   belongs_to :site
 
