@@ -84,6 +84,6 @@ class Ticket < ApplicationRecord
     end
 
     def status_previous
-      status_previous_change.first
+      status_previous_change&.first
     end
 end

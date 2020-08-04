@@ -53,7 +53,7 @@ RSpec.describe Ticket, type: :model do
   describe "Notify to ticket's status to user" do
     let(:ticket) { create(:ticket, :accepted) }
 
-    context "completed" do
+    context "status change from: incomplete to: completed" do
       %w(approved rejected delivered).each do |status|
         it "enqueues a job" do
           expect do
@@ -63,7 +63,7 @@ RSpec.describe Ticket, type: :model do
       end
     end
 
-    context "incomplete" do
+    context "status does not change from: incomplete to: completed" do
       %w(accepted paid).each do |status|
         it "does not enqueue any job" do
           expect do
