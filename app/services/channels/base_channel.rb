@@ -15,11 +15,8 @@ module Channels
         liquid_template.render
       end
 
-      def response_template(ticket)
-        type = "#{ticket.platform_name}Template"
-        @response_template ||= Template.find_by(type: type, status: ticket.progress_status)
-      rescue
-        Rails.logger.warn "Template for: #{ticket.platform_name} doesn't exist"
+      def response_template(status, platform_name)
+        @response_template ||= Template.for(status, platform_name)
       end
   end
 end

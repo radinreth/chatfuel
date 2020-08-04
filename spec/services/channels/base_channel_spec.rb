@@ -13,13 +13,15 @@ RSpec.describe Channels::BaseChannel do
       expect(described_class.get("Telegram")).to be_a(Channels::TelegramChannel)
     end
 
-    it "InvalidChannel" do
-      expect(described_class.get("Invalid")).to be_a(Channels::InvalidChannel)
+    %w(invalid 34348 *$## INVALID _invalid_).each do |invalid|
+      it "InvalidChannel" do
+        expect(described_class.get(invalid)).to be_a(Channels::InvalidChannel)
+      end
     end
   end
 
   it "raise" do
-    expect { subject.send_message(ticket) }.to raise_error("you have to implement in subclass")
+    expect { subject.send_message(ticket) }.to raise_error(RuntimeError, "you have to implement in subclass")
   end
 
   # let!(:template) { create(:template) }
