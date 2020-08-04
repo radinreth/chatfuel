@@ -49,4 +49,28 @@ RSpec.describe Ticket, type: :model do
       expect(ticket.status).to eq('paid')
     }
   end
+
+  describe "Notify to ticket's status to user" do
+    let(:ticket) { create(:ticket, :accepted) }
+
+    context "completed" do
+      %w(approved rejected delivered).each do |status|
+        it "enqueues a job" do
+          expect do
+            ticket.update status: status
+          end.to have_enqueued_job(BroadcastJob).on_queue "default"
+        end
+      end
+    end
+
+    context "incomplete" do
+      %w(accepted paid).each do |status|
+        it "does not enqueue any job" do
+          expect do
+            ticket.update status: status
+          end.not_to have_enqueued_job(BroadcastJob).on_queue "default"
+        end
+      end
+    end
+  end
 end
