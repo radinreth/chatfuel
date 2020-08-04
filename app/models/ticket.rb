@@ -80,6 +80,10 @@ class Ticket < ApplicationRecord
 
     def just_completed?
       progress_status == 'completed' && \
-      INCOMPLETE_STATUSES.include?(status_previous_change)
+      INCOMPLETE_STATUSES.include?(status_previous)
+    end
+
+    def status_previous
+      status_previous_change.first
     end
 end
