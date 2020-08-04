@@ -24,10 +24,15 @@ class Template < ApplicationRecord
   validates :type,  allow_blank: true,
                     inclusion: {
                       in: %w(MessengerTemplate TelegramTemplate VerboiceTemplate),
-                      message: "%{value} is not a valid type"
+                      message: I18n.t("templates.validation.invalid_type")
                     }
-  validates :status, uniqueness: { scope: :type }
-  validates :content, presence: true, if: :text_template?
+  validates :status, uniqueness: {
+                      scope: :type,
+                      message: I18n.t("templates.validation.status_not_uniq")
+                    }
+  validates :content, presence: {
+                        message: I18n.t("presence")
+                      }, if: :text_template?
   validates :audio, attached: true, if: :voice_template?
 
   def platform_value

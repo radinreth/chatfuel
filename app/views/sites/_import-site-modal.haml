@@ -3,20 +3,23 @@
     .modal-content
       = simple_form_for Site.new, url: import_sites_path, html: { id: "new_import_site" } do |f|
         .modal-header
-          %h5#importSiteLabel.modal-title Import site
+          %h5#importSiteLabel.modal-title
+            = t("sites.import")
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} ×
         .modal-body
           .form-group
-            %label.d-block File
+            %label.d-block
+              = t("sites.file")
             %label.btn.btn-secondary.m-0
-              Choose file
+              = t("sites.choose_file")
               = f.input_field :file, as: :file, label: false, class: "d-none"
 
           .mt-4
             = link_to download_sites_path, target: "_blank" do
               %i.fas.fa-fw.fa-download
-              Download Template
+              = t("sites.download_template")
         .modal-footer
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-          = f.submit "Import Site", class: "btn btn-primary"
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+            = t("shared.cancel")
+          = f.submit t("sites.import"), class: "btn btn-primary"
