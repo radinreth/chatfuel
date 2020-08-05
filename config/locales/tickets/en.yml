@@ -3,7 +3,7 @@ en:
     title: Tickets
     code: Code
     status: Status
-    tell: Tell
+    tel: Tel
     district: District
     service_description: Service Description
     requested_date: Requested Date
