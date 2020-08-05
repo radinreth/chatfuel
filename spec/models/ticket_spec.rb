@@ -14,7 +14,7 @@
 #  requested_date      :datetime
 #  service_description :string
 #  status              :string
-#  tell                :string
+#  tel                 :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  site_id             :bigint(8)        not null

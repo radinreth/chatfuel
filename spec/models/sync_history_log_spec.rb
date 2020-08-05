@@ -40,7 +40,7 @@ RSpec.describe SyncHistoryLog, type: :model do
 
   describe 'after_commit for create, upsert_tickets_to_site_async' do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
-    let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tell\"=>\"011 222 333\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
+    let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
     let(:sync_history_log) { SyncHistoryLog.new(site_id: site.id, payload: payload) }
 
     it { expect{ sync_history_log.save }.to have_enqueued_job(SyncHistoryJob) }
@@ -48,7 +48,7 @@ RSpec.describe SyncHistoryLog, type: :model do
 
   describe '#upsert_tickets_to_site' do
     let(:site) { create(:site, name: "kamrieng", code: "0202") }
-    let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tell\"=>\"011 222 333\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
+    let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
     let(:sync_history_log) { SyncHistoryLog.create(site_id: site.id, payload: payload) }
 
     before {
@@ -61,7 +61,7 @@ RSpec.describe SyncHistoryLog, type: :model do
     end
 
     context 'update' do
-      let(:payload2) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tell\"=>\"011 222 333\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"2020-07-22\"}]"} }
+      let(:payload2) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"2020-07-22\"}]"} }
       let(:sync_history_log2) { SyncHistoryLog.create(site_id: site.id, payload: payload2) }
 
       before {

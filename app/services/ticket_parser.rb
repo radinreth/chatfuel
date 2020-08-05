@@ -28,7 +28,7 @@ class TicketParser
         approved_date: "ApprovedDate",
         delivery_date: "DeliveryDate",
         dist_gis: "DistGis",
-        tell: "Tell"
+        tel: "Tel"
       }
     end
 end
