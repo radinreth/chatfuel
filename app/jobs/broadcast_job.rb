@@ -3,7 +3,7 @@ class BroadcastJob < ApplicationJob
 
   def perform(ticket)
     channel = Channel::BaseChannel.get(ticket.platform_name)
-    channel.send_message(ticket)
+    channel.send_message(ticket) if ticket.message
   rescue StandardError => e
     Rails.logger.info "Cannot notified ticket: #{ticket.code} with exception: #{e.message}"
   end
