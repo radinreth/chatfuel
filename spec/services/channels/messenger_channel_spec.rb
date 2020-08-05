@@ -1,46 +1,41 @@
 require "rails_helper"
 
 RSpec.describe Channels::MessengerChannel do
-  let!(:message) { create(:message, content: create(:text_message, messenger_user_id: 123)) }
-  let!(:site)    { create(:site) }
-  let!(:ticket)  { create(:ticket, :incomplete) }
-  let!(:template)       { create(:template, :incomplete, :messenger)}
-  let!(:variable_value) { create(:variable_value, raw_value: ticket.code) }
-  let!(:step_value)     { create(:step_value, message: message, variable_value: variable_value)}
+  let(:ticket) { build(:ticket) }
+  let(:message) { build(:message, :text) }
 
-  before do
-    @track = create(:track, site: site, ticket: ticket)
+  it "calls #send_message one time" do
+    expect(subject).to receive(:send_message).with(ticket).once
+    subject.send_message(ticket)
   end
 
-  describe "invalid" do
+  describe "incomplete ticket" do
+    let!(:template) { create(:template, :incomplete) }
+    let(:ticket) { build(:ticket, :incomplete) }
+
     it "#params" do
-      channel = described_class.new
-      response = {
-          message: {
-            text: "your ticket is incomplete"
-          },
-        messaging_type: "MESSAGE_TAG",
-        recipient: { id: "123" },
-        tag: "CONFIRMED_EVENT_UPDATE"
-      }
+      allow(ticket).to receive(:message).and_return(message)
+      response = {  message: { text: template.content },
+                    messaging_type: "MESSAGE_TAG",
+                    recipient: { id: message.session_id },
+                    tag: "CONFIRMED_EVENT_UPDATE" }
 
-      expect(channel.send(:params, ticket)).to eq response
+      expect(subject.send(:params, ticket)).to include(response)
     end
+  end
 
-    it "#url" do
-      ENV["FB_PAGE_TOKEN"] = "abc"
-      channel = described_class.new
-      expect(channel.send(:url)).to eq "https://graph.facebook.com/v6.0/me/messages?access_token=abc"
-    end
+  describe "completed ticket" do
+    let!(:template) { create(:template, :completed) }
+    let(:ticket) { build(:ticket, :completed) }
 
-    it "respond_to?" do
-      channel = described_class.new
-      expect(channel.respond_to?(:send_message)).to be_truthy
-    end
+    it "#params" do
+      allow(ticket).to receive(:message).and_return(message)
+      response = {  message: { text: template.content },
+                    messaging_type: "MESSAGE_TAG",
+                    recipient: { id: message.session_id },
+                    tag: "CONFIRMED_EVENT_UPDATE" }
 
-    it "#send_message" do
-      expect(subject).to receive(:send_message).with(ticket)
-      subject.send_message(ticket)
+      expect(subject.send(:params, ticket)).to include(response)
     end
   end
 end

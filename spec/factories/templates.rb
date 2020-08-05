@@ -14,9 +14,23 @@ FactoryBot.define do
     content { "My template" }
     type { "MessengerTemplate" }
 
+    trait :telegram do
+      type { "TelegramTemplate" }
+    end
+
     trait :incomplete do
       status { :incomplete }
       content { "your ticket is incomplete" }
+    end
+
+    trait :completed do
+      status { :completed }
+      content { "your ticket is completed" }
+    end
+
+    trait :incorrect do
+      status { :incorrect }
+      content { "your ticket is incorrect" }
     end
 
     [:messenger, :telegram].each do |platform|
