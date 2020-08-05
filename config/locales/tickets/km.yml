@@ -7,8 +7,8 @@ km:
     district: ស្រុក
     service_description: សេវាកម្ម
     requested_date: កាលបរិច្ឆេទស្នើសុំ
-    approved_date: កាលបរិច្ឆេទនអនុម័ត
-    delivery_date: កាលបរិច្ឆេទដឹកជញ្ជូន
+    approved_date: កាលបរិច្ឆេទអនុម័ត
+    delivery_date: កាលបរិច្ឆេទទទួល
     type_ticket_code: វាយបញ្ចូលលេខកូដសំបុត្រ
     status_accepted:
       status: Accepted
