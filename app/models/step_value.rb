@@ -25,7 +25,7 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
-  belongs_to :variable_value
+  belongs_to :variable_value, counter_cache: true
   belongs_to :site, optional: true
   belongs_to :message
   belongs_to :variable
