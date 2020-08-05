@@ -9,17 +9,6 @@ RSpec.describe Channels::TelegramChannel do
     subject.send_message(ticket)
   end
 
-  describe "return" do
-    before do
-      ENV['ENABLE_TG_NOTIFY'] = 'disable'
-      allow(ticket).to receive(:message).and_return(nil)
-    end
-
-    it "nil" do
-      expect(subject.send_message(ticket)).to be_nil
-    end
-  end
-
   describe "incomplete ticket" do
     let!(:template) { create(:template, :telegram, :incomplete) }
     let(:ticket) { build(:ticket, :incomplete) }
