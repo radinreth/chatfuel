@@ -55,8 +55,8 @@ class Ticket < ApplicationRecord
   end
 
   def message
-    Message.joins(step_values: :variable_value ).\
-          order("messages.last_interaction_at DESC").\
+    Message.joins(step_values: :variable_value).
+          order("messages.last_interaction_at DESC").
           find_by("variable_values.raw_value=?", code)
   end
 
@@ -79,8 +79,7 @@ class Ticket < ApplicationRecord
     end
 
     def just_completed?
-      progress_status == 'completed' && \
-      INCOMPLETE_STATUSES.include?(status_previous)
+      progress_status == 'completed' && INCOMPLETE_STATUSES.include?(status_previous)
     end
 
     def status_previous
