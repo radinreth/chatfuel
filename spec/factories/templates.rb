@@ -14,6 +14,10 @@ FactoryBot.define do
     content { "My template" }
     type { "MessengerTemplate" }
 
+    trait :telegram do
+      type { "TelegramTemplate" }
+    end
+
     trait :incomplete do
       status { :incomplete }
       content { "your ticket is incomplete" }

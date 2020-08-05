@@ -1,33 +1,58 @@
 require "rails_helper"
 
 RSpec.describe Channels::TelegramChannel do
-  let!(:message) { create(:message, platform_name: 'Telegram', content: build(:text_message, messenger_user_id: 123)) }
-  let!(:site)    { create(:site) }
-  let!(:ticket)  { create(:ticket, :incomplete) }
-  let!(:template)       { create(:template, :incomplete, :telegram)}
-  let!(:variable_value) { create(:variable_value, raw_value: ticket.code) }
-  let!(:step_value)     { create(:step_value, message: message, variable_value: variable_value)}
+  let(:ticket) { build(:ticket) }
+  let(:message) { build(:message, :text) }
 
-  describe "invalid" do
+  it "calls #send_message one time" do
+    expect(subject).to receive(:send_message).with(ticket).once
+    subject.send_message(ticket)
+  end
+
+  describe "return" do
+    before do
+      ENV['ENABLE_TG_NOTIFY'] = 'disable'
+      allow(ticket).to receive(:message).and_return(nil)
+    end
+
+    it "nil" do
+      expect(subject.send_message(ticket)).to be_nil
+    end
+  end
+
+  describe "incomplete ticket" do
+    let!(:template) { create(:template, :telegram, :incomplete) }
+    let(:ticket) { build(:ticket, :incomplete) }
+
     it "#params" do
-      channel = described_class.new
-      response = {
-        chat_id: message.session_id,
-        disable_notification: true,
-        text: "your ticket is incomplete"
-      }
+      allow(ticket).to receive(:message).and_return(message)
+      response = {  chat_id: message.session_id,
+                    text: template.content,
+                    disable_notification: true }
 
-      expect(channel.send(:params, ticket)).to eq response
+      expect(subject.send(:params, ticket)).to include(response)
     end
+  end
 
-    it "respond_to?" do
-      channel = described_class.new
-      expect(channel.respond_to?(:send_message)).to be_truthy
+  describe "completed ticket" do
+    let!(:template) { create(:template, :telegram, :completed) }
+    let(:ticket) { build(:ticket, :completed) }
+
+    it "#params" do
+      allow(ticket).to receive(:message).and_return(message)
+      response = {  chat_id: message.session_id,
+                    text: template.content,
+                    disable_notification: true }
+
+      expect(subject.send(:params, ticket)).to include(response)
     end
+  end
 
-    it "#send_message" do
-      expect(subject).to receive(:send_message).with(ticket)
-      subject.send_message(ticket)
+  describe "incorrect ticket" do
+    let!(:template) { create(:template, :incorrect) }
+
+    it "#params" do
+      expect(subject.send(:params, nil)).to eq({})
     end
   end
 end
