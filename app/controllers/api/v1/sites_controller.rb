@@ -20,7 +20,7 @@ module Api
 
       private
         def ticket_params
-          params.permit(tickets: [:TicketID, :Tell, :ServiceDescription, :Status, :RequestedDate, :ApprovedDate, :DeliveryDate])
+          params.permit(tickets: [:TicketID, :Tel, :DistGis, :ServiceDescription, :Status, :RequestedDate, :ApprovedDate, :DeliveryDate])
         end
     end
   end
