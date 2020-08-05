@@ -1,7 +1,7 @@
 module Channels
   class TelegramChannel < BaseChannel
     def send_message(ticket)
-      return if !ticket&.message || (ENV["ENABLE_TG_NOTIFY"] != "enable")
+      return if ENV["ENABLE_TG_NOTIFY"] != "enable"
 
       RestClient.post("#{ENV['TG_MESSAGING_URL']}/#{ENV['TG_MESSAGING_TOKEN']}/sendMessage", params(ticket), content_type: "application/json")
       Rails.logger.debug "sent: #{ENV['TG_MESSAGING_URL']} #{params(ticket)}"
@@ -9,8 +9,6 @@ module Channels
 
     private
       def params(ticket)
-        return {} if ticket.nil?
-
         template = response_template(ticket.progress_status, :telegram)
         {
           chat_id: ticket.message.session_id,

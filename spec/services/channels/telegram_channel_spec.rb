@@ -47,12 +47,4 @@ RSpec.describe Channels::TelegramChannel do
       expect(subject.send(:params, ticket)).to include(response)
     end
   end
-
-  describe "incorrect ticket" do
-    let!(:template) { create(:template, :incorrect) }
-
-    it "#params" do
-      expect(subject.send(:params, nil)).to eq({})
-    end
-  end
 end
