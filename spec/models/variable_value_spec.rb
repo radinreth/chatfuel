@@ -2,13 +2,14 @@
 #
 # Table name: variable_values
 #
-#  id            :bigint(8)        not null, primary key
-#  mapping_value :string           default("")
-#  raw_value     :string           not null
-#  status        :string           default("1")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  variable_id   :bigint(8)        not null
+#  id                :bigint(8)        not null, primary key
+#  mapping_value     :string           default("")
+#  raw_value         :string           not null
+#  status            :string           default("1")
+#  step_values_count :integer(4)       default("0")
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  variable_id       :bigint(8)        not null
 #
 # Indexes
 #
