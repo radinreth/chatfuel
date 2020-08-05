@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_024713) do
+ActiveRecord::Schema.define(version: 2020_08_04_110202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_024713) do
     t.bigint "variable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "step_values_count", default: 0
     t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 

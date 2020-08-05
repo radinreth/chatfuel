@@ -2,13 +2,14 @@
 #
 # Table name: variable_values
 #
-#  id            :bigint(8)        not null, primary key
-#  mapping_value :string           default("")
-#  raw_value     :string           not null
-#  status        :string           default("1")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  variable_id   :bigint(8)        not null
+#  id                :bigint(8)        not null, primary key
+#  mapping_value     :string           default("")
+#  raw_value         :string           not null
+#  status            :string           default("1")
+#  step_values_count :integer(4)       default("0")
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  variable_id       :bigint(8)        not null
 #
 # Indexes
 #
@@ -24,17 +25,31 @@ class VariableValue < ApplicationRecord
   # associations
   belongs_to :variable
   has_many :step_values
-  has_many :steps, through: :step_values
 
   # validations
   validates :raw_value, presence: true
   default_scope -> { order(:raw_value) }
 
+  # Callback
+  before_destroy :ensure_destroyable
+
   def display_value
     mapping_value.presence || raw_value
+  end
+
+  def destroyable?
+    step_values_count.zero?
   end
 
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
   delegate :is_location?, to: :variable, prefix: false
+
+  private
+    def ensure_destroyable
+      return if destroyable?
+
+      errors.add(:base, "cannot be deleted!")
+      throw :abort
+    end
 end
