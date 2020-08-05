@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #
 class MessengerTemplate < Template
+  include Rails.application.routes.url_helpers
 
   def self.model_name
     Template.model_name
