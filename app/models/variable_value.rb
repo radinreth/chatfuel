@@ -30,15 +30,26 @@ class VariableValue < ApplicationRecord
   validates :raw_value, presence: true
   default_scope -> { order(:raw_value) }
 
+  # Callback
+  before_destroy :ensure_destroyable
+
   def display_value
     mapping_value.presence || raw_value
   end
 
-  def delete_able?
+  def destroyable?
     step_values_count.zero?
   end
 
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
   delegate :is_location?, to: :variable, prefix: false
+
+  private
+    def ensure_destroyable
+      return if destroyable?
+
+      errors.add(:base, "cannot be deleted!")
+      throw :abort
+    end
 end
