@@ -4,7 +4,7 @@
       = @variable.name
 
     .btn-group-toggle.text-right{ "data-toggle": "buttons" }
-      %label.variable_report_enabled.btn.btn-success.btn-sm{ class: toggle_class_name("active", @variable.report_enabled?) }
+      %label.variable_report_enabled.btn.btn-success{ class: toggle_class_name("active", @variable.report_enabled?) }
         = f.input_field :report_enabled, checked: @variable.report_enabled?, name: "variable[report_enabled]", class: "variable-report-enabled"
         %span.report-label
           = @variable.report_enabled? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
