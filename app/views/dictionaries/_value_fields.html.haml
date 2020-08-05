@@ -4,7 +4,8 @@
   %td
     .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
       = f.input :id, as: :hidden
-      = f.input :_destroy, as: :hidden, input_html: { class: "variable-destroy" }
+      - if f.object.destroyable?
+        = f.input :_destroy, as: :hidden, input_html: { class: "variable-destroy" }
 
       %table.w-75.rate{cellspacing: 0, cellpadding: 0}
         %tr
@@ -17,5 +18,6 @@
           %td= f.radio_button :status, 2, checked: f.object.disatisfied?
 
   %td.text-right
-    = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none dictionary-remove-pair" do
-      %i.fa.fa-fw.fa-trash
+    - if f.object.destroyable?
+      = link_to "#", class: "btn-circle btn-sm btn-danger text-decoration-none dictionary-remove-pair" do
+        %i.fa.fa-fw.fa-trash
