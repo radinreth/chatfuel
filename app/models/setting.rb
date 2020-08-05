@@ -22,7 +22,7 @@ class Setting < RailsSettings::Base
   # field :omniauth_google_client_id, default: (ENV["OMNIAUTH_GOOGLE_CLIENT_ID"] || ""), type: :string, readonly: true
   # field :omniauth_google_client_secret, default: (ENV["OMNIAUTH_GOOGLE_CLIENT_SECRET"] || ""), type: :string, readonly: true
 
-  ENABLED_OPTIONS = %w(1 enable enabled true on)
+  ENABLED_OPTIONS = %w(1 enable enabled true on yes)
   def self.messenger_notification_enabled?
     ENABLED_OPTIONS.include?(ENV['FB_NOTIFY_ENABLED'].downcase)
   end

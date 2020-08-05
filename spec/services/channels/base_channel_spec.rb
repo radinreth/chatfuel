@@ -12,7 +12,7 @@ RSpec.describe Channels::BaseChannel do
       expect(described_class.get("Telegram")).to be_a(Channels::TelegramChannel)
     end
 
-    %w(invalid 34348 *$## INVALID _invalid_).each do |invalid|
+    %w(invalid Line WhatApp INVALID _invalid_).each do |invalid|
       it "InvalidChannel" do
         expect(described_class.get(invalid)).to be_a(Channels::InvalidChannel)
       end
