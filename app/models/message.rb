@@ -54,6 +54,10 @@ class Message < ApplicationRecord
     scope.where(step_values: variable.step_values) if variable.present?
   end
 
+  def reachable_period?
+    last_interaction_at > ENV["FB_REACHABLE_IN_DAY"].to_i.days.ago
+  end
+
   def self.complete_all
     all.map(&:completed!)
   end

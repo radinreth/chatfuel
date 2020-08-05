@@ -1,17 +1,17 @@
 module Channels
   class MessengerChannel < BaseChannel
     def send_message(ticket)
-      RestClient.post(url, params(ticket), content_type: "application/json")
-      Rails.logger.info "Sent: #{url} #{params}"
+      return if Setting.messenger_notification_enabled?
+
+      if ticket.message.reachable_period?
+        RestClient.post("#{ENV['FB_MESSAGING_URL']}?access_token=#{ENV['FB_MESSAGING_TOKEN']}", params(ticket), content_type: "application/json")
+        Rails.logger.info "Sent: #{ENV['FB_MESSAGING_URL']} #{params(ticket)}"
+      end
     end
 
     private
-      def url
-        @uri ||= "https://graph.facebook.com/v6.0/me/messages?access_token=#{ENV["FB_PAGE_TOKEN"]}"
-      end
-
       def params(ticket)
-        template = response_template ticket
+        template = response_template(ticket.progress_status, :messenger)
         {
           messaging_type: "MESSAGE_TAG",
           tag: "CONFIRMED_EVENT_UPDATE",

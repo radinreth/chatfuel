@@ -30,29 +30,33 @@
 #
 class Ticket < ApplicationRecord
   STATUSES = %w(accepted paid approved rejected delivered)
+  INCOMPLETE_STATUSES = %w(accepted paid)
 
   belongs_to :site
 
-  scope :accepted,  -> { where(status: 'accepted') }
+  # validations
+  validates :code, presence: true
+  validates :status, inclusion: { in: STATUSES }
+  before_validation :set_status
+  after_update :notify_completed_to_bot_user, if: :just_completed?
+
+  # scopes
+  scope :accepted, -> { where(status: 'accepted') }
   scope :delivered, -> { where(status: 'delivered') }
   scope :completed, -> { where(status: ['approved', 'delivered']) }
 
   delegate :platform_name, to: :message, allow_nil: true
 
-  validates :code, presence: true
-  validates :status, inclusion: { in: STATUSES }
-  before_validation :set_status
-
-  # Instant methods
+  # Instand methods
   def progress_status
-    return 'incomplete' if %w(accepted paid).include?(status)
+    return 'incomplete' if INCOMPLETE_STATUSES.include?(status)
 
     'completed'
   end
 
   def message
-    Message.joins(step_values: :variable_value ).\
-          order("messages.last_interaction_at DESC").\
+    Message.joins(step_values: :variable_value).
+          order("messages.last_interaction_at DESC").
           find_by("variable_values.raw_value=?", code)
   end
 
@@ -68,5 +72,17 @@ class Ticket < ApplicationRecord
   private
     def set_status
       self.status = status.try(:downcase) || STATUSES[0]
+    end
+
+    def notify_completed_to_bot_user
+      BroadcastJob.perform_later(self)
+    end
+
+    def just_completed?
+      progress_status == 'completed' && INCOMPLETE_STATUSES.include?(status_previous)
+    end
+
+    def status_previous
+      status_previous_change&.first
     end
 end
