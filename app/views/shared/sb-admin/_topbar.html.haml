@@ -4,7 +4,7 @@
   %ul.navbar-nav.ml-auto
     %li.nav-item.dropdown.no-arrow.mx-1
       %a#messagesDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-        - language = { en: "usa.png", km: "khmer.png" }
+        - language = { en: "english.png", km: "khmer.png" }
         = image_tag language[I18n.locale], alt: "locale", size: "24x24", class: "mr-2"
         %span= t("language.#{I18n.locale}")
         %i.fas.fa-angle-down.fa-fw
@@ -18,7 +18,7 @@
 
         = link_to set_language_settings_path(locale: 'en'), method: :put, remote: true, class: 'switch-language dropdown-item d-flex align-items-center' do
           .dropdown-list-image.mr-3
-            = image_tag "usa.png", alt: "locale", size: "24x24", class: "mr-2"
+            = image_tag "english.png", alt: "locale", size: "24x24", class: "mr-2"
           .font-weight-bold
             .text-truncate= t('language.en')
 
