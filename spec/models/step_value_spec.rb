@@ -39,4 +39,22 @@ RSpec.describe StepValue, type: :model do
 
     it { expect(step_value.message.province_id).to eq('01') }
   end
+
+  describe ".most_recent" do
+    let(:variable) { build(:variable) }
+    let(:first_value) { build(:variable_value, id: 1) }
+    let(:last_value) { build(:variable_value, id: 2) }
+
+    before do
+      create(:step_value, variable: variable, variable_value: first_value)
+      create(:step_value, variable: variable, variable_value: last_value)
+    end
+
+    it "return lastest step_value" do
+      most_recent = described_class.most_recent
+
+      expect(most_recent.length).to eq 1
+      expect(most_recent.first.variable_value).to eq last_value
+    end
+  end
 end
