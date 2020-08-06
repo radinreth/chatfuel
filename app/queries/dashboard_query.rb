@@ -82,7 +82,7 @@ class DashboardQuery
     # Ticket does not need to care about about platform(both, chatbot, ivr)
     # because it syncs from desktop app).
     def submitted
-      data = Ticket.filter(@options).group_by_day(:updated_at).count
+      data = Ticket.filter(@options).group_by_day(:requested_date).count
 
       { name: I18n.t("dashboard.submitted"), data: data } if data.present?
     end
