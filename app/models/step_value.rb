@@ -35,6 +35,8 @@ class StepValue < ApplicationRecord
   after_create :push_notification, if: -> { variable_value.feedback_message? }
   after_create :set_message_province_id, if: -> { variable_value.is_location? }
 
+  scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id").order("variable_id, updated_at DESC") }
+
   def self.satisfied
     return [] unless report_column
 
