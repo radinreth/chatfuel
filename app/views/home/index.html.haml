@@ -6,13 +6,15 @@
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
           %tr
+            %th #
             %th= t(".session_id")
             %th= t(".created_date")
             - @variables.each do |variable|
               %th= variable.name
         %tbody
-          - @messages.each do |message|
+          - @messages.each_with_index do |message, index|
             %tr
+              %td= index + 1
               %td
                 = image_tag "#{message.platform_name.downcase}.svg", width: 18
                 = message.session_id
