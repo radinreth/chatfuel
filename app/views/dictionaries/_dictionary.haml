@@ -11,6 +11,8 @@
     - if dictionary.is_location?
       %small= t('dictionaries.mark_as_site_location')
 
+  %td
+    = display_datetime(dictionary.created_at)
   %td{ style: "padding: 10px 15px" }
     %ul.list-inline.m-0
       %li.list-inline-item
