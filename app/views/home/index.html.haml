@@ -19,7 +19,7 @@
               %td= message.created_at.strftime("%d-%m-%y %H:%M")
               - @variables.each do |variable|
                 - value = ''
-                - message.step_values.each do |step|
+                - message.step_values.most_recent.each do |step|
                   - if step.variable.name == variable.name
                     - value = step.variable_value.display_value
                     - break
