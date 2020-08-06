@@ -20,29 +20,35 @@
 
     .custom-table.table.table-bordered
       .custom-row.thead
+        %strong.custom-col.col-no #
         %strong.custom-col= t('sites.province')
-        %strong.custom-col= t('sites.code')
         %strong.custom-col= t('sites.track_count')
         %strong.custom-col= t('sites.healthcheck')
         %strong.custom-col= t('sites.action')
 
       - @provinces.each_with_index do |province, index|
         .custom-row.accordion-toggle.pointer{"data-target" => "#row-#{index}", "data-toggle" => "collapse"}
+          .custom-col.col-no
+            = index + 1
           .custom-col.d-flex
             %span.flex-grow-1
+              = province['id']
+              &middot;
               = "<strong>#{province['name_km']}</strong> (#{province['sites_count']})".html_safe
             %span.btn-toggle
               %i.fas.fa-chevron-down
           .custom-col
           .custom-col
           .custom-col
-          .custom-col
 
         .custom-table.accordion-body.collapse{id: "row-#{index}", class: ('show' if params[:keyword].present?)}
-          - province['sites'].each do |site|
+          - province['sites'].each_with_index do |site, i|
             .custom-row
-              .custom-col.pl-4= link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
-              .custom-col= site['code']
+              .custom-col.col-no
+              .custom-col.pl-4
+                = site['code']
+                &middot;
+                = link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
               .custom-col= site['tracks_count']
               .custom-col
                 - if site.sync_status.present?
