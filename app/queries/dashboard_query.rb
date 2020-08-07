@@ -31,7 +31,7 @@ class DashboardQuery
     return {} unless user_visit.present?
 
     default = {}
-    user_visit.values.each { |val| default[val.raw_value] = 0 }
+    user_visit.values.each { |val| default[val.mapping_value] = 0 }
     default
   end
 

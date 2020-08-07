@@ -56,8 +56,8 @@ class StepValue < ApplicationRecord
     scope = scope.joins(variable_value: :variable)
     scope = filter(scope, params)
     scope = scope.where(variables: { is_user_visit: true })
-    scope = scope.order(:raw_value)
-    scope = scope.group(:raw_value)
+    scope = scope.order(:mapping_value)
+    scope = scope.group(:mapping_value)
     scope.count
   end
 
@@ -77,7 +77,7 @@ class StepValue < ApplicationRecord
     aggregate_result = scope.count
 
     if report_variable
-      mapping = report_variable.values.pluck(:id, :raw_value).to_h
+      mapping = report_variable.values.pluck(:id, :mapping_value).to_h
       aggregate_result.transform_keys { |k| mapping[k] }
     end
   end
@@ -94,16 +94,16 @@ class StepValue < ApplicationRecord
     return {} if result.nil? || result.empty?
 
     variable_value = VariableValue.find(result.keys.first)
-    {variable_value.raw_value => result.values.first}
+    {variable_value.mapping_value => result.values.first}
   end
 
-  def self.accessed(params = {})
-    scope = default_join
-    scope = filter(scope, params)
-    scope = scope.where("variable_values.raw_value = ?", "owso_info")
-    scope = scope.group_by_day(:created_at)
-    scope.count
-  end
+  # def self.accessed(params = {})
+  #   scope = default_join
+  #   scope = filter(scope, params)
+  #   scope = scope.where("variable_values.raw_value = ?", "owso_info")
+  #   scope = scope.group_by_day(:created_at)
+  #   scope.count
+  # end
 
   def self.default_join
     scope = all
