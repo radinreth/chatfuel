@@ -28,15 +28,17 @@ class VariableValue < ApplicationRecord
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { order(:raw_value) }
+  default_scope -> { order(:mapping_value) }
+
+  scope :distinct_values, -> { select("distinct on (mapping_value) mapping_value, raw_value") }
 
   # Callback
   before_destroy :ensure_destroyable
   before_create :set_mapping_value
 
-  def display_value
-    mapping_value.presence || raw_value
-  end
+  # def display_value
+  #   mapping_value.presence || raw_value
+  # end
 
   def destroyable?
     step_values_count.zero?
