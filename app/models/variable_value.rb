@@ -32,6 +32,7 @@ class VariableValue < ApplicationRecord
 
   # Callback
   before_destroy :ensure_destroyable
+  before_create :set_mapping_value
 
   def display_value
     mapping_value.presence || raw_value
@@ -51,5 +52,9 @@ class VariableValue < ApplicationRecord
 
       errors.add(:base, "cannot be deleted!")
       throw :abort
+    end
+
+    def set_mapping_value
+      self.mapping_value = self.raw_value
     end
 end
