@@ -1,4 +1,4 @@
 enabled: true
-url: https://login.instedd.org
+url: https://login.ilabsea.org
 client_id: <%= ENV['GUISSO_CLIENT_ID'] %>
 client_secret: <%= ENV['GUISSO_CLIENT_SECRET'] %>
