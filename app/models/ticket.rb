@@ -63,7 +63,7 @@ class Ticket < ApplicationRecord
   # Class methods
   def self.filter(params = {})
     scope = all
-    scope = scope.where("LEFT(site_id, 2) = ?", params[:province_id]) if params[:province_id].present?
+    scope = scope.joins(:site).where("LEFT( sites.code, 2) = ?", params[:province_id]) if params[:province_id].present?
     scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
     scope = scope.where("DATE(requested_date) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
