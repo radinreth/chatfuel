@@ -132,6 +132,6 @@ class StepValue < ApplicationRecord
     def set_message_province_id
       return if message.nil?
 
-      message.update(province_id: variable_value.display_value[0..1])
+      message.update(province_id: variable_value.mapping_value[0..1])
     end
 end

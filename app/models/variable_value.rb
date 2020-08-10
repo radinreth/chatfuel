@@ -36,10 +36,6 @@ class VariableValue < ApplicationRecord
   before_destroy :ensure_destroyable
   before_create :set_mapping_value
 
-  # def display_value
-  #   mapping_value.presence || raw_value
-  # end
-
   def destroyable?
     step_values_count.zero?
   end
