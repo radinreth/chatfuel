@@ -97,14 +97,6 @@ class StepValue < ApplicationRecord
     {variable_value.mapping_value => result.values.first}
   end
 
-  # def self.accessed(params = {})
-  #   scope = default_join
-  #   scope = filter(scope, params)
-  #   scope = scope.where("variable_values.raw_value = ?", "owso_info")
-  #   scope = scope.group_by_day(:created_at)
-  #   scope.count
-  # end
-
   def self.default_join
     scope = all
     scope.joins(step: :message, variable_value: :variable)
