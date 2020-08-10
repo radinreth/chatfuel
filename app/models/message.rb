@@ -93,7 +93,7 @@ class Message < ApplicationRecord
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
-      all.each do |message|
+      find_each do |message|
         csv << attributes.map { |attr| message.send(attr) }
       end
     end
