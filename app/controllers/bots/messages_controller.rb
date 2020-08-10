@@ -14,6 +14,8 @@ module Bots
 
     private
       def set_step
+        return unless @variable_value.present?
+
         @step = @message.step_values.create(variable: @variable_value.variable, variable_value: @variable_value)
       end
   end
