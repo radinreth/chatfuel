@@ -31,7 +31,7 @@ RSpec.describe StepValue, type: :model do
     let(:step_value) { build(:step_value) }
 
     before {
-      step_value.variable_value.mapping_value = '01'
+      step_value.variable_value.raw_value = '01'
       variable = step_value.variable_value.variable
       variable.is_location = true
       step_value.save
