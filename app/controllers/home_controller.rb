@@ -14,6 +14,10 @@ class HomeController < ApplicationController
     end
 
     @pagy, @messages = pagy(@collection)
+    respond_to do |format|
+      format.html
+      format.csv { send_data Message.to_csv }
+    end
 
     render :no_message if @messages.count.zero?
     render :no_role if current_user.role.blank?
