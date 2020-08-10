@@ -17,6 +17,8 @@
 #
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
+require 'csv'
+
 class Message < ApplicationRecord
   enum status: %i[incomplete completed]
 
@@ -86,4 +88,14 @@ class Message < ApplicationRecord
     def set_province_id
       self.province_id = district_id[0..1]
     end
+  def self.to_csv
+    attributes = %w{id created_at}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |message|
+        csv << attributes.map { |attr| message.send(attr) }
+      end
+    end
+  end
 end
