@@ -1,17 +1,17 @@
 module Bots
   class MessagesController < BotsController
-    before_action :set_variable
-    before_action :set_message
-    before_action :set_step
+    before_action :set_variable, only: :create
+    before_action :set_message, only: :create
+    before_action :set_step, only: :create
 
     def create
       head :ok
     end
 
-    #TODO Refactor
-    def done
-      @message.completed! if params[:name] == "done" && params[:value] == "true"
-      head :ok
+    def mark_as_completed
+      content = TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+      @message = Message.find_by(content: content)
+      @message&.completed!
     end
 
     private
