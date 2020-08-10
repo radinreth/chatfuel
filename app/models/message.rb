@@ -90,11 +90,29 @@ class Message < ApplicationRecord
     end
   def self.to_csv
     attributes = %w{id created_at}
+  def self.download(messages, variables)
+    attributes = %w{session_id created_at}
+    variable_names = variables.pluck(:name)
 
     CSV.generate(headers: true) do |csv|
-      csv << attributes
-      find_each do |message|
-        csv << attributes.map { |attr| message.send(attr) }
+      csv << attributes + variable_names
+
+      messages.find_each do |message|
+        values = []
+
+        values << message.session_id
+        values << message.created_at
+
+        variables.each do |variable|
+          message.step_values.most_recent.each do |step|
+            if variable.name == step.variable.name
+              values << step.variable_value.mapping_value
+              break
+            end
+          end
+        end
+
+        csv << values
       end
     end
   end
