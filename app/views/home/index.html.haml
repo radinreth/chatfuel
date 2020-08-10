@@ -23,7 +23,7 @@
                 - value = ''
                 - message.step_values.most_recent.each do |step|
                   - if step.variable.name == variable.name
-                    - value = step.variable_value.display_value
+                    - value = step.variable_value.mapping_value
                     - break
                 %td=value
 
