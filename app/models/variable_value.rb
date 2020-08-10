@@ -30,7 +30,7 @@ class VariableValue < ApplicationRecord
   validates :raw_value, presence: true
   default_scope -> { order(:mapping_value) }
 
-  scope :distinct_values, -> { select("distinct on (mapping_value) mapping_value, raw_value") }
+  scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
   # Callback
   before_destroy :ensure_destroyable
