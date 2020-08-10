@@ -70,16 +70,14 @@ class StepValue < ApplicationRecord
 
   def self.total_users_feedback(params = {})
     scope = all
+    statuses = VariableValue.statuses
+
     scope = filter(scope, params)
     report_variable = Variable.find_by(report_enabled: true)
-    scope = scope.where('variable_id': report_variable)
-    scope = scope.group(:variable_value_id)
-    aggregate_result = scope.count
-
-    if report_variable
-      mapping = report_variable.values.pluck(:id, :mapping_value).to_h
-      aggregate_result.transform_keys { |k| mapping[k] }
-    end
+    scope = scope.where(variable_id: report_variable)
+    scope.joins(:variable_value).group(:status).count.map do |k, v|
+      [statuses.key(k).capitalize, v]
+    end.to_h
   end
 
   def self.most_request_service(params = {})

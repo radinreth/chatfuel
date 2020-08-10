@@ -20,7 +20,7 @@
 #  fk_rails_...  (variable_id => variables.id)
 #
 class VariableValue < ApplicationRecord
-  enum status: { satisfied: "0", normal: "1", disatisfied: "2" }
+  enum status: { like: "0", acceptable: "1", dislike: "2" }
 
   # associations
   belongs_to :variable
