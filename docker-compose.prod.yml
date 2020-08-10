@@ -32,6 +32,8 @@ services:
       - db
       - redis
     environment:
+      - GUISSO_CLIENT_ID=
+      - GUISSO_CLIENT_SECRET=
       - LANG=C.UTF-8
       - DATABASE_URL=postgres://postgres:UPDATE_ME@db/chatfuel_production
       - REDIS_URL=redis://redis:6379
