@@ -1,17 +1,15 @@
 module Bots
   class MessagesController < BotsController
-    before_action :set_variable
-    before_action :set_message
+    before_action :set_variable, except: :done
+    before_action MessageFilter
     before_action :set_step
 
     def create
       head :ok
     end
 
-    #TODO Refactor
     def done
-      @message.completed! if params[:name] == "done" && params[:value] == "true"
-      head :ok
+      @message.completed! if @message
     end
 
     private

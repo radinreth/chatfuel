@@ -12,5 +12,10 @@ module Bots::Messages
         content = TextMessage.find_or_create_by(messenger_user_id: params[:messenger_user_id])
         @message = Message.create_or_return(params[:platform_name], content)
       end
+
+      def get_message
+        content = TextMessage.find_by(messenger_user_id: params[:messenger_user_id])
+        @message = Message.find_by(content: content)
+      end
   end
 end
