@@ -28,14 +28,13 @@ class VariableValue < ApplicationRecord
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { order(:raw_value) }
+  default_scope -> { order(:mapping_value) }
+
+  scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
   # Callback
   before_destroy :ensure_destroyable
-
-  def display_value
-    mapping_value.presence || raw_value
-  end
+  before_create :set_mapping_value
 
   def destroyable?
     step_values_count.zero?
@@ -51,5 +50,9 @@ class VariableValue < ApplicationRecord
 
       errors.add(:base, "cannot be deleted!")
       throw :abort
+    end
+
+    def set_mapping_value
+      self.mapping_value = self.raw_value
     end
 end
