@@ -30,4 +30,8 @@ class Setting < RailsSettings::Base
   def self.telegram_notification_enabled?
     ENABLED_OPTIONS.include?(ENV['TG_NOTIFY_ENABLED'].downcase)
   end
+
+  def self.telegram_template_enabled?
+    ENABLED_OPTIONS.include?(ENV['TG_TEMPLATE_ENABLED'].downcase)
+  end
 end
