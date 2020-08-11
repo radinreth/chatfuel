@@ -47,10 +47,10 @@ Rails.application.routes.draw do
 
   namespace :bots do
     # Message
-    resources :messages, only: [:create], param: :messenger_user_id do
-      post :mark_as_completed
+    resources :messages, only: [:create] do
 
       collection do
+        post :mark_as_completed
         post "ivr", to: "messages/ivr#create"
         post "chatbot", to: "messages/chatbot#create"
         get  "chatbot/preview_map", to: "messages/map_preview#index", defaults: { locale: "km" }
