@@ -4,12 +4,13 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-07-30 10:54:16.127308")
+#  last_interaction_at :datetime         default("2020-08-04 06:52:29.44067")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  content_id          :integer(4)
+#  district_id         :string(8)
 #  province_id         :string
 #
 # Indexes
@@ -84,5 +85,15 @@ RSpec.describe Message do
     it "considers completed if their steps contains done=true" do
       expect(message).to be_completed
     end
+  end
+
+  describe 'before_update, #set_province_id' do
+    let(:message) { create(:message, province_id: '01') }
+
+    before {
+      message.update(district_id: '0202')
+    }
+
+    it { expect(message.province_id).to eq('02') }
   end
 end

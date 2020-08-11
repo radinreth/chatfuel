@@ -126,6 +126,10 @@ en:
     completed: Completed
     choose_dictionary_name: Choose dictionary name
     type_search: Type your search...
+    district: District
+    all_province: All
+    all_district: All
+    location: Location
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
