@@ -39,7 +39,7 @@ RSpec.describe Template, type: :model do
     end
 
     it "includes TelegramTemplate" do
-      ENV['TG_TEMPLATE_ENABLED'] = 'true'
+      ENV['TELEGRAM_ENABLED'] = 'true'
       platform_names = [["Messenger", "MessengerTemplate"], ["Telegram", "TelegramTemplate"], ["Verboice", "VerboiceTemplate"]]
 
       expect(described_class.platform_names).to eq platform_names

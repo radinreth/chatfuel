@@ -43,7 +43,7 @@ class Template < ApplicationRecord
     platform_names = []
 
     platform_names << platform_build("Messenger")
-    platform_names << platform_build("Telegram") if Setting.telegram_template_enabled?
+    platform_names << platform_build("Telegram") if Setting.telegram_enabled?
     platform_names << platform_build("Verboice")
 
     platform_names
