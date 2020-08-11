@@ -5,7 +5,7 @@ class DictionariesController < ApplicationController
   def index
     authorize Variable
 
-    @pagy, @variables = pagy(Variable.filter(params).except_done.order(created_at: :desc).includes(:roles))
+    @pagy, @variables = pagy(Variable.filter(params).order(created_at: :desc).includes(:roles))
   end
 
   def edit
