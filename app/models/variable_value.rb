@@ -53,6 +53,6 @@ class VariableValue < ApplicationRecord
     end
 
     def set_mapping_value
-      self.mapping_value = self.raw_value
+      self.mapping_value = self.raw_value if self.mapping_value.blank?
     end
 end
