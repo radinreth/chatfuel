@@ -27,7 +27,7 @@ class Setting < RailsSettings::Base
     ENABLED_OPTIONS.include?(ENV['FB_NOTIFY_ENABLED'].downcase)
   end
 
-  def self.telegram_notification_enabled?
-    ENABLED_OPTIONS.include?(ENV['TG_NOTIFY_ENABLED'].downcase)
+  def self.telegram_enabled?
+    ENABLED_OPTIONS.include?(ENV['TELEGRAM_ENABLED'].downcase)
   end
 end

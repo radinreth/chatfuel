@@ -40,11 +40,13 @@ class Template < ApplicationRecord
   end
 
   def self.platform_names
-    [
-      ["Messenger", "MessengerTemplate"],
-      ["Telegram", "TelegramTemplate"],
-      ["Verboice", "VerboiceTemplate"]
-    ]
+    platform_names = []
+
+    platform_names << platform_build("Messenger")
+    platform_names << platform_build("Telegram") if Setting.telegram_enabled?
+    platform_names << platform_build("Verboice")
+
+    platform_names
   end
 
   def status_value
@@ -60,6 +62,10 @@ class Template < ApplicationRecord
   end
 
   private
+
+    def self.platform_build(name)
+      [name, "#{name}Template"]
+    end
 
     def ensure_text_template_dont_have_audio
       audio.purge_later if audio.attached? && text_template?
