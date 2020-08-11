@@ -127,6 +127,10 @@ km:
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
+    district: ស្រុក
+    all_province: គ្រប់ខេត្ត
+    all_district: គ្រប់ស្រុក
+    location: ទីតាំង
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ

@@ -1,7 +1,7 @@
-.row.my-4
-  .col-lg-6
+.my-4.d-flex.flex-wrap
+  .flex-grow-1
     %ul.list-inline.platform-list
-      - param = {province: params[:province], daterange: params[:daterange]}
+      - param = {daterange: params[:daterange], province_code: params[:province_code], district_code: params[:district_code]}
       %li.list-inline-item{class: ('active' if params[:platform].blank?)}
         = link_to t("dashboard.both"), dashboard_path(param), class: 'text-decoration-none'
       %li.list-inline-item{class: get_css_active_class('ivr')}
@@ -9,16 +9,12 @@
       %li.list-inline-item{class: get_css_active_class('chatbot')}
         = link_to t("dashboard.chatbot"), dashboard_path(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
-  .col-lg-6
+  %div
     %form.float-right.form.d-flex{ action: dashboard_path }
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]
 
-        .province__label
-          %span.mr-2=t("dashboard.province")
-
-        - provinces = Pumi::Province.all.pluck("name_#{Setting.default_locale}", 'id').prepend([t("provinces.all"), nil])
-        = select_tag 'province', options_for_select( provinces, params[:province]), class: 'province__select-option'
+        = render 'filter_location'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label
