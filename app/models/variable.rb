@@ -15,7 +15,6 @@
 #
 class Variable < ApplicationRecord
   default_scope { order(name: :asc) }
-  scope :except_done, -> { where.not(name: "done") }
 
   # associations
   has_many :step_values, dependent: :destroy
