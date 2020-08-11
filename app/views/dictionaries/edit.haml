@@ -25,7 +25,7 @@
 
                 %th
             %tbody
-              = f.simple_fields_for :values, include_id: false do |builder|
+              = f.simple_fields_for :values, @variable.values.reorder(:raw_value), include_id: false do |builder|
                 = render "value_fields", f: builder
 
               %tr
