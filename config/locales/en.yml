@@ -25,6 +25,7 @@ en:
   app_version: Version %{version}
   not_available: N/A
   no_data: No data
+  paginate_info: "Displaying %{name} 1 - %{items_count} of %{collection_count} in total"
   sidebar:
     dashboard: Dashboard
     home: Home
@@ -96,6 +97,7 @@ en:
       session_id: Session ID
       type: Type
       created_date: Created Date
+      messages: messages
     no_message:
       empty: There is no data yet
   dashboard:

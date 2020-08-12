@@ -66,6 +66,12 @@ module ApplicationHelper
     { width: w, height: h }
   end
 
+  def paginate_info(options = {})
+    return "" if options.blank?
+
+    t("paginate_info", name: options[:name], items_count: options[:items_count], collection_count: options[:collection_count])
+  end
+
   private
     def get_role(role_name)
       roles = {

@@ -26,6 +26,7 @@ km:
   not_available: មិនមាន
   no_data: មិនមានទិន្នន័យ
   presence: តំរូវអោយបញ្ចូលតម្លៃ
+  paginate_info: "បង្ហាញ %{name} ពី 1 - %{items_count} ក្នុងចំនួនសរុប %{collection_count}"
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
@@ -97,6 +98,7 @@ km:
       session_id: អត្តលេខ
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
+      messages: សារ
     no_message:
       empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
