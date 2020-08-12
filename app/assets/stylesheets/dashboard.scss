@@ -84,6 +84,8 @@
     border-radius: 7px;
     margin-right: 1em;
     font-size: 0.875em;
+    min-width: 180px;
+
     select {
       color: rgba(25,32,56,0.8);
       outline: none;
@@ -94,7 +96,8 @@
     border: 0;
     background-color: #fff;
     outline: none;
-    min-width: 180px;
+    min-width: 190px;
+    padding: 6px 10px;
   }
   .date-filter__choose-option .input-group-text {
     border: 0;

@@ -130,6 +130,7 @@ km:
     district: ស្រុក
     all_province: គ្រប់ខេត្ត
     all_district: គ្រប់ស្រុក
+    all: គ្រប់ខេត្ត/ក្រុង
     location: ទីតាំង
   reports:
     accessed_submitted_completed_line_chart:
