@@ -32,6 +32,8 @@ class StepValue < ApplicationRecord
   belongs_to :message
   belongs_to :variable
 
+  validates :variable, uniqueness: { scope: :message }
+
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
