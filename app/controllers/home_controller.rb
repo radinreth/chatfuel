@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     @pagy, @messages = pagy(@collection)
     respond_to do |format|
       format.html
-      format.csv { send_data Message.download(@messages, @variables) }
+      format.csv { send_data Message.download(collection, @variables) }
     end
 
     render :no_message if @messages.count.zero?
