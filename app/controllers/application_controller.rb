@@ -24,4 +24,10 @@ class ApplicationController < ActionController::Base
       Raven.user_context(id: session[:current_user_id])
       Raven.extra_context(params: params.to_unsafe_h, url: request.url)
     end
+
+    def set_daterange
+      default_date = "#{7.days.ago.strftime('%Y/%m/%d')} - #{Date.current.strftime('%Y/%m/%d')}"
+      @date_range = params['daterange'] || default_date
+      @start_date, @end_date = @date_range.split('-')
+    end
 end

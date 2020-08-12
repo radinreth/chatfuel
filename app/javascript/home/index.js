@@ -20,7 +20,7 @@ OWSO.HomeIndex = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
-      $('.form').submit();
+      $('form').submit();
     })
   }
 
