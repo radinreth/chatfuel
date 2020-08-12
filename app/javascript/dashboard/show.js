@@ -31,7 +31,9 @@ OWSO.DashboardShow = (() => {
 
   function onChangeProvince() {
     $(document).on("change", "#province", function(e) {
-      $('.form').submit();
+      if(!$('#province').val()) {
+        $('#district-hidden').val('');
+      }
     })
   }
 

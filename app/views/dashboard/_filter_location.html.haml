@@ -1,12 +1,10 @@
 - label_method = "name_#{Setting.default_locale}"
-- province = params[:province_code].present? ? Pumi::Province.find_by_id(params[:province_code]).try(label_method) : t('dashboard.all_province')
-- district = params[:district_code].present? ? Pumi::District.find_by_id(params[:district_code]).try(label_method) : t('dashboard.all_district')
+- location = Pumi::Province.find_by_id(params[:province_code]) if params[:province_code].present?
+- location = Pumi::District.find_by_id(params[:district_code]) if params[:district_code].present?
+- location = location.try(:address_km) || t('dashboard.all')
 
-.filter-label.mr-2=t("dashboard.province")
-%input.province__select-option{ type: 'text', readonly: true, value: province, "data-target" => "#locationModal", "data-toggle" => "modal" }
-
-.filter-label.mr-2=t("dashboard.district")
-%input.province__select-option{ type: 'text', readonly: true, value: district, "data-target" => "#locationModal", "data-toggle" => "modal" }
+.filter-label.mr-2=t("dashboard.location")
+.province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }= location
 
 #locationModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
@@ -20,12 +18,12 @@
         .form-group
           %label= t('dashboard.province')
           %input{type: 'hidden', name: :province_code, value: params[:province_code]}
-          %select.form-control.select{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load" => "true", "data-pumi-select-target" => "district", name: :province_code, 'data-pumi-select-has-hidden-value' => true}
+          %select.form-control.select#province{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load" => "true", "data-pumi-select-target" => "district", name: :province_code, 'data-pumi-select-has-hidden-value' => true}
             %option{value: ""}= t('dashboard.all_province')
 
         .form-group
           %label= t('dashboard.district')
-          %input{type: 'hidden', name: :district_code, value: params[:district_code]}
+          %input#district-hidden{type: 'hidden', name: :district_code, value: params[:district_code]}
           %select.form-control.select{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code', 'data-pumi-select-has-hidden-value' => true}
             %option{value: ""}= t('dashboard.all_district')
 

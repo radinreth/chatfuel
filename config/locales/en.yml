@@ -129,6 +129,7 @@ en:
     district: District
     all_province: All
     all_district: All
+    all: All
     location: Location
   reports:
     accessed_submitted_completed_line_chart:
