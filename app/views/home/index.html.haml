@@ -2,6 +2,9 @@
 
 .card.shadow.mb-4
   .card-body
+    %p
+      = paginate_info(name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
+
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
