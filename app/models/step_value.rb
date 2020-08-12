@@ -25,6 +25,8 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
+  has_paper_trail
+
   belongs_to :variable_value, counter_cache: true
   belongs_to :site, optional: true
   belongs_to :message

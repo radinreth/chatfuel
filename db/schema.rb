@@ -273,6 +273,16 @@ ActiveRecord::Schema.define(version: 2020_08_11_093002) do
     t.boolean "is_service_accessed", default: false
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   create_table "voice_messages", force: :cascade do |t|
     t.integer "callsid"
     t.string "address"
