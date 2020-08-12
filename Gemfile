@@ -47,13 +47,13 @@ gem 'carrierwave', '~> 2.0'
 gem 'rails-settings-cached', '~> 2.0'
 
 gem 'paranoia', '~> 2.2'
+gem 'paper_trail', '~> 10.3', '>= 10.3.1'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.beta4"
   gem "ffaker", "~> 2.13.0"
   gem "coderay", "~> 1.1", ">= 1.1.2"
-  gem "sidekiq-scheduler", "~> 3.0.1"
   gem "rubocop-rails", "~> 2.4.2"
   gem "rubocop-performance", "~> 1.5.2"
   gem "guard-rspec", require: false
