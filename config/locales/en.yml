@@ -98,6 +98,7 @@ en:
       type: Type
       created_date: Created Date
       messages: messages
+      last_interaction_date: Last interaction Date
     no_message:
       empty: There is no data yet
   dashboard:

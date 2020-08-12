@@ -22,9 +22,10 @@
           %tr
             %th #
             %th= t(".session_id")
-            %th= t(".created_date")
+            %th.nowrap-space
+              = t(".last_interaction_date")
             - @variables.each do |variable|
-              %th= variable.name
+              %th.nowrap-space= variable.name
         %tbody
           - @messages.each_with_index do |message, index|
             %tr
@@ -32,7 +33,7 @@
               %td
                 = image_tag "#{message.platform_name.downcase}.svg", width: 18
                 = message.session_id
-              %td= message.created_at.strftime("%d-%m-%y %H:%M")
+              %td= message.last_interaction_at.strftime("%d-%m-%y %H:%M")
               - @variables.each do |variable|
                 - value = ''
                 - message.step_values.most_recent.each do |step|
