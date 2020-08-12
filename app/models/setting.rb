@@ -24,10 +24,14 @@ class Setting < RailsSettings::Base
 
   ENABLED_OPTIONS = %w(1 enable enabled true on yes)
   def self.messenger_notification_enabled?
+    return false if ENV['FB_NOTIFY_ENABLED'].nil?
+
     ENABLED_OPTIONS.include?(ENV['FB_NOTIFY_ENABLED'].downcase)
   end
 
   def self.telegram_enabled?
+    return false if ENV['TELEGRAM_ENABLED'].nil?
+
     ENABLED_OPTIONS.include?(ENV['TELEGRAM_ENABLED'].downcase)
   end
 end
