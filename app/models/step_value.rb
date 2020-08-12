@@ -79,9 +79,13 @@ class StepValue < ApplicationRecord
     scope = filter(scope, params)
     report_variable = Variable.find_by(report_enabled: true)
     scope = scope.where(variable_id: report_variable)
-    scope.joins(:variable_value).group(:status).count.map do |k, v|
-      [statuses.key(k).capitalize, v]
+
+    default = statuses.transform_values { 0 }
+    result = scope.joins(:variable_value).group(:status).count.map do |k, v|
+      [statuses.key(k), v]
     end.to_h
+
+    default.merge(result).transform_keys &:capitalize
   end
 
   def self.most_request_service(params = {})
