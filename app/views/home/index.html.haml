@@ -4,6 +4,16 @@
   .card-body
     %p
       = t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
+    .date-filter.d-flex.align-items-center.mb-3.justify-content-end
+      .date-filter__label
+        %span.mr-2
+          =t("dashboard.show")
+      .date-filter__choose-option
+        .input-group
+          %input.datepicker_date{:name => "daterange", :value => "#{@date_range}"}
+          .input-group-append
+            .input-group-text
+              %i.fas.fa-calendar-week.fa-sm
 
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
