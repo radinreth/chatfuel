@@ -33,7 +33,7 @@ class SiteService
     end
 
     def get_sites_in_province(province_id)
-      sites_in_provinces.select { |site| site.province_id == province_id }
+      sites_in_provinces.select { |site| site.province_id == province_id }.sort_by { |site| site.code.to_i }
     end
 
     def sites_in_provinces

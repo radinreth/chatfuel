@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe SyncHistoryJob, type: :job do
+RSpec.describe SyncLogJob, type: :job do
   include ActiveJob::TestHelper
 
-  subject { SyncHistoryJob }
+  subject { SyncLogJob }
 
   it { is_expected.to be_processed_in :default }
 
