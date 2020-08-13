@@ -2,9 +2,7 @@
 
 .card.shadow.mb-4
   .card-body
-    %p
-      = t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
-    = simple_form_for :q, method: :get do
+    = simple_form_for :q, method: :get, html: { class: "form" } do
       .date-filter.d-flex.align-items-center.mb-3.justify-content-end
         .date-filter__label
           %span.mr-2
