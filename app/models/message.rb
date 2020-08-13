@@ -17,9 +17,10 @@
 #
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
-require 'csv'
 
 class Message < ApplicationRecord
+  include CsvConcern
+
   enum status: %i[incomplete completed]
 
   # associations
@@ -82,38 +83,5 @@ class Message < ApplicationRecord
     scope = scope.where(platform_name: params[:platform_name]) if params[:platform_name].present?
     scope = scope.where("DATE(created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
-  end
-
-  private
-    def set_province_id
-      self.province_id = district_id[0..1]
-    end
-  def self.to_csv
-    attributes = %w{id created_at}
-  def self.download(messages, variables)
-    attributes = %w{session_id created_at}
-    variable_names = variables.pluck(:name)
-
-    CSV.generate(headers: true) do |csv|
-      csv << attributes + variable_names
-
-      messages.find_each do |message|
-        values = []
-
-        values << message.session_id
-        values << message.created_at
-
-        variables.each do |variable|
-          message.step_values.most_recent.each do |step|
-            if variable.name == step.variable.name
-              values << step.variable_value.mapping_value
-              break
-            end
-          end
-        end
-
-        csv << values
-      end
-    end
   end
 end
