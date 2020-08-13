@@ -66,5 +66,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init }
+  return { init, renderDatetimepicker }
 })();
