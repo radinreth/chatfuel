@@ -17,8 +17,8 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        if collection.size < ENV['MAX_MESSAGE_DOWNLOADED_SIZE'].to_i
-          send_data Message.to_csv(collection, @variables), filename: "messages-#{Date.current.strftime}.csv", type: 'text/csv'
+        if collection.count < ENV['MAX_CSV_DOWNLOAD_SIZE'].to_i
+          send_data Message.to_csv(@collection, @variables), filename: "messages-#{Date.current.strftime}.csv", type: 'text/csv'
         else
           redirect_to root_path, alert: I18n.t("max_download_size")
         end
