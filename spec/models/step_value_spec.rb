@@ -27,18 +27,20 @@
 require 'rails_helper'
 
 RSpec.describe StepValue, type: :model do
-  describe '.after_create, set_message_province_id' do
+  describe '.after_create, set_message_district_id' do
     let(:step_value) { build(:step_value) }
 
     before {
-      step_value.variable_value.raw_value = '01'
+      step_value.variable_value.raw_value = '0102'
       step_value.variable_value.mapping_value = ''
+
       variable = step_value.variable_value.variable
       variable.is_location = true
+
       step_value.save
     }
 
-    it { expect(step_value.message.province_id).to eq('01') }
+    it { expect(step_value.message.district_id).to eq('0102') }
   end
 
   describe ".most_recent" do

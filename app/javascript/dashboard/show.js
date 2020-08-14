@@ -25,13 +25,17 @@ OWSO.DashboardShow = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
+      $('.start-date').val(picker.startDate.format('YYYY/MM/DD'));
+      $('.end-date').val(picker.endDate.format('YYYY/MM/DD'));
       $('.form').submit();
     })
   }
 
   function onChangeProvince() {
     $(document).on("change", "#province", function(e) {
-      $('.form').submit();
+      if(!$('#province').val()) {
+        $('#district-hidden').val('');
+      }
     })
   }
 

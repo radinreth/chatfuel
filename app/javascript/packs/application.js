@@ -14,6 +14,8 @@ require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
 require("toastr")
 // Tagify = require("@yaireo/tagify")
 
+require('application/pumi')
+
 import "bootstrap-toggle/js/bootstrap-toggle"
 
 require("application/namespace")

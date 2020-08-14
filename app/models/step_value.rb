@@ -33,7 +33,7 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
-  after_create :set_message_province_id, if: -> { variable_value.is_location? }
+  after_create :set_message_district_id, if: -> { variable_value.is_location? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id").order("variable_id, updated_at DESC") }
 
@@ -103,6 +103,7 @@ class StepValue < ApplicationRecord
   def self.filter(scope, params={})
     scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
     scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
+    scope = scope.where(message_id: Message.where(district_id: params[:district_id])) if params[:district_id].present?
     scope = scope.where(message_id: Message.where(platform_name: params[:platform_name])) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
@@ -119,9 +120,9 @@ class StepValue < ApplicationRecord
       AlertNotificationJob.perform_later(id)
     end
 
-    def set_message_province_id
+    def set_message_district_id
       return if message.nil?
 
-      message.update(province_id: variable_value.mapping_value[0..1])
+      message.update(district_id: variable_value.mapping_value[0..3])
     end
 end
