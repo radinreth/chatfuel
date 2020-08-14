@@ -17,7 +17,6 @@
 #
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
-
 class Message < ApplicationRecord
   include CsvConcern
 
@@ -84,4 +83,9 @@ class Message < ApplicationRecord
     scope = scope.where("DATE(created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end
+
+  private
+    def set_province_id
+      self.province_id = district_id[0..1]
+    end
 end
