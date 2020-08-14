@@ -16,7 +16,13 @@ class HomeController < ApplicationController
     @pagy, @messages = pagy(@collection)
     respond_to do |format|
       format.html
-      format.csv { send_data Message.to_csv(collection, @variables), filename: 'messages.csv', type: 'text/csv' }
+      format.csv do
+        if collection.size < ENV['MAX_MESSAGE_DOWNLOADED_SIZE']
+          send_data Message.to_csv(collection, @variables), filename: 'messages.csv', type: 'text/csv'
+        else
+          redirect_to root_path, alert: I18n.t("max_download_size")
+        end
+      end
     end
 
     render :no_message if @messages.count.zero?

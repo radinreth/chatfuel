@@ -27,6 +27,7 @@ km:
   no_data: មិនមានទិន្នន័យ
   presence: តំរូវអោយបញ្ចូលតម្លៃ
   paginate_info_html: "បង្ហាញ %{name} ពី <strong>1 - %{items_count}</strong> ក្នុងចំនួនសរុប <strong>%{collection_count}</strong>"
+  max_download_size: ទំហំទាញយកធំពេក
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
