@@ -2,14 +2,16 @@
 
 .card.shadow.mb-4
   .card-body
-    = simple_form_for :q, method: :get, html: { class: "form" } do
-      .date-filter.d-flex.align-items-center.mb-3.justify-content-end
-        .date-filter__label
-          %span.mr-2
-            =t("dashboard.show")
-        .date-filter__choose-option
-          .input-group
-            = render "shared/input_date_range"
+    .d-flex.justify-content-between
+      %p= t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
+      = simple_form_for :q, method: :get, html: { class: "form" } do
+        .date-filter.d-flex.align-items-center.mb-3.justify-content-end
+          .date-filter__label
+            %span.mr-2
+              =t("dashboard.show")
+          .date-filter__choose-option
+            .input-group
+              = render "shared/input_date_range"
 
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
