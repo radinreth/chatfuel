@@ -28,6 +28,6 @@ RSpec.describe Bots::Messages::ChatbotController, type: :controller do
   it "cannot create variable with unknow platform" do
     expect {
       post :create, params: { messenger_user_id: 123, platform_name: "test", name: "main_menu", value: "owso_info" }
-    }.to raise_error ActiveRecord::RecordNotSaved
+    }.to raise_error ActiveRecord::NotNullViolation
   end
 end
