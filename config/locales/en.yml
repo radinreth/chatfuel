@@ -25,7 +25,7 @@ en:
   app_version: Version %{version}
   not_available: N/A
   no_data: No data
-  paginate_info: "Displaying %{name} 1 - %{items_count} of %{collection_count} in total"
+  paginate_info_html: "Displaying %{name} <strong>1 - %{items_count}</strong> of <strong>%{collection_count}</strong> in total"
   sidebar:
     dashboard: Dashboard
     home: Home
