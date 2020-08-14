@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe SiteService do
   describe '#provinces' do
     before {
-      create(:site, name: 'site_a', code: '0102')
-      create(:site, name: 'site_b', code: '0103')
-      create(:site, name: 'site_c', code: '0202')
-      create(:site, name: 'site_d', code: '0203')
+      create(:site, name_en: 'site_a', code: '0102')
+      create(:site, name_en: 'site_b', code: '0103')
+      create(:site, name_en: 'site_c', code: '0202')
+      create(:site, name_en: 'site_d', code: '0203')
     }
 
     context 'no params' do
