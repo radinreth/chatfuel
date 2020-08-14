@@ -26,7 +26,8 @@
 require "rails_helper"
 
 RSpec.describe Site, type: :model do
-  it { is_expected.to have_attribute(:name) }
+  it { is_expected.to have_attribute(:name_en) }
+  it { is_expected.to have_attribute(:name_km) }
   it { is_expected.to have_attribute(:code) }
   it { is_expected.to have_attribute(:status) }
   it { is_expected.to have_attribute(:lat) }
