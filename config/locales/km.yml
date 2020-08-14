@@ -99,6 +99,7 @@ km:
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
       messages: សារ
+      last_interaction_date: កាលបរិច្ឆេទទំនាក់ទំនងចុងក្រោយ
     no_message:
       empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
