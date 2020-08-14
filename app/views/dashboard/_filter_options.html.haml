@@ -22,9 +22,4 @@
             =t("dashboard.show")
         .date-filter__choose-option
           .input-group
-            %input.start-date{type: 'hidden', name: 'start_date', value: @start_date}
-            %input.end-date{type: 'hidden', name: 'end_date', value: @end_date}
-            %input.datepicker_date{:value => "#{@start_date} - #{@end_date}"}
-            .input-group-append
-              .input-group-text
-                %i.fas.fa-calendar-week.fa-sm
+            = render "shared/input_date_range"

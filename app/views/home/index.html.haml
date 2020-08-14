@@ -9,10 +9,7 @@
             =t("dashboard.show")
         .date-filter__choose-option
           .input-group
-            %input.datepicker_date{:name => "daterange", :value => "#{@date_range}"}
-            .input-group-append
-              .input-group-text
-                %i.fas.fa-calendar-week.fa-sm
+            = render "shared/input_date_range"
 
     .table-responsive
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}

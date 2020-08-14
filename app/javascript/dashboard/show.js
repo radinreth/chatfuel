@@ -25,8 +25,8 @@ OWSO.DashboardShow = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
-      $('.start-date').val(picker.startDate.format('YYYY/MM/DD'));
-      $('.end-date').val(picker.endDate.format('YYYY/MM/DD'));
+      $(".start_date").val(picker.startDate.format('YYYY/MM/DD'))
+      $(".end_date").val(picker.endDate.format('YYYY/MM/DD'))
       $('.form').submit();
     })
   }
