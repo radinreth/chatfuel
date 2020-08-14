@@ -14,8 +14,7 @@ class DashboardController < ApplicationController
 
   private
     def set_daterange
-      default_date = "#{7.days.ago.strftime('%Y/%m/%d')} - #{Date.current.strftime('%Y/%m/%d')}"
-      @date_range = params['daterange'] || default_date
-      @start_date, @end_date = @date_range.split('-')
+      @start_date = params[:start_date] || "#{7.days.ago.strftime('%Y/%m/%d')}"
+      @end_date = params[:end_date] || "#{Date.current.strftime('%Y/%m/%d')}"
     end
 end

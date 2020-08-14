@@ -1,7 +1,7 @@
 .my-4.d-flex.flex-wrap
   .flex-grow-1
     %ul.list-inline.platform-list
-      - param = {daterange: params[:daterange], province_code: params[:province_code], district_code: params[:district_code]}
+      - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code]}
       %li.list-inline-item{class: ('active' if params[:platform].blank?)}
         = link_to t("dashboard.both"), dashboard_path(param), class: 'text-decoration-none'
       %li.list-inline-item{class: get_css_active_class('ivr')}
@@ -22,7 +22,9 @@
             =t("dashboard.show")
         .date-filter__choose-option
           .input-group
-            %input.datepicker_date{:name => "daterange", :value => "#{@date_range}"}
+            %input.start-date{type: 'hidden', name: 'start_date', value: @start_date}
+            %input.end-date{type: 'hidden', name: 'end_date', value: @end_date}
+            %input.datepicker_date{:value => "#{@start_date} - #{@end_date}"}
             .input-group-append
               .input-group-text
                 %i.fas.fa-calendar-week.fa-sm
