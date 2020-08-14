@@ -27,6 +27,7 @@ require("sites/api_keys/show")
 require("sites/index")
 require("templates/index")
 require("dashboard/show")
+require("home/index")
 
 require("shared/sidebar")
 require("shared/set_language")

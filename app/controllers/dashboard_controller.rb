@@ -11,10 +11,4 @@ class DashboardController < ApplicationController
     }
     @query = DashboardQuery.new(@options)
   end
-
-  private
-    def set_daterange
-      @start_date = params[:start_date] || "#{7.days.ago.strftime('%Y/%m/%d')}"
-      @end_date = params[:end_date] || "#{Date.current.strftime('%Y/%m/%d')}"
-    end
 end

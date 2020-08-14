@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-08-04 06:52:29.44067")
+#  last_interaction_at :datetime         default("2020-08-14 10:53:00.195686")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -26,6 +26,7 @@ class Message < ApplicationRecord
 
   # scopes
   default_scope -> { order(updated_at: :desc) }
+  scope :period, -> (start_date, end_date) { where("DATE(last_interaction_at) BETWEEN ? AND ?", start_date, end_date) }
 
   delegate :type, :session_id, to: :content
 

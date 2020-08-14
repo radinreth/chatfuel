@@ -24,4 +24,17 @@ class ApplicationController < ActionController::Base
       Raven.user_context(id: session[:current_user_id])
       Raven.extra_context(params: params.to_unsafe_h, url: request.url)
     end
+
+    def set_daterange
+      @start_date = params["start_date"] || default_start_date
+      @end_date = params["end_date"] || default_end_date
+    end
+
+    def default_start_date
+      7.days.ago.strftime('%Y/%m/%d')
+    end
+
+    def default_end_date
+      Date.current.strftime('%Y/%m/%d')
+    end
 end
