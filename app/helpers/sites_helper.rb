@@ -11,8 +11,8 @@ module SitesHelper
     def sync_log_html(sync_log, index)
       dom = "<li class='list-group-item p-1'>"
       dom += "<span>#{index+1}. #{I18n.l(sync_log.created_at, format: :y_m_d_h_mn)} - </span>"
-      dom += "<span class='ml-1 sync-status #{sync_log.success? ? 'text-success' : 'text-danger'}'>#{sync_log.status}</span>"
-      dom += "<span>(success: #{sync_log.success_count}, failed: #{sync_log.failure_count})</span>"
+      dom += "<span class='ml-1 sync-status #{sync_log.success? ? 'text-success' : 'text-danger'}'>#{sync_log.sync_status}</span>"
+      dom += "<span>(success: #{sync_log.success_count}, failed: #{sync_log.failure_count})</span>" unless (sync_log.success_count + sync_log.failure_count).zero?
       dom += "</li>"
       dom
     end

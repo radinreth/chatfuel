@@ -20,8 +20,10 @@ class SyncLog < ApplicationRecord
   belongs_to :site
 
   before_create :ensure_uuid
-  after_create  :update_site_sync_status
+  after_commit  :update_site_sync_status, on: [:create, :update]
   after_commit  :upsert_tickets_async, on: [:create, :update]
+
+  validates :status, presence: true
 
   def upsert_tickets
     ticket_attrs = TicketParser.new(payload["tickets"]).to_json
@@ -36,6 +38,10 @@ class SyncLog < ApplicationRecord
     end
   end
 
+  def sync_status
+    success? ? 'connect' : 'disconnect'
+  end
+
   private
     def ensure_uuid
       self.uuid = SecureRandom.uuid
@@ -48,6 +54,6 @@ class SyncLog < ApplicationRecord
     end
 
     def update_site_sync_status
-      site.update(sync_status: status)
+      site.update(sync_status: sync_status)
     end
 end

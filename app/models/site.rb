@@ -30,7 +30,7 @@ class Site < ApplicationRecord
   acts_as_paranoid
 
   enum status: %i[disable enable]
-  enum sync_status: %i[failure success]
+  enum sync_status: %i[disconnect connect]
 
   # associations
   has_many :tracks, dependent: :destroy

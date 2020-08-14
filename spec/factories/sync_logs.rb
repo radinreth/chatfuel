@@ -14,6 +14,7 @@
 #
 FactoryBot.define do
   factory :sync_log do
+    status  { 'success' }
     payload { "" }
     success_count { 0 }
     failure_count { 0 }
