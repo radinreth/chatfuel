@@ -16,7 +16,8 @@ module Bots
 
     private
       def set_step
-        @step = @message.step_values.create(variable: @variable_value.variable, variable_value: @variable_value)
+        @step_value = @message.step_values.find_or_initialize_by(variable: @variable_value.variable)
+        @step_value.update(variable_value: @variable_value)
       end
   end
 end

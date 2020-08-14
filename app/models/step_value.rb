@@ -25,17 +25,21 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
+  has_paper_trail
+
   belongs_to :variable_value, counter_cache: true
   belongs_to :site, optional: true
   belongs_to :message
   belongs_to :variable
+
+  validates :variable, uniqueness: { scope: :message }
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
   after_create :set_message_district_id, if: -> { variable_value.is_location? }
 
-  scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id").order("variable_id, updated_at DESC") }
+  scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
   def self.satisfied
     return [] unless report_column
@@ -75,9 +79,13 @@ class StepValue < ApplicationRecord
     scope = filter(scope, params)
     report_variable = Variable.find_by(report_enabled: true)
     scope = scope.where(variable_id: report_variable)
-    scope.joins(:variable_value).group(:status).count.map do |k, v|
-      [statuses.key(k).capitalize, v]
+
+    default = statuses.transform_values { 0 }
+    result = scope.joins(:variable_value).group(:status).count.map do |k, v|
+      [statuses.key(k), v]
     end.to_h
+
+    default.merge(result).transform_keys &:capitalize
   end
 
   def self.most_request_service(params = {})
