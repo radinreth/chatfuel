@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_040619) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name_en", null: false
     t.string "code", default: ""
     t.integer "tracks_count", default: 0
     t.datetime "created_at", precision: 6, null: false
@@ -122,8 +122,9 @@ ActiveRecord::Schema.define(version: 2020_08_24_040619) do
     t.float "lng"
     t.string "province_id"
     t.datetime "deleted_at"
+    t.string "name_km"
     t.index ["deleted_at"], name: "index_sites_on_deleted_at"
-    t.index ["name"], name: "index_sites_on_name"
+    t.index ["name_en"], name: "index_sites_on_name_en"
   end
 
   create_table "step_values", force: :cascade do |t|

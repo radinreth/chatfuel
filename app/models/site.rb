@@ -7,7 +7,8 @@
 #  deleted_at   :datetime
 #  lat          :float
 #  lng          :float
-#  name         :string           not null
+#  name_en      :string           not null
+#  name_km      :string
 #  status       :integer(4)       default("0")
 #  sync_status  :integer(4)
 #  token        :string           default("")
@@ -20,7 +21,7 @@
 # Indexes
 #
 #  index_sites_on_deleted_at  (deleted_at)
-#  index_sites_on_name        (name)
+#  index_sites_on_name_en     (name_en)
 #
 class Site < ApplicationRecord
   attr_accessor :file
@@ -44,7 +45,7 @@ class Site < ApplicationRecord
   has_one :site_setting, dependent: :destroy
 
   # validations
-  validates :name, presence: { message: I18n.t("presence") }
+  validates :name_en, presence: { message: I18n.t("presence") }
   validates :sync_status, inclusion: { in: sync_statuses.keys }, allow_nil: true
   validates :code, presence: { message: I18n.t("presence") }
   validates :code,  uniqueness: true,
@@ -68,7 +69,7 @@ class Site < ApplicationRecord
 
   def self.filter(params = {})
     scope = all
-    scope = scope.where('LOWER(name) LIKE ? OR code LIKE ?', "%#{params[:keyword].downcase}%", "#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope = scope.where('LOWER(name_en) LIKE ? OR code LIKE ?', "%#{params[:keyword].downcase}%", "#{params[:keyword].downcase}%") if params[:keyword].present?
     scope
   end
 
