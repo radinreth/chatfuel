@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name_en: sync_history_logs
+# Table name: sync_history_logs
 #
 #  id            :bigint(8)        not null, primary key
 #  failure_count :integer(4)       default("0")

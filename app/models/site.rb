@@ -69,7 +69,7 @@ class Site < ApplicationRecord
 
   def self.filter(params = {})
     scope = all
-    scope = scope.where('LOWER(name_en) LIKE ? OR code LIKE ?', "%#{params[:keyword].downcase}%", "#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope = scope.where('LOWER(name_en) LIKE ? OR name_km LIKE ? OR code LIKE ?', "%#{params[:keyword].downcase}%", "#{params[:keyword].downcase}%") if params[:keyword].present?
     scope
   end
 
