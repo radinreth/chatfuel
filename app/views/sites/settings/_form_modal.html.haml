@@ -28,10 +28,10 @@
             = hidden_field_tag "site_setting[telegram_chat_group_ids][]", nil
             %label= t('site_setting.chat_group')
 
-            - TelegramChatGroup.all.each_with_index do |chat_group, index|
+            - @chat_groups.each_with_index do |chat_group, index|
               .form-check.ml-2
                 = check_box_tag "site_setting[telegram_chat_group_ids][]", chat_group.id, @setting.telegram_chat_group_ids.include?(chat_group.id), class: 'form-check-input', id: dom_id(chat_group)
-                %label.form-check-label{for: dom_id(chat_group)}= chat_group.title
+                %label.form-check-label{for: dom_id(chat_group), class: ('line-through' unless chat_group.is_active)}= chat_group.title
 
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"}= t("shared.cancel")

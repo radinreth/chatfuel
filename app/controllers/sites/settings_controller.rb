@@ -3,6 +3,7 @@
 module Sites
   class SettingsController < ApplicationController
     before_action :set_site
+    before_action :set_chat_groups
 
     def show
       @setting = @site.site_setting || @site.build_site_setting
@@ -32,6 +33,10 @@ module Sites
     end
 
     private
+      def set_chat_groups
+        @chat_groups = TelegramChatGroup.with_current_actived_bot
+      end
+
       def set_site
         @site = Site.find(params[:site_id])
       end

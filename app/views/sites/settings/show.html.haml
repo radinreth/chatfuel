@@ -34,7 +34,7 @@
 
       .row.mb-3
         .col-md-3= "#{t('site_setting.chat_group')}:"
-        .col-md-8= @setting.telegram_chat_groups.pluck(:title).join(", ").presence || '-'
+        .col-md-8= chat_groups_html(@setting).html_safe
 
       %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
         = t("site_setting.edit_setting")
@@ -45,7 +45,7 @@
       %h4= t('site_setting.no_site_setting_yet')
       %p.text-description= t('site_setting.create_site_setting_description')
 
-      - if TelegramBot.first.present?
+      - if TelegramBot.actived.first.present?
         %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
           = t("sites.create_setting")
       - else

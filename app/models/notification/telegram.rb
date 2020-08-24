@@ -5,7 +5,7 @@ module Notification
     def notify_now(setting_id, message)
       setting = SiteSetting.find(setting_id)
 
-      setting.telegram_chat_groups.actives.each do |group|
+      setting.telegram_chat_groups.actives.with_current_actived_bot.each do |group|
         bot.send_message(chat_id: group.chat_id, text: message, parse_mode: :HTML)
       rescue ::Telegram::Bot::Forbidden => e
         group.update_attributes(is_active: false, reason: e)
