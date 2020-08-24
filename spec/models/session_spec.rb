@@ -1,0 +1,48 @@
+# == Schema Information
+#
+# Table name: sessions
+#
+#  id                  :bigint(8)        not null, primary key
+#  last_interaction_at :datetime
+#  platform_name       :string           default("")
+#  status              :integer(4)       default("0")
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  district_id         :string
+#  province_id         :string
+#  session_id          :string           not null
+#
+require 'rails_helper'
+
+RSpec.describe Session, type: :model do
+  it { is_expected.to define_enum_for(:status).with_values(%i[incomplete completed]) }
+
+  describe ".create_or_return" do
+    let!(:session) { Session.create_or_return("Messenger", "123") }
+
+    context "create" do
+      it "creates when it's new" do
+        expect {
+          Session.create_or_return("Messenger", "9999")
+        }.to change { Session.count }.by 1
+      end
+
+      it "creates when it's completed" do
+        session.completed!
+
+        expect {
+          Session.create_or_return("Messenger", "123")
+        }.to change { Session.count }.by 1
+      end
+    end
+
+    context "return" do
+      it "returns when it's already created and incomplete" do
+        expect {
+          Session.create_or_return("Messenger", "123")
+        }.not_to change { Session.count }
+      end
+    end
+  end
+
+end
