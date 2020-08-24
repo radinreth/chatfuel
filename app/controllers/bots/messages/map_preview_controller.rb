@@ -14,7 +14,7 @@ module Bots::Messages
 
     private
       def set_site
-        @site = Site.find_by(code: params[:location_code])
+        @site = Site.find_by(code: params[:location])
       end
 
       # ref: https://docs.chatfuel.com/en/articles/735122-json-api
