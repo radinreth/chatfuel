@@ -4,7 +4,7 @@ RSpec.describe Bots::Messages::MapPreviewController, type: :controller do
   let!(:site) { create(:site, code: "0212", lat: 1.0, lng: 1.2) }
 
   it "response" do
-    get :index, params: { location_code: "0212" }
+    get :index, params: { location: "0212" }
 
     expected = { messages: [{
                   attachment: {
