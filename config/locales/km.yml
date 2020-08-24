@@ -251,6 +251,8 @@ km:
     site_ombudsman: អ្នកអង្កេតការណ៏
     site_admin: រដ្ឋបាលការិយាល័យ
     system_admin: រដ្ឋបាលប្រព័ន្ធ
+  sessions:
+    invalid_platform_name: "%{value} មិនមែនជាឈ្មោះ platform ត្រឹមត្រូវទេ"
   provinces:
     all: ទាំងអស់
   chatfuel:

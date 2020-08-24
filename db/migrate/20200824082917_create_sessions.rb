@@ -2,6 +2,7 @@ class CreateSessions < ActiveRecord::Migration[6.0]
   def change
     create_table :sessions do |t|
       t.string :session_id, null: false
+      t.string :session_type, default: ""
       t.string :platform_name, default: ""
       t.integer :status, default: 0
       t.string :district_id

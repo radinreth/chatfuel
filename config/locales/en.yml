@@ -246,6 +246,8 @@ en:
     site_ombudsman: Site ombudsman
     site_admin: Site admin
     system_admin: System admin
+  sessions:
+    invalid_platform_name: "%{value} is not a valid platform name"
   provinces:
     all: All
   chatfuel:
