@@ -1,5 +1,5 @@
-%input.start_date{ type: "hidden", name: "start_date" }
-%input.end_date{ type: "hidden", name: "end_date" }
+%input.start_date{ type: "hidden", name: "start_date", value: @start_date }
+%input.end_date{ type: "hidden", name: "end_date", value: @end_date }
 %input.datepicker_date{value: "#{@start_date} - #{@end_date}"}
 .input-group-append
   .input-group-text
