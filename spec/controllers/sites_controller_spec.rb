@@ -36,21 +36,22 @@ RSpec.describe SitesController, type: :controller do
   end
 
   context "updates" do
-    let(:kamrieng) { create(:site, name: "kamrieng", code: "0212") }
+    let(:kamrieng) { create(:site, name_en: "kamrieng", name_km: "កំរៀង", code: "0212") }
 
     it "PUT :update" do
-      put :update, params: { id: kamrieng.id, site: { name: "bavil", code: "0211" } }, format: :js
+      put :update, params: { id: kamrieng.id, site: { name_en: "bavil", name_km: "បវិល", code: "0211" } }, format: :js
 
       updated = assigns(:site)
 
-      expect(updated.name).to eq "bavil"
+      expect(updated.name_en).to eq "bavil"
+      expect(updated.name_km).to eq "បវិល"
       expect(updated.code).to eq "0211"
     end
   end
 
   context "destroy" do
     before do
-      @kamrieng = create(:site, name: "kamrieng")
+      @kamrieng = create(:site, name_en: "kamrieng")
     end
 
     it "DELETE :destroy" do
