@@ -45,4 +45,14 @@ RSpec.describe Session, type: :model do
     end
   end
 
+  describe 'set_province_id' do
+    let(:session) { (:session, district_id: '03122345') }
+
+    it "extracts province_id from district_id before update" do
+      session.update(district_id: '01234567')
+
+      expect(session.reload.province_id).to eq('03')
+    end
+  end
+
 end
