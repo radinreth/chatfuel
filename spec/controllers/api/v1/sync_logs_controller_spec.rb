@@ -13,7 +13,7 @@ RSpec.describe Api::V1::SyncLogsController, type: :controller do
     before do
       request.headers['Authorization'] = "Bearer #{site.token}"
 
-      post :create, params: { sync: {status: "success"} }
+      post :create, params: { status: "success" }
     end
 
     it { expect(JSON.parse(response.body)).to include(sync_log.as_json) }
@@ -27,15 +27,10 @@ RSpec.describe Api::V1::SyncLogsController, type: :controller do
     let(:params) {
       {
         id: sync_log.id,
-        stutus: 'success',
-        sync: {
-          id: sync_log.id,
-          payload: {
-            tickets: [
-              { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
-            ]
-          }
-        }
+        status: 'success',
+        tickets: [
+          { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
+        ]
       }
     }
 
