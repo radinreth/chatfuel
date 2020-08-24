@@ -86,6 +86,6 @@ class SitesController < ApplicationController
     end
 
     def site_params
-      params.require(:site).permit(:name, :code, :lat, :lng).merge(status: params[:site][:status].to_i)
+      params.require(:site).permit(:name_en, :name_km, :code, :lat, :lng).merge(status: params[:site][:status].to_i)
     end
 end
