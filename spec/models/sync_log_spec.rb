@@ -39,7 +39,7 @@ RSpec.describe SyncLog, type: :model do
   end
 
   describe 'after_commit for create or update, upsert_tickets_async' do
-    let(:site) { create(:site, name: "kamrieng", code: "0202") }
+    let(:site) { create(:site, name_en: "kamrieng", code: "0202") }
 
     let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
     let(:sync_log) { SyncLog.new(site_id: site.id, status: 'success', payload: payload) }
@@ -52,7 +52,7 @@ RSpec.describe SyncLog, type: :model do
   end
 
   describe '#upsert_tickets' do
-    let(:site) { create(:site, name: "kamrieng", code: "0202") }
+    let(:site) { create(:site, name_en: "kamrieng", code: "0202") }
     let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
     let(:sync_log) { SyncLog.create(site_id: site.id, payload: payload) }
 
@@ -79,7 +79,7 @@ RSpec.describe SyncLog, type: :model do
   end
 
   describe 'after_create, update site sync_status' do
-    let!(:site) { create(:site, name: "kamrieng", code: "0202", sync_status: '') }
+    let!(:site) { create(:site, name_en: "kamrieng", code: "0202", sync_status: '') }
     let!(:sync_log) { create(:sync_log, site: site, status: 'success') }
 
     it { expect(site.reload.sync_status).to eq('connect') }

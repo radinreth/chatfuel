@@ -22,12 +22,11 @@ RSpec.describe Api::V1::SyncLogsController, type: :controller do
   end
 
   describe "PUT :update" do
-    let(:site) { create(:site, name: "kamrieng", code: "0202") }
+    let(:site) { create(:site, name_en: "kamrieng", code: "0202") }
     let(:sync_log) { site.sync_logs.create(status: 'success') }
     let(:params) {
       {
         id: sync_log.id,
-        status: 'success',
         tickets: [
           { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
         ]
