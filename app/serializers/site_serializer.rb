@@ -24,5 +24,5 @@
 #  index_sites_on_name_en     (name_en)
 #
 class SiteSerializer < ActiveModel::Serializer
-  attributes :name, :status, :sync_status
+  attributes :name_en, :status, :sync_status
 end
