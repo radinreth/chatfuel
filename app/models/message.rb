@@ -18,6 +18,8 @@
 #  index_messages_on_content_type_and_content_id  (content_type,content_id)
 #
 class Message < ApplicationRecord
+  include CsvConcern
+
   enum status: %i[incomplete completed]
 
   # associations

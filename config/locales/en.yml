@@ -26,6 +26,8 @@ en:
   not_available: N/A
   no_data: No data
   paginate_info_html: "Displaying %{name} <strong>1 - %{items_count}</strong> of <strong>%{collection_count}</strong> in total"
+  max_download_size: Download size is too big
+  download_csv: Download CSV
   sidebar:
     dashboard: Dashboard
     home: Home
