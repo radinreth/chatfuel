@@ -8,4 +8,4 @@
     .card-body
       .pt-4.pb-2.d-flex.justify-content-around.align-items-center
         = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :is_service_accessed, modal_id: 'chooseAccessed'
-        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, height: "250px"
+        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: %w(#ffbc00 #4e73df), height: "250px"
