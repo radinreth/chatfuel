@@ -4,6 +4,26 @@ require 'telegram/bot/rspec/integration/rails'
 RSpec.describe TelegramWebhooksController, telegram_bot: :rails do
   let(:chat_group) { TelegramChatGroup.first }
 
+  context 'create a new group with bot as a member' do
+    let(:group_chat_created_param) {
+      {
+        "from"=>{"id"=>787037629, "is_bot"=>false, "first_name"=>"Sokly", "last_name"=>"Heng", "language_code"=>"en"},
+        "chat"=>{"id"=>-446769548, "title"=>"mygroup", "type"=>"group", "all_members_are_administrators"=>true},
+        "date"=>1598321385,
+        "group_chat_created"=>true
+      }
+    }
+
+    before {
+      dispatch_message('', group_chat_created_param)
+    }
+
+    it { expect(TelegramChatGroup.count).to eq(1) }
+    it { expect(chat_group.is_active).to eq(true) }
+    it { expect(chat_group.title).to eq('mygroup') }
+    it { expect(chat_group.chat_type).to eq('group') }
+  end
+
   context 'add bot to group' do
     let(:new_chat_member_param) {
       {

@@ -3,20 +3,8 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
-  # call when create group with bot
-  def start!
-    return if chat["title"].nil?
-
-    group = TelegramChatGroup.find_or_initialize_by(chat_id: chat["id"])
-    group.update(
-      title: chat["title"],
-      is_active: true,
-      chat_type: chat["type"],
-      bot_token: TelegramBot.first.try(:token)
-    )
-  end
-
   def message(message)
+    return create_new_group if message['group_chat_created'].present?
     return migrate_chat_group(message) if message['migrate_to_chat_id'].present?
     return unless managing_member?(message)
 
@@ -25,6 +13,16 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   private
+    def create_new_group
+      group = TelegramChatGroup.find_or_initialize_by(chat_id: chat["id"])
+      group.update(
+        title: chat["title"],
+        is_active: true,
+        chat_type: chat["type"],
+        bot_token: TelegramBot.actived.first.try(:token)
+      )
+    end
+
     def managing_member?(message)
       member = message['left_chat_member'] || message['new_chat_member']
       member.present? && member['is_bot'] && TelegramChatGroup::TELEGRAM_CHAT_TYPES.include?(message['chat']['type'])
