@@ -25,8 +25,8 @@ RSpec.describe VoiceMessage do
   end
 
   it 'alias_attribute' do
-    msg = build(:voice_message, callsid: 123)
+    msg = build(:voice_message, callsid: 123, address: 1234)
 
-    expect(msg.session_id).to eq msg.callsid
+    expect(msg.session_id).to eq msg.address
   end
 end
