@@ -64,6 +64,17 @@ Rails.application.routes.draw do
         end
       end
 
+      # Session
+      resources :sessions, only: [:create] do
+        collection do
+          post "ivr", to: "sessions/ivr#create"
+          # TODO: redundant path
+          post "chatbot", to: "sessions/chatbot#create"
+          post "chatbot/mark_as_completed", to: "sessions/chatbot#mark_as_completed"
+          get  "chatbot/preview_map", to: "sessions/chatbot/map_preview#index", defaults: { locale: "km" }
+        end
+      end
+
       # Track
       resources :tracks, only: [:create] do
         collection do
