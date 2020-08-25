@@ -136,7 +136,9 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.datetime "updated_at"
     t.bigint "message_id", null: false
     t.bigint "variable_id", null: false
+    t.bigint "session_id"
     t.index ["message_id"], name: "index_step_values_on_message_id"
+    t.index ["session_id"], name: "index_step_values_on_session_id"
     t.index ["site_id"], name: "index_step_values_on_site_id"
     t.index ["variable_id"], name: "index_step_values_on_variable_id"
     t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
@@ -319,6 +321,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
   add_foreign_key "role_variables", "variables"
   add_foreign_key "site_settings", "sites"
   add_foreign_key "step_values", "messages"
+  add_foreign_key "step_values", "sessions"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "step_values", "variables"
