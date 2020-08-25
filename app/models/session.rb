@@ -28,17 +28,11 @@ class Session < ApplicationRecord
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
 
   before_update :set_province_id, if: -> { district_id_changed? }
+  after_update :update_last_interaction_time
+  after_create_commit :completed!, if: :call?
 
-  def self.create_or_return(platform_name, session_id)
-    session = find_by(session_id: session_id)
-
-    if !session || session&.completed?
-      session = create(platform_name: platform_name, session_id: session_id)
-    else
-      session.touch :last_interaction_at
-    end
-
-    session
+  def call?
+    platform_name == "Verboice"
   end
 
   def self.accessed(options = {})
@@ -69,6 +63,10 @@ class Session < ApplicationRecord
   end
 
   private
+    def update_last_interaction_time
+      touch :last_interaction_at
+    end
+
     def set_province_id
       self.province_id = district_id[0..1]
     end
