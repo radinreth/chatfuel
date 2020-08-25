@@ -1,6 +1,6 @@
 module SiteSettingsHelper
   def chat_groups_html(site_setting)
-    chat_groups = site_setting.telegram_chat_groups.with_current_actived_bot
+    chat_groups = site_setting.telegram_chat_groups
 
     return '-' unless chat_groups.present?
 
