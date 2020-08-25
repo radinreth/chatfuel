@@ -21,7 +21,7 @@ class DictionariesController < ApplicationController
     respond_to do |format|
       if @variable.save
         format.html { redirect_to dictionaries_path, status: :moved_permanently, notice: t("created.success") }
-        format.js
+        format.js { redirect_to edit_dictionary_path(@variable), status: :moved_permanently, notice: t("created.success") }
       else
         format.html { render :new, status: :unprocessable_entity, alert: t("created.fail") }
         format.js
