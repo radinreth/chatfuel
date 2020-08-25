@@ -20,16 +20,12 @@ Rails.application.routes.draw do
   resources :tickets, only: [:index]
   resources :templates
   resources :quotas, only: [:index]
-  # resources :voice_messages, only: [:create]
-  # resources :voice_feedbacks, only: [:create]
   resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
     post :set_most_request, on: :collection
     post :set_user_visit, on: :collection
     post :set_service_accessed, on: :collection
   end
-  # resources :tracks, only: [:create]
-  # resources :feedbacks, only: [:create]
-  # resources :reports, only: [:index]
+
   resources :sites do
     collection do
       get :new_import
@@ -46,7 +42,6 @@ Rails.application.routes.draw do
   namespace :bots do
     # Message
     resources :messages, only: [:create] do
-
       collection do
         post :mark_as_completed
         post "ivr", to: "messages/ivr#create"
@@ -54,13 +49,6 @@ Rails.application.routes.draw do
         get  "chatbot/preview_map", to: "messages/map_preview#index", defaults: { locale: "km" }
       end
     end
-
-    # Feedback
-    # resources :feedbacks, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "feedbacks/ivr#create"
-    #   end
-    # end
 
     # Track
     resources :tracks, only: [:create] do
@@ -78,27 +66,6 @@ Rails.application.routes.draw do
       get :help
     end
   end
-
-  # namespace :bots do
-
-    # resources :voice_feedbacks, only: [:create]
-    # resources :feedbacks, only: [:create]
-
-    # resources :messages, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "messages/ivr#create"
-    #     post "chatbot", to: "messages/chatbot#create"
-    #   end
-    # end
-
-    # Tracking
-    # resources :tracks, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "tracks/ivr#create"
-    #     post "chatbot", to: "tracks/chatbot#create"
-    #   end
-    # end
-  # end
 
   # Telegram
   telegram_webhook TelegramWebhooksController
