@@ -53,7 +53,6 @@ Rails.application.routes.draw do
     # Session
     resources :sessions, only: [:create] do
       collection do
-        # post :mark_as_completed
         post "ivr", to: "sessions/ivr#create"
         post "chatbot", to: "sessions/chatbot#create"
         post "chatbot/mark_as_completed", to: "sessions/chatbot#mark_as_completed"
