@@ -26,5 +26,4 @@ RSpec.describe Session, type: :model do
       expect(session.reload.province_id).to eq("01")
     end
   end
-
 end

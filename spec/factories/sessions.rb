@@ -14,7 +14,7 @@
 #
 FactoryBot.define do
   factory :session do
-    session_id { "MyString" }
+    session_id { FFaker::SSNSE.ssn }
     platform_name { %w(Messenger Telegram Verboice).sample }
     status { 1 }
     district_id { "02122334" }

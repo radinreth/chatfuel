@@ -8,10 +8,6 @@ module Bots
       head :ok
     end
 
-    def mark_as_completed
-      @session.completed!
-    end
-
     private
       def set_variable
         @variable = Variable.find_or_create_by(name: params[:name])
