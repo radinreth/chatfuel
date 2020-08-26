@@ -11,11 +11,11 @@ class DashboardQuery
   end
 
   def user_uniq_count
-    sessions.select("DISTINCT ON (content_id, content_type) *").unscope(:order).length
+    sessions.select("DISTINCT ON (session_id) *").unscope(:order).length
   end
 
   def sessions
-    Message.user_count(@options)
+    Session.user_count(@options)
   end
 
   def total_users_visit_each_functions
@@ -71,7 +71,7 @@ class DashboardQuery
     end
 
     def accessed
-      accessed = Message.unscope(:order).accessed(@options)
+      accessed = Session.unscope(:order).accessed(@options)
 
       return {} unless accessed
       data = accessed.group_by_day(:updated_at).count
