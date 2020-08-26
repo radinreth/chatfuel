@@ -38,7 +38,7 @@ class DashboardQuery
   end
 
   def sessions
-    Message.filter(@options)
+    Session.filter(@options)
   end
 
   def total_users_visit_by_category
@@ -143,7 +143,7 @@ class DashboardQuery
     end
 
     def accessed
-      accessed = Message.unscope(:order).accessed(@options)
+      accessed = Session.unscope(:order).accessed(@options)
 
       return {} unless accessed
       data = accessed.group_by_day(:created_at, format: "%b %e").count

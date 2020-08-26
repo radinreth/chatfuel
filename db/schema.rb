@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.bigint "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.bigint "message_id", null: false
+    t.bigint "message_id"
     t.bigint "variable_id", null: false
     t.bigint "session_id"
     t.index ["message_id"], name: "index_step_values_on_message_id"
