@@ -5,7 +5,7 @@
 #  id                :bigint(8)        not null, primary key
 #  created_at        :datetime
 #  updated_at        :datetime
-#  message_id        :bigint(8)        not null
+#  message_id        :bigint(8)
 #  session_id        :bigint(8)
 #  site_id           :bigint(8)
 #  variable_id       :bigint(8)        not null
@@ -34,11 +34,11 @@ class StepValue < ApplicationRecord
 
   belongs_to :variable_value, counter_cache: true
   belongs_to :site, optional: true
-  belongs_to :message
+  belongs_to :message, optional: true
   belongs_to :variable
   belongs_to :session, optional: true
 
-  validates :variable, uniqueness: { scope: :message }
+  validates :variable, uniqueness: { scope: :session }
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
@@ -92,11 +92,11 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
-    scope = scope.where(message_id: Message.where(gender: params[:gender])) if params[:gender].present?
-    scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
-    scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
-    scope = scope.where(message_id: Message.where(district_id: params[:district_id])) if params[:district_id].present?
-    scope = scope.where(message_id: Message.where(platform_name: params[:platform_name])) if params[:platform_name].present?
+    scope = scope.where(session_id: Session.where(gender: params[:gender])) if params[:gender].present?
+    scope = scope.where(session_id: Session.where(session_type: params[:content_type])) if params[:content_type].present?
+    scope = scope.where(session_id: Session.where(province_id: params[:province_id])) if params[:province_id].present?
+    scope = scope.where(session_id: Session.where(district_id: params[:district_id])) if params[:district_id].present?
+    scope = scope.where(session_id: Session.where(platform_name: params[:platform_name])) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end
@@ -127,7 +127,7 @@ class StepValue < ApplicationRecord
     end
 
     def set_message_district_id
-      return if message.nil?
+      return if session.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
     end
