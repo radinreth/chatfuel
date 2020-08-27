@@ -12,6 +12,7 @@
 #  incomplete_at       :date
 #  incorrect_at        :date
 #  requested_date      :datetime
+#  sector              :string           default("")
 #  service_description :string
 #  status              :string
 #  tel                 :string
