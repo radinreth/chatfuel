@@ -3,8 +3,6 @@ module Bots::Tracks
     before_action :set_template
 
     def create
-      super
-
       if @template && @template.audio.attached?
         render xml: { Play: helpers.polymorphic_url(@template.audio) }.to_xml(root: "Response")
       else
