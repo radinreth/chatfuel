@@ -32,6 +32,18 @@ class Session < ApplicationRecord
   after_update :update_last_interaction_time
   after_create_commit :completed!, if: :call?
 
+  def self.create_or_return(platform_name, session_id)
+    session = find_by(session_id: session_id)
+
+    if !session || session&.completed?
+      session = create(platform_name: platform_name, session_id: session_id)
+    else
+      session.touch :last_interaction_at
+    end
+
+    session
+  end
+
   def call?
     platform_name == "Verboice"
   end

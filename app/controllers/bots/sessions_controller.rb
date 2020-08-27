@@ -16,7 +16,7 @@ module Bots
 
       def set_step
         @step_value = @session.step_values.find_or_initialize_by(variable: @variable_value.variable)
-        @step_value.update(variable_value: @variable_value)
+        @step_value.update!(variable_value: @variable_value)
       end
   end
 end
