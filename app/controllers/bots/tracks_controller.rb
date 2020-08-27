@@ -2,6 +2,10 @@ module Bots
   class TracksController < BotsController
     before_action :set_ticket
 
+    def create
+      @ticket.site.increment :tracks_count
+    end
+
     private
       def set_ticket
         @ticket = Ticket.find_by(code: params["code"])
