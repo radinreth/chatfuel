@@ -23,7 +23,7 @@ RSpec.describe Api::V1::SitesController, type: :controller do
     let(:site) { create(:site, name_en: "kamrieng", code: "0202") }
     let(:params) {
       { site_code: site.code, tickets: [
-        { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
+        { TicketID: '0102-001', Sector: 'អត្រានុកូលដ្ឋាន', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
       ]}
     }
 
