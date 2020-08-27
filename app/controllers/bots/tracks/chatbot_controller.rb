@@ -1,6 +1,8 @@
 module Bots::Tracks
   class ChatbotController < ::Bots::TracksController
     def create
+      @ticket.site.increment :tracks_count
+
       render json: json_response, status: :ok
     end
 
