@@ -28,7 +28,8 @@ class TicketParser
         approved_date: "ApprovedDate",
         delivery_date: "DeliveryDate",
         dist_gis: "DistGis",
-        tel: "Tel"
+        tel: "Tel",
+        sector: "Sector"
       }
     end
 end
