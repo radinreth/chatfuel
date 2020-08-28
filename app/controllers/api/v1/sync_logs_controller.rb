@@ -25,7 +25,7 @@ module Api
       private
         def sync_log_params
           params.permit(:id, :status)
-                .merge(payload: params.permit(tickets: [:TicketID, :Tel, :DistGis, :ServiceDescription, :Status, :RequestedDate, :ApprovedDate, :DeliveryDate]))
+                .merge(payload: params.permit(tickets: [:TicketID, :Tel, :DistGis, :ServiceDescription, :Status, :RequestedDate, :ApprovedDate, :DeliveryDate, :Sector]))
         end
     end
   end

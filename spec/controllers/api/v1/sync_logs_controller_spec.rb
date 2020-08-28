@@ -28,7 +28,7 @@ RSpec.describe Api::V1::SyncLogsController, type: :controller do
       {
         id: sync_log.id,
         tickets: [
-          { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្តកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: ''}
+          { TicketID: '0102-001', Tel: '011 222 333', DistGis: '0102', ServiceDescription: 'សំបុត្រកំណើត', Status: 'Approved', RequestedDate: 1.day.ago,  ApprovalDate: Date.today, DeliveryDate: '', Sector: 'civil_registration'}
         ]
       }
     }
