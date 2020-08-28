@@ -41,6 +41,7 @@ spec/failed_examples.txt
 app/assets/javascripts/i18n/
 public/javascripts/
 chatfuel_*.gz
+chatfuel_*.sql
 
 app/assets/javascripts/i18n/
 public/javascripts/
