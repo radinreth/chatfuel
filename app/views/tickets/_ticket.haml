@@ -4,6 +4,7 @@
   %td= status_html(ticket.status).html_safe
   %td= ticket.tel
   %td= ticket.dist_gis
+  %td.nowrap-space= ticket.sector
   %td= ticket.service_description
   %td= display_datetime(ticket.requested_date)
   %td= display_datetime(ticket.approved_date)
