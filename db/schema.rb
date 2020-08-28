@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(version: 2020_08_27_075653) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.string "session_type", default: ""
+    t.string "platform_name", default: ""
+    t.integer "status", default: 0
+    t.string "district_id"
+    t.string "province_id"
+    t.datetime "last_interaction_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
