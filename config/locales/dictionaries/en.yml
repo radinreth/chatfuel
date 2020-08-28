@@ -16,3 +16,5 @@ en:
     add_pair: Add pair
     satisfied: Satisfied
     created_at: Created date
+    ticket_tracking: Ticket tracking
+    mark_as_ticket_tracking: Mark as ticket tracking

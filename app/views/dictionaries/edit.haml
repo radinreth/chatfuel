@@ -50,6 +50,13 @@
             %span.slider.round
           %span.ml-1= t('dictionaries.mark_as_site_location')
 
+        %h6.mt-4.permission-title= t('dictionaries.ticket_tracking')
+        .d-flex.align-items-center
+          %label.switch.m-0
+            = f.input_field :is_ticket_tracking, label: false, name: 'variable[is_ticket_tracking]'
+            %span.slider.round
+          %span.ml-1= t('dictionaries.mark_as_ticket_tracking')
+
         .actions.d-flex.justify-content-end
           = link_to t('shared.cancel'), dictionaries_path, class: 'btn btn-secondary mr-2'
           = f.submit t('shared.save'), class: "btn btn-primary float-right"

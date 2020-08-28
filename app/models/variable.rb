@@ -28,6 +28,7 @@ class Variable < ApplicationRecord
   before_save :ensure_only_one_is_most_request
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
+  before_save :ensure_only_one_is_ticket_tracking
 
   # validations
   validate :only_one_report_column
@@ -71,6 +72,11 @@ class Variable < ApplicationRecord
     def ensure_only_one_is_service_accessed
       return unless is_service_accessed_changed?
       sibling.update_all(is_service_accessed: false)
+    end
+
+    def ensure_only_one_is_ticket_tracking
+      return unless is_ticket_tracking_changed?
+      sibling.update_all(is_ticket_tracking: false)
     end
 
     def only_one_report_column
