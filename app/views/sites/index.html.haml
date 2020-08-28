@@ -52,7 +52,7 @@
               .custom-col= site['tracks_count']
               .custom-col
                 - if site.sync_status.present?
-                  %span{ class: (site.connect? ? 'text-success' : 'text-danger') }= site.sync_status
+                  %span{ class: (site.connected? ? 'text-success' : 'text-danger') }= site.sync_status
                   - if site.sync_logs.present?
                     %span{ "data-content" => popover_html(site), "data-toggle" => "popover",  "data-html" => "true", "data-trigger" => "focus", :tabindex => "0", :title => t('sites.healthcheck_history') }
                       %i.fas.fa-info-circle

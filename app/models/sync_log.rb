@@ -39,7 +39,7 @@ class SyncLog < ApplicationRecord
   end
 
   def sync_status
-    success? ? 'connect' : 'disconnect'
+    success? ? 'connected' : 'disconnected'
   end
 
   private

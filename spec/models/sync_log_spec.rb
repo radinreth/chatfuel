@@ -82,6 +82,6 @@ RSpec.describe SyncLog, type: :model do
     let!(:site) { create(:site, name_en: "kamrieng", code: "0202", sync_status: '') }
     let!(:sync_log) { create(:sync_log, site: site, status: 'success') }
 
-    it { expect(site.reload.sync_status).to eq('connect') }
+    it { expect(site.reload.sync_status).to eq('connected') }
   end
 end
