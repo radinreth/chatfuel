@@ -107,10 +107,10 @@ class StepValue < ApplicationRecord
     {variable_value.mapping_value => result.values.first}
   end
 
-  def self.default_join
-    scope = all
-    scope.joins(step: :message, variable_value: :variable)
-  end
+  # def self.default_join
+  #   scope = all
+  #   scope.joins(step: :message, variable_value: :variable)
+  # end
 
   def self.filter(scope, params={})
     scope = scope.where(session_id: Session.where(session_type: params[:content_type])) if params[:content_type].present?

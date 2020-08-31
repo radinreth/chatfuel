@@ -25,7 +25,7 @@ class HomeController < ApplicationController
       end
     end
 
-    render :no_message if @sessions.count.zero?
+    render :no_session if @sessions.count.zero?
     render :no_role if current_user.role.blank?
   end
 end
