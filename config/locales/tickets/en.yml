@@ -5,6 +5,7 @@ en:
     status: Status
     tel: Tel
     district: District
+    sector: Sector
     service_description: Service Description
     requested_date: Requested Date
     approved_date: Approved Date
