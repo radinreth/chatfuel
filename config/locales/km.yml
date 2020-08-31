@@ -122,6 +122,7 @@ km:
       type: ប្រភេទ
       created_date: កាលបរិច្ឆេទបង្កើត
       messages: សារ
+      sessions: សារ
       last_interaction_date: កាលបរិច្ឆេទទំនាក់ទំនងចុងក្រោយ
       source: ប្រភព
       expand_dictionaries: ពន្លាតឯកសារ

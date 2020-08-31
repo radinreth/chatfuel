@@ -121,6 +121,7 @@ en:
       type: Type
       created_date: Created Date
       messages: messages
+      sessions: sessions
       last_interaction_date: Last interaction Date
       source: Source
       expand_dictionaries: Expanded dictionaries
