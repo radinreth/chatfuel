@@ -3,7 +3,7 @@ module Channels
     def send_message(ticket)
       return if Setting.messenger_notification_enabled?
 
-      if ticket.message.reachable_period?
+      if ticket.session.reachable_period?
         RestClient.post("#{ENV['FB_MESSAGING_URL']}?access_token=#{ENV['FB_MESSAGING_TOKEN']}", params(ticket), content_type: "application/json")
         Rails.logger.info "Sent: #{ENV['FB_MESSAGING_URL']} #{params(ticket)}"
       end
@@ -16,7 +16,7 @@ module Channels
           messaging_type: "MESSAGE_TAG",
           tag: "CONFIRMED_EVENT_UPDATE",
           recipient: {
-            id: ticket.message.try(:session_id)
+            id: ticket.session.try(:session_id)
           },
           message: {
             text: text_message(template)

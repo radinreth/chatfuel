@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Channels::MessengerChannel do
   let(:ticket) { build(:ticket) }
-  let(:message) { build(:message, :text) }
+  let(:session) { build(:session) }
 
   it "calls #send_message one time" do
     expect(subject).to receive(:send_message).with(ticket).once
@@ -14,10 +14,10 @@ RSpec.describe Channels::MessengerChannel do
     let(:ticket) { build(:ticket, :incomplete) }
 
     it "#params" do
-      allow(ticket).to receive(:message).and_return(message)
+      allow(ticket).to receive(:session).and_return(session)
       response = {  message: { text: template.content },
                     messaging_type: "MESSAGE_TAG",
-                    recipient: { id: message.session_id },
+                    recipient: { id: session.session_id },
                     tag: "CONFIRMED_EVENT_UPDATE" }
 
       expect(subject.send(:params, ticket)).to include(response)
@@ -29,10 +29,10 @@ RSpec.describe Channels::MessengerChannel do
     let(:ticket) { build(:ticket, :completed) }
 
     it "#params" do
-      allow(ticket).to receive(:message).and_return(message)
+      allow(ticket).to receive(:session).and_return(session)
       response = {  message: { text: template.content },
                     messaging_type: "MESSAGE_TAG",
-                    recipient: { id: message.session_id },
+                    recipient: { id: session.session_id },
                     tag: "CONFIRMED_EVENT_UPDATE" }
 
       expect(subject.send(:params, ticket)).to include(response)

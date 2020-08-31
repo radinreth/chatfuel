@@ -47,6 +47,7 @@ class Ticket < ApplicationRecord
   scope :completed, -> { where(status: ['approved', 'delivered']) }
 
   delegate :platform_name, to: :message, allow_nil: true
+  delegate :platform_name, to: :session, allow_nil: true
 
   # Instand methods
   def progress_status
@@ -62,6 +63,12 @@ class Ticket < ApplicationRecord
   def message
     Message.joins(step_values: :variable_value).
           order("messages.last_interaction_at DESC").
+          find_by("variable_values.raw_value=?", code)
+  end
+
+  def session
+    Session.joins(step_values: :variable_value).
+          order("sessions.last_interaction_at DESC").
           find_by("variable_values.raw_value=?", code)
   end
 
