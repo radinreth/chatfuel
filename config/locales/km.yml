@@ -110,6 +110,8 @@ km:
       expand_dictionaries: ពន្លាតឯកសារ
     no_message:
       empty: មិនទាន់មានទិន្នន័យទេ
+    no_session:
+      empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
     title: ផ្ទាំងគ្រប់គ្រង
     total_user_visit: ចំនួនអ្នកទស្សនារបស់អ្នកប្រើប្រាស់សរុប (មុខងារនីមួយៗ)
