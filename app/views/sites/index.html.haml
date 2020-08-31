@@ -48,7 +48,7 @@
               .custom-col.pl-4
                 = site['code']
                 &middot;
-                = link_to site['name'], site_path(site['id']), class: 'btn btn-link p-0'
+                = link_to site['name_km'], site_path(site['id']), class: 'btn btn-link p-0'
               .custom-col= site['tracks_count']
               .custom-col
                 - if site.sync_status.present?
