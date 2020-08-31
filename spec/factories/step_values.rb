@@ -32,6 +32,7 @@ FactoryBot.define do
     variable_value
     site
     message
+    session
     variable
   end
 end

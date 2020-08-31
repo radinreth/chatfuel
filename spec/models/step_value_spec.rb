@@ -43,7 +43,7 @@ RSpec.describe StepValue, type: :model do
       step_value.save
     }
 
-    it { expect(step_value.message.district_id).to eq('0102') }
+    it { expect(step_value.session.district_id).to eq('0102') }
   end
 
   describe ".most_recent" do
