@@ -30,7 +30,7 @@ class Session < ApplicationRecord
 
   before_update :set_province_id, if: -> { district_id_changed? }
   after_update :update_last_interaction_time
-  after_create_commit :completed!, if: :call?
+  after_create_commit :completed!, if: :session_call?
 
   def self.create_or_return(platform_name, session_id)
     session = find_by(session_id: session_id)
@@ -44,7 +44,7 @@ class Session < ApplicationRecord
     session
   end
 
-  def call?
+  def session_call?
     platform_name == "Verboice"
   end
 

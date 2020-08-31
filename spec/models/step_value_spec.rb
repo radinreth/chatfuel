@@ -35,25 +35,25 @@ RSpec.describe StepValue, type: :model do
     let(:variable_value) { build(:variable_value, variable: variable) }
     let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable) }
 
-    context "when set_message_district_id" do
+    context "when set_session_district_id" do
       it "return district_id" do
         variable_value.raw_value = '0102'
         variable.mark_as = "location"
 
         step_value.save
 
-        expect(step_value.message.district_id).to eq('0102')
+        expect(step_value.session.district_id).to eq('0102')
       end
     end
 
-    context "when set_message_gender" do
+    context "when set_session_gender" do
       it "returns male" do
         variable_value.raw_value = 'm'
         variable.mark_as = "gender"
 
         step_value.save
 
-        expect(step_value.message.gender).to eq('male')
+        expect(step_value.session.gender).to eq('male')
       end
     end
   end
@@ -82,7 +82,7 @@ RSpec.describe StepValue, type: :model do
 
     it ".create_tracking" do
       expect {
-        StepValue.create! variable: variable, variable_value: variable_value, message: build(:message)
+        StepValue.create! variable: variable, variable_value: variable_value, session: build(:session)
       }.to change { Tracking.count }.by 1
     end
   end
