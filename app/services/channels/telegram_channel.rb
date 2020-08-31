@@ -11,7 +11,7 @@ module Channels
       def params(ticket)
         template = response_template(ticket.progress_status, :telegram)
         {
-          chat_id: ticket.message.session_id,
+          chat_id: ticket.session.session_id,
           text: text_message(template),
           disable_notification: true
         }
