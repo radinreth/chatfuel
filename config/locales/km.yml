@@ -128,6 +128,8 @@ km:
       expand_dictionaries: ពន្លាតឯកសារ
     no_message:
       empty: មិនទាន់មានទិន្នន័យទេ
+    no_session:
+      empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
     title: ផ្ទាំងគ្រប់គ្រង
     total_user_gender: ការទទួលព័ត៌មានរបស់ប្រជាពលរដ្ឋតាមភេទ

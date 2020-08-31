@@ -127,6 +127,8 @@ en:
       expand_dictionaries: Expanded dictionaries
     no_message:
       empty: There is no data yet
+    no_session:
+      empty: There is no data yet
   dashboard:
     title: Dashboard
     total_user_gender: Information Access by Gender
