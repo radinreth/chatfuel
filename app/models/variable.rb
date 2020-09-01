@@ -14,7 +14,7 @@
 #  updated_at          :datetime         not null
 #
 class Variable < ApplicationRecord
-  default_scope { order(name: :asc) }
+  default_scope { order(created_at: :desc) }
 
   # associations
   has_many :step_values, dependent: :destroy
