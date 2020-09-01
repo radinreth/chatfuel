@@ -89,6 +89,11 @@ Rails.application.routes.draw do
   telegram_webhook TelegramWebhooksController
   concern :api_base do
     resources :sites, param: :site_code, only: [:update]
+
+    resources :ivrs, only: [:create]
+    resources :chatbots, only: [:create] do
+      post :mark_as_completed, on: :collection
+    end
   end
 
   namespace :api, defaults: { format: :json } do
