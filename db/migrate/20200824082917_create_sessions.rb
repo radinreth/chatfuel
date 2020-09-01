@@ -24,12 +24,6 @@ class CreateSessions < ActiveRecord::Migration[6.0]
           session.last_interaction_at = message.last_interaction_at
         end
       end
-
-      StepValue.where(session_id: nil).find_each do |step_value|
-        step_value.session_id = step_value.message_id
-        # step_value.message_id = nil
-        step_value.save
-      end
     end
   end
 end
