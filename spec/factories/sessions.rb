@@ -17,7 +17,6 @@ FactoryBot.define do
   factory :session do
     session_id { FFaker::SSNSE.ssn }
     platform_name { %w(Messenger Telegram Verboice).sample }
-    status { 1 }
     district_id { "02122334" }
     province_id { district_id[0..1] }
     last_interaction_at { "2020-08-24 08:29:17" }
