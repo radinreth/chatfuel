@@ -51,14 +51,14 @@ Rails.application.routes.draw do
     end
 
     # Session
-    resources :sessions, only: [:create] do
-      collection do
-        post "ivr", to: "sessions/ivr#create"
-        post "chatbot", to: "sessions/chatbot#create"
-        post "chatbot/mark_as_completed", to: "sessions/chatbot#mark_as_completed"
-        get  "chatbot/preview_map", to: "sessions/map_preview#index", defaults: { locale: "km" }
-      end
-    end
+    # resources :sessions, only: [:create] do
+    #   collection do
+    #     post "ivr", to: "sessions/ivr#create"
+    #     post "chatbot", to: "sessions/chatbot#create"
+    #     post "chatbot/mark_as_completed", to: "sessions/chatbot#mark_as_completed"
+    #     get  "chatbot/preview_map", to: "sessions/map_preview#index", defaults: { locale: "km" }
+    #   end
+    # end
 
     # Track
     resources :tracks, only: [:create] do
@@ -81,6 +81,11 @@ Rails.application.routes.draw do
   telegram_webhook TelegramWebhooksController
   concern :api_base do
     resources :sites, param: :site_code, only: [:update]
+
+    resources :ivrs, only: [:create]
+    resources :chatbots, only: [:create] do
+      post :mark_as_completed, on: :collection
+    end
   end
 
   namespace :api, defaults: { format: :json } do
