@@ -50,16 +50,6 @@ Rails.application.routes.draw do
       end
     end
 
-    # Session
-    # resources :sessions, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "sessions/ivr#create"
-    #     post "chatbot", to: "sessions/chatbot#create"
-    #     post "chatbot/mark_as_completed", to: "sessions/chatbot#mark_as_completed"
-    #     get  "chatbot/preview_map", to: "sessions/map_preview#index", defaults: { locale: "km" }
-    #   end
-    # end
-
     # Track
     resources :tracks, only: [:create] do
       collection do
@@ -83,6 +73,7 @@ Rails.application.routes.draw do
     resources :sites, param: :site_code, only: [:update]
 
     resources :ivrs, only: [:create]
+    resource :map_preview, only: [:show]
     resources :chatbots, only: [:create] do
       post :mark_as_completed, on: :collection
     end
