@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     resources :sites, param: :site_code, only: [:update]
 
     resources :ivrs, only: [:create]
+    resource :map_preview, only: [:show]
     resources :chatbots, only: [:create] do
       post :mark_as_completed, on: :collection
     end
