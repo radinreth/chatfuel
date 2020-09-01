@@ -20,6 +20,10 @@ RSpec.describe Api::V1::ChatbotsController, type: :controller do
     describe "PUT :mark_as_completed" do
       let!(:session) { create(:session) }
 
+      before do
+        session.incomplete!
+      end
+
       specify { expect(session).to be_incomplete }
 
       it "completed" do
