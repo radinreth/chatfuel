@@ -28,13 +28,15 @@ RSpec.describe Api::V1::ChatbotsController, type: :controller do
     end
 
     describe "PUT :mark_as_completed" do
-      let(:session) { build(:session, session_id: 123) }
-
-      # before do
-      #   post :mark_as_completed, params: { messenger_user_id: 123, name: "main_menu", value: "owso_info" }
-      # end
+      let!(:session) { create(:session, session_id: 123) }
 
       specify { expect(session).to be_incomplete }
+
+      it "completed" do
+        post :mark_as_completed, params: { messenger_user_id: 123, name: "main_menu", value: "owso_info" }
+
+        expect(session.reload).to be_completed
+      end
     end
   end
 end
