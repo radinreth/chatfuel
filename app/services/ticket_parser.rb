@@ -7,7 +7,7 @@ class TicketParser
 
   def to_json
     hash = @hash.gsub("=>", ":")
-    ticket_attrs = Oj.load(hash) || []
+    ticket_attrs = Array.wrap(Oj.load(hash)) || []
     ticket_attrs.map do |ticket_attr|
       att = {}
       mapping_column.each do |key, value|
