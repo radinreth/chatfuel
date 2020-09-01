@@ -48,28 +48,57 @@ RSpec.describe SyncHistoryLog, type: :model do
 
   describe '#upsert_tickets_to_site' do
     let(:site) { create(:site, name_en: "kamrieng", code: "0202") }
-    let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
     let(:sync_history_log) { SyncHistoryLog.create(site_id: site.id, payload: payload) }
 
-    before {
-      sync_history_log.upsert_tickets_to_site
-    }
-
-    context 'insert' do
-      it { expect(site.tickets.count).to eq(1) }
-      it { expect(site.tickets.first.delivery_date).to be_nil }
-    end
-
-    context 'update' do
-      let(:payload2) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"2020-07-22\"}]"} }
-      let(:sync_history_log2) { SyncHistoryLog.create(site_id: site.id, payload: payload2) }
+    context "payload as array" do
+      let(:payload) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}]"} }
 
       before {
-        sync_history_log2.upsert_tickets_to_site
+        sync_history_log.upsert_tickets_to_site
       }
 
-      it { expect(site.tickets.count).to eq(1) }
-      it { expect(site.tickets.first.delivery_date).not_to be_nil }
+      context 'insert' do
+        it { expect(site.tickets.count).to eq(1) }
+        it { expect(site.tickets.first.delivery_date).to be_nil }
+      end
+
+      context 'update' do
+        let(:payload2) { {"tickets"=>"[{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"2020-07-22\"}]"} }
+        let(:sync_history_log2) { SyncHistoryLog.create(site_id: site.id, payload: payload2) }
+
+        before {
+          sync_history_log2.upsert_tickets_to_site
+        }
+
+        it { expect(site.tickets.count).to eq(1) }
+        it { expect(site.tickets.first.delivery_date).not_to be_nil }
+      end
+    end
+
+
+    context "payload as hash" do
+      let(:payload) { {"tickets"=>"{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"\"}"} }
+
+      before {
+        sync_history_log.upsert_tickets_to_site
+      }
+
+      context 'insert' do
+        it { expect(site.tickets.count).to eq(1) }
+        it { expect(site.tickets.first.delivery_date).to be_nil }
+      end
+
+      context 'update' do
+        let(:payload2) { {"tickets"=>"{\"TicketID\"=>\"0102-001\", \"Tel\"=>\"011 222 333\", \"DistGis\"=>\"0212\", \"ServiceDescription\"=>\"សំបុត្តកំណើត\", \"Status\"=>\"Approved\", \"RequestedDate\"=>\"2020-07-21 16:45:10 +0700\", \"ApprovalDate\"=>\"2020-07-22\", \"DeliveryDate\"=>\"2020-07-22\"}"} }
+        let(:sync_history_log2) { SyncHistoryLog.create(site_id: site.id, payload: payload2) }
+
+        before {
+          sync_history_log2.upsert_tickets_to_site
+        }
+
+        it { expect(site.tickets.count).to eq(1) }
+        it { expect(site.tickets.first.delivery_date).not_to be_nil }
+      end
     end
   end
 end
