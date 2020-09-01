@@ -3,9 +3,7 @@
 module Api
   module V1
     class SessionsController < ApplicationController
-      # skip_before_action :authenticate_user_with_guisso!
-      # skip_before_action :verify_authenticity_token
-
+      skip_before_action :restrict_access
       before_action :set_variable, only: [:create]
       before_action :set_session
       before_action :set_step, only: [:create]
