@@ -69,12 +69,12 @@ class StepValue < ApplicationRecord
     scope.count
   end
 
-  def self.number_of_tracking_tickets(params = {})
-    scope = default_join.joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
-    scope = filter(scope, params)
-    scope = scope.group("tickets.status")
-    scope.count
-  end
+  # def self.number_of_tracking_tickets(params = {})
+  #   scope = default_join.joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
+  #   scope = filter(scope, params)
+  #   scope = scope.group("tickets.status")
+  #   scope.count
+  # end
 
   def self.total_users_feedback(params = {})
     scope = all

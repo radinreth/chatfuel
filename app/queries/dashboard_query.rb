@@ -35,12 +35,12 @@ class DashboardQuery
     default
   end
 
-  def number_of_tracking_tickets
-    num_tracking = StepValue.number_of_tracking_tickets(@options)
-    num_tracking.delete('paid')
-    # sort hash by order in array of ticket status
-    num_tracking.slice(*Ticket::STATUSES)
-  end
+  # def number_of_tracking_tickets
+  #   num_tracking = StepValue.number_of_tracking_tickets(@options)
+  #   num_tracking.delete('paid')
+  #   # sort hash by order in array of ticket status
+  #   num_tracking.slice(*Ticket::STATUSES)
+  # end
 
   def total_users_feedback
     StepValue.total_users_feedback(@options)
