@@ -3,8 +3,9 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_visit")
-        = link_to "#", data: { toggle: "modal", target: "#chooseDictionary" } do
-          %i.fas.fa-cog.cog
+        - if policy(:dashboard).setting?
+          = link_to "#", data: { toggle: "modal", target: "#chooseDictionary" } do
+            %i.fas.fa-cog.cog
     .card-body
       .pt-4.pb-2.d-flex.justify-content-around.align-items-center
         - if @query.total_users_visit_each_functions.present?
