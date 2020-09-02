@@ -12,9 +12,12 @@ class CreateSessions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
+    return unless defined? Message
+
     ActiveRecord::Base.transaction do
       Message.find_each do |message|
         Session.create do |session|
+          session.id = message.id
           session.session_id = message.session_id
           session.session_type = message.type
           session.platform_name = message.platform_name
