@@ -17,29 +17,34 @@
       %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
         %thead
           %tr
-            %th #
             %th= t(".session_id")
             %th.nowrap-space
               = t(".last_interaction_date")
-            - @variables.each do |variable|
-              %th.nowrap-space= variable.name
+            %th= t(".source")
         %tbody
           - @messages.each_with_index do |message, index|
             %tr
-              -# %td= index + 1
               %td{style: "border-right: 0; border-bottom: 0"}
-                = link_to "#", class: "btn-collapse btn btn-default btn-sm mr-3" do
+                = link_to "#collapse#{index}", type: "button", data: { toggle: "collapse" }, class: "collapsed btn-collapse btn btn-default btn-sm mr-3" do
                   %i.fas.fa-arrow-right
                 = image_tag "#{message.platform_name.downcase}.svg", width: 18
                 = message.session_id
-              %td= message.last_interaction_at.strftime("%d-%m-%y %H:%M")
-              - @variables.each do |variable|
-                - value = ''
-                - message.step_values.most_recent.each do |step|
-                  - if step.variable.name == variable.name
-                    - value = step.variable_value.mapping_value
-                    - break
-                %td=value
+              %td{style: "border-left: 0; border-right: 0; border-bottom: 0"}
+                = display_datetime(message.last_interaction_at)
+              %td{style: "border-left: 0; border-bottom: 0"}
+                - result = []
+                - @variables.each do |variable|
+                  - value = nil
+                  - message.step_values.most_recent.each do |step|
+                    - if step.variable.name == variable.name
+                      - value = step.variable_value.mapping_value
+                      - break
+                  - result << value
+                = result.compact.join(", ")
+            %tr
+              %td.p-0{ colspan: 3, style: "border-top: 0" }
+                .p-3.collapse{ id: "collapse#{index}" }
+                  display table here
 
     - if @pagy.pages > 1
       != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
