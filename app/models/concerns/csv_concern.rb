@@ -32,7 +32,7 @@ module CsvConcern
 
   module ClassMethods
     def to_csv(results, variables)
-      CSV.generate do |csv|
+      CSV.generate("\uFEFF", encoding: 'ISO-8859-1') do |csv|
         csv << csv_header(variables)
         results.each do |result|
           csv << result.to_csv(variables).flatten
