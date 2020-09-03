@@ -44,7 +44,13 @@
             %tr
               %td.p-0{ colspan: 3, style: "border-top: 0" }
                 .p-3.collapse{ id: "collapse#{index}" }
-                  display table here
+                  %table.table
+                    - message.step_values.most_recent.each do |step|
+                      %tr
+                        %td
+                          = step.variable.name
+                        %td
+                          = step.variable_value.mapping_value
 
     - if @pagy.pages > 1
       != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
