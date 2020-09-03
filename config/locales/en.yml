@@ -102,6 +102,7 @@ en:
       messages: messages
       last_interaction_date: Last interaction Date
       source: Source
+      expand_document: Expanded document
     no_message:
       empty: There is no data yet
   dashboard:

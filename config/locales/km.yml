@@ -103,6 +103,7 @@ km:
       messages: សារ
       last_interaction_date: កាលបរិច្ឆេទទំនាក់ទំនងចុងក្រោយ
       source: ប្រភព
+      expand_document: ពន្លាតឯកសារ
     no_message:
       empty: មិនទាន់មានទិន្នន័យទេ
   dashboard:
