@@ -33,14 +33,9 @@
                 = display_datetime(message.last_interaction_at)
               %td.border-left-0.border-bottom-0
                 - result = []
-                - @variables.each do |variable|
-                  - value = nil
-                  - message.step_values.most_recent.each do |step|
-                    - if step.variable.name == variable.name
-                      - value = step.variable_value.mapping_value
-                      - break
-                  - result << value
-                = result.compact.join(", ")
+                - message.step_values.most_recent.each do |step|
+                  - result << step.variable_value.mapping_value
+                = result.join(", ")
             %tr
               %td.p-0.border-top-0{ colspan: 3 }
                 .p-3.collapse{ id: "collapse#{index}" }
