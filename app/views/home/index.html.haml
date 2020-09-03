@@ -44,6 +44,9 @@
             %tr
               %td.p-0{ colspan: 3, style: "border-top: 0" }
                 .p-3.collapse{ id: "collapse#{index}" }
+                  .mb-3
+                    %i.fas.fa-folder-open.mr-1
+                    %strong= t(".expand_document")
                   %table.table
                     - message.step_values.most_recent.each do |step|
                       %tr
