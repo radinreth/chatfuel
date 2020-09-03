@@ -18,5 +18,6 @@
             %i.fas.fa-edit.fa-fw
           = render "user-form-modal", user: user
         %li.list-inline-item
-          = link_to user_path(user), class: "btn-circle btn-sm btn-danger text-decoration-none", method: :delete, "data-confirm": t('deleted.confirm') do
+          = link_to "#", data: { target: "#confirmModal#{user.id}", toggle: "modal" }, class: "btn btn-circle btn-sm btn-danger text-decoration-none" do
             %i.fas.fa-trash.fa-fw
+          = render "shared/confirm_destroy", item_id: user.id, destroy_url: user_path(user)
