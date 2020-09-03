@@ -1,0 +1,27 @@
+%tr
+  %td.border-right-0.border-bottom-0
+    = link_to "#collapse#{index}", type: "button", data: { toggle: "collapse" }, class: "collapsed btn-collapse btn btn-default btn-sm mr-3" do
+      %i.fas.fa-arrow-right
+    = image_tag "#{message.platform_name.downcase}.svg", width: 18
+    = message.session_id
+  %td.border-left-0.border-right-0.border-bottom-0
+    = display_datetime(message.last_interaction_at)
+  %td.border-left-0.border-bottom-0
+    - result = []
+    - message.step_values.most_recent.each do |step|
+      - result << step.variable_value.mapping_value
+    = result.join(", ")
+
+%tr
+  %td.p-0.border-top-0{ colspan: 3 }
+    .p-3.collapse{ id: "collapse#{index}" }
+      .mb-3
+        %i.fas.fa-folder-open.mr-1
+        %strong= t("home.index.expand_document")
+      %table.table.table-sm.table-bordered
+        - message.step_values.most_recent.each do |step|
+          %tr
+            %td.w-25
+              = step.variable.name
+            %td
+              = step.variable_value.mapping_value
