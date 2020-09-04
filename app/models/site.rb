@@ -29,8 +29,7 @@ class Site < ApplicationRecord
   # soft delete
   acts_as_paranoid
 
-  enum status: %i[disable enable]
-  enum sync_status: %i[failure success]
+  enum sync_status: %i[disconnected connected]
 
   # associations
   has_many :tracks, dependent: :destroy

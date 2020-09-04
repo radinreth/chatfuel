@@ -20,16 +20,13 @@ Rails.application.routes.draw do
   resources :tickets, only: [:index]
   resources :templates
   resources :quotas, only: [:index]
-  # resources :voice_messages, only: [:create]
-  # resources :voice_feedbacks, only: [:create]
+
   resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
     post :set_most_request, on: :collection
     post :set_user_visit, on: :collection
     post :set_service_accessed, on: :collection
   end
-  # resources :tracks, only: [:create]
-  # resources :feedbacks, only: [:create]
-  # resources :reports, only: [:index]
+
   resources :sites do
     collection do
       get :new_import
@@ -55,13 +52,6 @@ Rails.application.routes.draw do
       end
     end
 
-    # Feedback
-    # resources :feedbacks, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "feedbacks/ivr#create"
-    #   end
-    # end
-
     # Track
     resources :tracks, only: [:create] do
       collection do
@@ -79,37 +69,13 @@ Rails.application.routes.draw do
     end
   end
 
-  # namespace :bots do
-
-    # resources :voice_feedbacks, only: [:create]
-    # resources :feedbacks, only: [:create]
-
-    # resources :messages, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "messages/ivr#create"
-    #     post "chatbot", to: "messages/chatbot#create"
-    #   end
-    # end
-
-    # Tracking
-    # resources :tracks, only: [:create] do
-    #   collection do
-    #     post "ivr", to: "tracks/ivr#create"
-    #     post "chatbot", to: "tracks/chatbot#create"
-    #   end
-    # end
-  # end
-
   # Telegram
   telegram_webhook TelegramWebhooksController
-  concern :api_base do
-    resources :sites, param: :site_code, only: [:update]
-  end
 
+  # Api
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      put :me, controller: "sites", action: "check"
-      concerns :api_base
+      resources :syncs, controller: "sync_logs", only: [:create, :update]
     end
   end
 

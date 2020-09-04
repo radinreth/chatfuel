@@ -140,22 +140,15 @@ ActiveRecord::Schema.define(version: 2020_08_27_075653) do
     t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
   end
 
-  create_table "sync_history_logs", force: :cascade do |t|
-    t.string "uuid", default: "", null: false
-    t.hstore "payload", default: {}, null: false
-    t.integer "success_count", default: 0
-    t.integer "failure_count", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "site_id"
-    t.index ["uuid"], name: "index_sync_history_logs_on_uuid"
-  end
-
   create_table "sync_logs", force: :cascade do |t|
     t.integer "site_id"
-    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.string "uuid"
+    t.hstore "payload", default: {}
+    t.integer "success_count", default: 0
+    t.integer "failure_count", default: 0
   end
 
   create_table "telegram_bots", force: :cascade do |t|
