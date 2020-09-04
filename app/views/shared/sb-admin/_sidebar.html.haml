@@ -47,7 +47,7 @@
           %i.fas.fa-fw.fa-file-alt
           %span= t('sidebar.templates')
 
-    - if policy(:admin).show?
+    - if policy(Setting).index?
       %li.nav-item{ class: css_active_class('settings') }
         = link_to settings_path, class: "nav-link" do
           %i.fas.fa-fw.fa-wrench
