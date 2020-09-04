@@ -78,7 +78,7 @@ class Site < ApplicationRecord
   end
 
   def map_url
-    "https://www.google.com/maps/@#{lat},#{lng},18z"
+    "https://www.google.com/maps/dir/current+location/#{lat},#{lng}"
   end
 
   private
