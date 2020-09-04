@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SettingsController < ApplicationController
+  before_action :authorize_setting
+
   def index
     @telegram_bot = TelegramBot.first || TelegramBot.new
   end
@@ -26,6 +28,10 @@ class SettingsController < ApplicationController
   def help; end
 
   private
+    def authorize_setting
+      authorize Setting
+    end
+
     def telegram_bot_params
       params.require(:telegram_bot).permit(:id, :username, :token)
     end
