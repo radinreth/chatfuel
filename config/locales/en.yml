@@ -28,6 +28,9 @@ en:
   paginate_info_html: "Displaying %{name} <strong>1 - %{items_count}</strong> of <strong>%{collection_count}</strong> in total"
   max_download_size: Download size is too big
   download_csv: Download CSV
+  dictionary: Dictionary
+  dictionary_value: Value
+  updated_at: Updated at
   sidebar:
     dashboard: Dashboard
     home: Home
