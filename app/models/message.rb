@@ -40,7 +40,14 @@ class Message < ApplicationRecord
   # Callback
   before_update :set_province_id, if: -> { district_id_changed? }
 
-  # methods
+  # Instant methods
+  def site
+    return unless district_id.present?
+
+    Site.find_by(code: district_id)
+  end
+
+  # Class methods
   def self.create_or_return(platform_name, content)
     message = find_by(content: content)
 

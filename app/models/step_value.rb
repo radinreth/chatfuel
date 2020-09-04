@@ -28,19 +28,17 @@ class StepValue < ApplicationRecord
   has_paper_trail
 
   belongs_to :variable_value, counter_cache: true
-  belongs_to :site, optional: true
   belongs_to :message
   belongs_to :variable
 
   validates :variable, uniqueness: { scope: :message }
 
-  delegate :site_setting, to: :site, prefix: false, allow_nil: true
-
-  after_create :push_notification, if: -> { variable_value.report? }
+  after_commit :push_notification, if: -> { variable_value.report? }, on: [:create, :update]
   after_commit :set_message_district_id, if: -> { variable_value.location? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
+  # Class methods
   def self.satisfied
     return [] unless report_column
 
@@ -115,6 +113,11 @@ class StepValue < ApplicationRecord
     scope = scope.where(message_id: Message.where(platform_name: params[:platform_name])) if params[:platform_name].present?
     scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
+  end
+
+  # Instant methods
+  def site_setting
+    message.site.try(:site_setting)
   end
 
   private
