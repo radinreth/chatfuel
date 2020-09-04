@@ -15,13 +15,14 @@
 %tr
   %td.p-0.border-top-0{ colspan: 3 }
     .p-3.collapse{ id: "collapse#{index}" }
-      .mb-3
-        %i.fas.fa-folder-open.mr-1
-        %strong= t("home.index.expand_dictionaries")
-      %table.table.table-sm.table-bordered
-        - message.step_values.most_recent.each do |step|
-          %tr
-            %td.w-25
-              = step.variable.name
-            %td
-              = step.variable_value.mapping_value
+      .ml-5
+        .mb-3
+          %i.fas.fa-folder-open.mr-1
+          %strong= t("home.index.expand_dictionaries")
+        %table.table.table-sm
+          - message.step_values.most_recent.each do |step|
+            %tr
+              %td.border-0.w-15.break-all
+                = step.variable.name
+              %td.border-0
+                = step.variable_value.mapping_value
