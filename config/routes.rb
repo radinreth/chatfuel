@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
-  scope "/role" do
-    resources :users
-  end
+  resources :users
 
   resource :manifest, only: [:show], defaults: { format: "xml" }, constraints: Whitelist.new
   resources :tickets, only: [:index]
