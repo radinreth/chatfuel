@@ -37,7 +37,7 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
-  after_create :set_message_district_id, if: -> { variable_value.is_location? }
+  after_commit :set_message_district_id, if: -> { variable_value.is_location? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -131,6 +131,6 @@ class StepValue < ApplicationRecord
     def set_message_district_id
       return if message.nil?
 
-      message.update(district_id: variable_value.mapping_value[0..3])
+      message.update(district_id: variable_value.raw_value[0..3])
     end
 end
