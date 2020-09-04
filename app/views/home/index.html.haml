@@ -13,10 +13,10 @@
           %tr
             %th
               = t(".session_id")
-            %th.nowrap-space
-              = t(".last_interaction_date")
             %th
               = t(".source")
+            %th.nowrap-space
+              = t(".last_interaction_date")
         %tbody
           - @messages.each_with_index do |message, index|
             = render partial: "message", object: message, locals: { index: index }
