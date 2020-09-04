@@ -6,6 +6,11 @@ OWSO.SitesIndex = (() => {
   function init() {
     onCollapseShow();
     onCollapseHide();
+    initTooltip();
+  }
+
+  function initTooltip() {
+    $(".btn-destroy").tooltip()
   }
 
   function onCollapseShow() {
