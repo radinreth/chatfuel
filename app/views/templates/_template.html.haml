@@ -26,5 +26,8 @@
 
     = link_to edit_template_path(template), remote: true, class: "btn btn-circle btn-sm btn-warning mr-1" do
       %i.fas.fa-edit.fa-fw
-    = link_to template_path(template), method: :delete, "data-confirm": t("deleted.confirm"), class: "btn btn-circle btn-sm btn-danger" do
+    
+    = link_to "#", data: { target: "#confirmModal#{template.id}", toggle: "modal" }, class: "btn btn-circle btn-sm btn-danger" do
       %i.fas.fa-fw.fa-trash
+
+    = render "shared/confirm_destroy", item_id: template.id, destroy_url: template_path(template)
