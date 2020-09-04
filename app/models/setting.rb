@@ -34,4 +34,8 @@ class Setting < RailsSettings::Base
 
     ENABLED_OPTIONS.include?(ENV['TELEGRAM_ENABLED'].downcase)
   end
+
+  def self.max_download_size
+    (ENV['MAX_CSV_DOWNLOAD_SIZE'] || 1000).to_i
+  end
 end
