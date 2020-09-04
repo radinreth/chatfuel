@@ -16,13 +16,16 @@
   %td.p-0.border-top-0{ colspan: 3 }
     .p-3.collapse{ id: "collapse#{index}" }
       .ml-5
-        .mb-3
-          %i.fas.fa-folder-open.mr-1
-          %strong= t("home.index.expand_dictionaries")
         %table.table.table-sm
+          %tr
+            %th.border-0= t("dictionary")
+            %th.border-0= t("dictionary_value")
+            %th.border-0= t("updated_at")
           - message.step_values.most_recent.each do |step|
             %tr
               %td.border-0.w-15.break-all
                 = step.variable.name
-              %td.border-0
+              %td.border-0.w-15.break-all
                 = step.variable_value.mapping_value
+              %td.border-0
+                = display_datetime(step.variable_value.updated_at, :short)

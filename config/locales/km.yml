@@ -29,6 +29,9 @@ km:
   paginate_info_html: "បង្ហាញ %{name} ពី <strong>1 - %{items_count}</strong> ក្នុងចំនួនសរុប <strong>%{collection_count}</strong>"
   max_download_size: ទំហំទាញយកធំពេក
   download_csv: ទាញយក CSV
+  dictionary: ពាក្យគន្លឹះ
+  dictionary_value: តម្លៃ
+  updated_at: កាលបរិច្ឆេទធ្វើបច្ចុប្បន្នភាព
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
