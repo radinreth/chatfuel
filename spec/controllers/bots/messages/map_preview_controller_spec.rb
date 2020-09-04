@@ -18,7 +18,7 @@ RSpec.describe Bots::Messages::MapPreviewController, type: :controller do
                         image_url: controller.helpers.asset_url("google-map-image-sample.png"),
                         buttons: [{
                           type: "web_url",
-                          url: "https://www.google.com/maps/@1.0,1.2,18z",
+                          url: "https://www.google.com/maps/dir/current+location/1.0,1.2",
                           title: "See on Map!"
                         }]
                       }]
