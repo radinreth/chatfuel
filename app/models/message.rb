@@ -45,7 +45,7 @@ class Message < ApplicationRecord
     message = find_by(content: content)
 
     if !message || message&.completed?
-      message = create(platform_name: platform_name, content: content)
+      message = create!(platform_name: platform_name, content: content)
     else
       message.touch :last_interaction_at
     end
