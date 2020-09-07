@@ -7,6 +7,11 @@ OWSO.DictionariesEdit = (() => {
     onClickMarkAsFeedback();
     onClickRemoveValuePair();
     onClickAddValuePair();
+    initTooltip();
+  }
+
+  function initTooltip() {
+    $(".btn-circle").tooltip()
   }
 
   function onClickAddValuePair() {
