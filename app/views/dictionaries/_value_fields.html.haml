@@ -1,7 +1,10 @@
 %tr.value-row
   %td= f.input :raw_value, label: false
   %td= f.input :mapping_value, label: false
-  %td= f.input :hint, label: false
+  %td
+    = link_to "#", data: { target: "#confirmModal#{f.object.id}", toggle: "modal" }, class: "btn btn-circle btn-sm btn-outline-secondary mt-1 text-decoration-none" do
+      %i.fas.fa-pen.fa-fw
+    = render "hint_modal", item_id: f.object.id, destroy_url: root_path, f: f
   %td
     .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
       = f.input :id, as: :hidden
