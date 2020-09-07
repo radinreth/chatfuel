@@ -1,4 +1,4 @@
-.modal.fade{ id: "confirmModal#{ local_assigns[:item_id] }", "aria-labelledby": "exampleModalLabel", "aria-modal": "true", role: "dialog", tabindex: "-1" }
+.modal.fade{ id: "hintModal#{ local_assigns[:item_id] }", "aria-labelledby": "exampleModalLabel", "aria-modal": "true", role: "dialog", tabindex: "-1" }
   .modal-dialog.modal-dialog-centered{ role: "document" }
     .modal-content
       .modal-header
@@ -7,7 +7,7 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
-        = local_assigns[:f].input :hint, as: :text, label: false, input_html: { maxlength: "10" }
+        = local_assigns[:f].input :hint, as: :text, label: false, input_html: { class: "input-hint", maxlength: "255" }
         .mt-1.hint
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("shared.save")

@@ -12,13 +12,12 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function validateTextLimit() {
-    $("textarea").keyup(function(){
+    $(".input-hint").keyup(function(){
       let currentLength = $(this).val().length
-      let maxlength = this.maxLength
       let $hint = $(this).parent().next()
-      $hint.text(`${currentLength}/${maxlength}`)
+      $hint.text(`${currentLength}/${this.maxLength}`)
 
-      if( currentLength >= maxlength ) {
+      if( currentLength >= this.maxLength ) {
         $(this).addClass("is-invalid")
 
         return false
