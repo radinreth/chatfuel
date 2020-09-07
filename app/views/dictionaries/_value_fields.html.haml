@@ -1,6 +1,7 @@
 %tr.value-row
   %td= f.input :raw_value, label: false
   %td= f.input :mapping_value, label: false
+  %td= f.input :hint, label: false
   %td
     .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
       = f.input :id, as: :hidden
