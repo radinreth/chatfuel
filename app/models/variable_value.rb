@@ -3,6 +3,7 @@
 # Table name: variable_values
 #
 #  id                :bigint(8)        not null, primary key
+#  hint              :string(255)      default("")
 #  mapping_value     :string           default("")
 #  raw_value         :string           not null
 #  status            :string           default("1")
