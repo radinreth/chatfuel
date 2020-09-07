@@ -3,41 +3,23 @@
 .card.shadow.mb-4
   .card-body
     .d-flex.justify-content-between
-      %p= t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
-      = simple_form_for :q, method: :get, html: { class: "form" } do
-        .date-filter.d-flex.align-items-center.mb-3.justify-content-end
-          .date-filter__label
-            %span.mr-2
-              =t("dashboard.show")
-          .date-filter__choose-option
-            .input-group
-              = render "shared/input_date_range"
+      %p
+        = t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
+      = render "date_range"
 
     .table-responsive
-      %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+      %table#dataTable.table{:cellspacing => "0", :width => "100%"}
         %thead
           %tr
-            %th #
-            %th= t(".session_id")
+            %th
+              = t(".session_id")
+            %th
+              = t(".source")
             %th.nowrap-space
               = t(".last_interaction_date")
-            - @variables.each do |variable|
-              %th.nowrap-space= variable.name
         %tbody
           - @messages.each_with_index do |message, index|
-            %tr
-              %td= index + 1
-              %td
-                = image_tag "#{message.platform_name.downcase}.svg", width: 18
-                = message.session_id
-              %td= message.last_interaction_at.strftime("%d-%m-%y %H:%M")
-              - @variables.each do |variable|
-                - value = ''
-                - message.step_values.most_recent.each do |step|
-                  - if step.variable.name == variable.name
-                    - value = step.variable_value.mapping_value
-                    - break
-                %td=value
+            = render partial: "message", object: message, locals: { index: index }
 
     - if @pagy.pages > 1
       != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
