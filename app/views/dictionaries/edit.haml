@@ -48,14 +48,14 @@
           = # hidden_field_tag('variable[role_ids][]', nil)
           .d-flex.flex-column.align-items-center.mr-5
             %label.mb-0
-              %i.fas.fa-map-marker-alt
+              %i.fas.fa-map-marker-alt.text-danger
             %label
               = t("dictionaries.site_location")
             = f.radio_button :is_location, 0, name: "variable[mark_as]", checked: f.object.is_location
 
           .d-flex.flex-column.align-items-center.mr-5
             %label.mb-0
-              %i.fas.fa-envelope
+              %i.fas.fa-envelope.text-primary
             %label
               = t("dictionaries.ticket_tracking")
             = f.radio_button :is_ticket_tracking, 1, name: "variable[mark_as]", checked: f.object.is_ticket_tracking
