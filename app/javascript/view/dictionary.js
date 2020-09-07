@@ -8,6 +8,24 @@ OWSO.DictionariesEdit = (() => {
     onClickRemoveValuePair();
     onClickAddValuePair();
     initTooltip();
+    validateTextLimit();
+  }
+
+  function validateTextLimit() {
+    $("textarea").keyup(function(){
+      let currentLength = $(this).val().length
+      let maxlength = this.maxLength
+      let $hint = $(this).parent().next()
+      $hint.text(`${currentLength}/${maxlength}`)
+
+      if( currentLength >= maxlength ) {
+        $(this).addClass("is-invalid")
+
+        return false
+      } else {
+        $(this).removeClass("is-invalid")
+      }
+    })
   }
 
   function initTooltip() {
