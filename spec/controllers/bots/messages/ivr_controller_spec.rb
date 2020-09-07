@@ -8,8 +8,10 @@ RSpec.describe Bots::Messages::IvrController, type: :controller do
   end
 
   it "cannot create variable with unknow platform" do
+    unknown_platform = 'test'
+
     expect {
-      post :create, params: { callsid: 123, platform_name: "test", name: "main_menu", value: "owso_info" }
-    }.to raise_error ActiveRecord::NotNullViolation
+      post :create, params: { callsid: 123, platform_name: unknown_platform, name: "main_menu", value: "owso_info" }
+    }.to raise_error ActiveRecord::RecordInvalid, "Validation failed: Platform name #{unknown_platform} is not a valid platform name"
   end
 end
