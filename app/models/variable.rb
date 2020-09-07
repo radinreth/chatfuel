@@ -29,6 +29,7 @@ class Variable < ApplicationRecord
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
+  before_save :ensure_mark_variable_as
 
   # validations
   validate :only_one_report_column
@@ -61,6 +62,16 @@ class Variable < ApplicationRecord
   end
 
   private
+    def ensure_mark_variable_as
+      return unless is_location? && is_ticket_tracking?
+
+      if is_location_changed?
+        self.is_ticket_tracking = false
+      else
+        self.is_location = false
+      end
+    end
+
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
