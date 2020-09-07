@@ -2,7 +2,8 @@
   %td= f.input :raw_value, label: false
   %td= f.input :mapping_value, label: false
   %td
-    = link_to "#", data: { target: "#confirmModal#{f.object.id}", toggle: "modal" }, class: "btn btn-circle btn-sm btn-outline-secondary mt-1 text-decoration-none" do
+    - button_style = f.object.hint.present? ? 'btn-outline-primary' : 'btn-outline-secondary'
+    = link_to "#", data: { target: "#confirmModal#{f.object.id}", toggle: "modal", title: f.object.hint }, class: "btn btn-circle btn-sm #{button_style} mt-1 text-decoration-none" do
       %i.fas.fa-pen.fa-fw
     = render "hint_modal", item_id: f.object.id, destroy_url: root_path, f: f
   %td
