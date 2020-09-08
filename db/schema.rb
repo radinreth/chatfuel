@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_025131) do
+ActiveRecord::Schema.define(version: 2020_09_08_065415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -274,6 +274,8 @@ ActiveRecord::Schema.define(version: 2020_09_07_025131) do
     t.boolean "is_location"
     t.boolean "is_ticket_tracking", default: false
     t.boolean "is_service_accessed", default: false
+    t.string "marks_as", array: true
+    t.index ["marks_as"], name: "index_variables_on_marks_as", using: :gin
   end
 
   create_table "versions", force: :cascade do |t|
