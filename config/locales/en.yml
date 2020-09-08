@@ -131,7 +131,9 @@ en:
     ticket_tracking: Ticket Tracking
     overview: Overview (Accessed, Submitted)
     accessed: Accessed
+    accessed_explain: Access to OWSO Info
     submitted: Submitted
+    submitted_explain: Access to OWSO Service
     delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name

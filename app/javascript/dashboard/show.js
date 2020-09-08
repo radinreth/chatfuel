@@ -6,6 +6,19 @@ OWSO.DashboardShow = (() => {
     renderDatetimepicker()
     onChangeProvince()
     onSubmitChooseDictionary()
+    onClickChartkickLegend()
+  }
+
+  function onClickChartkickLegend() {
+    $(".chartjs-line-legend").click(function(e) {
+      var index = $(this).data("chart-index");
+      var ci = Chartkick.charts['chart-3'].getChartObject();
+      var meta = ci.getDatasetMeta(index);
+
+      meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+      ci.update();
+    })
   }
 
   function renderDatetimepicker() {
