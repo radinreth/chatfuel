@@ -12,7 +12,7 @@ OWSO.DashboardShow = (() => {
   function onClickChartkickLegend() {
     $(".chartjs-line-legend").click(function(e) {
       var index = $(this).data("chart-index");
-      var ci = Chartkick.charts['chart-3'].getChartObject();
+      var ci = Chartkick.charts['chart-overview'].getChartObject();
       var meta = ci.getDatasetMeta(index);
 
       meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
