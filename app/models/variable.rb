@@ -48,6 +48,12 @@ class Variable < ApplicationRecord
     report_enabled
   end
 
+  def ensure_value value = nil
+    if value.present? && !value.null_value?
+      return values.find_or_create_by(raw_value: value)
+    end
+  end
+
   def self.filter(params)
     scope = all
     scope = scope.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
