@@ -15,7 +15,15 @@ module Bots
     end
 
     private
+      def set_variable
+        variable = Variable.find_or_create_by(name: params[:name])
+        
+        @variable_value = variable.ensure_value params[:value]
+      end
+
       def set_step
+        return if @variable_value.nil?
+
         @step_value = @message.step_values.find_or_initialize_by(variable: @variable_value.variable)
         @step_value.update(variable_value: @variable_value)
       end
