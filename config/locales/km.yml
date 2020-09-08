@@ -132,7 +132,9 @@ km:
     ticket_tracking: ការតាមដានឯកសារ
     overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរការ, ការដាក់ស្នើ)
     accessed: ចូលដំណើរការ
+    accessed_explain: ការចូលមើលព័ត៌មានការិយាល័យច្រក
     submitted: ការដាក់ស្នើ
+    submitted_explain: ការចូលប្រើសេវាកម្មការិយាល័យច្រក
     delivered: Delivered
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
