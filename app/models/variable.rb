@@ -19,7 +19,7 @@
 #  index_variables_on_marks_as  (marks_as) USING gin
 #
 class Variable < ApplicationRecord
-  WHITELIST_MARKS_AS = %w(report most_request user_visit location ticket_tracking service_accessed)
+  extend MarksAsHelper
   default_scope { order(created_at: :desc) }
 
   # associations
@@ -93,7 +93,7 @@ class Variable < ApplicationRecord
     end
 
     def whitelist_marks_as?
-      self.marks_as.all? { |item| WHITELIST_MARKS_AS.include?(item) }
+      self.marks_as.all? { |item| MarksAsHelper::WHITELIST_MARKS_AS.include?(item) }
     end
 
     def ensure_uniq_marks_as
