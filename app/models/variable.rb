@@ -34,6 +34,8 @@ class Variable < ApplicationRecord
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
+  before_save :whitelist_marks_as
+  before_save :ensure_uniq_marks_as
 
   # validations
   validate :only_one_report_column
@@ -66,6 +68,17 @@ class Variable < ApplicationRecord
   end
 
   private
+    def whitelist_marks_as
+      whitelist = %w(report most_request user_visit location ticket_tracking service_accessed)
+      error_message = "marks_as must be one in whitelist (#{whitelist.joins})"
+
+      errors.add(:marks_as, error_message) unless marks_as.all? { |item| whitelist.include?(item) }
+    end
+
+    def ensure_uniq_marks_as
+      errors.add(:marks_as, "cannot add duplicate value") if marks_as.detect { |e| marks_as.count(e) > 1 }
+    end
+
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
