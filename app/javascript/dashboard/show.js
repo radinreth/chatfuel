@@ -11,6 +11,8 @@ OWSO.DashboardShow = (() => {
 
   function onClickChartkickLegend() {
     $(".chartjs-line-legend").click(function(e) {
+      $(this).toggleClass("line-through")
+
       var index = $(this).data("chart-index");
       var ci = Chartkick.charts['chart-overview'].getChartObject();
       var meta = ci.getDatasetMeta(index);
