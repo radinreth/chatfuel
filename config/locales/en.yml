@@ -129,10 +129,10 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
-    overview: Overview (Accessed, Submitted)
-    accessed: Accessed
+    overview: Citizen Access
+    accessed: "# Access to OWSO Info"
     accessed_explain: Access to OWSO Info
-    submitted: Submitted
+    submitted: "# Access OWSO Service(Kamrieng)"
     submitted_explain: Access to OWSO Service
     delivered: Delivered
     completed: Completed
