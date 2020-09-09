@@ -19,6 +19,7 @@
 #  index_variables_on_marks_as  (marks_as) USING gin
 #
 class Variable < ApplicationRecord
+  WHITELIST_MARKS_AS = %w(report most_request user_visit location ticket_tracking service_accessed)
   default_scope { order(created_at: :desc) }
 
   # associations
@@ -34,8 +35,8 @@ class Variable < ApplicationRecord
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
-  before_save :whitelist_marks_as
-  before_save :ensure_uniq_marks_as
+  before_validation :whitelist_marks_as
+  before_validation :ensure_uniq_marks_as
 
   # validations
   validate :only_one_report_column
@@ -68,15 +69,27 @@ class Variable < ApplicationRecord
   end
 
   private
-    def whitelist_marks_as
-      whitelist = %w(report most_request user_visit location ticket_tracking service_accessed)
-      error_message = "marks_as must be one in whitelist (#{whitelist.joins})"
 
-      errors.add(:marks_as, error_message) unless marks_as.all? { |item| whitelist.include?(item) }
+    def whitelist_marks_as
+      return if whitelist_marks_as?
+
+      errors.add(:marks_as, :invalid, message: "invalid marks_as")
+      throw :abort
+    end
+
+    def whitelist_marks_as?
+      self.marks_as.all? { |item| WHITELIST_MARKS_AS.include?(item) }
     end
 
     def ensure_uniq_marks_as
-      errors.add(:marks_as, "cannot add duplicate value") if marks_as.detect { |e| marks_as.count(e) > 1 }
+      if duplicate_marks_as?
+        errors.add(:marks_as, :not_uniq, message: "cannot add duplicate value")
+        throw :abort
+      end
+    end
+
+    def duplicate_marks_as?
+      marks_as.detect { |e| marks_as.count(e) > 1 }
     end
 
     def validate_unique_raw_value
