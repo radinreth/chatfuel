@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_101217) do
     t.boolean "is_location"
     t.boolean "is_ticket_tracking", default: false
     t.boolean "is_service_accessed", default: false
-    t.string "marks_as", array: true
+    t.string "marks_as", default: [], array: true
     t.index ["marks_as"], name: "index_variables_on_marks_as", using: :gin
   end
 
