@@ -7,6 +7,28 @@ OWSO.DictionariesEdit = (() => {
     onClickMarkAsFeedback();
     onClickRemoveValuePair();
     onClickAddValuePair();
+    initTooltip();
+    validateTextLimit();
+  }
+
+  function validateTextLimit() {
+    $(".input-hint").keyup(function(){
+      let currentLength = $(this).val().length
+      let $hint = $(this).parent().next()
+      $hint.text(`${currentLength}/${this.maxLength}`)
+
+      if( currentLength >= this.maxLength ) {
+        $(this).addClass("is-invalid")
+
+        return false
+      } else {
+        $(this).removeClass("is-invalid")
+      }
+    })
+  }
+
+  function initTooltip() {
+    $(".btn-circle").tooltip()
   }
 
   function onClickAddValuePair() {

@@ -13,6 +13,7 @@ en:
     unmark_as_feedback: Unmark as Feedback
     raw_value: Raw value
     mapping_value: Mapping value
+    hint: Hint
     add_pair: Add pair
     satisfied: Satisfied
     created_at: Created date
