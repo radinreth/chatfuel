@@ -5,7 +5,7 @@
 #  id                :bigint(8)        not null, primary key
 #  created_at        :datetime
 #  updated_at        :datetime
-#  message_id        :bigint(8)
+#  message_id        :bigint(8)        not null
 #  site_id           :bigint(8)
 #  variable_id       :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
