@@ -46,24 +46,21 @@ class DictionariesController < ApplicationController
 
   def set_most_request
     variable = Variable.find(variable_id)
-    variable.marks_as << "most_request"
-    variable.save
+    variable.mark_as_most_request!
 
     head :ok
   end
 
   def set_user_visit
     variable = Variable.find(variable_id)
-    variable.marks_as << "user_visit"
-    variable.save
+    variable.mark_as_user_visit!
 
     head :ok
   end
 
   def set_service_accessed
     variable = Variable.find(variable_id)
-    variable.marks_as << "service_accessed"
-    variable.save
+    variable.mark_as_service_accessed!
 
     head :ok
   end
@@ -86,7 +83,9 @@ class DictionariesController < ApplicationController
     end
 
     def marks_as_params
-      marks_as = params[:variable][:marks_as].select { |k, v| v == "1" }
+      checkbox_on = "1"
+
+      marks_as = params[:variable][:marks_as].select { |key, value| value == checkbox_on }
       marks_as.keys
     end
 end
