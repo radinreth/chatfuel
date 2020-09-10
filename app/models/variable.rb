@@ -138,7 +138,7 @@ class Variable < ApplicationRecord
     end
 
     def sibling
-      Variable.where.not(id: self)
+      Variable.unscoped.where.not(id: self)
     end
 
     def rejected_values(attributes)
