@@ -41,6 +41,7 @@ class Variable < ApplicationRecord
   validate :validate_one_user_visit
   validate :validate_one_ticket_tracking
   validate :validate_one_service_accessed
+  validate :validate_one_location
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -133,6 +134,12 @@ class Variable < ApplicationRecord
       return unless sibling.mark_as_report
 
       errors.add(:mark_as_report, I18n.t("variable.already_taken")) if mark_as_report?
+    end
+
+    def validate_one_location
+      return unless sibling.mark_as_location
+
+      errors.add(:mark_as_location, I18n.t("variable.already_taken")) if mark_as_location?
     end
 
     def sibling
