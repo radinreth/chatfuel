@@ -62,7 +62,8 @@ class DictionariesController < ApplicationController
 
   def set_service_accessed
     variable = Variable.find(variable_id)
-    variable.update(is_service_accessed: true)
+    variable.marks_as << "service_accessed"
+    variable.save
 
     head :ok
   end
