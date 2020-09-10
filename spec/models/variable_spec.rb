@@ -8,7 +8,7 @@
 #  is_service_accessed :boolean          default("false")
 #  is_ticket_tracking  :boolean          default("false")
 #  is_user_visit       :boolean          default("false")
-#  marks_as            :string           is an Array
+#  marks_as            :string           default("{}"), is an Array
 #  name                :string
 #  report_enabled      :boolean          default(FALSE)
 #  created_at          :datetime         not null
