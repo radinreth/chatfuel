@@ -46,18 +46,24 @@
 
 
         %h6.mt-4.permission-title= t('dictionaries.location')
-        .d-flex.align-items-center
-          %label.switch.m-0
-            = f.input_field :marks_as, label: false, name: 'variable[marks_as][location]', checked: @variable.mark_as_location?
-            %span.slider.round
-          %span.ml-1= t('dictionaries.mark_as_site_location')
+        .align-items-center
+          .d-flex
+            %label.switch.m-0
+              = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]", checked: @variable.mark_as_location?
+              %span.slider.round
+            %span.ml-1= t('dictionaries.mark_as_site_location')
+          %div.invalid-message
+            = @variable.errors.full_messages_for(:mark_as_location).to_sentence
 
         %h6.mt-4.permission-title= t('dictionaries.ticket_tracking')
-        .d-flex.align-items-center
-          %label.switch.m-0
-            = f.input_field :marks_as, label: false, name: 'variable[marks_as][ticket_tracking]', checked: @variable.mark_as_ticket_tracking?
-            %span.slider.round
-          %span.ml-1= t('dictionaries.mark_as_ticket_tracking')
+        .align-items-center
+          .d-flex
+            %label.switch.m-0
+              = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][ticket_tracking]", checked: @variable.mark_as_ticket_tracking?
+              %span.slider.round
+            %span.ml-1= t('dictionaries.mark_as_ticket_tracking')
+          %div.invalid-message
+            = @variable.errors.full_messages_for(:mark_as_ticket_tracking).to_sentence
 
         .actions.d-flex.justify-content-end
           = link_to t('shared.cancel'), dictionaries_path, class: 'btn btn-secondary mr-2'
