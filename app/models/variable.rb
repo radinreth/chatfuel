@@ -32,7 +32,6 @@ class Variable < ApplicationRecord
                     autosave: true
 
   # callbacks
-  before_save :ensure_only_one_is_most_request
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
@@ -40,7 +39,9 @@ class Variable < ApplicationRecord
   # validations
   validate :whitelist_marks_as
   validate :uniq_marks_as
-  validate :only_one_report_column
+  validate :ensure_one_report
+  validate :ensure_one_most_request
+
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
   validates :name, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }, if: -> { name.present? }
@@ -97,9 +98,12 @@ class Variable < ApplicationRecord
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
 
-    def ensure_only_one_is_most_request
-      return unless is_most_request_changed?
-      sibling.update_all(is_most_request: false)
+    # if sibling has assign most request
+    # if try to assign more, -> invalid
+    def ensure_one_most_request
+      return unless sibling.mark_as_most_request
+
+      errors.add(:most_request, "already assigned") if mark_as_most_request?
     end
 
     def ensure_only_one_is_user_visit
@@ -117,7 +121,7 @@ class Variable < ApplicationRecord
       sibling.update_all(is_ticket_tracking: false)
     end
 
-    def only_one_report_column
+    def ensure_one_report
       return unless sibling.mark_as_report
 
       errors.add(:marks_as, I18n.t("variable.only_one_report_col")) if mark_as_report?

@@ -92,7 +92,7 @@ class StepValue < ApplicationRecord
     scope = all
     scope = filter(scope, params)
 
-    scope = scope.where('variable_id': Variable.where(is_most_request: true))
+    scope = scope.where('variable_id': Variable.mark_as_most_request)
     scope = scope.order('count_all DESC')
     scope = scope.group('variable_value_id').limit(1)
     result = scope.count

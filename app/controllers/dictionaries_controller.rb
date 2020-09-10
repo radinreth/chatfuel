@@ -46,7 +46,8 @@ class DictionariesController < ApplicationController
 
   def set_most_request
     variable = Variable.find(variable_id)
-    variable.update(is_most_request: true)
+    variable.marks_as << "most_request"
+    variable.save
 
     head :ok
   end
