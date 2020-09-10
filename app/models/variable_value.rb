@@ -42,7 +42,7 @@ class VariableValue < ApplicationRecord
   end
 
   delegate :name, to: :variable, prefix: true
-  delegate :feedback_message?, to: :variable, prefix: false
+  delegate :mark_as_report?, to: :variable, prefix: false
   delegate :mark_as_location?, to: :variable, prefix: false
 
   private
