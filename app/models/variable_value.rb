@@ -52,7 +52,7 @@ class VariableValue < ApplicationRecord
 
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
-  delegate :is_location?, to: :variable, prefix: false
+  delegate :mark_as_location?, to: :variable, prefix: false
 
   def mapping_value
     send("mapping_value_#{I18n.locale}".to_sym)
