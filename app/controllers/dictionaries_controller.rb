@@ -79,6 +79,11 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled, :is_location, :is_ticket_tracking, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :hint, :status, :_destroy])
+      params.require(:variable).permit(:type, :name, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value, :status, :_destroy]).merge(marks_as: marks_as_params)
+    end
+
+    def marks_as_params
+      marks_as = params[:variable][:marks_as].select { |k, v| v == "1" }
+      marks_as.keys
     end
 end
