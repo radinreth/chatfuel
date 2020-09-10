@@ -4,12 +4,12 @@
       = @variable.name
 
     .btn-group-toggle.text-right{ "data-toggle": "buttons" }
-      %label.variable_report_enabled.btn.btn-success{ class: toggle_class_name("active", @variable.report_enabled?) }
-        = f.input_field :report_enabled, checked: @variable.report_enabled?, name: "variable[report_enabled]", class: "variable-report-enabled"
+      %label.variable_mark_as_report.btn.btn-success{ class: toggle_class_name("active", @variable.mark_as_report?) }
+        = f.input_field :marks_as, as: :boolean, checked: @variable.mark_as_report?, name: "variable[marks_as][report]", id: "variable_mark_as_report", class: "variable-report-enabled"
         %span.report-label
-          = @variable.report_enabled? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
+          = @variable.mark_as_report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
       %div.invalid-message
-        %small= @variable.errors.full_messages_for(:report_enabled).to_sentence
+        %small= @variable.errors.full_messages_for(:mark_as_report).to_sentence
 
   .card.shadow.mb-4
     .card-body
@@ -23,7 +23,7 @@
                 %th= t('dictionaries.mapping_value_km')
                 %th= t('dictionaries.hint')
                 %th.w-25.px-4
-                  .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }= t('dictionaries.satisfied')
+                  .td-satisfied{ class: toggle_class_name("invisible", !@variable.mark_as_report?) }= t('dictionaries.satisfied')
 
                 %th
             %tbody
@@ -48,14 +48,14 @@
         %h6.mt-4.permission-title= t('dictionaries.location')
         .d-flex.align-items-center
           %label.switch.m-0
-            = f.input_field :is_location, label: false, name: 'variable[is_location]'
+            = f.input_field :is_location, label: false, name: 'variable[marks_as][location]', checked: @variable.mark_as_location?
             %span.slider.round
           %span.ml-1= t('dictionaries.mark_as_site_location')
 
         %h6.mt-4.permission-title= t('dictionaries.ticket_tracking')
         .d-flex.align-items-center
           %label.switch.m-0
-            = f.input_field :is_ticket_tracking, label: false, name: 'variable[is_ticket_tracking]'
+            = f.input_field :is_ticket_tracking, label: false, name: 'variable[marks_as][ticket_tracking]', checked: @variable.mark_as_ticket_tracking?
             %span.slider.round
           %span.ml-1= t('dictionaries.mark_as_ticket_tracking')
 

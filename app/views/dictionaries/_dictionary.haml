@@ -6,7 +6,7 @@
       = role_html(role.name).html_safe
 
   %td
-    - if dictionary.report_enabled?
+    - if dictionary.mark_as_report?
       %small= t('dictionaries.mark_as_feedback')
   %td
     - if dictionary.is_location?
