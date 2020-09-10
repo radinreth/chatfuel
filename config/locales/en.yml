@@ -90,6 +90,7 @@ en:
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
     already_taken: "has already been taken"
+    already_added: "has already been added"
     presence: "can't be blank"
   home:
     index:

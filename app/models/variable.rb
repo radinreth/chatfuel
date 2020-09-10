@@ -79,7 +79,7 @@ class Variable < ApplicationRecord
     def validate_uniq_marked_as_items
       return if uniq_marked_as_items?
 
-      errors.add(:marks_as, "cannot add duplicate value")
+      errors.add(:marks_as, I18n.t("variable.already_added"))
     end
 
     def uniq_marked_as_items?
@@ -90,36 +90,34 @@ class Variable < ApplicationRecord
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
 
-    # if sibling has assign most request
-    # if try to assign more, -> invalid
     def validate_one_most_request
       return unless sibling.mark_as_most_request
 
-      errors.add(:mark_as_most_request, "already chosen") if mark_as_most_request?
+      errors.add(:mark_as_most_request, I18n.t("variable.already_taken")) if mark_as_most_request?
     end
 
     def validate_one_user_visit
       return unless sibling.mark_as_user_visit
 
-      errors.add(:mark_as_user_visit, "already chosen") if mark_as_user_visit?
+      errors.add(:mark_as_user_visit, I18n.t("variable.already_taken")) if mark_as_user_visit?
     end
 
     def validate_one_ticket_tracking
       return unless sibling.mark_as_ticket_tracking
 
-      errors.add(:mark_as_ticket_tracking, "already chosen") if mark_as_ticket_tracking?
+      errors.add(:mark_as_ticket_tracking, I18n.t("variable.already_taken")) if mark_as_ticket_tracking?
     end
 
     def validate_one_service_accessed
       return unless sibling.mark_as_service_accessed
 
-      errors.add(:mark_as_service_accessed, "already chosen") if mark_as_service_accessed?
+      errors.add(:mark_as_service_accessed, I18n.t("variable.already_taken")) if mark_as_service_accessed?
     end
 
     def validate_one_report
       return unless sibling.mark_as_report
 
-      errors.add(:mark_as_report, "already chosen") if mark_as_report?
+      errors.add(:mark_as_report, I18n.t("variable.already_taken")) if mark_as_report?
     end
 
     def sibling

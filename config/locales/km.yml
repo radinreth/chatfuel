@@ -91,6 +91,7 @@ km:
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
     already_taken: "ត្រូវបានគេយកទៅហើយ"
+    already_added: "ត្រូវបានគេបញ្ចូលទៅហើយ"
     presence: មិនអាចទទេរ
   home:
     index:
