@@ -54,7 +54,8 @@ class DictionariesController < ApplicationController
 
   def set_user_visit
     variable = Variable.find(variable_id)
-    variable.update(is_user_visit: true)
+    variable.marks_as << "user_visit"
+    variable.save
 
     head :ok
   end
