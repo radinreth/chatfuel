@@ -8,7 +8,7 @@
 #  is_service_accessed :boolean          default("false")
 #  is_ticket_tracking  :boolean          default("false")
 #  is_user_visit       :boolean          default("false")
-#  marks_as            :string           is an Array
+#  marks_as            :string           default("{}"), is an Array
 #  name                :string
 #  report_enabled      :boolean          default("false")
 #  created_at          :datetime         not null
@@ -19,7 +19,8 @@
 #  index_variables_on_marks_as  (marks_as) USING gin
 #
 class Variable < ApplicationRecord
-  extend MarksAsHelper
+  include MarksAsHelper
+
   default_scope { order(created_at: :desc) }
 
   # associations
@@ -35,10 +36,10 @@ class Variable < ApplicationRecord
   before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
-  before_validation :whitelist_marks_as
-  before_validation :ensure_uniq_marks_as
-
+  
   # validations
+  validate :whitelist_marks_as
+  validate :uniq_marks_as
   validate :only_one_report_column
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -53,7 +54,7 @@ class Variable < ApplicationRecord
   end
 
   def feedback_message?
-    report_enabled
+    mark_as_report?
   end
 
   def ensure_value value = nil
@@ -81,7 +82,7 @@ class Variable < ApplicationRecord
       self.marks_as.all? { |item| MarksAsHelper::WHITELIST_MARKS_AS.include?(item) }
     end
 
-    def ensure_uniq_marks_as
+    def uniq_marks_as
       if duplicate_marks_as?
         errors.add(:marks_as, :not_uniq, message: "cannot add duplicate value")
         throw :abort
@@ -117,11 +118,9 @@ class Variable < ApplicationRecord
     end
 
     def only_one_report_column
-      errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && report_already_set?
-    end
+      return unless sibling.mark_as_report
 
-    def report_already_set?
-      sibling.exists?(report_enabled: true)
+      errors.add(:marks_as, I18n.t("variable.only_one_report_col")) if mark_as_report?
     end
 
     def sibling
