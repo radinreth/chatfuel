@@ -7,6 +7,10 @@
           = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
             %i.fas.fa-cog.cog
     .card-body
+      .legend.text-center
+        = render partial: "dashboard/overview/legend", locals: { title: t("dashboard.accessed_explain"), index: 0, class_name: "rect__accessed", display_text: t("dashboard.accessed") }
+        = render partial: "dashboard/overview/legend", locals: { title: t("dashboard.submitted_explain"), index: 1, class_name: "rect__submitted", display_text: t("dashboard.submitted") }
+
       .pt-4.pb-2.d-flex.justify-content-around.align-items-center
         = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :is_service_accessed, modal_id: 'chooseAccessed'
-        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: %w(#ffbc00 #4e73df), height: "250px"
+        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: %w(#ffbc00 #4e73df), id: "chart-overview", height: "250px", legend: false
