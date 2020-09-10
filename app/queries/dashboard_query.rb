@@ -58,8 +58,8 @@ class DashboardQuery
     @user_visit ||= Variable.find_by(is_user_visit: true)
   end
 
-  def report_enabled
-    @report_enabled ||= Variable.find_by(report_enabled: true)
+  def mark_as_report
+    @mark_as_report ||= Variable.mark_as_report
   end
 
   private
