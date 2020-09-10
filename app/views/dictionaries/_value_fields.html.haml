@@ -2,6 +2,11 @@
   %td= f.input :raw_value, label: false
   %td= f.input :mapping_value, label: false
   %td
+    - button_style = f.object.hint.present? ? 'btn-outline-primary' : 'btn-outline-secondary'
+    = link_to "#", data: { target: "#hintModal#{f.object.id}", toggle: "modal", title: f.object.hint }, class: "btn btn-circle btn-sm #{button_style} mt-1 text-decoration-none" do
+      %i.fas.fa-pen.fa-fw
+    = render "hint_modal", item_id: f.object.id, f: f
+  %td
     .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
       = f.input :id, as: :hidden
       - if f.object.destroyable?
