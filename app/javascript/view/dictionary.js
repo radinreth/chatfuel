@@ -41,7 +41,7 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function handleRenderSatisfied() {
-    var checkbox = $('#variable_report_enabled');
+    var checkbox = $('#variable_mark_as_report');
     $(".td-satisfied").toggleClass('invisible', !checkbox[0].checked);
   }
 
@@ -52,7 +52,7 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function onClickMarkAsFeedback() {
-    $('#variable_report_enabled').on('change', function(e) {
+    $('#variable_mark_as_report').on('change', function(e) {
       var checkbox = $(e.target);
       var reportLabel = !!checkbox[0].checked ? "Unmark as Feedback" : "Mark as Feedback";
 
