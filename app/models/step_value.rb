@@ -38,7 +38,7 @@ class StepValue < ApplicationRecord
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
-  after_create :push_notification, if: -> { variable_value.feedback_message? }
+  after_create :push_notification, if: -> { variable_value.mark_as_report? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.mark_as_location? }
 

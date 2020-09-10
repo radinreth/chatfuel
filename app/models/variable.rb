@@ -33,16 +33,14 @@ class Variable < ApplicationRecord
   # scopes
   scope :most_request, -> { find_by(is_most_request: true) }
 
-  # callbacks
-  
   # validations
-  validate :whitelist_marks_as
-  validate :uniq_marks_as
-  validate :ensure_one_report
-  validate :ensure_one_most_request
-  validate :ensure_one_user_visit
-  validate :ensure_one_ticket_tracking
-  validate :ensure_one_service_accessed
+  validate :validate_all_marked_as_items_in_whitelist
+  validate :validate_uniq_marked_as_items
+  validate :validate_one_report
+  validate :validate_one_most_request
+  validate :validate_one_user_visit
+  validate :validate_one_ticket_tracking
+  validate :validate_one_service_accessed
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -54,10 +52,6 @@ class Variable < ApplicationRecord
 
   def to_partial_path
     "dictionaries/dictionary"
-  end
-
-  def feedback_message?
-    mark_as_report?
   end
 
   def ensure_value value = nil
@@ -87,26 +81,24 @@ class Variable < ApplicationRecord
 
   private
 
-    def whitelist_marks_as
-      return if whitelist_marks_as?
+    def validate_all_marked_as_items_in_whitelist
+      return if all_marked_as_items_in_whitelist?
 
-      errors.add(:marks_as, :invalid, message: "invalid marks_as")
-      throw :abort
+      errors.add(:marks_as, "invalid marked_as item")
     end
 
-    def whitelist_marks_as?
+    def all_marked_as_items_in_whitelist?
       self.marks_as.all? { |item| MarksAsHelper::WHITELIST_MARKS_AS.include?(item) }
     end
 
-    def uniq_marks_as
-      if duplicate_marks_as?
-        errors.add(:marks_as, :not_uniq, message: "cannot add duplicate value")
-        throw :abort
-      end
+    def validate_uniq_marked_as_items
+      return if uniq_marked_as_items?
+
+      errors.add(:marks_as, "cannot add duplicate value")
     end
 
-    def duplicate_marks_as?
-      marks_as.detect { |e| marks_as.count(e) > 1 }
+    def uniq_marked_as_items?
+      marks_as.uniq.length == marks_as.length
     end
 
     def validate_unique_raw_value
@@ -115,34 +107,34 @@ class Variable < ApplicationRecord
 
     # if sibling has assign most request
     # if try to assign more, -> invalid
-    def ensure_one_most_request
+    def validate_one_most_request
       return unless sibling.mark_as_most_request
 
-      errors.add(:most_request, "already assigned") if mark_as_most_request?
+      errors.add(:mark_as_most_request, "already chosen") if mark_as_most_request?
     end
 
-    def ensure_one_user_visit
+    def validate_one_user_visit
       return unless sibling.mark_as_user_visit
 
-      errors.add(:user_visit, "already assigned") if mark_as_user_visit?
+      errors.add(:mark_as_user_visit, "already chosen") if mark_as_user_visit?
     end
 
-    def ensure_one_ticket_tracking
+    def validate_one_ticket_tracking
       return unless sibling.mark_as_ticket_tracking
 
-      errors.add(:ticket_tracking, "already assigned") if mark_as_ticket_tracking?
+      errors.add(:mark_as_ticket_tracking, "already chosen") if mark_as_ticket_tracking?
     end
 
-    def ensure_one_service_accessed
+    def validate_one_service_accessed
       return unless sibling.mark_as_service_accessed
 
-      errors.add(:service_accessed, "already assigned") if mark_as_service_accessed?
+      errors.add(:mark_as_service_accessed, "already chosen") if mark_as_service_accessed?
     end
 
-    def ensure_one_report
+    def validate_one_report
       return unless sibling.mark_as_report
 
-      errors.add(:marks_as, I18n.t("variable.only_one_report_col")) if mark_as_report?
+      errors.add(:mark_as_report, "already chosen") if mark_as_report?
     end
 
     def sibling
