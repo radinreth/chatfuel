@@ -32,7 +32,6 @@ class Variable < ApplicationRecord
                     autosave: true
 
   # callbacks
-  before_save :ensure_only_one_is_service_accessed
   
   # validations
   validate :whitelist_marks_as
@@ -41,6 +40,7 @@ class Variable < ApplicationRecord
   validate :ensure_one_most_request
   validate :ensure_one_user_visit
   validate :ensure_one_ticket_tracking
+  validate :ensure_one_service_accessed
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -118,9 +118,10 @@ class Variable < ApplicationRecord
       errors.add(:ticket_tracking, "already assigned") if mark_as_ticket_tracking?
     end
 
-    def ensure_only_one_is_service_accessed
-      return unless is_service_accessed_changed?
-      sibling.update_all(is_service_accessed: false)
+    def ensure_one_service_accessed
+      return unless sibling.mark_as_service_accessed
+
+      errors.add(:service_accessed, "already assigned") if mark_as_service_accessed?
     end
 
     def ensure_one_report
