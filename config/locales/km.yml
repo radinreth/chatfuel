@@ -130,9 +130,11 @@ km:
     owso_info: ពត៍មានអំពីច្រក
     feedback: ការវាយតម្លៃ
     ticket_tracking: ការតាមដានឯកសារ
-    overview: ទិដ្ឋភាពទូទៅ (ចូលដំណើរការ, ការដាក់ស្នើ)
-    accessed: ចូលដំណើរការ
-    submitted: ការដាក់ស្នើ
+    overview: ការប្រើប្រាស់របស់ប្រជាជន
+    accessed: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មាន
+    accessed_explain: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មានពីឧបករណ៍បច្ចេកវិទ្យារបស់គម្រោង OW4C
+    submitted: ចំនួនអ្នកទទួលសេវាច្រក (កំរៀង)
+    submitted_explain: ចំនួនអ្នកទទួលសេវាច្រកចេញចូលតែមួយ​នៅស្រុកកំរៀង
     delivered: Delivered
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ

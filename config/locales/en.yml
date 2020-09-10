@@ -129,9 +129,11 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
-    overview: Overview (Accessed, Submitted)
-    accessed: Accessed
-    submitted: Submitted
+    overview: Citizen Access
+    accessed: "# Access to OWSO Info"
+    accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
+    submitted: "# Access to OWSO Service(Kamrieng)"
+    submitted_explain: Number of citizen access to OWSO services in Kamrieng district
     delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name
