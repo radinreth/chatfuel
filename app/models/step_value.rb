@@ -86,6 +86,26 @@ class StepValue < ApplicationRecord
     default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
   end
 
+  def self.most_request_service(params = {})
+    scope = all
+    scope = filter(scope, params)
+
+    scope = scope.where('variable_id': Variable.mark_as_most_request)
+    scope = scope.order('count_all DESC')
+    scope = scope.group('variable_value_id').limit(1)
+    result = scope.count
+
+    return {} if result.nil? || result.empty?
+
+    variable_value = VariableValue.find(result.keys.first)
+    {variable_value.mapping_value => result.values.first}
+  end
+
+  def self.default_join
+    scope = all
+    scope.joins(step: :message, variable_value: :variable)
+  end
+
   def self.filter(scope, params={})
     scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
     scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
