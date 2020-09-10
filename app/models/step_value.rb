@@ -75,7 +75,7 @@ class StepValue < ApplicationRecord
     statuses = VariableValue.statuses
 
     scope = filter(scope, params)
-    report_variable = Variable.find_by(report_enabled: true)
+    report_variable = Variable.mark_as_report
     scope = scope.where(variable_id: report_variable)
 
     default = statuses.transform_values { 0 }
@@ -97,7 +97,7 @@ class StepValue < ApplicationRecord
 
   private
     def self.report_column
-      @report_column ||= Variable.find_by(report_enabled: true)
+      @report_column ||= Variable.mark_as_report
     end
 
     def push_notification
