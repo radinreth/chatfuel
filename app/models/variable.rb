@@ -34,7 +34,6 @@ class Variable < ApplicationRecord
   scope :most_request, -> { find_by(is_most_request: true) }
 
   # callbacks
-  before_save :ensure_only_one_is_user_visit
   before_save :ensure_only_one_is_service_accessed
   before_save :ensure_only_one_is_ticket_tracking
   
@@ -43,6 +42,7 @@ class Variable < ApplicationRecord
   validate :uniq_marks_as
   validate :ensure_one_report
   validate :ensure_one_most_request
+  validate :ensure_one_user_visit
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -121,9 +121,10 @@ class Variable < ApplicationRecord
       errors.add(:most_request, "already assigned") if mark_as_most_request?
     end
 
-    def ensure_only_one_is_user_visit
-      return unless is_user_visit_changed?
-      sibling.update_all(is_user_visit: false)
+    def ensure_one_user_visit
+      return unless sibling.mark_as_user_visit
+
+      errors.add(:user_visit, "already assigned") if mark_as_user_visit?
     end
 
     def ensure_only_one_is_service_accessed
