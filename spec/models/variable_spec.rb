@@ -73,4 +73,16 @@ RSpec.describe Variable, type: :model do
       it { expect(variable.errors[:variablevalues]).to eq(["has already been taken"]) }
     end
   end
+
+  describe '#ensure_value' do
+    let!(:variable) { create(:variable) }
+
+    context 'create a variable value when a value is not null' do
+      it { expect { variable.ensure_value('foo')}.to change{VariableValue.count}.by(1) }
+    end
+
+    context 'ignore create a variable value when a value is null' do
+      it { expect { variable.ensure_value('null')}.to change{VariableValue.count}.by(0) }
+    end
+  end
 end
