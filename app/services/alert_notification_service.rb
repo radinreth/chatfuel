@@ -18,7 +18,7 @@ class AlertNotificationService
   def send_daily_notification
     SiteSetting.daily.enable_notification.each do |setting|
       site = setting.site
-      feedbacks = StepValue.joins(variable_value: :variable).where('variables.report_enabled = ?', true).where(site_id: site.id).where("DATE(step_values.created_at) = ?", Date.today - 1)
+      feedbacks = StepValue.joins(variable_value: :variable).where("'report' = ANY (variables.marks_as)").where(site_id: site.id).where("DATE(step_values.created_at) = ?", Date.today - 1)
 
       next if feedbacks.size.zero?
 
@@ -30,7 +30,7 @@ class AlertNotificationService
   def send_weekly_notification
     SiteSetting.weekly.enable_notification.each do |setting|
       site = setting.site
-      feedbacks = StepValue.joins(variable_value: :variable).where('variables.report_enabled = ?', true).where(site_id: site.id).where("DATE(step_values.created_at) >= ?", 1.week.ago)
+      feedbacks = StepValue.joins(variable_value: :variable).where("'report' = ANY (variables.marks_as)").where(site_id: site.id).where("DATE(step_values.created_at) >= ?", 1.week.ago)
 
       next if feedbacks.size.zero?
 
