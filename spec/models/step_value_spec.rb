@@ -35,7 +35,7 @@ RSpec.describe StepValue, type: :model do
       step_value.variable_value.mapping_value_en = ''
 
       variable = step_value.variable_value.variable
-      variable.is_location = true
+      variable.marks_as << "location"
 
       step_value.save
     }
