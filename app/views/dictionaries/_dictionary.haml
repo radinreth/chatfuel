@@ -6,11 +6,11 @@
       = role_html(role.name).html_safe
 
   %td
-    - if dictionary.mark_as_report?
-      %small= t('dictionaries.mark_as_feedback')
+    - if dictionary.report?
+      %small= t('dictionaries.feedback')
   %td
-    - if dictionary.mark_as_location?
-      %small= t('dictionaries.mark_as_site_location')
+    - if dictionary.location?
+      %small= t('dictionaries.site_location')
 
   %td
     = display_datetime(dictionary.created_at)

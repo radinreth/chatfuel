@@ -21,18 +21,18 @@
         %label.switch.m-0
           = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][report]"
           %span.slider.round
-        %span.ml-1= t('dictionaries.mark_as_feedback')
+        %span.ml-1= t('dictionaries.feedback')
       %div.invalid-message
-        = dictionary.errors.full_messages_for(:mark_as_report).to_sentence
+        = dictionary.errors.full_messages_for(:report).to_sentence
 
     .align-items-center
       .d-flex
         %label.switch.m-0
           = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]"
           %span.slider.round
-        %span.ml-1= t('dictionaries.mark_as_site_location')
+        %span.ml-1= t('dictionaries.site_location')
       %div.invalid-message
-        = dictionary.errors.full_messages_for(:mark_as_location).to_sentence
+        = dictionary.errors.full_messages_for(:location).to_sentence
 
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
