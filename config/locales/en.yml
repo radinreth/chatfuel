@@ -129,7 +129,7 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
-    overview: Citizen Access
+    overview: User Access
     accessed: "# Access to OWSO Info"
     accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
     submitted: "# Access to OWSO Service(Kamrieng)"
