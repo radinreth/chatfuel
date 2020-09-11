@@ -28,7 +28,7 @@ class Message < ApplicationRecord
 
   # scopes
   default_scope -> { order(updated_at: :desc) }
-  scope :period, -> (start_date, end_date) { where("DATE(last_interaction_at) BETWEEN ? AND ?", start_date, end_date) }
+  scope :period, -> (start_date, end_date) { where("DATE(created_at) BETWEEN ? AND ?", start_date, end_date) }
 
   delegate :type, :session_id, to: :content
 
