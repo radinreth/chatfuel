@@ -36,8 +36,8 @@ class StepValue < ApplicationRecord
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
-  after_create :push_notification, if: -> { variable_value.mark_as_report? }
-  after_commit :set_message_district_id, if: -> { variable_value.mark_as_location? }
+  after_create :push_notification, if: -> { variable_value.report? }
+  after_commit :set_message_district_id, if: -> { variable_value.location? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -59,7 +59,7 @@ class StepValue < ApplicationRecord
     scope = all
     scope = scope.joins(variable_value: :variable)
     scope = filter(scope, params)
-    scope = scope.where(variable_id: Variable.mark_as_user_visit)
+    scope = scope.where(variable_id: Variable.user_visit)
     scope = scope.order(:mapping_value)
     scope = scope.group(:mapping_value)
     scope.count
@@ -77,7 +77,7 @@ class StepValue < ApplicationRecord
     statuses = VariableValue.statuses
 
     scope = filter(scope, params)
-    report_variable = Variable.mark_as_report
+    report_variable = Variable.report
     scope = scope.where(variable_id: report_variable)
 
     default = statuses.transform_values { 0 }
@@ -92,7 +92,7 @@ class StepValue < ApplicationRecord
     scope = all
     scope = filter(scope, params)
 
-    scope = scope.where('variable_id': Variable.mark_as_most_request)
+    scope = scope.where('variable_id': Variable.most_request)
     scope = scope.order('count_all DESC')
     scope = scope.group('variable_value_id').limit(1)
     result = scope.count
@@ -119,7 +119,7 @@ class StepValue < ApplicationRecord
 
   private
     def self.report_column
-      @report_column ||= Variable.mark_as_report
+      @report_column ||= Variable.report
     end
 
     def push_notification

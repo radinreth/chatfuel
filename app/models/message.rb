@@ -54,7 +54,7 @@ class Message < ApplicationRecord
   end
 
   def self.accessed(options = {})
-    variable = Variable.mark_as_service_accessed
+    variable = Variable.service_accessed
 
     scope = all
     scope = filter(scope, options)

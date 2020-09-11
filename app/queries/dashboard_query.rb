@@ -55,11 +55,11 @@ class DashboardQuery
   end
 
   def user_visit
-    @user_visit ||= Variable.mark_as_user_visit
+    @user_visit ||= Variable.user_visit
   end
 
-  def mark_as_report
-    @mark_as_report ||= Variable.mark_as_report
+  def report
+    @report ||= Variable.report
   end
 
   private

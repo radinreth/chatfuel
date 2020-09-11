@@ -29,7 +29,7 @@
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
           %i.fas.fa-cog.cog
 
-        = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :mark_as_most_request?, modal_id: 'mostRequest'
+        = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
 
       .card-body
         .row.no-gutters.align-items-center
