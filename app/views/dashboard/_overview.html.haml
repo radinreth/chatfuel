@@ -8,8 +8,8 @@
             %i.fas.fa-cog.cog
     .card-body
       .legend.text-center
-        = render partial: "dashboard/overview/legend", locals: { title: t("dashboard.accessed_explain"), index: 0, class_name: "rect__accessed", display_text: t("dashboard.accessed") }
-        = render partial: "dashboard/overview/legend", locals: { title: t("dashboard.submitted_explain"), index: 1, class_name: "rect__submitted", display_text: t("dashboard.submitted") }
+        - @query.goals.each_with_index do |goal, index|
+          = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
 
       .pt-4.pb-2.d-flex.justify-content-around.align-items-center
         = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :is_service_accessed, modal_id: 'chooseAccessed'
