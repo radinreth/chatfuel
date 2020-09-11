@@ -76,7 +76,7 @@ class DashboardQuery
       return {} unless accessed
       data = accessed.group_by_day(:updated_at).count
 
-      { name: I18n.t("dashboard.accessed"), data: data, color: '#ffbc00' } if data.present?
+      { name: I18n.t("dashboard.accessed"), data: data, color: '#ffbc00', title: I18n.t("dashboard.accessed_explain"), class_name: "rect__accessed", display_text: I18n.t("dashboard.accessed") } if data.present?
     end
 
     # Ticket does not need to care about about platform(both, chatbot, ivr)
@@ -84,6 +84,6 @@ class DashboardQuery
     def submitted
       data = Ticket.filter(@options).group_by_day(:requested_date).count
 
-      { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df' } if data.present?
+      { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain"), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted") } if data.present?
     end
 end
