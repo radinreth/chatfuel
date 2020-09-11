@@ -107,39 +107,39 @@ class Variable < ApplicationRecord
     end
 
     def validate_one_most_request
-      return unless sibling.mark_as_most_request
+      return unless sibling.most_request
 
-      errors.add(:mark_as_most_request, I18n.t("variable.already_taken")) if mark_as_most_request?
+      errors.add(:most_request, I18n.t("variable.already_taken")) if most_request?
     end
 
     def validate_one_user_visit
-      return unless sibling.mark_as_user_visit
+      return unless sibling.user_visit
 
-      errors.add(:mark_as_user_visit, I18n.t("variable.already_taken")) if mark_as_user_visit?
+      errors.add(:user_visit, I18n.t("variable.already_taken")) if user_visit?
     end
 
     def validate_one_ticket_tracking
-      return unless sibling.mark_as_ticket_tracking
+      return unless sibling.ticket_tracking
 
-      errors.add(:mark_as_ticket_tracking, I18n.t("variable.already_taken")) if mark_as_ticket_tracking?
+      errors.add(:ticket_tracking, I18n.t("variable.already_taken")) if ticket_tracking?
     end
 
     def validate_one_service_accessed
-      return unless sibling.mark_as_service_accessed
+      return unless sibling.service_accessed
 
-      errors.add(:mark_as_service_accessed, I18n.t("variable.already_taken")) if mark_as_service_accessed?
+      errors.add(:service_accessed, I18n.t("variable.already_taken")) if service_accessed?
     end
 
     def validate_one_report
-      return unless sibling.mark_as_report
+      return unless sibling.report
 
-      errors.add(:mark_as_report, I18n.t("variable.already_taken")) if mark_as_report?
+      errors.add(:report, I18n.t("variable.already_taken")) if report?
     end
 
     def validate_one_location
-      return unless sibling.mark_as_location
+      return unless sibling.location
 
-      errors.add(:mark_as_location, I18n.t("variable.already_taken")) if mark_as_location?
+      errors.add(:location, I18n.t("variable.already_taken")) if location?
     end
 
     def sibling
