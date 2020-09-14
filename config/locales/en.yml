@@ -110,8 +110,8 @@ en:
       empty: There is no data yet
   dashboard:
     title: Dashboard
-    total_user_visit: Total User Visit (Each Function)
-    total_user_feedback: Total User Feedbacks (%{name})
+    total_user_visit: Total User by Category
+    total_user_feedback: Total User Feedback
     number_of_tracked_ticket: Number of Ticket(Successfully Tracked)
     both: Both
     ivr: IVR
@@ -129,7 +129,7 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
-    overview: Citizen Access
+    overview: User Access
     accessed: "# Access to OWSO Info"
     accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
     submitted: "# Access to OWSO Service(Kamrieng)"
