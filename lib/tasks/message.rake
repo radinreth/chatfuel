@@ -12,4 +12,20 @@ namespace :message do
       end
     end
   end
+
+  desc "Import trackings from step values"
+  task import_tracking: :environment do
+    tracking_variable = Variable.find_by(is_ticket_tracking: true)
+
+    tracking_variable.step_values.each do |step|
+      Tracking.create! do |t|
+        t.status = step.variable_value.ticket_status
+        t.message = step.message
+        t.tracking_datetime = step.created_at
+      end
+
+      rescue => e
+        puts "#{step.id} #{e.message}"
+    end
+  end
 end

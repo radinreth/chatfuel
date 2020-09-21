@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_025131) do
+ActiveRecord::Schema.define(version: 2020_09_21_070407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_025131) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.string "platform_name", default: ""
-    t.datetime "last_interaction_at", default: "2020-06-30 04:09:55"
+    t.datetime "last_interaction_at", default: "2020-08-03 03:01:25"
     t.string "province_id"
     t.string "district_id", limit: 8
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
@@ -214,6 +214,13 @@ ActiveRecord::Schema.define(version: 2020_09_07_025131) do
     t.index ["site_id"], name: "index_tickets_on_site_id"
   end
 
+  create_table "trackings", force: :cascade do |t|
+    t.integer "status"
+    t.datetime "tracking_datetime"
+    t.bigint "message_id", null: false
+    t.index ["message_id"], name: "index_trackings_on_message_id"
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "code"
     t.bigint "site_id"
@@ -306,6 +313,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_025131) do
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "step_values", "variables"
   add_foreign_key "tickets", "sites"
+  add_foreign_key "trackings", "messages"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
 end

@@ -37,7 +37,9 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback_message? }
-  after_commit :set_message_district_id, if: -> { variable_value.is_location? }
+  after_commit :set_message_district_id,  on: [:create, :update],
+                                          if: -> { variable_value.is_location? }
+  after_create :create_tracking, if: -> { variable.is_ticket_tracking? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -62,13 +64,6 @@ class StepValue < ApplicationRecord
     scope = scope.where(variables: { is_user_visit: true })
     scope = scope.order(:mapping_value)
     scope = scope.group(:mapping_value)
-    scope.count
-  end
-
-  def self.number_of_tracking_tickets(params = {})
-    scope = default_join.joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
-    scope = filter(scope, params)
-    scope = scope.group("tickets.status")
     scope.count
   end
 
@@ -103,11 +98,6 @@ class StepValue < ApplicationRecord
     {variable_value.mapping_value => result.values.first}
   end
 
-  def self.default_join
-    scope = all
-    scope.joins(step: :message, variable_value: :variable)
-  end
-
   def self.filter(scope, params={})
     scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
     scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
@@ -132,5 +122,9 @@ class StepValue < ApplicationRecord
       return if message.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
+    end
+
+    def create_tracking
+      Tracking.create(status: variable_value.ticket_status, tracking_datetime: created_at)
     end
 end
