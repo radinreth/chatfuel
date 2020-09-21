@@ -44,6 +44,7 @@ class VariableValue < ApplicationRecord
   delegate :name, to: :variable, prefix: true
   delegate :report?, to: :variable, prefix: false
   delegate :location?, to: :variable, prefix: false
+  delegate :feedback_location?, to: :variable, prefix: false
 
   private
     def ensure_destroyable

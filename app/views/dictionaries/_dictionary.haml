@@ -6,11 +6,7 @@
       = role_html(role.name).html_safe
 
   %td
-    - if dictionary.report?
-      %small= t('dictionaries.feedback')
-  %td
-    - if dictionary.location?
-      %small= t('dictionaries.site_location')
+    %small= dictionary.marks_as.map{|mark_as| t("dictionaries.marked_as.#{mark_as}")}.join(', ')
 
   %td
     = display_datetime(dictionary.created_at)

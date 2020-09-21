@@ -2,16 +2,17 @@
 #
 # Table name: messages
 #
-#  id                  :bigint(8)        not null, primary key
-#  content_type        :string
-#  last_interaction_at :datetime         default("2020-06-30 04:09:55")
-#  platform_name       :string           default("")
-#  status              :integer(4)       default("0")
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  content_id          :integer(4)
-#  district_id         :string(8)
-#  province_id         :string
+#  id                     :bigint(8)        not null, primary key
+#  content_type           :string
+#  feedback_location_code :string(4)
+#  last_interaction_at    :datetime         default("2020-09-21 03:24:22.587865")
+#  platform_name          :string           default("")
+#  status                 :integer(4)       default("0")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  content_id             :integer(4)
+#  district_id            :string(8)
+#  province_id            :string
 #
 # Indexes
 #
@@ -45,6 +46,10 @@ class Message < ApplicationRecord
     return unless district_id.present?
 
     Site.find_by(code: district_id)
+  end
+
+  def feedback_location
+    Site.find_by(code: feedback_location_code) if feedback_location_code.present?
   end
 
   # Class methods

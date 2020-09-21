@@ -27,20 +27,37 @@
 require 'rails_helper'
 
 RSpec.describe StepValue, type: :model do
-  describe '.after_create, set_message_district_id' do
-    let(:step_value) { build(:step_value) }
+  describe '.after_commit, on_create' do
+    context '#set_message_district_id' do
+      let!(:variable) { create(:variable, marks_as: ['location'])}
+      let!(:variable_value) { create(:variable_value, raw_value: '0102', variable: variable) }
+      let!(:step_value) { create(:step_value, variable_value: variable_value, variable: variable) }
 
-    before {
-      step_value.variable_value.raw_value = '0102'
-      step_value.variable_value.mapping_value = ''
+      it { expect(step_value.message.district_id).to eq('0102') }
+    end
 
-      variable = step_value.variable_value.variable
-      variable.marks_as << "location"
+    context '#set_message_feedback_location_code' do
+      let!(:variable) { create(:variable, marks_as: ['feedback_location'])}
+      let!(:variable_value) { create(:variable_value, raw_value: '0103', variable: variable) }
+      let!(:step_value) { create(:step_value, variable_value: variable_value, variable: variable) }
 
-      step_value.save
-    }
+      it { expect(step_value.message.feedback_location_code).to eq('0103') }
+    end
 
-    it { expect(step_value.message.district_id).to eq('0102') }
+    context '#push_notification' do
+      let!(:variable) { create(:variable, marks_as: ['report'])}
+      let!(:variable_value) { create(:variable_value, raw_value: 'good', variable: variable) }
+      let!(:site_setting) { create(:site_setting, message_frequency: 1) }
+      let!(:message) { create(:message, feedback_location_code: site_setting.site.code) }
+      let!(:step_value) { build(:step_value, message: message, variable_value: variable_value, variable: variable) }
+
+      it "triggers push_notification" do
+        expect(step_value).to receive(:push_notification)
+        step_value.save
+      end
+
+      it { expect { step_value.save }.to change { ActiveJob::Base.queue_adapter.enqueued_jobs.count }.by 1 }
+    end
   end
 
   describe ".most_recent" do

@@ -21,18 +21,27 @@
         %label.switch.m-0
           = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][report]"
           %span.slider.round
-        %span.ml-1= t('dictionaries.feedback')
+        %span.ml-1= t('dictionaries.marked_as.feedback')
       %div.invalid-message
         = dictionary.errors.full_messages_for(:report).to_sentence
 
-    .align-items-center
+    .align-items-center.mb-4
       .d-flex
         %label.switch.m-0
           = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]"
           %span.slider.round
-        %span.ml-1= t('dictionaries.site_location')
+        %span.ml-1= t('dictionaries.marked_as.location')
       %div.invalid-message
         = dictionary.errors.full_messages_for(:location).to_sentence
+
+    .align-items-center
+      .d-flex
+        %label.switch.m-0
+          = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][feedback_location]", checked: @variable.feedback_location?
+          %span.slider.round
+        %span.ml-1= t('dictionaries.marked_as.feedback_location')
+      %div.invalid-message
+        = @variable.errors.full_messages_for(:feedback_location).to_sentence
 
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')

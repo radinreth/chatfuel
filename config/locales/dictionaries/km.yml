@@ -2,8 +2,6 @@ km:
   dictionaries:
     name: ឈ្មោះ
     permission: ការអនុញ្ញាត
-    feedback: សម្គាល់ថាជាមតិប្រតិកម្ម
-    site_location: សម្គាល់ជាទីតាំង
     action: សកម្មភាព
     new_dictionary: ពាក្យគន្លឹះថ្មី
     type_name: វាយបញ្ចូលឈ្មោះ
@@ -18,4 +16,10 @@ km:
     satisfied: ពេញចិត្ត
     created_at: កាលបរិច្ឆេទបង្កើត
     ticket_tracking: តាមដានសំបុត្រ
-    ticket_tracking: សម្គាល់ថាតាមដានសំបុត្រ
+    feedback_location: Feedback location
+    mark_as: សម្គាល់ជា
+    marked_as:
+      location: សម្គាល់ជាទំតាំងការិយាល័យ
+      report: សម្គាល់ជាមតិប្រតិកម្ម
+      feedback_location: សម្គាល់ជា feedback location
+      ticket_tracking: សម្គាល់ជា ticket tracking

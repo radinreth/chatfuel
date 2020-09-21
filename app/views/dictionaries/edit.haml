@@ -7,7 +7,7 @@
       %label.variable_report.btn.btn-success{ class: toggle_class_name("active", @variable.report?) }
         = f.input_field :marks_as, as: :boolean, checked: @variable.report?, name: "variable[marks_as][report]", id: "variable_report", class: "variable-report-enabled"
         %span.report-label
-          = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.feedback')
+          = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.marked_as.feedback')
       %div.invalid-message
         %small= @variable.errors.full_messages_for(:report).to_sentence
 
@@ -43,14 +43,13 @@
               %label{for: role.id}= role.name.humanize
               %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: f.object.role_ids.include?(role.id)}
 
-
         %h6.mt-4.permission-title= t('dictionaries.location')
         .align-items-center
           .d-flex
             %label.switch.m-0
               = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]", checked: @variable.location?
               %span.slider.round
-            %span.ml-1= t('dictionaries.site_location')
+            %span.ml-1= t('dictionaries.marked_as.location')
           %div.invalid-message
             = @variable.errors.full_messages_for(:location).to_sentence
 
@@ -60,9 +59,19 @@
             %label.switch.m-0
               = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][ticket_tracking]", checked: @variable.ticket_tracking?
               %span.slider.round
-            %span.ml-1= t('dictionaries.ticket_tracking')
+            %span.ml-1= t('dictionaries.marked_as.ticket_tracking')
           %div.invalid-message
             = @variable.errors.full_messages_for(:ticket_tracking).to_sentence
+
+        %h6.mt-4.permission-title= t('dictionaries.feedback_location')
+        .align-items-center
+          .d-flex
+            %label.switch.m-0
+              = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][feedback_location]", checked: @variable.feedback_location?
+              %span.slider.round
+            %span.ml-1= t('dictionaries.marked_as.feedback_location')
+          %div.invalid-message
+            = @variable.errors.full_messages_for(:feedback_location).to_sentence
 
         .actions.d-flex.justify-content-end
           = link_to t('shared.cancel'), dictionaries_path, class: 'btn btn-secondary mr-2'

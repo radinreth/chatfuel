@@ -4,12 +4,13 @@ require "rails_helper"
 
 RSpec.describe AlertNotificationJob, type: :job do
   describe "#perform_later" do
-    it "should send push notification" do
-      variable = create(:variable, report_enabled: true)
-      variable_value = create(:variable_value, variable_id: variable.id)
-      setting = create(:site_setting, message_frequency: 1)
-      step_value = create(:step_value, variable_value: variable_value, site: setting.site )
+    let!(:variable) { create(:variable, marks_as: ['report'])}
+    let!(:variable_value) { create(:variable_value, raw_value: 'good', variable: variable) }
+    let!(:site_setting) { create(:site_setting, message_frequency: 1) }
+    let!(:message) { create(:message, feedback_location_code: site_setting.site.code) }
+    let!(:step_value) { build(:step_value, message: message, variable_value: variable_value, variable: variable) }
 
+    it "should send push notification" do
       ActiveJob::Base.queue_adapter = :test
 
       expect {

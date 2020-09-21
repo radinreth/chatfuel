@@ -34,7 +34,8 @@ class StepValue < ApplicationRecord
   validates :variable, uniqueness: { scope: :message }
 
   after_commit :push_notification, if: -> { variable_value.report? }, on: [:create, :update]
-  after_commit :set_message_district_id, if: -> { variable_value.location? }
+  after_commit :set_message_district_id, if: -> { variable_value.location? }, on: [:create, :update]
+  after_commit :set_message_feedback_location_code, if: -> { message.present? && variable_value.feedback_location? }, on: [:create, :update]
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -117,7 +118,7 @@ class StepValue < ApplicationRecord
 
   # Instant methods
   def site_setting
-    message.site.try(:site_setting)
+    message.feedback_location.try(:site_setting)
   end
 
   private
@@ -135,5 +136,9 @@ class StepValue < ApplicationRecord
       return if message.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
+    end
+
+    def set_message_feedback_location_code
+      message.update(feedback_location_code: variable_value.raw_value[0..3])
     end
 end
