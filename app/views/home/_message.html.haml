@@ -1,3 +1,5 @@
+- step_values = message.step_values.order(updated_at: :desc)
+
 %tr
   %td.border-right-0.border-bottom-0
     = link_to "#collapse#{index}", type: "button", data: { toggle: "collapse" }, class: "collapsed btn-collapse btn btn-outline btn-sm mr-3" do
@@ -6,7 +8,7 @@
     = message.session_id
   %td.border-left-0.border-bottom-0
     - result = []
-    - message.step_values.most_recent.each do |step|
+    - step_values.each do |step|
       - result << step.variable_value.mapping_value
     = result.join(", ")
   %td.border-left-0.border-right-0.border-bottom-0
@@ -22,7 +24,7 @@
             %th.border-0= t("dictionary")
             %th.border-0= t("dictionary_value")
             %th.border-0= t("updated_at")
-          - message.step_values.most_recent.each do |step|
+          - step_values.each do |step|
             %tr
               %td.border-0.w-15.break-all
                 = step.variable.name
