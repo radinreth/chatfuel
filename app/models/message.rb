@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
+#  last_interaction_at :datetime         default("2020-08-03 03:01:25.843642")
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -25,6 +25,7 @@ class Message < ApplicationRecord
   # associations
   belongs_to :content, polymorphic: true, dependent: :destroy
   has_many :step_values, dependent: :destroy
+  has_many :trackings, dependent: :destroy
 
   # scopes
   default_scope -> { order(updated_at: :desc) }

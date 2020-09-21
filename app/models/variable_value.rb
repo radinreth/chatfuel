@@ -41,6 +41,14 @@ class VariableValue < ApplicationRecord
     step_values_count.zero?
   end
 
+  def ticket_status
+    return unless variable.is_ticket_tracking?
+
+    ticket = Ticket.find_by(code: raw_value)
+
+    ticket&.progress_status || "incorrect"
+  end
+
   delegate :name, to: :variable, prefix: true
   delegate :feedback_message?, to: :variable, prefix: false
   delegate :is_location?, to: :variable, prefix: false
