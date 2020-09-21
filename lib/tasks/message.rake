@@ -18,10 +18,12 @@ namespace :message do
     tracking_variable = Variable.find_by(is_ticket_tracking: true)
 
     tracking_variable.step_values.each do |step|
-      Tracking.create! do |t|
-        t.status = step.variable_value.ticket_status
-        t.message = step.message
-        t.tracking_datetime = step.created_at
+      ActiveRecord::Base.transaction do
+        Tracking.create! do |t|
+          t.status = step.variable_value.ticket_status
+          t.message = step.message
+          t.tracking_datetime = step.created_at
+        end
       end
 
       rescue => e

@@ -125,6 +125,6 @@ class StepValue < ApplicationRecord
     end
 
     def create_tracking
-      Tracking.create(status: variable_value.ticket_status, tracking_datetime: created_at)
+      Tracking.create(status: variable_value.ticket_status, tracking_datetime: created_at, message: message)
     end
 end
