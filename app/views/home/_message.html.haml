@@ -10,7 +10,8 @@
       - result << step.variable_value.mapping_value
     = result.join(", ")
   %td.border-left-0.border-right-0.border-bottom-0
-    = time_ago_in_words(message.last_interaction_at)
+    %span.timeago{ "data-full-datetime": display_datetime(message.last_interaction_at) }
+      = time_ago_in_words(message.last_interaction_at)
 
 %tr
   %td.p-0.border-top-0{ colspan: 3 }
@@ -29,4 +30,5 @@
                 %span{ data: { toggle: "tooltip" }, title: step.variable_value.hint }
                   = step.variable_value.mapping_value
               %td.border-0
-                = time_ago_in_words(step.variable_value.updated_at)
+                %span.timeago{ "data-full-datetime": display_datetime(step.variable_value.updated_at) }
+                  = time_ago_in_words(step.variable_value.updated_at)
