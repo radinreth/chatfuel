@@ -38,4 +38,8 @@ class Setting < RailsSettings::Base
   def self.max_download_size
     (ENV['MAX_CSV_DOWNLOAD_SIZE'] || 1000).to_i
   end
+
+  def self.query_start_date
+    (ENV['QUERY_START_DATE'] || 7).to_i.days.ago
+  end
 end
