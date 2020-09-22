@@ -25,6 +25,8 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
+  include TrackConcern
+
   has_paper_trail
 
   belongs_to :variable_value, counter_cache: true
@@ -39,7 +41,6 @@ class StepValue < ApplicationRecord
   after_create :push_notification, if: -> { variable_value.feedback_message? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.is_location? }
-  after_create :create_tracking, if: -> { variable.is_ticket_tracking? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -122,9 +123,5 @@ class StepValue < ApplicationRecord
       return if message.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
-    end
-
-    def create_tracking
-      Tracking.create(status: variable_value.ticket_status, tracking_datetime: created_at, message: message)
     end
 end
