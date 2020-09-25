@@ -37,4 +37,14 @@ class ApplicationController < ActionController::Base
     def default_end_date
       Date.current.strftime('%Y/%m/%d')
     end
+
+    def filter_options
+      {
+        province_id: params['province_code'],
+        district_id: params['district_code'],
+        start_date: @start_date,
+        end_date: @end_date,
+        platform: params[:platform]
+      }.with_indifferent_access
+    end
 end
