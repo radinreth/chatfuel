@@ -6,7 +6,7 @@
 #  content_type        :string
 #  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
-#  status              :integer(4)       default("incomplete")
+#  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  content_id          :integer(4)
