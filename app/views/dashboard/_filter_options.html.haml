@@ -4,9 +4,9 @@
       - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code]}
       %li.list-inline-item{class: ('active' if params[:platform].blank?)}
         = link_to t("dashboard.both"), url_for(param), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('ivr')}
+      %li.list-inline-item{class: get_css_active_class('Verboice')}
         = link_to t("dashboard.ivr"), url_for(param.merge(platform: 'Verboice')), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('chatbot')}
+      %li.list-inline-item{class: get_css_active_class('Messenger')}
         = link_to t("dashboard.chatbot"), url_for(param.merge(platform: 'Messenger')), class: 'text-decoration-none'
 
   %div

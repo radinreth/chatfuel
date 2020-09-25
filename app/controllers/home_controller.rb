@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     authorize Message
-    collection = Message.filter(filter_options)
+    collection = Message.filter(Message.all, filter_options)
 
     if current_user.system_admin?
       @variables = Variable.all

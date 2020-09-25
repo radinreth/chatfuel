@@ -4,9 +4,9 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-06-30 04:09:55")
+#  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
-#  status              :integer(4)       default("0")
+#  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  content_id          :integer(4)
@@ -74,9 +74,7 @@ class Message < ApplicationRecord
     scope
   end
 
-  def self.filter(params = {})
-    # byebug
-    scope = all
+  def self.filter(scope, params = {})
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?
