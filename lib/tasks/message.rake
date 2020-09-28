@@ -13,8 +13,8 @@ namespace :message do
     end
   end
 
-  desc "Import trackings from step values"
-  task import_tracking: :environment do
+  desc "Migrate trackings from step values"
+  task migrate_tracking: :environment do
     tracking_variable = Variable.find_by(is_ticket_tracking: true)
 
     tracking_variable.step_values.each do |step|
