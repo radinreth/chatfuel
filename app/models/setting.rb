@@ -38,4 +38,15 @@ class Setting < RailsSettings::Base
   def self.max_download_size
     (ENV['MAX_CSV_DOWNLOAD_SIZE'] || 1000).to_i
   end
+
+  class << self
+    def start_date
+      start_date = Date.parse(ENV['START_DATE'] || owso_launched_date)
+      start_date.strftime('%Y/%m/%d')
+    end
+
+    def owso_launched_date
+      '2020/08/27'
+    end
+  end
 end

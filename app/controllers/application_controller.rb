@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     end
 
     def default_start_date
-      7.days.ago.strftime('%Y/%m/%d')
+      Setting.start_date
     end
 
     def default_end_date

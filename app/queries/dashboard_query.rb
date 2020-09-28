@@ -74,7 +74,7 @@ class DashboardQuery
       accessed = Message.unscope(:order).accessed(@options)
 
       return {} unless accessed
-      data = accessed.group_by_day(:updated_at).count
+      data = accessed.group_by_day(:created_at).count
 
       { name: I18n.t("dashboard.accessed"), data: data, color: '#ffbc00', title: I18n.t("dashboard.accessed_explain"), class_name: "rect__accessed", display_text: I18n.t("dashboard.accessed") } if data.present?
     end
