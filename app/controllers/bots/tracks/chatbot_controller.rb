@@ -1,12 +1,12 @@
 module Bots::Tracks
   class ChatbotController < ::Bots::TracksController
     def create
-      render json: chatfuel_set_attributes.merge(json_response), status: :ok
+      render json: set_attributes.merge(json_response), status: :ok
     end
 
     private
 
-    def chatfuel_set_attributes
+    def set_attributes
       {
         set_attributes: { ticket_status: ticket_status }
       }
