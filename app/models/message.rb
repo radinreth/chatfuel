@@ -4,7 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
-#  last_interaction_at :datetime         default("2020-06-30 04:09:55")
+#  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("0")
 #  created_at          :datetime         not null
@@ -28,7 +28,6 @@ class Message < ApplicationRecord
 
   # scopes
   default_scope -> { order(updated_at: :desc) }
-  scope :period, -> (start_date, end_date) { where("DATE(created_at) BETWEEN ? AND ?", start_date, end_date) }
 
   delegate :type, :session_id, to: :content
 
@@ -56,8 +55,7 @@ class Message < ApplicationRecord
   def self.accessed(options = {})
     variable = Variable.find_by(is_service_accessed: true)
 
-    scope = all
-    scope = filter(scope, options)
+    scope = filter(options)
     scope.where(step_values: variable.step_values) if variable.present?
   end
 
@@ -69,17 +67,12 @@ class Message < ApplicationRecord
     all.map(&:completed!)
   end
 
-  def self.user_count(params = {})
+  def self.filter(params = {})
     scope = all
-    scope = filter(scope, params)
-    scope
-  end
-
-  def self.filter(scope, params={})
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?
-    scope = scope.where(platform_name: params[:platform_name]) if params[:platform_name].present?
+    scope = scope.where(platform_name: params[:platform]) if params[:platform].present?
     scope = scope.where("DATE(created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
   end
