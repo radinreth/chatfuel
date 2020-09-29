@@ -2,10 +2,11 @@
 
 .card.shadow.mb-4
   .card-body
+    = render "dashboard/filter_options"
+
     .d-flex.justify-content-between
       %p
         = t("paginate_info_html", name: t(".messages"), items_count: @pagy.items, collection_count: @collection.count)
-      = render "date_range"
 
     .table-responsive
       %table#dataTable.table{:cellspacing => "0", :width => "100%"}

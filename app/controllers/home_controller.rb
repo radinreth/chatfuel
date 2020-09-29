@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     authorize Message
-    collection = Message.period(@start_date, @end_date)
+    collection = Message.filter(filter_options)
 
     if current_user.system_admin?
       @variables = Variable.all
@@ -24,8 +24,5 @@ class HomeController < ApplicationController
         end
       end
     end
-
-    render :no_message if @messages.count.zero?
-    render :no_role if current_user.role.blank?
   end
 end

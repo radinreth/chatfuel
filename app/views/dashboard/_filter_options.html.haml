@@ -3,18 +3,18 @@
     %ul.list-inline.platform-list
       - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code]}
       %li.list-inline-item{class: ('active' if params[:platform].blank?)}
-        = link_to t("dashboard.both"), dashboard_path(param), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('ivr')}
-        = link_to t("dashboard.ivr"), dashboard_path(param.merge(platform: 'ivr')), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('chatbot')}
-        = link_to t("dashboard.chatbot"), dashboard_path(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
+        = link_to t("dashboard.both"), url_for(param), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('Verboice')}
+        = link_to t("dashboard.ivr"), url_for(param.merge(platform: 'Verboice')), class: 'text-decoration-none'
+      %li.list-inline-item{class: get_css_active_class('Messenger')}
+        = link_to t("dashboard.chatbot"), url_for(param.merge(platform: 'Messenger')), class: 'text-decoration-none'
 
   %div
-    %form.float-right.form.d-flex{ action: dashboard_path }
+    %form.float-right.form.d-flex{ action: url_for }
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]
 
-        = render 'filter_location'
+        = render 'dashboard/filter_location'
 
       .date-filter.d-flex.align-items-center
         .date-filter__label
