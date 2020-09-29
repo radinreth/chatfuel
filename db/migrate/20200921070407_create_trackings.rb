@@ -9,5 +9,8 @@ class CreateTrackings < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+  rescue => e
+    puts e.message
   end
 end
