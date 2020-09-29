@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/dwilkie/pumi.git
-  revision: 2265fb2892662f904f23672a71bbbd311f49802e
-  specs:
-    pumi (0.5.0)
-
-GIT
   remote: https://github.com/instedd/alto_guisso.git
   revision: f9452bb8eb0b8a2788b3f290d5bdb4f545f89427
   branch: master
@@ -24,6 +18,12 @@ GIT
       rack-oauth2
       rails (>= 3.0)
       ruby-openid
+
+GIT
+  remote: https://github.com/radinreth/pumi.git
+  revision: f1b2b33c065b1bd621eb6b68c13e4d109c7a5e85
+  specs:
+    pumi (0.5.0)
 
 GEM
   remote: https://rubygems.org/
