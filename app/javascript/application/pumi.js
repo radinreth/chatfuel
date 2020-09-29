@@ -99,6 +99,8 @@ pumi = {
     $.each(staticPumiOptions, function(i) {
       var pumiOption;
       pumiOption = staticPumiOptions[i];
+      if( filterValue.match(/^00/) ) return;
+      
       if (!pumiOption.value || pumiOption.value.match(RegExp("^" + filterValue))) {
         return select.append($('<option>').text(pumiOption.text).val(pumiOption.value));
       }
