@@ -1,10 +1,16 @@
 module Bots::Tracks
   class ChatbotController < ::Bots::TracksController
     def create
-      render json: json_response, status: :ok
+      render json: set_attributes.merge(json_response), status: :ok
     end
 
     private
+
+    def set_attributes
+      {
+        set_attributes: { ticket_status: ticket_status }
+      }
+    end
 
     def json_response
       template = Template.for(ticket_status, params[:platform_name])
