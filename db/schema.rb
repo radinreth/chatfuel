@@ -216,8 +216,12 @@ ActiveRecord::Schema.define(version: 2020_09_21_070407) do
 
   create_table "trackings", force: :cascade do |t|
     t.integer "status"
+    t.string "ticket_code"
+    t.string "site_code"
     t.datetime "tracking_datetime"
     t.bigint "message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_trackings_on_message_id"
   end
 

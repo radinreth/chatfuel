@@ -3,8 +3,12 @@
 # Table name: trackings
 #
 #  id                :bigint(8)        not null, primary key
+#  site_code         :string
 #  status            :integer(4)
+#  ticket_code       :string
 #  tracking_datetime :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #  message_id        :bigint(8)        not null
 #
 # Indexes
