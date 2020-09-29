@@ -15,7 +15,7 @@ class DashboardQuery
   end
 
   def sessions
-    Message.user_count(@options)
+    Message.filter(@options)
   end
 
   def total_users_visit_each_functions

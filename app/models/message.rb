@@ -55,8 +55,7 @@ class Message < ApplicationRecord
   def self.accessed(options = {})
     variable = Variable.find_by(is_service_accessed: true)
 
-    scope = all
-    scope = filter(scope, options)
+    scope = filter(options)
     scope.where(step_values: variable.step_values) if variable.present?
   end
 
@@ -68,13 +67,8 @@ class Message < ApplicationRecord
     all.map(&:completed!)
   end
 
-  def self.user_count(params = {})
+  def self.filter(params = {})
     scope = all
-    scope = filter(scope, params)
-    scope
-  end
-
-  def self.filter(scope, params = {})
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?
