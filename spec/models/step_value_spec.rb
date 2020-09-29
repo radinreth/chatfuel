@@ -60,4 +60,15 @@ RSpec.describe StepValue, type: :model do
       expect(most_recent.first.variable_value).to eq last_value
     end
   end
+
+  describe ".create_tracking" do
+    let(:variable) { build(:variable, :ticket_tracking) }
+    let(:variable_value) { build(:variable_value, variable: variable) }
+
+    it ".create_tracking" do
+      expect {
+        StepValue.create! variable: variable, variable_value: variable_value, message: build(:message)
+      }.to change { Tracking.count }.by 1
+    end
+  end
 end

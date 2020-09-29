@@ -12,4 +12,22 @@ namespace :message do
       end
     end
   end
+
+  desc "Migrate trackings from step values"
+  task migrate_tracking: :environment do
+    tracking_variable = Variable.find_by(is_ticket_tracking: true)
+
+    tracking_variable.step_values.each do |step|
+      ActiveRecord::Base.transaction do
+        Tracking.create! do |t|
+          t.status = step.variable_value.ticket_status
+          t.message = step.message
+          t.tracking_datetime = step.created_at
+        end
+      end
+
+      rescue => e
+        puts "#{step.id} #{e.message}"
+    end
+  end
 end
