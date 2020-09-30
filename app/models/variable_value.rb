@@ -25,7 +25,7 @@ class VariableValue < ApplicationRecord
 
   # associations
   belongs_to :variable
-  has_many :step_values
+  has_many :step_values, dependent: :destroy
 
   # validations
   validates :raw_value, presence: true
