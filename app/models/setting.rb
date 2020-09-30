@@ -40,6 +40,12 @@ class Setting < RailsSettings::Base
   end
 
   def self.query_start_date
-    (ENV['QUERY_START_DATE'] || 7).to_i.days.ago
+    Date.parse(ENV['QUERY_START_DATE'])
+  rescue
+    Date.parse(owso_launched_date)
+  end
+
+  def self.owso_launched_date
+    "2020/08/28"
   end
 end
