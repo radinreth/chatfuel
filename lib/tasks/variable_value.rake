@@ -7,4 +7,10 @@ namespace :variable_value do
       VariableValue.reset_counters(value.id, :step_values)
     end
   end
+
+  desc "Remove raw value null from variable value"
+  task remove_null_value: :environment do
+    null_values = VariableValue.unscoped.where(raw_value: 'null')
+    null_values.destroy_all
+  end
 end
