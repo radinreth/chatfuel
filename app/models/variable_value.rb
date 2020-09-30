@@ -38,7 +38,7 @@ class VariableValue < ApplicationRecord
   before_create :set_mapping_value
 
   def destroyable?
-    step_values_count.zero?
+    step_values_count.zero? || raw_value == 'null'
   end
 
   def ticket_status
