@@ -30,10 +30,6 @@ class ApplicationController < ActionController::Base
       @end_date = params["end_date"] || default_end_date
     end
 
-    def default_start_date
-      Setting.query_start_date.strftime('%Y/%m/%d')
-    end
-
     def default_end_date
       Date.current.strftime('%Y/%m/%d')
     end

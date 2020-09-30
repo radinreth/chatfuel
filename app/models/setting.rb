@@ -39,13 +39,19 @@ class Setting < RailsSettings::Base
     (ENV['MAX_CSV_DOWNLOAD_SIZE'] || 1000).to_i
   end
 
-  def self.query_start_date
-    Date.parse(ENV['QUERY_START_DATE'])
+  def self.dashboard_start_date
+    Date.parse(ENV['DASHBOARD_START_DATE'])
   rescue
-    Date.parse(owso_launched_date)
+    default_start_date
   end
 
-  def self.owso_launched_date
-    "2020/08/28"
+  def self.homepage_start_date
+    Date.parse(ENV['HOMEPAGE_START_DATE'])
+  rescue
+    default_start_date
+  end
+
+  def self.default_start_date
+    7.days.ago
   end
 end
