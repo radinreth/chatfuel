@@ -29,7 +29,7 @@ class VariableValue < ApplicationRecord
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { where.not(raw_value: 'null').order(:mapping_value) }
+  default_scope -> { order(:mapping_value) }
 
   scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
@@ -38,7 +38,7 @@ class VariableValue < ApplicationRecord
   before_create :set_mapping_value
 
   def destroyable?
-    step_values_count.zero? || raw_value == 'null'
+    step_values_count.zero? || raw_value.null_value?
   end
 
   def ticket_status
