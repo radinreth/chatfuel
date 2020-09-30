@@ -25,20 +25,20 @@ class VariableValue < ApplicationRecord
 
   # associations
   belongs_to :variable
-  has_many :step_values
+  has_many :step_values, dependent: :destroy
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { where.not(raw_value: 'null').order(:mapping_value) }
+  default_scope -> { order(:mapping_value) }
 
   scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
   # Callback
-  before_destroy :ensure_destroyable
+  before_destroy :ensure_destroyable!
   before_create :set_mapping_value
 
   def destroyable?
-    step_values_count.zero?
+    step_values_count.zero? || raw_value.null_value?
   end
 
   def ticket_status
@@ -54,10 +54,10 @@ class VariableValue < ApplicationRecord
   delegate :is_location?, to: :variable, prefix: false
 
   private
-    def ensure_destroyable
+    def ensure_destroyable!
       return if destroyable?
 
-      errors.add(:base, "cannot be deleted!")
+      errors.add(:base, I18n.t("deleted.fail"))
       throw :abort
     end
 
