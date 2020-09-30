@@ -8,7 +8,7 @@ namespace :variable_value do
     end
   end
 
-  desc "Remove raw value null"
+  desc "Remove raw value null from variable value"
   task remove_null_value: :environment do
     null_values = VariableValue.unscoped.where(raw_value: 'null')
     null_values.destroy_all
