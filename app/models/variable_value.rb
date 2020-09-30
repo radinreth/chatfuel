@@ -57,7 +57,7 @@ class VariableValue < ApplicationRecord
     def ensure_destroyable!
       return if destroyable?
 
-      errors.add(:base, "cannot be deleted!")
+      errors.add(:base, I18n.t("deleted.fail"))
       throw :abort
     end
 
