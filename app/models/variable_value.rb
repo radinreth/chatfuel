@@ -34,7 +34,7 @@ class VariableValue < ApplicationRecord
   scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
   # Callback
-  before_destroy :ensure_destroyable
+  before_destroy :ensure_destroyable!
   before_create :set_mapping_value
 
   def destroyable?
@@ -54,7 +54,7 @@ class VariableValue < ApplicationRecord
   delegate :is_location?, to: :variable, prefix: false
 
   private
-    def ensure_destroyable
+    def ensure_destroyable!
       return if destroyable?
 
       errors.add(:base, "cannot be deleted!")
