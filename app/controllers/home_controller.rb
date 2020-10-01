@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :default_start_date
   before_action :set_daterange
 
   def index
@@ -25,4 +26,10 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  private
+
+    def default_start_date
+      Setting.homepage_start_date.strftime('%Y/%m/%d')
+    end
 end
