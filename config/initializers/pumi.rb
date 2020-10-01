@@ -7,7 +7,7 @@ module Pumi
 
     def address_km
       return super if id != "00"
-      "ខេត្តដទៃ"
+      "ខេត្តផ្សេងៗ"
     end
   end
 
@@ -19,7 +19,7 @@ module Pumi
 
     def address_km
       return super if id != "0000"
-      "ស្រុកដទៃ, ខេត្តដទៃ"
+      "ស្រុកផ្សេងៗ, ខេត្តផ្សេងៗ"
     end
   end
 end
