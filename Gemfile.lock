@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/radinreth/pumi.git
-  revision: f1b2b33c065b1bd621eb6b68c13e4d109c7a5e85
+  revision: b9de5f38bdc95df66b13504b9e0d02da66a3e55c
   specs:
     pumi (0.5.0)
 
@@ -585,4 +585,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
