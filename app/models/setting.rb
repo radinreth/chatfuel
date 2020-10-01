@@ -39,7 +39,19 @@ class Setting < RailsSettings::Base
     (ENV['MAX_CSV_DOWNLOAD_SIZE'] || 1000).to_i
   end
 
-  def self.query_start_date
-    (ENV['QUERY_START_DATE'] || 7).to_i.days.ago
+  def self.dashboard_start_date
+    Date.parse(ENV['DASHBOARD_START_DATE'])
+  rescue
+    default_start_date
+  end
+
+  def self.homepage_start_date
+    Date.parse(ENV['HOMEPAGE_START_DATE'])
+  rescue
+    default_start_date
+  end
+
+  def self.default_start_date
+    7.days.ago
   end
 end
