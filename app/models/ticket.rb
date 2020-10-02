@@ -55,6 +55,10 @@ class Ticket < ApplicationRecord
     'completed'
   end
 
+  def completed?
+    progress_status == "completed"
+  end
+
   def message
     Message.joins(step_values: :variable_value).
           order("messages.last_interaction_at DESC").
