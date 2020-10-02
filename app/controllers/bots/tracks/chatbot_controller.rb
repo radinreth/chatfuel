@@ -5,19 +5,26 @@ module Bots::Tracks
     def create
       set_attributes
 
-      # remove if incomplete or incorrect
-      # remove_messages if schedule_request? && !@ticket.complete?
       prepend_title if schedule_request?
+      remove_messages if schedule_request? && !@ticket.completed?
 
       render json: @json_response, status: :ok
     end
 
     private
 
+    # For schedule request,
+    # No need to respond if it's still incomplete or incorrect
+    def remove_messages
+      @json_response.delete(:messages)
+    end
+
     def schedule_request?
       params[:is_schedule_request] == "true"
     end
 
+    # To memoir, which ticket code is being schedule?
+    # by appending the title above the status of ticket
     def prepend_title
       title = t("chatbot_resp_title", code: params[:code], locale: :km)
       @json_response[:messages].prepend(text: title)
