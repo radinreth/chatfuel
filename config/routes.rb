@@ -6,34 +6,46 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
-  root "home#index"
-  get :dashboard, to: "dashboard#show"
-  get :home, to: "home#index"
-
   authenticate :user, ->(user) { user.system_admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
 
-  resources :users
+  scope "(:locale)", locale: /en|km/ do
+    root "home#index"
+    get :dashboard, to: "dashboard#show"
+    get :home, to: "home#index"
 
-  resources :tickets, only: [:index]
-  resources :templates
-  resources :quotas, only: [:index]
-  resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
-    post :set_most_request, on: :collection
-    post :set_user_visit, on: :collection
-    post :set_service_accessed, on: :collection
-  end
-  resources :sites do
-    collection do
-      get :new_import
-      get :download
-      post :import
+    resources :users
+    resources :tickets, only: [:index]
+    resources :templates
+    resources :quotas, only: [:index]
+    resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
+      collection do
+        post :set_most_request
+        post :set_user_visit
+        post :set_service_accessed
+      end
     end
 
-    scope module: :sites do
-      resource :setting, only: [:show, :create, :update]
-      resource :api_key
+    resources :sites do
+      collection do
+        get :new_import
+        get :download
+        post :import
+      end
+
+      scope module: :sites do
+        resource :setting, only: [:show, :create, :update]
+        resource :api_key
+      end
+    end
+
+    resources :settings, only: [:index] do
+      collection do
+        put :telegram_bot
+        put :set_language
+        get :help
+      end
     end
   end
 
@@ -43,7 +55,6 @@ Rails.application.routes.draw do
     namespace :bots do
       # Message
       resources :messages, only: [:create] do
-
         collection do
           post :mark_as_completed
           post "ivr", to: "messages/ivr#create"
@@ -59,14 +70,6 @@ Rails.application.routes.draw do
           post "chatbot", to: "tracks/chatbot#create"
         end
       end
-    end
-  end
-
-  resources :settings, only: [:index] do
-    collection do
-      put :telegram_bot
-      put :set_language
-      get :help
     end
   end
 
