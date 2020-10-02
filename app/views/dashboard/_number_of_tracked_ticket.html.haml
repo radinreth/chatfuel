@@ -2,6 +2,6 @@
   .card.shadow.mb-4
     .card-header.py-3
       .h5.m-0.font-weight-bold.text-primary
-        = t("dashboard.number_of_tracked_ticket")
+        = t("dashboard.number_of_ticket_tracking")
     .card-body
       = column_chart @query.number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
