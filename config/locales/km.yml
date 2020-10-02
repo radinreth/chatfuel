@@ -113,7 +113,7 @@ km:
     title: ផ្ទាំងគ្រប់គ្រង
     total_user_visit: ចំនួនអ្នកចូលទស្សនាសរុបតាមផ្នែកនិមួយៗ
     total_user_feedback: មតិយោបល់សរុបរបស់អ្នកប្រើប្រាស់
-    number_of_tracked_ticket: ចំនួនសំបុត្រ (តាមដានដោយជោគជ័យ)
+    number_of_ticket_tracking: ការតាមដានសំបុត្រ(ចំនួនដង)
     both: ទាំងពីរ
     ivr: ខលចូល
     chatbot: ឆាតបត
