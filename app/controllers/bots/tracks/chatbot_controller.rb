@@ -31,15 +31,15 @@ module Bots::Tracks
     end
 
     def set_attributes
-      {
-        set_attributes: { ticket_status: ticket_status }
+      @json_response[:set_attributes] = {
+        ticket_status: ticket_status
       }
     end
 
     def json_response
       template = Template.for(ticket_status, params[:platform_name])
 
-      @json_response = template ? template.json_response : missing_response
+      @json_response = (template.present? ? template.json_response : missing_response)
     end
 
     def missing_response
