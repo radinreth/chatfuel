@@ -10,7 +10,6 @@ RSpec.describe SettingPolicy do
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:help) }
     it { is_expected.to forbid_action(:telegram_bot) }
-    it { is_expected.to forbid_action(:set_language) }
   end
 
   context "being a site admin" do
@@ -20,7 +19,6 @@ RSpec.describe SettingPolicy do
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:help) }
     it { is_expected.to forbid_action(:telegram_bot) }
-    it { is_expected.to forbid_action(:set_language) }
   end
 
   context "being a system admin" do
@@ -30,6 +28,5 @@ RSpec.describe SettingPolicy do
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:help) }
     it { is_expected.to permit_action(:telegram_bot) }
-    it { is_expected.to permit_action(:set_language) }
   end
 end

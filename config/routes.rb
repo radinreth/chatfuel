@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "sidekiq/web"
 require_relative "whitelist"
 
@@ -43,7 +44,6 @@ Rails.application.routes.draw do
     resources :settings, only: [:index] do
       collection do
         put :telegram_bot
-        put :set_language
         get :help
       end
     end
