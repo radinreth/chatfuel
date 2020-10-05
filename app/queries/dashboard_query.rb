@@ -47,7 +47,15 @@ class DashboardQuery
   end
 
   def most_request_service
-    StepValue.most_request_service(@options)
+    StepValue.most_request_service(request_service)
+  end
+
+  def total_request_service
+    request_service.values.sum
+  end
+
+  def most_req_variable
+    Variable.find_by(is_most_request: true)
   end
 
   def goals
@@ -85,5 +93,9 @@ class DashboardQuery
       data = Ticket.filter(@options).group_by_day(:requested_date).count
 
       { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain"), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted") } if data.present?
+    end
+
+    def request_service
+      StepValue.request_service(@options)
     end
 end

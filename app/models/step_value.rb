@@ -86,19 +86,22 @@ class StepValue < ApplicationRecord
     default.merge(result).transform_keys &:capitalize
   end
 
-  def self.most_request_service(params = {})
+  def self.most_request_service(result)
+    return {} if result.blank?
+
+    variable_value = VariableValue.find(result.keys.first)
+
+    { key: variable_value.mapping_value, value: result.values.first }
+  end
+
+  def self.request_service(params = {})
     scope = all
     scope = filter(scope, params)
 
     scope = scope.where('variable_id': Variable.where(is_most_request: true))
     scope = scope.order('count_all DESC')
-    scope = scope.group('variable_value_id').limit(1)
-    result = scope.count
-
-    return {} if result.nil? || result.empty?
-
-    variable_value = VariableValue.find(result.keys.first)
-    { variable_value.mapping_value => result.values.first }
+    scope = scope.group('variable_value_id')
+    scope.count
   end
 
   def self.filter(scope, params={})

@@ -252,3 +252,6 @@ km:
         status: ស្ថានភាព
       TelegramBot:
         'username': ឈ្មោះបត
+  most_request_service_tooltip_html: >
+    %{most_req}(ការចូលមើលសរុប: %{most_req_name})</br>
+    %{total_req}(ការចូលមើលសរុប: %{total_req_name})
