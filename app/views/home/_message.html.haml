@@ -32,5 +32,5 @@
                 %span{ data: { toggle: "tooltip" }, title: step.variable_value&.hint }
                   = step.variable_value&.mapping_value
               %td.border-0
-                %span.timeago{ "data-full-datetime": display_datetime(step.variable_value.updated_at) }
-                  = time_ago_in_words(step.variable_value.updated_at)
+                %span.timeago{ "data-full-datetime": display_datetime(step.updated_at) }
+                  = time_ago_in_words(step.updated_at)
