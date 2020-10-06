@@ -4,8 +4,12 @@
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_feedback", name: @query.report_enabled&.name)
     .card-body
-      .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+      = link_to "", class: "chart-dl" do
+        %i.fas.fa-camera
+
+      #total_user_feedback.pt-4.pb-2.d-flex.justify-content-around.align-items-center
         - if @query.total_users_feedback.present?
+          
           %ul.list-unstyled
             %li
               %span.oval.oval--green
