@@ -47,15 +47,12 @@ class DashboardQuery
   end
 
   def most_request_service
-    StepValue.most_request_service(request_service)
+    top_accessed = request_service.first
+    marked_as_most_req.transform_key_result(*top_accessed)
   end
 
   def total_request_service
     request_service.values.sum
-  end
-
-  def most_req_variable
-    Variable.find_by(is_most_request: true)
   end
 
   def goals
@@ -68,6 +65,10 @@ class DashboardQuery
 
   def report_enabled
     @report_enabled ||= Variable.find_by(report_enabled: true)
+  end
+
+  def marked_as_most_req
+    Variable.marked_as_most_request
   end
 
   private
@@ -96,6 +97,6 @@ class DashboardQuery
     end
 
     def request_service
-      StepValue.request_service(@options)
+      marked_as_most_req.agg_by_values(@options)
     end
 end

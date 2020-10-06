@@ -23,6 +23,8 @@ class Variable < ApplicationRecord
   has_many :values, class_name: "VariableValue",
                     dependent: :destroy,
                     autosave: true
+  # scopes
+  scope :marked_as_most_request, -> { find_by(is_most_request: true) }
 
   # callbacks
   before_save :ensure_only_one_is_most_request
@@ -58,6 +60,19 @@ class Variable < ApplicationRecord
     scope = all
     scope = scope.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
     scope
+  end
+
+  def transform_key_result(value_id, count)
+    value = values.find(value_id)
+
+    { key: value.mapping_value, value: count }
+  end
+
+  def agg_by_values(options)
+    scope = StepValue.filter(step_values, options)
+    scope = scope.order("count_all DESC")
+    scope = scope.group("variable_value_id")
+    scope.count
   end
 
   private
