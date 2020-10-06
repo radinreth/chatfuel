@@ -5,6 +5,7 @@
 #  id                :bigint(8)        not null, primary key
 #  hint              :string(255)      default("")
 #  mapping_value_en  :string           default("")
+#  mapping_value_km  :string           default("")
 #  raw_value         :string           not null
 #  status            :string           default("acceptable")
 #  step_values_count :integer(4)       default(0)
