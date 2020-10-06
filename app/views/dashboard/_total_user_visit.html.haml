@@ -8,13 +8,13 @@
             %i.fas.fa-cog.cog
     .card-body
       .pt-4.pb-2.d-flex.justify-content-around.align-items-center
-        - if @query.total_users_visit_each_functions.present?
-          %ul.list-unstyled
-            - @query.user_visit.values.distinct_values.each_with_index do |value, index|
-              %li
-                %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
-                %span.oval-label
-                  = value.mapping_value
+        -# - if @query.total_users_visit_each_functions.present?
+        -#   %ul.list-unstyled
+        -#     - @query.user_visit.values.distinct_values.each_with_index do |value, index|
+        -#       %li
+        -#         %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
+        -#         %span.oval-label
+        -#           = value.mapping_value
 
         = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :is_user_visit, modal_id: 'chooseDictionary'
-        = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
+        = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), donut: true, legend: "left", messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }, download: { background: "#ffffff", filename: "Total user visit" }
