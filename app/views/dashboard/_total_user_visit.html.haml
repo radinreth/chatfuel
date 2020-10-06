@@ -14,7 +14,7 @@
               %li
                 %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
                 %span.oval-label
-                  = value.mapping_value
+                  = value.mapping_value_en
 
         = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :is_user_visit, modal_id: 'chooseDictionary'
         = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }

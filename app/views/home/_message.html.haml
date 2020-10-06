@@ -9,7 +9,7 @@
   %td.border-left-0.border-bottom-0
     - result = []
     - step_values.each do |step|
-      - result << step.variable_value.mapping_value
+      - result << step.variable_value.mapping_value_en
     = result.join(", ")
   %td.border-left-0.border-right-0.border-bottom-0
     %span.timeago{ "data-full-datetime": display_datetime(message.last_interaction_at) }
@@ -30,7 +30,7 @@
                 = step.variable.name
               %td.border-0.w-15.break-all
                 %span{ data: { toggle: "tooltip" }, title: step.variable_value&.hint }
-                  = step.variable_value&.mapping_value
+                  = step.variable_value&.mapping_value_en
               %td.border-0
                 %span.timeago{ "data-full-datetime": display_datetime(step.variable_value.updated_at) }
                   = time_ago_in_words(step.variable_value.updated_at)

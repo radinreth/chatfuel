@@ -12,7 +12,7 @@ en:
     location: Location
     unmark_as_feedback: Unmark as Feedback
     raw_value: Raw value
-    mapping_value: Mapping value
+    mapping_value_en: Mapping value
     hint: Hint
     add_pair: Add pair
     satisfied: Satisfied

@@ -3,7 +3,7 @@
 # Table name: answers
 #
 #  id            :bigint(8)        not null, primary key
-#  mapping_value :string           default("")
+#  mapping_value_en :string           default("")
 #  raw_value     :string           default("")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

@@ -4,7 +4,7 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  hint              :string(255)      default("")
-#  mapping_value     :string           default("")
+#  mapping_value_en  :string           default("")
 #  raw_value         :string           not null
 #  status            :string           default("acceptable")
 #  step_values_count :integer(4)       default(0)
@@ -23,7 +23,7 @@
 FactoryBot.define do
   factory :variable_value do
     raw_value { "MyString" }
-    mapping_value { "MyString" }
+    mapping_value_en { "MyString" }
     status { "1" }
     association :variable
   end
