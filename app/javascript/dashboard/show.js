@@ -13,12 +13,14 @@ OWSO.DashboardShow = (() => {
   function onClickChartDl() {
     $(".chart-dl").click(async function(e) {
       e.preventDefault();
-      let canvas = await html2canvas($("#total_user_feedback")[0], { scale: 2 });
 
+      let target = $(e.currentTarget).data("target");
+      let canvas = await html2canvas($(target)[0], { scale: 2 });
       let link = document.getElementById("link");
-      link.setAttribute('download', 'total user visit.png');
+
+      link.setAttribute('download', `${target}.png`);
       link.setAttribute('target', '_blank');
-      link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+      link.setAttribute('href', canvas.toDataURL("image/png"));
       link.click();
     })
   }
