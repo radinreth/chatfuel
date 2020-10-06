@@ -63,8 +63,8 @@ class StepValue < ApplicationRecord
     scope = scope.joins(variable_value: :variable)
     scope = filter(scope, params)
     scope = scope.where(variables: { is_user_visit: true })
-    scope = scope.order(:mapping_value)
-    scope = scope.group(:mapping_value)
+    scope = scope.order(:mapping_value_en)
+    scope = scope.group(:mapping_value_en)
     scope.count
   end
 
@@ -96,7 +96,7 @@ class StepValue < ApplicationRecord
     return {} if result.nil? || result.empty?
 
     variable_value = VariableValue.find(result.keys.first)
-    {variable_value.mapping_value => result.values.first}
+    {variable_value.mapping_value_en => result.values.first}
   end
 
   def self.filter(scope, params={})

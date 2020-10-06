@@ -4,7 +4,7 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  hint              :string(255)      default("")
-#  mapping_value     :string           default("")
+#  mapping_value_en  :string           default("")
 #  raw_value         :string           not null
 #  status            :string           default("acceptable")
 #  step_values_count :integer(4)       default(0)
@@ -29,13 +29,13 @@ class VariableValue < ApplicationRecord
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { order(:mapping_value) }
+  default_scope -> { order(:mapping_value_en) }
 
-  scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
+  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
 
   # Callback
   before_destroy :ensure_destroyable!
-  before_create :set_mapping_value
+  before_create :set_mapping_value_en
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -61,7 +61,7 @@ class VariableValue < ApplicationRecord
       throw :abort
     end
 
-    def set_mapping_value
-      self.mapping_value = self.raw_value if self.mapping_value.blank?
+    def set_mapping_value_en
+      self.mapping_value_en = self.raw_value if self.mapping_value_en.blank?
     end
 end

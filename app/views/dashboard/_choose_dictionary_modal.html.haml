@@ -23,7 +23,7 @@
                   .card-body
                     %ul.value-list
                       - variable.values.distinct_values.each do |value|
-                        %li= value.mapping_value
+                        %li= value.mapping_value_en
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
             = t("shared.cancel")
