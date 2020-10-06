@@ -6,8 +6,9 @@
 
       - if policy(:dashboard).setting?
         .tools
-          = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_visit" do
-            %i.fa.fa-download
+          - if @query.total_users_visit_each_functions.present?
+            = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_visit" do
+              %i.fa.fa-download
 
           = link_to "#", data: { toggle: "modal", target: "#chooseDictionary" } do
             %i.fas.fa-cog.cog

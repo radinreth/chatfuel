@@ -7,8 +7,9 @@
           = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
             %i.fas.fa-cog.cog
 
-      = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_access" do
-        %i.fa.fa-download
+      - if @query.goals.present?
+        = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_access" do
+          %i.fa.fa-download
     .card-body#total_user_access
       .legend.text-center
         - @query.goals.each_with_index do |goal, index|

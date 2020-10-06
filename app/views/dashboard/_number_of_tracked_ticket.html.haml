@@ -4,7 +4,8 @@
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.number_of_ticket_tracking")
 
-      = link_to "#", class: "chart-dl", "data-target": "#total_user_access" do
-        %i.fa.fa-download
-    .card-body
+      - if @query.number_of_tracking_tickets.present?
+        = link_to "#", class: "chart-dl", "data-target": "#total_ticket_tracking" do
+          %i.fa.fa-download
+    .card-body#total_ticket_tracking
       = column_chart @query.number_of_tracking_tickets, library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
