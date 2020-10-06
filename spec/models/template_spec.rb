@@ -4,7 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  content    :string           default("")
-#  status     :string           default("0")
+#  status     :string           default("incomplete")
 #  type       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
