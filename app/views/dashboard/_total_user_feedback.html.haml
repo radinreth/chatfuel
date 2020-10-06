@@ -6,6 +6,7 @@
     .card-body
       = link_to "", class: "chart-dl" do
         %i.fas.fa-camera
+      %a{ id: "link" }
 
       #total_user_feedback.pt-4.pb-2.d-flex.justify-content-around.align-items-center
         - if @query.total_users_feedback.present?
