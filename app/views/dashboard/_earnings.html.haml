@@ -42,7 +42,7 @@
               .h4.mb-0.font-weight-bold.text-gray-800
                 = most_req[:key].presence || t("not_available")
 
-              %span.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_request_service, total_req_name: @query.most_req_variable.name) } }
+              %span.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_request_service, total_req_name: @query.marked_as_most_req.name) } }
                 = "#{most_req[:value]}/#{@query.total_request_service}"
 
           .col-auto
