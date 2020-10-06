@@ -20,6 +20,7 @@
               %tr
                 %th= t('dictionaries.raw_value')
                 %th= t('dictionaries.mapping_value_en')
+                %th= t('dictionaries.mapping_value_km')
                 %th= t('dictionaries.hint')
                 %th.w-25.px-4
                   .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }= t('dictionaries.satisfied')
@@ -30,7 +31,7 @@
                 = render "value_fields", f: builder
 
               %tr
-                %td{ colspan: 4 }
+                %td{ colspan: 6 }
                   - title = "<i class='fa fa-sm fa-plus-circle fa-fw'></i> Add pair"
                   = link_to_add_fields(title, f, :values)
 

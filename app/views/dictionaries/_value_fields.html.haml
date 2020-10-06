@@ -1,6 +1,7 @@
 %tr.value-row
   %td= f.input :raw_value, label: false
   %td= f.input :mapping_value_en, label: false
+  %td= f.input :mapping_value_km, label: false
   %td
     - button_style = f.object.hint.present? ? 'btn-outline-primary' : 'btn-outline-secondary'
     = link_to "#", data: { target: "#hintModal#{f.object.id}", toggle: "modal", title: f.object.hint }, class: "btn btn-circle btn-sm #{button_style} mt-1 text-decoration-none" do
