@@ -7,10 +7,10 @@ OWSO.DashboardShow = (() => {
     onChangeProvince()
     onSubmitChooseDictionary()
     onClickChartkickLegend()
-    onClickChartDl()
+    attachEventClickToChartDownloadButton()
   }
 
-  function onClickChartDl() {
+  function attachEventClickToChartDownloadButton() {
     $(".chart-dl").click(async function(e) {
       e.preventDefault();
 

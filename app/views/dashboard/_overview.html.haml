@@ -6,7 +6,10 @@
         - if policy(:dashboard).setting?
           = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
             %i.fas.fa-cog.cog
-    .card-body
+
+      = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_access" do
+        %i.fa.fa-download
+    .card-body#total_user_access
       .legend.text-center
         - @query.goals.each_with_index do |goal, index|
           = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
