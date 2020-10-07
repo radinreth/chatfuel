@@ -97,6 +97,6 @@ class DashboardQuery
     end
 
     def request_service
-      marked_as_most_req.agg_by_values(@options)
+      marked_as_most_req.agg_by_values_count(@options)
     end
 end
