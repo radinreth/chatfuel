@@ -24,6 +24,14 @@
 require 'rails_helper'
 
 RSpec.describe VariableValue, type: :model do
+  it { is_expected.to have_attribute(:mapping_value_en) }
+  it { is_expected.to have_attribute(:mapping_value_km) }
+  it { is_expected.to have_attribute(:hint) }
+  it { is_expected.to have_attribute(:raw_value) }
+  it { is_expected.to have_attribute(:status) }
+  it { is_expected.to have_attribute(:step_values_count) }
+  it { is_expected.to belong_to(:variable) }
+
   describe 'before_destroy' do
     let(:step_value)      { create(:step_value) }
     let(:variable_value)  { step_value.variable_value }
