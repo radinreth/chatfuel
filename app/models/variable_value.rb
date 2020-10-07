@@ -36,7 +36,7 @@ class VariableValue < ApplicationRecord
 
   # Callback
   before_destroy :ensure_destroyable!
-  before_create :set_mapping_value_en
+  before_create :set_mapping_value_locale_based
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -66,7 +66,8 @@ class VariableValue < ApplicationRecord
       throw :abort
     end
 
-    def set_mapping_value_en
+    def set_mapping_value_locale_based
       self.mapping_value_en = self.raw_value if self.mapping_value_en.blank?
+      self.mapping_value_km = self.raw_value if self.mapping_value_km.blank?
     end
 end
