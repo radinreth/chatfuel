@@ -14,8 +14,4 @@ class SettingPolicy < Struct.new(:user, :dashboard)
   def telegram_bot?
     index?
   end
-
-  def set_language?
-    index?
-  end
 end
