@@ -20,7 +20,7 @@ module CsvConcern
       value = ""
       step_values.each do |step_value|
         if field.name == step_value.variable.name
-          value = step_value.variable_value.mapping_value_en
+          value = step_value.variable_value.mapping_value
           break
         end
       end

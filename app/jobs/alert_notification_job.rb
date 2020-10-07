@@ -8,7 +8,7 @@ class AlertNotificationJob < ApplicationJob
 
     return if step_value.nil? || step_value.site_setting.nil?
 
-    message = step_value.site_setting.notification_message(step_value.variable_value.mapping_value_en)
+    message = step_value.site_setting.notification_message(step_value.variable_value.mapping_value)
     service = AlertNotificationService.new(step_value.site_setting.id, message)
     service.notify_immediately
   end

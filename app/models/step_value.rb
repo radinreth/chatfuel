@@ -96,7 +96,7 @@ class StepValue < ApplicationRecord
     return {} if result.nil? || result.empty?
 
     variable_value = VariableValue.find(result.keys.first)
-    {variable_value.mapping_value_en => result.values.first}
+    { variable_value.mapping_value => result.values.first }
   end
 
   def self.filter(scope, params={})
