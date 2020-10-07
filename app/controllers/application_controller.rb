@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
       Date.current.strftime('%Y/%m/%d')
     end
 
+    def default_url_options
+      { locale: I18n.locale }
+    end
+
     def filter_options
       {
         province_id: params['province_code'],

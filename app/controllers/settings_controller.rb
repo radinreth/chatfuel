@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 class SettingsController < ApplicationController
-  before_action :authorize_setting, except: :set_language
+  before_action :authorize_setting
 
   def index
     @telegram_bot = TelegramBot.first || TelegramBot.new
-  end
-
-  def set_language
-    Setting.default_locale = params[:locale]
-
-    head :ok
   end
 
   def telegram_bot
