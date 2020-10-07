@@ -68,7 +68,7 @@ class Variable < ApplicationRecord
     { key: value.mapping_value, value: count }
   end
 
-  def agg_by_values(options)
+  def agg_by_values_count(options)
     scope = StepValue.filter(step_values, options)
     scope = scope.order("count_all DESC")
     scope = scope.group("variable_value_id")
