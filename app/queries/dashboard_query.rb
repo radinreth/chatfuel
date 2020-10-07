@@ -46,13 +46,34 @@ class DashboardQuery
     StepValue.total_users_feedback(@options)
   end
 
-  def most_request_service
-    top_accessed = request_service.first
-    marked_as_most_req.transform_key_result(*top_accessed)
+  def most_requested_service
+    most_request_variable = Variable.most_request
+    top_accessed = most_request_variable.agg_values_count(@options).first
+    most_request_variable.transform_key_result(*top_accessed)
   end
 
-  def total_request_service
-    request_service.values.sum
+  # spec
+
+  # let(:most_request_variable) { make(:variable, is_request_service: true) }
+  # let(:options) { {} }
+  # let(:result_agg_values_count) { {} }
+  # let(:variable_a) { create(:variable, name: 'a') }
+
+  # before(:each) do
+  #   allow(Variable).to receive(:most_request).return(most_request_variable)
+  #   allow(most_request_variable).to receive(:agg_values_count).with(options).return(result_agg_value_count)
+  #   allow(variable_a).to receive(:agg_values_count).with(options).return(result_agg_value_count)
+  # end
+
+  # it '' do
+  #   expect(most_request_variable).should_receive(:transform_key_result).with(result_agg_value_count)
+
+  #   dashboard_query.most_requested_service variable_a
+  # end
+
+
+  def total_requested_service
+    Variable.most_request.agg_values_count(@options).values.sum
   end
 
   def goals
@@ -65,10 +86,6 @@ class DashboardQuery
 
   def report_enabled
     @report_enabled ||= Variable.find_by(report_enabled: true)
-  end
-
-  def marked_as_most_req
-    Variable.marked_as_most_request
   end
 
   private
@@ -94,9 +111,5 @@ class DashboardQuery
       data = Ticket.filter(@options).group_by_day(:requested_date).count
 
       { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain"), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted") } if data.present?
-    end
-
-    def request_service
-      marked_as_most_req.agg_by_values_count(@options)
     end
 end
