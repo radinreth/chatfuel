@@ -19,7 +19,7 @@ namespace :variable_value do
     ActiveRecord::Base.transaction do
       VariableValue.find_each do |variable_value|
         if variable_value.mapping_value_km.blank?
-          variable_value.update!(mapping_value_km: variable_value.raw_value)
+          variable_value.update!(mapping_value_km: variable_value.mapping_value_en)
         end
       end
     end
