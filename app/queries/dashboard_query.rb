@@ -23,7 +23,7 @@ class DashboardQuery
 
     return {} if result.blank?
 
-    default_chartjs_color_mapping.merge(result)
+    default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
   end
 
   # prevent inconsistent chartjs color

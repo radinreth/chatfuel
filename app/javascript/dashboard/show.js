@@ -7,6 +7,22 @@ OWSO.DashboardShow = (() => {
     onChangeProvince()
     onSubmitChooseDictionary()
     onClickChartkickLegend()
+    attachEventClickToChartDownloadButton()
+  }
+
+  function attachEventClickToChartDownloadButton() {
+    $(".chart-dl").click(async function(e) {
+      e.preventDefault();
+
+      let target = $(e.currentTarget).data("target");
+      let canvas = await html2canvas($(target)[0], { scale: 2 });
+      let link = document.getElementById("link");
+
+      link.setAttribute('download', `${target}.png`);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('href', canvas.toDataURL("image/png"));
+      link.click();
+    })
   }
 
   function onClickChartkickLegend() {
