@@ -32,6 +32,7 @@ km:
   dictionary: ពាក្យគន្លឹះ
   dictionary_value: តម្លៃ
   updated_at: កាលបរិច្ឆេទធ្វើបច្ចុប្បន្នភាព
+  chatbot_resp_title: លេខកូដសំបុត្រ %{code}
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម

@@ -31,6 +31,7 @@ en:
   dictionary: Dictionary
   dictionary_value: Value
   updated_at: Updated at
+  chatbot_resp_title: Ticket number is %{code}
   sidebar:
     dashboard: Dashboard
     home: Home
