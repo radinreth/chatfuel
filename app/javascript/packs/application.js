@@ -4,13 +4,13 @@ require("@rails/activestorage").start()
 require("channels")
 
 window.$ = require("jquery")
+window.html2canvas = require("html2canvas/dist/html2canvas")
 require("bootstrap")
 require("moment")
 require("chartkick")
 require("chart.js")
 require("daterangepicker")
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
-
 require("toastr")
 // Tagify = require("@yaireo/tagify")
 

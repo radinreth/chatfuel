@@ -3,9 +3,13 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_feedback", name: @query.report_enabled&.name)
+      - if @query.total_users_feedback.present?
+        = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
+          %i.fa.fa-download
     .card-body
-      .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+      #total_user_feedback.pt-4.pb-2.d-flex.justify-content-around.align-items-center
         - if @query.total_users_feedback.present?
+          
           %ul.list-unstyled
             %li
               %span.oval.oval--green

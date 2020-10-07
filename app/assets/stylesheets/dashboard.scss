@@ -18,7 +18,7 @@
 
   .cog {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 10px;
     font-size: 23px;
     color: #333;
@@ -145,5 +145,9 @@
 
   .line-through {
     text-decoration: line-through;
+  }
+
+  .chart-dl > i {
+    color: #333;
   }
 }
