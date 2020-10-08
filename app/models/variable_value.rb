@@ -63,6 +63,8 @@ class VariableValue < ApplicationRecord
 
   def mapping_value
     send("mapping_value_#{I18n.locale}".to_sym)
+  rescue
+    send(:mapping_value)
   end
 
   def plain_values
