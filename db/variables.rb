@@ -7,15 +7,15 @@ variables = [
     values: [
       {
         raw_value: "owso_info",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "tracking",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "feedback-intro",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -28,27 +28,27 @@ variables = [
     values: [
       {
         raw_value: "certify_docs",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "main_dbs",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "main_construction",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "main_land_title",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "main_public_transport",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "main_land_refill",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -61,11 +61,11 @@ variables = [
     values: [
       {
         raw_value: "certify_doc_1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "certify_doc_2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -78,11 +78,11 @@ variables = [
     values: [
       {
         raw_value: "dbs_btn1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -95,15 +95,15 @@ variables = [
     values: [
       {
         raw_value: "dbs_btn1_1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn1_2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn1_3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -116,19 +116,19 @@ variables = [
     values: [
       {
         raw_value: "dbs_btn2_1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn2_2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn2_3",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn2_4",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -141,11 +141,11 @@ variables = [
     values: [
       {
         raw_value: "dbs_btn2_2_1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "dbs_btn2_2_2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -158,15 +158,15 @@ variables = [
     values: [
       {
         raw_value: "construction_1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -178,15 +178,15 @@ variables = [
     values: [
       {
         raw_value: "construction_1.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_1.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_1.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -198,15 +198,15 @@ variables = [
     values: [
       {
         raw_value: "construction_2.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_2.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_2.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -218,15 +218,15 @@ variables = [
     values: [
       {
         raw_value: "construction_3.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_3.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "construction_3.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -239,15 +239,15 @@ variables = [
     values: [
       {
         raw_value: "land title 1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -259,15 +259,15 @@ variables = [
     values: [
       {
         raw_value: "land title 1.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 1.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 1.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -279,15 +279,15 @@ variables = [
     values: [
       {
         raw_value: "land title 2.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 2.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 2.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -299,15 +299,15 @@ variables = [
     values: [
       {
         raw_value: "land title 3.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 3.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land title 3.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -320,11 +320,11 @@ variables = [
     values: [
       {
         raw_value: "land_refill 1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land_refill 2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -336,11 +336,11 @@ variables = [
     values: [
       {
         raw_value: "land_refill 1.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land_refill 1.2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -352,15 +352,15 @@ variables = [
     values: [
       {
         raw_value: "land_refill 2.1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land_refill 2.2",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "land_refill 2.3",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -379,11 +379,11 @@ variables = [
     values: [
       {
         raw_value: "krong battambong",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "district",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -395,15 +395,15 @@ variables = [
     values: [
       {
         raw_value: "high price",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "complicated",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "take long time",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -415,15 +415,15 @@ variables = [
     values: [
       {
         raw_value: "working time",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "speech",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "provide info",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -435,15 +435,15 @@ variables = [
     values: [
       {
         raw_value: "working time",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "speech",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "provide info",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },
@@ -455,11 +455,11 @@ variables = [
     values: [
       {
         raw_value: "transport 1",
-        mapping_value: ""
+        mapping_value_en: ""
       },
       {
         raw_value: "transport 2",
-        mapping_value: ""
+        mapping_value_en: ""
       }
     ]
   },

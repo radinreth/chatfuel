@@ -31,7 +31,8 @@ class DashboardQuery
     return {} unless user_visit.present?
 
     default = {}
-    user_visit.values.each { |val| default[val.mapping_value] = 0 }
+    key = "mapping_value_#{ I18n.locale }".to_sym
+    user_visit.values.each { |val| default[val.send(key)] = 0 }
     default
   end
 

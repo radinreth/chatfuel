@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_070407) do
+ActiveRecord::Schema.define(version: 2020_10_06_101217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -265,13 +265,14 @@ ActiveRecord::Schema.define(version: 2020_09_21_070407) do
 
   create_table "variable_values", force: :cascade do |t|
     t.string "raw_value", null: false
-    t.string "mapping_value", default: ""
+    t.string "mapping_value_en", default: ""
     t.string "status", default: "1"
     t.bigint "variable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "step_values_count", default: 0
     t.string "hint", limit: 255, default: ""
+    t.string "mapping_value_km", default: ""
     t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 
