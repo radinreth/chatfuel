@@ -19,8 +19,8 @@
             %th.nowrap-space
               = t(".last_interaction_date")
         %tbody
-          - @messages.each_with_index do |message, index|
-            = render partial: "message", object: message, locals: { index: index }
+          - @sessions.each_with_index do |session, index|
+            = render partial: "session", object: session, locals: { index: index }
 
     - if @pagy.pages > 1
       != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
