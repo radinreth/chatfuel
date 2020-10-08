@@ -48,29 +48,9 @@ class DashboardQuery
 
   def most_requested_service
     most_request_variable = Variable.most_request
-    top_accessed = most_request_variable.agg_values_count(@options).first
-    most_request_variable.transform_key_result(*top_accessed)
+    top_hit = most_request_variable.agg_values_count(@options).first
+    most_request_variable.transform_key_result(*top_hit)
   end
-
-  # spec
-
-  # let(:most_request_variable) { make(:variable, is_request_service: true) }
-  # let(:options) { {} }
-  # let(:result_agg_values_count) { {} }
-  # let(:variable_a) { create(:variable, name: 'a') }
-
-  # before(:each) do
-  #   allow(Variable).to receive(:most_request).return(most_request_variable)
-  #   allow(most_request_variable).to receive(:agg_values_count).with(options).return(result_agg_value_count)
-  #   allow(variable_a).to receive(:agg_values_count).with(options).return(result_agg_value_count)
-  # end
-
-  # it '' do
-  #   expect(most_request_variable).should_receive(:transform_key_result).with(result_agg_value_count)
-
-  #   dashboard_query.most_requested_service variable_a
-  # end
-
 
   def total_requested_service
     Variable.most_request.agg_values_count(@options).values.sum
