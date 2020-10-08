@@ -11,15 +11,6 @@ class CreateSessions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    Message.find_each do |message|
-      Session.create do |session|
-        session.session_id = message.session_id
-        session.platform_name = message.platform_name
-        session.status = message.status
-        session.district_id = message.district_id
-        session.province_id = message.province_id
-        session.last_interaction_at = message.last_interaction_at
-      end
-    end
+    Rack::Task["message:migrate_to_session"].invoke
   end
 end
