@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe DashboardQuery.new do
-  let(:variable) { build(:variable) }
+  context "with most request" do
+    let(:variable) { build(:variable) }
 
-  it "#most_requested_service" do
-    expect(Variable).to receive(:most_request).and_return(variable)
-    expect(variable).to receive(:agg_values_count).and_return({ 2 => 2, 1 => 1 })
-    expect(variable).to receive(:transform_key_result).and_return({ key: "value_name", value: 2 })
+    before do
+      allow(Variable).to receive(:most_request).and_return(variable)
+      allow(variable).to receive(:agg_values_count).and_return({ 2 => 2, 1 => 1 })
+    end
 
-    subject.most_requested_service
+    it "#most_requested_service" do
+      expect(variable).to receive(:transform_key_result).and_return({ key: "value_name", value: 2 })
+
+      subject.most_requested_service
+    end
   end
 end
