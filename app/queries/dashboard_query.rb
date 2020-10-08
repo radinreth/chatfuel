@@ -46,8 +46,14 @@ class DashboardQuery
     StepValue.total_users_feedback(@options)
   end
 
-  def most_request_service
-    StepValue.most_request_service(@options)
+  def most_requested_service
+    most_request_variable = Variable.most_request
+    top_hit = most_request_variable.agg_values_count(@options).first
+    most_request_variable.transform_key_result(*top_hit)
+  end
+
+  def total_requested_service
+    Variable.most_request.agg_values_count(@options).values.sum
   end
 
   def goals
