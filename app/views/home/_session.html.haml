@@ -1,4 +1,4 @@
-- step_values = message.step_values.order(updated_at: :desc)
+- step_values = session.step_values.order(updated_at: :desc)
 
 %tr
   %td.border-right-0.border-bottom-0
@@ -16,8 +16,8 @@
       - result << render_from_string(step.variable_value.mapping_value)
     = result.compact.join(", ").html_safe
   %td.border-left-0.border-right-0.border-bottom-0
-    %span.timeago{ "data-full-datetime": display_datetime(message.last_interaction_at) }
-      = time_ago_in_words(message.last_interaction_at)
+    %span.timeago{ "data-full-datetime": display_datetime(session.last_interaction_at) }
+      = time_ago_in_words(session.last_interaction_at)
 
 %tr
   %td.p-0.border-top-0{ colspan: 3 }
