@@ -64,6 +64,8 @@ namespace :message do
           session.district_id = message.district_id
           session.province_id = message.province_id
           session.last_interaction_at = message.last_interaction_at
+          session.created_at = message.created_at
+          session.updated_at = message.updated_at
         end
       end
     end

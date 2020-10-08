@@ -51,19 +51,12 @@ class Session < ApplicationRecord
   def self.accessed(options = {})
     variable = Variable.find_by(is_service_accessed: true)
 
-    scope = all
-    scope = filter(scope, options)
+    scope = filter(options)
     scope.where(step_values: variable.step_values) if variable.present?
   end
 
   def reachable_period?
     last_interaction_at > ENV["FB_REACHABLE_IN_DAY"].to_i.days.ago
-  end
-
-  def self.user_count(params = {})
-    scope = all
-    scope = filter(scope, params)
-    scope
   end
 
   def self.filter(params = {})
