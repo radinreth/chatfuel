@@ -83,22 +83,7 @@ class StepValue < ApplicationRecord
       [statuses.key(k), v]
     end.to_h
 
-    default.merge(result).transform_keys &:capitalize
-  end
-
-  def self.most_request_service(params = {})
-    scope = all
-    scope = filter(scope, params)
-
-    scope = scope.where('variable_id': Variable.where(is_most_request: true))
-    scope = scope.order('count_all DESC')
-    scope = scope.group('variable_value_id').limit(1)
-    result = scope.count
-
-    return {} if result.nil? || result.empty?
-
-    variable_value = VariableValue.find(result.keys.first)
-    { variable_value.mapping_value => result.values.first }
+    default.merge(result).transform_keys(&:capitalize)
   end
 
   def self.filter(scope, params={})

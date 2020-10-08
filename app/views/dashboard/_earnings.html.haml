@@ -37,9 +37,13 @@
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")
 
-            .h4.mb-0.font-weight-bold.text-gray-800
-              - most_req = @query.most_request_service.keys.first
-              = most_req.presence || t("not_available")
+            - most_req = @query.most_requested_service
+            - if most_req.present?
+              .h4.mb-0.font-weight-bold.text-gray-800
+                = most_req[:key].presence || t("not_available")
+
+              %span.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
+                = "#{most_req[:value]}/#{@query.total_requested_service}"
 
           .col-auto
             %i.fas.fa-file-alt.fa-2x.text-gray-300

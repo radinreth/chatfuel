@@ -231,3 +231,6 @@ en:
       subtitle: For more information, please click link below 👇
       button_title: See on Map!
   presence: can't be blank
+  most_request_service_tooltip_html: >
+    %{most_req}(Total Visit: %{most_req_name})</br>
+    %{total_req}(Total Visit: %{total_req_name})
