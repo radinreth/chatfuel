@@ -6,7 +6,7 @@
 #  last_interaction_at :datetime
 #  platform_name       :string           default("")
 #  session_type        :string           default("")
-#  status              :integer(4)       default("0")
+#  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  district_id         :string

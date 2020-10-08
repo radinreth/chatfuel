@@ -129,7 +129,7 @@ class StepValue < ApplicationRecord
     def set_message_district_id
       return if session.nil?
 
-      message.update(district_id: variable_value.raw_value[0..3])
+      session.update(district_id: variable_value.raw_value[0..3])
     end
 
     def set_message_gender

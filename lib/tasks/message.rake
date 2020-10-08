@@ -47,11 +47,24 @@ namespace :message do
           message.save
         end
       end
+    end
+  end
+  
+  desc "Migrate message to session"
+  task migrate_to_session: :environment do
+    return unless defined? Message
 
-      StepValue.where(session_id: nil).find_each do |step_value|
-        step_value.session_id = step_value.message_id
-        # step_value.message_id = nil
-        step_value.save
+    ActiveRecord::Base.transaction do
+      Message.find_each do |message|
+        Session.create! do |session|
+          session.id = message.id
+          session.session_id = message.session_id
+          session.platform_name = message.platform_name
+          session.status = message.status
+          session.district_id = message.district_id
+          session.province_id = message.province_id
+          session.last_interaction_at = message.last_interaction_at
+        end
       end
     end
 

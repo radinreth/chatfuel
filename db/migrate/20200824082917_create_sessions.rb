@@ -12,6 +12,6 @@ class CreateSessions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    Rack::Task["message:migrate_to_session"].invoke
+    Rake::Task["message:migrate_to_session"].invoke
   end
 end
