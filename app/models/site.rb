@@ -9,10 +9,10 @@
 #  lng          :float
 #  name_en      :string           not null
 #  name_km      :string
-#  status       :integer(4)       default("0")
+#  status       :integer(4)       default("disable")
 #  sync_status  :integer(4)
 #  token        :string           default("")
-#  tracks_count :integer(4)       default("0")
+#  tracks_count :integer(4)       default(0)
 #  whitelist    :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

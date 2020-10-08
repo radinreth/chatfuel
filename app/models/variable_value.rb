@@ -4,10 +4,11 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  hint              :string(255)      default("")
-#  mapping_value     :string           default("")
+#  mapping_value_en  :string           default("")
+#  mapping_value_km  :string           default("")
 #  raw_value         :string           not null
-#  status            :string           default("1")
-#  step_values_count :integer(4)       default("0")
+#  status            :string           default("acceptable")
+#  step_values_count :integer(4)       default(0)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  variable_id       :bigint(8)        not null
@@ -29,13 +30,13 @@ class VariableValue < ApplicationRecord
 
   # validations
   validates :raw_value, presence: true
-  default_scope -> { order(:mapping_value) }
+  default_scope -> { order(:mapping_value_en) }
 
-  scope :distinct_values, -> (field = 'mapping_value') { select("DISTINCT ON (#{field}) #{field}, raw_value") }
+  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, raw_value, mapping_value_km") }
 
   # Callback
   before_destroy :ensure_destroyable!
-  before_create :set_mapping_value
+  before_create :set_mapping_value_locale_based
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -53,6 +54,10 @@ class VariableValue < ApplicationRecord
   delegate :feedback_message?, to: :variable, prefix: false
   delegate :is_location?, to: :variable, prefix: false
 
+  def mapping_value
+    send("mapping_value_#{I18n.locale}".to_sym)
+  end
+
   private
     def ensure_destroyable!
       return if destroyable?
@@ -61,7 +66,8 @@ class VariableValue < ApplicationRecord
       throw :abort
     end
 
-    def set_mapping_value
-      self.mapping_value = self.raw_value if self.mapping_value.blank?
+    def set_mapping_value_locale_based
+      self.mapping_value_en = self.raw_value if self.mapping_value_en.blank?
+      self.mapping_value_km = self.raw_value if self.mapping_value_km.blank?
     end
 end
