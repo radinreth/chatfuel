@@ -47,6 +47,12 @@ namespace :message do
           message.save
         end
       end
+
+      StepValue.where(session_id: nil).find_each do |step_value|
+        step_value.session_id = step_value.message_id
+        # step_value.message_id = nil
+        step_value.save
+      end
     end
 
   ensure
