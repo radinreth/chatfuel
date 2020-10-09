@@ -14,17 +14,17 @@
             %li
               %span.oval.oval--green
               %span.oval-emoji 😍
-              %span.oval-label-km
+              %span.oval-label-km.word-wrap-normal
                 = t("dashboard.like")
             %li
               %span.oval.oval--orange
               %span.oval-emoji 😊
-              %span.oval-label-km
+              %span.oval-label-km.word-wrap-normal
                 = t("dashboard.acceptable")
             %li
               %span.oval.oval--yellow
               %span.oval-emoji 😞
-              %span.oval-label-km
+              %span.oval-label-km.word-wrap-normal
                 = t("dashboard.dislike")
 
         = pie_chart @query.total_users_feedback, colors: %w(#1cc88a #ffbc00 #f63e3e), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
