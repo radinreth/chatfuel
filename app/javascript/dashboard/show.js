@@ -15,10 +15,11 @@ OWSO.DashboardShow = (() => {
       e.preventDefault();
 
       let target = $(e.currentTarget).data("target");
+      let fileName = target != undefined ? target.replace(/\#/, "") : "my-chart";
       let canvas = await html2canvas($(target)[0], { scale: 2 });
       let link = document.getElementById("link");
 
-      link.setAttribute('download', `${target}.png`);
+      link.setAttribute('download', `${ fileName }.png`);
       link.setAttribute('target', '_blank');
       link.setAttribute('href', canvas.toDataURL("image/png"));
       link.click();
