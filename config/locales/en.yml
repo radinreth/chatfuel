@@ -32,6 +32,9 @@ en:
   dictionary_value: Value
   updated_at: Updated at
   chatbot_resp_title: Ticket number is %{code}
+  incorrect: Incorrect
+  incomplete: Incomplete
+  completed: Completed
   sidebar:
     dashboard: Dashboard
     home: Home

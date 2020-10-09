@@ -39,7 +39,7 @@ class DashboardQuery
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 
-    result.transform_keys(&:capitalize)
+    result.transform_keys { |k| I18n.t(k.downcase.to_sym) }
   end
 
   def total_users_feedback
