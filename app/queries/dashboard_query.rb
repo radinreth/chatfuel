@@ -49,7 +49,7 @@ class DashboardQuery
   def most_requested_service
     most_request_variable = Variable.most_request
     top_hit = most_request_variable.agg_values_count(@options).first
-    most_request_variable.transform_key_result(*top_hit)
+    most_request_variable.transform_key_result(*top_hit) if top_hit.present?
   end
 
   def total_requested_service
