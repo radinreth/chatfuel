@@ -1,7 +1,7 @@
 .d-sm-flex.align-items-center.justify-content-between.mb-4
   %h1.h3.mb-0.text-gray-800
     = title
-  = link_to home_path(format: :csv), class: "btn btn-primary pull-right" do
+  = link_to home_path(request.parameters.merge(format: :csv)), class: "btn btn-primary pull-right" do
     %i.fas.fa-download
     = t("download_csv")
     

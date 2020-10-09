@@ -35,14 +35,7 @@ class ApplicationController < ActionController::Base
     end
 
     def default_url_options
-      {
-        locale: I18n.locale,
-        start_date: params[:start_date],
-        end_date: params[:end_date],
-        platform: params[:platform],
-        province_code: params[:province_code],
-        district_code: params[:district_code]
-      }
+      { locale: I18n.locale }
     end
 
     def filter_options
