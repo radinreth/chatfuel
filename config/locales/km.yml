@@ -33,6 +33,9 @@ km:
   dictionary_value: តម្លៃ
   updated_at: កាលបរិច្ឆេទធ្វើបច្ចុប្បន្នភាព
   chatbot_resp_title: លេខកូដសំបុត្រ %{code}
+  incorrect: មិនត្រឹមត្រូវ
+  incomplete: មិនទាន់រួចរាល់
+  completed: រួចរាល់
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
