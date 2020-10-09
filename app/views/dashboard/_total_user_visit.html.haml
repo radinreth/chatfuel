@@ -19,7 +19,7 @@
             - @query.user_visit.values.distinct_values.each_with_index do |value, index|
               %li
                 %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
-                %span.oval-label
+                %span.oval-label{ style: "word-wrap: normal;" }
                   = value.mapping_value
 
         = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :is_user_visit, modal_id: 'chooseDictionary'
