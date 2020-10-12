@@ -3,13 +3,16 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.overview")
+      
+      %div
+        - if @query.goals.present?
+          = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_access" do
+            %i.fa.fa-download
+
         - if policy(:dashboard).setting?
-          = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
+          = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseAccessed" } do
             %i.fas.fa-cog.cog
 
-      - if @query.goals.present?
-        = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_access" do
-          %i.fa.fa-download
     .card-body#total_user_access
       .legend.text-center
         - @query.goals.each_with_index do |goal, index|
