@@ -7,9 +7,9 @@
         = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
           %i.fa.fa-download
     .card-body
-      #total_user_feedback.pt-4.pb-2.d-flex.justify-content-around.align-items-center
-        - if @query.total_users_feedback.present?
-          
+      #total_user_feedback.pt-4.d-flex.justify-content-around.align-items-center
+        - data = @query.total_users_feedback
+        - if data.values.sum > 0
           %ul.list-unstyled
             %li
               %span.oval.oval--green
@@ -26,5 +26,7 @@
               %span.oval-emoji 😞
               %span.oval-label-km.word-wrap-normal
                 = t("dashboard.dislike")
+        - else
+          - data = {}
 
-        = pie_chart @query.total_users_feedback, colors: %w(#1cc88a #ffbc00 #f63e3e), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
+        = pie_chart data, colors: %w(#1cc88a #ffbc00 #f63e3e), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
