@@ -16,10 +16,13 @@
     }
   }
 
-  .cog {
+  .cog.float {
     position: absolute;
     top: 15px;
     right: 10px;
+  }
+
+  .cog {
     font-size: 23px;
     color: #333;
   }
@@ -147,8 +150,15 @@
     text-decoration: line-through;
   }
 
-  .chart-dl > i {
-    color: #333;
+  .chart-dl {
+
+    i {
+      color: #333;
+    }
+
+    .fa-download {
+      vertical-align: text-top;
+    }
   }
   
   div.tooltip-inner {
