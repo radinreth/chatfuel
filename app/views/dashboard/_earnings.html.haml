@@ -6,7 +6,7 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
               = t("dashboard.total_users")
-            .h4.mb-0.font-weight-bold.text-gray-800
+            .h4.mb-0.font-weight-bold.text-gray-800.mt-2
               = @query.user_count
           .col-auto
             %i.fas.fa-users.fa-2x.text-gray-300
@@ -18,7 +18,7 @@
           .col.mr-2
             .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
               = t("dashboard.total_uniq_users")
-            .h4.mb-0.font-weight-bold.text-gray-800
+            .h4.mb-0.font-weight-bold.text-gray-800.mt-2
               = @query.user_uniq_count
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
@@ -31,7 +31,7 @@
 
         = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :is_most_request, modal_id: 'mostRequest'
 
-      .card-body
+      .card-body.pb-0
         .row.no-gutters.align-items-center
           .col.mr-2
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
@@ -39,10 +39,10 @@
 
             - most_req = @query.most_requested_service
             - if most_req.present?
-              .h4.mb-0.font-weight-bold.text-gray-800
+              .mb-0.font-weight-bold.text-gray-800
                 = most_req[:key].presence || t("not_available")
 
-              %span.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
+              %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
                 = "#{most_req[:value]}/#{@query.total_requested_service}"
 
           .col-auto
