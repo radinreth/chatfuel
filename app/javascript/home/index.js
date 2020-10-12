@@ -2,6 +2,7 @@ OWSO.HomeIndex = (() => {
 
   function init() {
     OWSO.DashboardShow.renderDatetimepicker()
+    OWSO.DashboardShow.onChangeProvince()
     attachEventClickToExpandedButton()
     attachEventClickToTimeago()
   }

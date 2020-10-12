@@ -98,5 +98,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker }
+  return { init, renderDatetimepicker, onChangeProvince }
 })();
