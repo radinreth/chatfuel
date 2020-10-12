@@ -84,4 +84,26 @@ namespace :message do
       message.update(last_interaction_at: message.updated_at)
     end
   end
+
+  desc "Migrate tracking where step values belongs to ticket tracking"
+  task migrate_tracking: :environment do
+    tracking_variable = Variable.find_by(is_ticket_tracking: true)
+
+    return if tracking_variable.blank?
+
+    ActiveRecord::Base.transaction do
+      tracking_variable.step_values.find_each do |step_value|
+        Tracking.create! do |t|
+          t.ticket_code = step_value.variable_value.raw_value
+          t.site_code = step_value.variable_value.raw_value[0...4]
+          t.status = step_value.variable_value.ticket_status
+          t.tracking_datetime = step_value.created_at
+          t.message = step_value.message
+        end
+      rescue => e
+        puts "-> #{e.message}"
+        break
+      end
+    end
+  end
 end
