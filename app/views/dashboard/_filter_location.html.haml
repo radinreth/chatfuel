@@ -1,7 +1,7 @@
-- label_method = "name_#{Setting.default_locale}"
+- label_method = "name_#{I18n.locale}"
 - location = Pumi::Province.find_by_id(params[:province_code]) if params[:province_code].present?
 - location = Pumi::District.find_by_id(params[:district_code]) if params[:district_code].present?
-- location = location.try("address_#{Setting.default_locale}".to_sym) || t('dashboard.all')
+- location = location.try("address_#{I18n.locale}".to_sym) || t('dashboard.all')
 
 .filter-label.mr-2=t("dashboard.location")
 .province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }= location
