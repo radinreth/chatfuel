@@ -38,10 +38,10 @@
               = t("dashboard.most_request_service")
 
             - most_req = @query.most_requested_service
-            - if most_req.present?
-              .mb-0.font-weight-bold.text-gray-800
-                = most_req[:key].presence || t("not_available")
+            .mb-0.font-weight-bold.text-gray-800
+              = most_req&.fetch(:key).presence || t("not_available")
 
+            - if most_req.present?
               %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
                 = "#{most_req[:value]}/#{@query.total_requested_service}"
 
