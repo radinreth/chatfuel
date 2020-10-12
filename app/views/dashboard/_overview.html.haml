@@ -3,19 +3,22 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.overview")
+      
+      %div
+        - if @query.goals.present?
+          = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_access" do
+            %i.fa.fa-download
+
         - if policy(:dashboard).setting?
-          = link_to "#", data: { toggle: "modal", target: "#chooseAccessed" } do
+          = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseAccessed" } do
             %i.fas.fa-cog.cog
 
-      - if @query.goals.present?
-        = link_to "#", class: "chart-dl mr-4 text-dark", "data-target": "#total_user_access" do
-          %i.fa.fa-download
     .card-body#total_user_access
       .legend.text-center
         - @query.goals.each_with_index do |goal, index|
           = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
 
-      .pt-4.pb-2.d-flex.justify-content-around.align-items-center
+      .d-flex.justify-content-around.align-items-center
         = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :is_service_accessed, modal_id: 'chooseAccessed'
         - colors = @query.goals.map {|g| g[:color]}
-        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: colors, id: "chart-overview", height: "250px", legend: false
+        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: colors, id: "chart-overview", height: "300px", legend: false, messages: { empty: t("no_data") }
