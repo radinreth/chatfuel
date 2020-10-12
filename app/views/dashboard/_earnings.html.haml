@@ -27,7 +27,7 @@
     .card.border-left-warning.shadow.h-100.py-2
       - if policy(:dashboard).setting?
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
-          %i.fas.fa-cog.cog
+          %i.fas.fa-cog.cog.float
 
         = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :is_most_request, modal_id: 'mostRequest'
 
