@@ -83,7 +83,7 @@ class StepValue < ApplicationRecord
       [statuses.key(k), v]
     end.to_h
 
-    default.merge(result).transform_keys(&:capitalize)
+    default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
   end
 
   def self.filter(scope, params={})

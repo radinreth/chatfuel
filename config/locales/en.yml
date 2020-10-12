@@ -35,6 +35,9 @@ en:
   incorrect: Incorrect
   incomplete: Incomplete
   completed: Completed
+  acceptable: Acceptable
+  like: Like
+  dislike: Dislike
   sidebar:
     dashboard: Dashboard
     home: Home
