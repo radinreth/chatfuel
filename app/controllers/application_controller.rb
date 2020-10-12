@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
 
     def switch_locale
-      I18n.locale = params[:locale] || Setting.default_locale || I18n.default_locale
+      I18n.locale = params[:locale] || I18n.default_locale
     end
 
     def set_raven_context
