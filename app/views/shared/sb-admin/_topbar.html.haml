@@ -10,13 +10,13 @@
         %i.fas.fa-angle-down.fa-fw
 
       .dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
-        = link_to url_for(request.parameters.merge(locale: 'km')), class: 'switch-language dropdown-item d-flex align-items-center' do
+        = link_to url_for(request.query_parameters.merge(locale: 'km')), class: 'switch-language dropdown-item d-flex align-items-center' do
           .dropdown-list-image.mr-3
             = image_tag "khmer.png", alt: "locale", size: "24x24", class: "mr-2"
           .font-weight-bold
             .text-truncate= t('language.km')
 
-        = link_to url_for(request.parameters.merge(locale: 'en')), class: 'switch-language dropdown-item d-flex align-items-center' do
+        = link_to url_for(request.query_parameters.merge(locale: 'en')), class: 'switch-language dropdown-item d-flex align-items-center' do
           .dropdown-list-image.mr-3
             = image_tag "english.png", alt: "locale", size: "24x24", class: "mr-2"
           .font-weight-bold
