@@ -7,7 +7,7 @@
       %label.variable_report.btn.btn-success{ class: toggle_class_name("active", @variable.report?) }
         = f.input_field :marks_as, as: :boolean, checked: @variable.report?, name: "variable[marks_as][report]", id: "variable_report", class: "variable-report-enabled"
         %span.report-label
-          = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.feedback')
+          = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
       %div.invalid-message
         %small= @variable.errors.full_messages_for(:report).to_sentence
 
@@ -51,7 +51,7 @@
             %label.switch.m-0
               = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]", checked: @variable.location?
               %span.slider.round
-            %span.ml-1= t('dictionaries.site_location')
+            %span.ml-1= t('dictionaries.mark_as_site_location')
           %div.invalid-message
             = @variable.errors.full_messages_for(:location).to_sentence
 

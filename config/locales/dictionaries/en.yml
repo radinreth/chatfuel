@@ -2,8 +2,8 @@ en:
   dictionaries:
     name: Name
     permission: Permission
-    feedback: Mark as feedback
-    site_location: Mark as site location
+    mark_as_feedback: Mark as feedback
+    mark_as_site_location: Mark as site location
     action: Action
     new_dictionary: New Dictionary
     type_name: Type name
@@ -19,4 +19,4 @@ en:
     satisfied: Satisfied
     created_at: Created date
     ticket_tracking: Ticket tracking
-    ticket_tracking: Mark as ticket tracking
+    mark_as_ticket_tracking: Mark as ticket tracking
