@@ -3,7 +3,7 @@
     = title
 
   - if @messages.present?
-    = link_to home_path(request.query_parameters.merge(format: :csv)), class: "btn btn-primary pull-right" do
+    = link_to home_path(request.query_parameters.merge(format: :csv)), target: "_blank", class: "btn btn-primary pull-right" do
       %i.fas.fa-download
       = t("download_csv")
     
