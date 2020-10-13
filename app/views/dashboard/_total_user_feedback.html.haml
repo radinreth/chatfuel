@@ -1,14 +1,14 @@
 .col-xl-6.col-lg-5
   .card.shadow.mb-4
+    - data = @query.total_users_feedback
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_feedback", name: @query.report_enabled&.name)
-      - if @query.total_users_feedback.present?
+      - if data.values.sum > 0
         = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
           %i.fa.fa-download
     .card-body
       #total_user_feedback.pt-4.d-flex.justify-content-around.align-items-center
-        - data = @query.total_users_feedback
         - if data.values.sum > 0
           %ul.list-unstyled
             %li
