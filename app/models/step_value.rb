@@ -70,13 +70,6 @@ class StepValue < ApplicationRecord
     scope.count
   end
 
-  def self.number_of_tracking_tickets(params = {})
-    scope = default_join.joins("INNER JOIN tickets on tickets.code=variable_values.raw_value")
-    scope = filter(scope, params)
-    scope = scope.group("tickets.status")
-    scope.count
-  end
-
   def self.total_users_feedback(params = {})
     scope = all
     statuses = VariableValue.statuses
@@ -91,26 +84,6 @@ class StepValue < ApplicationRecord
     end.to_h
 
     default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
-  end
-
-  def self.most_request_service(params = {})
-    scope = all
-    scope = filter(scope, params)
-
-    scope = scope.where('variable_id': Variable.most_request)
-    scope = scope.order('count_all DESC')
-    scope = scope.group('variable_value_id').limit(1)
-    result = scope.count
-
-    return {} if result.nil? || result.empty?
-
-    variable_value = VariableValue.find(result.keys.first)
-    {variable_value.mapping_value => result.values.first}
-  end
-
-  def self.default_join
-    scope = all
-    scope.joins(step: :message, variable_value: :variable)
   end
 
   def self.filter(scope, params={})
