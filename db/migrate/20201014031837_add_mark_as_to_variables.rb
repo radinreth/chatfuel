@@ -6,7 +6,7 @@ class AddMarkAsToVariables < ActiveRecord::Migration[6.0]
   end
 
   def down
-    remove_column :variables, :mark_as
     Rake::Task['variable:mark_as:split'].invoke
+    remove_column :variables, :mark_as
   end
 end
