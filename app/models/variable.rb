@@ -8,7 +8,7 @@
 #  is_service_accessed :boolean          default(FALSE)
 #  is_ticket_tracking  :boolean          default(FALSE)
 #  is_user_visit       :boolean          default(FALSE)
-#  marks_as            :string           default([]), is an Array
+#  mark_as             :string           default("")
 #  name                :string
 #  report_enabled      :boolean          default(FALSE)
 #  created_at          :datetime         not null
@@ -16,10 +16,10 @@
 #
 # Indexes
 #
-#  index_variables_on_marks_as  (marks_as) USING gin
+#  index_variables_on_mark_as  (mark_as)
 #
 class Variable < ApplicationRecord
-  include MarksAsHelper
+  include MarkAsConcern
 
   default_scope { order(created_at: :desc) }
 
@@ -35,7 +35,6 @@ class Variable < ApplicationRecord
 
   # validations
   validate :validate_all_marked_as_items_in_whitelist
-  validate :validate_uniq_marked_as_items
   validate :validate_one_report
   validate :validate_one_most_request
   validate :validate_one_user_visit
@@ -85,21 +84,11 @@ class Variable < ApplicationRecord
     def validate_all_marked_as_items_in_whitelist
       return if all_marked_as_items_in_whitelist?
 
-      errors.add(:marks_as, "invalid marked_as item")
+      errors.add(:mark_as, "invalid marked_as item")
     end
 
     def all_marked_as_items_in_whitelist?
-      self.marks_as.all? { |item| MarksAsHelper::WHITELIST_MARKS_AS.include?(item) }
-    end
-
-    def validate_uniq_marked_as_items
-      return if uniq_marked_as_items?
-
-      errors.add(:marks_as, I18n.t("variable.already_added"))
-    end
-
-    def uniq_marked_as_items?
-      marks_as.uniq.length == marks_as.length
+      MarkAsConcern::WHITELIST_MARKS_AS.include?(self.mark_as)
     end
 
     def validate_unique_raw_value
