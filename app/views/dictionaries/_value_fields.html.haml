@@ -8,7 +8,7 @@
       %i.fas.fa-pen.fa-fw
     = render "hint_modal", item_id: f.object.id, f: f
   %td
-    .td-satisfied{ class: toggle_class_name("invisible", !@variable.report_enabled?) }
+    .td-satisfied{ class: toggle_class_name("invisible", !@variable.report?) }
       = f.input :id, as: :hidden
       - if f.object.destroyable?
         = f.input :_destroy, as: :hidden, input_html: { class: "variable-destroy" }

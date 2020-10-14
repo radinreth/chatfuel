@@ -9,7 +9,7 @@ namespace :variable do
       is_service_accessed=true
     SQL
 
-    desc "Merge boolean options that represent marks_as into one"
+    desc "Merge boolean options that represent mark_as into one"
     task merge: :environment do
       ActiveRecord::Base.transaction do
         Variable.where(bool_columns).find_each do |variable|
