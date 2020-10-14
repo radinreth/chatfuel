@@ -490,6 +490,8 @@ GEM
     verboice (0.7.0)
       json
       rest-client
+    view_component (2.19.1)
+      activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.0.4)
@@ -577,6 +579,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   verboice (~> 0.7.0)
+  view_component
   web-console (>= 3.3.0)
   webdrivers (~> 4.2.0)
   webpacker (~> 4.0)
