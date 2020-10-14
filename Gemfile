@@ -48,6 +48,7 @@ gem 'rails-settings-cached', '~> 2.0'
 
 gem 'paranoia', '~> 2.2'
 gem 'paper_trail', '~> 10.3', '>= 10.3.1'
+gem "view_component", require: "view_component/engine"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

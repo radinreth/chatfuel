@@ -1,6 +1,7 @@
 class DictionariesController < ApplicationController
   before_action :set_roles, only: [:index, :edit, :create, :update]
   before_action :set_new_variable, only: [:index, :search]
+  before_action :set_variables, only: [:edit]
 
   def index
     authorize Variable
@@ -63,6 +64,12 @@ class DictionariesController < ApplicationController
     variable.mark_as_service_accessed!
 
     head :ok
+  end
+
+  def set_variables
+    @report = Variable.report
+    @location = Variable.location
+    @ticket_tracking = Variable.ticket_tracking
   end
 
   private

@@ -47,43 +47,17 @@
         %h6.mt-4.permission-title= t('dictionaries.mark_as')
         .form-group
           .my-4
-            %label.item.text-center{ data: { toggle: "tooltip", title: (Variable.report && Variable.report.id != @variable.id) ? t("dictionaries.used_by", name: Variable.report&.name) : "" }, class: [toggle_class_name('mark_as_active', @variable.report?), toggle_class_name('disabled', Variable.report && Variable.report.id != @variable.id)] }
+            = render(MarkAsBlockOptionComponent.new(name: "report", checked: @variable.report?, disabled: (@report && @report&.id != @variable.id), title: @report&.name)) do
               %i.fa.fa-star-half-alt.fa-lg
-              %p.status-text.m-0
-                = t("dictionaries.feedback")
-              %input.mark_as{ type: "radio", value: "report", name: "variable[mark_as]", checked: @variable.report?, disabled: Variable.report && Variable.report.id != @variable.id }
+              %p.status-text.m-0= t("dictionaries.feedback")
 
-            %label.item.text-center{ data: { toggle: "tooltip", title: (Variable.location && Variable.location.id != @variable.id) ? t("dictionaries.used_by", name: Variable.location&.name) : "" }, class: [toggle_class_name('mark_as_active', @variable.location?), toggle_class_name('disabled', Variable.location && Variable.location.id != @variable.id)] }
+            = render(MarkAsBlockOptionComponent.new(name: "location", checked: @variable.location?, disabled: (@location && @location&.id != @variable.id), title: @location&.name)) do
               %i.fa.fa-map-marker-alt.fa-lg
-              %p.status-text.m-0
-                = t("dictionaries.site_location")
-              %input.mark_as{ type: "radio", value: "location", name: "variable[mark_as]", checked: @variable.location?, disabled: Variable.location && Variable.location.id != @variable.id }
+              %p.status-text.m-0= t("dictionaries.site_location")
 
-            %label.item.text-center{ data: { toggle: "tooltip", title: (Variable.ticket_tracking && Variable.ticket_tracking.id != @variable.id) ? t("dictionaries.used_by", name: Variable.ticket_tracking&.name) : "" }, class: [toggle_class_name('mark_as_active', @variable.ticket_tracking?), toggle_class_name('disabled', Variable.ticket_tracking && Variable.ticket_tracking.id != @variable.id)] }
+            = render(MarkAsBlockOptionComponent.new(name: "ticket_tracking", checked: @variable.ticket_tracking?, disabled: (@ticket_tracking && @ticket_tracking&.id != @variable.id), title: @ticket_tracking&.name)) do
               %i.fa.fa-ticket-alt.fa-lg
-              %p.status-text.m-0
-                = t("dictionaries.ticket_tracking")
-              %input.mark_as{ type: "radio", value: "ticket_tracking", name: "variable[mark_as]", checked: @variable.ticket_tracking?, disabled: Variable.ticket_tracking && Variable.ticket_tracking.id != @variable.id }
-              
-        -# %h6.mt-4.permission-title= t('dictionaries.location')
-        -# .align-items-center
-        -#   .d-flex
-        -#     %label.switch.m-0
-        -#       = f.input_field :mark_as, as: :boolean, label: false, name: "variable[location]", checked: @variable.location?
-        -#       %span.slider.round
-        -#     %span.ml-1= t('dictionaries.mark_as_site_location')
-        -#   %div.invalid-message
-        -#     = @variable.errors.full_messages_for(:location).to_sentence
-
-        -# %h6.mt-4.permission-title= t('dictionaries.ticket_tracking')
-        -# .align-items-center
-        -#   .d-flex
-        -#     %label.switch.m-0
-        -#       = f.input_field :mark_as, as: :boolean, label: false, name: "variable[ticket_tracking]", checked: @variable.ticket_tracking?
-        -#       %span.slider.round
-        -#     %span.ml-1= t('dictionaries.ticket_tracking')
-        -#   %div.invalid-message
-        -#     = @variable.errors.full_messages_for(:ticket_tracking).to_sentence
+              %p.status-text.m-0= t("dictionaries.ticket_tracking")
 
         .actions.d-flex.justify-content-end
           = link_to t('shared.cancel'), dictionaries_path, class: 'btn btn-secondary mr-2'
