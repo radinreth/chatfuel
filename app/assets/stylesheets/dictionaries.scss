@@ -116,4 +116,39 @@
   tfoot {
     border-bottom: 1px solid #dddfeb;
   }
+
+  .item {
+    min-width: 140px;
+    margin-right: 15px;
+    border: 2px solid #b7b7b7;
+    border-radius: 4px;
+    padding: 10px;
+    transition: all 0.1s ease-out;
+    color: #545454;
+
+    &:hover:not(.disabled) {
+      border-color: #3f51b5;
+      background-color: #eaeaea;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      color: #d2d2d2;
+      border-color: #eaeaea;
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  .status-text {
+    line-height: 2em;
+    font-size: 1em;
+  }
+
+  .mark_as_active {
+    border-color: #3f51b5;
+    background-color: #eaeaea;
+  }
 }

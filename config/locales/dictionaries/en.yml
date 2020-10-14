@@ -2,7 +2,10 @@ en:
   dictionaries:
     name: Name
     permission: Permission
+    mark_as: Mark As
+    feedback: Feedback
     mark_as_feedback: Mark as feedback
+    site_location: Location
     mark_as_site_location: Mark as site location
     action: Action
     new_dictionary: New Dictionary
@@ -20,3 +23,4 @@ en:
     created_at: Created date
     ticket_tracking: Ticket tracking
     mark_as_ticket_tracking: Mark as ticket tracking
+    used_by: Already used by %{name}

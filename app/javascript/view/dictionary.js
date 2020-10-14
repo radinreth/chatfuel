@@ -9,6 +9,15 @@ OWSO.DictionariesEdit = (() => {
     onClickAddValuePair();
     initTooltip();
     validateTextLimit();
+    onClickMarkAs();
+  }
+
+  function onClickMarkAs() {
+    $(".mark_as").change(function() {
+      $(".item").removeClass("mark_as_active")
+      $(this).closest(".item").toggleClass("mark_as_active");
+      $('#variable_report').trigger("click")
+    })
   }
 
   function validateTextLimit() {
