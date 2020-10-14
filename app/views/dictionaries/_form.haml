@@ -19,7 +19,7 @@
     .align-items-center.mb-4
       .d-flex
         %label.switch.m-0
-          = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][report]"
+          = f.input_field :mark_as, as: :boolean, label: false, name: "variable[report]"
           %span.slider.round
         %span.ml-1= t('dictionaries.mark_as_feedback')
       %div.invalid-message
@@ -28,7 +28,7 @@
     .align-items-center
       .d-flex
         %label.switch.m-0
-          = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]"
+          = f.input_field :mark_as, as: :boolean, label: false, name: "variable[location]"
           %span.slider.round
         %span.ml-1= t('dictionaries.mark_as_site_location')
       %div.invalid-message

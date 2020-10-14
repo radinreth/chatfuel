@@ -7,10 +7,10 @@
 
   %td
     - if dictionary.report?
-      %small= t('dictionaries.feedback')
+      %small= t('dictionaries.mark_as_feedback')
   %td
     - if dictionary.location?
-      %small= t('dictionaries.site_location')
+      %small= t('dictionaries.mark_as_site_location')
 
   %td
     = display_datetime(dictionary.created_at)

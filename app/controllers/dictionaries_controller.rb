@@ -79,13 +79,17 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :status, :_destroy]).merge(marks_as: marks_as_params)
+      variable_params = params.require(:variable).permit(:type, :name, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :status, :_destroy])
+      variable_params.merge!(mark_as_params)
     end
 
-    def marks_as_params
-      checkbox_on = "1"
+    def mark_as_params
+      mark_as_options = params[:variable].permit(:report, :location, :ticket_tracking).to_h
 
-      marks_as = params[:variable][:marks_as].select { |key, value| value == checkbox_on }
-      marks_as.keys
+      @mark_as_params = { mark_as: mark_as_options.key(selected_option).to_s }
+    end
+
+    def selected_option
+      "1"
     end
 end

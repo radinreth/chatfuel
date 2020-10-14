@@ -5,7 +5,7 @@
 
     .btn-group-toggle.text-right{ "data-toggle": "buttons" }
       %label.variable_report.btn.btn-success{ class: toggle_class_name("active", @variable.report?) }
-        = f.input_field :marks_as, as: :boolean, checked: @variable.report?, name: "variable[marks_as][report]", id: "variable_report", class: "variable-report-enabled"
+        = f.input_field :mark_as, as: :boolean, checked: @variable.report?, name: "variable[report]", id: "variable_report", class: "variable-report-enabled"
         %span.report-label
           = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
       %div.invalid-message
@@ -49,7 +49,7 @@
         .align-items-center
           .d-flex
             %label.switch.m-0
-              = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][location]", checked: @variable.location?
+              = f.input_field :mark_as, as: :boolean, label: false, name: "variable[location]", checked: @variable.location?
               %span.slider.round
             %span.ml-1= t('dictionaries.mark_as_site_location')
           %div.invalid-message
@@ -59,7 +59,7 @@
         .align-items-center
           .d-flex
             %label.switch.m-0
-              = f.input_field :marks_as, as: :boolean, label: false, name: "variable[marks_as][ticket_tracking]", checked: @variable.ticket_tracking?
+              = f.input_field :mark_as, as: :boolean, label: false, name: "variable[ticket_tracking]", checked: @variable.ticket_tracking?
               %span.slider.round
             %span.ml-1= t('dictionaries.ticket_tracking')
           %div.invalid-message

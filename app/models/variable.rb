@@ -88,7 +88,9 @@ class Variable < ApplicationRecord
     end
 
     def all_marked_as_items_in_whitelist?
-      MarkAsConcern::WHITELIST_MARKS_AS.include?(self.mark_as)
+      whitelist = MarkAsConcern::WHITELIST_MARKS_AS
+
+      self.mark_as.blank? || whitelist.include?(self.mark_as)
     end
 
     def validate_unique_raw_value
