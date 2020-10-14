@@ -95,6 +95,7 @@ km:
     invalid_code: លេខកូដការិយាល័យច្រកត្រូវតែមានចំនួន ៤ ខ្ទង់ប៉ុណ្ណោះ
     invalid_whitelist: "ត្រូវបញ្ចូល ip addresses ឬ សញ្ញាផ្កាយ(*)"
   variable:
+    invalid_mark_as: mark as មិនត្រឹមត្រូវ
     invalid_name: អនុញ្ញាតតែលេខឬអក្សរ
     only_one_report_col: ត្រូវតែបើកដំណើរការតែមួយប៉ុណ្ណោះ
     already_taken: "ត្រូវបានគេយកទៅហើយ"

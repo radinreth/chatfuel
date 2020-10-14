@@ -34,7 +34,7 @@ class Variable < ApplicationRecord
   scope :most_request, -> { find_by(is_most_request: true) }
 
   # validations
-  validate :validate_all_marked_as_items_in_whitelist
+  validate :validate_mark_as
   validate :validate_one_report
   validate :validate_one_most_request
   validate :validate_one_user_visit
@@ -81,16 +81,15 @@ class Variable < ApplicationRecord
 
   private
 
-    def validate_all_marked_as_items_in_whitelist
-      return if all_marked_as_items_in_whitelist?
+    def validate_mark_as
+      return if self.mark_as.blank? || mark_as_in_whitelist?
 
-      errors.add(:mark_as, "invalid marked_as item")
+      errors.add(:mark_as, I18n.t("variable.invalid_mark_as"))
     end
 
-    def all_marked_as_items_in_whitelist?
+    def mark_as_in_whitelist?
       whitelist = MarkAsConcern::WHITELIST_MARKS_AS
-
-      self.mark_as.blank? || whitelist.include?(self.mark_as)
+      whitelist.include?(self.mark_as)
     end
 
     def validate_unique_raw_value

@@ -94,6 +94,7 @@ en:
     invalid_code: "Site code must be exactly 4 digits number"
     invalid_whitelist: "must be ip addresses or asterisk(*) symbol"
   variable:
+    invalid_mark_as: "invalid mark_as"
     invalid_name: "Only allows numbers or letters"
     only_one_report_col: "Must be enable only one"
     already_taken: "has already been taken"
