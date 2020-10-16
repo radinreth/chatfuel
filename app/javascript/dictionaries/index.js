@@ -5,5 +5,3 @@ OWSO.DictionariesIndex = (() => {
 
   return { init }
 })();
-
-  

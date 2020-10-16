@@ -64,8 +64,8 @@ class DashboardQuery
     @user_visit ||= Variable.user_visit
   end
 
-  def report
-    @report ||= Variable.report
+  def feedback
+    @feedback ||= Variable.feedback
   end
 
   private

@@ -13,7 +13,7 @@ namespace :variable do
     task merge: :environment do
       ActiveRecord::Base.transaction do
         Variable.where(bool_columns).find_each do |variable|
-          variable.update(mark_as: 'report')          if variable.report_enabled?
+          variable.update(mark_as: 'feedback')        if variable.report_enabled?
           variable.update(mark_as: 'most_request')    if variable.is_most_request?
           variable.update(mark_as: 'user_visit')      if variable.is_user_visit?
           variable.update(mark_as: 'location')        if variable.is_location?
@@ -26,7 +26,7 @@ namespace :variable do
     desc "Split mark_as into separated columns"
     task split: :environment do
       Variable.where.not(mark_as: nil).find_each do |variable|
-        variable.update(report_enabled: true) if variable.report?
+        variable.update(report_enabled: true) if variable.feedback?
         variable.update(is_most_request: true) if variable.most_request?
         variable.update(is_user_visit: true) if variable.user_visit?
         variable.update(is_location: true) if variable.location?

@@ -25,7 +25,7 @@ OWSO.DictionariesEdit = (() => {
       $(".item").not(this).removeClass("mark_as_active")
       $(this).toggleClass("mark_as_active")
       
-      if(name == "report") $(".td-satisfied").toggleClass("invisible")
+      if(name == "feedback") $(".td-satisfied").toggleClass("invisible")
       else $(".td-satisfied").addClass("invisible")
     })
   }
@@ -54,14 +54,8 @@ OWSO.DictionariesEdit = (() => {
     $('form .add_values').off('click')
     $('form .add_values').on('click', function(event) {
       appendField(this);
-      handleRenderSatisfied();
       event.preventDefault();
     })
-  }
-
-  function handleRenderSatisfied() {
-    var checkbox = $('#variable_report');
-    $(".td-satisfied").toggleClass('invisible', !checkbox[0].checked);
   }
 
   function appendField(dom) {
@@ -71,11 +65,11 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function onClickMarkAsFeedback() {
-    $('#variable_report').on('change', function(e) {
+    $('#variable_feedback').on('change', function(e) {
       var checkbox = $(e.target);
-      var reportLabel = !!checkbox[0].checked ? "Unmark as Feedback" : "Mark as Feedback";
+      var feedbackLabel = !!checkbox[0].checked ? "Unmark as Feedback" : "Mark as Feedback";
 
-      checkbox.next(".report-label").text(reportLabel);
+      checkbox.next(".feedback-label").text(feedbackLabel);
       $(".td-satisfied").toggleClass("invisible", !checkbox[0].checked);
     })
   }

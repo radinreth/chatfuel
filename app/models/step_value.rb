@@ -38,23 +38,23 @@ class StepValue < ApplicationRecord
 
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
-  after_create :push_notification, if: -> { variable_value.report? }
+  after_create :push_notification, if: -> { variable_value.feedback? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.location? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
   def self.satisfied
-    return [] unless report_column
+    return [] unless feedback_column
 
-    satisfied = report_column.values.satisfied
+    satisfied = feedback_column.values.satisfied
     joins(:variable_value).where("variable_values.id in (?)", satisfied.ids)
   end
 
   def self.disatisfied
-    return [] unless report_column
+    return [] unless feedback_column
 
-    disatisfied = report_column.values.disatisfied
+    disatisfied = feedback_column.values.disatisfied
     joins(:variable_value).where("variable_values.id in (?)", disatisfied.ids)
   end
 
@@ -75,8 +75,8 @@ class StepValue < ApplicationRecord
     statuses = VariableValue.statuses
 
     scope = filter(scope, params)
-    report_variable = Variable.report
-    scope = scope.where(variable_id: report_variable)
+    feedback_variable = Variable.feedback
+    scope = scope.where(variable_id: feedback_variable)
 
     default = statuses.transform_values { 0 }
     result = scope.joins(:variable_value).group(:status).count.map do |k, v|
@@ -96,8 +96,8 @@ class StepValue < ApplicationRecord
   end
 
   private
-    def self.report_column
-      @report_column ||= Variable.report
+    def self.feedback_column
+      @feedback_column ||= Variable.feedback
     end
 
     def push_notification
