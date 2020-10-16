@@ -1,3 +1,3 @@
-%label.item.text-center{ data: { toggle: "tooltip", title: @disabled ? helpers.t("dictionaries.used_by", name: @title) : "" }, class: [helpers.toggle_class_name('mark_as_active', @checked), helpers.toggle_class_name('disabled', @disabled)] }
+%label.item.text-center{ data: { name: @name, toggle: "tooltip", title: @disabled ? helpers.t("dictionaries.used_by", name: @title) : "" }, class: [helpers.toggle_class_name('mark_as_active', @checked), helpers.toggle_class_name('disabled', @disabled)] }
   = content
   %input.mark_as{ type: "radio", value: @name, name: "variable[mark_as]", checked: @checked, disabled: @disabled }

@@ -16,14 +16,16 @@ OWSO.DictionariesEdit = (() => {
     $(".item").click(function(e) {
       e.preventDefault()
 
+      let name = $(this).data("name")
       let input = $(this).find("input")
       let checked = input.prop("checked")
 
-      if( checked ) input.prop("checked", false)
+      if(checked) input.prop("checked", false)
       else input.prop("checked", true)
       
+      $(".item").not(this).removeClass("mark_as_active")
       $(this).toggleClass("mark_as_active")
-      $("#variable_report").trigger("click")
+      if(name == "report") $("#variable_report").trigger("click")
     })
   }
 
