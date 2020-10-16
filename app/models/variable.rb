@@ -35,7 +35,7 @@ class Variable < ApplicationRecord
 
   # validations
   validate :validate_mark_as
-  validate :validate_one_report
+  validate :validate_one_feedback
   validate :validate_one_most_request
   validate :validate_one_user_visit
   validate :validate_one_ticket_tracking
@@ -120,10 +120,10 @@ class Variable < ApplicationRecord
       errors.add(:service_accessed, I18n.t("variable.already_taken")) if service_accessed?
     end
 
-    def validate_one_report
-      return unless sibling.report
+    def validate_one_feedback
+      return unless sibling.feedback
 
-      errors.add(:report, I18n.t("variable.already_taken")) if report?
+      errors.add(:feedback, I18n.t("variable.already_taken")) if feedback?
     end
 
     def validate_one_location

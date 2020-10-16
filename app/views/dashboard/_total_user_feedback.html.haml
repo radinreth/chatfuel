@@ -3,7 +3,7 @@
     - users_feedback = @query.total_users_feedback
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
-        = t("dashboard.total_user_feedback", name: @query.report&.name)
+        = t("dashboard.total_user_feedback", name: @query.feedback&.name)
       - if users_feedback.values.sum > 0
         = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
           %i.fa.fa-download

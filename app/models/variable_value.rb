@@ -51,7 +51,7 @@ class VariableValue < ApplicationRecord
   end
 
   delegate :name, to: :variable, prefix: true
-  delegate :report?, to: :variable, prefix: false
+  delegate :feedback?, to: :variable, prefix: false
   delegate :location?, to: :variable, prefix: false
 
   def mapping_value
