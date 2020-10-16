@@ -20,9 +20,7 @@ OWSO.DictionariesEdit = (() => {
       let input = $(this).find("input")
       let checked = input.prop("checked")
 
-      if(checked) input.prop("checked", false)
-      else input.prop("checked", true)
-      
+      input.prop("checked", !checked)
       $(".item").not(this).removeClass("mark_as_active")
       $(this).toggleClass("mark_as_active")
       if(name == "report") $("#variable_report").trigger("click")
