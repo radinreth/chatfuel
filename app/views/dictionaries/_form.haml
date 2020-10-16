@@ -7,7 +7,9 @@
     = f.input :name, input_html: { name: "variable[name]" }, label: t('dictionaries.name')
 
     .form-group
-      %label= t('dictionaries.permission')
+      %p.font-weight-bold.mt-3
+        = t('dictionaries.permission')
+
       .d-flex.mb-4
         = hidden_field_tag('variable[role_ids][]', nil)
         - @roles.each do |role|
@@ -16,23 +18,16 @@
             %label{for: role.id}= role.name.humanize
             %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: dictionary.role_ids.include?(role.id)}
 
-    .align-items-center.mb-4
-      .d-flex
-        %label.switch.m-0
-          = f.input_field :mark_as, as: :boolean, label: false, name: "variable[report]"
-          %span.slider.round
-        %span.ml-1= t('dictionaries.mark_as_feedback')
-      %div.invalid-message
-        = dictionary.errors.full_messages_for(:report).to_sentence
+      %p.font-weight-bold.mt-3
+        = t('dictionaries.mark_as')
 
-    .align-items-center
-      .d-flex
-        %label.switch.m-0
-          = f.input_field :mark_as, as: :boolean, label: false, name: "variable[location]"
-          %span.slider.round
-        %span.ml-1= t('dictionaries.mark_as_site_location')
-      %div.invalid-message
-        = dictionary.errors.full_messages_for(:location).to_sentence
+      = render(MarkAsBlockOptionComponent.new(name: "report", checked: @variable.report?, disabled: (@report && @report&.id != @variable.id), title: @report&.name)) do
+        %i.fa.fa-star-half-alt.fa-lg
+        %p.status-text.m-0= t("dictionaries.feedback")
+
+      = render(MarkAsBlockOptionComponent.new(name: "location", checked: @variable.location?, disabled: (@location && @location&.id != @variable.id), title: @location&.name)) do
+        %i.fa.fa-map-marker-alt.fa-lg
+        %p.status-text.m-0= t("dictionaries.site_location")
 
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
