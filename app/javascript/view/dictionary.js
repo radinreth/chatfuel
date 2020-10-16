@@ -23,7 +23,9 @@ OWSO.DictionariesEdit = (() => {
       input.prop("checked", !checked)
       $(".item").not(this).removeClass("mark_as_active")
       $(this).toggleClass("mark_as_active")
-      if(name == "report") $("#variable_report").trigger("click")
+      
+      if(name == "report") $(".td-satisfied").toggleClass("invisible")
+      else $(".td-satisfied").addClass("invisible")
     })
   }
 
