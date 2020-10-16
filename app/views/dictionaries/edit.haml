@@ -3,14 +3,6 @@
     %h1.h3.mb-0.text-gray-800
       = @variable.name
 
-    .btn-group-toggle.text-right{ "data-toggle": "buttons" }
-      %label.d-none.variable_report.btn.btn-success{ class: toggle_class_name("active", @variable.report?) }
-        = f.input_field :mark_as, as: :boolean, checked: @variable.report?, name: "variable[report]", id: "variable_report", class: "variable-report-enabled"
-        %span.report-label
-          = @variable.report? ? t('dictionaries.unmark_as_feedback') : t('dictionaries.mark_as_feedback')
-      %div.invalid-message
-        %small= @variable.errors.full_messages_for(:report).to_sentence
-
   .card.shadow.mb-4
     .card-body
       .my-4
