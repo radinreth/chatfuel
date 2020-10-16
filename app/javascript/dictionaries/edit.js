@@ -1,6 +1,7 @@
 OWSO.DictionariesEdit = (() => {
   return {
-    init
+    init,
+    onClickMarkAs
   }
 
   function init() {
