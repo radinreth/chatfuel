@@ -40,7 +40,7 @@
         .form-group
           .my-4
             = hidden_field_tag('variable[mark_as]', nil)
-            = render(MarkAsBlockOptionComponent.new(name: "feedback", checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
+            = render(MarkAsBlockOptionComponent.new(name: Variable::FEEDBACK, checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
               %i.fa.fa-star-half-alt.fa-lg
               %p.status-text.m-0= t("dictionaries.feedback")
 

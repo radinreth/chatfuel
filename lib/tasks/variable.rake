@@ -13,7 +13,7 @@ namespace :variable do
     task merge: :environment do
       ActiveRecord::Base.transaction do
         Variable.where(bool_columns).find_each do |variable|
-          variable.update(mark_as: 'feedback')        if variable.report_enabled?
+          variable.update(mark_as: Variable::FEEDBACK) if variable.report_enabled?
           variable.update(mark_as: 'most_request')    if variable.is_most_request?
           variable.update(mark_as: 'user_visit')      if variable.is_user_visit?
           variable.update(mark_as: 'location')        if variable.is_location?

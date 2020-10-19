@@ -21,7 +21,7 @@
       %p.font-weight-bold.mt-3
         = t('dictionaries.mark_as')
 
-      = render(MarkAsBlockOptionComponent.new(name: "feedback", checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
+      = render(MarkAsBlockOptionComponent.new(name: Variable::FEEDBACK, checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
         %i.fa.fa-star-half-alt.fa-lg
         %p.status-text.m-0= t("dictionaries.feedback")
 

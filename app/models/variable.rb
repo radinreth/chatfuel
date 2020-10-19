@@ -19,6 +19,7 @@
 #  index_variables_on_mark_as  (mark_as)
 #
 class Variable < ApplicationRecord
+  FEEDBACK = 'feedback'
   include MarkAsConcern
 
   default_scope { order(created_at: :desc) }
@@ -88,7 +89,7 @@ class Variable < ApplicationRecord
     end
 
     def mark_as_in_whitelist?
-      whitelist = MarkAsConcern::WHITELIST_MARKS_AS
+      whitelist = MarkAsConcern::WHITELIST_MARK_AS
       whitelist.include?(self.mark_as)
     end
 
