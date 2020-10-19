@@ -38,6 +38,8 @@ en:
   acceptable: Acceptable
   like: Like
   dislike: Dislike
+  male: Male
+  female: female
   sidebar:
     dashboard: Dashboard
     home: Home
