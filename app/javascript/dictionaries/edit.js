@@ -13,7 +13,7 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function onClickMarkAs() {
-    $(".item").click(function(e) {
+    $(document.body).on("click", ".block-option--item", function(e) {
       e.preventDefault()
 
       let name = $(this).data("name")
@@ -21,8 +21,8 @@ OWSO.DictionariesEdit = (() => {
       let checked = input.prop("checked")
 
       input.prop("checked", !checked)
-      $(".item").not(this).removeClass("mark_as_active")
-      $(this).toggleClass("mark_as_active")
+      $(".block-option--item").not(this).removeClass("block-option--item-active")
+      $(this).toggleClass("block-option--item-active")
       
       if(name == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
       else $(".td-satisfied").addClass("invisible")

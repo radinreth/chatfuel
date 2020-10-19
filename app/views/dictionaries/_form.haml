@@ -21,17 +21,18 @@
       %p.font-weight-bold.mt-3
         = t('dictionaries.mark_as')
 
-      = render(MarkAsBlockOptionComponent.new(name: Variable::FEEDBACK, checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
-        %i.fa.fa-star-half-alt.fa-lg
-        %p.status-text.m-0= t("dictionaries.feedback")
+      .block-option
+        = render(MarkAsBlockOptionComponent.new(name: Variable::FEEDBACK, checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
+          %i.fa.fa-star-half-alt.fa-lg
+          %p.status-text.m-0= t("dictionaries.feedback")
 
-      = render(MarkAsBlockOptionComponent.new(name: "location", checked: @variable.location?, disabled: (@location && @location&.id != @variable.id), title: @location&.name)) do
-        %i.fa.fa-map-marker-alt.fa-lg
-        %p.status-text.m-0= t("dictionaries.site_location")
+        = render(MarkAsBlockOptionComponent.new(name: "location", checked: @variable.location?, disabled: (@location && @location&.id != @variable.id), title: @location&.name)) do
+          %i.fa.fa-map-marker-alt.fa-lg
+          %p.status-text.m-0= t("dictionaries.site_location")
 
-      %div.invalid-message
-        = dictionary.errors.full_messages_for(:feedback).to_sentence
-        = dictionary.errors.full_messages_for(:location).to_sentence
+        %div.invalid-message
+          = dictionary.errors.full_messages_for(:feedback).to_sentence
+          = dictionary.errors.full_messages_for(:location).to_sentence
 
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
