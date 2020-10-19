@@ -5,7 +5,6 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function init() {
-    onClickMarkAsFeedback();
     onClickRemoveValuePair();
     onClickAddValuePair();
     initTooltip();
@@ -62,16 +61,6 @@ OWSO.DictionariesEdit = (() => {
     time = new Date().getTime();
     regexp = new RegExp($(dom).data('id'), 'g');
     $(dom).parents('tr').before($(dom).data('fields').replace(regexp, time));
-  }
-
-  function onClickMarkAsFeedback() {
-    $('#variable_feedback').on('change', function(e) {
-      var checkbox = $(e.target);
-      var feedbackLabel = !!checkbox[0].checked ? "Unmark as Feedback" : "Mark as Feedback";
-
-      checkbox.next(".feedback-label").text(feedbackLabel);
-      $(".td-satisfied").toggleClass("invisible", !checkbox[0].checked);
-    })
   }
 
   function onClickRemoveValuePair() {
