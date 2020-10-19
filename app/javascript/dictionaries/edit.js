@@ -24,7 +24,7 @@ OWSO.DictionariesEdit = (() => {
       $(".item").not(this).removeClass("mark_as_active")
       $(this).toggleClass("mark_as_active")
       
-      if(name == "feedback") $(".td-satisfied").toggleClass("invisible")
+      if(name == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
       else $(".td-satisfied").addClass("invisible")
     })
   }

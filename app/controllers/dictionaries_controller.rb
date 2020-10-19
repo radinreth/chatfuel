@@ -10,6 +10,7 @@ class DictionariesController < ApplicationController
   end
 
   def edit
+    gon.feedback_variable = Variable::FEEDBACK
     @variable = Variable.find(params[:id])
     @variable.values.build
     authorize @variable
