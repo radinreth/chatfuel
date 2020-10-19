@@ -8,12 +8,20 @@
 #  is_service_accessed :boolean          default(FALSE)
 #  is_ticket_tracking  :boolean          default(FALSE)
 #  is_user_visit       :boolean          default(FALSE)
+#  mark_as             :string           default("")
 #  name                :string
 #  report_enabled      :boolean          default(FALSE)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
+# Indexes
+#
+#  index_variables_on_mark_as  (mark_as)
+#
 class Variable < ApplicationRecord
+  FEEDBACK = 'feedback'
+  include MarkAsConcern
+
   default_scope { order(created_at: :desc) }
 
   # associations
@@ -26,14 +34,15 @@ class Variable < ApplicationRecord
   # scopes
   scope :most_request, -> { find_by(is_most_request: true) }
 
-  # callbacks
-  before_save :ensure_only_one_is_most_request
-  before_save :ensure_only_one_is_user_visit
-  before_save :ensure_only_one_is_service_accessed
-  before_save :ensure_only_one_is_ticket_tracking
-
   # validations
-  validate :only_one_report_column
+  validate :validate_mark_as
+  validate :validate_one_feedback
+  validate :validate_one_most_request
+  validate :validate_one_user_visit
+  validate :validate_one_ticket_tracking
+  validate :validate_one_service_accessed
+  validate :validate_one_location
+
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
   validates :name, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }, if: -> { name.present? }
@@ -44,10 +53,6 @@ class Variable < ApplicationRecord
 
   def to_partial_path
     "dictionaries/dictionary"
-  end
-
-  def feedback_message?
-    report_enabled
   end
 
   def ensure_value value = nil
@@ -76,40 +81,60 @@ class Variable < ApplicationRecord
   end
 
   private
+
+    def validate_mark_as
+      return if self.mark_as.blank? || mark_as_in_whitelist?
+
+      errors.add(:mark_as, I18n.t("variable.invalid_mark_as"))
+    end
+
+    def mark_as_in_whitelist?
+      whitelist = MarkAsConcern::WHITELIST_MARK_AS
+      whitelist.include?(self.mark_as)
+    end
+
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
     end
 
-    def ensure_only_one_is_most_request
-      return unless is_most_request_changed?
-      sibling.update_all(is_most_request: false)
+    def validate_one_most_request
+      return unless sibling.most_request
+
+      errors.add(:most_request, I18n.t("variable.already_taken")) if most_request?
     end
 
-    def ensure_only_one_is_user_visit
-      return unless is_user_visit_changed?
-      sibling.update_all(is_user_visit: false)
+    def validate_one_user_visit
+      return unless sibling.user_visit
+
+      errors.add(:user_visit, I18n.t("variable.already_taken")) if user_visit?
     end
 
-    def ensure_only_one_is_service_accessed
-      return unless is_service_accessed_changed?
-      sibling.update_all(is_service_accessed: false)
+    def validate_one_ticket_tracking
+      return unless sibling.ticket_tracking
+
+      errors.add(:ticket_tracking, I18n.t("variable.already_taken")) if ticket_tracking?
     end
 
-    def ensure_only_one_is_ticket_tracking
-      return unless is_ticket_tracking_changed?
-      sibling.update_all(is_ticket_tracking: false)
+    def validate_one_service_accessed
+      return unless sibling.service_accessed
+
+      errors.add(:service_accessed, I18n.t("variable.already_taken")) if service_accessed?
     end
 
-    def only_one_report_column
-      errors.add(:report_enabled, I18n.t("variable.only_one_report_col")) if report_enabled? && report_already_set?
+    def validate_one_feedback
+      return unless sibling.feedback
+
+      errors.add(:feedback, I18n.t("variable.already_taken")) if feedback?
     end
 
-    def report_already_set?
-      sibling.exists?(report_enabled: true)
+    def validate_one_location
+      return unless sibling.location
+
+      errors.add(:location, I18n.t("variable.already_taken")) if location?
     end
 
     def sibling
-      Variable.where.not(id: self)
+      Variable.unscoped.where.not(id: self)
     end
 
     def rejected_values(attributes)

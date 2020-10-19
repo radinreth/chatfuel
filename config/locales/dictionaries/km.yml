@@ -2,7 +2,10 @@ km:
   dictionaries:
     name: ឈ្មោះ
     permission: ការអនុញ្ញាត
+    mark_as: សម្គាល់ជា
+    feedback: មតិប្រតិកម្ម
     mark_as_feedback: សម្គាល់ថាជាមតិប្រតិកម្ម
+    site_location: ទីតាំង
     mark_as_site_location: សម្គាល់ជាទីតាំង
     action: សកម្មភាព
     new_dictionary: ពាក្យគន្លឹះថ្មី
@@ -20,3 +23,5 @@ km:
     created_at: កាលបរិច្ឆេទបង្កើត
     ticket_tracking: តាមដានសំបុត្រ
     mark_as_ticket_tracking: សម្គាល់ថាតាមដានសំបុត្រ
+    used_by: បានប្រើប្រាស់ដោយ %{name}
+    service_accessed: ការទទួលសេវា
