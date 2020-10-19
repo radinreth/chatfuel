@@ -38,7 +38,7 @@
 
         %h6.mt-4.permission-title= t('dictionaries.mark_as')
         .form-group
-          .my-4
+          .block-option.my-4
             = hidden_field_tag('variable[mark_as]', nil)
             = render(MarkAsBlockOptionComponent.new(name: Variable::FEEDBACK, checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
               %i.fa.fa-star-half-alt.fa-lg
