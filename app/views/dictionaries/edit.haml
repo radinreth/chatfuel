@@ -52,6 +52,10 @@
               %i.fa.fa-ticket-alt.fa-lg
               %p.status-text.m-0= t("dictionaries.ticket_tracking")
 
+            = render(MarkAsBlockOptionComponent.new(name: "gender", checked: @variable.gender?, disabled: (@gender && @gender&.id != @variable.id), title: @gender&.name)) do
+              %i.fa.fa-venus-mars.fa-lg
+              %p.status-text.m-0= t("dictionaries.gender")
+
         .actions.d-flex.justify-content-end
           = link_to t('shared.cancel'), dictionaries_path, class: 'btn btn-secondary mr-2'
           = f.submit t('shared.save'), class: "btn btn-primary float-right"
