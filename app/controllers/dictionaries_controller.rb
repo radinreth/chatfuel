@@ -1,6 +1,7 @@
 class DictionariesController < ApplicationController
   before_action :set_roles, only: [:index, :edit, :create, :update]
   before_action :set_new_variable, only: [:index, :search]
+  before_action :set_variables, only: [:edit]
 
   def index
     authorize Variable
@@ -9,6 +10,7 @@ class DictionariesController < ApplicationController
   end
 
   def edit
+    gon.feedback_variable = Variable::FEEDBACK
     @variable = Variable.find(params[:id])
     @variable.values.build
     authorize @variable
@@ -46,23 +48,29 @@ class DictionariesController < ApplicationController
 
   def set_most_request
     variable = Variable.find(variable_id)
-    variable.update(is_most_request: true)
+    variable.mark_as_most_request!
 
     head :ok
   end
 
   def set_user_visit
     variable = Variable.find(variable_id)
-    variable.update(is_user_visit: true)
+    variable.mark_as_user_visit!
 
     head :ok
   end
 
   def set_service_accessed
     variable = Variable.find(variable_id)
-    variable.update(is_service_accessed: true)
+    variable.mark_as_service_accessed!
 
     head :ok
+  end
+
+  def set_variables
+    @feedback = Variable.feedback
+    @location = Variable.location
+    @ticket_tracking = Variable.ticket_tracking
   end
 
   private
@@ -79,6 +87,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :report_enabled, :is_location, :is_ticket_tracking, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :status, :_destroy])
+      params.require(:variable).permit(:type, :name, :mark_as, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :status, :_destroy])
     end
 end

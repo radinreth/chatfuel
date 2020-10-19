@@ -1,14 +1,32 @@
 OWSO.DictionariesEdit = (() => {
   return {
-    init
+    init,
+    onClickMarkAs
   }
 
   function init() {
-    onClickMarkAsFeedback();
     onClickRemoveValuePair();
     onClickAddValuePair();
     initTooltip();
     validateTextLimit();
+    onClickMarkAs();
+  }
+
+  function onClickMarkAs() {
+    $(document.body).on("click", ".block-option--item", function(e) {
+      e.preventDefault()
+
+      let name = $(this).data("name")
+      let input = $(this).find("input")
+      let checked = input.prop("checked")
+
+      input.prop("checked", !checked)
+      $(".block-option--item").not(this).removeClass("block-option--item-active")
+      $(this).toggleClass("block-option--item-active")
+      
+      if(name == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
+      else $(".td-satisfied").addClass("invisible")
+    })
   }
 
   function validateTextLimit() {
@@ -35,30 +53,14 @@ OWSO.DictionariesEdit = (() => {
     $('form .add_values').off('click')
     $('form .add_values').on('click', function(event) {
       appendField(this);
-      handleRenderSatisfied();
       event.preventDefault();
     })
-  }
-
-  function handleRenderSatisfied() {
-    var checkbox = $('#variable_report_enabled');
-    $(".td-satisfied").toggleClass('invisible', !checkbox[0].checked);
   }
 
   function appendField(dom) {
     time = new Date().getTime();
     regexp = new RegExp($(dom).data('id'), 'g');
     $(dom).parents('tr').before($(dom).data('fields').replace(regexp, time));
-  }
-
-  function onClickMarkAsFeedback() {
-    $('#variable_report_enabled').on('change', function(e) {
-      var checkbox = $(e.target);
-      var reportLabel = !!checkbox[0].checked ? "Unmark as Feedback" : "Mark as Feedback";
-
-      checkbox.next(".report-label").text(reportLabel);
-      $(".td-satisfied").toggleClass("invisible", !checkbox[0].checked);
-    })
   }
 
   function onClickRemoveValuePair() {
