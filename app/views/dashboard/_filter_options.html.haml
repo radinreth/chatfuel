@@ -11,6 +11,14 @@
 
   %div
     %form.float-right.form.d-flex{ action: url_for }
+      .gender.d-flex.align-items-center
+        .filter-label.mr-2
+          = t("dictionaries.gender")
+        .form-group.mb-0.mr-3
+          %select.form-control.select.province__select-option
+            %option
+            %option= t("male")
+            %option= t("female")
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]
 
