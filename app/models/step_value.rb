@@ -24,6 +24,9 @@
 #  fk_rails_...  (variable_id => variables.id)
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
+
+Dir[Rails.root.join('app/factories/**/*.rb')].each { |f| require f }
+
 class StepValue < ApplicationRecord
   include TrackConcern
 
@@ -41,6 +44,7 @@ class StepValue < ApplicationRecord
   after_create :push_notification, if: -> { variable_value.feedback? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.location? }
+  after_commit :set_message_gender, on: [:create, :update], if: -> { variable_value.gender? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -110,5 +114,14 @@ class StepValue < ApplicationRecord
       return if message.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
+    end
+
+    def set_message_gender
+      return if message.nil?
+
+      factory = GenderFactory.new
+      gender = factory.for(variable_value.raw_value)
+
+      message.update(gender: gender.get)
     end
 end
