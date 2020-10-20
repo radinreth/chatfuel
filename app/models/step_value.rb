@@ -24,7 +24,6 @@
 #  fk_rails_...  (variable_id => variables.id)
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
-
 class StepValue < ApplicationRecord
   include TrackConcern
 
