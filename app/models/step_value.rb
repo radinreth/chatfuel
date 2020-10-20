@@ -25,8 +25,6 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 
-Dir[Rails.root.join('app/factories/**/*.rb')].each { |f| require f }
-
 class StepValue < ApplicationRecord
   include TrackConcern
 
