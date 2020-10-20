@@ -17,7 +17,15 @@
             .btn-delete.pointer{class: ('d-none' unless user.avatar_url.present?) }
               %i.fas.fa-trash-alt{style: 'color: #fff;'}
 
-          = f.input :role_id, as: :select, collection: @roles, selected: user.role_id, label: t('users.role')
+          .form-group
+            %label=t('users.role')
+
+            .block-option.d-flex.justify-content-between
+              - @roles.each do |role|
+                = render(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
+                  = image_tag "incomplete.svg"
+                  %p.status-text.m-0= t("roles.#{role.name}")
+
           = f.input :email, label: t('users.email')
 
           %label.switch.mt-2

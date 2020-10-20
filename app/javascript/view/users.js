@@ -6,6 +6,7 @@ OWSO.UsersIndex = (() => {
   function init() {
     onChangeAvataFile();
     onClickButtonDeleteAvatar();
+    OWSO.DictionariesEdit.onClickMarkAs();
   }
 
   function onClickButtonDeleteAvatar() {
