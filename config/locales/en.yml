@@ -41,6 +41,7 @@ en:
   male: Male
   female: female
   other: Other
+  all: All
   sidebar:
     dashboard: Dashboard
     home: Home

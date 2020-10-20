@@ -89,6 +89,7 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
+    scope = scope.where(message_id: Message.where(gender: params[:gender])) if params[:gender].present?
     scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
     scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
     scope = scope.where(message_id: Message.where(district_id: params[:district_id])) if params[:district_id].present?
