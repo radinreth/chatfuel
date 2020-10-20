@@ -117,9 +117,11 @@ class StepValue < ApplicationRecord
     def set_message_gender
       return if message.nil?
 
-      factory = GenderFactory.new
-      gender = factory.for(variable_value.raw_value)
-
-      message.update(gender: gender.get)
+      begin
+        gender = Gender.get(variable_value.raw_value)
+        message.update(gender: gender.name)
+      rescue => e
+        Rails.logger.info("#{e.message} for #{variable_value.raw_value}")
+      end
     end
 end
