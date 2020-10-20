@@ -18,6 +18,9 @@
 #
 #  index_variables_on_mark_as  (mark_as)
 #
+
+require_relative "validators/mark_as_validator"
+
 class Variable < ApplicationRecord
   FEEDBACK = 'feedback'
   include MarkAsConcern
@@ -35,17 +38,16 @@ class Variable < ApplicationRecord
   scope :most_request, -> { find_by(is_most_request: true) }
 
   # validations
-  validate :validate_mark_as
-  validate :validate_one_feedback
-  validate :validate_one_most_request
-  validate :validate_one_user_visit
-  validate :validate_one_ticket_tracking
-  validate :validate_one_service_accessed
-  validate :validate_one_location
+  validate do |variable|
+    MarkAsValidator.new(variable).validate
+  end
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
   validates :name, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }, if: -> { name.present? }
+  validates :mark_as, inclusion: { allow_blank: true,
+                                  in: MarkAsConcern::WHITELIST_MARK_AS,
+                                  message: I18n.t("variable.invalid_mark_as") }
 
   accepts_nested_attributes_for :values, allow_destroy: true, reject_if: :rejected_values
 
@@ -82,59 +84,8 @@ class Variable < ApplicationRecord
 
   private
 
-    def validate_mark_as
-      return if self.mark_as.blank? || mark_as_in_whitelist?
-
-      errors.add(:mark_as, I18n.t("variable.invalid_mark_as"))
-    end
-
-    def mark_as_in_whitelist?
-      whitelist = MarkAsConcern::WHITELIST_MARK_AS
-      whitelist.include?(self.mark_as)
-    end
-
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
-    end
-
-    def validate_one_most_request
-      return unless sibling.most_request
-
-      errors.add(:most_request, I18n.t("variable.already_taken")) if most_request?
-    end
-
-    def validate_one_user_visit
-      return unless sibling.user_visit
-
-      errors.add(:user_visit, I18n.t("variable.already_taken")) if user_visit?
-    end
-
-    def validate_one_ticket_tracking
-      return unless sibling.ticket_tracking
-
-      errors.add(:ticket_tracking, I18n.t("variable.already_taken")) if ticket_tracking?
-    end
-
-    def validate_one_service_accessed
-      return unless sibling.service_accessed
-
-      errors.add(:service_accessed, I18n.t("variable.already_taken")) if service_accessed?
-    end
-
-    def validate_one_feedback
-      return unless sibling.feedback
-
-      errors.add(:feedback, I18n.t("variable.already_taken")) if feedback?
-    end
-
-    def validate_one_location
-      return unless sibling.location
-
-      errors.add(:location, I18n.t("variable.already_taken")) if location?
-    end
-
-    def sibling
-      Variable.unscoped.where.not(id: self)
     end
 
     def rejected_values(attributes)

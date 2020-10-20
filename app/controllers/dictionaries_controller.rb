@@ -1,7 +1,7 @@
 class DictionariesController < ApplicationController
   before_action :set_roles, only: [:index, :edit, :create, :update]
   before_action :set_new_variable, only: [:index, :search]
-  before_action :set_variables, only: [:edit]
+  before_action :set_variables, only: [:index, :edit]
 
   def index
     authorize Variable
@@ -68,6 +68,7 @@ class DictionariesController < ApplicationController
   end
 
   def set_variables
+    @gender = Variable.gender
     @feedback = Variable.feedback
     @location = Variable.location
     @ticket_tracking = Variable.ticket_tracking

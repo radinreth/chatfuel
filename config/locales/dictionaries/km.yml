@@ -25,3 +25,4 @@ km:
     mark_as_ticket_tracking: សម្គាល់ថាតាមដានសំបុត្រ
     used_by: បានប្រើប្រាស់ដោយ %{name}
     service_accessed: ការទទួលសេវា
+    gender: ភេទ

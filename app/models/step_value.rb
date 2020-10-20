@@ -41,6 +41,7 @@ class StepValue < ApplicationRecord
   after_create :push_notification, if: -> { variable_value.feedback? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.location? }
+  after_commit :set_message_gender, on: [:create, :update], if: -> { variable.gender? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -87,6 +88,7 @@ class StepValue < ApplicationRecord
   end
 
   def self.filter(scope, params={})
+    scope = scope.where(message_id: Message.where(gender: params[:gender])) if params[:gender].present?
     scope = scope.where(message_id: Message.where(content_type: params[:content_type])) if params[:content_type].present?
     scope = scope.where(message_id: Message.where(province_id: params[:province_id])) if params[:province_id].present?
     scope = scope.where(message_id: Message.where(district_id: params[:district_id])) if params[:district_id].present?
@@ -110,5 +112,16 @@ class StepValue < ApplicationRecord
       return if message.nil?
 
       message.update(district_id: variable_value.raw_value[0..3])
+    end
+
+    def set_message_gender
+      return if message.nil?
+
+      begin
+        gender = Gender.get(variable_value.raw_value)
+        message.update(gender: gender.name)
+      rescue => e
+        Rails.logger.info("#{e.message} for #{variable_value.raw_value}")
+      end
     end
 end

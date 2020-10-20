@@ -4,6 +4,7 @@
 #
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
+#  gender              :string           default("")
 #  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
 #  status              :integer(4)       default("incomplete")
@@ -70,6 +71,7 @@ class Message < ApplicationRecord
 
   def self.filter(params = {})
     scope = all
+    scope = scope.where(gender: params[:gender]) if params[:gender].present?
     scope = scope.where(content_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?

@@ -70,4 +70,32 @@ RSpec.describe Variable, type: :model do
       it { expect { variable.ensure_value('null')}.to change{VariableValue.count}.by(0) }
     end
   end
+
+  describe "validation" do
+    describe "mark_as" do
+      context "when blank" do
+        let(:variable) { build(:variable, mark_as: "") }
+
+        it { expect(variable).to be_valid }
+      end
+
+      context "with whitelist" do
+        let(:variable) { build(:variable, mark_as: "feedback") }
+
+        MarkAsConcern::WHITELIST_MARK_AS.each do |mark_as|
+          it "valid" do
+            variable.mark_as = mark_as
+
+            expect(variable).to be_valid
+          end
+        end
+      end
+
+      context "without whitelist" do
+        let(:variable) { build(:variable, mark_as: "test") }
+
+        it { expect(variable).to be_invalid }
+      end
+    end
+  end
 end
