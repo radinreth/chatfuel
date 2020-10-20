@@ -21,7 +21,7 @@ en:
     add_pair: Add pair
     satisfied: Satisfied
     created_at: Created date
-    ticket_tracking: Ticket tracking
+    ticket_tracking: Tracking
     mark_as_ticket_tracking: Mark as ticket tracking
     used_by: Already used by %{name}
     service_accessed: Service accessed
