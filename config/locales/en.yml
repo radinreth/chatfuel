@@ -211,6 +211,9 @@ en:
       incomplete: Incomplete
       completed: Complete
       incorrect: Incorrect
+    validation: 
+      invalid_type: invalid type
+      status_not_uniq: status not uniq
   tickets:
     incomplete:
       content: Your ticket is incomplete

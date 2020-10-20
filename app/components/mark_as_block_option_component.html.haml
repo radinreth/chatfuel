@@ -1,3 +1,0 @@
-%label.block-option--item.text-center{ data: { name: @name, toggle: "tooltip", title: @disabled ? helpers.t("dictionaries.used_by", name: @title) : "" }, class: [helpers.toggle_class_name('block-option--item-active', @checked), helpers.toggle_class_name('block-option--item-disabled', @disabled)] }
-  = content
-  %input.d-none.mark_as{ type: "radio", value: @name, name: "variable[mark_as]", checked: @checked, disabled: @disabled }
