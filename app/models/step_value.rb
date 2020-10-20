@@ -44,7 +44,7 @@ class StepValue < ApplicationRecord
   after_create :push_notification, if: -> { variable_value.feedback? }
   after_commit :set_message_district_id,  on: [:create, :update],
                                           if: -> { variable_value.location? }
-  after_commit :set_message_gender, on: [:create, :update], if: -> { variable_value.gender? }
+  after_commit :set_message_gender, on: [:create, :update], if: -> { variable.gender? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
