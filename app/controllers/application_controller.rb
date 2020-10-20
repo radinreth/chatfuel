@@ -44,7 +44,8 @@ class ApplicationController < ActionController::Base
         district_id: params['district_code'],
         start_date: @start_date,
         end_date: @end_date,
-        platform: params[:platform]
+        platform: params[:platform],
+        gender: params[:gender]
       }.with_indifferent_access
     end
 end

@@ -1,5 +1,5 @@
 class OtherGender
   def get
-    "other"
+    GenderFactory::OTHER
   end
 end

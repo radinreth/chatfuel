@@ -1,5 +1,5 @@
 class FemaleGender
   def get
-    "female"
+    GenderFactory::FEMALE
   end
 end

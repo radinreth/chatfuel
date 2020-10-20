@@ -15,10 +15,12 @@
         .filter-label.mr-2
           = t("dictionaries.gender")
         .form-group.mb-0.mr-3
-          %select.form-control.select.province__select-option
+          %select.form-control.select.province__select-option{ name: "gender", onchange: "this.form.submit()"}
             %option
-            %option= t("male")
-            %option= t("female")
+            = render(GenderOptionComponent.new(name: "male"))
+            = render(GenderOptionComponent.new(name: "female"))
+            = render(GenderOptionComponent.new(name: "other"))
+
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]
 

@@ -1,8 +1,12 @@
 class GenderFactory
+  MALE = "male"
+  FEMALE = "female"
+  OTHER = "other"
+
   GENDER_DICTIONARY = {
-    "1" => "male", "male" => "male", "m" => "male",
-    "2" => "female", "female" => "female", "f" => "female",
-    "3" => "other", "not set" => "other"
+    "1" => MALE, "male" => MALE, "m" => MALE,
+    "2" => FEMALE, "female" => FEMALE, "f" => FEMALE,
+    "3" => OTHER, "not set" => OTHER
   }
 
   def for(raw)
