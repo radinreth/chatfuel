@@ -96,6 +96,7 @@ class DashboardQuery
   end
 
   def number_of_tracking_tickets
+    puts "==========> #{@options}"
     result = Tracking.filter(@options).group(:status).count
 
     result.transform_keys { |k| I18n.t(k.downcase.to_sym) }

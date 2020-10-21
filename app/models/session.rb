@@ -62,6 +62,7 @@ class Session < ApplicationRecord
 
   def self.filter(params = {})
     scope = all
+    scope = scope.where(gender: params[:gender]) if params[:gender].present?
     scope = scope.where(session_type: params[:content_type]) if params[:content_type].present?
     scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
     scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?

@@ -7,7 +7,6 @@ class CreateSessions < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0
       t.string :district_id
       t.string :province_id
-      t.string :gender
       t.datetime :last_interaction_at
 
       t.timestamps
