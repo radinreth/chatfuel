@@ -5,7 +5,7 @@ $color-secondary: #b7b7b7;
 .block-option {
   .block-option--item {
     width: 110px;
-    border: 2px solid $color-secondary;
+    border: 1px solid $color-secondary;
     border-radius: 4px;
     padding: 10px;
     transition: all 0.3s ease-out;
@@ -24,6 +24,7 @@ $color-secondary: #b7b7b7;
   }
 
   .block-option--item-active {
+    border-width: 3px;
     border-color: $color-primary;
     background-color: lighten($color-secondary, 20);
   }
