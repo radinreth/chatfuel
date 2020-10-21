@@ -63,7 +63,6 @@ namespace :message do
           session.status = message.status
           session.district_id = message.district_id
           session.province_id = message.province_id
-          session.gender = message.gender
           session.last_interaction_at = message.last_interaction_at
           session.created_at = message.created_at
           session.updated_at = message.updated_at
@@ -88,23 +87,25 @@ namespace :message do
 
   desc "Migrate tracking where step values belongs to ticket tracking"
   task migrate_tracking: :environment do
-    tracking_variable = Variable.find_by(is_ticket_tracking: true)
+    tracking_variable = Variable.ticket_tracking
 
-    return if tracking_variable.blank?
+    if tracking_variable.present?
 
-    ActiveRecord::Base.transaction do
-      tracking_variable.step_values.find_each do |step_value|
-        Tracking.create! do |t|
-          t.ticket_code = step_value.variable_value.raw_value
-          t.site_code = step_value.variable_value.raw_value[0...4]
-          t.status = step_value.variable_value.ticket_status
-          t.tracking_datetime = step_value.created_at
-          t.message = step_value.message
+      ActiveRecord::Base.transaction do
+        tracking_variable.step_values.find_each do |step_value|
+          tracking = Tracking.new do |t|
+            t.ticket_code = step_value.variable_value.raw_value
+            t.site_code = step_value.variable_value.raw_value[0...4]
+            t.status = step_value.variable_value.ticket_status
+            t.tracking_datetime = step_value.created_at
+            t.message = step_value.message
+            t.session = step_value.session
+          end
+
+          tracking.save
         end
-      rescue => e
-        puts "-> #{e.message}"
-        break
       end
+
     end
   end
 end

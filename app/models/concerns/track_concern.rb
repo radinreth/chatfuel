@@ -2,7 +2,7 @@ module TrackConcern
   extend ActiveSupport::Concern
 
   included do
-    after_create :create_tracking, if: -> { variable.is_ticket_tracking? }
+    after_create :create_tracking, if: -> { variable.ticket_tracking? }
   end
 
   def create_tracking
