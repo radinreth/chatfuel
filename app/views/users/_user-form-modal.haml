@@ -23,7 +23,7 @@
             .block-option.d-flex.justify-content-between
               - @roles.each do |role|
                 = render(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
-                  = image_tag "incomplete.svg"
+                  %i.fa{ class: get_role(role.name)[:icon] }
                   %p.status-text.m-0= t("roles.#{role.name}")
 
           = f.input :email, label: t('users.email')
