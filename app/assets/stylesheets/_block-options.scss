@@ -4,11 +4,12 @@ $color-secondary: #b7b7b7;
 
 .block-option {
   .block-option--item {
+    position: relative;
     width: 110px;
     border: 1px solid $color-secondary;
     border-radius: 4px;
     padding: 10px;
-    transition: all 0.3s ease-out;
+    transition: all 0.1s ease-out;
     color: darken($color-secondary, 50);
   }
 

@@ -114,6 +114,18 @@
   .permission {
     .block-option .block-option--item {
       width: 165px;
+
+      .check-sign {
+        color: #3e51b5;
+        top: 10px;
+        right: 10px;
+        position: absolute;
+        visibility: hidden; 
+      }
+
+      &.block-option--item-active .fa {
+        visibility: visible;
+      }
     }
   }
 }
