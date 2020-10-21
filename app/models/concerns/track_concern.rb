@@ -12,6 +12,7 @@ module TrackConcern
       t.status = variable_value.ticket_status
       t.tracking_datetime = created_at
       t.message = message
+      t.session = session
     end
   end
 end
