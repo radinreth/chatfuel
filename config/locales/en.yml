@@ -213,7 +213,7 @@ en:
       incorrect: Incorrect
     validation: 
       invalid_type: invalid type
-      status_not_uniq: status not uniq
+      status_not_uniq: status not unique
   tickets:
     incomplete:
       content: Your ticket is incomplete
