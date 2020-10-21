@@ -28,7 +28,6 @@ class Tracking < ApplicationRecord
   belongs_to :message
   belongs_to :session
 
-  validates :status, uniqueness: { scope: :message }
   validates :status, uniqueness: { scope: :session }
 
   def self.filter(params = {})
