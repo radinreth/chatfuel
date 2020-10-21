@@ -82,7 +82,7 @@ RSpec.describe StepValue, type: :model do
 
     it ".create_tracking" do
       expect {
-        StepValue.create! variable: variable, variable_value: variable_value, session: build(:session)
+        StepValue.create! variable: variable, variable_value: variable_value, message: build(:message), session: build(:session)
       }.to change { Tracking.count }.by 1
     end
   end
