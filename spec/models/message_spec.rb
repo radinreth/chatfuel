@@ -70,6 +70,16 @@ RSpec.describe Message do
           described_class.create_or_return("Messenger", content)
         end.to(change { Message.count })
       end
+
+      it "clones if completed" do
+        old_message = create(:message, content: content, province_id: '12', district_id: '1234')
+        old_message.completed!
+
+        new_message = described_class.create_or_return("Messenger", content)
+
+        expect(old_message.province_id).to eq(new_message.province_id)
+        expect(old_message.district_id).to eq(new_message.district_id)
+      end
     end
   end
 
