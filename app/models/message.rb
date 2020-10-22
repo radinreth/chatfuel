@@ -7,6 +7,7 @@
 #  gender              :string           default("")
 #  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
+#  repeated            :boolean          default(FALSE)
 #  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -50,6 +51,7 @@ class Message < ApplicationRecord
     create! do |m|
       m.platform_name = platform_name
       m.content = content
+      m.repeated = message&.completed?
       m.province_id = message&.province_id
       m.district_id = message&.district_id
     end

@@ -6,6 +6,7 @@
 #  content_type        :string
 #  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
+#  repeated            :boolean          default(FALSE)
 #  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
