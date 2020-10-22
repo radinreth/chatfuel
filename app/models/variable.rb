@@ -39,7 +39,7 @@ class Variable < ApplicationRecord
 
   # validations
   validate do |variable|
-    MarkAsValidator.new(variable).validate
+    Validators::MarkAsValidator.new(variable).validate
   end
 
   validate :validate_unique_raw_value
