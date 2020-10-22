@@ -8,6 +8,7 @@ OWSO.TemplatesIndex = (() => {
     attachEventToAudio()
     attachEventToImage();
     onClickDeleteImage();
+    OWSO.DictionariesEdit.onClickMarkAs()
   }
 
   function attachEventToTemplateType() {
