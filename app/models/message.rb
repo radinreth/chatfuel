@@ -45,13 +45,14 @@ class Message < ApplicationRecord
   def self.create_or_return(platform_name, content)
     message = find_by(content: content)
 
-    if !message || message&.completed?
-      message = create!(platform_name: platform_name, content: content)
-    else
-      message.touch :last_interaction_at
-    end
+    message.touch(:last_interaction_at) and return(message) if message && message.incomplete?
 
-    message
+    create! do |m|
+      m.platform_name = platform_name
+      m.content = content
+      m.province_id = message&.province_id
+      m.district_id = message&.district_id
+    end
   end
 
   def self.accessed(options = {})
