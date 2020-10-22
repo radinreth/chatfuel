@@ -16,16 +16,19 @@ OWSO.DictionariesEdit = (() => {
     $(document.body).on("click", ".block-option--item", function(e) {
       e.preventDefault()
 
-      let name = $(this).data("name")
+      let value = $(this).data("value")
       let input = $(this).find("input")
       let checked = input.prop("checked")
 
       input.prop("checked", !checked)
-      $(".block-option--item").not(this).removeClass("block-option--item-active")
+      if( $(this).find('input').attr("type") == "radio" ) {
+        $(this).siblings(".block-option--item").not(this).removeClass("block-option--item-active")
+        if(value == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
+        else $(".td-satisfied").addClass("invisible")
+      }
+
       $(this).toggleClass("block-option--item-active")
       
-      if(name == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
-      else $(".td-satisfied").addClass("invisible")
     })
   }
 

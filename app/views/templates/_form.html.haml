@@ -37,25 +37,19 @@
       = f.object.errors.full_messages_for(:audio).to_sentence
 
   .form-group
-    .d-flex.justify-content-around.my-4
-      %label.item.text-center
+    .block-option.d-flex.justify-content-between
+      = render(SelectComponent.new(value: 0, name: "template[status]")) do
         = image_tag "incomplete.svg"
-        %p.status-text.m-0
-          = t("templates.index.incomplete")
-        %input{ type: "radio", value: 0, name: "template[status]", checked: @template.incomplete? }
+        %p.status-text.m-0= t("templates.index.incomplete")
 
-      %label.item.text-center
+      = render(SelectComponent.new(value: 1, name: "template[status]")) do
         = image_tag "complete.svg"
-        %p.status-text.m-0
-          = t("templates.index.completed")
-        %input{ type: "radio", value: 1, name: "template[status]", checked: @template.completed? }
+        %p.status-text.m-0= t("templates.index.completed")
 
-      %label.item.text-center
+      = render(SelectComponent.new(value: 2, name: "template[status]")) do
         = image_tag "incorrect.svg"
-        %p.status-text.m-0
-          = t("templates.index.incorrect")
-        %input{ type: "radio", value: 2, name: "template[status]", checked: @template.incorrect? }
-
+        %p.status-text.m-0= t("templates.index.incorrect")
+      
     .fail-validation.invalid-status
       = f.object.errors.full_messages_for(:status).to_sentence
 
