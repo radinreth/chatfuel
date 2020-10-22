@@ -71,7 +71,7 @@ RSpec.describe Message do
         end.to(change { Message.count })
       end
 
-      it "clones if completed" do
+      it "clones when starts new session" do
         old_message = create(:message, content: content, province_id: '12', district_id: '1234')
         old_message.completed!
 

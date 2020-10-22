@@ -51,6 +51,7 @@ class Message < ApplicationRecord
     create! do |m|
       m.platform_name = platform_name
       m.content = content
+      m.gender = message&.gender
       m.repeated = message&.completed?
       m.province_id = message&.province_id
       m.district_id = message&.district_id
