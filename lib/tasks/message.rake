@@ -31,8 +31,8 @@ namespace :message do
     end
   end
 
-  desc "Migrate gender from previous request"
-  task migrate_gender: :environment do
+  desc "Migrate missing gender when start new session"
+  task migrate_missing_gender_on_new_session: :environment do
     ActiveRecord::Base.transaction do
       # messenger
       no_basic_info_text_messages = Message.where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
