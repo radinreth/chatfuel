@@ -10,18 +10,18 @@ class DashboardQuery
     sessions.count
   end
 
-  def user_uniq_count
-    user_uniq.length
+  def user_unique_count
+    user_unique.length
   end
 
-  def user_uniq
+  def user_unique
     sessions.select("DISTINCT ON (content_id, content_type) *").unscope(:order)
   end
 
-  def uniq_by_genders
+  def unique_by_genders
     raw_sql = <<~SQL
       SELECT gender, COUNT(gender) AS gender_count FROM (
-        #{ user_uniq.to_sql }
+        #{ user_unique.to_sql }
       ) AS inner_query
       WHERE gender <> ''
       GROUP BY gender
