@@ -39,8 +39,7 @@ namespace :message do
       # messenger
       no_basic_info_text_messages = Message.where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
       no_basic_info_text_messages.find_each do |message|
-        last_prev_message =  Message.where(content_type: "TextMessage", content_id: message.content_id, status: :completed).where("last_interaction_at < ?", message.created_at)\
-                                .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
+        last_prev_message =  message.last_completed
 
         if last_prev_message.present?
           message.province_id = last_prev_message.province_id
