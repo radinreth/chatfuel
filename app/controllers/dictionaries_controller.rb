@@ -67,6 +67,13 @@ class DictionariesController < ApplicationController
     head :ok
   end
 
+  def set_gender
+    variable = Variable.find(variable_id)
+    variable.mark_as_visualize_gender!
+
+    head :ok
+  end
+
   def set_variables
     @gender = Variable.gender
     @feedback = Variable.feedback

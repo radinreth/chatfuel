@@ -45,8 +45,27 @@ class DashboardQuery
 
   def users_visited_by_each_genders
     result = StepValue.users_visited_by_each_genders(@options)
-    result.group(:gender).count
+    result = result.group(:gender).count
+
+    result.transform_keys do |key|
+      mapping[key].mapping_value
+    end
   end
+
+  def mapping
+    v = Variable.gender
+
+    v.values.inject({}) do |r, v|
+      r[v.raw_value] = v
+      r[v.mapping_value_en] = v
+      r[v.mapping_value_km] = v
+      r
+    end
+  end
+
+  # { female: 1, male: 2, other: 3 }.transform_keys do |k| 
+  #   h[k].mapping_value
+  # end
 
   # prevent inconsistent chartjs color
   def default_chartjs_color_mapping
