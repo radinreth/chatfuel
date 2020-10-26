@@ -3,6 +3,7 @@
 # Table name: variable_values
 #
 #  id                :bigint(8)        not null, primary key
+#  criteria          :boolean          default(FALSE)
 #  hint              :string(255)      default("")
 #  mapping_value_en  :string           default("")
 #  mapping_value_km  :string           default("")

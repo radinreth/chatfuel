@@ -26,3 +26,4 @@ en:
     used_by: Already used by %{name}
     service_accessed: Service accessed
     gender: Gender
+    visualize_gender: Visualize gender
