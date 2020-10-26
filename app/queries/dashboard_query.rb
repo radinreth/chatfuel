@@ -43,6 +43,11 @@ class DashboardQuery
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
   end
 
+  def users_visited_by_each_genders
+    result = StepValue.users_visited_by_each_genders(@options)
+    result.group(:gender).count
+  end
+
   # prevent inconsistent chartjs color
   def default_chartjs_color_mapping
     return {} unless user_visit.present?

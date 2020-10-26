@@ -97,6 +97,12 @@ class StepValue < ApplicationRecord
     scope
   end
 
+  def self.users_visited_by_each_genders(params = {})
+    scope = joins(:message).where.not(messages: { gender: '' })
+    scope = scope.where(variable: Variable.service_accessed)
+    scope = filter(scope, params)
+  end
+
   private
     def self.feedback_column
       @feedback_column ||= Variable.feedback
