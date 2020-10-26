@@ -13,13 +13,21 @@
 
   .col-xl-4.col-md-6.mb-4
     .card.border-left-primary.shadow.h-100.py-2
-      .card-body
+      .card-body.pb-0
         .row.no-gutters.align-items-center
           .col.mr-2
             .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
               = t("dashboard.total_uniq_users")
-            .h4.mb-0.font-weight-bold.text-gray-800.mt-2
+            .mb-0.font-weight-bold.text-gray-800
               = @query.user_uniq_count
+
+            %ul.list-inline.m-0
+              - @query.uniq_by_genders.each do |message|
+                %li.list-inline-item
+                  %small.text-gray-800
+                    = t(message.gender)
+                    = ": "
+                    = message.gender_count
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
   
