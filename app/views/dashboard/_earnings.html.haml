@@ -22,15 +22,9 @@
               = @query.user_unique_count
 
             %ul.list-inline.m-0
-              - gender_variable = Variable.gender
-              - if gender_variable.present?
-                - @query.unique_by_genders.each do |session|
-                  - gender_variable.values.each do |gender|
-                    - if gender.plain_values.include?(session.gender)
-                      %li.list-inline-item
-                        %small.text-gray-800
-                          = "#{gender.mapping_value}: #{session.gender_count}"
-                      - break
+              - if Variable.gender.present?
+                = render partial: "unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
+
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
   
