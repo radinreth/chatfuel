@@ -109,4 +109,15 @@ RSpec.describe Message do
 
     it { expect(message.province_id).to eq('02') }
   end
+
+  describe "#last_completed" do
+    let(:text_message) { create(:text_message) }
+    let!(:message1) { create(:message, :completed, :basic_info, content: text_message) }
+    let!(:message2) { create(:message, content: text_message) }
+    let!(:message3) { create(:message, content: text_message) }
+
+    it "#last_completed" do
+      expect(message3.last_completed).to eq(message1)
+    end
+  end
 end
