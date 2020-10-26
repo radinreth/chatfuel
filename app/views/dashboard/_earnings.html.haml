@@ -19,15 +19,18 @@
             .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
               = t("dashboard.total_uniq_users")
             .mb-0.font-weight-bold.text-gray-800
-              = @query.user_uniq_count
+              = @query.user_unique_count
 
             %ul.list-inline.m-0
-              - @query.uniq_by_genders.each do |message|
-                %li.list-inline-item
-                  %small.text-gray-800
-                    = t(message.gender)
-                    = ": "
-                    = message.gender_count
+              - gender_variable = Variable.gender
+              - if gender_variable.present?
+                - @query.unique_by_genders.each do |session|
+                  - gender_variable.values.each do |gender|
+                    - if gender.plain_values.include?(session.gender)
+                      %li.list-inline-item
+                        %small.text-gray-800
+                          = "#{gender.mapping_value}: #{session.gender_count}"
+                      - break
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
   
