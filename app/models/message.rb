@@ -85,9 +85,9 @@ class Message < ApplicationRecord
   end
 
   def last_completed
-    @last_completed ||= Message.completed.where(content_type: "TextMessage", content_id: content_id)\
-                                .where("last_interaction_at < ?", created_at)\
-                                .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
+    Message.completed.where(content_type: "TextMessage", content_id: content_id)\
+                      .where("last_interaction_at < ?", created_at)\
+                      .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
   end
 
   private
