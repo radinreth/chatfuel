@@ -33,7 +33,7 @@ class VariableValue < ApplicationRecord
   validates :raw_value, presence: true
   default_scope -> { order(:mapping_value_en) }
 
-  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, raw_value, mapping_value_km, criteria") }
+  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, id, raw_value, mapping_value_km, criteria") }
   scope :exclude, -> (ids) { where.not(id: ids) }
   scope :criteria, -> { where(criteria: true) }
 

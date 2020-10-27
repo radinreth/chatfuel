@@ -21,7 +21,7 @@
                 .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
                   .card-body
                     %ul.value-list
-                      - variable.values.each do |value|
+                      - variable.values.distinct_values.each do |value|
                         %li
                           = radio_button_tag "variable_value[id]", value.id, value.criteria?
                           = value.mapping_value
