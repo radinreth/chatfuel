@@ -15,7 +15,7 @@
               .card
                 #headingOne.card-header.p-1
                   %h2.mb-0.pl-3
-                    %button.pl-0.text-decoration-none.btn.btn-link.collapse-item{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-target" => "#collapse#{variable.name}", "data-toggle" => "collapse", :type => "button" }
+                    %button.pl-0.text-decoration-none.btn.btn-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-target" => "#collapse#{variable.name}", "data-toggle" => "collapse", :type => "button" }
                       = variable.name
 
                 .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
@@ -23,9 +23,8 @@
                     %ul.value-list
                       - variable.values.each do |value|
                         %li
-                          = radio_button nil, "variable_value[id]", value.id, checked: value.send(checked_method), id: value.id
-                          %label{for: value.id}
-                            = value.mapping_value
+                          = radio_button_tag "variable_value[id]", value.id, value.criteria?
+                          = value.mapping_value
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
             = t("shared.cancel")
