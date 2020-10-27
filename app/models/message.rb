@@ -46,10 +46,10 @@ class Message < ApplicationRecord
   def self.create_or_return(platform_name, content)
     message = find_or_initialize_by(platform_name: platform_name, content: content)
 
-    message.save! if message.new_record?
-    message.poke  if message.incomplete?
-    message.clone if message.completed?
+    return message.clone if message.completed?
 
+    message.last_interaction_at = Time.now
+    message.save!
     message
   end
 
