@@ -21,9 +21,11 @@
                 .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
                   .card-body
                     %ul.value-list
-                      - variable.values.distinct_values.each do |value|
-                        = radio_button nil, "variable_value[id]", value.id, checked: value.send(checked_method)
-                        %li= value.mapping_value
+                      - variable.values.each do |value|
+                        %li
+                          = radio_button nil, "variable_value[id]", value.id, checked: value.send(checked_method), id: value.id
+                          %label{for: value.id}
+                            = value.mapping_value
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
             = t("shared.cancel")
