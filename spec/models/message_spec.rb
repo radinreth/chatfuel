@@ -62,15 +62,6 @@ RSpec.describe Message do
         end.not_to(change { Message.count })
       end
 
-      it "creates if completed" do
-        create(:message, content: content, status: :completed)
-        Message.complete_all
-
-        expect do
-          described_class.create_or_return("Messenger", content)
-        end.to(change { Message.count })
-      end
-
       it "clones when starts new session" do
         old_message = create(:message, content: content, province_id: '12', district_id: '1234')
         old_message.completed!

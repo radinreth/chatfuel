@@ -44,18 +44,25 @@ class Message < ApplicationRecord
 
   # methods
   def self.create_or_return(platform_name, content)
-    message = find_by(content: content)
+    message = find_or_initialize_by(platform_name: platform_name, content: content)
 
-    message.touch(:last_interaction_at) and return(message) if message && message.incomplete?
+    message.save! if message.new_record?
+    message.poke  if message.incomplete?
+    message.clone if message.completed?
 
-    create! do |m|
-      m.platform_name = platform_name
-      m.content = content
-      m.gender = message&.gender
-      m.repeated = message&.completed?
-      m.province_id = message&.province_id
-      m.district_id = message&.district_id
-    end
+    message
+  end
+
+  def poke
+    touch(:last_interaction_at)
+  end
+
+  def clone
+    prev = last_completed_before(Time.now)
+    return self unless prev.present?
+
+    attrs = prev.attributes.slice(*clone_attributes)
+    Message.create!(attrs.merge({ repeated: true }))
   end
 
   def self.accessed(options = {})
@@ -84,14 +91,20 @@ class Message < ApplicationRecord
     scope
   end
 
-  def last_completed
+  def last_completed(time = created_at)
     Message.completed.where(content_type: "TextMessage", content_id: content_id)\
-                      .where("last_interaction_at < ?", created_at)\
+                      .where("last_interaction_at <= ?", time)\
                       .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
   end
+
+  alias_method :last_completed_before, :last_completed
 
   private
     def set_province_id
       self.province_id = district_id[0..1]
+    end
+
+    def clone_attributes
+      %w(platform_name content_type content_id gender province_id district_id)
     end
 end
