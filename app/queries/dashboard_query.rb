@@ -53,19 +53,15 @@ class DashboardQuery
   end
 
   def mapping
-    v = Variable.gender
+    return {} if Variable.gender.nil?
 
-    v.values.inject({}) do |r, v|
-      r[v.raw_value] = v
-      r[v.mapping_value_en] = v
-      r[v.mapping_value_km] = v
-      r
+    Variable.gender.values.inject({}) do |hash, variable_value|
+      hash[variable_value.raw_value] = variable_value
+      hash[variable_value.mapping_value_en] = variable_value
+      hash[variable_value.mapping_value_km] = variable_value
+      hash
     end
   end
-
-  # { female: 1, male: 2, other: 3 }.transform_keys do |k| 
-  #   h[k].mapping_value
-  # end
 
   # prevent inconsistent chartjs color
   def default_chartjs_color_mapping
