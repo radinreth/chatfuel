@@ -70,6 +70,7 @@ class DictionariesController < ApplicationController
   def set_criteria
     variable_value_id = params["variable_value"]["id"]
     variable_value = VariableValue.find(variable_value_id)
+
     if variable_value.present?
       variable_value.update(criteria: true)
       redirect_to dashboard_path, status: :ok, notice: t("updated.success")
