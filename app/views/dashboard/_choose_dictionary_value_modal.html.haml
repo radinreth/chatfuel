@@ -18,7 +18,7 @@
                     %button.pl-0.text-decoration-none.btn.btn-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-target" => "#collapse#{variable.name}", "data-toggle" => "collapse", :type => "button" }
                       = variable.name
 
-                .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
+                .collapse{ class: toggle_class_name("show", variable.criteria?), id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
                   .card-body
                     %ul.value-list
                       - variable.values.distinct_values.each do |value|

@@ -82,6 +82,10 @@ class Variable < ApplicationRecord
     scope.count
   end
 
+  def criteria?
+    values.criteria.exists?
+  end
+
   private
 
     def validate_unique_raw_value
