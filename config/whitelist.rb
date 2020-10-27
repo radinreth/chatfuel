@@ -1,5 +1,7 @@
 class Whitelist
   def matches?(request)
+    return true if Rails.env == 'development'
+
     klass.allowed_hosts.include?(request.remote_ip)
   end
 
