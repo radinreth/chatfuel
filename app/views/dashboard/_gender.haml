@@ -4,7 +4,12 @@
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_gender")
 
-      .tools
+      .tools.d-flex.align-items-center
+        %span.mr-2.badge.badge-primary
+          = VariableValue.criteria.first.variable.name
+          &raquo;
+          = VariableValue.criteria.first.mapping_value
+
         - if @query.users_visited_by_each_genders.present?
           = link_to "#", class: "chart-dl text-dark", "data-target": "#users_visited_by_genders" do
             %i.fa.fa-download
