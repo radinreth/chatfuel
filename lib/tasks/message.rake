@@ -30,4 +30,27 @@ namespace :message do
         puts "#{step.id} #{e.message}"
     end
   end
+
+  desc "Migrate missing gender when start new session"
+  task migrate_missing_gender_on_new_session: :environment do
+    ActiveRecord::Base.record_timestamps = false
+
+    ActiveRecord::Base.transaction do
+      # messenger
+      no_basic_info_text_messages = Message.where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
+      no_basic_info_text_messages.find_each do |message|
+        last_prev_message =  message.last_completed
+
+        if last_prev_message.present?
+          message.province_id = last_prev_message.province_id
+          message.district_id = last_prev_message.district_id
+          message.gender = last_prev_message.gender
+          message.save
+        end
+      end
+    end
+
+  ensure
+    ActiveRecord::Base.record_timestamps = true
+  end
 end
