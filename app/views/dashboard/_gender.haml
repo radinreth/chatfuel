@@ -20,5 +20,5 @@
           %ul.list-unstyled
             = render partial: "dashboard/overview/users_visited_by_each_genders", collection: agg_genders.keys, as: :key
 
-        = render 'choose_dictionary_value_modal', url: set_gender_dictionaries_path, checked_method: :criteria, modal_id: 'chooseDictionary'
+        = render 'choose_dictionary_value_modal', url: set_criteria_dictionaries_path, checked_method: :criteria, modal_id: 'chooseDictionary'
         = pie_chart agg_genders, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }

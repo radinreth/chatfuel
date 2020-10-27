@@ -67,11 +67,15 @@ class DictionariesController < ApplicationController
     head :ok
   end
 
-  def set_gender
-    variable = Variable.find(variable_id)
-    variable.mark_as_visualize_gender!
-
-    head :ok
+  def set_criteria
+    variable_value_id = params["variable_value"]["id"]
+    variable_value = VariableValue.find(variable_value_id)
+    if variable_value.present?
+      variable_value.update(criteria: true)
+      redirect_to dashboard_path, status: :ok, notice: t("updated.success")
+    else
+      redirect_to dashboard_path, status: :unprocessable_entity, notice: t("updated.fail")
+    end
   end
 
   def set_variables

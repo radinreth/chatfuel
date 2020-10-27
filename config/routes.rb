@@ -25,7 +25,7 @@ Rails.application.routes.draw do
         post :set_most_request
         post :set_user_visit
         post :set_service_accessed
-        post :set_gender
+        post :set_criteria
       end
     end
 

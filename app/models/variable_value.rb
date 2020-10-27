@@ -34,10 +34,13 @@ class VariableValue < ApplicationRecord
   default_scope -> { order(:mapping_value_en) }
 
   scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, raw_value, mapping_value_km, criteria") }
+  scope :exclude, -> (ids) { where.not(id: ids) }
+  scope :criteria, -> { where(criteria: true) }
 
   # Callback
   before_destroy :ensure_destroyable!
   before_create :set_mapping_value_locale_based
+  before_save :reset_sibling_criteria, if: [:criteria_changed?, :criteria?]
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -63,6 +66,10 @@ class VariableValue < ApplicationRecord
     [raw_value, mapping_value_en, mapping_value_km].compact
   end
 
+  def unset_criteria
+    update_column(:criteria, false)
+  end
+
   private
     def ensure_destroyable!
       return if destroyable?
@@ -74,5 +81,15 @@ class VariableValue < ApplicationRecord
     def set_mapping_value_locale_based
       self.mapping_value_en = self.raw_value if self.mapping_value_en.blank?
       self.mapping_value_km = self.raw_value if self.mapping_value_km.blank?
+    end
+
+    def reset_sibling_criteria
+      return if !sibling.criteria.exists?
+
+      sibling.criteria.each &:unset_criteria
+    end
+
+    def sibling
+      VariableValue.exclude(self.id)
     end
 end
