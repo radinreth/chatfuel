@@ -1,4 +1,4 @@
-class MarkAsValidator
+class Validators::MarkAsValidator
   def initialize(variable)
     @variable = variable
   end

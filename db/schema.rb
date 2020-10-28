@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_091357) do
+ActiveRecord::Schema.define(version: 2020_10_22_084252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_091357) do
     t.string "province_id"
     t.string "district_id", limit: 8
     t.string "gender", default: ""
+    t.boolean "repeated", default: false
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
   end
 
