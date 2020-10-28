@@ -68,11 +68,11 @@ class DictionariesController < ApplicationController
   end
 
   def set_criteria
-    variable_value_id = params["variable_value"]["id"]
     variable_value = VariableValue.find(variable_value_id)
 
     if variable_value.present?
       variable_value.update(criteria: true)
+
       redirect_to dashboard_path, status: :ok, notice: t("updated.success")
     else
       redirect_to dashboard_path, status: :unprocessable_entity, notice: t("updated.fail")
@@ -87,6 +87,10 @@ class DictionariesController < ApplicationController
   end
 
   private
+    def variable_value_id
+      params.require(:variable_value).permit(:id)[:id]
+    end
+
     def variable_id
       params.require(:variable).permit(:id)[:id]
     end

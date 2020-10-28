@@ -12,7 +12,7 @@ module MarkAsConcern
 
   WHITELIST_MARK_AS_WITHOUT_FEEDBACK.each do |item|
     define_method "#{item}?".to_sym do self.mark_as == item end
-    define_method "mark_as_#{item}!".to_sym do self.mark_as = item end
+    define_method "mark_as_#{item}!".to_sym do update(mark_as: item) end
   end
 
   module ClassMethods

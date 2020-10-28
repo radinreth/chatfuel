@@ -47,14 +47,14 @@ class DashboardQuery
     result = StepValue.users_visited_by_each_genders(@options)
     result = result.group(:gender).count
 
-    result.transform_keys do |key|
-      mapping[key].mapping_value
+    return {} if Variable.gender.nil?
+
+    result.transform_keys do |gender|
+      mapping_variable_value[gender].mapping_value
     end
   end
 
-  def mapping
-    return {} if Variable.gender.nil?
-
+  def mapping_variable_value
     Variable.gender.values.inject({}) do |hash, variable_value|
       hash[variable_value.raw_value] = variable_value
       hash[variable_value.mapping_value_en] = variable_value
