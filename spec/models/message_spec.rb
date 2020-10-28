@@ -6,6 +6,7 @@
 #  content_type        :string
 #  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
 #  platform_name       :string           default("")
+#  repeated            :boolean          default(FALSE)
 #  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -61,13 +62,14 @@ RSpec.describe Message do
         end.not_to(change { Message.count })
       end
 
-      it "creates if completed" do
-        create(:message, content: content, status: :completed)
-        Message.complete_all
+      it "clones when starts new session" do
+        old_message = create(:message, content: content, province_id: '12', district_id: '1234')
+        old_message.completed!
 
-        expect do
-          described_class.create_or_return("Messenger", content)
-        end.to(change { Message.count })
+        new_message = described_class.create_or_return("Messenger", content)
+
+        expect(old_message.province_id).to eq(new_message.province_id)
+        expect(old_message.district_id).to eq(new_message.district_id)
       end
     end
   end
@@ -97,5 +99,16 @@ RSpec.describe Message do
     }
 
     it { expect(message.province_id).to eq('02') }
+  end
+
+  describe "#last_completed" do
+    let(:text_message) { create(:text_message) }
+    let!(:message1) { create(:message, :completed, :basic_info, content: text_message) }
+    let!(:message2) { create(:message, content: text_message) }
+    let!(:message3) { create(:message, content: text_message) }
+
+    it "#last_completed" do
+      expect(message3.last_completed).to eq(message1)
+    end
   end
 end

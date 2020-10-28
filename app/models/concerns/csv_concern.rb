@@ -8,6 +8,7 @@ module CsvConcern
 
     row << session_id
     row << created_at
+    row << repeated
     row << field_values(variables)
 
     row
@@ -43,7 +44,7 @@ module CsvConcern
     private
 
     def csv_header(variables)
-      ['session_id', 'created_at'] + variables.pluck(:name)
+      ['session_id', 'created_at', 'repeated'] + variables.pluck(:name)
     end
   end
 end
