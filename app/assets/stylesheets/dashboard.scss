@@ -163,4 +163,21 @@
   .word-wrap-normal {
     word-wrap: normal;
   }
+
+  .criteria-breadcrumb {
+    position: absolute;
+    bottom: 0
+  }
+
+  .fa-male {
+    @extend .fa-mars;
+  }
+
+  .fa-female {
+    @extend .fa-venus;
+  }
+
+  .fa-other {
+    @extend .fa-genderless;
+  }
 }

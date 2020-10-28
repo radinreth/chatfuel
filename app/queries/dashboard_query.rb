@@ -49,8 +49,9 @@ class DashboardQuery
 
     return {} if Variable.gender.nil?
 
-    result.transform_keys do |gender|
-      mapping_variable_value[gender].mapping_value
+    result.each_with_object({}) do |(raw_gender, count), gender|
+      mapping_gender = mapping_variable_value[raw_gender].mapping_value
+      gender[raw_gender] = [mapping_gender, count]
     end
   end
 
