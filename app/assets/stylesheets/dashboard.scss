@@ -170,14 +170,14 @@
   }
 
   .fa-male {
-    @extend .fa-mars;
+    @extend .fa-mars !optional;
   }
 
   .fa-female {
-    @extend .fa-venus;
+    @extend .fa-venus !optional;
   }
 
   .fa-other {
-    @extend .fa-genderless;
+    @extend .fa-genderless !optional;
   }
 }
