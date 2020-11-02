@@ -23,5 +23,8 @@
           %ul.list-unstyled
             = render partial: "dashboard/overview/users_visited_by_each_genders", collection: agg_genders, as: :gender
 
-        = render 'choose_dictionary_value_modal', url: set_criteria_dictionaries_path, modal_id: 'chooseDictionary'
+        = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseDictionary')) do |component|
+          - component.with(:body) do
+            = render partial: 'variable_with_criteria', collection: @variables, as: :variable
+
         = pie_chart agg_genders.values, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }
