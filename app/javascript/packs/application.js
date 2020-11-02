@@ -12,7 +12,7 @@ require("chart.js")
 require("daterangepicker")
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
 require("toastr")
-// Tagify = require("@yaireo/tagify")
+require("select2")
 
 require('application/pumi')
 
