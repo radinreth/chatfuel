@@ -7,8 +7,8 @@
   .collapse{ class: toggle_class_name("show", variable.criteria?), id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
     .card-body
       %ul.list-unstyled.value-list
-        - variable.values.reorder(:raw_value).each do |value|
+        - variable.values.distinct_values.each do |value|
           %li
-            = radio_button_tag "variable_value[id]", value.id, value.criteria?, class: "align-baseline mr-2"
+            = radio_button_tag "variable_value[id]", value.id, value.kind_of_criteria?, class: "align-baseline mr-2"
             %label{ for: "variable_value_id_#{value.id}" }
-              = "#{value.raw_value} (#{value.mapping_value})"
+              = value.mapping_value
