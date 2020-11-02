@@ -17,14 +17,14 @@
       .modal-body
         .form-group
           %label= t('dashboard.province')
-          %input{type: 'hidden', name: :province_code, value: params[:province_code]}
+          -# %input{type: 'hidden', name: :province_code, value: params[:province_code]}
           %select.form-control.select#province{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load" => "true", "data-pumi-select-target" => "district", name: :province_code, 'data-pumi-select-has-hidden-value' => true}
             %option{value: ""}= t('dashboard.all_province')
 
         .form-group
           %label= t('dashboard.district')
-          %input#district-hidden{type: 'hidden', name: :district_code, value: params[:district_code]}
-          %select.form-control.select{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code', 'data-pumi-select-has-hidden-value' => true}
+          -# %input#district-hidden{type: 'hidden', name: :district_code, value: params[:district_code]}
+          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => label_method, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
             %option{value: ""}= t('dashboard.all_district')
 
       .modal-footer
