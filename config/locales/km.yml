@@ -152,6 +152,7 @@ km:
     delivered: Delivered
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
+    choose_dictionary_name_to_agg_gender: ជ្រើសរើសពាក្យគន្លឹះដើម្បីចំណាត់ក្រុមតាមភេទ
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
     district: ស្រុក
     all_province: គ្រប់ខេត្ត
