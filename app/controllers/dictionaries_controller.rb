@@ -68,7 +68,7 @@ class DictionariesController < ApplicationController
   end
 
   def set_criteria
-    variable_value = VariableValue.find(variable_value_id)
+    variable_value = VariableValue.find(params[:variable_value][:id])
 
     if variable_value.present?
       variable_value.update(criteria: true)
@@ -87,10 +87,6 @@ class DictionariesController < ApplicationController
   end
 
   private
-    def variable_value_id
-      params.require(:variable_value).permit(:id)[:id]
-    end
-
     def variable_id
       params.require(:variable).permit(:id)[:id]
     end
