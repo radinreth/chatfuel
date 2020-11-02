@@ -3,8 +3,8 @@
 # Table name: variable_values
 #
 #  id                :bigint(8)        not null, primary key
-#  criteria          :boolean          default(FALSE)
 #  hint              :string(255)      default("")
+#  is_criteria       :boolean          default(FALSE)
 #  mapping_value_en  :string           default("")
 #  mapping_value_km  :string           default("")
 #  raw_value         :string           not null
@@ -35,12 +35,15 @@ class VariableValue < ApplicationRecord
 
   scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, id, raw_value, mapping_value_km") }
   scope :exclude, -> (ids) { where.not(id: ids) }
-  scope :criteria, -> { where(criteria: true) }
+
+  def self.criteria
+    find_by(is_criteria: true)
+  end
 
   # Callback
   before_destroy :ensure_destroyable!
   before_create :set_mapping_value_locale_based
-  before_save :reset_sibling_criteria, if: [:criteria_changed?, :criteria?]
+  before_save :reset_sibling_criteria, if: [:is_criteria_changed?, :is_criteria?]
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -67,11 +70,11 @@ class VariableValue < ApplicationRecord
   end
 
   def unset_criteria
-    update_column(:criteria, false)
+    update_column(:is_criteria, false)
   end
 
   def kind_of_criteria?
-    criteria_value = VariableValue.criteria.first
+    criteria_value = VariableValue.criteria
     return false if criteria_value.nil?
 
     mapping_value == criteria_value.mapping_value
@@ -91,9 +94,9 @@ class VariableValue < ApplicationRecord
     end
 
     def reset_sibling_criteria
-      return if !sibling.criteria.exists?
+      return if !sibling.criteria.present?
 
-      sibling.criteria.each &:unset_criteria
+      sibling.criteria.unset_criteria
     end
 
     def sibling
