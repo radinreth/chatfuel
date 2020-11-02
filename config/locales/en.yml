@@ -151,6 +151,7 @@ en:
     delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name
+    choose_dictionary_name_to_agg_gender: Choose dictionary name for aggregate gender
     type_search: Type your search...
     district: District
     all_province: All
