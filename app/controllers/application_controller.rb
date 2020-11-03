@@ -41,11 +41,15 @@ class ApplicationController < ActionController::Base
     def filter_options
       {
         province_id: params['province_code'],
-        district_id: params['district_code'],
+        district_id: compact_district_codes,
         start_date: @start_date,
         end_date: @end_date,
         platform: params[:platform],
         gender: params[:gender]
       }.with_indifferent_access
+    end
+
+    def compact_district_codes
+      Array.wrap(params['district_code']).compact_blank
     end
 end
