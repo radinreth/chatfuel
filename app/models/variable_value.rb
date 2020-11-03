@@ -58,6 +58,10 @@ class VariableValue < ApplicationRecord
     send("mapping_value_#{I18n.locale}".to_sym)
   end
 
+  def plain_values
+    [raw_value, mapping_value_en, mapping_value_km].compact
+  end
+
   private
     def ensure_destroyable!
       return if destroyable?
