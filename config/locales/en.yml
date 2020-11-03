@@ -44,7 +44,7 @@ en:
   all: All
   location: "%{district} in %{province}"
   location_no_district: "%{province}"
-  district_count: "%{count} district"
+  district_count: "%{count} districts"
   sidebar:
     dashboard: Dashboard
     home: Home

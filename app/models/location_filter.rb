@@ -32,6 +32,3 @@ class LocationFilter
       @district.name
     end
 end
-
-# location = Location.new province, district
-# location.name

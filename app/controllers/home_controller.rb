@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_action :default_start_date
   before_action :set_daterange
+  before_action :set_location_filter
 
   def index
     authorize Message
