@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :default_start_date
   before_action :set_daterange
+  before_action :set_location_filter
 
   def show
     @query = DashboardQuery.new(filter_options)
