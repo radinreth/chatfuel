@@ -1,7 +1,3 @@
--# - province =  if @query && @query.options['province_id'].present?
--# - districts = Filters::DistrictFilter.new(@query.options['district_id']) if @query && @query.options['district_id'].present?
--# - location = LocationFilter.new(province, districts)
-
 .filter-label.mr-2=t("dashboard.location")
 .province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }
   = @location_filter.name
