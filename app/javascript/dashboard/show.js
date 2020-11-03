@@ -70,9 +70,7 @@ OWSO.DashboardShow = (() => {
 
   function onChangeProvince() {
     $(document).on("change", "#province", function(e) {
-      if(!$('#province').val()) {
-        $('#district-hidden').val('');
-      }
+      $('#district-hidden').val('');
     })
   }
 
