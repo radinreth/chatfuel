@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /en|km/ do
-    root "welcome#index"
+    root "welcomes#index"
     get :dashboard, to: "dashboard#show"
     get :home, to: "home#index"
     get "welcomes/q/access-info", to: "welcomes#access_info"
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :tickets, only: [:index]
     resources :templates
     resources :quotas, only: [:index]
+    resource  :welcome, only: [:index, :show]
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
         post :set_most_request
