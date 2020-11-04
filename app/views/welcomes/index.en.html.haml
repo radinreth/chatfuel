@@ -42,7 +42,7 @@
   .col-xs-12
     %h2 our piloting area
     = simple_form_for :q, url: welcome_path, method: :get, html: { class: "form-inline" } do |f|
-      = f.input :province
-      = f.input :district
+      = f.input :province, as: :select, collection: [], input_html: { data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
+      = f.input :district, as: :select, collection: [], input_html: { data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
       = f.input :time_period
       = f.submit "Search", class: "btn btn-primary"
