@@ -1,0 +1,20 @@
+!!!
+%html{lang: :en}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title Public Dashboard - OW4C | InSTEDD iLab Southeast Asia
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body{ id: css_class_name }
+    #wrapper.d-flex.h-100
+      = render "shared/sb-admin/public_sidebar"
+
+      #content-wrapper.d-flex.flex-column
+        #content
+          = render "shared/sb-admin/public_topbar"
+          .container-fluid
+            = render "shared/notify_message"
+            = yield
