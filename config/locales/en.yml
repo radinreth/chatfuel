@@ -63,6 +63,10 @@ en:
     signin: Signin
     confirm_logout: Are you sure you want to logout?
     tickets: Tickets
+    summary: Summary
+    information_access: Information Access
+    citizen_feedback: Citizen Feedback
+    about_us: About Us
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
   created:
