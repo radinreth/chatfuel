@@ -23,7 +23,6 @@
   }
 
   .cog {
-    font-size: 23px;
     color: #333;
   }
 
@@ -155,10 +154,6 @@
     i {
       color: #333;
     }
-
-    .fa-download {
-      vertical-align: text-top;
-    }
   }
   
   div.tooltip-inner {
@@ -167,5 +162,22 @@
 
   .word-wrap-normal {
     word-wrap: normal;
+  }
+
+  .criteria-breadcrumb {
+    position: absolute;
+    bottom: 0
+  }
+
+  .fa-male {
+    @extend .fa-mars !optional;
+  }
+
+  .fa-female {
+    @extend .fa-venus !optional;
+  }
+
+  .fa-other {
+    @extend .fa-genderless !optional;
   }
 }

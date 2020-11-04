@@ -43,6 +43,27 @@ class DashboardQuery
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
   end
 
+  def users_visited_by_each_genders
+    result = StepValue.users_visited_by_each_genders(@options)
+    result = result.group(:gender).count
+
+    return {} if Variable.gender.nil?
+
+    result.each_with_object({}) do |(raw_gender, count), gender|
+      mapping_gender = mapping_variable_value[raw_gender].mapping_value
+      gender[raw_gender] = [mapping_gender, count]
+    end
+  end
+
+  def mapping_variable_value
+    Variable.gender.values.inject({}) do |hash, variable_value|
+      hash[variable_value.raw_value] = variable_value
+      hash[variable_value.mapping_value_en] = variable_value
+      hash[variable_value.mapping_value_km] = variable_value
+      hash
+    end
+  end
+
   # prevent inconsistent chartjs color
   def default_chartjs_color_mapping
     return {} unless user_visit.present?

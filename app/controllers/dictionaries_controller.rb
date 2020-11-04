@@ -67,6 +67,18 @@ class DictionariesController < ApplicationController
     head :ok
   end
 
+  def set_criteria
+    variable_value = VariableValue.find(params[:variable_value][:id])
+
+    if variable_value.present?
+      variable_value.update(is_criteria: true)
+
+      redirect_to dashboard_path, status: :ok, notice: t("updated.success")
+    else
+      redirect_to dashboard_path, status: :unprocessable_entity, notice: t("updated.fail")
+    end
+  end
+
   def set_variables
     @gender = Variable.gender
     @feedback = Variable.feedback
