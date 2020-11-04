@@ -3,6 +3,8 @@ class DashboardController < ApplicationController
   before_action :set_daterange
 
   def show
+    @criteria = VariableValue.criteria
+    @variables = Variable.includes(:values).all
     @query = DashboardQuery.new(filter_options)
   end
 

@@ -4,6 +4,7 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  hint              :string(255)      default("")
+#  is_criteria       :boolean          default(FALSE)
 #  mapping_value_en  :string           default("")
 #  mapping_value_km  :string           default("")
 #  raw_value         :string           not null
@@ -32,11 +33,17 @@ class VariableValue < ApplicationRecord
   validates :raw_value, presence: true
   default_scope -> { order(:mapping_value_en) }
 
-  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, raw_value, mapping_value_km") }
+  scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, id, raw_value, mapping_value_km") }
+  scope :exclude, -> (ids) { where.not(id: ids) }
+
+  def self.criteria
+    find_by(is_criteria: true)
+  end
 
   # Callback
   before_destroy :ensure_destroyable!
   before_create :set_mapping_value_locale_based
+  before_save :reset_sibling_criteria, if: [:is_criteria_changed?, :is_criteria?]
 
   def destroyable?
     step_values_count.zero? || raw_value.null_value?
@@ -62,6 +69,17 @@ class VariableValue < ApplicationRecord
     [raw_value, mapping_value_en, mapping_value_km].compact
   end
 
+  def unset_criteria
+    update_column(:is_criteria, false)
+  end
+
+  def kind_of_criteria?
+    criteria_value = VariableValue.criteria
+    return false if criteria_value.nil?
+
+    mapping_value == criteria_value.mapping_value
+  end
+
   private
     def ensure_destroyable!
       return if destroyable?
@@ -73,5 +91,15 @@ class VariableValue < ApplicationRecord
     def set_mapping_value_locale_based
       self.mapping_value_en = self.raw_value if self.mapping_value_en.blank?
       self.mapping_value_km = self.raw_value if self.mapping_value_km.blank?
+    end
+
+    def reset_sibling_criteria
+      return if !sibling.criteria.present?
+
+      sibling.criteria.unset_criteria
+    end
+
+    def sibling
+      VariableValue.exclude(self.id)
     end
 end
