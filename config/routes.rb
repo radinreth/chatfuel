@@ -24,9 +24,9 @@ Rails.application.routes.draw do
 
     # public static website
     get 'summary/index', as: :summary
-    get 'information_access/index'
-    get 'citizen_feedback/index'
-    get 'about_us/index'
+    get 'information_access/index', as: :information_access
+    get 'citizen_feedback/index', as: :citizen_feedback
+    get 'about_us/index', as: :about_us
 
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
