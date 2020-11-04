@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /en|km/ do
-    root "welcomes#index"
+    root "welcome#index"
     get :dashboard, to: "dashboard#show"
     get :home, to: "home#index"
     get "welcomes/q/access-info", to: "welcomes#access_info"
