@@ -41,7 +41,7 @@
 .row
   .col-xs-12
     %h2 our piloting area
-    = simple_form_for :q, html: { class: "form-inline" } do |f|
+    = simple_form_for :q, url: welcome_path, method: :get, html: { class: "form-inline" } do |f|
       = f.input :province
       = f.input :district
       = f.input :time_period
