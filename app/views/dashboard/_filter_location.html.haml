@@ -1,6 +1,7 @@
 .filter-label.mr-2=t("dashboard.location")
 .province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }
-  = @location_filter.name
+  %span.d-block{ data: { toggle: "tooltip", title: @location_filter.district_names } }
+    = @location_filter.name
 
 #locationModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
