@@ -19,6 +19,8 @@ class LocationFilter
     "name_#{I18n.locale}".to_sym
   end
 
+  delegate :names, to: :@district, prefix: :district, allow_nil: true
+
   private
     def province_name
       raise NoProvinceError if @province.nil?
