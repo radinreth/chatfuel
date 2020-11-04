@@ -93,3 +93,9 @@ body {
   font-size: 0.8em;
   vertical-align: super;
 }
+
+.break-word {
+  display: inline-block;
+  max-width: 100px;
+  vertical-align: middle;
+}
