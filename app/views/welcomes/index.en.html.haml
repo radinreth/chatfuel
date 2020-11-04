@@ -1,0 +1,48 @@
+.row
+  .col-xs-12
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Nam vulputate pulvinar semper. Nullam mattis scelerisque lorem, 
+      eget tincidunt dui vestibulum ac. Donec congue viverra massa, quis 
+      iaculis erat vulputate id. Maecenas feugiat justo quis blandit mattis. 
+      Curabitur semper neque sit amet turpis aliquam, in molestie tortor congue. 
+      Nulla viverra purus a consectetur feugiat. Sed commodo ultrices dui ut blandit. 
+      Nulla vel diam et libero aliquam fringilla. Vestibulum ante est, egestas at purus sed, 
+      molestie dapibus purus. Morbi interdum eleifend diam, vel suscipit neque porta vel. 
+      Nullam ut nisi id dui vestibulum maximus non in neque. Aliquam sagittis tincidunt arcu 
+      at dignissim. Proin varius ut massa vitae auctor.
+
+.row
+  .col-xs-12
+    %p
+      Aliquam erat volutpat. In vehicula mi eget ante semper luctus. 
+      Aenean et eros quis felis finibus hendrerit ut sit amet purus. 
+      In hendrerit odio non nulla gravida luctus. Sed et elit non dui semper tempor at ut nunc. 
+      Etiam ex massa, tempus ac ligula porta, dapibus auctor felis. Nulla luctus maximus nisi nec 
+      rhoncus.
+
+.row
+  .col-xs-12
+    %p
+      Vivamus dui eros, bibendum vel nibh feugiat, sollicitudin dignissim elit. 
+      Vivamus eu faucibus mauris. Nam vestibulum finibus risus, nec efficitur ex porta non. 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Cras volutpat ullamcorper mi at porttitor. 
+      Donec eget felis vitae elit blandit ullamcorper at in purus. 
+      Vestibulum justo dolor, elementum egestas tempus eget, mattis eu leo. 
+      Proin maximus, nunc non tempus lobortis, nunc justo commodo eros, vitae maximus nibh 
+      odio vitae lorem. Nam feugiat lacinia dolor, in elementum orci aliquam a. 
+      Quisque a volutpat lacus. Vivamus tortor purus, vulputate ut massa at, 
+      bibendum lobortis turpis. Curabitur aliquet mauris sed ligula elementum faucibus. 
+      Sed volutpat orci blandit, ullamcorper odio eu, blandit lacus. Cras rutrum turpis vel 
+      velit posuere luctus. Donec tincidunt diam vitae quam luctus sodales. Vivamus arcu leo, 
+      gravida hendrerit lacinia malesuada, mattis id neque.
+
+.row
+  .col-xs-12
+    %h2 our piloting area
+    = simple_form_for :q, url: welcome_path, method: :get, html: { class: "form-inline" } do |f|
+      = f.input :province
+      = f.input :district
+      = f.input :time_period
+      = f.submit "Search", class: "btn btn-primary"
