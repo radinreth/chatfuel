@@ -22,7 +22,7 @@
   .col-12
     %h2 Our piloting areas:
 
-    = simple_form_for :q, url: welcome_path, method: :get do |f|
+    = simple_form_for :q, url: summary_path, method: :get do |f|
       .form-row
         = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
         = f.input :district, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
