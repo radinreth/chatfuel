@@ -1,0 +1,51 @@
+%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+  %button#sidebarToggleTop.btn.btn-link.d-md-none.rounded-circle.mr-3
+    %i.fa.fa-bars
+  %ul.navbar-nav.ml-auto
+    %li.nav-item.dropdown.no-arrow.mx-1
+      %a#messagesDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        - language = { en: "english.png", km: "khmer.png" }
+        = image_tag language[I18n.locale], alt: "locale", size: "24x24", class: "mr-2"
+        %span= t("language.#{I18n.locale}")
+        %i.fas.fa-angle-down.fa-fw
+
+      .dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
+        = link_to url_for(request.query_parameters.merge(locale: 'km')), class: 'switch-language dropdown-item d-flex align-items-center' do
+          .dropdown-list-image.mr-3
+            = image_tag "khmer.png", alt: "locale", size: "24x24", class: "mr-2"
+          .font-weight-bold
+            .text-truncate= t('language.km')
+
+        = link_to url_for(request.query_parameters.merge(locale: 'en')), class: 'switch-language dropdown-item d-flex align-items-center' do
+          .dropdown-list-image.mr-3
+            = image_tag "english.png", alt: "locale", size: "24x24", class: "mr-2"
+          .font-weight-bold
+            .text-truncate= t('language.en')
+
+    .topbar-divider.d-none.d-sm-block
+
+    %li.nav-item.dropdown.no-arrow
+      %a#userDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        %span.mr-2.d-none.d-lg-inline.text-gray-600.small
+          Guest
+
+        - avatar = 'default_profile.png'
+        = image_tag avatar, alt: 'profile', class: 'img-profile img-thumbnail rounded-circle'
+
+      .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "userDropdown"}
+        %a.dropdown-item{"data-target" => "#logoutModal", "data-toggle" => "modal", :href => "#"}
+          %i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
+          = t("sidebar.logout")
+
+      #logoutModal.modal.fade{"aria-labelledby" => "exampleModalLabel", "aria-modal" => "true", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-dialog-centered{:role => "document"}
+          .modal-content
+            .modal-header
+              %h5#exampleModalLabel.modal-title= t("sidebar.logout")
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+            .modal-body= t("sidebar.confirm_logout")
+            .modal-footer
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("shared.cancel")
+              = link_to t("sidebar.logout"), destroy_user_session_path, method: :delete, class: "btn btn-primary"
+
