@@ -6,22 +6,22 @@
   %hr.sidebar-divider.my-0
   %ul.list-unstyled.list-items
     %li.nav-item{ class: css_active_class('summary') }
-      = link_to dashboard_path, class: "nav-link" do
+      = link_to summary_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
         %span= t('sidebar.summary')
 
-    %li.nav-item{ class: css_active_class('access_info') }
-      = link_to dashboard_path, class: "nav-link" do
+    %li.nav-item{ class: css_active_class('information_access') }
+      = link_to information_access_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
         %span.d-inline-block.break-word= t('sidebar.information_access')
 
     %li.nav-item{ class: css_active_class('citizen_feedback') }
-      = link_to dashboard_path, class: "nav-link" do
+      = link_to citizen_feedback_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
         %span.d-inline-block.break-word= t('sidebar.citizen_feedback')
 
     %li.nav-item{ class: css_active_class('about_us') }
-      = link_to dashboard_path, class: "nav-link" do
+      = link_to about_us_path, class: "nav-link" do
         %i.fas.fa-fw.fa-tachometer-alt
         %span= t('sidebar.about_us')
 
