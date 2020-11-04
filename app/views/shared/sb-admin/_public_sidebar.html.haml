@@ -1,0 +1,32 @@
+#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+  = link_to root_path, class: "sidebar-brand d-flex align-items-center justify-content-center" do
+    .sidebar-brand-text1.mx-3
+      OW4C
+
+  %hr.sidebar-divider.my-0
+  %ul.list-unstyled.list-items
+    %li.nav-item{ class: css_active_class('summary') }
+      = link_to dashboard_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-tachometer-alt
+        %span= t('sidebar.summary')
+
+    %li.nav-item{ class: css_active_class('access_info') }
+      = link_to dashboard_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-tachometer-alt
+        %span.d-inline-block.break-word= t('sidebar.information_access')
+
+    %li.nav-item{ class: css_active_class('citizen_feedback') }
+      = link_to dashboard_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-tachometer-alt
+        %span.d-inline-block.break-word= t('sidebar.citizen_feedback')
+
+    %li.nav-item{ class: css_active_class('about_us') }
+      = link_to dashboard_path, class: "nav-link" do
+        %i.fas.fa-fw.fa-tachometer-alt
+        %span= t('sidebar.about_us')
+
+  .text-center.d-none.d-md-inline.mb-auto
+    %button#sidebarToggle.rounded-circle.border-0
+
+  .sidebar-footer
+    = t("app_version", version: ENV['APP_VERSION'])
