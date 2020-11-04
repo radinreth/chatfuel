@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
     resource  :welcome, only: [:index, :show]
+
+    # public static website
+    get 'summary/index', as: :summary
+    get 'information_access/index'
+    get 'citizen_feedback/index'
+    get 'about_us/index'
+
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
         post :set_most_request
