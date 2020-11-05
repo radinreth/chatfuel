@@ -1,17 +1,5 @@
-.container
+.container{ role: "article" }
   .row
-    .col-12
-      %p
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer velit turpis, fringilla vel pellentesque at, dapibus nec ex. Phasellus sit amet purus in quam finibus vulputate. In eu efficitur arcu. Nam efficitur sapien quis efficitur convallis. Praesent sed dolor bibendum, tempus mauris sed, viverra nisl. Curabitur vel ultricies magna, et dictum diam. Vivamus elementum, mi ut iaculis ultrices, ex eros molestie magna, id blandit leo justo ut enim. Aliquam condimentum, nunc sit amet dignissim elementum, lacus est ornare ligula, sit amet consequat arcu felis sit amet ligula. Mauris aliquam orci et turpis luctus condimentum.
-
-        Nunc vitae eleifend justo. Pellentesque quis purus at arcu elementum sagittis id vitae justo. Donec vehicula arcu dui, sed mollis neque placerat a. Pellentesque eget urna consequat, aliquam quam pulvinar, condimentum urna. Vestibulum eu diam at arcu pellentesque aliquet et at velit. Proin et magna rutrum, dapibus libero eget, tempus diam. Etiam commodo mauris turpis, et dictum odio rutrum in. Ut ac leo sit amet mauris tempor placerat at quis quam. Phasellus ut dictum sapien. Etiam facilisis leo eros, sed pellentesque risus aliquam eget. Nulla facilisi. Nulla fermentum lacinia ex quis placerat. Cras volutpat pretium libero, quis sagittis urna vulputate sed. Vestibulum porta ligula augue, sit amet maximus lacus pellentesque laoreet.
-
-        Aenean sit amet elit in lectus pellentesque feugiat non eget erat. Maecenas interdum fermentum ultrices. Vestibulum dui enim, ornare sit amet lacinia ut, elementum ac nibh. Donec in dictum sem. Mauris et arcu non tellus mattis sollicitudin vitae ut ipsum. Nunc ac urna quis enim pharetra dignissim. Sed aliquam convallis mauris. Nulla fringilla tempor tellus, nec tempor mauris vestibulum in. Ut non nisl quis massa tempor egestas id id massa. Donec interdum tristique nibh ut porttitor. Praesent tellus justo, fringilla malesuada nibh non, auctor mattis nisl. Morbi a ultricies dolor, eu mollis augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-        Integer a ipsum in neque accumsan vehicula ac non enim. Ut vel lacus vel ipsum lacinia pulvinar. Duis justo nisi, sollicitudin nec rutrum et, vestibulum et turpis. Proin at bibendum nisl. Integer vel mauris molestie, pretium elit id, eleifend nunc. Donec in congue tortor. Morbi eget ante interdum, volutpat felis in, ullamcorper sem. Pellentesque porttitor fermentum augue sit amet finibus. Cras sed risus id turpis ultrices hendrerit. In vehicula dictum eros lobortis rutrum. Donec posuere tempus dolor vitae facilisis. Suspendisse eu elit enim.
-
-        Nullam nec molestie purus. Donec auctor, ante sit amet dignissim scelerisque, diam purus egestas sem, sed viverra purus felis vitae justo. Nullam et sem a neque venenatis fermentum quis a lorem. Cras aliquam sed velit ut tristique. Curabitur rhoncus, arcu ac dictum consectetur, risus mi interdum risus, ut sagittis tortor quam a felis. Nam a eros a eros tristique faucibus vel ut ante. Maecenas tempor, turpis sed vulputate tempus, orci elit sollicitudin sem, ut pulvinar dui dolor sed metus. Nulla volutpat ipsum ligula, a vestibulum mauris tincidunt pulvinar. Nunc sit amet enim convallis, aliquam nisi a, laoreet augue. Curabitur gravida orci lacus, efficitur tincidunt lacus auctor id. Praesent eget maximus nulla. Praesent eget eros rhoncus, placerat mi nec, vulputate leo. Donec vitae diam fermentum sapien placerat fermentum. Pellentesque hendrerit ante ut tincidunt semper.
-
     .col-12
       %p.text-intro.mb-5
         USAID’s One Window for Citizens (OW4C) is a three-year project
@@ -34,13 +22,13 @@
 .container#piloting-header
   .row
     .col-12
-      %h2 Our piloting areas:
+      %h2{ role: "heading" } Our piloting areas:
 
 #form-query
   .container
     .row
       .col-12
-        = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3" } do |f|
+        = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
           .form-row
             = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 1, name: "province_code", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
             = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2,name: "district_code", class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-classss": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
@@ -49,33 +37,9 @@
             = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
             = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { tabindex: 3, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
             .form-group.col.d-flex.align-items-end.justify-content-end
-              = f.submit "Search", class: "btn btn-primary branding-color", disabled: false, tabindex: 4
+              = f.submit "Search", class: "btn btn-primary branding-color", disabled: false, tabindex: 4, role: "button"
 
 .container
   .row
     .col-12
-      %p
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer velit turpis, fringilla vel pellentesque at, dapibus nec ex. Phasellus sit amet purus in quam finibus vulputate. In eu efficitur arcu. Nam efficitur sapien quis efficitur convallis. Praesent sed dolor bibendum, tempus mauris sed, viverra nisl. Curabitur vel ultricies magna, et dictum diam. Vivamus elementum, mi ut iaculis ultrices, ex eros molestie magna, id blandit leo justo ut enim. Aliquam condimentum, nunc sit amet dignissim elementum, lacus est ornare ligula, sit amet consequat arcu felis sit amet ligula. Mauris aliquam orci et turpis luctus condimentum.
-
-        Nunc vitae eleifend justo. Pellentesque quis purus at arcu elementum sagittis id vitae justo. Donec vehicula arcu dui, sed mollis neque placerat a. Pellentesque eget urna consequat, aliquam quam pulvinar, condimentum urna. Vestibulum eu diam at arcu pellentesque aliquet et at velit. Proin et magna rutrum, dapibus libero eget, tempus diam. Etiam commodo mauris turpis, et dictum odio rutrum in. Ut ac leo sit amet mauris tempor placerat at quis quam. Phasellus ut dictum sapien. Etiam facilisis leo eros, sed pellentesque risus aliquam eget. Nulla facilisi. Nulla fermentum lacinia ex quis placerat. Cras volutpat pretium libero, quis sagittis urna vulputate sed. Vestibulum porta ligula augue, sit amet maximus lacus pellentesque laoreet.
-
-        Aenean sit amet elit in lectus pellentesque feugiat non eget erat. Maecenas interdum fermentum ultrices. Vestibulum dui enim, ornare sit amet lacinia ut, elementum ac nibh. Donec in dictum sem. Mauris et arcu non tellus mattis sollicitudin vitae ut ipsum. Nunc ac urna quis enim pharetra dignissim. Sed aliquam convallis mauris. Nulla fringilla tempor tellus, nec tempor mauris vestibulum in. Ut non nisl quis massa tempor egestas id id massa. Donec interdum tristique nibh ut porttitor. Praesent tellus justo, fringilla malesuada nibh non, auctor mattis nisl. Morbi a ultricies dolor, eu mollis augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-        Integer a ipsum in neque accumsan vehicula ac non enim. Ut vel lacus vel ipsum lacinia pulvinar. Duis justo nisi, sollicitudin nec rutrum et, vestibulum et turpis. Proin at bibendum nisl. Integer vel mauris molestie, pretium elit id, eleifend nunc. Donec in congue tortor. Morbi eget ante interdum, volutpat felis in, ullamcorper sem. Pellentesque porttitor fermentum augue sit amet finibus. Cras sed risus id turpis ultrices hendrerit. In vehicula dictum eros lobortis rutrum. Donec posuere tempus dolor vitae facilisis. Suspendisse eu elit enim.
-
-        Nullam nec molestie purus. Donec auctor, ante sit amet dignissim scelerisque, diam purus egestas sem, sed viverra purus felis vitae justo. Nullam et sem a neque venenatis fermentum quis a lorem. Cras aliquam sed velit ut tristique. Curabitur rhoncus, arcu ac dictum consectetur, risus mi interdum risus, ut sagittis tortor quam a felis. Nam a eros a eros tristique faucibus vel ut ante. Maecenas tempor, turpis sed vulputate tempus, orci elit sollicitudin sem, ut pulvinar dui dolor sed metus. Nulla volutpat ipsum ligula, a vestibulum mauris tincidunt pulvinar. Nunc sit amet enim convallis, aliquam nisi a, laoreet augue. Curabitur gravida orci lacus, efficitur tincidunt lacus auctor id. Praesent eget maximus nulla. Praesent eget eros rhoncus, placerat mi nec, vulputate leo. Donec vitae diam fermentum sapien placerat fermentum. Pellentesque hendrerit ante ut tincidunt semper.
-
-    .col-12
       #root.mt-5
-
-    .col-12
-      %p
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer velit turpis, fringilla vel pellentesque at, dapibus nec ex. Phasellus sit amet purus in quam finibus vulputate. In eu efficitur arcu. Nam efficitur sapien quis efficitur convallis. Praesent sed dolor bibendum, tempus mauris sed, viverra nisl. Curabitur vel ultricies magna, et dictum diam. Vivamus elementum, mi ut iaculis ultrices, ex eros molestie magna, id blandit leo justo ut enim. Aliquam condimentum, nunc sit amet dignissim elementum, lacus est ornare ligula, sit amet consequat arcu felis sit amet ligula. Mauris aliquam orci et turpis luctus condimentum.
-
-        Nunc vitae eleifend justo. Pellentesque quis purus at arcu elementum sagittis id vitae justo. Donec vehicula arcu dui, sed mollis neque placerat a. Pellentesque eget urna consequat, aliquam quam pulvinar, condimentum urna. Vestibulum eu diam at arcu pellentesque aliquet et at velit. Proin et magna rutrum, dapibus libero eget, tempus diam. Etiam commodo mauris turpis, et dictum odio rutrum in. Ut ac leo sit amet mauris tempor placerat at quis quam. Phasellus ut dictum sapien. Etiam facilisis leo eros, sed pellentesque risus aliquam eget. Nulla facilisi. Nulla fermentum lacinia ex quis placerat. Cras volutpat pretium libero, quis sagittis urna vulputate sed. Vestibulum porta ligula augue, sit amet maximus lacus pellentesque laoreet.
-
-        Aenean sit amet elit in lectus pellentesque feugiat non eget erat. Maecenas interdum fermentum ultrices. Vestibulum dui enim, ornare sit amet lacinia ut, elementum ac nibh. Donec in dictum sem. Mauris et arcu non tellus mattis sollicitudin vitae ut ipsum. Nunc ac urna quis enim pharetra dignissim. Sed aliquam convallis mauris. Nulla fringilla tempor tellus, nec tempor mauris vestibulum in. Ut non nisl quis massa tempor egestas id id massa. Donec interdum tristique nibh ut porttitor. Praesent tellus justo, fringilla malesuada nibh non, auctor mattis nisl. Morbi a ultricies dolor, eu mollis augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-        Integer a ipsum in neque accumsan vehicula ac non enim. Ut vel lacus vel ipsum lacinia pulvinar. Duis justo nisi, sollicitudin nec rutrum et, vestibulum et turpis. Proin at bibendum nisl. Integer vel mauris molestie, pretium elit id, eleifend nunc. Donec in congue tortor. Morbi eget ante interdum, volutpat felis in, ullamcorper sem. Pellentesque porttitor fermentum augue sit amet finibus. Cras sed risus id turpis ultrices hendrerit. In vehicula dictum eros lobortis rutrum. Donec posuere tempus dolor vitae facilisis. Suspendisse eu elit enim.
-
-        Nullam nec molestie purus. Donec auctor, ante sit amet dignissim scelerisque, diam purus egestas sem, sed viverra purus felis vitae justo. Nullam et sem a neque venenatis fermentum quis a lorem. Cras aliquam sed velit ut tristique. Curabitur rhoncus, arcu ac dictum consectetur, risus mi interdum risus, ut sagittis tortor quam a felis. Nam a eros a eros tristique faucibus vel ut ante. Maecenas tempor, turpis sed vulputate tempus, orci elit sollicitudin sem, ut pulvinar dui dolor sed metus. Nulla volutpat ipsum ligula, a vestibulum mauris tincidunt pulvinar. Nunc sit amet enim convallis, aliquam nisi a, laoreet augue. Curabitur gravida orci lacus, efficitur tincidunt lacus auctor id. Praesent eget maximus nulla. Praesent eget eros rhoncus, placerat mi nec, vulputate leo. Donec vitae diam fermentum sapien placerat fermentum. Pellentesque hendrerit ante ut tincidunt semper.
