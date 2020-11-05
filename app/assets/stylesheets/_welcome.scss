@@ -178,14 +178,24 @@
   }
   
   #logo {
-    background: blue;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 1px 1px 1px rgb(204, 204, 204);
   }
   
   #form-query.fixed-top {
-    top: 59px;
+    top: 90px;
+  }
+
+  #logo.fixed-top {
+    padding: 15px;
+  }
+
+  #logo.fixed-top + .container{
+    margin-top: 138px;
   }
 
   #form-query {
-    background: green;
+    background: #fff;
   }
 }
