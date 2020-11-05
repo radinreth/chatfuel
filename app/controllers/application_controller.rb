@@ -37,35 +37,4 @@ class ApplicationController < ActionController::Base
     def default_url_options
       { locale: I18n.locale }
     end
-
-    def filter_options
-      {
-        province_id: params['province_code'],
-        district_id: compact_district_codes,
-        start_date: @start_date,
-        end_date: @end_date,
-        platform: params[:platform],
-        gender: params[:gender]
-      }.with_indifferent_access
-    end
-
-    def compact_district_codes
-      Array.wrap(params['district_code']).compact_blank
-    end
-
-    def set_location_filter
-      @location_filter = LocationFilter.new(province_filter, district_filter)
-    end
-
-    def province_filter
-      return unless filter_options['province_id'].present?
-
-      ::Filters::ProvinceFilter.new(filter_options['province_id'])
-    end
-
-    def district_filter
-      return unless filter_options['district_id'].present?
-
-      ::Filters::DistrictFilter.new(filter_options['district_id'])
-    end
 end
