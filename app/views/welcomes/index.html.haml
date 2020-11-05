@@ -42,14 +42,14 @@
       .col-12
         = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3" } do |f|
           .form-row
-            = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { name: "province_code", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
-            = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { name: "district_code", class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
+            = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 1, name: "province_code", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
+            = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2,name: "district_code", class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-classss": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
 
             = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
             = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
-            = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
+            = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { tabindex: 3, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
             .form-group.col.d-flex.align-items-end.justify-content-end
-              = f.submit "Search", class: "btn btn-primary branding-color", disabled: false
+              = f.submit "Search", class: "btn btn-primary branding-color", disabled: false, tabindex: 4
 
 .container
   .row
