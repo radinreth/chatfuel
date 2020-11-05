@@ -1,10 +1,1 @@
-window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
-
-$(".tab-navigation").removeClass("d-none");
-$(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { active_tab: @active_tab }) %>");
-$("#popup .modal-body").data("state", "prune");
-$(".sub_categories").html("<%= j(render "welcomes/sub_categories_canvas") %>");
-
-OWSO.WelcomesIndex.scrollToForm();
-OWSO.WelcomesIndex.renderChart();
-OWSO.DashboardShow.multiSelectDistricts();
+$("#root").replaceWith("<%= j(render partial: "dashboard/content") %>")
