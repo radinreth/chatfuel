@@ -1,0 +1,31 @@
+.row
+  .col-12
+    %p.text-intro.mb-5
+      USAID’s One Window for Citizens (OW4C) is a three-year project
+      (October 2019-September 2022) that uses technology to provide
+      Cambodian citizens clear, transparent information on public services
+      available to them through the government One Window Service Offices
+      (OWSOs).
+
+.row
+  .col-12
+    %p.text-intro.mb-5
+      The data within this public dashbard is captured from the actual user 
+      interactions/usages in piloting districts in Battambang provinces.
+
+.row
+  .col-12
+    %p.text-intro.mb-5
+      Please select the area of data location you want to be shown
+
+.row
+  .col-12
+    %h2 Our piloting areas:
+
+    = simple_form_for :q, url: summary_path, method: :get do |f|
+      .form-row
+        = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
+        = f.input :district, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
+        = f.input :time_period, as: :select, collection: [['1', 'Monthly'], ['2', 'Quarter'], ['3', 'Semester']], label_method: :second, value_method: :first, disabled: true, wrapper_html: { class: "col-lg-3" }, input_html: { class: "w-100" }
+        .form-group.col.d-flex.align-items-end.justify-content-end
+          = f.submit "Search", class: "btn btn-primary branding-color", disabled: true
