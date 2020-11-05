@@ -23,7 +23,7 @@
 
             %ul.list-inline.m-0
               - if Variable.gender.present?
-                = render partial: "unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
+                = render partial: "dashboard/unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
 
           .col-auto
             %i.fas.fa-user.fa-2x.text-gray-300
@@ -34,7 +34,7 @@
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
           %i.fas.fa-cog.cog.float
 
-        = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
+        = render 'dashboard/choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
 
       .card-body.pb-0
         .row.no-gutters.align-items-center
