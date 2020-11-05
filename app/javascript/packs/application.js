@@ -29,6 +29,7 @@ require("sites/index")
 require("templates/index")
 require("dashboard/show")
 require("home/index")
+require("welcomes/index")
 require("dictionaries/edit")
 require("dictionaries/index")
 
