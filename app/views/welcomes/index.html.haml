@@ -40,7 +40,7 @@
   .container
     .row
       .col-12
-        = simple_form_for :q, remote: true, method: :get do |f|
+        = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3" } do |f|
           .form-row
             = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { name: "province_code", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
             = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { name: "district_code", class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
