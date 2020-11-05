@@ -176,4 +176,16 @@
   .chart-dl, [data-toggle="modal"] {
     display: none;
   }
+  
+  #logo {
+    background: blue;
+  }
+  
+  #header.fixed-top {
+    top: 59px;
+  }
+
+  #header {
+    background: green;
+  }
 }
