@@ -43,6 +43,9 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
+  location: "%{district} នៅក្នុង %{province}"
+  location_no_district: "%{province}"
+  district_count: "ស្រុកចំនួន %{count}"
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម

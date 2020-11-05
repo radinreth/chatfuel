@@ -68,7 +68,7 @@ pumi = {
         });
         defaultValue = pumi.getDataAttribute(select, 'default-value');
         if (!!defaultValue) {
-          select.val(defaultValue);
+          select.val(defaultValue.split(","));
           pumi.removeDataAttribute(select, 'default-value');
           return select.trigger("change");
         }

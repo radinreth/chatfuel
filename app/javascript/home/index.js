@@ -3,6 +3,7 @@ OWSO.HomeIndex = (() => {
   function init() {
     OWSO.DashboardShow.renderDatetimepicker()
     OWSO.DashboardShow.onChangeProvince()
+    OWSO.DashboardShow.multiSelectDistricts()
     attachEventClickToExpandedButton()
     attachEventClickToTimeago()
   }
