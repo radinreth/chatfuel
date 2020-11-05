@@ -1,4 +1,6 @@
 class DashboardQuery
+  attr_reader :options
+
   def initialize(options = {})
     @options = options
     platform = platform_param[@options[:platform].try(:to_sym)]

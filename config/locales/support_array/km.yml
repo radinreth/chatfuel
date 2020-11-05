@@ -1,0 +1,6 @@
+km:
+  support:
+    array:
+      last_word_connector: ", និង "
+      two_words_connector: " និង "
+      words_connector: ", "

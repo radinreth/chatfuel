@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include Filterable
+  
   before_action :default_start_date
   before_action :set_daterange
 

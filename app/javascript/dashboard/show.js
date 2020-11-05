@@ -8,6 +8,11 @@ OWSO.DashboardShow = (() => {
     onSubmitChooseDictionary()
     onClickChartkickLegend()
     attachEventClickToChartDownloadButton()
+    multiSelectDistricts()
+  }
+
+  function multiSelectDistricts() {
+    $(".select.district_code").select2({theme: "bootstrap"})
   }
 
   function attachEventClickToChartDownloadButton() {
@@ -65,9 +70,7 @@ OWSO.DashboardShow = (() => {
 
   function onChangeProvince() {
     $(document).on("change", "#province", function(e) {
-      if(!$('#province').val()) {
-        $('#district-hidden').val('');
-      }
+      $('#district-hidden').val('');
     })
   }
 
@@ -98,5 +101,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts }
 })();
