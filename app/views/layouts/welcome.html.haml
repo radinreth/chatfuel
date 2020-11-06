@@ -9,10 +9,10 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body{ id: css_class_name, style: 'overflow: scroll' }
-    #logo.fixed-top
+    %section#logo-container.fixed-top
       .container
         .text-center
           = link_to root_path, role: "img" do
-            = image_tag "usaid-logo.png"
+            = image_tag "usaid-logo.png", id: "branding-logo"
     
     = yield
