@@ -176,6 +176,10 @@
   .chart-dl, [data-toggle="modal"] {
     display: none;
   }
+
+  .shadow {
+    box-shadow: 1px 1px 1px rgba(204, 204,204,50%);
+  }
   
   #logo-container {
     background: #fff;
@@ -192,10 +196,13 @@
   }
   
   #form-query {
-    background: #fff;
+    background-color: #fff;
+    transition: all 0.1s ease-in;
 
     &.fixed-top {
       top: 90px;
+      background-color: darkblue;
+      color: white;
     }
   }
 }
