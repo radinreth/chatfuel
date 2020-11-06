@@ -1,17 +1,17 @@
 OWSO.WelcomesIndex = (() => {
-  var formQuery, logo, pilotHeader
+  var formQuery, logoContainer, pilotHeader
 
   function init() {
     OWSO.DashboardShow.renderDatetimepicker()
 
     formQuery = document.getElementById("form-query")
-    logo = document.getElementById("logo")
+    logoContainer = document.getElementById("logo-container")
     pilotHeader = document.getElementById("piloting-header")
     window.onscroll = () => { stickOnScroll() }
   }
 
   function stickOnScroll() {
-    if(window.pageYOffset + logo.offsetHeight >= formQuery.offsetTop ) {
+    if(window.pageYOffset + logoContainer.offsetHeight >= formQuery.offsetTop ) {
       $(formQuery).addClass("fixed-top")
     } 
     
