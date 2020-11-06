@@ -12,11 +12,11 @@ OWSO.WelcomesIndex = (() => {
 
   function stickOnScroll() {
     if(window.pageYOffset + logoContainer.offsetHeight >= formQuery.offsetTop ) {
-      $(formQuery).addClass("fixed-top")
+      $(formQuery).addClass("fixed-top shadow")
     } 
     
     if(window.pageYOffset < pilotHeader.offsetTop) {
-      $(formQuery).removeClass("fixed-top")
+      $(formQuery).removeClass("fixed-top shadow")
     }
   }
 
