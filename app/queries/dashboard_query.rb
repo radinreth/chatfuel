@@ -8,6 +8,10 @@ class DashboardQuery
     @options.merge!(platform) if platform.present?
   end
 
+  def most_requested_services
+    { "Bavel" => 200, "Thmor Kol" => 300, "Komrieng" => 400, "Battambong" => 140 }
+  end
+
   def user_count
     sessions.count
   end
