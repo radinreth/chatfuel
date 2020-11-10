@@ -49,10 +49,22 @@
     %li.nav-item
       %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
   #myTabContent.tab-content
-    #summary.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"} home
-    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"} profile
-    #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"} contact
-    #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"} about us
+    #summary.pt-5.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
+      .row
+        .col-xl-6.col-lg-5
+          = render "dashboard/total_user_visit"
+        .col-xl-6.col-lg-5
+          = render "dashboard/total_user_feedback"
+
+        -# Information Access
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/most_requested_services"
+    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
+      loading information access content
+    #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
+      loading citizen feeback content
+    #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
+      loading about us content
 
 .container
   .row
