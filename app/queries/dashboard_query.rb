@@ -34,6 +34,34 @@ class DashboardQuery
     { "Femal" => 200, "Male" => 300, "Other" => 400 }
   end
 
+  def overall_rating_by_owso
+    [
+      {name: "like", data: {"kamrieng": 12, "bavel": 95, "tmorkol": 65, "battambong": 59}},
+      {name: "acceptable", data: {"kamrieng": 56, "bavel": 42, "tmorkol": 65, "battambong": 80}},
+      {name: "dislike", data: {"kamrieng": 85, "bavel": 74, "tmorkol": 36, "battambong": 73}},
+    ]
+  end
+
+  def owso_feedback_trend
+    [
+      {name: "like", data: {"Jan": 12, "Feb": 95, "Mar": 65, "Apr": 59}},
+      {name: "acceptable", data: {"Jan": 56, "Feb": 42, "Mar": 65, "Apr": 80}},
+      {name: "dislike", data: {"Jan": 85, "Feb": 74, "Mar": 36, "Apr": 73}},
+    ]
+  end
+
+  def feedback_by_sub_category
+    [
+      {name: "staff", data: {"like": 65, "dislike": 57}},
+      {name: "price", data: {"like": 85, "dislike": 74}},
+      {name: "working hour", data: {"like": 15, "dislike": 85}},
+      {name: "document", data: {"like": 42, "dislike": 34}},
+      {name: "process", data: {"like": 78, "dislike": 57}},
+      {name: "delivery speed", data: {"like": 14, "dislike": 32}},
+      {name: "providing info", data: {"like": 19, "dislike": 6}},
+    ]
+  end
+
   def user_count
     sessions.count
   end
