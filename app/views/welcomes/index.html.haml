@@ -13,6 +13,8 @@
       %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
   #myTabContent.tab-content.pt-5
     #summary.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
+      = render "dashboard/earnings"
+
       .row
         .col-xl-6.col-lg-5
           = render "dashboard/total_user_visit"
@@ -20,6 +22,8 @@
           = render "dashboard/total_user_feedback"
         
     #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
+      = render "dashboard/earnings"
+
       .row
         -# Information Access
         .col-xl-6.col-lg-5
@@ -34,7 +38,10 @@
           = render "welcomes/charts/most_service_tracked_by_periodic"
         .col-xl-6.col-lg-5
           = render "welcomes/charts/ticket_tracking_by_gender"
+
     #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
+      = render "dashboard/earnings"
+
       .row
         -# citizen feedback
         .col-xl-6.col-lg-5
@@ -51,7 +58,7 @@
         .col-xl-6.col-lg-5
           = render "welcomes/charts/feedback_by_sub_category"
     #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
-      loading about us content
+      = render "welcomes/about_us"
 
 .container
   .row
