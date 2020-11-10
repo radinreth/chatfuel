@@ -13,6 +13,10 @@ class DashboardQuery
     { "Bavel" => 200, "Thmor Kol" => 300, "Komrieng" => 400, "Battambong" => 140 }
   end
 
+  def information_access_by_period
+    { "Jan" => 200, "Feb" => 300, "Mar" => 400, "Apr" => 140, "May" => 300 }
+  end
+
   def user_count
     sessions.count
   end
