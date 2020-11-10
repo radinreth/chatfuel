@@ -1,0 +1,15 @@
+-# note: what is the most requested service for each owso office?
+
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .h5.m-0.font-weight-bold.text-primary
+      = t("dashboard.owso_feedback_trend")
+
+    .tools
+      - if @query.owso_feedback_trend.present?
+        = link_to "#", class: "chart-dl text-dark", "data-target": "#owso_feedback_trend" do
+          %i.fa.fa-download
+
+  .card-body
+    #owso_feedback_trend.pt-4.d-flex.justify-content-around.align-items-center
+      = column_chart @query.owso_feedback_trend, legend: false, messages: { empty: t("no_data") }
