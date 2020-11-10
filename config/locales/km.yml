@@ -164,6 +164,7 @@ km:
     all_district: គ្រប់ស្រុក
     all: គ្រប់ខេត្ត/ក្រុង
     location: ទីតាំង
+    most_requested_services: សេវាដែលស្នើសុំច្រើនគេតាមច្រកនីមួយៗ
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ
