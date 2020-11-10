@@ -166,6 +166,9 @@ km:
     location: ទីតាំង
     most_requested_services: សេវាដែលស្នើសុំច្រើនគេតាមច្រកនីមួយៗ
     information_access_by: ការស្វែងរកពត៍មានតាម %{period} និមួយៗ
+    number_access_by_main_services: Number Access by Main Service
+    most_service_tracked_by_periodic: most_service_tracked_by_periodic
+    ticket_tracking_by_gender: ticket_tracking_by_gender
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ
