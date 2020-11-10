@@ -3,11 +3,24 @@ OWSO.WelcomesIndex = (() => {
 
   function init() {
     OWSO.DashboardShow.renderDatetimepicker()
+    onChangeDistrict()
 
     formQuery = document.getElementById("form-query")
     logoContainer = document.getElementById("logo-container")
     pilotHeader = document.getElementById("piloting-header")
     window.onscroll = () => { stickOnScroll() }
+  }
+
+  function onChangeDistrict() {
+    $(document).on("change", "#district", function(e) {
+      if( e.target.disabled ) {
+        $("#time_period").prop("disabled", true)
+        $("#search").prop("disabled", true)
+      } else {
+        $("#time_period").prop("disabled", false)
+        $("#search").prop("disabled", false)
+      }
+    })
   }
 
   function stickOnScroll() {
