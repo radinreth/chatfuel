@@ -37,9 +37,9 @@ class DashboardQuery
 
   def overall_rating_by_owso
     [
-      {name: "like", data: {"kamrieng": 12, "bavel": 95, "tmorkol": 65, "battambong": 59}},
-      {name: "acceptable", data: {"kamrieng": 56, "bavel": 42, "tmorkol": 65, "battambong": 80}},
-      {name: "dislike", data: {"kamrieng": 85, "bavel": 74, "tmorkol": 36, "battambong": 73}},
+      { name: "like", data: {"kamrieng": 12, "bavel": 95, "tmorkol": 65, "battambong": 59 }},
+      { name: "acceptable", data: {"kamrieng": 56, "bavel": 42, "tmorkol": 65, "battambong": 80 }},
+      { name: "dislike", data: {"kamrieng": 85, "bavel": 74, "tmorkol": 36, "battambong": 73 }},
     ]
   end
 
