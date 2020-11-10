@@ -3,8 +3,14 @@
     font-size: 1.5em;
   }
 
-  .branding-color {
+  #btn-search {
+    margin-bottom: 16px;
     background-color: #002f6c;
+  }
+
+  // override select2 to fit height with bootstrap form-control
+  .select2-selection__rendered {
+    padding: 2px;
   }
 
   .chart-dl, [data-toggle="modal"] {
