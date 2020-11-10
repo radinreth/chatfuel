@@ -12,4 +12,4 @@
 
   .card-body
     #ticket_tracking_by_gender.pt-4.d-flex.justify-content-around.align-items-center
-      = pie_chart @query.ticket_tracking_by_gender, legend: false, messages: { empty: t("no_data") }
+      = pie_chart @query.ticket_tracking_by_gender, legend: true, messages: { empty: t("no_data") }
