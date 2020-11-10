@@ -1,32 +1,31 @@
-.col-xl-4.col-lg-5
-  .card.shadow.mb-4
-    - users_feedback = @query.total_users_feedback
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      .h5.m-0.font-weight-bold.text-primary
-        = t("dashboard.total_user_feedback", name: @query.feedback&.name)
+.card.shadow.mb-4
+  - users_feedback = @query.total_users_feedback
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .h5.m-0.font-weight-bold.text-primary
+      = t("dashboard.total_user_feedback", name: @query.feedback&.name)
+    - if users_feedback.values.sum > 0
+      = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
+        %i.fa.fa-download
+  .card-body
+    #total_user_feedback.pt-4.d-flex.justify-content-around.align-items-center
       - if users_feedback.values.sum > 0
-        = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
-          %i.fa.fa-download
-    .card-body
-      #total_user_feedback.pt-4.d-flex.justify-content-around.align-items-center
-        - if users_feedback.values.sum > 0
-          %ul.list-unstyled
-            %li
-              %span.oval.oval--green
-              %span.oval-emoji 😍
-              %span.oval-label-km.word-wrap-normal
-                = t("dashboard.like")
-            %li
-              %span.oval.oval--orange
-              %span.oval-emoji 😊
-              %span.oval-label-km.word-wrap-normal
-                = t("dashboard.acceptable")
-            %li
-              %span.oval.oval--yellow
-              %span.oval-emoji 😞
-              %span.oval-label-km.word-wrap-normal
-                = t("dashboard.dislike")
-        - else
-          - users_feedback = {}
+        %ul.list-unstyled
+          %li
+            %span.oval.oval--green
+            %span.oval-emoji 😍
+            %span.oval-label-km.word-wrap-normal
+              = t("dashboard.like")
+          %li
+            %span.oval.oval--orange
+            %span.oval-emoji 😊
+            %span.oval-label-km.word-wrap-normal
+              = t("dashboard.acceptable")
+          %li
+            %span.oval.oval--yellow
+            %span.oval-emoji 😞
+            %span.oval-label-km.word-wrap-normal
+              = t("dashboard.dislike")
+      - else
+        - users_feedback = {}
 
-        = pie_chart users_feedback, colors: %w(#1cc88a #ffbc00 #f63e3e), donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
+        = pie_chart users_feedback, colors: %w(#1cc88a #ffbc00 #f63e3e), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }

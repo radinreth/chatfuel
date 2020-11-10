@@ -1,6 +1,10 @@
 .row
-  = render "dashboard/gender"
-  = render "dashboard/total_user_visit"
-  = render "dashboard/total_user_feedback"
+  .col-xl-4.col-lg-5
+    = render "dashboard/gender"
+  .col-xl-4.col-lg-5
+    = render "dashboard/total_user_visit"
+  .col-xl-4.col-lg-5
+    = render "dashboard/total_user_feedback"
+
   = render "dashboard/overview"
   = render "dashboard/number_of_tracked_ticket"
