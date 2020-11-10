@@ -3,6 +3,7 @@ OWSO.WelcomesIndex = (() => {
 
   function init() {
     OWSO.DashboardShow.renderDatetimepicker()
+    OWSO.DashboardShow.multiSelectDistricts()
     onChangeDistrict()
 
     formQuery = document.getElementById("form-query")
@@ -15,10 +16,10 @@ OWSO.WelcomesIndex = (() => {
     $(document).on("change", "#district", function(e) {
       if( e.target.disabled ) {
         $("#time_period").prop("disabled", true)
-        $("#search").prop("disabled", true)
+        $("#btn-search").prop("disabled", true)
       } else {
         $("#time_period").prop("disabled", false)
-        $("#search").prop("disabled", false)
+        $("#btn-search").prop("disabled", false)
       }
     })
   }
