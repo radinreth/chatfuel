@@ -3,11 +3,11 @@ class WelcomesController < ApplicationController
   before_action :set_daterange
 
   def index
+    @query = DashboardQuery.new(filter_options)
+
     respond_to do |format|
       format.html { render layout: "welcome" }
-      format.js do
-        @query = DashboardQuery.new(filter_options)
-      end
+      format.js
     end
   end
 
