@@ -48,14 +48,16 @@
       %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"} Citizen Feedback
     %li.nav-item
       %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
-  #myTabContent.tab-content
-    #summary.pt-5.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
+  #myTabContent.tab-content.pt-5
+    #summary.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
       .row
         .col-xl-6.col-lg-5
           = render "dashboard/total_user_visit"
         .col-xl-6.col-lg-5
           = render "dashboard/total_user_feedback"
-
+        
+    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
+      .row
         -# Information Access
         .col-xl-6.col-lg-5
           = render "welcomes/charts/most_requested_services"
@@ -63,8 +65,12 @@
           = render "dashboard/gender"
         .col-xl-6.col-lg-5
           = render "welcomes/charts/information_accessed_periodically"
-    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
-      loading information access content
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/number_access_by_main_services"
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/most_service_tracked_by_periodic"
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/ticket_tracking_by_gender"
     #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
       loading citizen feeback content
     #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
