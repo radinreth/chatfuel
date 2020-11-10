@@ -56,6 +56,7 @@
         .col-xl-6.col-lg-5
           = render "dashboard/total_user_feedback"
         
+        
     #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
       .row
         -# Information Access
@@ -72,7 +73,21 @@
         .col-xl-6.col-lg-5
           = render "welcomes/charts/ticket_tracking_by_gender"
     #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
-      loading citizen feeback content
+      .row
+        -# citizen feedback
+        .col-xl-6.col-lg-5
+          = render "dashboard/gender"
+        .col-xl-6.col-lg-5
+          = render "dashboard/total_user_feedback"
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/overall_rating_by_owso"
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/owso_feedback_trend"
+        -# feedback by sub category -> base on selected districts
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/feedback_by_sub_category"
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/feedback_by_sub_category"
     #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
       loading about us content
 
