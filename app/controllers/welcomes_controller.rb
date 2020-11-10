@@ -10,9 +10,7 @@ class WelcomesController < PublicAccessController
 
     respond_to do |format|
       format.html { render layout: "welcome" }
-      format.js do
-        @query = DashboardQuery.new(filter_options)
-      end
+      format.js
     end
   end
 
