@@ -27,11 +27,33 @@
         = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
         = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
 
-        = f.input :start_date, as: :hidden, input_html: { value: @start_date }
-        = f.input :end_date, as: :hidden, input_html: { value: @end_date }
-        = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
-        .form-group.col.d-flex.align-items-end.justify-content-end
-          = f.submit "Search", class: "btn btn-primary branding-color", disabled: false
+.container
+  %ul#myTab.nav.nav-tabs{:role => "tablist"}
+    %li.nav-item
+      %a#summary-tab.nav-link.active{"aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"} Summary
+    %li.nav-item
+      %a#access-information-tab.nav-link{"aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"} Access Information
+    %li.nav-item
+      %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"} Citizen Feedback
+    %li.nav-item
+      %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
+  #myTabContent.tab-content
+    #summary.pt-5.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
+      .row
+        .col-xl-6.col-lg-5
+          = render "dashboard/total_user_visit"
+        .col-xl-6.col-lg-5
+          = render "dashboard/total_user_feedback"
+
+        -# Information Access
+        .col-xl-6.col-lg-5
+          = render "welcomes/charts/most_requested_services"
+    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
+      loading information access content
+    #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
+      loading citizen feeback content
+    #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
+      loading about us content
 
 .row
   .col-12
