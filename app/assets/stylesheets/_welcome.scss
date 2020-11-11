@@ -1,4 +1,9 @@
 #welcomes-index {
+  .logo-link:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
   .text-intro {
     font-size: 1.5em;
   }
