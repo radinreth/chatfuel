@@ -10,7 +10,7 @@
 
   %body{ id: css_class_name, style: 'overflow: scroll' }
     #main-content
-      #logo-container
+      #logo-container.mb-5
         .container
           .text-center
             = link_to root_path, role: "img" do
@@ -20,7 +20,7 @@
         .container{ role: "article" }
           .row
             .col-12
-              %p.text-intro.mb-5
+              %p.text-intro.mb-3
                 USAID’s One Window for Citizens (OW4C) is a three-year project
                 (October 2019-September 2022) that uses technology to provide
                 Cambodian citizens clear, transparent information on public services
@@ -29,7 +29,7 @@
 
           .row
             .col-12
-              %p.text-intro.mb-5
+              %p.text-intro.mb-3
                 The data within this public dashbard is captured from the actual user 
                 interactions/usages in piloting districts in Battambang provinces.
 
@@ -44,7 +44,7 @@
             .col-12
               %h2{ role: "heading" } Our piloting areas:
 
-      #form-query
+      #form-query.mb-5
         .container
           .row
             .col-12
