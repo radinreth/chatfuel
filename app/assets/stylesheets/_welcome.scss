@@ -188,27 +188,22 @@
   }
   
   #logo-container {
-    background: #fff;
+    background: #484ad3;
     border-bottom: 1px solid #ccc;
     box-shadow: 1px 1px 1px rgb(204, 204, 204);
-
-    &.fixed-top {
-      padding: 15px;
-    }
-
-    &.fixed-top + .container {
-      margin-top: 138px;
-    }
+    padding: 15px;
   }
   
   #form-query {
-    background-color: #fff;
+    background-color: #c04242;
     transition: all 0.1s ease-in;
+  }
 
-    &.fixed-top {
-      top: 90px;
-      background-color: darkblue;
-      color: white;
-    }
+  #logo-container,
+  #form-query {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    z-index: 999;
   }
 }
