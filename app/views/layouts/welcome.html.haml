@@ -13,7 +13,7 @@
       #logo-container.mb-5
         .container
           .text-center
-            = link_to root_path, role: "img" do
+            = link_to root_path, role: "img", tabindex: 1, class: "logo-link d-inline-block" do
               = image_tag "usaid-logo.png", id: "branding-logo"
 
       #article
@@ -52,15 +52,15 @@
                 .form-row
                   .logo-inline.form-group.col-3{ style: "display: none;" }
                     .d-flex.align-items-center.justify-content-start{ style: "width: 100%; height: 100%" }
-                      = image_tag "usaid-logo.png", id: "branding-logo", class: "img-fluid"
-                  = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 1, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
+                      = image_tag "usaid-logo.png", role: "img", id: "branding-logo", class: "img-fluid"
+                  = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { role: "listbox", tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
                   .form-group.q_district.select.col-lg-4.col-sm-12
-                    = f.input :districts, as: :select, collection: [], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 2, id: "district", name: 'district_code[]', class: "w-100 district_code",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-classss": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
-                  = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
-                  = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
-                  = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { tabindex: 3, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
+                    = f.input :districts, as: :select, collection: [], include_blank: false, include_hidden: false, input_html: { role: "listbox", multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-classss": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
+                  = f.input :start_date, as: :hidden, input_html: { role: "textbox", class: "start_date", name: "start_date", value: @start_date }
+                  = f.input :end_date, as: :hidden, input_html: { role: "textbox", class: "end_date",name: "end_date", value: @end_date }
+                  = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { role: "textbox", tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
                   .form-group.col-1.d-flex.align-items-end.justify-content-end
-                    = f.submit "Search", class: "btn btn-primary", disabled: false, tabindex: 4, disabled: true, id: "btn-search", role: "button"
+                    = f.submit "Search", class: "btn btn-primary", disabled: false, tabindex: 5, disabled: true, id: "btn-search", role: "button"
 
       #tab
         .container
