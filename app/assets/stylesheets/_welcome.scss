@@ -188,15 +188,20 @@
   }
   
   #logo-container {
-    background: #484ad3;
+    background: #fff;
     border-bottom: 1px solid #ccc;
-    box-shadow: 1px 1px 1px rgb(204, 204, 204);
+    box-shadow: 1px 1px 1px #cccccc24;
     padding: 15px;
   }
   
   #form-query {
-    background-color: #c04242;
+    background-color: #FFF;
     transition: all 0.1s ease-in;
+
+    &.highlight {
+      color: #FFF;
+      background-color: #484ad3;
+    }
   }
 
   #logo-container,
