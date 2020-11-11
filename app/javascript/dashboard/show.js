@@ -31,7 +31,11 @@ OWSO.DashboardShow = (() => {
   }
 
   function multiSelectDistricts() {
-    $("select").select2({theme: "bootstrap"})
+    $("select").select2({
+      theme: "bootstrap",
+      dropdownAutoWidth : true,
+      width: 'auto'
+    })
   }
 
   function attachEventClickToChartDownloadButton() {
