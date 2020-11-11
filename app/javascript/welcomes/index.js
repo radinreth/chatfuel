@@ -5,7 +5,7 @@
 }(jQuery));
 
 OWSO.WelcomesIndex = (() => {
-  var logoContainer, pilotHeader
+  var logoContainer, formQuery, pilotHeader
 
   let items = [
     { element: ".q_province", fromClass: "col-lg-3", toClass: "col-lg-4" },
@@ -22,6 +22,7 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onWindowScroll() {
+    formQuery = $("#form-query")
     logoContainer = $("#logo-container")
     pilotHeader = $("#piloting-header")
     window.onscroll = () => { stickOnScroll() }
@@ -40,11 +41,13 @@ OWSO.WelcomesIndex = (() => {
   function stickOnScroll() {
     if(window.pageYOffset >= (logoContainer.outerHeight() + pilotHeader.offset().top) ) {
       $(".logo-inline").show()
+      formQuery.addClass('highlight')
       decreaseFormControlWidth()
     } 
     
     if(window.pageYOffset < pilotHeader.offset().top) {
       $(".logo-inline").hide()
+      formQuery.removeClass('highlight')
       increaseFormControlWidth()
     }
   }
