@@ -1,4 +1,4 @@
-class WelcomesController < ActionController::Base
+class WelcomesController < PublicAccessController
   include Filterable
 
   before_action :set_daterange
@@ -14,11 +14,6 @@ class WelcomesController < ActionController::Base
 
   def feedback_trend
     render json: @query.feedback_trend, status: :ok
-  end
-
-  # hack pundit
-  def current_user
-    User.first
   end
 
   private
