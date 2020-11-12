@@ -178,6 +178,10 @@
     padding: 2px;
   }
 
+  .select2-container--bootstrap .select2-selection--single {
+    height: 38px;
+  }
+
   .chart-dl, [data-toggle="modal"] {
     display: none;
   }
