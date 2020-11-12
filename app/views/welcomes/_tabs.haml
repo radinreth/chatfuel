@@ -7,8 +7,7 @@
         %a#access-information-tab.nav-link{"aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"} Access Information
       %li.nav-item
         %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"} Citizen Feedback
-      %li.nav-item
-        %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
+      
     #menuContent.tab-content.pt-5
       #summary.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
         = render "dashboard/earnings"
