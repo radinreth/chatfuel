@@ -13,6 +13,6 @@
             = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
             = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
             = f.input :time_period, wrapper_html: { class: "col-lg-3" }, input_html: { tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
-            .form-group.col-1.d-flex.align-items-end.justify-content-end
+            .form-group.col-lg-1.d-flex.align-items-end.justify-content-end
               = f.submit "Search", class: "btn btn-primary", disabled: false, tabindex: 5, disabled: true, id: "btn-search"
 
