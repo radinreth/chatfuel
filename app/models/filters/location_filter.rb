@@ -10,21 +10,26 @@ class Filters::LocationFilter
      "name_#{I18n.locale}".to_sym
   end
 
+  def field_address
+    "address_#{I18n.locale}".to_sym
+  end
+
   def display_name
     return I18n.t("location_no_district", province: province_name) if !districts?
     return I18n.t("dashboard.all") if !province?
-    
+    return district_name if !multi_districts?
+
     I18n.t("location", province: province_name, district: district_name)
   end
   
   def province_name
-    province? ? province.send(field_name) : I18n.t("dashboard.all")
+    province? ? province.send(field_address) : I18n.t("dashboard.all")
   end
 
   def district_name
     return I18n.t(:district_count, count: @districts.count) if multi_districts?
 
-    return districts.first.send(field_name) if districts?
+    return districts.first.send(field_address) if districts?
 
     return ""
   end
