@@ -77,7 +77,7 @@ RSpec.describe StepValue, type: :model do
   end
 
   describe ".create_tracking" do
-    let(:variable) { build(:variable, :ticket_tracking) }
+    let(:variable) { build(:variable, mark_as: 'ticket_tracking') }
     let(:variable_value) { build(:variable_value, variable: variable) }
 
     it ".create_tracking" do
