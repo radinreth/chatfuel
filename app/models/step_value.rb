@@ -99,7 +99,7 @@ class StepValue < ApplicationRecord
 
   def self.users_visited_by_each_genders(params = {})
     scope = joins(:message).where.not(messages: { gender: '' })
-    scope = scope.where(variable_value: VariableValue.criteria)
+    scope = scope.where(variable_value: VariableValue.kind_of_criteria)
     scope = filter(scope, params)
   end
 
