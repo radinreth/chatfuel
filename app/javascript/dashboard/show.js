@@ -12,7 +12,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function multiSelectDistricts() {
-    $(".select.district_code").select2({theme: "bootstrap"})
+    $("select").select2({theme: "bootstrap"})
   }
 
   function attachEventClickToChartDownloadButton() {
