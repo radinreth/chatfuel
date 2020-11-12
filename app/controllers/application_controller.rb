@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   include Pagy::Backend
   include Localization
   include Pundit
 
-  before_action :authenticate_user_with_guisso!
   before_action :set_raven_context
 
   private
