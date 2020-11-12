@@ -10,5 +10,8 @@
 
   %body{ id: css_class_name, style: 'overflow: scroll' }
     #main-content
-      = render "welcomes/logo"
+      #logo-container.mb-5
+        .container
+          .text-center
+            = render "welcomes/logo"
       = yield
