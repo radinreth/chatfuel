@@ -1,7 +1,6 @@
-class WelcomesController < ApplicationController
+class WelcomesController < PublicAccessController
   include Filterable
 
-  skip_before_action :authenticate_user_with_guisso!
   before_action :set_daterange
 
   def index
@@ -11,11 +10,6 @@ class WelcomesController < ApplicationController
       format.html { render layout: "welcome" }
       format.js
     end
-  end
-
-  # hack pundit
-  def current_user
-    User.first
   end
 
   private
