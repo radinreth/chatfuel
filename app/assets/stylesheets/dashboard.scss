@@ -178,6 +178,9 @@
   }
 
   .fa-other {
-    @extend .fa-genderless !optional;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-image: image-url("lgbtq.png");
   }
 }
