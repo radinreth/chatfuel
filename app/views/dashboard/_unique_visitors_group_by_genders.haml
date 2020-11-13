@@ -1,6 +1,8 @@
 - Variable.gender.values.each do |gender|
   - if gender.plain_values.include?(session.gender)
     %li.list-inline-item
-      %small.text-gray-800
-        = "#{gender.mapping_value}: #{session.gender_count}"
+      %small.text-gray-800{ data: { toggle: "tooltip"}, title: gender.mapping_value }
+        = fa_icon(session.gender)
+        = ": "
+        = session.gender_count
     - break
