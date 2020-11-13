@@ -46,6 +46,7 @@ km:
   location: "%{district} នៅក្នុង %{province}"
   location_no_district: "%{province}"
   district_count: "ស្រុកចំនួន %{count}"
+  repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
