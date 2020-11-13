@@ -51,9 +51,10 @@ class DashboardQuery
 
     return {} if Variable.gender.nil?
 
-    result.each_with_object({}) do |(raw_gender, count), gender|
+    colors = ['#4e73df', '#fd7e14', '#1cc88a']
+    result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
       mapping_gender = mapping_variable_value[raw_gender].mapping_value
-      gender[raw_gender] = [mapping_gender, count]
+      gender[raw_gender] = [mapping_gender, count, colors[index]]
     end
   end
 
