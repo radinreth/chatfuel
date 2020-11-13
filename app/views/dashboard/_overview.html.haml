@@ -21,4 +21,4 @@
       .d-flex.justify-content-around.align-items-center
         = render 'choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :service_accessed?, modal_id: 'chooseAccessed'
         - colors = @query.goals.map {|g| g[:color]}
-        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: colors, id: "chart-overview", height: "300px", legend: false, messages: { empty: t("no_data") }
+        = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: colors, id: "chart-overview", width: "100%", height: "300px", legend: false, messages: { empty: t("no_data") }
