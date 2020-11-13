@@ -11,4 +11,4 @@
       - if @query.number_of_tracking_tickets.present?
         %span.invisible=t("dashboard.number_of_ticket_tracking")
 
-      = column_chart @query.number_of_tracking_tickets, height: "300px", library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
+      = column_chart @query.number_of_tracking_tickets, width: "100%", height: "300px", library: { scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
