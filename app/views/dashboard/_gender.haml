@@ -27,5 +27,5 @@
         = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseDictionary')) do |component|
           - component.with(:body) do
             = render partial: 'variable_with_criteria', collection: @variables, as: :variable
-
-        = pie_chart agg_genders.values, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }
+        - colors = agg_genders.values.map(&:pop)
+        = pie_chart agg_genders.values, colors: colors, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }

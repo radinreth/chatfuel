@@ -1,7 +1,6 @@
-- raw_gender, mapping_gender, count = gender.flatten
+- raw_gender, mapping_gender, count, color = gender.flatten
 
 %li
   %span.oval
-  %span.oval-label.word-wrap-normal
-    = fa_icon(raw_gender)
+  %span.oval-label.word-wrap-normal{ style: "color: #{color}" }
     = mapping_gender
