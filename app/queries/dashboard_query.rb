@@ -17,13 +17,7 @@ class DashboardQuery
   end
 
   def number_access_by_main_services
-    [
-      [10, 200],
-      [20, 130],
-      [30, 200],
-      [40, 400],
-      [50, 320]
-    ]
+    { "Jan" => 200, "Feb" => 300, "Mar" => 400, "Apr" => 140, "May" => 300 }
   end
 
   def most_service_tracked_by_periodic
