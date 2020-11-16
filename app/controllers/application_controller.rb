@@ -7,8 +7,13 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :set_raven_context
-
+  after_action :track_action
+  
   private
+    def track_action
+      ahoy.track "track visitor", request.path_parameters
+    end
+  
     def user_not_authorized
       flash[:alert] = t("not_authorized")
       redirect_to(request.referrer || root_path)
