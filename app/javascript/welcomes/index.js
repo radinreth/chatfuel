@@ -19,6 +19,51 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll()
     onChangeDistrict()
+    chartPointStyle()
+  }
+
+  function chartPointStyle() {
+    var container = document.querySelector(".root-container")
+    var div = document.createElement('div');
+    div.classList.add('chart-container');
+
+    var canvas = document.createElement('canvas');
+    div.appendChild(canvas);
+    container.appendChild(div);
+
+    var ctx = canvas.getContext('2d');
+    var config = {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: "#f00",
+          borderColor: "#f00",
+          data: [10, 23, 5, 99, 67, 43, 0],
+          fill: false,
+          pointRadius: 10,
+          pointHoverRadius: 15,
+          showLine: false // no line shown
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Point Style: circle'
+        },
+        legend: {
+          display: false
+        },
+        elements: {
+          point: {
+            pointStyle: "circle"
+          }
+        }
+      }
+    };
+    new Chart(ctx, config);
   }
 
   function onWindowScroll() {
