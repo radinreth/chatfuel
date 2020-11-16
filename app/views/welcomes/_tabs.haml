@@ -1,4 +1,4 @@
-#tab
+.visualize-nav.position-sticky
   .container
     %ul#menu.nav.nav-tabs.justify-content-end{:role => "tablist"}
       %li.nav-item
@@ -7,7 +7,9 @@
         %a#access-information-tab.nav-link.active{"aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"} Access Information
       %li.nav-item
         %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"} Citizen Feedback
-      
+
+#tab
+  .container
     #menuContent.tab-content.pt-5
       #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
         = render "dashboard/earnings"
