@@ -42,8 +42,8 @@ OWSO.WelcomesIndex = (() => {
           borderColor: "#f00",
           data: [10, 23, 5, 99, 67, 43, 0],
           fill: false,
-          pointRadius: 10,
-          pointHoverRadius: 15,
+          pointRadius: 5,
+          pointHoverRadius: 10,
           showLine: false // no line shown
         }]
       },
