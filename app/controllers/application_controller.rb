@@ -7,8 +7,13 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
   before_action :switch_locale
+  after_action :track_action
 
   private
+    def track_action
+      ahoy.track "track visitor", request.path_parameters
+    end
+
     def switch_locale
       I18n.locale = params[:locale] || I18n.default_locale
     end
