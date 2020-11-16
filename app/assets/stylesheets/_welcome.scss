@@ -231,5 +231,11 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
-	}
+  }
+  
+  .switch-lang {
+    z-index: 9999;
+    top: 15px;
+    right: 20px;
+  }
 }
