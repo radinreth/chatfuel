@@ -12,4 +12,4 @@
 
   .card-body
     #feedback_by_sub_category.pt-4.d-flex.justify-content-around.align-items-center
-      = column_chart @query.feedback_by_sub_category, legend: true, xtitle: "owso: komrieng"
+      = column_chart @query.feedback_by_sub_category, legend: true, xtitle: "owso: komrieng", library: { legend: { labels: { boxWidth: 10 } } }
