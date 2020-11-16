@@ -9,7 +9,9 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body{ id: css_class_name, style: 'overflow: scroll' }
-    #main-content
+    #main-content.position-relative
+      = render "welcomes/switch_lang"
+
       #logo-container.mb-5
         .container
           .text-center
