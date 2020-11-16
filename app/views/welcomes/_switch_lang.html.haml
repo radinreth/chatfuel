@@ -10,5 +10,6 @@
       = t('language.en')
 
   .visitor-counter.text-right
-    %i.fa.fa-eye
-    = Ahoy::Visit.count
+    %span.badge.badge-pill.badge-info
+      %i.fa.fa-eye
+      = Ahoy::Visit.count
