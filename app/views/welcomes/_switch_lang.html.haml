@@ -8,3 +8,7 @@
 
     = link_to url_for(request.query_parameters.merge(locale: 'en')), class: 'dropdown-item' do
       = t('language.en')
+
+  .visitor-counter.text-right
+    %i.fa.fa-eye
+    = Ahoy::Visit.count
