@@ -1,0 +1,10 @@
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between.position-relative
+    .h5.m-0.font-weight-bold.text-primary
+      = t("dashboard.total_user_gender")
+
+  .card-body
+    #users_visited_by_genders.pt-4.d-flex.justify-content-around.align-items-center
+      - agg_genders = @query.users_visited_by_each_genders
+      
+      = pie_chart agg_genders.values, messages: { empty: t("no_data") }, library: { legend: { labels: { boxWidth: 10 } } }
