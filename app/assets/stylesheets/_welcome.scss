@@ -245,4 +245,26 @@
     z-index: 99999;
     background: white;
   }
+
+  .social-share-button {
+    a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-size: 36px;
+      background-position: 0;
+    }
+
+    .social-share-button-facebook {
+      background-image: image-url("social-share-button/facebook.png");
+    }
+
+    .social-share-button-twitter {
+      background-image: image-url("social-share-button/twitter.png");
+    }
+
+    .social-share-button-linkedin {
+      background-image: image-url("social-share-button/linkedin.png");
+    }
+  }
 }
