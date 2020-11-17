@@ -19,7 +19,6 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll()
     onChangeDistrict()
-    chartPointStyle()
   }
 
   function chartPointStyle() {
@@ -114,6 +113,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init }
+  return { init, chartPointStyle }
 
 })()
