@@ -1,0 +1,16 @@
+km:
+  welcomes:
+    header: "តំបន់សាកល្បងរបស់យើង"
+    search: ស្វែងរក
+    summary: សង្ខេប
+    access_info: ព័ត៌មានចូលប្រើ
+    citizen_feedback: មតិប្រជាពលរដ្ឋ
+    province: ខេត្ត
+    districts: ស្រុក
+    time_period: ពេលវេលា
+    number_access_by_main_services: ការចូលប្រើលេខតាមរយៈសេវាកម្មមេ
+    most_service_tracked_by_periodic: សេវាកម្មភាគច្រើនតាមដានដោយ %{period}
+    ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
+    overall_rating_by_owso: ការវាយតម្លៃរួមដោយការិយាល័យច្រកចេញចូលតែមួយ
+    owso_feedback_trend: មតិប្រតិកម្ម OWSO
+    feedback_by_sub_category: មតិយោបល់តាមប្រភេទរង
