@@ -1,12 +1,5 @@
-.sidebar-left
-  = social_share_button_tag "test"
-  .visitor-counter.text-right
-    %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" }, title: t("visitor_count") }
-      %i.fa.fa-eye
-      = Ahoy::Visit.count
-
+= render "welcomes/sidebar"
 = render "welcomes/article"
 = render "welcomes/header"
 = render "welcomes/form"
-= render "welcomes/tabs"
 .root-chart
