@@ -47,6 +47,7 @@ en:
   district_count: "%{count} districts"
   repeated: Finish and restart session
   download_chart: Download Chart
+  visitor_count: Visitor count
   sidebar:
     dashboard: Dashboard
     home: Home
