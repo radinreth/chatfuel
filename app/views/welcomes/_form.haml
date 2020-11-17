@@ -4,7 +4,7 @@
       .col-12
         = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
           .form-row
-            .logo-inline.form-group.col-3{ style: "display: none;" }
+            .logo-inline.form-group.col-lg-3{ style: "display: none;" }
               .d-flex.align-items-center.justify-content-start.h-100.w-100
                 = render "welcomes/logo"
             = f.input :province, as: :select, include_blank: false, include_hidden: false, collection: [["", t('dashboard.all_province')]], label_method: :second, value_method: :first, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
