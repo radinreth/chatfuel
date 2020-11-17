@@ -50,6 +50,7 @@ en:
   download_chart: Download Chart
   feedback_like: Like
   feedback_dislike: Dislike
+  visitor_count: Visitor count
   sidebar:
     dashboard: Dashboard
     home: Home

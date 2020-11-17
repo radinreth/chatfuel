@@ -1,64 +1,12 @@
-.row
-  .col-12
-    %p.text-intro.mb-5
-      USAID’s One Window for Citizens (OW4C) is a three-year project
-      (October 2019-September 2022) that uses technology to provide
-      Cambodian citizens clear, transparent information on public services
-      available to them through the government One Window Service Offices
-      (OWSOs).
+.sidebar-left
+  = social_share_button_tag "test"
+  .visitor-counter.text-right
+    %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" }, title: t("visitor_count") }
+      %i.fa.fa-eye
+      = Ahoy::Visit.count
 
-.row
-  .col-12
-    %p.text-intro.mb-5
-      The data within this public dashbard is captured from the actual user 
-      interactions/usages in piloting districts in Battambang provinces.
-
-.row
-  .col-12
-    %p.text-intro.mb-5
-      Please select the area of data location you want to be shown
-
-.row
-  .col-12
-    %h2 Our piloting areas:
-
-    = simple_form_for :q, remote: true, method: :get do |f|
-      .form-row
-        = f.input :province, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district" } }
-        = f.input :districts, as: :select, collection: [], wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { class: "w-100",data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district" } }
-
-.container
-  %ul#myTab.nav.nav-tabs{:role => "tablist"}
-    %li.nav-item
-      %a#summary-tab.nav-link.active{"aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"} Summary
-    %li.nav-item
-      %a#access-information-tab.nav-link{"aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"} Access Information
-    %li.nav-item
-      %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"} Citizen Feedback
-    %li.nav-item
-      %a#about-us-tab.nav-link{"aria-controls" => "about-us", "aria-selected" => "false", "data-toggle" => "tab", :href => "#about-us", :role => "tab"} About Us
-  #myTabContent.tab-content
-    #summary.pt-5.tab-pane.fade.show.active{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
-      .row
-        .col-xl-6.col-lg-5
-          = render "dashboard/total_user_visit"
-        .col-xl-6.col-lg-5
-          = render "dashboard/total_user_feedback"
-
-        -# Information Access
-        .col-xl-6.col-lg-5
-          = render "welcomes/charts/most_requested_services"
-        .col-xl-6.col-lg-5
-          = render "dashboard/gender"
-        .col-xl-6.col-lg-5
-          = render "welcomes/charts/information_accessed_periodically"
-    #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
-      loading information access content
-    #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
-      loading citizen feeback content
-    #about-us.tab-pane.fade{"aria-labelledby" => "about-us-tab", :role => "tabpanel"}
-      loading about us content
-
-.row
-  .col-12
-    #root
+= render "welcomes/article"
+= render "welcomes/header"
+= render "welcomes/form"
+= render "welcomes/tabs"
+.root-chart

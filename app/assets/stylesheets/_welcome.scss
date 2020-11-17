@@ -194,22 +194,21 @@
     }
   }
 
-  .share-icon {
-    font-size: 0.8em;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-  
-  .chat-with-us {
-    position: fixed;
-    bottom: 19px;
-    z-index: 999;
-    right: 96px;
-    background-color: #002f6c;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 10px;
-  }
+  .social-share-button {
+    margin-bottom: 30px;
+
+    a {
+      display: block;
+      margin-bottom: 8px;
+      width: 36px;
+      height: 36px;
+      background-size: 36px;
+      background-position: 0;
+    }
+
+    .social-share-button-facebook {
+      background-image: image-url("social-share-button/facebook.png");
+    }
 
 
   // override recaptcha position
