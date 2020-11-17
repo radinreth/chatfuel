@@ -51,6 +51,7 @@ gem "view_component", require: "view_component/engine"
 gem 'gon', '~> 6.4'
 gem 'social-share-button', '0.2.1'
 gem 'ahoy_matey', '~> 3.0', '>= 3.0.5'
+gem 'meta-tags'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
