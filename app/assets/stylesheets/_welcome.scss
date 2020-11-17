@@ -189,9 +189,13 @@
   .shadow {
     box-shadow: 1px 1px 1px rgba(204, 204,204,50%);
   }
+
+  #branding-logo {
+    height: 72px;
+  }
   
   #logo-container {
-    background: #fff;
+    background: #002f6c;
     border-bottom: 1px solid #ccc;
     box-shadow: 1px 1px 1px #cccccc24;
     padding: 15px;
@@ -235,8 +239,12 @@
   
   .switch-lang {
     z-index: 9999;
-    top: 15px;
+    top: 30px;
     right: 20px;
+
+    &.inc-top {
+      top: 46px;
+    }
   }
 
   .visualize-nav {
@@ -254,6 +262,8 @@
   }
 
   .social-share-button {
+    margin-bottom: 30px;
+
     a {
       display: block;
       margin-bottom: 5px;
