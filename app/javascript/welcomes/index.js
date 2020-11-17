@@ -68,6 +68,7 @@ OWSO.WelcomesIndex = (() => {
 
   function onWindowScroll() {
     formQuery = $("#form-query")
+    switchLang = $(".switch-lang")
     logoContainer = $("#logo-container")
     pilotHeader = $("#piloting-header")
     window.onscroll = () => { stickOnScroll() }
@@ -87,12 +88,14 @@ OWSO.WelcomesIndex = (() => {
     if(window.pageYOffset >= (logoContainer.outerHeight() + pilotHeader.offset().top) ) {
       $(".logo-inline").show()
       formQuery.addClass('highlight')
+      switchLang.addClass('inc-top');
       decreaseFormControlWidth()
     } 
     
     if(window.pageYOffset < pilotHeader.offset().top) {
       $(".logo-inline").hide()
       formQuery.removeClass('highlight')
+      switchLang.removeClass('inc-top');
       increaseFormControlWidth()
     }
   }
