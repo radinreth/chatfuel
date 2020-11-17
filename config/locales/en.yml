@@ -46,6 +46,7 @@ en:
   location_no_district: "%{province}"
   district_count: "%{count} districts"
   repeated: Finish and restart session
+  visitor_count: Visitor count
   sidebar:
     dashboard: Dashboard
     home: Home
