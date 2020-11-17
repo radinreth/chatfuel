@@ -1,3 +1,10 @@
+.sidebar-left
+  = social_share_button_tag "test"
+  .visitor-counter.text-right
+    %span.badge.badge-pill.badge-info
+      %i.fa.fa-eye
+      = Ahoy::Visit.count
+
 = render "welcomes/article"
 = render "welcomes/header"
 = render "welcomes/form"
