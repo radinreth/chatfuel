@@ -1,0 +1,9 @@
+.sidebar-left
+  - title = 'USAID’s One Window for Citizens (OW4C) is a three-year project (October 2019-September 2022)'
+  - desc = 'Technology to provide Cambodian citizens clear, transparent information on public services available to them through the government One Window Service Offices (OWSOs)'
+  = social_share_button_tag title, url: root_url, image: image_url("fb-sample-share-photo.jpg"), desc: desc
+
+  .visitor-counter.text-right
+    %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" }, title: t("visitor_count") }
+      %i.fa.fa-eye
+      = Ahoy::Visit.count
