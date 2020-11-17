@@ -48,6 +48,7 @@ km:
   district_count: "ស្រុកចំនួន %{count}"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   download_chart: ទាញយកក្រាប
+  visitor_count: ចំនួនអ្នកចូលទស្សនា
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
