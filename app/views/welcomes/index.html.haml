@@ -1,7 +1,7 @@
 .sidebar-left
   = social_share_button_tag "test"
   .visitor-counter.text-right
-    %span.badge.badge-pill.badge-info
+    %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" }, title: t("visitor_count") }
       %i.fa.fa-eye
       = Ahoy::Visit.count
 
