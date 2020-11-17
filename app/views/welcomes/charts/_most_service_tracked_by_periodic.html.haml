@@ -3,7 +3,7 @@
 .card.shadow.mb-4{ role: "figure" }
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary
-      = t("dashboard.most_service_tracked_by_periodic", period: 'month')
+      = t("welcomes.most_service_tracked_by_periodic", period: 'month')
 
     .tools
       - if @query.most_service_tracked_by_periodic.present?
