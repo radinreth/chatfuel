@@ -468,9 +468,8 @@ GEM
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    social-share-button (0.2.1)
+    social-share-button (1.2.3)
       coffee-rails
-      sass-rails
     solargraph (0.38.6)
       backport (~> 1.1)
       benchmark
@@ -602,7 +601,7 @@ DEPENDENCIES
   sidekiq (= 6.0.5)
   sidekiq-scheduler (~> 3.0.1)
   simple_form (~> 5.0.2)
-  social-share-button (= 0.2.1)
+  social-share-button (~> 1.2, >= 1.2.3)
   solargraph (~> 0.38.5)
   spring (~> 2.1.0)
   spring-watcher-listen (~> 2.0.0)
