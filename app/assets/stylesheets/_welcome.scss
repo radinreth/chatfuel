@@ -170,7 +170,7 @@
   }
 
   #btn-search {
-    margin-bottom: 16px;
+    align-self: flex-end;
   }
 
   // override select2 to fit height with bootstrap form-control
@@ -244,15 +244,24 @@
 
     @media (min-width: 992px) {
       &.inc-top {
-        top: 46px;
+        top: 49px;
       }
     }
   }
 
+  .q_districts {
+    position: relative;
+  }
+
+  .district_code + span {
+    position: absolute;
+    width: 100% !important;
+  }
+
   .visualize-nav {
-    top: 117px;
+    top: 100px;
     padding-top: 15px;
-    z-index: 999;
+    z-index: 996;
     background: white;
 
     @media (max-width: 992px) {
@@ -262,8 +271,8 @@
 
   .sidebar-left {
     position: fixed;
-    top: 50%;
-    padding-left: 10%;
+    top: 30%;
+    padding-left: 5%;
     z-index: 9999999;
     left: 0;
     transition: all 0.1s ease-in;
