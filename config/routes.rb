@@ -4,6 +4,7 @@ require "sidekiq/web"
 require_relative "whitelist"
 
 Rails.application.routes.draw do
+  get 'districts/index'
   get 'about_us/index'
   get 'citizen_feedback/index'
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
