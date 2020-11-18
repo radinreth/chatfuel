@@ -49,7 +49,7 @@ gem 'paranoia', '~> 2.2'
 gem 'paper_trail', '~> 10.3', '>= 10.3.1'
 gem "view_component", require: "view_component/engine"
 gem 'gon', '~> 6.4'
-gem 'social-share-button', '0.2.1'
+gem 'social-share-button', '~> 1.2', '>= 1.2.3'
 gem 'ahoy_matey', '~> 3.0', '>= 3.0.5'
 gem 'meta-tags'
 
