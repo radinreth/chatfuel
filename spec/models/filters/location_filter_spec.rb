@@ -28,7 +28,7 @@ RSpec.describe Filters::LocationFilter do
           @location_filter = Filters::LocationFilter.new(province, districts)
         end
 
-        it { expect(@location_filter.display_name).to eq("Kamrieng District, Battambang Province") }
+        it { expect(@location_filter.display_name).to eq("Kamrieng") }
       end
 
       context "more than one districts" do
@@ -40,7 +40,7 @@ RSpec.describe Filters::LocationFilter do
           @location_filter = Filters::LocationFilter.new(province, districts)
         end
 
-        it { expect(@location_filter.display_name).to eq("2 districts in Battambang Province") }
+        it { expect(@location_filter.display_name).to eq("2 districts selected") }
       end
     end 
   end
