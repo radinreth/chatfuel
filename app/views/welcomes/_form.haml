@@ -17,24 +17,27 @@
               -# districts
               .form-group.q_district.select.col-lg-4.col-sm-12
                 %label.select.required.disabled
-                  Districts
+                  = t("welcomes.districts")
                   %abbr{ title: "required" } *
 
-                
                 = f.input :districts, label: false, input_html: { class: "text-truncate", value: "All", readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
-                -# .fake-control.text-truncate{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-                -#   All
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
-              -# .form-group.q_district.select.col-lg-4.col-sm-12
-              -#   - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
-              -#   = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
-              -#   = f.input :districts, as: :select, label: t("welcomes.districts"), collection: [["", t('dashboard.all_district')]], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code position-relative", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district", "pumi-select-has-hidden-value": true } }
-
+              
               -# time period
               = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
               = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
-              = f.input :time_period, wrapper_html: { class: "col-lg-3" }, label: t("welcomes.time_period"), input_html: { tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
+
+              .form-group.string.required.q_time_period.col-lg-3
+                %label.string.required
+                  = t("welcomes.time_period")
+                  %abbr{ title: "required" } *
+
+                .input-group
+                  = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 4, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
+                  .input-group-append
+                    .input-group-text
+                      %i.fas.fa-calendar-week.fa-sm
 
               -# submit
               .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
@@ -45,12 +48,15 @@
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
-        %h5#exampleModalLabel.modal-title Districts
+        %h5#exampleModalLabel.modal-title
+          = t("welcomes.districts")
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
         .position-relative
           %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_name, "data-pumi-select-collection-url" => "/districts/index", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
       .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary.btn-save{:type => "button"} Save changes
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+          = t("shared.cancel")
+        %button.btn.btn-primary.btn-save{:type => "button"}
+          = t("shared.save")
