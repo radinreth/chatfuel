@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     root "welcomes#index"
     get :dashboard, to: "dashboard#show"
     get :home, to: "home#index"
+    get "welcomes/filter"
 
     resources :users
     resources :tickets, only: [:index]
