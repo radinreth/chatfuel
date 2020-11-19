@@ -19,8 +19,10 @@
                 %label.select.required.disabled
                   = t("welcomes.districts")
                   %abbr{ title: "required" } *
+                
+                %span.d-block.tooltip-district{ title: @location_filter.display_name, "data-toggle": "tooltip" }
+                  = f.input_field :districts, tabindex: 5, class: "form-control text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal"
 
-                = f.input :districts, label: false, input_html: { tabindex: 5, class: "text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
               
@@ -40,7 +42,7 @@
                       %i.fas.fa-calendar-alt.fa-sm
 
               -# submit
-              .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
+              .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
                 = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search"
 
 -# modal
