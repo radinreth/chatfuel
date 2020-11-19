@@ -12,7 +12,7 @@
 
               -# province
               = f.input_field :province, as: :hidden, name: "province_code", value: "02"
-              = f.input :province, as: :select, label: t("welcomes.province"), include_blank: false, include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: true, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
+              = f.input :province, as: :select, label: t("welcomes.province"), include_blank: false, include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: true, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": @location_filter.field_name, "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
 
               -# districts
               .form-group.q_district.select.col-lg-4.col-sm-12
@@ -20,9 +20,9 @@
                   = t("welcomes.districts")
                   %abbr{ title: "required" } *
 
-                = f.input :districts, label: false, input_html: { class: "text-truncate", value: "All", readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
+                = f.input :districts, label: false, input_html: { class: "text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
-                = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
+                = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
               
               -# time period
               = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
