@@ -32,10 +32,10 @@ OWSO.WelcomesIndex = (() => {
           { province_code: provinceCode, 
             district_code: districtCode }, 
           function(result) {
-          $(".fake-control").html(result.data)
+          $("#q_districts").val(result.data)
         })
       } else {
-        $(".fake-control").html("All")
+        $("#q_districts").html("All")
       }
 
       
