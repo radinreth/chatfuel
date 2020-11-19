@@ -19,10 +19,8 @@
                 %label.select.required.disabled
                   = t("welcomes.districts")
                   %abbr{ title: "required" } *
-                
                 %span.d-block.tooltip-district{ title: @location_filter.display_name, "data-toggle": "tooltip" }
                   = f.input_field :districts, tabindex: 5, class: "form-control text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal"
-
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
               
@@ -57,6 +55,7 @@
       .modal-body
         .position-relative
           %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_name, "data-pumi-select-collection-url" => "/districts/index", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+            %option{value: ""}= t('dashboard.all_district')
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
           = t("shared.cancel")
