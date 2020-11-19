@@ -43,7 +43,7 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
-  location: "%{district} នៅក្នុង %{province}"
+  location: "បានជ្រើសយក %{district}"
   location_no_district: "%{province}"
   district_count: "ស្រុកចំនួន %{count}"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
