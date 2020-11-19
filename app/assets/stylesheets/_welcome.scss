@@ -269,6 +269,16 @@
     min-height: 300px;
   }
 
+  .secondary-branding-color {
+    background-color: #ba0d2f;
+    border-color: #ba0d2f;
+
+    &:hover {
+      background-color: #82071f;
+      border-color: #82071f;
+    }
+  }
+
   .visualize-nav {
     top: 100px;
     padding-top: 15px;
