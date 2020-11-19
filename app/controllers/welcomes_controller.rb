@@ -7,6 +7,10 @@ class WelcomesController < PublicAccessController
   def access_info
     render json: @query.access_info, status: :ok
   end
+  def index
+    @query = DashboardQuery.new(filter_options)
+    gon.all = I18n.t("all")
+    gon.locale = I18n.locale
 
   def service_tracked
     render json: @query.most_tracked_periodic, status: :ok
