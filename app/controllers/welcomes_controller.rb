@@ -12,6 +12,10 @@ class WelcomesController < PublicAccessController
     end
   end
 
+  def filter
+    render json: { data: @location_filter.display_name }
+  end
+
   private
     def default_start_date
       Setting.dashboard_start_date.strftime('%Y/%m/%d')
