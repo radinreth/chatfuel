@@ -2,6 +2,7 @@
 %html{lang: I18n.locale}
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    = Gon::Base.render_data
     = display_meta_tags og: { |
         title:    'ទិន្និយការិយាល័យច្រកចេញចូលតែមួយ', |
         type:     'website', |
@@ -32,5 +33,4 @@
         .container
           .text-center
             = render partial: "welcomes/logo", locals: { tabindex: 1 }
-
       = yield
