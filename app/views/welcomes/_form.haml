@@ -22,7 +22,7 @@
                 %abbr{ title: "required" } *
 
               .fake-control{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-              
+                All
             -# .form-group.q_district.select.col-lg-4.col-sm-12
             -#   - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
             -#   = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
@@ -50,4 +50,4 @@
             = f.input :districts, as: :select, label: t("welcomes.districts"), label_method: :second, value_method: :first, collection: [["", t('dashboard.all_district')]], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code position-relative", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/districts/index", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district", "pumi-select-has-hidden-value": true } }
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-          %button.btn.btn-primary{:type => "button"} Save changes
+          %button.btn.btn-primary.btn-save{:type => "button"} Save changes
