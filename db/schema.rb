@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.datetime "last_interaction_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "repeated", default: false
     t.string "gender", default: ""
   end
 
