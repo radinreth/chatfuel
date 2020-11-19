@@ -19,6 +19,28 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll()
     onChangeDistrict()
+    onModalSave()
+  }
+
+  function onModalSave() {
+    $(".btn-save").click(function(e) {
+      var provinceCode = $('#province').val()
+      var districtCode = $('.district_code').val().filter( e => e)
+
+      if( districtCode.length > 0 ) {
+        $.get("/welcomes/filter", 
+          { province_code: provinceCode, 
+            district_code: districtCode }, 
+          function(result) {
+          $(".fake-control").html(result.data)
+        })
+      } else {
+        $(".fake-control").html("All")
+      }
+
+      
+      $("#exampleModal").modal("hide")
+    })
   }
 
   function chartPointStyle() {
