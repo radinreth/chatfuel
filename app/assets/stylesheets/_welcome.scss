@@ -244,13 +244,6 @@
 		flex-wrap: wrap;
 		justify-content: center;
   }
-
-  .fake-control {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 4px;
-    min-height: 38px;
-  }
   
   .switch-lang {
     z-index: 1000;
@@ -268,6 +261,14 @@
     position: relative;
   }
 
+  .fixed-lh-3 {
+    line-height: 3em;
+  }
+
+  .root-chart {
+    min-height: 300px;
+  }
+
   .visualize-nav {
     top: 100px;
     padding-top: 15px;
@@ -283,7 +284,7 @@
     position: fixed;
     top: 30%;
     padding-left: 5%;
-    z-index: 999;
+    z-index: 9999;
     left: 0;
     transition: all 0.1s ease-in;
 
@@ -291,6 +292,11 @@
       padding-left: 0;
       left: -15px;
     }
+  }
+
+  abbr[title] {
+    text-decoration: none;
+    color: #e41010;
   }
 
   .social-share-button {
