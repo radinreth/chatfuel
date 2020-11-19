@@ -2,13 +2,13 @@
   .container
     %ul#menu.nav.nav-tabs.justify-content-end{:role => "tablist"}
       %li.nav-item
-        %a#summary-tab.nav-link{"aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"}
+        %a#summary-tab.nav-link{ tabindex: 8, "aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"}
           = t("welcomes.summary")
       %li.nav-item
-        %a#access-information-tab.nav-link.active{"aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"}
+        %a#access-information-tab.nav-link.active{tabindex: 9, "aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"}
           = t("welcomes.access_info")
       %li.nav-item
-        %a#citizen-feedback-tab.nav-link{"aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
+        %a#citizen-feedback-tab.nav-link{tabindex: 10, "aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
           = t("welcomes.citizen_feedback")
 
 #tab

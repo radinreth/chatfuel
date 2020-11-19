@@ -42,7 +42,7 @@ en:
   female: Female
   other: Other
   all: All
-  location: "%{district} in %{province}"
+  location: "%{district} selected"
   location_no_district: "%{province}"
   district_count: "%{count} districts"
   repeated: Finish and restart session
