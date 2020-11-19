@@ -33,7 +33,9 @@ OWSO.WelcomesIndex = (() => {
             locale: gon.locale,
             district_code: districtCode }, 
           function(result) {
-          $("#q_districts").val(result.data)
+          $("#q_districts").val(result.display_name)
+          $(".tooltip-district")
+            .attr("data-original-title", result.district_list_name || result.display_name)
         })
       } else {
         $("#q_districts").val(gon.all)
