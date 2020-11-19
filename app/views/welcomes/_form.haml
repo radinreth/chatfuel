@@ -1,53 +1,54 @@
-= simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
-  #form-query.mb-3
-    .container
-      .row
-        .col-12
-          .form-row
-            -# logo
-            .logo-inline.form-group.col-lg-3{ style: "display: none;" }
-              .d-flex.align-items-center.justify-content-start.h-100.w-100
-                = render partial: "welcomes/logo", locals: { tabindex: 3 }
+#form-query
+  = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
+    .mb-3
+      .container
+        .row
+          .col-12
+            .form-row
+              -# logo
+              .logo-inline.form-group.col-lg-3{ style: "display: none;" }
+                .d-flex.align-items-center.justify-content-start.h-100.w-100
+                  = render partial: "welcomes/logo", locals: { tabindex: 3 }
 
-            -# province
-            = f.input_field :province, as: :hidden, name: "province_code", value: "02"
-            = f.input :province, as: :select, label: t("welcomes.province"), include_blank: false, include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: true, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
+              -# province
+              = f.input_field :province, as: :hidden, name: "province_code", value: "02"
+              = f.input :province, as: :select, label: t("welcomes.province"), include_blank: false, include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: true, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
 
-            -# districts
-            .form-group.q_district.select.col-lg-4.col-sm-12
-              -# %button.btn.btn-primary{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-              -#   Launch demo modal
-              %label.select.required.disabled
-                Districts
-                %abbr{ title: "required" } *
+              -# districts
+              .form-group.q_district.select.col-lg-4.col-sm-12
+                %label.select.required.disabled
+                  Districts
+                  %abbr{ title: "required" } *
 
-              .fake-control{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-                All
-            -# .form-group.q_district.select.col-lg-4.col-sm-12
-            -#   - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
-            -#   = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
-            -#   = f.input :districts, as: :select, label: t("welcomes.districts"), collection: [["", t('dashboard.all_district')]], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code position-relative", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district", "pumi-select-has-hidden-value": true } }
+                .fake-control.text-truncate{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+                  All
+                  - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
+                  = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
+              -# .form-group.q_district.select.col-lg-4.col-sm-12
+              -#   - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
+              -#   = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
+              -#   = f.input :districts, as: :select, label: t("welcomes.districts"), collection: [["", t('dashboard.all_district')]], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code position-relative", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/pumi/districts?province_id=FILTER", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district", "pumi-select-has-hidden-value": true } }
 
-            -# time period
-            = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
-            = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
-            = f.input :time_period, wrapper_html: { class: "col-lg-3" }, label: t("welcomes.time_period"), input_html: { tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
+              -# time period
+              = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
+              = f.input :end_date, as: :hidden, input_html: { class: "end_date",name: "end_date", value: @end_date }
+              = f.input :time_period, wrapper_html: { class: "col-lg-3" }, label: t("welcomes.time_period"), input_html: { tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
 
-            -# submit
-            .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
-              = f.submit t("welcomes.search"), class: "btn btn-primary", disabled: false, tabindex: 5, disabled: true, id: "btn-search"
+              -# submit
+              .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
+                = f.submit t("welcomes.search"), class: "btn btn-primary", disabled: false, tabindex: 5, id: "btn-search"
 
-  -# modal
-  #exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop": "static" }
-    .modal-dialog{:role => "document"}
-      .modal-content
-        .modal-header
-          %h5#exampleModalLabel.modal-title Districts
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          .pb-3
-            = f.input :districts, as: :select, label: t("welcomes.districts"), label_method: :second, value_method: :first, collection: [["", t('dashboard.all_district')]], include_blank: false, include_hidden: false, input_html: { multiple: "multiple", tabindex: 3, id: "district", name: 'district_code[]', class: "w-100 district_code position-relative", data: { "pumi-select-collection-label-method": "name_en", "pumi-select-collection-url": "/districts/index", "pumi-select-collection-url-filter-interpolation-key": "FILTER", "pumi-select-collection-value-method": "id", "pumi-select-disabled-class": "my-disabled-class", "pumi-select-disabled-target": "#district", "pumi-select-id": "district", "pumi-select-has-hidden-value": true } }
-        .modal-footer
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-          %button.btn.btn-primary.btn-save{:type => "button"} Save changes
+-# modal
+#exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1" }
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Districts
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        .position-relative
+          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_name, "data-pumi-select-collection-url" => "/districts/index", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary.btn-save{:type => "button"} Save changes
