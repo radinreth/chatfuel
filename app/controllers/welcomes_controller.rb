@@ -16,6 +16,10 @@ class WelcomesController < PublicAccessController
     render json: @query.feedback_trend, status: :ok
   end
 
+  def filter
+    render json: { data: @location_filter.display_name }
+  end
+
   private
     def set_query
       @query = DashboardQuery.new(filter_options)
