@@ -6,6 +6,7 @@
 #  gender              :string           default("")
 #  last_interaction_at :datetime
 #  platform_name       :string           default("")
+#  repeated            :boolean          default(FALSE)
 #  session_type        :string           default("")
 #  status              :integer(4)       default("incomplete")
 #  created_at          :datetime         not null
@@ -16,14 +17,19 @@
 #
 class Session < ApplicationRecord
   include CsvConcern
+  include Session::FilterableConcern
 
   enum status: %i[incomplete completed]
+
+  PLATFORM_DICT = {
+    ivr: :Verboice,
+    chatbot: :Messenger
+  }
 
   # TODO: reference session
   has_many :step_values, dependent: :destroy
 
   default_scope -> { order(updated_at: :desc) }
-  scope :period, -> (start_date, end_date) { where("DATE(last_interaction_at) BETWEEN ? AND ?", start_date, end_date) }
 
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
@@ -57,18 +63,7 @@ class Session < ApplicationRecord
   end
 
   def reachable_period?
-    last_interaction_at > ENV["FB_REACHABLE_IN_DAY"].to_i.days.ago
-  end
-
-  def self.filter(params = {})
-    scope = all
-    scope = scope.where(gender: params[:gender]) if params[:gender].present?
-    scope = scope.where(session_type: params[:content_type]) if params[:content_type].present?
-    scope = scope.where(province_id: params[:province_id]) if params[:province_id].present?
-    scope = scope.where(district_id: params[:district_id]) if params[:district_id].present?
-    scope = scope.where(platform_name: params[:platform]) if params[:platform].present?
-    scope = scope.where("DATE(created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
-    scope
+    last_interaction_at > Setting.fb_reachable_period
   end
 
   private

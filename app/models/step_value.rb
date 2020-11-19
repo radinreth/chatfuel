@@ -29,6 +29,7 @@
 #
 class StepValue < ApplicationRecord
   include TrackConcern
+  include StepValue::FilterableConcern
 
   has_paper_trail
 
@@ -89,16 +90,6 @@ class StepValue < ApplicationRecord
     end.to_h
 
     default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
-  end
-
-  def self.filter(scope, params={})
-    scope = scope.where(session_id: Session.where(gender: params[:gender])) if params[:gender].present?
-    scope = scope.where(session_id: Session.where(session_type: params[:content_type])) if params[:content_type].present?
-    scope = scope.where(session_id: Session.where(province_id: params[:province_id])) if params[:province_id].present?
-    scope = scope.where(session_id: Session.where(district_id: params[:district_id])) if params[:district_id].present?
-    scope = scope.where(session_id: Session.where(platform_name: params[:platform_name])) if params[:platform_name].present?
-    scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
-    scope
   end
 
   def self.users_visited_by_each_genders(params = {})
