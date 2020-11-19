@@ -8,9 +8,9 @@ OWSO.WelcomesIndex = (() => {
   var logoContainer, formQuery, pilotHeader
 
   let items = [
-    { element: ".q_province", fromClass: "col-lg-3", toClass: "col-lg-4" },
+    { element: ".q_province", fromClass: "col-lg-2", toClass: "col-lg-4" },
     { element: ".q_district", fromClass: "col-lg-3", toClass: "col-lg-4" },
-    { element: ".q_time_period", fromClass: "col-lg-2", toClass: "col-lg-3" }
+    { element: ".q_time_period", fromClass: "col-lg-3", toClass: "col-lg-3" }
   ]
 
   function init() {
