@@ -5,6 +5,8 @@ class WelcomesController < PublicAccessController
 
   def index
     @query = DashboardQuery.new(filter_options)
+    gon.all = I18n.t("all")
+    gon.locale = I18n.locale
 
     respond_to do |format|
       format.html { render layout: "welcome" }
