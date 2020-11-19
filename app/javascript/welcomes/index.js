@@ -13,88 +13,74 @@ OWSO.WelcomesIndex = (() => {
   ];
 
   function init() {
-    OWSO.DashboardShow.renderDatetimepicker();
-    OWSO.DashboardShow.multiSelectDistricts();
-    OWSO.DashboardShow.attachEventClickToChartDownloadButton();
-    OWSO.DashboardShow.tooltipChart();
+    OWSO.DashboardShow.renderDatetimepicker()
+    OWSO.DashboardShow.multiSelectDistricts()
 
-    onWindowScroll();
-    onChangeDistrict();
-    onModalSave();
-    onClickTabNavigation();
-    onChangePeriod();
-    onLoadPopup();
-    ssbInterceptor();
+    onWindowScroll()
+    onChangeDistrict()
+    onModalSave()
   }
 
-  function ssbInterceptor() {
-    $(".ssb-icon").click(function(){
-      let site = $(this).data("site");
+  function onModalSave() {
+    $(".btn-save").click(function(e) {
+      var provinceCode = $('#province').val()
+      var districtCode = $('.district_code').val().filter( e => e)
 
-      $.ajax({
-        url: '/api/v1/social_providers',
-        type: 'post',
-        data: {social_provider: {provider_name: site}},
-        dataType: 'json',
-      });
-    });
-  }
-
-  function onLoadPopup() {
-    $("#popup").on('show.bs.modal', function (event) {
-      let btn = $(event.relatedTarget);
-      let element = btn.data("element");
-      let modal = $(this);
-
-      let attrs = {
-        size: btn.data("size"),
-        title: btn.data("title"),
-        body: $(element).html(),
-        callback: btn.data("callback")
+      if( districtCode.length > 0 ) {
+        $.get("/welcomes/filter", 
+          { province_code: provinceCode, 
+            district_code: districtCode }, 
+          function(result) {
+          $(".fake-control").html(result.data)
+        })
+      } else {
+        $(".fake-control").html("All")
       }
 
-      setupModal(modal, attrs);
-    });
+      
+      $("#exampleModal").modal("hide")
+    })
   }
 
-  function setupModal(modal, { size, title, body, callback }) {
-    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
-    modal.find(".modal-title").text(title);
-    let modalBody = modal.find(".modal-body");
-    if( modalBody.data("state") == "prune" ) {
-      modalBody.html(body);
-      $(".sub_categories").html("");
-      modalBody.data("state", "replaced");
-    }
+  function chartPointStyle() {
+    var container = document.querySelector(".root-container")
+    var div = document.createElement('div');
+    div.classList.add('chart-container');
 
-    if( callback !== undefined ) {
-      OWSO.WelcomesIndex[callback]();
-    }
-  }
+    var canvas = document.createElement('canvas');
+    div.appendChild(canvas);
+    container.appendChild(div);
 
-  function loadSubCategories() {
-    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
-      let id = $(dom).data("id");
-      let ds = gon.feedbackSubCategories[id];
-
-      if( ds != undefined ) {
-        subCategoriesFeedback.chartId = dom.id;
-        subCategoriesFeedback.ds = ds;
-        subCategoriesFeedback.render();
-      }
-    });
-  }
-
-  function onChangePeriod() {
-    $(document).on("change", ".period-filter", function() {
-      let path = $(this).data("resourcepath");
-      let url = `/welcomes/q/${path}`;
-
-      let option = {
-        url: url,
-        target: this,
-        extractor: formater[$(this).data("formater")],
-        canvasId: $(this).data("canvasid")
+    var ctx = canvas.getContext('2d');
+    var config = {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: "#f00",
+          borderColor: "#f00",
+          data: [10, 23, 5, 99, 67, 43, 0],
+          fill: false,
+          pointRadius: 5,
+          pointHoverRadius: 10,
+          showLine: false // no line shown
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Point Style: circle'
+        },
+        legend: {
+          display: false
+        },
+        elements: {
+          point: {
+            pointStyle: "circle"
+          }
+        }
       }
 
       fetchResultSet(option);
