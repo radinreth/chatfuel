@@ -244,13 +244,6 @@
 		flex-wrap: wrap;
 		justify-content: center;
   }
-
-  .fake-control {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 4px;
-    min-height: 38px;
-  }
   
   .switch-lang {
     z-index: 1000;
@@ -268,9 +261,12 @@
     position: relative;
   }
 
-  .district_code + span {
-    position: absolute;
-    width: 100% !important;
+  .fixed-lh-3 {
+    line-height: 3em;
+  }
+
+  .root-chart {
+    min-height: 300px;
   }
 
   .visualize-nav {
@@ -287,7 +283,7 @@
     position: fixed;
     top: 30%;
     padding-left: 5%;
-    z-index: 1000;
+    z-index: 9999;
     left: 0;
     transition: all 0.1s ease-in;
     text-align: center;
@@ -296,6 +292,11 @@
       padding-left: 0;
       left: -32px;
     }
+  }
+
+  abbr[title] {
+    text-decoration: none;
+    color: #e41010;
   }
 
   .social-share-button {
