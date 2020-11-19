@@ -21,7 +21,7 @@ class WelcomesController < PublicAccessController
   end
 
   def filter
-    render json: { data: @location_filter.display_name }
+    render json: { display_name: @location_filter.display_name, district_list_name: @location_filter.district_list_name }
   end
 
   private
