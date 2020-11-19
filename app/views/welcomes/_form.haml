@@ -20,7 +20,7 @@
                   = t("welcomes.districts")
                   %abbr{ title: "required" } *
 
-                = f.input :districts, label: false, input_html: { class: "text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
+                = f.input :districts, label: false, input_html: { tabindex: 5, class: "text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
               
@@ -34,14 +34,14 @@
                   %abbr{ title: "required" } *
 
                 .input-group
-                  = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 4, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
+                  = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
                   .input-group-append
                     .input-group-text
                       %i.fas.fa-calendar-alt.fa-sm
 
               -# submit
               .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 5, id: "btn-search"
+                = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search"
 
 -# modal
 #exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1" }
