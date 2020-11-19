@@ -30,15 +30,15 @@ OWSO.WelcomesIndex = (() => {
       if( districtCode.length > 0 ) {
         $.get("/welcomes/filter", 
           { province_code: provinceCode, 
+            locale: gon.locale,
             district_code: districtCode }, 
           function(result) {
           $("#q_districts").val(result.data)
         })
       } else {
-        $("#q_districts").html("All")
+        $("#q_districts").val(gon.all)
       }
 
-      
       $("#exampleModal").modal("hide")
     })
   }
