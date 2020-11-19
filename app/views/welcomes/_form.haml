@@ -37,11 +37,11 @@
                   = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 4, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
                   .input-group-append
                     .input-group-text
-                      %i.fas.fa-calendar-week.fa-sm
+                      %i.fas.fa-calendar-alt.fa-sm
 
               -# submit
               .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.submit t("welcomes.search"), class: "btn btn-primary", disabled: false, tabindex: 5, id: "btn-search"
+                = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 5, id: "btn-search"
 
 -# modal
 #exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1" }
