@@ -20,10 +20,12 @@
                   Districts
                   %abbr{ title: "required" } *
 
-                .fake-control.text-truncate{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-                  All
-                  - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
-                  = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
+                
+                = f.input :districts, label: false, input_html: { class: "text-truncate", value: "All", readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
+                -# .fake-control.text-truncate{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+                -#   All
+                - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
+                = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
               -# .form-group.q_district.select.col-lg-4.col-sm-12
               -#   - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
               -#   = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes
@@ -35,7 +37,7 @@
               = f.input :time_period, wrapper_html: { class: "col-lg-3" }, label: t("welcomes.time_period"), input_html: { tabindex: 4, value: "#{@start_date} - #{@end_date}", class: "datepicker_date w-100" }
 
               -# submit
-              .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
+              .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
                 = f.submit t("welcomes.search"), class: "btn btn-primary", disabled: false, tabindex: 5, id: "btn-search"
 
 -# modal
