@@ -22,6 +22,69 @@ OWSO.WelcomesIndex = (() => {
     onModalSave()
   }
 
+  function customChart() {
+    chartMostRequestedServices()
+  }
+
+  function chartMostRequestedServices() {
+    var ctx = 'chart_most_requested_services'
+
+    var data = {
+      labels: ["Bavel", "Thmor Kol", "Kamrieng", "Battambang"],
+      datasets: [
+            {
+              label: "Most requested services by OWSO",
+              backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
+              borderColor: "rgba(151,187,205,1)",
+              data: [200, 500, 350, 250],
+              maxBarThickness: 36,
+              minBarLength: 2,
+              dataTitles: ["Document\nCertification", "Public\nTransport", "Document\nCertification", "Public\nTransport"]
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              var label = context.dataset.dataTitles[context.dataIndex]
+              return label + "\n" + value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              suggestedMax: 1000,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 45
+            }
+          }]
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+    });
+  }
+
   function onModalSave() {
     $(".btn-save").click(function(e) {
       var provinceCode = $('#province').val()
@@ -47,6 +110,9 @@ OWSO.WelcomesIndex = (() => {
 
   function chartPointStyle() {
     var container = document.querySelector(".root-container")
+
+    if( container == null ) return
+
     var div = document.createElement('div');
     div.classList.add('chart-container');
 
@@ -137,6 +203,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, chartPointStyle }
+  return { init, chartPointStyle, customChart }
 
 })()
