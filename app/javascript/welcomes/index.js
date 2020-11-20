@@ -25,6 +25,67 @@ OWSO.WelcomesIndex = (() => {
   function customChart() {
     chartMostRequestedServices()
     chartInformationAccessByGender()
+    chartInformationAccessByPeriod()
+  }
+
+  function chartInformationAccessByPeriod() {
+    var ctx = 'chart_information_access_by_period'
+
+    var data = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [
+            {
+              backgroundColor: ["#F2A33A", "#5ACAFA", "#5CB836", "#F2A33A", "#5ACAFA", "#F2A33A"],
+              borderColor: "rgba(151,187,205,1)",
+              data: [200, 500, 350, 250, 330, 360],
+              maxBarThickness: 36,
+              minBarLength: 2,
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              return value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              stepSize: 200,
+              suggestedMax: 700,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0
+            }
+          }]
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+    });
   }
 
   function chartInformationAccessByGender() {
@@ -125,11 +186,15 @@ OWSO.WelcomesIndex = (() => {
           yAxes: [{
             display: true,
             ticks: {
-              suggestedMax: 1000,
+              stepSize: 200,
+              suggestedMax: 800,
               beginAtZero: true
             }
           }],
           xAxes: [{
+            gridLines: {
+              display: false
+            },
             ticks: {
               autoSkip: false,
               maxRotation: 45,
