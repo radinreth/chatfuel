@@ -10,7 +10,7 @@ class DashboardQuery
   end
 
   def most_requested_services
-    { "Bavel" => 200, "Thmor Kol" => 300, "Komrieng" => 400, "Battambong" => 140 }
+    { "Bavel" => 200, "Thmor Kol" => 500, "Komrieng" => 350, "Battambong" => 250 }
   end
 
   def information_access_by_period
