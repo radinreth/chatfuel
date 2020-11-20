@@ -15,48 +15,48 @@
   .container
     #menuContent.tab-content.pt-5
       #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
-        = render "dashboard/earnings"
+        -# = render "dashboard/earnings"
 
         .row
           .col-xl-6.col-lg-5
-            = render "dashboard/total_user_visit"
+            -# = render "dashboard/total_user_visit"
           .col-xl-6.col-lg-5
-            = render "dashboard/total_user_feedback"
+            -# = render "dashboard/total_user_feedback"
           
       #access-information.tab-pane.fade.show.active{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
-        = render "dashboard/earnings"
+        -# = render "dashboard/earnings"
 
         .row
           -# Information Access
           .col-xl-6.col-lg-5
             = render "welcomes/charts/most_requested_services"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/gender"
+            -# = render "welcomes/charts/gender"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/information_accessed_periodically"
+            -# = render "welcomes/charts/information_accessed_periodically"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/number_access_by_main_services"
+            -# = render "welcomes/charts/number_access_by_main_services"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/most_service_tracked_by_periodic"
+            -# = render "welcomes/charts/most_service_tracked_by_periodic"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/ticket_tracking_by_gender"
+            -# = render "welcomes/charts/ticket_tracking_by_gender"
 
       #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
-        = render "dashboard/earnings"
+        -# = render "dashboard/earnings"
 
         .row
           -# citizen feedback
           .col-xl-6.col-lg-5
-            = render "dashboard/gender"
+            -# = render "dashboard/gender"
           .col-xl-6.col-lg-5
-            = render "dashboard/total_user_feedback"
+            -# = render "dashboard/total_user_feedback"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/overall_rating_by_owso"
+            -# = render "welcomes/charts/overall_rating_by_owso"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/owso_feedback_trend"
+            -# = render "welcomes/charts/owso_feedback_trend"
           -# feedback by sub category -> base on selected districts
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/feedback_by_sub_category"
+            -# = render "welcomes/charts/feedback_by_sub_category"
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/feedback_by_sub_category"
+            -# = render "welcomes/charts/feedback_by_sub_category"
       
