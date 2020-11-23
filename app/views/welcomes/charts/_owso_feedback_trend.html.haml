@@ -12,4 +12,5 @@
 
   .card-body
     #owso_feedback_trend.pt-4.d-flex.justify-content-around.align-items-center
-      = column_chart @query.owso_feedback_trend, legend: true, messages: { empty: t("no_data") }, library: { legend: { labels: { boxWidth: 10 } } }
+      %canvas#chart_owso_feedback_trend
+      -# = column_chart @query.owso_feedback_trend, legend: true, messages: { empty: t("no_data") }, library: { legend: { labels: { boxWidth: 10 } } }
