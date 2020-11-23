@@ -32,6 +32,140 @@ OWSO.WelcomesIndex = (() => {
 
     // citizen feedback
     chartOverallRatingByOwso()
+    chartOwsoFeedbackTrend()
+    chartFeedbackBySubCategory()
+  }
+
+  function chartFeedbackBySubCategory() {
+    var ctx = 'chart_feedback_by_sub_category'
+
+    var data = {
+      labels: ["Like", "Dislike"],
+      datasets: [
+        {
+          label: "staff",
+          backgroundColor: "#65D4BD",
+          data: [60,55]
+        },    
+        {
+          label: "price",
+          backgroundColor: "#3864B1",
+          data: [55,80]
+        },
+        {
+          label: "working hour",
+          backgroundColor: "#D6D44C",
+          data: [40,55]
+        },
+        {
+          label: "document",
+          backgroundColor: "#65D4BD",
+          data: [80,45]
+        },
+        {
+          label: "process",
+          backgroundColor: "#3864B1",
+          data: [35,55]
+        },
+        {
+          label: "delivery speed",
+          backgroundColor: "#D6D44C",
+          data: [80,40]
+        },
+        {
+          label: "providing info",
+          backgroundColor: "#C13ACB",
+          data: [60,30]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          display: false,
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
+  }
+
+  function chartOwsoFeedbackTrend() {
+    var ctx = 'chart_owso_feedback_trend'
+
+    var data = {
+      labels: ["January", "February", "March", "April"],
+      datasets: [
+        {
+          label: "Like",
+          backgroundColor: "#65D4BD",
+          data: [60,55,40, 45]
+        },    
+        {
+          label: "Acceptable",
+          backgroundColor: "#2855BE",
+          data: [55,80,50, 60]
+        },
+        {
+          label: "Dislike",
+          backgroundColor: "#C1413B",
+          data: [40,55,90, 75]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          display: false,
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
   }
 
   function chartOverallRatingByOwso() {
@@ -44,7 +178,7 @@ OWSO.WelcomesIndex = (() => {
           label: "Like",
           backgroundColor: "#65D4BD",
           data: [60,55,40]
-        },
+        },    
         {
           label: "Acceptable",
           backgroundColor: "#2855BE",
@@ -61,6 +195,7 @@ OWSO.WelcomesIndex = (() => {
     var options = {
       plugins: {
         datalabels: {
+          display: false,
           rotation: -90,
           color: "#FFF",
           textAlign: "center",
