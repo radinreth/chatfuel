@@ -22,6 +22,586 @@ OWSO.WelcomesIndex = (() => {
     onModalSave()
   }
 
+  function customChart() {
+    chartMostRequestedServices()
+    chartInformationAccessByGender()
+    chartInformationAccessByPeriod()
+    chartNumberAccessByMainServices()
+    chartMostServiceTrackedPeriodically()
+    chartTicketTrackingByGender()
+
+    // citizen feedback
+    chartOverallRatingByOwso()
+    chartOwsoFeedbackTrend()
+    chartFeedbackBySubCategory()
+  }
+
+  function chartFeedbackBySubCategory() {
+    var ctx = 'chart_feedback_by_sub_category'
+
+    var data = {
+      labels: ["Like", "Dislike"],
+      datasets: [
+        {
+          label: "staff",
+          backgroundColor: "#65D4BD",
+          data: [60,55]
+        },    
+        {
+          label: "price",
+          backgroundColor: "#3864B1",
+          data: [55,80]
+        },
+        {
+          label: "working hour",
+          backgroundColor: "#D6D44C",
+          data: [40,55]
+        },
+        {
+          label: "document",
+          backgroundColor: "#65D4BD",
+          data: [80,45]
+        },
+        {
+          label: "process",
+          backgroundColor: "#3864B1",
+          data: [35,55]
+        },
+        {
+          label: "delivery speed",
+          backgroundColor: "#D6D44C",
+          data: [80,40]
+        },
+        {
+          label: "providing info",
+          backgroundColor: "#C13ACB",
+          data: [60,30]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          display: false,
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
+  }
+
+  function chartOwsoFeedbackTrend() {
+    var ctx = 'chart_owso_feedback_trend'
+
+    var data = {
+      labels: ["January", "February", "March", "April"],
+      datasets: [
+        {
+          label: "Like",
+          backgroundColor: "#65D4BD",
+          data: [60,55,40, 45]
+        },    
+        {
+          label: "Acceptable",
+          backgroundColor: "#2855BE",
+          data: [55,80,50, 60]
+        },
+        {
+          label: "Dislike",
+          backgroundColor: "#C1413B",
+          data: [40,55,90, 75]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          display: false,
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
+  }
+
+  function chartOverallRatingByOwso() {
+    var ctx = 'chart_overall_rating_by_owso'
+
+    var data = {
+      labels: ["kamrieng", "bavel", "tmor kol"],
+      datasets: [
+        {
+          label: "Like",
+          backgroundColor: "#65D4BD",
+          data: [60,55,40]
+        },    
+        {
+          label: "Acceptable",
+          backgroundColor: "#2855BE",
+          data: [55,80,50]
+        },
+        {
+          label: "Dislike",
+          backgroundColor: "#C1413B",
+          data: [40,55,90]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          display: false,
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
+  }
+
+  function chartTicketTrackingByGender() {
+    var ctx = 'chart_ticket_tracking_by_gender'
+
+    var data = {
+      labels: ["Female", "Male", "Other"],
+      total: 944,
+      datasets: [
+            {
+              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
+              data: [450, 350, 144],
+            }
+          ]
+        };
+
+    var options = {
+      legend: {
+        position: "left",
+        labels: {
+          boxWidth: 12,
+          generateLabels: function (chart) {
+            var data = chart.data
+            // debugger
+            return chart.data.labels.map(function(label, i) {
+              var meta = chart.getDatasetMeta(0);
+              var ds = data.datasets[0];
+              var arc = meta.data[i];
+              var custom = arc && arc.custom || {};
+              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+              var arcOpts = chart.options.elements.arc;
+              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
+
+              return {
+                text: `${label} (${perc}%)`,
+                fillStyle: fill,
+                strokeStyle: stroke,
+                lineWidth: bw,
+                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                index: i
+              }
+            })
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          color: "#FFF"
+        }
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+  }
+
+  function chartMostServiceTrackedPeriodically() {
+    var ctx = 'chart_most_service_tracked_periodically'
+
+    var data = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [
+            {
+              label: "Most Service Tracked by Month",
+              backgroundColor: ["#F2A33A", "#5ACAFA", "#5CB836", "#F2A33A", "#5ACAFA", "#F2A33A"],
+              borderColor: "rgba(151,187,205,1)",
+              data: [200, 500, 350, 250, 330, 360],
+              maxBarThickness: 36,
+              minBarLength: 2,
+              dataTitles: ["Document\nCertification", "Public\nTransport", "Document\nCertification", "Public\nTransport", "Land\nTitle", "Business"]
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              var label = context.dataset.dataTitles[context.dataIndex]
+              return label + "\n" + value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              stepSize: 200,
+              suggestedMax: 800,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0
+            }
+          }]
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+    });
+  }
+
+  function chartNumberAccessByMainServices() {
+    var ctx = 'chart_number_access_by_main_services';
+
+    var data = {
+        labels: ['Document Certification', 'Land Title', 'Public Transport', 'Construction', 'Business Plan', 'Land Refill'],
+        datasets: [{
+          backgroundColor: "#F2A33A",
+          data: [400, 145, 202, 102, 124, 50],
+          fill: false,
+          pointRadius: 5,
+          pointHoverRadius: 10,
+          showLine: false // no line shown
+        }]
+      };
+
+    var options = {
+      plugins: {
+        datalabels: {
+          anchor: "end",
+          align: "end",
+          rotation: 0,
+          textAlign: "center",
+          formatter: function(value) {
+            return value;
+          }
+        }
+      },
+      responsive: true,
+      title: {
+        display: false,
+      },
+      legend: {
+        display: false
+      },
+      elements: {
+        point: {
+          pointStyle: "circle"
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            stepSize: 250,
+            suggestedMax: 500,
+            beginAtZero: true
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            autoSkip: false,
+            maxRotation: 45,
+            minRotation: 45,
+            callback: function(value) {
+              // truncate value.substr(0, 10)
+              return value
+            },
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+  });
+  }
+
+  function chartInformationAccessByPeriod() {
+    var ctx = 'chart_information_access_by_period'
+
+    var data = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [
+            {
+              backgroundColor: ["#F2A33A", "#5ACAFA", "#5CB836", "#F2A33A", "#5ACAFA", "#F2A33A"],
+              borderColor: "rgba(151,187,205,1)",
+              data: [200, 500, 350, 250, 330, 360],
+              maxBarThickness: 36,
+              minBarLength: 2,
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              return value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              stepSize: 200,
+              suggestedMax: 700,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0
+            }
+          }]
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+    });
+  }
+
+  function chartInformationAccessByGender() {
+    var ctx = 'chart_information_access_by_gender'
+
+    var data = {
+      labels: ["Female", "Male", "Other"],
+      total: 944,
+      datasets: [
+            {
+              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
+              data: [450, 350, 144],
+            }
+          ]
+        };
+
+    var options = {
+      legend: {
+        position: "left",
+        labels: {
+          boxWidth: 12,
+          generateLabels: function (chart) {
+            var data = chart.data
+            // debugger
+            return chart.data.labels.map(function(label, i) {
+              var meta = chart.getDatasetMeta(0);
+              var ds = data.datasets[0];
+              var arc = meta.data[i];
+              var custom = arc && arc.custom || {};
+              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+              var arcOpts = chart.options.elements.arc;
+              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
+
+              return {
+                text: `${label} (${perc}%)`,
+                fillStyle: fill,
+                strokeStyle: stroke,
+                lineWidth: bw,
+                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                index: i
+              }
+            })
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          color: "#FFF"
+        }
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+  }
+
+  function chartMostRequestedServices() {
+    var ctx = 'chart_most_requested_services'
+
+    var data = {
+      labels: ["Bavel", "Thmor Kol", "Kamrieng", "Battambang"],
+      datasets: [
+            {
+              label: "Most requested services by OWSO",
+              backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
+              borderColor: "rgba(151,187,205,1)",
+              data: [200, 500, 350, 250],
+              maxBarThickness: 36,
+              minBarLength: 2,
+              dataTitles: ["Document\nCertification", "Public\nTransport", "Document\nCertification", "Public\nTransport"]
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              var label = context.dataset.dataTitles[context.dataIndex]
+              return label + "\n" + value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              stepSize: 200,
+              suggestedMax: 800,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 45
+            }
+          }]
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+    });
+  }
+
   function onModalSave() {
     $(".btn-save").click(function(e) {
       var provinceCode = $('#province').val()
@@ -45,49 +625,7 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  function chartPointStyle() {
-    var container = document.querySelector(".root-container")
-    var div = document.createElement('div');
-    div.classList.add('chart-container');
-
-    var canvas = document.createElement('canvas');
-    div.appendChild(canvas);
-    container.appendChild(div);
-
-    var ctx = canvas.getContext('2d');
-    var config = {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-          label: 'My First dataset',
-          backgroundColor: "#f00",
-          borderColor: "#f00",
-          data: [10, 23, 5, 99, 67, 43, 0],
-          fill: false,
-          pointRadius: 5,
-          pointHoverRadius: 10,
-          showLine: false // no line shown
-        }]
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Point Style: circle'
-        },
-        legend: {
-          display: false
-        },
-        elements: {
-          point: {
-            pointStyle: "circle"
-          }
-        }
-      }
-    };
-    new Chart(ctx, config);
-  }
+  
 
   function onWindowScroll() {
     formQuery = $("#form-query")
@@ -137,6 +675,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, chartPointStyle }
+  return { init, customChart }
 
 })()
