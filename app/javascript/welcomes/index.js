@@ -44,7 +44,7 @@ OWSO.WelcomesIndex = (() => {
       datasets: [
         {
           label: "staff",
-          backgroundColor: "#65D4BD",
+          backgroundColor: "#b7b5b3",
           data: [60,55]
         },    
         {
@@ -64,17 +64,17 @@ OWSO.WelcomesIndex = (() => {
         },
         {
           label: "process",
-          backgroundColor: "#3864B1",
+          backgroundColor: "#43291F",
           data: [35,55]
         },
         {
           label: "delivery speed",
-          backgroundColor: "#D6D44C",
+          backgroundColor: "#da2c38",
           data: [80,40]
         },
         {
           label: "providing info",
-          backgroundColor: "#C13ACB",
+          backgroundColor: "#bdadea",
           data: [60,30]
         }
       ]
