@@ -27,4 +27,4 @@
           - component.with(:body) do
             = render partial: 'dashboard/variable_with_criteria', collection: @variables, as: :variable
         - colors = agg_genders.values.map(&:pop)
-        = pie_chart agg_genders.values, colors: colors, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }
+        = pie_chart agg_genders.values, colors: colors, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }, library: { plugins: { datalabels: { display: false } } }
