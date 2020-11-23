@@ -21,9 +21,5 @@
               %span.oval-label.word-wrap-normal
                 = value.mapping_value
 
-        - if policy(:dashboard).setting?
-          = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
-            %i.fas.fa-cog.cog
-
         = render 'dashboard/choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'chooseDictionary'
         = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80, plugins: { datalabels: { display: false} } }
