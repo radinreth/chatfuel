@@ -12,4 +12,5 @@
 
   .card-body
     #most_service_tracked_by_periodic.pt-4.d-flex.justify-content-around.align-items-center
-      = column_chart @query.most_service_tracked_by_periodic, legend: false, messages: { empty: t("no_data") }
+      %canvas#chart_most_service_tracked_periodically
+      -# = column_chart @query.most_service_tracked_by_periodic, messages: { empty: t("no_data") }
