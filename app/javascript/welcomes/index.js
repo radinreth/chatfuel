@@ -404,9 +404,15 @@ OWSO.WelcomesIndex = (() => {
             autoSkip: false,
             maxRotation: 45,
             minRotation: 45,
+            beginAtZero: true,
             callback: function(value) {
-              // truncate value.substr(0, 10)
-              return value
+              var maxLength = 10;
+
+              if( value.length >= maxLength ) {
+                return `${value.substr(0, 10)}...`;
+              } else {
+                return value;
+              }
             },
           }
         }]
