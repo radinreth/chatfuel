@@ -2,7 +2,7 @@
   %h1.h3.mb-0.text-gray-800
     = title
 
-  - if @messages.present?
+  - if @sessions.present?
     = link_to home_path(request.query_parameters.merge(format: :csv)), target: "_blank", class: "btn btn-primary pull-right" do
       %i.fas.fa-download
       = t("download_csv")

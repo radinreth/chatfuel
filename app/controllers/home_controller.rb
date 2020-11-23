@@ -21,7 +21,7 @@ class HomeController < ApplicationController
       format.html
       format.csv do
         if @collection.count < Setting.max_download_size
-          send_data Message.to_csv(@collection, @variables), filename: "messages-#{Date.current.strftime}.csv", type: 'text/csv'
+          send_data Session.to_csv(@collection, @variables), filename: "messages-#{Date.current.strftime}.csv", type: 'text/csv'
         else
           redirect_to root_path, alert: I18n.t("max_download_size")
         end
