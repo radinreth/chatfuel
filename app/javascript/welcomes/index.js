@@ -26,6 +26,77 @@ OWSO.WelcomesIndex = (() => {
     chartMostRequestedServices()
     chartInformationAccessByGender()
     chartInformationAccessByPeriod()
+    chartNumberAccessByMainServices()
+  }
+
+  function chartNumberAccessByMainServices() {
+    var ctx = 'chart_number_access_by_main_services';
+
+    var data = {
+        labels: ['Document Certification', 'Land Title', 'Public Transport', 'Construction', 'Business Plan', 'Land Refill'],
+        datasets: [{
+          backgroundColor: "#F2A33A",
+          data: [400, 145, 202, 102, 124, 50],
+          fill: false,
+          pointRadius: 5,
+          pointHoverRadius: 10,
+          showLine: false // no line shown
+        }]
+      };
+
+    var options = {
+      plugins: {
+        datalabels: {
+          anchor: "end",
+          align: "end",
+          rotation: 0,
+          textAlign: "center",
+          formatter: function(value) {
+            return value;
+          }
+        }
+      },
+      responsive: true,
+      title: {
+        display: false,
+      },
+      legend: {
+        display: false
+      },
+      elements: {
+        point: {
+          pointStyle: "circle"
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            stepSize: 250,
+            suggestedMax: 500,
+            beginAtZero: true
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            autoSkip: false,
+            maxRotation: 45,
+            minRotation: 45,
+            callback: function(value) {
+              // truncate value.substr(0, 10)
+              return value
+            },
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+  });
   }
 
   function chartInformationAccessByPeriod() {
@@ -235,52 +306,7 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  function chartPointStyle() {
-    var container = document.querySelector(".root-container")
-
-    if( container == null ) return
-
-    var div = document.createElement('div');
-    div.classList.add('chart-container');
-
-    var canvas = document.createElement('canvas');
-    div.appendChild(canvas);
-    container.appendChild(div);
-
-    var ctx = canvas.getContext('2d');
-    var config = {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-          label: 'My First dataset',
-          backgroundColor: "#f00",
-          borderColor: "#f00",
-          data: [10, 23, 5, 99, 67, 43, 0],
-          fill: false,
-          pointRadius: 5,
-          pointHoverRadius: 10,
-          showLine: false // no line shown
-        }]
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Point Style: circle'
-        },
-        legend: {
-          display: false
-        },
-        elements: {
-          point: {
-            pointStyle: "circle"
-          }
-        }
-      }
-    };
-    new Chart(ctx, config);
-  }
+  
 
   function onWindowScroll() {
     formQuery = $("#form-query")
@@ -330,6 +356,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, chartPointStyle, customChart }
+  return { init, customChart }
 
 })()
