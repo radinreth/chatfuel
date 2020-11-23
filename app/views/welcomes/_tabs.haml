@@ -5,26 +5,26 @@
         %a#summary-tab.nav-link{ tabindex: 8, "aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"}
           = t("welcomes.summary")
       %li.nav-item
-        %a#access-information-tab.nav-link.active{tabindex: 9, "aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"}
+        %a#access-information-tab.nav-link{tabindex: 9, "aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"}
           = t("welcomes.access_info")
       %li.nav-item
-        %a#citizen-feedback-tab.nav-link{tabindex: 10, "aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
+        %a#citizen-feedback-tab.nav-link.active{tabindex: 10, "aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
           = t("welcomes.citizen_feedback")
 
 #tab
   .container
     #menuContent.tab-content.pt-5
       #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel"}
-        -# = render "dashboard/earnings"
+        = render "dashboard/earnings"
 
         .row
           .col-xl-6.col-lg-5
-            -# = render "dashboard/total_user_visit"
+            = render "dashboard/total_user_visit"
           .col-xl-6.col-lg-5
-            -# = render "dashboard/total_user_feedback"
+            = render "dashboard/total_user_feedback"
           
-      #access-information.tab-pane.fade.show.active{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
-        -# = render "dashboard/earnings"
+      #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
+        = render "dashboard/earnings"
 
         .row
           -# Information Access
@@ -41,17 +41,17 @@
           .col-xl-6.col-lg-5
             = render "welcomes/charts/ticket_tracking_by_gender"
 
-      #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
-        -# = render "dashboard/earnings"
+      #citizen-feedback.tab-pane.fade.show.active{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel"}
+        = render "dashboard/earnings"
 
         .row
           -# citizen feedback
           .col-xl-6.col-lg-5
-            -# = render "dashboard/gender"
+            = render "dashboard/gender"
           .col-xl-6.col-lg-5
-            -# = render "dashboard/total_user_feedback"
+            = render "dashboard/total_user_feedback"
           .col-xl-6.col-lg-5
-            -# = render "welcomes/charts/overall_rating_by_owso"
+            = render "welcomes/charts/overall_rating_by_owso"
           .col-xl-6.col-lg-5
             -# = render "welcomes/charts/owso_feedback_trend"
           -# feedback by sub category -> base on selected districts
