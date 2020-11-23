@@ -37,7 +37,7 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function chartFeedbackBySubCategory() {
-    var ctx = 'chart_feedback_by_sub_category'
+    // var ctx = $('.chart_feedback_by_sub_category');
 
     var data = {
       labels: ["Like", "Dislike"],
@@ -103,12 +103,15 @@ OWSO.WelcomesIndex = (() => {
       }
     }
 
-    new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      plugins: [chartDataLabels],
-      options: options
-    });
+
+    $.each( $('.chart_feedback_by_sub_category'), function(_, ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        plugins: [chartDataLabels],
+        options: options
+      });
+    } )
 
   }
 
