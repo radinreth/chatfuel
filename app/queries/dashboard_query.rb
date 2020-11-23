@@ -28,7 +28,6 @@ class DashboardQuery
     { "Femal" => 200, "Male" => 300, "Other" => 400 }
   end
 
-<<<<<<< HEAD
   def overall_rating_by_owso
     [
       { name: "like", data: {"kamrieng": 12, "bavel": 95, "tmorkol": 65, "battambong": 59 }},
@@ -57,8 +56,6 @@ class DashboardQuery
     ]
   end
 
-=======
->>>>>>> Add visualize for information access section
   def user_count
     sessions.count
   end
