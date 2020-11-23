@@ -29,6 +29,64 @@ OWSO.WelcomesIndex = (() => {
     chartNumberAccessByMainServices()
     chartMostServiceTrackedPeriodically()
     chartTicketTrackingByGender()
+
+    // citizen feedback
+    chartOverallRatingByOwso()
+  }
+
+  function chartOverallRatingByOwso() {
+    var ctx = 'chart_overall_rating_by_owso'
+
+    var data = {
+      labels: ["kamrieng", "bavel", "tmor kol"],
+      datasets: [
+        {
+          label: "Like",
+          backgroundColor: "#65D4BD",
+          data: [60,55,40]
+        },
+        {
+          label: "Acceptable",
+          backgroundColor: "#2855BE",
+          data: [55,80,50]
+        },
+        {
+          label: "Dislike",
+          backgroundColor: "#C1413B",
+          data: [40,55,90]
+        }
+      ]
+    }
+
+    var options = {
+      plugins: {
+        datalabels: {
+          rotation: -90,
+          color: "#FFF",
+          textAlign: "center",
+          formatter: function(value, context) {
+            return context.dataset.label;
+          }
+        }
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+
   }
 
   function chartTicketTrackingByGender() {
