@@ -557,7 +557,6 @@ OWSO.WelcomesIndex = (() => {
             {
               label: "Most requested services by OWSO",
               backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
-              borderColor: "rgba(151,187,205,1)",
               data: [200, 500, 350, 250],
               maxBarThickness: 36,
               minBarLength: 2,
