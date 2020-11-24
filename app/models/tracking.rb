@@ -9,23 +9,19 @@
 #  tracking_datetime :datetime
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  message_id        :bigint(8)        not null
 #  session_id        :bigint(8)
 #
 # Indexes
 #
-#  index_trackings_on_message_id  (message_id)
 #  index_trackings_on_session_id  (session_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (message_id => messages.id)
 #  fk_rails_...  (session_id => sessions.id)
 #
 class Tracking < ApplicationRecord
   enum status: %i[incorrect incomplete completed]
 
-  belongs_to :message
   belongs_to :session
 
   validates :status, uniqueness: { scope: :session }

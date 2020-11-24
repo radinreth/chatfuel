@@ -237,11 +237,9 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.string "ticket_code"
     t.string "site_code"
     t.datetime "tracking_datetime"
-    t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "session_id"
-    t.index ["message_id"], name: "index_trackings_on_message_id"
     t.index ["session_id"], name: "index_trackings_on_session_id"
   end
 
@@ -342,7 +340,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "step_values", "variables"
   add_foreign_key "tickets", "sites"
-  add_foreign_key "trackings", "messages"
   add_foreign_key "trackings", "sessions"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
