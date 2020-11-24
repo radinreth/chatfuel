@@ -33,8 +33,8 @@
                   = t("welcomes.time_period")
                   %abbr{ title: "required" } *
 
-                .input-group.input-group-lg
-                  = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
+                .input-group.datepicker_date
+                  = f.input_field :time_period, class: "form-control string required", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
                   .input-group-append
                     .input-group-text
                       %i.fas.fa-calendar-alt.fa-sm
