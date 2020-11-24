@@ -6,7 +6,7 @@ RSpec.describe DashboardQuery.new do
 
     before do
       allow(Variable).to receive(:most_request).and_return(variable)
-      allow(variable).to receive(:agg_values_count).and_return({ 2 => 2, 1 => 1 })
+      allow(variable).to receive(:agg_value_count).and_return({ 2 => 2, 1 => 1 })
     end
 
     it "#most_requested_service" do
