@@ -28,8 +28,9 @@
 #  fk_rails_...  (variable_value_id => variable_values.id)
 #
 class StepValue < ApplicationRecord
-  include TrackConcern
+  include StepValue::TrackableConcern
   include StepValue::FilterableConcern
+  include StepValue::AggregatableConcern
 
   has_paper_trail
 
@@ -74,28 +75,6 @@ class StepValue < ApplicationRecord
     scope = scope.order(key)
     scope = scope.group(key)
     scope.count
-  end
-
-  def self.total_users_feedback(params = {})
-    scope = all
-    statuses = VariableValue.statuses
-
-    scope = filter(scope, params)
-    feedback_variable = Variable.feedback
-    scope = scope.where(variable_id: feedback_variable)
-
-    default = statuses.transform_values { 0 }
-    result = scope.joins(:variable_value).group(:status).count.map do |k, v|
-      [statuses.key(k), v]
-    end.to_h
-
-    default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
-  end
-
-  def self.users_visited_by_each_genders(params = {})
-    scope = joins(:message).where.not(messages: { gender: '' })
-    scope = scope.where(variable_value: VariableValue.kind_of_criteria)
-    scope = filter(scope, params)
   end
 
   def self.clone_step(attr, value)
