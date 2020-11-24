@@ -34,7 +34,7 @@ class DashboardQuery
       ORDER BY gender
     SQL
 
-    Message.find_by_sql(raw_sql)
+    Session.find_by_sql(raw_sql)
   end
 
   def sessions
