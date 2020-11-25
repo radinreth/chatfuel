@@ -9,29 +9,12 @@ class DashboardQuery
   end
 
   def most_requested_services
-    # { colors: ,label: ,peak: , data: [{ district1: { value:, :count } }, {...}] }
+    most_request = Variable.most_request
 
-    return {} unless Variable.most_request
+    return {} unless most_request.present?
 
-    result  = Variable.most_request\
-                .step_values.joins(:message)\
-                .where.not(messages: { district_id: ["", "null"] })\
-                .group("messages.district_id")\
-                .group(:variable_value_id)\
-                .count
-
-    output = { peak: result.values.max }
-
-    data = result.each_with_object({}) do |(k, v), h|
-      district_id, variable_value_id = k
-      district = Pumi::District.find_by_id(district_id)
-      value = VariableValue.find(variable_value_id)
-
-      h[district.name_en] = { value: value.mapping_value.sub(/\s/, "\n"), count: v } if !h[district.name_en] || (h[district.name_en] && h[district.name_en][:count] < v)
-    end
-
-    output[:data] = data
-    output
+    result = ::Report.new(most_request).result
+    result.transform
   end
 
   def information_access_by_period
