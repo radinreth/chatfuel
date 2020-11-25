@@ -549,18 +549,18 @@ OWSO.WelcomesIndex = (() => {
 
   function chartMostRequestedServices() {
     var ctx = 'chart_most_requested_services'
-    var { data } = gon.mostRequestedServices
-    var result = gon.mostRequestedServices.data
-    var labels = Object.keys(result)
-    var titles = Object.values(result).map(e => e.value)
-    var values = Object.values(result).map(e => e.count)
 
-    var data = {
+    var { label, colors, peak, data } = gon.mostRequestedServices
+    var labels = Object.keys(data)
+    var titles = Object.values(data).map(e => e.value)
+    var values = Object.values(data).map(e => e.count)
+
+    data = {
       labels: labels,
       datasets: [
             {
-              label: "Most requested services by OWSO",
-              backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
+              label: label,
+              backgroundColor: colors,
               data: values,
               maxBarThickness: 36,
               minBarLength: 2,
@@ -589,7 +589,7 @@ OWSO.WelcomesIndex = (() => {
             display: true,
             ticks: {
               // stepSize: 200,
-              suggestedMax: gon.mostRequestedServices.peak + 200,
+              suggestedMax: (peak + 200),
               beginAtZero: true
             }
           }],

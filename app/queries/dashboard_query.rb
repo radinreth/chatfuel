@@ -13,7 +13,7 @@ class DashboardQuery
 
     return {} unless most_request.present?
 
-    result = ::Report.new(most_request).result
+    result = ::MostRequest.new(most_request).result
     result.transform
   end
 
