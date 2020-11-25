@@ -4,9 +4,6 @@ require "sidekiq/web"
 require_relative "whitelist"
 
 Rails.application.routes.draw do
-  get 'districts/index'
-  get 'about_us/index'
-  get 'citizen_feedback/index'
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
@@ -27,6 +24,9 @@ Rails.application.routes.draw do
     resource  :welcome, only: [:index, :show]
 
     # public static website
+    get 'provinces', to: "provinces#index"
+    get 'districts', to: "districts#index"
+
     get 'summary', to: "summary#index"
     get 'information_access', to: 'information_access#index'
     get 'citizen_feedback', to: 'citizen_feedback#index'
