@@ -35,9 +35,9 @@
               .form-group.q_district.select.col-lg-4.col-sm-12
                 %label.select.required.disabled
                   = t("welcomes.districts")
-                  %abbr{ title: "required" } *
-
-                = f.input :districts, label: false, input_html: { tabindex: 5, class: "text-truncate fixed-lh-3", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal" }
+                  %abbr{ title: t("required") } *
+                %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
+                  = f.input_field :districts, tabindex: 5, class: "form-control text-truncate", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal"
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
               
@@ -48,7 +48,7 @@
               .form-group.string.required.q_time_period.col-lg-3
                 %label.string.required
                   = t("welcomes.time_period")
-                  %abbr{ title: t("required.string") } *
+                  %abbr{ title: t("required") } *
 
                 .input-group
                   = f.input_field :time_period, class: "form-control string required datepicker_date", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
