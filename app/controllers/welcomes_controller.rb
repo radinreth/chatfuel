@@ -7,6 +7,7 @@ class WelcomesController < PublicAccessController
     @query = DashboardQuery.new(filter_options)
     gon.all = I18n.t("all")
     gon.locale = I18n.locale
+    gon.mostRequestedServices = @query.most_requested_services
 
     respond_to do |format|
       format.html { render layout: "welcome" }
