@@ -623,7 +623,7 @@ OWSO.WelcomesIndex = (() => {
           function(result) {
           $("#q_districts").val(result.display_name)
           $(".tooltip-district")
-            .attr("data-original-title", result.district_list_name || result.display_name)
+            .attr("data-original-title", result.district_list_name)
         })
       } else {
         $("#q_districts").val(gon.all)
