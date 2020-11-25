@@ -27,11 +27,6 @@ Rails.application.routes.draw do
     get 'provinces', to: "provinces#index"
     get 'districts', to: "districts#index"
 
-    get 'summary', to: "summary#index"
-    get 'information_access', to: 'information_access#index'
-    get 'citizen_feedback', to: 'citizen_feedback#index'
-    get 'about_us', to: 'about_us#index'
-
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
         post :set_most_request
