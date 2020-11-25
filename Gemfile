@@ -37,6 +37,7 @@ gem 'pumi', github: 'radinreth/pumi', require: 'pumi/rails'
 gem "telegram-bot", "~> 0.14.3"
 gem "sidekiq-scheduler", "~> 3.0.1"
 gem "strip_attributes", "~> 1.11.0"
+gem 'rails_same_site_cookie', '~> 0.1.8'
 # api
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
