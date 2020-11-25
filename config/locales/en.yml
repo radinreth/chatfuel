@@ -51,6 +51,7 @@ en:
   feedback_like: Like
   feedback_dislike: Dislike
   visitor_count: Visitor count
+  required: required
   sidebar:
     dashboard: Dashboard
     home: Home
