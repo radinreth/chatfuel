@@ -47,6 +47,7 @@ en:
   district_count: "%{count} districts"
   repeated: Finish and restart session
   visitor_count: Visitor count
+  required: required
   sidebar:
     dashboard: Dashboard
     home: Home
