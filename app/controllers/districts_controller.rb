@@ -1,4 +1,6 @@
 class DistrictsController < Pumi::DistrictsController
+  skip_before_action :check_guisso_cookie
+
   def index
     render(json: Pumi::ResponseSerializer.new(filter_districts))
   end
@@ -14,7 +16,7 @@ class DistrictsController < Pumi::DistrictsController
   end
 
   def district_codes
-    # return [] unless Variable.location.present?
+    return [] unless Variable.location.present?
 
     Variable.location.values.map(&:raw_value)
   end
