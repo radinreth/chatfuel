@@ -14,12 +14,9 @@ class DashboardQuery
 
     return {} unless Variable.most_request
 
-    result  = Variable.most_request\
-                .step_values.joins(:message)\
-                .where.not(messages: { district_id: ["", "null"] })\
-                .group("messages.district_id")\
-                .group(:variable_value_id)\
-                .count
+    result = ::MostRequest.new(most_request).result
+    result.transform
+  end
 
     output = { peak: result.values.max }
 
