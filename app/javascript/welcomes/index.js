@@ -508,7 +508,6 @@ OWSO.WelcomesIndex = (() => {
           boxWidth: 12,
           generateLabels: function (chart) {
             var data = chart.data
-            // debugger
             return chart.data.labels.map(function(label, i) {
               var meta = chart.getDatasetMeta(0);
               var ds = data.datasets[0];
@@ -550,17 +549,22 @@ OWSO.WelcomesIndex = (() => {
 
   function chartMostRequestedServices() {
     var ctx = 'chart_most_requested_services'
+    var { data } = gon.mostRequestedServices
+    var result = gon.mostRequestedServices.data
+    var labels = Object.keys(result)
+    var titles = Object.values(result).map(e => e.value)
+    var values = Object.values(result).map(e => e.count)
 
     var data = {
-      labels: ["Bavel", "Thmor Kol", "Kamrieng", "Battambang"],
+      labels: labels,
       datasets: [
             {
               label: "Most requested services by OWSO",
               backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
-              data: [200, 500, 350, 250],
+              data: values,
               maxBarThickness: 36,
               minBarLength: 2,
-              dataTitles: ["Document\nCertification", "Public\nTransport", "Document\nCertification", "Public\nTransport"]
+              dataTitles: titles
             }
           ]
         };
@@ -584,8 +588,8 @@ OWSO.WelcomesIndex = (() => {
           yAxes: [{
             display: true,
             ticks: {
-              stepSize: 200,
-              suggestedMax: 800,
+              // stepSize: 200,
+              suggestedMax: gon.mostRequestedServices.peak + 200,
               beginAtZero: true
             }
           }],
@@ -596,7 +600,15 @@ OWSO.WelcomesIndex = (() => {
             ticks: {
               autoSkip: false,
               maxRotation: 45,
-              minRotation: 45
+              minRotation: 45,
+              callback: function(value) {
+                var maxLength = 10;
+                if( value.length >= maxLength ) {
+                  return `${value.substr(0, 10)}...`;
+                } else {
+                  return value;
+                }
+              },
             }
           }]
         }
