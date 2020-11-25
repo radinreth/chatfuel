@@ -19,7 +19,7 @@
                 %label.select.required.disabled
                   = t("welcomes.districts")
                   %abbr{ title: "required" } *
-                %span.d-block.tooltip-district{ title: @location_filter.display_name, "data-toggle": "tooltip" }
+                %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
                   = f.input_field :districts, tabindex: 5, class: "form-control text-truncate", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal"
                 - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
                 = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
