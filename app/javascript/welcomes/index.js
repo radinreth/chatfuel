@@ -87,11 +87,57 @@ OWSO.WelcomesIndex = (() => {
     });
   }
 
-  function fetchResultSet({ url, target, extractor, canvasId }) {
-    let period = $(target).val()
-    let serializedParams = $('#q').serialize()+`&period=${period}`
-    let header = $(target).closest(".card-header");
-    let $spin = $(header.next().find(".loading")[0]);
+  function chartInformationAccessByGender() {
+    var ctx = 'chart_information_access_by_gender'
+
+    var data = {
+      labels: ["Female", "Male", "Other"],
+      total: 944,
+      datasets: [
+            {
+              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
+              data: [450, 350, 144],
+            }
+          ]
+        };
+
+    var options = {
+      legend: {
+        position: "left",
+        labels: {
+          boxWidth: 12,
+          generateLabels: function (chart) {
+            var data = chart.data
+            return chart.data.labels.map(function(label, i) {
+              var meta = chart.getDatasetMeta(0);
+              var ds = data.datasets[0];
+              var arc = meta.data[i];
+              var custom = arc && arc.custom || {};
+              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+              var arcOpts = chart.options.elements.arc;
+              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
+
+              return {
+                text: `${label} (${perc}%)`,
+                fillStyle: fill,
+                strokeStyle: stroke,
+                lineWidth: bw,
+                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                index: i
+              }
+            })
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          color: "#FFF"
+        }
+      }
+    }
 
     loading($spin);
     let chart = OWSO.Util.findChartInstance(canvasId)
@@ -108,10 +154,72 @@ OWSO.WelcomesIndex = (() => {
     }, "json");
   }
 
-  function loading(spin) {
-    spin.removeClass("d-none");
-    spin.next().css({ opacity: 0.3 });
-  }
+  function chartMostRequestedServices() {
+    var ctx = 'chart_most_requested_services'
+    var { data } = gon.mostRequestedServices
+    var result = gon.mostRequestedServices.data
+    var labels = Object.keys(result)
+    var titles = Object.values(result).map(e => e.value)
+    var values = Object.values(result).map(e => e.count)
+
+    var data = {
+      labels: labels,
+      datasets: [
+            {
+              label: "Most requested services by OWSO",
+              backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
+              data: values,
+              maxBarThickness: 36,
+              minBarLength: 2,
+              dataTitles: titles
+            }
+          ]
+        };
+    var options = { 
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            textAlign: "center",
+            formatter: function(value, context) {
+              var label = context.dataset.dataTitles[context.dataIndex]
+              return label + "\n" + value;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true,
+            ticks: {
+              // stepSize: 200,
+              suggestedMax: gon.mostRequestedServices.peak + 200,
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 45,
+              callback: function(value) {
+                var maxLength = 10;
+                if( value.length >= maxLength ) {
+                  return `${value.substr(0, 10)}...`;
+                } else {
+                  return value;
+                }
+              },
+            }
+          }]
+        }
+    };
 
   function loaded(spin) {
     spin.addClass("d-none");
