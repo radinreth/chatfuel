@@ -2,25 +2,16 @@ class WelcomesController < PublicAccessController
   include Filterable
 
   before_action :set_daterange
-  before_action :set_query
+  before_action :set_query, :set_gon
 
   def access_info
     render json: @query.access_info, status: :ok
   end
   def index
-    @query = DashboardQuery.new(filter_options)
-    
-    gon.all = I18n.t("all")
-    gon.locale = I18n.locale
-    gon.mostRequestedServices = @query.most_requested_services
-    gon.gender_info = @query.gender_info
-
-  def service_tracked
-    render json: @query.most_tracked_periodic, status: :ok
-  end
-
-  def feedback_trend
-    render json: @query.feedback_trend, status: :ok
+    respond_to do |format|
+      format.html { render layout: "welcome" }
+      format.js
+    end
   end
 
   def filter
@@ -32,13 +23,15 @@ class WelcomesController < PublicAccessController
       @query = DashboardQuery.new(filter_options)
     end
 
-    def set_daterange
-      @start_date = params["start_date"] || default_start_date
-      @end_date = params["end_date"] || default_end_date
-    end
+    def set_gon
+      shared = {
+        all: I18n.t("all"),
+        locale: I18n.locale,
+        mostRequest: @query.most_requested_services,
+        genderInfo: @query.gender_info
+      }
 
-    def default_end_date
-      Date.current.strftime('%Y/%m/%d')
+      gon.push(shared)
     end
 
     def default_start_date

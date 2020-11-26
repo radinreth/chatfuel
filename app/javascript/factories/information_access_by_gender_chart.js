@@ -31,7 +31,7 @@ export const GenderInfoChart = (ctx) => {
   let type = 'pie', 
       plugins = [chartDataLabels];
 
-  let { colors, dataset } = gon.gender_info;
+  let { colors, dataset } = gon.genderInfo;
   let [genderLabels, values] = [_.keys(dataset), _.values(dataset)];
 
   let data = {
