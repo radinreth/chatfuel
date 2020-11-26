@@ -6,10 +6,10 @@ class MostRequest < Report
 
   def transform
     {
-      peak: peak,
+      max: max,
       label: I18n.t("dashboard.most_requested_services"),
       colors: generate_colors,
-      data: tune_result
+      dataset: dataset
     }
   end
 
@@ -21,11 +21,11 @@ class MostRequest < Report
     super.take(@result.count)
   end
 
-  def peak
+  def max
     @result.values.max
   end
 
-  def tune_result
+  def dataset
     @result.each_with_object({}) do |(key, count), hash|
       district, variable_value = find_objectes_by(key)
       hash_key = district.send("name_#{I18n.locale}".to_sym)
