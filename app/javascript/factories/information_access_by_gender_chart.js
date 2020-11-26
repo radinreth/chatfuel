@@ -27,6 +27,13 @@ let generateLabels = function(chart) {
   return _.map(data.labels, mapLabel.bind(null, chart))
 }
 
+let isDisplay = function(context) {
+  let dataset = context.dataset;
+  let count = dataset.data.length;
+  let value = dataset.data[context.dataIndex];
+  return value > count * 1.5;
+}
+
 export const GenderInfoChart = (ctx) => {
   let type = 'pie', 
       plugins = [chartDataLabels];
@@ -55,13 +62,22 @@ export const GenderInfoChart = (ctx) => {
     },
     plugins: {
       datalabels: {
-        color: "#333"
+        backgroundColor: function(context) {
+          return context.dataset.backgroundColor;
+        },
+        borderColor: 'white',
+        borderRadius: 25,
+        borderWidth: 2,
+        color: 'white',
+        display: isDisplay,
+        font: {
+          family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          weight: 'bold'
+        },
+        formatter: Math.round
       }
     }
   };
-
-  console.log("data: ", data)
-  console.log("options: ", options)
 
   return new Chart(ctx, { type, plugins, data, options });
 }
