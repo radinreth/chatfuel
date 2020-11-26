@@ -606,9 +606,10 @@ OWSO.WelcomesIndex = (() => {
     var ctx = 'chart_most_requested_services'
 
     var { label, colors, peak, data } = gon.mostRequestedServices
-    var labels = Object.keys(data)
-    var titles = Object.values(data).map(e => e.value)
-    var values = Object.values(data).map(e => e.count)
+    var labels = _.keys(data)
+    let values = _.values(data)
+    var titles = _.map(values, el => el.value)
+    var counts = _.map(values, el => el.count)
 
     var internalData = {
       labels: labels,
@@ -618,7 +619,7 @@ OWSO.WelcomesIndex = (() => {
           label: label,
           backgroundColor: colors,
           dataTitles: titles,
-          data: values,
+          data: counts,
         }
       ]
     }
