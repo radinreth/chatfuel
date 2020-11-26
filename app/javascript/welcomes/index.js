@@ -550,15 +550,15 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function chartMostRequestedServices() {
-    var ctx = 'chart_most_requested_services'
+    let ctx = 'chart_most_requested_services'
+    let type = 'bar', plugins = [chartDataLabels]
 
-    var { label, colors, peak, data } = gon.mostRequestedServices
-    var labels = _.keys(data)
-    let values = _.values(data)
-    var titles = _.map(values, el => el.value)
-    var counts = _.map(values, el => el.count)
+    let { label, colors, max, dataset } = gon.mostRequestedServices
+    let [labels, values] = [_.keys(dataset), _.values(dataset)]
+    let titles = _.map(values, el => el.value)
+    let counts = _.map(values, el => el.count)
 
-    var internalData = {
+    let data = {
       labels: labels,
       datasets: [
         {
@@ -571,25 +571,21 @@ OWSO.WelcomesIndex = (() => {
       ]
     }
 
-    var internalOptions = {
+    let options = {
       ...defaults.initOptions,
       scales: {
         ...defaults.initOptions.scales,
         yAxes: [{
           display: true,
           ticks: {
-            suggestedMax: (peak + 200),
+            // extra margin needed to avoid clip label on bar chart
+            suggestedMax: (max + 200),
           }
         }]
       }
     }
 
-    new Chart(ctx, {
-        type: 'bar',
-        plugins: [chartDataLabels],
-        data: internalData,
-        options: internalOptions
-    });
+    new Chart(ctx, { type, plugins, data, options });
   }
 
   function onModalSave() {
