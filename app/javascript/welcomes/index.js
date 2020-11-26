@@ -4,6 +4,8 @@
   };
 }(jQuery));
 
+import * as defaults from '../data/defaults'
+
 OWSO.WelcomesIndex = (() => {
   var logoContainer, formQuery, pilotHeader
 
@@ -547,61 +549,6 @@ OWSO.WelcomesIndex = (() => {
     });
   }
 
-  var initData = {
-    datasets: [
-      {
-        maxBarThickness: 36,
-        minBarLength: 2
-      }
-    ]
-  }
-
-  var initOptions = { 
-    plugins: {
-      datalabels: {
-        anchor: "end",
-        align: "end",
-        rotation: 0,
-        textAlign: "center",
-        formatter: function(value, context) {
-          var label = context.dataset.dataTitles[context.dataIndex]
-          return label + "\n" + value;
-        }
-      }
-    },
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        display: true,
-        ticks: {
-          // stepSize: 200,
-          // suggestedMax: (peak + 200),
-          beginAtZero: true
-        }
-      }],
-      xAxes: [{
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          autoSkip: false,
-          maxRotation: 45,
-          minRotation: 45,
-          callback: function(value) {
-            var maxLength = 10;
-            if( value.length >= maxLength ) {
-              return `${value.substr(0, 10)}...`;
-            } else {
-              return value;
-            }
-          },
-        }
-      }]
-    }
-  };
-
   function chartMostRequestedServices() {
     var ctx = 'chart_most_requested_services'
 
@@ -615,7 +562,7 @@ OWSO.WelcomesIndex = (() => {
       labels: labels,
       datasets: [
         {
-          ...initData,
+          ...defaults.initData,
           label: label,
           backgroundColor: colors,
           dataTitles: titles,
@@ -625,9 +572,9 @@ OWSO.WelcomesIndex = (() => {
     }
 
     var internalOptions = {
-      ...initOptions,
+      ...defaults.initOptions,
       scales: {
-        ...initOptions.scales,
+        ...defaults.initOptions.scales,
         yAxes: [{
           display: true,
           ticks: {
@@ -672,7 +619,6 @@ OWSO.WelcomesIndex = (() => {
 
   function onWindowScroll() {
     formQuery = $("#form-query")
-    switchLang = $(".switch-lang")
     logoContainer = $("#logo-container")
     pilotHeader = $("#piloting-header")
     window.onscroll = () => { stickOnScroll() }
@@ -692,14 +638,14 @@ OWSO.WelcomesIndex = (() => {
     if(window.pageYOffset >= (logoContainer.outerHeight() + pilotHeader.offset().top) ) {
       $(".logo-inline").show()
       formQuery.addClass('highlight')
-      switchLang.addClass('inc-top');
+      $(".switch-lang").addClass('inc-top');
       decreaseFormControlWidth()
     } 
     
     if(window.pageYOffset < pilotHeader.offset().top) {
       $(".logo-inline").hide()
       formQuery.removeClass('highlight')
-      switchLang.removeClass('inc-top');
+      $(".switch-lang").removeClass('inc-top');
       increaseFormControlWidth()
     }
   }
