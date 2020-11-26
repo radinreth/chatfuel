@@ -1,7 +1,7 @@
 class Report
-  def initialize(variable)
+  def initialize(variable, query = nil)
     @variable = variable
-    @colors = generate_colors
+    @query = query
   end
 
   private
