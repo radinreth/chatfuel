@@ -3,6 +3,8 @@ import { renderChart } from '../charts/root_chart'
 import formater from '../data/formater'
 import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
 
+import * as defaults from '../data/defaults'
+
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
 
@@ -226,12 +228,107 @@ OWSO.WelcomesIndex = (() => {
     spin.next().css({ opacity: 1 });
   }
 
-  function onClickTabNavigation() {
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      let target = $(e.target);
-      let active = $(target).attr('href');
-      $("#q_active_tab").val(active);
-    })
+  function chartInformationAccessByGender() {
+    var ctx = 'chart_information_access_by_gender'
+
+    var data = {
+      labels: ["Female", "Male", "Other"],
+      total: 944,
+      datasets: [
+            {
+              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
+              data: [450, 350, 144],
+            }
+          ]
+        };
+
+    var options = {
+      legend: {
+        position: "left",
+        labels: {
+          boxWidth: 12,
+          generateLabels: function (chart) {
+            var data = chart.data
+            return chart.data.labels.map(function(label, i) {
+              var meta = chart.getDatasetMeta(0);
+              var ds = data.datasets[0];
+              var arc = meta.data[i];
+              var custom = arc && arc.custom || {};
+              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+              var arcOpts = chart.options.elements.arc;
+              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
+
+              return {
+                text: `${label} (${perc}%)`,
+                fillStyle: fill,
+                strokeStyle: stroke,
+                lineWidth: bw,
+                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                index: i
+              }
+            })
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          color: "#FFF"
+        }
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
+    });
+  }
+
+  function chartMostRequestedServices() {
+    var ctx = 'chart_most_requested_services'
+
+    var { label, colors, peak, data } = gon.mostRequestedServices
+    var labels = _.keys(data)
+    let values = _.values(data)
+    var titles = _.map(values, el => el.value)
+    var counts = _.map(values, el => el.count)
+
+    var internalData = {
+      labels: labels,
+      datasets: [
+        {
+          ...defaults.initData,
+          label: label,
+          backgroundColor: colors,
+          dataTitles: titles,
+          data: counts,
+        }
+      ]
+    }
+
+    var internalOptions = {
+      ...defaults.initOptions,
+      scales: {
+        ...defaults.initOptions.scales,
+        yAxes: [{
+          display: true,
+          ticks: {
+            suggestedMax: (peak + 200),
+          }
+        }]
+      }
+    }
+
+    new Chart(ctx, {
+        type: 'bar',
+        plugins: [chartDataLabels],
+        data: internalData,
+        options: internalOptions
+    });
   }
 
   function onModalSave() {
@@ -264,9 +361,9 @@ OWSO.WelcomesIndex = (() => {
   
 
   function onWindowScroll() {
-    formQuery = $("#form-query");
-    logoContainer = $("#logo-container");
-    pilotHeader = $("#piloting-header");
+    formQuery = $("#form-query")
+    logoContainer = $("#logo-container")
+    pilotHeader = $("#piloting-header")
     window.onscroll = () => { stickOnScroll() }
   }
 
@@ -281,22 +378,18 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function stickOnScroll() {
-    // Additional padding to prevent early or late
-    // highlighting floating header
-    let scroll = { DOWN: 60, UP: 9 };
-
-    if(window.pageYOffset >= (logoContainer.outerHeight() + pilotHeader.offset().top - scroll.UP) ) {
-      $(".logo-inline").show();
-      formQuery.addClass('highlight');
+    if(window.pageYOffset >= (logoContainer.outerHeight() + pilotHeader.offset().top) ) {
+      $(".logo-inline").show()
+      formQuery.addClass('highlight')
       $(".switch-lang").addClass('inc-top');
-      decreaseFormControlWidth();
+      decreaseFormControlWidth()
     } 
-
-    if(window.pageYOffset < (pilotHeader.offset().top - scroll.DOWN)) {
-      $(".logo-inline").hide();
-      formQuery.removeClass('highlight');
+    
+    if(window.pageYOffset < pilotHeader.offset().top) {
+      $(".logo-inline").hide()
+      formQuery.removeClass('highlight')
       $(".switch-lang").removeClass('inc-top');
-      increaseFormControlWidth();
+      increaseFormControlWidth()
     }
   }
 
