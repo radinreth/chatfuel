@@ -4,7 +4,7 @@ export const MostRequestChart = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { label, colors, max, dataset } = gon.mostRequestedServices;
+  let { label, colors, max, dataset } = gon.mostRequest;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
