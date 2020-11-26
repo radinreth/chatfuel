@@ -20,7 +20,8 @@ class GenderInfo < Report
       return {} unless @result
 
       @result.inject({}) do |memo, result|
-        memo[result.gender] = result.gender_count
+        gender = @query.mapping_variable_value[result.gender]
+        memo[gender.mapping_value] = result.gender_count
         memo
       end
     end
