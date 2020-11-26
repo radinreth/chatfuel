@@ -12,6 +12,7 @@ require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
 require("toastr")
 require("select2")
 require('packs/social-share-button.js.erb')
+window._ = require("underscore")
 
 require('application/pumi')
 window._ = require("underscore")
