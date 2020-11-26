@@ -25,7 +25,8 @@ class WelcomesController < PublicAccessController
         all: I18n.t("all"),
         locale: I18n.locale,
         mostRequest: @query.most_requested_services,
-        genderInfo: @query.gender_info
+        genderInfo: @query.gender_info,
+        accessInfo: @query.access_info
       }
 
       gon.push(shared)
