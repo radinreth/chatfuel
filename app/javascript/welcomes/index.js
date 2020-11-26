@@ -23,10 +23,63 @@ OWSO.WelcomesIndex = (() => {
     onModalSave()
   }
 
-  function onModalSave() {
-    $(".btn-save").click(function(e) {
-      var provinceCode = $('#province').val()
-      var districtCode = $('.district_code').val().filter( e => e)
+  function customChart() {
+    mostRequest()
+    genderInfo()
+    chartInformationAccessByPeriod()
+    chartNumberAccessByMainServices()
+    chartMostServiceTrackedPeriodically()
+    chartTicketTrackingByGender()
+
+    // citizen feedback
+    chartOverallRatingByOwso()
+    chartOwsoFeedbackTrend()
+    chartFeedbackBySubCategory()
+  }
+
+  function chartFeedbackBySubCategory() {
+    // var ctx = $('.chart_feedback_by_sub_category');
+
+    var data = {
+      labels: ["Like", "Dislike"],
+      datasets: [
+        {
+          label: "staff",
+          backgroundColor: "#b7b5b3",
+          data: [60,55]
+        },    
+        {
+          label: "price",
+          backgroundColor: "#3864B1",
+          data: [55,80]
+        },
+        {
+          label: "working hour",
+          backgroundColor: "#D6D44C",
+          data: [40,55]
+        },
+        {
+          label: "document",
+          backgroundColor: "#65D4BD",
+          data: [80,45]
+        },
+        {
+          label: "process",
+          backgroundColor: "#43291F",
+          data: [35,55]
+        },
+        {
+          label: "delivery speed",
+          backgroundColor: "#da2c38",
+          data: [80,40]
+        },
+        {
+          label: "providing info",
+          backgroundColor: "#bdadea",
+          data: [60,30]
+        }
+      ]
+    }
 
       if( districtCode.length > 0 ) {
         $.get("/welcomes/filter", 
@@ -228,103 +281,14 @@ OWSO.WelcomesIndex = (() => {
     spin.next().css({ opacity: 1 });
   }
 
-  function chartInformationAccessByGender() {
-    var ctx = 'chart_information_access_by_gender'
-
-    var data = {
-      labels: ["Female", "Male", "Other"],
-      total: 944,
-      datasets: [
-            {
-              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
-              data: [450, 350, 144],
-            }
-          ]
-        };
-
-    var options = {
-      legend: {
-        position: "left",
-        labels: {
-          boxWidth: 12,
-          generateLabels: function (chart) {
-            var data = chart.data
-            return chart.data.labels.map(function(label, i) {
-              var meta = chart.getDatasetMeta(0);
-              var ds = data.datasets[0];
-              var arc = meta.data[i];
-              var custom = arc && arc.custom || {};
-              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
-              var arcOpts = chart.options.elements.arc;
-              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
-              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
-              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
-              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
-
-              return {
-                text: `${label} (${perc}%)`,
-                fillStyle: fill,
-                strokeStyle: stroke,
-                lineWidth: bw,
-                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
-                index: i
-              }
-            })
-          }
-        }
-      },
-      plugins: {
-        datalabels: {
-          color: "#FFF"
-        }
-      }
-    }
-
-    new Chart(ctx, {
-      type: 'pie',
-      data: data,
-      plugins: [chartDataLabels],
-      options: options
-    });
+  function genderInfo() {
+    let ctx = 'chart_information_access_by_gender';
+    chart.genderInfo(ctx);
   }
 
-  function chartMostRequestedServices() {
-    let ctx = 'chart_most_requested_services'
-    let type = 'bar', plugins = [chartDataLabels]
-
-    let { label, colors, max, dataset } = gon.mostRequestedServices
-    let [labels, values] = [_.keys(dataset), _.values(dataset)]
-    let titles = _.map(values, el => el.value)
-    let counts = _.map(values, el => el.count)
-
-    let data = {
-      labels: labels,
-      datasets: [
-        {
-          ...defaults.initData,
-          label: label,
-          backgroundColor: colors,
-          dataTitles: titles,
-          data: counts,
-        }
-      ]
-    }
-
-    let options = {
-      ...defaults.initOptions,
-      scales: {
-        ...defaults.initOptions.scales,
-        yAxes: [{
-          display: true,
-          ticks: {
-            // extra margin needed to avoid clip label on bar chart
-            suggestedMax: (max + 200),
-          }
-        }]
-      }
-    }
-
-    new Chart(ctx, { type, plugins, data, options });
+  function mostRequest() {
+    let ctx = 'chart_most_requested_services';
+    chart.mostRequest(ctx)
   }
 
   function onModalSave() {

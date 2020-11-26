@@ -9,9 +9,11 @@ class WelcomesController < PublicAccessController
   end
   def index
     @query = DashboardQuery.new(filter_options)
+    
     gon.all = I18n.t("all")
     gon.locale = I18n.locale
     gon.mostRequestedServices = @query.most_requested_services
+    gon.gender_info = @query.gender_info
 
   def service_tracked
     render json: @query.most_tracked_periodic, status: :ok

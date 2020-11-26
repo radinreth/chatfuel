@@ -18,7 +18,19 @@ class DashboardQuery
     result.transform
   end
 
-    output = { peak: result.values.max }
+  def gender_info
+    result = ::GenderInfo.new(nil, self).result
+
+    result.transform
+  end
+
+  def information_access_by_period
+    { "Jan" => 200, "Feb" => 300, "Mar" => 400, "Apr" => 140, "May" => 300 }
+  end
+
+  def number_access_by_main_services
+    { "Jan" => 200, "Feb" => 300, "Mar" => 400, "Apr" => 140, "May" => 300 }
+  end
 
     data = result.each_with_object({}) do |(k, v), h|
       district_id, variable_value_id = k
