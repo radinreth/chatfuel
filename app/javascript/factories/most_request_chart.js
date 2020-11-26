@@ -5,12 +5,12 @@ export const MostRequestChart = (ctx) => {
       plugins = [chartDataLabels];
 
   let { label, colors, max, dataset } = gon.mostRequestedServices;
-  let [labels, values] = [_.keys(dataset), _.values(dataset)];
+  let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
 
   let data = {
-    labels: labels,
+    labels: dataLabels,
     datasets: [
       {
         ...defaults.initData,
