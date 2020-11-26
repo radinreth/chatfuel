@@ -13,7 +13,7 @@ export const MostRequestChart = (ctx) => {
     labels: dataLabels,
     datasets: [
       {
-        ...defaults.initData,
+        ...defaults.initData.datasets[0],
         label: label,
         backgroundColor: colors,
         dataTitles: titles,
