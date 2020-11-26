@@ -1,10 +1,4 @@
-(function ($) {
-  $.fn.replaceClass = function (pFromClass, pToClass) {
-    return this.removeClass(pFromClass).addClass(pToClass);
-  };
-}(jQuery));
-
-
+require("../patches/jquery")
 import * as chart from '../factories/root_chart'
 
 OWSO.WelcomesIndex = (() => {
