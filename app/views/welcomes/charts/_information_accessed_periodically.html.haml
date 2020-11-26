@@ -3,7 +3,7 @@
 .card.shadow.mb-4
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary
-      = t("dashboard.information_access_by", period: "month")
+      = t("dashboard.information_access_by", period: t("period.month"))
 
     .tools
       - if @query.information_access_by_period.present?

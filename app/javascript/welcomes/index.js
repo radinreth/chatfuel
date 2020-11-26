@@ -26,7 +26,7 @@ OWSO.WelcomesIndex = (() => {
   function customChart() {
     mostRequest()
     genderInfo()
-    chartInformationAccessByPeriod()
+    accessInfo()
     chartNumberAccessByMainServices()
     chartMostServiceTrackedPeriodically()
     chartTicketTrackingByGender()
@@ -212,73 +212,10 @@ OWSO.WelcomesIndex = (() => {
   function chartMostRequestedServices() {
     var ctx = 'chart_most_requested_services'
 
-    var { label, colors, peak, data } = gon.mostRequestedServices
-    var labels = Object.keys(data)
-    var titles = Object.values(data).map(e => e.value)
-    var values = Object.values(data).map(e => e.count)
-
-    data = {
-      labels: labels,
-      datasets: [
-            {
-              label: label,
-              backgroundColor: colors,
-              data: values,
-              maxBarThickness: 36,
-              minBarLength: 2,
-              dataTitles: titles
-            }
-          ]
-        };
-    var options = { 
-        plugins: {
-          datalabels: {
-            anchor: "end",
-            align: "end",
-            rotation: 0,
-            textAlign: "center",
-            formatter: function(value, context) {
-              var label = context.dataset.dataTitles[context.dataIndex]
-              return label + "\n" + value;
-            }
-          }
-        },
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [{
-            display: true,
-            ticks: {
-              // stepSize: 200,
-              suggestedMax: (peak + 200),
-              beginAtZero: true
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              autoSkip: false,
-              maxRotation: 45,
-              minRotation: 45,
-              callback: function(value) {
-                var maxLength = 10;
-                if( value.length >= maxLength ) {
-                  return `${value.substr(0, 10)}...`;
-                } else {
-                  return value;
-                }
-              },
-            }
-          }]
-        }
-    };
-
-  function loaded(spin) {
-    spin.addClass("d-none");
-    spin.next().css({ opacity: 1 });
+  // access owso info by period { month, quater, semester }
+  function accessInfo() {
+    var ctx = 'chart_information_access_by_period';
+    chart.accessInfo(ctx);
   }
 
   function genderInfo() {
