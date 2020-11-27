@@ -24,7 +24,7 @@ OWSO.WelcomesIndex = (() => {
     genderInfo()
     accessInfo()
     accessMainService()
-    chartMostServiceTrackedPeriodically()
+    mostRequestedPeriodically()
     chartTicketTrackingByGender()
 
     // citizen feedback
@@ -285,67 +285,9 @@ OWSO.WelcomesIndex = (() => {
     });
   }
 
-  function chartMostServiceTrackedPeriodically() {
+  function mostRequestedPeriodically() {
     var ctx = 'chart_most_service_tracked_periodically'
-
-    var data = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-      datasets: [
-            {
-              label: "Most Service Tracked by Month",
-              backgroundColor: ["#F2A33A", "#5ACAFA", "#5CB836", "#F2A33A", "#5ACAFA", "#F2A33A"],
-              borderColor: "rgba(151,187,205,1)",
-              data: [200, 500, 350, 250, 330, 360],
-              maxBarThickness: 36,
-              minBarLength: 2,
-              dataTitles: ["Document\nCertification", "Public\nTransport", "Document\nCertification", "Public\nTransport", "Land\nTitle", "Business"]
-            }
-          ]
-        };
-    var options = { 
-        plugins: {
-          datalabels: {
-            anchor: "end",
-            align: "end",
-            rotation: 0,
-            textAlign: "center",
-            formatter: function(value, context) {
-              var label = context.dataset.dataTitles[context.dataIndex]
-              return label + "\n" + value;
-            }
-          }
-        },
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [{
-            display: true,
-            ticks: {
-              stepSize: 200,
-              suggestedMax: 800,
-              beginAtZero: true
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              autoSkip: false,
-              maxRotation: 0,
-              minRotation: 0
-            }
-          }]
-        }
-    };
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        plugins: [chartDataLabels],
-        options: options
-    });
+    chart.mostRequestPeriodic(ctx);
   }
 
   function accessMainService() {
