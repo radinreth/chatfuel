@@ -37,6 +37,17 @@ class DashboardQuery
     result.transform
   end
 
+  def most_request_periodic
+    most_request = Variable.most_request
+    result = ::MostRequestPeriodic.new(most_request).result
+    result.transform
+  end
+
+  def ticket_tracking_by_genders
+    result = ::TicketTrackingByGenders.new(nil, self).result
+    result.transform
+  end
+
   def information_access_by_period
     { "Jan" => 200, "Feb" => 300, "Mar" => 400, "Apr" => 140, "May" => 300 }
   end

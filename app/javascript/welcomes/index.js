@@ -28,8 +28,8 @@ OWSO.WelcomesIndex = (() => {
     genderInfo()
     accessInfo()
     accessMainService()
-    chartMostServiceTrackedPeriodically()
-    chartTicketTrackingByGender()
+    mostRequestedPeriodically()
+    ticketTrackingByGenders()
 
     // citizen feedback
     chartOverallRatingByOwso()
@@ -142,66 +142,10 @@ OWSO.WelcomesIndex = (() => {
     });
   }
 
-  function chartInformationAccessByGender() {
-    var ctx = 'chart_information_access_by_gender'
-
-    var data = {
-      labels: ["Female", "Male", "Other"],
-      total: 944,
-      datasets: [
-            {
-              backgroundColor: ["#469BA2", "#C2E792", "#D77256"],
-              data: [450, 350, 144],
-            }
-          ]
-        };
-
-    var options = {
-      legend: {
-        position: "left",
-        labels: {
-          boxWidth: 12,
-          generateLabels: function (chart) {
-            var data = chart.data
-            return chart.data.labels.map(function(label, i) {
-              var meta = chart.getDatasetMeta(0);
-              var ds = data.datasets[0];
-              var arc = meta.data[i];
-              var custom = arc && arc.custom || {};
-              var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
-              var arcOpts = chart.options.elements.arc;
-              var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
-              var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
-              var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
-              var perc = parseFloat(ds.data[i] / chart.data.total*100).toFixed(2)
-
-              return {
-                text: `${label} (${perc}%)`,
-                fillStyle: fill,
-                strokeStyle: stroke,
-                lineWidth: bw,
-                hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
-                index: i
-              }
-            })
-          }
-        }
-      },
-      plugins: {
-        datalabels: {
-          color: "#FFF"
-        }
-      }
-    }
-
-    loading($spin);
-    let chart = OWSO.Util.findChartInstance(canvasId)
-
-    $.get(url, serializedParams, function(result) {
-      chart.data = extractor(result);
-      let max = _.max(chart.data.datasets[0].data);
-      let suggestedMax = Math.round( max * 1.40 );
-      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
+  function ticketTrackingByGenders() {
+    var ctx = 'chart_ticket_tracking_by_gender';
+    chart.ticketTrackingByGenders(ctx);
+  }
 
       chart.update();
 
