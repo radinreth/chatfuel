@@ -23,7 +23,7 @@ OWSO.WelcomesIndex = (() => {
     mostRequest()
     genderInfo()
     accessInfo()
-    chartNumberAccessByMainServices()
+    accessMainService()
     chartMostServiceTrackedPeriodically()
     chartTicketTrackingByGender()
 
@@ -348,80 +348,9 @@ OWSO.WelcomesIndex = (() => {
     });
   }
 
-  function chartNumberAccessByMainServices() {
+  function accessMainService() {
     var ctx = 'chart_number_access_by_main_services';
-
-    var data = {
-        labels: ['Document Certification', 'Land Title', 'Public Transport', 'Construction', 'Business Plan', 'Land Refill'],
-        datasets: [{
-          backgroundColor: "#F2A33A",
-          data: [400, 145, 202, 102, 124, 50],
-          fill: false,
-          pointRadius: 5,
-          pointHoverRadius: 10,
-          showLine: false // no line shown
-        }]
-      };
-
-    var options = {
-      plugins: {
-        datalabels: {
-          anchor: "end",
-          align: "end",
-          rotation: 0,
-          textAlign: "center",
-          formatter: function(value) {
-            return value;
-          }
-        }
-      },
-      responsive: true,
-      title: {
-        display: false,
-      },
-      legend: {
-        display: false
-      },
-      elements: {
-        point: {
-          pointStyle: "circle"
-        }
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          ticks: {
-            stepSize: 250,
-            suggestedMax: 500,
-            beginAtZero: true
-          }
-        }],
-        xAxes: [{
-          ticks: {
-            autoSkip: false,
-            maxRotation: 45,
-            minRotation: 45,
-            beginAtZero: true,
-            callback: function(value) {
-              var maxLength = 10;
-
-              if( value.length >= maxLength ) {
-                return `${value.substr(0, 10)}...`;
-              } else {
-                return value;
-              }
-            },
-          }
-        }]
-      }
-    }
-
-    new Chart(ctx, {
-      type: 'line',
-      data: data,
-      plugins: [chartDataLabels],
-      options: options
-  });
+    chart.accessMainService(ctx);
   }
 
   // access owso info by period { month, quater, semester }
