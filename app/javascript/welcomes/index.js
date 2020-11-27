@@ -27,7 +27,7 @@ OWSO.WelcomesIndex = (() => {
     mostRequest()
     genderInfo()
     accessInfo()
-    chartNumberAccessByMainServices()
+    accessMainService()
     chartMostServiceTrackedPeriodically()
     chartTicketTrackingByGender()
 
@@ -209,8 +209,10 @@ OWSO.WelcomesIndex = (() => {
     }, "json");
   }
 
-  function chartMostRequestedServices() {
-    var ctx = 'chart_most_requested_services'
+  function accessMainService() {
+    var ctx = 'chart_number_access_by_main_services';
+    chart.accessMainService(ctx);
+  }
 
   // access owso info by period { month, quater, semester }
   function accessInfo() {
