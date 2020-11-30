@@ -30,7 +30,8 @@ class WelcomesController < PublicAccessController
         accessMainService: @query.access_main_service,
         mostRequestPeriodic: @query.most_request_periodic,
         ticketTrackingByGenders: @query.ticket_tracking_by_genders,
-        overallRating: @query.overall_rating
+        overallRating: @query.overall_rating,
+        feedbackTrend: @query.feedback_trend
       }
 
       gon.push(shared)
