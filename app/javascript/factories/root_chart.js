@@ -5,6 +5,7 @@ import { accessMainService } from './access_main_service_chart';
 import { mostRequestPeriodic } from './most_request_periodic_chart';
 import { ticketTrackingByGenders } from './ticket_tracking_by_genders_chart';
 import { overallRating } from './overall_rating_chart';
+import { feedbackTrend } from './feedback_trend_chart';
 
 export {  mostRequest, 
           genderInfo, 
@@ -12,4 +13,5 @@ export {  mostRequest,
           accessMainService,
           mostRequestPeriodic,
           ticketTrackingByGenders,
-          overallRating };
+          overallRating,
+          feedbackTrend };
