@@ -15,8 +15,10 @@ export var initOptions = {
       rotation: 0,
       textAlign: "center",
       formatter: function(value, context) {
-        var label = context.dataset.dataTitles[context.dataIndex]
-        return label + "\n" + value;
+        let { dataTitles } = context.dataset
+
+        if( dataTitles == undefined ) return value
+        else return dataTitles[context.dataIndex] + "\n" + value;
       }
     }
   },
