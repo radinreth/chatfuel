@@ -14,17 +14,18 @@ class OverallRating < Report
   private
 
     def display_ratings
-      @variable.values.display_ratings.ids
+      @variable.values.display_ratings.map { |v| v.mapping_value }
     end
 
     # [[98, "Acceptable"], [97, "Bad"], [115, "Good"]]
     def tuned_dataset
       @values = raw_dataset.values
 
-      display_ratings.map do |value_id|
+      display_ratings.map.with_index do |mapping_value, index|
         {
-          label: value_id,
-          data: @values.map { |raw| raw[value_id] || 0 }
+          label: mapping_value,
+          backgroundColor: generate_colors[index],
+          data: @values.map { |raw| raw[mapping_value] || 0 }
         }
       end
     end
@@ -33,10 +34,11 @@ class OverallRating < Report
       return {} unless @result
 
       @result.each_with_object({}).with_index do |((key, count), hash), index|
-        location, value = key
+        district, variable_value = find_objects_by(key)
+        location = district.send("name_#{I18n.locale}".to_sym)
 
         hash[location] ||= {}
-        hash[location][value] = count
+        hash[location][variable_value.mapping_value] = count
       end
     end
 
