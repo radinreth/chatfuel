@@ -33,7 +33,7 @@ OWSO.WelcomesIndex = (() => {
 
     // citizen feedback
     overallRating()
-    chartOwsoFeedbackTrend()
+    feedbackTrend()
     chartFeedbackBySubCategory()
   }
 
@@ -97,40 +97,9 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  function chartPointStyle() {
-    var container = document.querySelector(".root-container")
-    var div = document.createElement('div');
-    div.classList.add('chart-container');
-
-    var canvas = document.createElement('canvas');
-    div.appendChild(canvas);
-    container.appendChild(div);
-
-    var ctx = canvas.getContext('2d');
-    var config = {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-          label: 'My First dataset',
-          backgroundColor: "#f00",
-          borderColor: "#f00",
-          data: [10, 23, 5, 99, 67, 43, 0],
-          fill: false,
-          pointRadius: 5,
-          pointHoverRadius: 10,
-          showLine: false // no line shown
-        }]
-      }
-    }
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      plugins: [chartDataLabels],
-      options: options
-    });
-
+  function feedbackTrend() {
+    var ctx = 'chart_owso_feedback_trend';
+    chart.feedbackTrend(ctx);
   }
 
   function overallRating() {
