@@ -29,8 +29,6 @@ export var initOptions = {
     yAxes: [{
       display: true,
       ticks: {
-        // stepSize: 200,
-        // suggestedMax: (peak + 200),
         beginAtZero: true
       }
     }],
