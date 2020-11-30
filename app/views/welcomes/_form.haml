@@ -1,5 +1,9 @@
 #form-query
-  = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
+  = params.inspect
+  %br
+  = @query.options
+
+  = simple_form_for :q, remote: false, method: :get, html: { class: "pt-3", role: "search" } do |f|
     .mb-3
       .container
         .row
@@ -20,9 +24,10 @@
                   = t("welcomes.districts")
                   %abbr{ title: t("required") } *
                 %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
-                  = f.input_field :districts, tabindex: 5, class: "form-control text-truncate", value: t("all"), readonly: true, "data-toggle": "modal", "data-target" => "#exampleModal"
-                - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
-                = f.input_field :districts, as: :hidden, name: "district_code[]", value: district_codes, id: "q_hidden_districts"
+                  #show-districts.form-control{"data-toggle": "modal", "data-target" => "#exampleModal"} 
+                    = t("all")
+                  - district_codes = Array.wrap(params[:district_code]).select(&:present?)
+                  = f.input_field :districts, as: :hidden, tabindex: 5, name: "district_code[]", multiple: true, class: "form-control text-truncate", value: district_codes
               
               -# time period
               = f.input :start_date, as: :hidden, input_html: { class: "start_date", name: "start_date", value: @start_date }
@@ -34,7 +39,7 @@
                   %abbr{ title: t("required") } *
 
                 .input-group.datepicker_date
-                  = f.input_field :time_period, class: "form-control string required", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
+                  = f.input_field :time_period, class: "form-control string required input-daterange", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
                   .input-group-append
                     .input-group-text
                       %i.fas.fa-calendar-alt.fa-sm
