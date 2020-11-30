@@ -147,7 +147,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function multiSelectDistricts() {
-    $("select").select2({
+    $("select:not(.no-select2)").select2({
       theme: "bootstrap",
       dropdownAutoWidth : true,
       width: 'auto'
@@ -207,8 +207,12 @@ OWSO.DashboardShow = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
-      $(".start_date").val(picker.startDate.format('YYYY/MM/DD'))
-      $(".end_date").val(picker.endDate.format('YYYY/MM/DD'))
+      let startDate = picker.startDate.format('YYYY/MM/DD')
+      let endDate = picker.endDate.format('YYYY/MM/DD')
+
+      $(".start_date").val(startDate)
+      $(".end_date").val(endDate)
+      $(".input-daterange").val(`${startDate} - ${endDate}`)
       $('.form').submit();
     })
   }
