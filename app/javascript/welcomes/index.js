@@ -164,7 +164,8 @@ OWSO.WelcomesIndex = (() => {
             locale: gon.locale,
             district_code: districtCode }, 
           function(result) {
-          $("#q_districts").val(result.display_name)
+          $("#show-districts").text(result.display_name)
+          $("#q_districts").val(districtCode)
           $(".tooltip-district")
             .attr("data-original-title", result.district_list_name)
         })
