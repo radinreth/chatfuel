@@ -29,7 +29,7 @@ OWSO.WelcomesIndex = (() => {
 
     // citizen feedback
     overallRating()
-    chartOwsoFeedbackTrend()
+    feedbackTrend()
     chartFeedbackBySubCategory()
   }
 
@@ -112,60 +112,9 @@ OWSO.WelcomesIndex = (() => {
 
   }
 
-  function chartOwsoFeedbackTrend() {
-    var ctx = 'chart_owso_feedback_trend'
-
-    var data = {
-      labels: ["January", "February", "March", "April"],
-      datasets: [
-        {
-          label: "Like",
-          backgroundColor: "#65D4BD",
-          data: [60,55,40, 45]
-        },    
-        {
-          label: "Acceptable",
-          backgroundColor: "#2855BE",
-          data: [55,80,50, 60]
-        },
-        {
-          label: "Dislike",
-          backgroundColor: "#C1413B",
-          data: [40,55,90, 75]
-        }
-      ]
-    }
-
-    var options = {
-      plugins: {
-        datalabels: {
-          display: false,
-          rotation: -90,
-          color: "#FFF",
-          textAlign: "center",
-          formatter: function(value, context) {
-            return context.dataset.label;
-          }
-        }
-      },
-      barValueSpacing: 20,
-      scales: {
-        yAxes: [{
-          ticks: {
-            max: 100,
-            min: 0,
-          }
-        }]
-      }
-    }
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      plugins: [chartDataLabels],
-      options: options
-    });
-
+  function feedbackTrend() {
+    var ctx = 'chart_owso_feedback_trend';
+    chart.feedbackTrend(ctx);
   }
 
   function overallRating() {
