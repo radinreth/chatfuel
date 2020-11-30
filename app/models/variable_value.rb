@@ -36,6 +36,7 @@ class VariableValue < ApplicationRecord
 
   scope :distinct_values, -> (field = 'mapping_value_en') { select("DISTINCT ON (#{field}) #{field}, id, raw_value, mapping_value_km") }
   scope :exclude, -> (ids) { where.not(id: ids) }
+  scope :display_ratings, -> { where(raw_value: %w(2 3 4)) }
 
   def self.criteria
     find_by(is_criteria: true)
