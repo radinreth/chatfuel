@@ -32,7 +32,7 @@ OWSO.WelcomesIndex = (() => {
     ticketTrackingByGenders()
 
     // citizen feedback
-    chartOverallRatingByOwso()
+    overallRating()
     chartOwsoFeedbackTrend()
     chartFeedbackBySubCategory()
   }
@@ -121,25 +121,74 @@ OWSO.WelcomesIndex = (() => {
           pointHoverRadius: 10,
           showLine: false // no line shown
         }]
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Point Style: circle'
-        },
-        legend: {
-          display: false
-        },
-        elements: {
-          point: {
-            pointStyle: "circle"
-          }
-        }
       }
+    }
 
-      fetchResultSet(option);
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      plugins: [chartDataLabels],
+      options: options
     });
+
+  }
+
+  function overallRating() {
+    var ctx = 'chart_overall_rating_by_owso'
+    chart.overallRating(ctx);
+    
+
+    // var data = {
+    //   labels: ["kamrieng", "bavel", "tmor kol"],
+    //   datasets: [
+    //     {
+    //       label: "Like",
+    //       backgroundColor: "#65D4BD",
+    //       data: [60,50,40]
+    //     },    
+    //     {
+    //       label: "Acceptable",
+    //       backgroundColor: "#2855BE",
+    //       data: [10,80,50]
+    //     },
+    //     {
+    //       label: "Dislike",
+    //       backgroundColor: "#C1413B",
+    //       data: [40,55,90]
+    //     }
+    //   ]
+    // }
+
+    // var options = {
+    //   plugins: {
+    //     datalabels: {
+    //       display: false,
+    //       rotation: -90,
+    //       color: "#FFF",
+    //       textAlign: "center",
+    //       formatter: function(value, context) {
+    //         return context.dataset.label;
+    //       }
+    //     }
+    //   },
+    //   barValueSpacing: 20,
+    //   scales: {
+    //     yAxes: [{
+    //       ticks: {
+    //         max: 100,
+    //         min: 0,
+    //       }
+    //     }]
+    //   }
+    // }
+
+    // new Chart(ctx, {
+    //   type: 'bar',
+    //   data: data,
+    //   plugins: [chartDataLabels],
+    //   options: options
+    // });
+
   }
 
   function ticketTrackingByGenders() {
