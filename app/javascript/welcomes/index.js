@@ -151,10 +151,15 @@ OWSO.WelcomesIndex = (() => {
       };
 
       if( districtCode.length > 0 ) {
-        $.get("/welcomes/filter", params, function(result) {
-          $("#show-districts").text(result.display_name);
-          $("#q_districts").val(districtCode);
-          $(".tooltip-district").attr("data-original-title", result.district_list_name);
+        $.get("/welcomes/filter", 
+          { province_code: provinceCode, 
+            locale: gon.locale,
+            district_code: districtCode }, 
+          function(result) {
+          $("#show-districts").text(result.display_name)
+          $("#q_districts").val(districtCode)
+          $(".tooltip-district")
+            .attr("data-original-title", result.district_list_name)
         })
       } else {
         $("#show-districts").text(gon.all);
