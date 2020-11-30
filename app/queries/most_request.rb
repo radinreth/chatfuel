@@ -27,7 +27,7 @@ class MostRequest < Report
 
   def dataset
     @result.each_with_object({}) do |(key, count), hash|
-      district, variable_value = find_objectes_by(key)
+      district, variable_value = find_objects_by(key)
       hash_key = district.send("name_#{I18n.locale}".to_sym)
 
       hash[hash_key] = {
@@ -39,15 +39,6 @@ class MostRequest < Report
 
   def replace_new_line(str)
     str.sub(/\s/, "\n")
-  end
-
-  def find_objectes_by(key)
-    district_id, variable_value_id = key
-
-    district = Pumi::District.find_by_id(district_id)
-    variable_value = VariableValue.find(variable_value_id)
-
-    [district, variable_value]
   end
 
   def group_count

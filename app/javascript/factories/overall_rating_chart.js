@@ -11,34 +11,26 @@ export const overallRating = (ctx) => {
     datasets: _.map(dataset, (el) => el)
   };
 
+  let { scales } = defaults.initOptions
+  let flatten = _.flatten(_.map(dataset, e => e.data))
+  let max = _.max(flatten)
+  let top = Math.round( max * 0.2 )
+
   let options = {
-    ...defaults.initOptions
+    ...defaults.initOptions,
+    legend: {
+      display: true
+    },
+    scales: {
+      ...scales,
+      yAxes: [{
+        ...scales.yAxes[0],
+        ticks: {
+          max: max + top
+        }
+      }]
+    }
   };
-
-  // let { scales } = defaults.initOptions
-
-  // let options = {
-  //   ...defaults.initOptions,
-  //   plugins: {
-  //     datalabels: {
-  //       anchor: "end",
-  //       align: "end",
-  //       rotation: 0,
-  //       textAlign: "center",
-  //     }
-  //   },
-  //   scales: {
-  //     ...scales,
-  //     xAxes: [{
-  //       ...scales.xAxes,
-  //       ticks: {
-  //         ...scales.xAxes.ticks,
-  //         maxRotation: 0,
-  //         minRotation: 0,
-  //       }
-  //     }]
-  //   }
-  // }
 
   return new Chart(ctx, { type, plugins, data, options });
 }
