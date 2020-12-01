@@ -173,13 +173,8 @@ OWSO.WelcomesIndex = (() => {
   function onModalSave() {
     $(".btn-save").click(function(e) {
       e.preventDefault();
-      let provinceCode = $('#province').val();
-      let districtCode = $('.district_code').val().filter( e => e);
-      let params = { 
-        province_code: provinceCode, 
-        locale: gon.locale,
-        district_code: districtCode 
-      };
+      var provinceCode = $('#province').val()
+      var districtCode = $('.district_code').val().filter( e => e)
 
       if( districtCode.length > 0 ) {
         $.get("/welcomes/filter", 
