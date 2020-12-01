@@ -12,6 +12,6 @@
 
   .card-body
     #feedback_by_sub_category.pt-4.d-flex.justify-content-around.align-items-center
-      %canvas.w-75.chart_feedback_by_sub_category
+      %canvas.w-75.chart_feedback_by_sub_category{ "data-id": label }
       %p.m-0= label
       -# = column_chart @query.feedback_by_sub_category, legend: true, xtitle: "owso: komrieng", library: { legend: { labels: { boxWidth: 10 } } }

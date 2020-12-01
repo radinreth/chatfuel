@@ -55,8 +55,9 @@
           .col-xl-6.col-lg-5
             = render "welcomes/charts/owso_feedback_trend"
           -# feedback by sub category -> base on selected districts
-          .col-xl-6.col-lg-5
-            = render partial: "welcomes/charts/feedback_by_sub_category", locals: { label: "***" }
+          = ["0204", "0212"].each do |district_id|
+            .col-xl-6.col-lg-5
+              = render partial: "welcomes/charts/feedback_by_sub_category", locals: { label: district_id }
           -# .col-xl-6.col-lg-5
           -#   = render partial: "welcomes/charts/feedback_by_sub_category", locals: { label: "Tmor Kol" }
           -# .col-xl-6.col-lg-5
