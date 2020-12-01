@@ -5,7 +5,8 @@ export const feedbackSubCategories = (ctx) => {
       plugins = [chartDataLabels];
 
   let id = $(ctx).data("id");
-  let { ratingLabels, dataset } = gon.feedbackSubCategories[id];
+  let { locationName, ratingLabels, dataset } = gon.feedbackSubCategories[id];
+  $(`[data-id="${id}"] + .label`).text(locationName);
 
   let data = {
     labels: ratingLabels,
