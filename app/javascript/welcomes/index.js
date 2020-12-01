@@ -165,6 +165,7 @@ OWSO.WelcomesIndex = (() => {
 
   function onModalSave() {
     $(".btn-save").click(function(e) {
+      e.preventDefault();
       var provinceCode = $('#province').val()
       var districtCode = $('.district_code').val().filter( e => e)
 
