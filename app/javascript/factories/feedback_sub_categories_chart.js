@@ -4,7 +4,8 @@ export const feedbackSubCategories = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { ratingLabels, dataset } = gon.feedbackSubCategories;
+  let id = $(ctx).data("id");
+  let { ratingLabels, dataset } = gon.feedbackSubCategories[id];
 
   let data = {
     labels: ratingLabels,
