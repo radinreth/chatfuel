@@ -1,9 +1,5 @@
 #form-query
-  = params.inspect
-  %br
-  = @query.options
-
-  = simple_form_for :q, remote: false, method: :get, html: { class: "pt-3", role: "search" } do |f|
+  = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", role: "search" } do |f|
     .mb-3
       .container
         .row
