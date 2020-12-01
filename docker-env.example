@@ -13,12 +13,17 @@ GUISSO_CLIENT_SECRET=
 VERBOICE_USER=verboice_user
 VERBOICE_PWD=verboice_pwd
 
+# Facebook configuration
 FB_PAGE_TOKEN=token
 FB_NOTIFY_ENABLED=false
-TELEGRAM_ENABLED=false
-MAX_CSV_DOWNLOAD_SIZE=10000
+FB_MESSAGE_QUOTA_IN_DAY=7
+FB_REACHABLE_DAY=1
 
+# Telegram configuration
+TELEGRAM_ENABLED=false
 TELEGRAM_CALLBACK_URL=https://ngrok.io/telegram
+
+MAX_CSV_DOWNLOAD_SIZE=10000
 NUMBER_OF_SYNC_LOG=5
 
 # Shell with unicode support

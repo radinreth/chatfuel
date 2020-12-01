@@ -80,7 +80,7 @@ class Message < ApplicationRecord
   end
 
   def reachable_period?
-    last_interaction_at > ENV["FB_REACHABLE_IN_DAY"].to_i.days.ago
+    last_interaction_at > Setting.fb_reachable_period.days.ago
   end
 
   def self.complete_all

@@ -54,4 +54,8 @@ class Setting < RailsSettings::Base
   def self.default_start_date
     7.days.ago
   end
+
+  def self.fb_reachable_period
+    (ENV["FB_REACHABLE_DAY"] || 1).to_i
+  end
 end
