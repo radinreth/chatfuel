@@ -11,7 +11,6 @@ module StepValue::TrackableConcern
       t.site_code = variable_value.raw_value[0...4]
       t.status = variable_value.ticket_status
       t.tracking_datetime = created_at
-      t.message = message
       t.session = session
     end
   end
