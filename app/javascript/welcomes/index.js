@@ -35,7 +35,12 @@ OWSO.WelcomesIndex = (() => {
 
   function feedbackSubCategories() {
     var ctx = $('.chart_feedback_by_sub_category');
-    chart.feedbackSubCategories(ctx);
+    // var canvas = $('<canvas />', { class: "chart_feedback_by_sub_category" })
+    // canvas.insertAfter(".chart_feedback_by_sub_category")
+    // chart.feedbackSubCategories(ctx);
+    $(".chart_feedback_by_sub_category").each(function(i, dom) {
+      chart.feedbackSubCategories(dom);
+    } )
     /*
       number of charts base on search
       each chart
