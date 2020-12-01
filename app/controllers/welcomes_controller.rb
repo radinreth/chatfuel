@@ -1,8 +1,8 @@
 class WelcomesController < PublicAccessController
   include Filterable
 
-  before_action :set_daterange
-  before_action :set_query, :set_gon
+  before_action :set_daterange, only: :index
+  before_action :set_query, :set_gon, only: :index
 
   def index
     respond_to do |format|
@@ -21,7 +21,7 @@ class WelcomesController < PublicAccessController
     end
 
     def set_gon
-      shared = {
+      @gon_data = {
         all: I18n.t("all"),
         locale: I18n.locale,
         mostRequest: @query.most_requested_services,
@@ -35,7 +35,7 @@ class WelcomesController < PublicAccessController
         feedbackSubCategories: @query.feedback_sub_categories
       }
 
-      gon.push(shared)
+      gon.push(@gon_data)
     end
 
     def default_start_date
