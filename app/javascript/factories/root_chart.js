@@ -6,6 +6,7 @@ import { mostRequestPeriodic } from './most_request_periodic_chart';
 import { ticketTrackingByGenders } from './ticket_tracking_by_genders_chart';
 import { overallRating } from './overall_rating_chart';
 import { feedbackTrend } from './feedback_trend_chart';
+import { feedbackSubCategories } from './feedback_sub_categories_chart';
 
 export { mostRequest, 
           genderInfo, 
@@ -14,4 +15,5 @@ export { mostRequest,
           mostRequestPeriodic,
           ticketTrackingByGenders,
           overallRating,
-          feedbackTrend };
+          feedbackTrend,
+          feedbackSubCategories };
