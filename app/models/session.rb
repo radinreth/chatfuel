@@ -63,7 +63,7 @@ class Session < ApplicationRecord
   end
 
   def reachable_period?
-    last_interaction_at > Setting.fb_reachable_period
+    last_interaction_at > Setting.fb_reachable_period.days.ago
   end
 
   private
