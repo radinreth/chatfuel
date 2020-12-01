@@ -14,6 +14,11 @@
 #  district_id         :string
 #  province_id         :string
 #  session_id          :string           not null
+#  source_id           :string           not null
+#
+# Indexes
+#
+#  index_sessions_on_platform_name_and_session_id_and_source_id  (platform_name,session_id,source_id)
 #
 class Session < ApplicationRecord
   include CsvConcern
@@ -40,10 +45,10 @@ class Session < ApplicationRecord
   after_create_commit :completed!, if: :session_call?
 
   def self.create_or_return(platform_name, session_id)
-    session = find_by(session_id: session_id)
+    session = find_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
 
     if !session || session&.completed?
-      session = create(platform_name: platform_name, session_id: session_id)
+      session = create(platform_name: platform_name, session_id: session_id, source_id: session_id)
     else
       session.touch :last_interaction_at
     end

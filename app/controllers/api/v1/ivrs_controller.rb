@@ -5,7 +5,7 @@ module Api
     class IvrsController < SessionsController
       private
         def set_session
-          @session = Session.create_with(platform_name: "Verboice").find_or_create_by(session_id: params[:address])
+          @session = Session.find_or_create_by(platform_name: "Verboice", session_id: params[:address], source_id: params[:CallSid])
         end
     end
   end
