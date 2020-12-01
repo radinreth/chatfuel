@@ -9,7 +9,7 @@
       - if session.repeated?
         %span{ data: { toggle: "tooltip" }, title: t("repeated")}
           .fa.fa-redo.fa-sm
-      = session.session_id
+      = session.mask_session_id
   %td.border-left-0.border-bottom-0
     - result = []
     - step_values.order(:id).each do |step|
