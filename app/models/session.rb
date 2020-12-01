@@ -42,7 +42,7 @@ class Session < ApplicationRecord
 
   before_update :set_province_id, if: -> { district_id_changed? }
   after_save :update_last_interaction_time
-  after_create_commit :completed!, if: :session_call?
+  after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
     session = find_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
@@ -56,7 +56,17 @@ class Session < ApplicationRecord
     session
   end
 
-  def session_call?
+  def mask_session_id
+    return md5_session_id if ivr?
+
+    return session_id
+  end
+
+  def md5_session_id
+    Digest::MD5.hexdigest session_id
+  end
+
+  def ivr?
     platform_name == "Verboice"
   end
 

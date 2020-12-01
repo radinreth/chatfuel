@@ -9,7 +9,7 @@ module CsvConcern
     # can't call inline csv doesn't work
     repeated_value = repeated ? true : nil
 
-    row << session_id
+    row << mask_session_id
     row << created_at
     row << repeated_value
     row << field_values(variables)
