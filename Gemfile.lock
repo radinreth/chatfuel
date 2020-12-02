@@ -358,9 +358,6 @@ GEM
     rails-settings-cached (2.2.0)
       rails (>= 4.2.0)
       request_store
-    rails_same_site_cookie (0.1.8)
-      rack (>= 1.5)
-      user_agent_parser (~> 2.5)
     railties (6.0.3.3)
       actionpack (= 6.0.3.3)
       activesupport (= 6.0.3.3)
@@ -521,7 +518,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
-    user_agent_parser (2.7.0)
     verboice (0.7.0)
       json
       rest-client
@@ -581,7 +577,7 @@ DEPENDENCIES
   jquery-rails (~> 4.3.5)
   liquid (~> 4.0, >= 4.0.3)
   listen (~> 3.2)
-  meta-tags
+  meta-tags (~> 2.13)
   momentjs-rails (~> 2.20.1)
   oj (~> 3.10, >= 3.10.6)
   pagy (~> 3.5)
@@ -596,7 +592,6 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.3)
   rails-controller-testing (~> 1.0.4)
   rails-settings-cached (~> 2.0)
-  rails_same_site_cookie (~> 0.1.8)
   rspec-rails (~> 4.0.0.beta4)
   rspec-sidekiq (~> 3.0.3)
   rubocop-performance (~> 1.5.2)
