@@ -48,6 +48,8 @@ en:
   repeated: Finish and restart session
   visitor_count: Visitor count
   required: required
+  feedback_like: Like
+  feedback_dislike: Dislike
   sidebar:
     dashboard: Dashboard
     home: Home
