@@ -47,7 +47,6 @@ en:
   district_count: "%{count} districts"
   repeated: Finish and restart session
   visitor_count: Visitor count
-  required: required
   feedback_like: Like
   feedback_dislike: Dislike
   sidebar:
@@ -83,6 +82,7 @@ en:
     success: "Successfully imported!"
     fail: "Failed to import!"
   required:
+    string: required
     file: "File required!"
   new_dictionary: "New Dictionary"
   new_site: "New Site"
