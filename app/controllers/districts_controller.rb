@@ -8,16 +8,20 @@ class DistrictsController < Pumi::DistrictsController
   private
 
   def filter_districts
-    exact_district_codes.map { |id| Pumi::District.find_by_id(id) }
+    real_district_codes.map { |id| Pumi::District.find_by_id(id) }
   end
 
-  def exact_district_codes
-    district_codes.delete_if { |code| code == "0000" }
+  def real_district_codes
+    other_district_code = "0000"
+
+    all_district_codes - [other_district_code]
   end
 
-  def district_codes
-    return [] unless Variable.location.present?
+  def all_district_codes
+    loc_var = Variable.location
 
-    Variable.location.values.map(&:raw_value)
+    return [] if loc_var.nil?
+
+    loc_var.values.map(&:raw_value)
   end
 end
