@@ -5,6 +5,4 @@
 
   .card-body
     #users_visited_by_genders.pt-4.d-flex.justify-content-around.align-items-center
-      -# - agg_genders = @query.users_visited_by_each_genders
       %canvas#chart_information_access_by_gender
-      -# = pie_chart agg_genders.values, messages: { empty: t("no_data") }, library: { legend: { labels: { boxWidth: 10 } } }
