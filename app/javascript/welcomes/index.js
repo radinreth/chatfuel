@@ -30,86 +30,13 @@ OWSO.WelcomesIndex = (() => {
     // citizen feedback
     overallRating()
     feedbackTrend()
-    chartFeedbackBySubCategory()
+    feedbackSubCategories()
   }
 
-  function chartFeedbackBySubCategory() {
-    // var ctx = $('.chart_feedback_by_sub_category');
-
-    var data = {
-      labels: ["Like", "Dislike"],
-      datasets: [
-        {
-          label: "staff",
-          backgroundColor: "#b7b5b3",
-          data: [60,55]
-        },    
-        {
-          label: "price",
-          backgroundColor: "#3864B1",
-          data: [55,80]
-        },
-        {
-          label: "working hour",
-          backgroundColor: "#D6D44C",
-          data: [40,55]
-        },
-        {
-          label: "document",
-          backgroundColor: "#65D4BD",
-          data: [80,45]
-        },
-        {
-          label: "process",
-          backgroundColor: "#43291F",
-          data: [35,55]
-        },
-        {
-          label: "delivery speed",
-          backgroundColor: "#da2c38",
-          data: [80,40]
-        },
-        {
-          label: "providing info",
-          backgroundColor: "#bdadea",
-          data: [60,30]
-        }
-      ]
-    }
-
-    var options = {
-      plugins: {
-        datalabels: {
-          display: false,
-          rotation: -90,
-          color: "#FFF",
-          textAlign: "center",
-          formatter: function(value, context) {
-            return context.dataset.label;
-          }
-        }
-      },
-      barValueSpacing: 20,
-      scales: {
-        yAxes: [{
-          ticks: {
-            max: 100,
-            min: 0,
-          }
-        }]
-      }
-    }
-
-
-    $.each( $('.chart_feedback_by_sub_category'), function(_, ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        plugins: [chartDataLabels],
-        options: options
-      });
-    } )
-
+  function feedbackSubCategories() {
+    $(".chart_feedback_by_sub_category").each(function(i, dom) {
+      chart.feedbackSubCategories(dom);
+    });
   }
 
   function feedbackTrend() {
@@ -155,6 +82,7 @@ OWSO.WelcomesIndex = (() => {
 
   function onModalSave() {
     $(".btn-save").click(function(e) {
+      e.preventDefault();
       var provinceCode = $('#province').val()
       var districtCode = $('.district_code').val().filter( e => e)
 
@@ -164,12 +92,15 @@ OWSO.WelcomesIndex = (() => {
             locale: gon.locale,
             district_code: districtCode }, 
           function(result) {
-          $("#q_districts").val(result.display_name)
+          console.log(result)
+          $("#show-districts").text(result.display_name)
+          $("#q_districts").val(districtCode)
           $(".tooltip-district")
             .attr("data-original-title", result.district_list_name)
         })
       } else {
-        $("#q_districts").val(gon.all)
+        $("#show-districts").text(gon.all)
+        $("#q_districts").val("")
       }
 
       $("#exampleModal").modal("hide")
