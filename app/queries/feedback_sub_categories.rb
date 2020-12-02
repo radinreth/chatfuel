@@ -15,14 +15,17 @@ class FeedbackSubCategories < Report
   end
 
   private
-    def like_values
-      feedback_like.values.map { |v| v.mapping_value }.uniq
+    def values
+      likes = Array.wrap(feedback_like&.values)
+      dislikes = Array.wrap(feedback_dislike&.values)
+
+      (likes + dislikes).map { |v| v.mapping_value }.uniq
     end
 
     def tuned_dataset(key)
       @values = raw_dataset[key].values
 
-      like_values.map.with_index do |mapping_value, index|
+      values.map.with_index do |mapping_value, index|
         {
           label: mapping_value,
           backgroundColor: generate_colors[index],
@@ -36,7 +39,6 @@ class FeedbackSubCategories < Report
 
       @result.each_with_object({}).with_index do |((key, count), hash), index|
         district_id, variable_id, value_id = key
-        
         variable = Variable.find(variable_id)
         variable_value = VariableValue.find(value_id)
 
