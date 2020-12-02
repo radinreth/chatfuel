@@ -8,9 +8,13 @@ km:
     province: ខេត្ត
     districts: ស្រុក
     time_period: ពេលវេលា
+    information_access_by_gender: ការទទួលបានព័ត៌មានដោយយេនឌ័រ
     number_access_by_main_services: ការចូលប្រើលេខតាមរយៈសេវាកម្មមេ
     most_service_tracked_by_periodic: សេវាកម្មភាគច្រើនតាមដានដោយ %{period}
     ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
     overall_rating_by_owso: ការវាយតម្លៃរួមដោយការិយាល័យច្រកចេញចូលតែមួយ
     owso_feedback_trend: មតិប្រតិកម្ម OWSO
-    feedback_by_sub_category: មតិយោបល់តាមប្រភេទរង
+    feedback_by_sub_categories: មតិយោបល់តាមប្រភេទរង
+    overall_citizen_feedback: មតិយោបល់របស់ប្រជាពលរដ្ឋទូទៅ
+    feedback_by_gender: មតិត្រឡប់តាមយេនឌ័រ
+    total_user_feedback: មតិអ្នកប្រើសរុប
