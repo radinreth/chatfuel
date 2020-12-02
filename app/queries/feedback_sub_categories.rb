@@ -43,8 +43,8 @@ class FeedbackSubCategories < Report
         variable_value = VariableValue.find(value_id)
 
         hash[district_id] ||= {}
-        hash[district_id][variable.name] ||= {}
-        hash[district_id][variable.name][variable_value.mapping_value] = count
+        hash[district_id][I18n.t(variable.name)] ||= {}
+        hash[district_id][I18n.t(variable.name)][variable_value.mapping_value] = count
       end
     end
 

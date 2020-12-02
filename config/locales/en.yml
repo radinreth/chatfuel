@@ -49,6 +49,8 @@ en:
   download_chart: Download Chart
   visitor_count: Visitor count
   required: required
+  feedback_like: Like
+  feedback_dislike: Dislike
   sidebar:
     dashboard: Dashboard
     home: Home
