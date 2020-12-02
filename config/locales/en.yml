@@ -50,6 +50,7 @@ en:
   visitor_count: Visitor count
   feedback_like: Like
   feedback_dislike: Dislike
+  loading: Loading...
   sidebar:
     dashboard: Dashboard
     home: Home
