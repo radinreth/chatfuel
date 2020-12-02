@@ -42,7 +42,7 @@
 
               -# submit
               .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search"
+                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
 #exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1" }
