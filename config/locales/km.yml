@@ -51,6 +51,7 @@ km:
   visitor_count: ចំនួនអ្នកចូលទស្សនា
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
+  loading: ដំណើការ...
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
