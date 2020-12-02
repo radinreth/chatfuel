@@ -21,7 +21,7 @@
           .col-xl-6.col-lg-5
             = render "dashboard/total_user_visit"
           .col-xl-6.col-lg-5
-            = render "dashboard/total_user_feedback"
+            = render partial: "dashboard/total_user_feedback", locals: { title: t("welcomes.total_user_feedback") }
           
       #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel"}
         = render "dashboard/earnings"
@@ -47,9 +47,9 @@
         .row
           -# citizen feedback
           .col-xl-6.col-lg-5
-            = render "dashboard/gender"
+            = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender") }
           .col-xl-6.col-lg-5
-            = render "dashboard/total_user_feedback"
+            = render partial: "dashboard/total_user_feedback", locals: { title: t("welcomes.overall_citizen_feedback") }
           .col-xl-6.col-lg-5
             = render "welcomes/charts/overall_rating_by_owso"
           .col-xl-6.col-lg-5
