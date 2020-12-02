@@ -1,7 +1,7 @@
 .card.shadow.mb-4
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between.position-relative
     .h5.m-0.font-weight-bold.text-primary
-      = t("dashboard.total_user_gender")
+      = title
     .tools.d-flex.align-items-center
       - if @query.users_visited_by_each_genders.present?
         = link_to "#", class: "chart-dl text-dark", "data-target": "#users_visited_by_genders" do

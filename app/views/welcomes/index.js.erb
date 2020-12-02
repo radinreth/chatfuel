@@ -1,4 +1,4 @@
 window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
-
+console.log("<%= j(@query.options.to_json.html_safe) %>");
 $(".root-chart").html("<%= j(render partial: "welcomes/tabs") %>");
 OWSO.WelcomesIndex.customChart();
