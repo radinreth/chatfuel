@@ -14,7 +14,7 @@ class DashboardQuery
 
     return {} unless Variable.most_request
 
-    result = ::MostRequest.new(most_request).result
+    result = ::MostRequest.new(most_request, self).result
     result.transform
   end
 
