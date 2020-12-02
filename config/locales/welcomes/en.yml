@@ -8,10 +8,14 @@ en:
     province: Province
     districts: Districts
     time_period: Time period
+    information_access_by_gender: Information Access by Gender
     number_access_by_main_services: Number Access by Main Service
     most_service_tracked_by_periodic: Most Service Tracked by %{period}
     ticket_tracking_by_gender: Ticket Tracking by Gender
     overall_rating_by_owso: Overall Rating by OWSO
     owso_feedback_trend: OWSO Feedback Trend
-    feedback_by_sub_category: Feedback by Sub Category
+    feedback_by_sub_categories: Feedback by Sub Categories
+    overall_citizen_feedback: Overall Citizen Feedback
+    feedback_by_gender: Feedback by Gender
+    total_user_feedback: Total User Feedback
     
