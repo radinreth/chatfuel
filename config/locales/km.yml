@@ -52,7 +52,6 @@ km:
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
   visitor_count: ចំនួនអ្នកចូលទស្សនា
-  required: តំរូវការ
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
   sidebar:
@@ -84,6 +83,7 @@ km:
     success: បាននាំចូលដោយជោគជ័យ
     fail: បានបរាជ័យក្នុងការនាំចូល
   required:
+    string: តំរូវការ
     file: ឯកសារចាំបាច់
   new_dictionary: ពាក្យគន្លឹះថ្មី
   new_site: ការិយាល័យថ្មី
