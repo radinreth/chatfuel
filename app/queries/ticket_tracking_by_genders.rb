@@ -13,7 +13,7 @@ class TicketTrackingByGenders < Report
 
   private
     def generate_colors
-      ["#469BA2", "#C2E792", "#D77256"]
+      ["#E25241", "#0448FD", "#75038E"]
     end
 
     def dataset

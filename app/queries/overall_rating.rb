@@ -43,11 +43,12 @@ class OverallRating < Report
     end
 
     def group_count
-      # only display_ratings values should be shown
-      @variable.step_values.joins(:message)\
-        .where.not(messages: { district_id: ["", "null"] })\
-        .group("messages.district_id")\
-        .group(:variable_value_id)\
-        .count
+      scope = @variable.step_values.joins(:message)
+      scope = scope.where.not(messages: { district_id: ["", "null"] })
+      scope = scope.where(messages: { district_id: @query.options[:district_id] }) if @query.options[:district_id].present?
+      scope = scope.group("messages.district_id")
+      scope = scope.group(:variable_value_id)
+      scope = scope.count
+      scope
     end
 end
