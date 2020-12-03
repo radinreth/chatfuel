@@ -112,7 +112,7 @@ OWSO.WelcomesIndex = (() => {
         $("#q_districts").val("")
       }
 
-      $("#exampleModal").modal("hide")
+      $("#districtsModal").modal("hide")
     })
   }
 
