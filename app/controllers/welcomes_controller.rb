@@ -30,7 +30,7 @@ class WelcomesController < PublicAccessController
         genderInfo: @query.gender_info,
         accessInfo: @query.access_info,
         accessMainService: @query.access_main_service,
-        mostRequestPeriodic: @query.most_request_periodic,
+        mostTrackedPeriodic: @query.most_tracked_periodic,
         ticketTrackingByGenders: @query.ticket_tracking_by_genders,
         overallRating: @query.overall_rating,
         feedbackTrend: @query.feedback_trend,

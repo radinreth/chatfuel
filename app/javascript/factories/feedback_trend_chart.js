@@ -18,6 +18,14 @@ export const feedbackTrend = (ctx) => {
 
   let options = {
     ...defaults.initOptions,
+    plugins: {
+      datalabels: {
+        ...defaults.initOptions.plugins.datalabels,
+        font: {
+          size: "10"
+        }
+      }
+    },
     legend: {
       display: true
     },
