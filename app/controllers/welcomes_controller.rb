@@ -26,19 +26,9 @@ class WelcomesController < PublicAccessController
     end
 
     def set_gon
-      @gon_data = {
-        all: I18n.t("all"),
-        locale: I18n.locale,
-        mostRequest: @query.most_requested_services,
-        genderInfo: @query.gender_info,
-        accessInfo: @query.access_info,
-        accessMainService: @query.access_main_service,
-        mostTrackedPeriodic: @query.most_tracked_periodic,
-        ticketTrackingByGenders: @query.ticket_tracking_by_genders,
-        overallRating: @query.overall_rating,
-        feedbackTrend: @query.feedback_trend,
-        feedbackSubCategories: @query.feedback_sub_categories
-      }
+      @gon_data = Gonify.new(@query).chart_data
+      @gon_data[:all] = I18n.t("all")
+      @gon_data[:locale] = I18n.locale
 
       gon.push(@gon_data)
     end

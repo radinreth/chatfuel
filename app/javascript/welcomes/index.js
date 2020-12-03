@@ -201,7 +201,7 @@ OWSO.WelcomesIndex = (() => {
         $(".tooltip-district").attr("data-original-title", "");
       }
 
-      $("#districtsModal").modal("hide");
+      $("#districtsModal").modal("hide")
     })
   }
 
