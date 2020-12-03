@@ -12,6 +12,4 @@
 
   .card-body
     #number_access_by_main_services.pt-4.d-flex.justify-content-around.align-items-center
-      -# .root-container
       %canvas#chart_number_access_by_main_services
-      -# = line_chart @query.number_access_by_main_services, legend: true, messages: { empty: t("no_data") }, library: { data: { datasets: { showLine: false } } }
