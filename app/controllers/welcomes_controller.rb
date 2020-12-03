@@ -8,6 +8,8 @@ class WelcomesController < PublicAccessController
     render json: @query.access_info, status: :ok
   end
   def index
+    @active_tab = params[:q][:active_tab] if params[:q]
+
     respond_to do |format|
       format.html { render layout: "welcome" }
       format.js
