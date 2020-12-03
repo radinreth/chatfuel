@@ -16,7 +16,10 @@
         .row
           -# Information Access
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/most_requested_services"
+            = render( ChartComponent.new ) do |c|
+              - c.with(:head) { t("welcomes.most_requested_services") }
+              - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services") }
+
           .col-xl-6.col-lg-5
             = render "welcomes/charts/information_access_by_gender"
           .col-xl-6.col-lg-5
