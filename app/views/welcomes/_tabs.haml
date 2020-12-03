@@ -55,14 +55,26 @@
           -# citizen feedback
           .col-xl-6.col-lg-5
             = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender") }
+
           .col-xl-6.col-lg-5
             = render partial: "dashboard/total_user_feedback", locals: { title: t("welcomes.overall_citizen_feedback") }
+
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/overall_rating_by_owso"
+            = render( ChartComponent.new ) do |c|
+              - c.with(:head) { t("welcomes.overall_rating_by_owso") }
+              - c.with(:body) { content_tag(:canvas, nil, id: "chart_overall_rating_by_owso") }
+
           .col-xl-6.col-lg-5
-            = render "welcomes/charts/owso_feedback_trend"
+            = render( ChartComponent.new ) do |c|
+              - c.with(:head) { t("welcomes.owso_feedback_trend") }
+              - c.with(:body) { content_tag(:canvas, nil, id: "chart_owso_feedback_trend") }
+
           -# feedback by sub category -> base on selected districts
           - @query.options[:district_id].each do |district_id|
             .col-xl-6.col-lg-5
-              = render partial: "welcomes/charts/feedback_by_sub_category", locals: { label: district_id }
+              = render( ChartComponent.new ) do |c|
+                - c.with(:head) { t("welcomes.feedback_by_sub_categories") }
+                - c.with(:body) do
+                  %canvas.w-75.chart_feedback_by_sub_category{ "data-id": district_id }
+                  %p.label.m-0
       
