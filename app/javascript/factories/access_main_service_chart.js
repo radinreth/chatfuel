@@ -23,6 +23,8 @@ export const accessMainService = (ctx) => {
   };
 
   let { scales } = defaults.initOptions
+  let max = _.max(values)
+  let suggestedMax = Math.round( max * 1.25 )
 
   let options = {
     ...defaults.initOptions,
@@ -55,7 +57,7 @@ export const accessMainService = (ctx) => {
         display: true,
         ticks: {
           beginAtZero: true,
-          max: _.max(values) + 200
+          suggestedMax: suggestedMax
         }
       }],
     }

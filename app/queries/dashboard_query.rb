@@ -37,9 +37,9 @@ class DashboardQuery
     result.transform
   end
 
-  def most_request_periodic
+  def most_tracked_periodic
     most_request = Variable.most_request
-    result = ::MostRequestPeriodic.new(most_request).result
+    result = ::MostTrackedPeriodic.new(most_request).result
     result.transform
   end
 

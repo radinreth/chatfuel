@@ -1,10 +1,10 @@
 import * as defaults from '../data/defaults'
 
-export const MostRequestChart = (ctx) => {
+export const mostTrackedPeriodic = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { label, colors, dataset } = gon.mostRequest;
+  let { label, colors, dataset } = gon.mostTrackedPeriodic;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -22,13 +22,22 @@ export const MostRequestChart = (ctx) => {
     ]
   };
 
+  let { scales } = defaults.initOptions
   let max = _.max(counts)
-  let suggestedMax = Math.round( max * 1.4 )
+  let suggestedMax = Math.round( max * 1.40 )
 
   let options = {
     ...defaults.initOptions,
     scales: {
-      ...defaults.initOptions.scales,
+      ...scales,
+      xAxes: [{
+        ...scales.xAxes,
+        ticks: {
+          ...scales.xAxes.ticks,
+          maxRotation: 0,
+          minRotation: 0,
+        }
+      }],
       yAxes: [{
         display: true,
         ticks: {
