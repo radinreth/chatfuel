@@ -228,23 +228,11 @@
   }
 
   canvas{
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	.chart-container {
-		width: 500px;
-		margin-left: 40px;
-		margin-right: 40px;
-		margin-bottom: 40px;
-	}
-	.root-container {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
   }
-  
+
   .switch-lang {
     z-index: 1000;
     top: 30px;
@@ -280,7 +268,7 @@
     }
   }
 
-  .visualize-nav {
+  .tab-navigation {
     top: 100px;
     padding-top: 15px;
     z-index: 996;
