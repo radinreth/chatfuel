@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const MostRequestChart = (ctx) => {
+export const mostRequest = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
