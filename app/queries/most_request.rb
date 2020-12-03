@@ -7,7 +7,7 @@ class MostRequest < Report
   def transform
     {
       max: max,
-      label: I18n.t("dashboard.most_requested_services"),
+      label: I18n.t("welcomes.most_requested_services"),
       colors: generate_colors,
       dataset: dataset
     }
