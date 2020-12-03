@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const AccessInfoChart = (ctx) => {
+export const accessInfo = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
