@@ -5,6 +5,8 @@ class WelcomesController < PublicAccessController
   before_action :set_query, :set_gon, only: :index
 
   def index
+    @active_tab = params[:q][:active_tab] if params[:q]
+
     respond_to do |format|
       format.html { render layout: "welcome" }
       format.js
