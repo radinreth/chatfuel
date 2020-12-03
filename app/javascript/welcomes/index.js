@@ -1,5 +1,5 @@
 require("../patches/jquery")
-import * as chart from '../factories/root_chart'
+import * as chart from '../charts/root_chart'
 
 OWSO.WelcomesIndex = (() => {
   var logoContainer, formQuery, pilotHeader
