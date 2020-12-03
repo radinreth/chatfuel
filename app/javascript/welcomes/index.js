@@ -33,7 +33,7 @@ OWSO.WelcomesIndex = (() => {
     genderInfo()
     accessInfo()
     accessMainService()
-    mostRequestedPeriodically()
+    mostTrackedPeriodically()
     ticketTrackingByGenders()
 
     // citizen feedback
@@ -63,9 +63,9 @@ OWSO.WelcomesIndex = (() => {
     chart.ticketTrackingByGenders(ctx);
   }
 
-  function mostRequestedPeriodically() {
+  function mostTrackedPeriodically() {
     var ctx = 'chart_most_service_tracked_periodically'
-    chart.mostRequestPeriodic(ctx);
+    chart.mostTrackedPeriodic(ctx);
   }
 
   function accessMainService() {

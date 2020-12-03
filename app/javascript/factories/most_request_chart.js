@@ -4,7 +4,7 @@ export const MostRequestChart = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { label, colors, max, dataset } = gon.mostRequest;
+  let { label, colors, dataset } = gon.mostRequest;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -22,6 +22,9 @@ export const MostRequestChart = (ctx) => {
     ]
   };
 
+  let max = _.max(counts)
+  let suggestedMax = Math.round( max * 1.4 )
+
   let options = {
     ...defaults.initOptions,
     scales: {
@@ -29,8 +32,7 @@ export const MostRequestChart = (ctx) => {
       yAxes: [{
         display: true,
         ticks: {
-          // extra margin needed to avoid clip label on bar chart
-          suggestedMax: (max + 200),
+          suggestedMax: suggestedMax,
         }
       }]
     }
