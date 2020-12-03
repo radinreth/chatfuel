@@ -20,7 +20,7 @@
                   = t("welcomes.districts")
                   %abbr{ title: t("required.string") } *
                 %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
-                  #show-districts.form-control{"data-toggle": "modal", "data-target" => "#exampleModal"} 
+                  #show-districts.form-control{"data-toggle": "modal", "data-target" => "#districtsModal"} 
                     = t("all")
                   - district_codes = Array.wrap(params[:district_code]).select(&:present?)
                   = f.input_field :districts, as: :hidden, tabindex: 5, name: "district_code[]", multiple: true, class: "form-control text-truncate", value: district_codes
@@ -47,11 +47,11 @@
                 = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
-#exampleModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1" }
+#districtsModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "districtsModal", :role => "dialog", :tabindex => "-1" }
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
-        %h5#exampleModalLabel.modal-title
+        %h5.modal-title
           = t("welcomes.districts")
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×

@@ -1,10 +1,10 @@
 import * as defaults from '../data/defaults'
 
-export const mostRequestPeriodic = (ctx) => {
+export const mostTrackedPeriodic = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { label, colors, max, dataset } = gon.mostRequestPeriodic;
+  let { label, colors, dataset } = gon.mostTrackedPeriodic;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -23,6 +23,8 @@ export const mostRequestPeriodic = (ctx) => {
   };
 
   let { scales } = defaults.initOptions
+  let max = _.max(counts)
+  let suggestedMax = Math.round( max * 1.40 )
 
   let options = {
     ...defaults.initOptions,
@@ -39,8 +41,7 @@ export const mostRequestPeriodic = (ctx) => {
       yAxes: [{
         display: true,
         ticks: {
-          // extra margin needed to avoid clip label on bar chart
-          suggestedMax: (max + 200),
+          suggestedMax: suggestedMax,
         }
       }]
     }
