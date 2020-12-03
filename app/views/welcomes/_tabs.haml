@@ -1,23 +1,8 @@
-.visualize-nav.position-sticky
-  .container
-    %ul#menu.nav.nav-tabs.justify-content-end{:role => "tablist"}
-      %li.nav-item
-        %a#summary-tab.nav-link{ tabindex: 8, "aria-controls" => "summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#summary", :role => "tab"}
-          = t("welcomes.summary")
-      %li.nav-item
-        %a#access-information-tab.nav-link.active{tabindex: 9, "aria-controls" => "access-information", "aria-selected" => "false", "data-toggle" => "tab", :href => "#access-information", :role => "tab"}
-          = t("welcomes.access_info")
-      %li.nav-item
-        %a#citizen-feedback-tab.nav-link{tabindex: 10, "aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
-          = t("welcomes.citizen_feedback")
-
 #tab
   .container
-    .row
-      .col-12
-        #menuContent.tab-content.pt-5
-          #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
-            = render "dashboard/earnings"
+    #menuContent.tab-content.pt-5
+      #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
+        = render "dashboard/earnings"
 
             .row
               .col-lg-6

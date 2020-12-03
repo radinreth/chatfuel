@@ -21,6 +21,15 @@ OWSO.WelcomesIndex = (() => {
     onWindowScroll()
     onChangeDistrict()
     onModalSave()
+    registerTab()
+  }
+
+  function registerTab() {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target);
+      var active = $(target).attr('href');
+      $("#q_active_tab").val(active);
+    })
   }
 
   function customChart() {
