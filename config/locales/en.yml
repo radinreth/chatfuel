@@ -175,14 +175,6 @@ en:
     all_district: All
     all: All
     location: Location
-    most_requested_services: Most Requested Services by OWSO
-    information_access_by: Information access by %{period}
-    number_access_by_main_services: Number Access by Main Service
-    most_service_tracked_by_periodic: most_service_tracked_by_periodic
-    ticket_tracking_by_gender: ticket_tracking_by_gender
-    overall_rating_by_owso: overall_rating_by_owso
-    owso_feedback_trend: owso_feedback_trend
-    feedback_by_sub_category: feedback_by_sub_category
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
