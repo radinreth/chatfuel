@@ -1,16 +1,8 @@
--# note: what is the most requested service for each owso office?
-
 .card.shadow.mb-4{ role: "figure" }
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary
-      = t("dashboard.information_access_by", period: t("period.month"))
-
-    .tools
-      - if @query.information_access_by_period.present?
-        = link_to "#", class: "chart-dl text-dark", "data-target": "#information_access_by_period" do
-          %i.fa.fa-download
+      = t("welcomes.information_access_by", period: t("period.month"))
 
   .card-body
     #information_access_by_period.pt-4.d-flex.justify-content-around.align-items-center
       %canvas#chart_information_access_by_period
-      -# = column_chart @query.information_access_by_period, messages: { empty: t("no_data") }, library: { legend: { labels: { boxWidth: 10 } } }
