@@ -14,7 +14,7 @@ export const feedbackTrend = (ctx) => {
   let { scales } = defaults.initOptions
   let flatten = _.flatten(_.map(dataset, e => e.data))
   let max = _.max(flatten)
-  let top = Math.round( max * 0.2 )
+  let suggestedMax = Math.round( max * 1.20 )
 
   let options = {
     ...defaults.initOptions,
@@ -26,7 +26,7 @@ export const feedbackTrend = (ctx) => {
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
-          max: max + top
+          suggestedMax: suggestedMax
         }
       }],
       xAxes: [{
