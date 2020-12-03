@@ -1,4 +1,4 @@
-class MostRequestPeriodic < Report
+class MostTrackedPeriodic < Report
   def result
     @result = group_count
     self
