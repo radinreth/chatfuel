@@ -19,6 +19,8 @@ export const AccessInfoChart = (ctx) => {
   };
 
   let { scales } = defaults.initOptions
+  let max = _.max(values)
+  let suggestedMax = Math.round( max * 1.2 )
 
   let options = {
     ...defaults.initOptions,
@@ -32,6 +34,12 @@ export const AccessInfoChart = (ctx) => {
     },
     scales: {
       ...scales,
+      yAxes: [{
+        ...scales.yAxes[0],
+        ticks: {
+          suggestedMax: suggestedMax
+        }
+      }],
       xAxes: [{
         ...scales.xAxes,
         ticks: {
