@@ -26,6 +26,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body{ id: css_class_name, style: 'overflow: scroll' }
+    = content_tag :a, nil, id: "link"
     #main-content.position-relative
       = render "welcomes/switch_lang"
 

@@ -15,8 +15,9 @@ OWSO.WelcomesIndex = (() => {
   ];
 
   function init() {
-    OWSO.DashboardShow.renderDatetimepicker()
-    OWSO.DashboardShow.multiSelectDistricts()
+    OWSO.DashboardShow.renderDatetimepicker();
+    OWSO.DashboardShow.multiSelectDistricts();
+    attachEventClickToChartDownloadButton()
 
     onWindowScroll()
     onChangeDistrict()
@@ -24,7 +25,38 @@ OWSO.WelcomesIndex = (() => {
     registerTab()
   }
 
-  function registerTab() {
+  function attachEventClickToChartDownloadButton() {
+    $(document).on("click", ".chart-dl", async function(e) {
+      e.preventDefault();
+
+      let target = $(e.currentTarget).data("target");
+      let fileName = target != undefined ? target.substring(1) : "my-chart";
+      let el = document.getElementById(fileName);
+      let area = el.getBoundingClientRect()
+
+      // related issue on github: https://github.com/niklasvh/html2canvas/issues/882
+      let canvas = await html2canvas(el, {
+        scrollX: 0,
+        scale: 2,
+        scrollY: -window.scrollY,
+        width: area.width,
+        height: area.height
+      });
+
+      download(canvas);
+    })
+  }
+
+  function download(canvas) {
+    let link = document.getElementById("link");
+
+    link.setAttribute('download', `chart.png`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', canvas.toDataURL("image/png"));
+    link.click();
+  }
+
+  function onClickTabNavigation() {
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target);
       var active = $(target).attr('href');
