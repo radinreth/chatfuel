@@ -15,9 +15,14 @@
     %span.card-subheader.position-absolute
       = subheader
 
+    .tools
+      = link_to "#", class: "chart-dl text-dark", "data-target": "##{@id}" do
+        %i.fa.fa-download
+
   .card-body
     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative
       - if @filterable
         %p.loading.position-absolute.d-none
           = t("loading")
+    .pt-4.d-flex.justify-content-around.align-items-center{ id: @id }
       = body
