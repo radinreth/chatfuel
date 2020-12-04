@@ -34,7 +34,7 @@ let isDisplay = function(context) {
   return value > count * 1.5;
 }
 
-export const genderInfo = (ctx) => {
+export const genderInfo = () => {
   let type = 'pie', 
       plugins = [chartDataLabels];
 
@@ -79,5 +79,5 @@ export const genderInfo = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_information_access_by_gender', { type, plugins, data, options });
 }

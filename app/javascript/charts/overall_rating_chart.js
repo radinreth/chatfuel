@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const overallRating = (ctx) => {
+export const overallRating = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -32,5 +32,5 @@ export const overallRating = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_overall_rating_by_owso', { type, plugins, data, options });
 }

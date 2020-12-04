@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const feedbackTrend = (ctx) => {
+export const feedbackTrend = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -47,5 +47,5 @@ export const feedbackTrend = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_owso_feedback_trend', { type, plugins, data, options });
 }
