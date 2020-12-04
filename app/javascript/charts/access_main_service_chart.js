@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const accessMainService = (ctx) => {
+export const accessMainService = () => {
   let type = 'line', 
       plugins = [chartDataLabels];
 
@@ -63,5 +63,5 @@ export const accessMainService = (ctx) => {
     }
   }
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_number_access_by_main_services', { type, plugins, data, options });
 }
