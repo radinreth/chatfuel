@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const mostTrackedPeriodic = (ctx) => {
+export const mostTrackedPeriodic = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -47,5 +47,5 @@ export const mostTrackedPeriodic = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_most_service_tracked_periodically', { type, plugins, data, options });
 }
