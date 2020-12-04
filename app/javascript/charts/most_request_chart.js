@@ -1,8 +1,7 @@
 import * as defaults from '../data/defaults'
 
-export const mostRequest = (ctx) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
+export const mostRequest = () => {
+  let type = 'bar', plugins = [chartDataLabels];
 
   let { label, colors, dataset } = gon.mostRequest;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
@@ -38,5 +37,5 @@ export const mostRequest = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_most_requested_services', { type, plugins, data, options });
 }

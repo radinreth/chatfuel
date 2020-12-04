@@ -34,7 +34,7 @@ let isDisplay = function(context) {
   return value > count * 1.5;
 }
 
-export const ticketTrackingByGenders = (ctx) => {
+export const ticketTrackingByGenders = () => {
   let type = 'pie', 
       plugins = [chartDataLabels];
 
@@ -79,5 +79,5 @@ export const ticketTrackingByGenders = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_ticket_tracking_by_gender', { type, plugins, data, options });
 }
