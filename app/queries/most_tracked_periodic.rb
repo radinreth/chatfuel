@@ -22,9 +22,9 @@ class MostTrackedPeriodic < Report
 
   def dataset
     @result.each_with_object({}) do |(key, count), hash|
-      month, variable_value = find_objects_by(key)
+      month, sector = key
       hash[month] = {
-        value: replace_new_line(variable_value.mapping_value),
+        value: replace_new_line(sector),
         count: count
       } if !hash[month] || hash[month][:count] < count
     end
@@ -34,18 +34,10 @@ class MostTrackedPeriodic < Report
     str.sub(/\s/, "\n")
   end
 
-  def find_objects_by(key)
-    month, variable_value_id = key
-    variable_value = VariableValue.find(variable_value_id)
-
-    [month, variable_value]
-  end
-
   def group_count
-    @variable.step_values.joins(:message)\
-      .where.not(messages: { district_id: ["", "null"] })\
-      .group_by_month("messages.created_at", format: "%b")\
-      .group(:variable_value_id)\
+    Ticket.joins("INNER JOIN trackings ON trackings.ticket_code = tickets.code")\
+      .group_by_month("trackings.created_at", format: "%b")\
+      .group(:sector)\
       .count
   end
 end
