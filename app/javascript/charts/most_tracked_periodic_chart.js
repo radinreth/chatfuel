@@ -41,6 +41,7 @@ export const mostTrackedPeriodic = () => {
       yAxes: [{
         display: true,
         ticks: {
+          beginAtZero: true,
           suggestedMax: suggestedMax,
         }
       }]
