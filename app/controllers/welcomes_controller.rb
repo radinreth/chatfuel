@@ -3,10 +3,9 @@ class WelcomesController < PublicAccessController
 
   before_action :set_daterange, only: :index
   before_action :set_query, :set_gon, only: :index
+  before_action :set_active_tab_nav, only: :index
 
   def index
-    @active_tab = params[:q][:active_tab] if params[:q]
-
     respond_to do |format|
       format.html { render layout: "welcome" }
       format.js
@@ -18,6 +17,10 @@ class WelcomesController < PublicAccessController
   end
 
   private
+    def set_active_tab_nav
+      @active_tab = params[:q][:active_tab] if params[:q]
+    end
+
     def set_query
       @query = DashboardQuery.new(filter_options)
     end
