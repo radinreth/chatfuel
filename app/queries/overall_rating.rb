@@ -17,7 +17,6 @@ class OverallRating < Report
       @variable.values.display_ratings.map { |v| v.mapping_value }
     end
 
-    # [[98, "Acceptable"], [97, "Bad"], [115, "Good"]]
     def tuned_dataset
       @values = raw_dataset.values
 
