@@ -6,7 +6,6 @@ class MostRequest < Report
 
   def transform
     {
-      max: max,
       label: I18n.t("welcomes.most_requested_services"),
       colors: generate_colors,
       dataset: dataset
@@ -19,10 +18,6 @@ class MostRequest < Report
     return [] unless @result
 
     super.take(@result.count)
-  end
-
-  def max
-    @result.values.max
   end
 
   def dataset
