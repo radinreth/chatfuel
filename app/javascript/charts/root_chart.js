@@ -8,12 +8,18 @@ import { overallRating } from './overall_rating_chart';
 import { feedbackTrend } from './feedback_trend_chart';
 import { feedbackSubCategories } from './feedback_sub_categories_chart';
 
-export {  mostRequest, 
-          genderInfo, 
-          accessInfo,
-          accessMainService,
-          mostTrackedPeriodic,
-          ticketTrackingByGenders,
-          overallRating,
-          feedbackTrend,
-          feedbackSubCategories };
+export const renderChart = function () {
+  $.each( charts, function(_, f) { f() });
+  $(".chart_feedback_by_sub_category").each(function(_, dom) {
+    feedbackSubCategories(dom);
+  });
+}
+
+const charts = [  mostRequest, 
+                  genderInfo, 
+                  accessInfo,
+                  accessMainService,
+                  mostTrackedPeriodic,
+                  ticketTrackingByGenders,
+                  overallRating,
+                  feedbackTrend ];
