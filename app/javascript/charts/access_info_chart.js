@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const accessInfo = (ctx) => {
+export const accessInfo = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -51,5 +51,5 @@ export const accessInfo = (ctx) => {
     }
   }
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_information_access_by_period', { type, plugins, data, options });
 }
