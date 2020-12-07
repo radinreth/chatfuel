@@ -4,9 +4,9 @@
       = head
 
     .tools
-      = link_to "#", class: "chart-dl text-dark", "data-target": "##{@id}" do
+      = link_to "#", class: "chart-dl text-dark", "data-target": "#{@target}" do
         %i.fa.fa-download
 
   .card-body
-    .pt-4.d-flex.justify-content-around.align-items-center{ id: @id }
+    .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
       = body
