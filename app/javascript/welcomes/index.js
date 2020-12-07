@@ -25,10 +25,9 @@ OWSO.WelcomesIndex = (() => {
     $(document).on("click", ".chart-dl", async function(e) {
       e.preventDefault();
 
-      let target = $(e.currentTarget).data("target");
-      let fileName = target != undefined ? target.substring(1) : "my-chart";
-      let el = document.getElementById(fileName);
-      let area = el.getBoundingClientRect()
+      let target = $(e.currentTarget);
+      let el = $(this).closest(".card-header").next().find(".chart-wrapper")[0];
+      let area = el.getBoundingClientRect();
 
       // related issue on github: https://github.com/niklasvh/html2canvas/issues/882
       let canvas = await html2canvas(el, {
@@ -39,14 +38,15 @@ OWSO.WelcomesIndex = (() => {
         height: area.height
       });
 
-      download(canvas);
+      let name = target.data("name");
+      download(canvas, { name });
     })
   }
 
-  function download(canvas) {
+  function download(canvas, options) {
     let link = document.getElementById("link");
 
-    link.setAttribute('download', `chart.png`);
+    link.setAttribute('download', `${ options['name'] || 'my-chart' }.png`);
     link.setAttribute('target', '_blank');
     link.setAttribute('href', canvas.toDataURL("image/png"));
     link.click();
