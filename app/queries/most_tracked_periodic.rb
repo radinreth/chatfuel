@@ -1,4 +1,4 @@
-class MostRequestPeriodic < Report
+class MostTrackedPeriodic < Report
   def result
     @result = group_count
     self
@@ -6,8 +6,7 @@ class MostRequestPeriodic < Report
 
   def transform
     {
-      max: max,
-      label: I18n.t("dashboard.most_requested_services"),
+      label: I18n.t("welcomes.most_requested_services"),
       colors: generate_colors,
       dataset: dataset
     }
@@ -19,10 +18,6 @@ class MostRequestPeriodic < Report
     return [] unless @result
 
     super.take(@result.count)
-  end
-
-  def max
-    @result.values.max
   end
 
   def dataset

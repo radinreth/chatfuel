@@ -3,6 +3,7 @@ class WelcomesController < PublicAccessController
 
   before_action :set_daterange, only: :index
   before_action :set_query, :set_gon, only: :index
+  before_action :set_active_tab_nav, only: :index
 
   def index
     respond_to do |format|
@@ -16,24 +17,18 @@ class WelcomesController < PublicAccessController
   end
 
   private
+    def set_active_tab_nav
+      @active_tab = params[:q][:active_tab] if params[:q]
+    end
+
     def set_query
       @query = DashboardQuery.new(filter_options)
     end
 
     def set_gon
-      @gon_data = {
-        all: I18n.t("all"),
-        locale: I18n.locale,
-        mostRequest: @query.most_requested_services,
-        genderInfo: @query.gender_info,
-        accessInfo: @query.access_info,
-        accessMainService: @query.access_main_service,
-        mostRequestPeriodic: @query.most_request_periodic,
-        ticketTrackingByGenders: @query.ticket_tracking_by_genders,
-        overallRating: @query.overall_rating,
-        feedbackTrend: @query.feedback_trend,
-        feedbackSubCategories: @query.feedback_sub_categories
-      }
+      @gon_data = Gonify.new(@query).chart_data
+      @gon_data[:all] = I18n.t("all")
+      @gon_data[:locale] = I18n.locale
 
       gon.push(@gon_data)
     end

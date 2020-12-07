@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const feedbackTrend = (ctx) => {
+export const feedbackTrend = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -14,10 +14,18 @@ export const feedbackTrend = (ctx) => {
   let { scales } = defaults.initOptions
   let flatten = _.flatten(_.map(dataset, e => e.data))
   let max = _.max(flatten)
-  let top = Math.round( max * 0.2 )
+  let suggestedMax = Math.round( max * 1.20 )
 
   let options = {
     ...defaults.initOptions,
+    plugins: {
+      datalabels: {
+        ...defaults.initOptions.plugins.datalabels,
+        font: {
+          size: "10"
+        }
+      }
+    },
     legend: {
       display: true
     },
@@ -26,7 +34,7 @@ export const feedbackTrend = (ctx) => {
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
-          max: max + top
+          suggestedMax: suggestedMax
         }
       }],
       xAxes: [{
@@ -39,5 +47,5 @@ export const feedbackTrend = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_owso_feedback_trend', { type, plugins, data, options });
 }

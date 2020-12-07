@@ -1,10 +1,9 @@
 import * as defaults from '../data/defaults'
 
-export const mostRequestPeriodic = (ctx) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
+export const mostRequest = () => {
+  let type = 'bar', plugins = [chartDataLabels];
 
-  let { label, colors, max, dataset } = gon.mostRequestPeriodic;
+  let { label, colors, dataset } = gon.mostRequest;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -22,29 +21,21 @@ export const mostRequestPeriodic = (ctx) => {
     ]
   };
 
-  let { scales } = defaults.initOptions
+  let max = _.max(counts)
+  let suggestedMax = Math.round( max * 1.4 )
 
   let options = {
     ...defaults.initOptions,
     scales: {
-      ...scales,
-      xAxes: [{
-        ...scales.xAxes,
-        ticks: {
-          ...scales.xAxes.ticks,
-          maxRotation: 0,
-          minRotation: 0,
-        }
-      }],
+      ...defaults.initOptions.scales,
       yAxes: [{
         display: true,
         ticks: {
-          // extra margin needed to avoid clip label on bar chart
-          suggestedMax: (max + 200),
+          suggestedMax: suggestedMax,
         }
       }]
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_most_requested_services', { type, plugins, data, options });
 }

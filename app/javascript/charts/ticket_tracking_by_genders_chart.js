@@ -34,11 +34,11 @@ let isDisplay = function(context) {
   return value > count * 1.5;
 }
 
-export const GenderInfoChart = (ctx) => {
+export const ticketTrackingByGenders = () => {
   let type = 'pie', 
       plugins = [chartDataLabels];
 
-  let { colors, dataset } = gon.genderInfo;
+  let { colors, dataset } = gon.ticketTrackingByGenders;
   let [genderLabels, values] = [_.keys(dataset), _.values(dataset)];
 
   let data = {
@@ -69,7 +69,7 @@ export const GenderInfoChart = (ctx) => {
         borderRadius: 25,
         borderWidth: 2,
         color: 'white',
-        display: isDisplay,
+        display: true,
         font: {
           family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           weight: 'bold'
@@ -79,5 +79,5 @@ export const GenderInfoChart = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_ticket_tracking_by_gender', { type, plugins, data, options });
 }

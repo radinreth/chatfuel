@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const AccessInfoChart = (ctx) => {
+export const accessInfo = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
@@ -19,6 +19,8 @@ export const AccessInfoChart = (ctx) => {
   };
 
   let { scales } = defaults.initOptions
+  let max = _.max(values)
+  let suggestedMax = Math.round( max * 1.2 )
 
   let options = {
     ...defaults.initOptions,
@@ -32,6 +34,12 @@ export const AccessInfoChart = (ctx) => {
     },
     scales: {
       ...scales,
+      yAxes: [{
+        ...scales.yAxes[0],
+        ticks: {
+          suggestedMax: suggestedMax
+        }
+      }],
       xAxes: [{
         ...scales.xAxes,
         ticks: {
@@ -43,5 +51,5 @@ export const AccessInfoChart = (ctx) => {
     }
   }
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_information_access_by_period', { type, plugins, data, options });
 }

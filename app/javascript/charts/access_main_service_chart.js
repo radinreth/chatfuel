@@ -1,6 +1,6 @@
 import * as defaults from '../data/defaults'
 
-export const accessMainService = (ctx) => {
+export const accessMainService = () => {
   let type = 'line', 
       plugins = [chartDataLabels];
 
@@ -23,6 +23,8 @@ export const accessMainService = (ctx) => {
   };
 
   let { scales } = defaults.initOptions
+  let max = _.max(values)
+  let suggestedMax = Math.round( max * 1.25 )
 
   let options = {
     ...defaults.initOptions,
@@ -55,11 +57,11 @@ export const accessMainService = (ctx) => {
         display: true,
         ticks: {
           beginAtZero: true,
-          max: _.max(values) + 200
+          suggestedMax: suggestedMax
         }
       }],
     }
   }
 
-  return new Chart(ctx, { type, plugins, data, options });
+  new Chart('chart_number_access_by_main_services', { type, plugins, data, options });
 }
