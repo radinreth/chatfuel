@@ -1,10 +1,10 @@
 .card.shadow.mb-4{ role: "figure" }
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary
-      = head
+      = @name
 
     .tools
-      = link_to "#", class: "chart-dl text-dark", "data-target": "#{@target}" do
+      = link_to "#", class: "chart-dl text-dark", "data-name": "#{@name}" do
         %i.fa.fa-download
 
   .card-body
