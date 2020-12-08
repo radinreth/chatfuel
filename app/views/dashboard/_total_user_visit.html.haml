@@ -4,7 +4,7 @@
       = t("dashboard.total_user_visit")
     .tools
       - if @query.total_users_visit_each_functions.present?
-        = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_visit" do
+        = link_to "#", class: "chart-dl text-dark", "data-name": t("dashboard.total_user_visit") do
           %i.fa.fa-download
 
       - if policy(:dashboard).setting?
