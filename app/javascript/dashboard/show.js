@@ -131,5 +131,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, attachEventClickToChartDownloadButton }
 })();
