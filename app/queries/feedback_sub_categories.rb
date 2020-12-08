@@ -16,10 +16,12 @@ class FeedbackSubCategories < Report
 
   private
     def values
-      likes = Array.wrap(feedback_like&.values)
-      dislikes = Array.wrap(feedback_dislike&.values)
+      mapping_values(like) & mapping_values(dislike)
+    end
 
-      (likes + dislikes).map { |v| v.mapping_value }.uniq
+    def mapping_values(obj)
+      values = Array.wrap(obj&.values)
+      values.map { |v| v.mapping_value }
     end
 
     def tuned_dataset(key)
@@ -51,17 +53,17 @@ class FeedbackSubCategories < Report
     def group_count
       StepValue.joins(:message)\
         .where(messages: { district_id: @query.options[:district_id] })\
-        .where(variable: [feedback_like, feedback_dislike])\
+        .where(variable: [like, dislike])\
         .group("messages.district_id")\
         .group(:variable_id, :variable_value_id)\
         .count
     end
 
-    def feedback_like
+    def like
       Variable.find_by(name: 'feedback_like')
     end
 
-    def feedback_dislike
+    def dislike
       Variable.find_by(name: 'feedback_dislike')
     end
 end
