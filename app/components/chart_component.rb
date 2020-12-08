@@ -1,7 +1,7 @@
 class ChartComponent < ViewComponent::Base
-  with_content_areas :head, :body
+  with_content_areas :body
 
-  def initialize(target: '')
-    @target = target
+  def initialize(name: '')
+    @name = name
   end
 end
