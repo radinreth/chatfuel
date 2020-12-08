@@ -4,7 +4,7 @@
       = title
     .tools.d-flex.align-items-center
       - if @query.users_visited_by_each_genders.present?
-        = link_to "#", class: "chart-dl text-dark", "data-target": "#users_visited_by_genders" do
+        = link_to "#", class: "chart-dl text-dark", "data-name": title do
           %i.fa.fa-download
       - if policy(:dashboard).setting?
         = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
@@ -17,7 +17,7 @@
         = @criteria.mapping_value
 
   .card-body
-    #users_visited_by_genders.pt-4.d-flex.justify-content-around.align-items-center
+    .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
       - agg_genders = @query.users_visited_by_each_genders
       - if agg_genders.present?
         %ul.list-unstyled
