@@ -5,14 +5,14 @@
     
     .tools
       - if @query.total_users_visit_each_functions.present?
-        = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_visit" do
+        = link_to "#", class: "chart-dl text-dark", "data-name": t("dashboard.total_user_visit") do
           %i.fa.fa-download
 
       - if policy(:dashboard).setting?
         = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
           %i.fas.fa-cog.cog
   .card-body
-    #total_user_visit.pt-4.d-flex.justify-content-around.align-items-center
+    .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
       - if @query.total_users_visit_each_functions.present?
         %ul.list-unstyled
           - @query.user_visit.values.distinct_values.each_with_index do |value, index|
