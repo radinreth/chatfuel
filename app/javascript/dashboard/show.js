@@ -36,19 +36,34 @@ OWSO.DashboardShow = (() => {
   }
 
   function attachEventClickToChartDownloadButton() {
-    $(".chart-dl").click(async function(e) {
+    $(document).on("click", ".chart-dl", async function(e) {
       e.preventDefault();
 
-      let target = $(e.currentTarget).data("target");
-      let fileName = target != undefined ? target.replace(/\#/, "") : "my-chart";
-      let canvas = await html2canvas($(target)[0], { scale: 2 });
-      let link = document.getElementById("link");
+      let target = $(e.currentTarget);
+      let el = $(this).closest(".card-header").next().find(".chart-wrapper")[0];
+      let area = el.getBoundingClientRect();
 
-      link.setAttribute('download', `${ fileName }.png`);
-      link.setAttribute('target', '_blank');
-      link.setAttribute('href', canvas.toDataURL("image/png"));
-      link.click();
+      // related issue on github: https://github.com/niklasvh/html2canvas/issues/882
+      let canvas = await html2canvas(el, {
+        scrollX: 0,
+        scale: 2,
+        scrollY: -window.scrollY,
+        width: area.width,
+        height: area.height
+      });
+
+      let name = target.data("name");
+      download(canvas, { name });
     })
+  }
+
+  function download(canvas, options) {
+    let link = document.getElementById("link");
+
+    link.setAttribute('download', `${ options['name'] || 'my-chart' }.png`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', canvas.toDataURL("image/png"));
+    link.click();
   }
 
   function onClickChartkickLegend() {
@@ -125,5 +140,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, attachEventClickToChartDownloadButton }
 })();
