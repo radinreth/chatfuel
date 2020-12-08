@@ -22,7 +22,7 @@
       = yield
 
     :javascript
-      if(location.hostname !== "localhost") {
+      if( !OWSO.Util.dev() ) {
         if( $(".fb-customerchat").length == 0 ) {
           var div = document.createElement('div');
           div.className = 'fb-customerchat';
