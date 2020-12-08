@@ -4,10 +4,10 @@
     .h5.m-0.font-weight-bold.text-primary
       = title
     - if users_feedback.values.sum > 0
-      = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_feedback" do
+      = link_to "#", class: "chart-dl text-dark", "data-name": title do
         %i.fa.fa-download
   .card-body
-    #total_user_feedback.pt-4.d-flex.justify-content-around.align-items-center
+    .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
       - if users_feedback.values.sum > 0
         %ul.list-unstyled
           %li

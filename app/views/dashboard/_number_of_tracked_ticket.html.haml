@@ -1,14 +1,16 @@
+- title = t("dashboard.number_of_ticket_tracking")
 .col-xl-6.col-lg-5
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
-        = t("dashboard.number_of_ticket_tracking")
+        = title
 
       - if @query.number_of_tracking_tickets.present?
-        = link_to "#", class: "chart-dl", "data-target": "#total_ticket_tracking" do
+        = link_to "#", class: "chart-dl", "data-name": title do
           %i.fa.fa-download
-    .card-body#total_ticket_tracking
-      - if @query.number_of_tracking_tickets.present?
-        %span.invisible=t("dashboard.number_of_ticket_tracking")
+    .card-body
+      .chart-wrapper
+        - if @query.number_of_tracking_tickets.present?
+          %span.invisible= title
 
-      = column_chart @query.number_of_tracking_tickets, width: "100%", height: "300px", library: { plugins: { datalabels: { display: false } }, scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
+        = column_chart @query.number_of_tracking_tickets, width: "100%", height: "300px", library: { plugins: { datalabels: { display: false } }, scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
