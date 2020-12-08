@@ -1,4 +1,17 @@
 OWSO.Util = {
+  dev() { return location.hostname == "localhost" },
+
+  freshSession() {
+    if ( sessionStorage.getItem('fresh') ) return false;
+
+    return OWSO.Util.outdateFreshSession();
+  },
+
+  outdateFreshSession() {
+    sessionStorage.setItem('fresh', 1);
+    return true;
+  },
+
   capitalize(value) {
     return value.replace(/(^|\s)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
   },
