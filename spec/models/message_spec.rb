@@ -111,4 +111,21 @@ RSpec.describe Message do
       expect(message3.last_completed).to eq(message1)
     end
   end
+
+  describe "#clone" do
+    let!(:gender) { create(:variable, :gender) }
+    let!(:location) { create(:variable, :location) }
+
+    it "clones relations" do
+      old_message = create(:message, :text, district_id: '0204', gender: 'male')
+      old_message.completed!
+
+      new_message = create(:message, :text)
+      allow(new_message).to receive(:last_completed_before).and_return old_message
+
+      expect {
+        new_message.clone
+      }.to change { StepValue.count }
+    end
+  end
 end
