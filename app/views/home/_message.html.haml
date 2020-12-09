@@ -12,7 +12,7 @@
       = message.session_id
   %td.border-left-0.border-bottom-0
     - result = []
-    - step_values.each do |step|
+    - step_values.order(:id).each do |step|
       - result << render_from_string(step.variable_value.mapping_value)
     = result.compact.join(", ").html_safe
   %td.border-left-0.border-right-0.border-bottom-0
@@ -28,13 +28,13 @@
             %th.border-0= t("dictionary")
             %th.border-0= t("dictionary_value")
             %th.border-0= t("updated_at")
-          - step_values.each do |step|
+          - step_values.order(:id).each do |step|
             %tr
               %td.border-0.w-15.break-all
                 = step.variable.name
               %td.border-0.w-15.break-all
                 %span{ data: { toggle: "tooltip" }, title: step.variable_value&.hint }
-                  = step.variable_value&.mapping_value
+                  = render_from_string step.variable_value&.mapping_value
               %td.border-0
                 %span.timeago{ "data-full-datetime": display_datetime(step.updated_at) }
                   = time_ago_in_words(step.updated_at)
