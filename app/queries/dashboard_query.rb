@@ -202,7 +202,18 @@ class DashboardQuery
     @feedback ||= Variable.feedback
   end
 
+  def district_codes
+    options[:district_id].presence || all_district_codes
+  end
+
   private
+    def all_district_codes
+      location = Variable.location
+      return [] unless location
+
+      location.values.map(&:raw_value)
+    end
+
     def platform_param
       {
         ivr: { platform_name: ["Verboice"], content_type: 'VoiceMessage' },
