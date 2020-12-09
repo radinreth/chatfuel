@@ -6,4 +6,33 @@ FactoryBot.define do
   trait :ticket_tracking do
     is_ticket_tracking { true }
   end
+
+  trait :gender do
+    name { 'gender' }
+    mark_as { 'gender' }
+    transient do
+      genders { ['female', 'male'] }
+    end
+
+    after(:create) do |variable, evaluator|
+      evaluator.genders.each do |gender|
+        create :variable_value, raw_value: gender, variable: variable
+      end
+    end
+  end
+
+  trait :location do
+    name { 'location' }
+    mark_as { 'location' }
+
+    transient do
+      locations { ['0204', '0212'] }
+    end
+
+    after(:create) do |variable, evaluator|
+      evaluator.locations.each do |location|
+        create :variable_value, raw_value: location, variable: variable
+      end
+    end
+  end
 end

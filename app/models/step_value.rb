@@ -103,10 +103,12 @@ class StepValue < ApplicationRecord
     scope = filter(scope, params)
   end
 
-  def self.clone_rel(attr, value)
+  def self.clone_step(attr, value)
     variable = Variable.send(attr)
     variable_value = variable.values.find_by(raw_value: value)
     create variable: variable, variable_value: variable_value
+  rescue
+    nil
   end
 
   private

@@ -67,8 +67,8 @@ class Message < ApplicationRecord
   end
 
   def clone_relations
-    step_values.clone_rel :gender, gender
-    step_values.clone_rel :location, district_id
+    step_values.clone_step :gender, gender
+    step_values.clone_step :location, district_id
     self
   end
 
