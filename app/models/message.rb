@@ -5,7 +5,7 @@
 #  id                  :bigint(8)        not null, primary key
 #  content_type        :string
 #  gender              :string           default("")
-#  last_interaction_at :datetime         default(Mon, 03 Aug 2020 10:01:25 +07 +07:00)
+#  last_interaction_at :datetime
 #  platform_name       :string           default("")
 #  repeated            :boolean          default(FALSE)
 #  status              :integer(4)       default("incomplete")

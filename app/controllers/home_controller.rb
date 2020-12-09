@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def index
     authorize Message
-    collection = Message.filter(filter_options)
+    collection = Message.filter(filter_options).reorder(last_interaction_at: :desc)
 
     if current_user.system_admin?
       @variables = Variable.all
