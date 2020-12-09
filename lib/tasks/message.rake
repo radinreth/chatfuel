@@ -1,6 +1,5 @@
 namespace :message do
   desc "Update message district_id when location variable change"
-
   task migrate_district_id: :environment do
     location_variable = Variable.find_by(is_location: true)
 
@@ -52,5 +51,16 @@ namespace :message do
 
   ensure
     ActiveRecord::Base.record_timestamps = true
+  end
+
+  desc "Migrate last interaction date to default CURRENT_TIMESTAMP (database level)"
+  task :migrate_last_interaction_at, [:datetime] => :environment do |t, args|
+    wrong_default_migration_date = "2020-08-03 03:01:25"
+    datetime = args[:datetime] || wrong_default_migration_date
+
+    Message.where(" DATE(last_interaction_at) < DATE(updated_at) AND
+                    DATE(last_interaction_at)=?", datetime).find_each do |message|
+      message.update(last_interaction_at: message.updated_at)
+    end
   end
 end
