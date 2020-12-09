@@ -62,7 +62,14 @@ class Message < ApplicationRecord
     return self unless prev.present?
 
     attrs = prev.attributes.slice(*clone_attributes)
-    Message.create!(attrs.merge({ repeated: true }))
+    message = Message.create!(attrs.merge({ repeated: true }))
+    message.clone_relations
+  end
+
+  def clone_relations
+    step_values.clone_step :gender, gender
+    step_values.clone_step :location, district_id
+    self
   end
 
   def self.accessed(options = {})
