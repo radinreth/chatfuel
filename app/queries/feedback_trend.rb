@@ -17,14 +17,13 @@ class FeedbackTrend < Report
       @variable.values.display_ratings.map { |v| v.mapping_value }
     end
 
-    # [[98, "Acceptable"], [97, "Bad"], [115, "Good"]]
     def tuned_dataset
       @values = raw_dataset.values
 
       display_ratings.map.with_index do |mapping_value, index|
         {
           label: mapping_value,
-          backgroundColor: generate_colors[index],
+          backgroundColor: colors[index],
           data: @values.map { |raw| raw[mapping_value] || 0 }
         }
       end

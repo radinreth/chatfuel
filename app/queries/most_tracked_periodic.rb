@@ -7,18 +7,12 @@ class MostTrackedPeriodic < Report
   def transform
     {
       label: I18n.t("welcomes.most_requested_services"),
-      colors: generate_colors,
+      colors: colors,
       dataset: dataset
     }
   end
 
   private
-
-  def generate_colors
-    return [] unless @result
-
-    super.take(@result.count)
-  end
 
   def dataset
     @result.each_with_object({}) do |(key, count), hash|
