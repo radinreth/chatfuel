@@ -6,22 +6,18 @@ class GenderInfo < Report
 
   def transform
     {
-      colors: generate_colors,
+      colors: colors,
       dataset: dataset
     }
   end
 
   private
-    def generate_colors
-      ["#E25241", "#0448FD", "#75038E"]
-    end
-
     def dataset
       return {} unless @result
 
       @result.inject({}) do |memo, result|
         gender = @query.mapping_variable_value[result.gender]
-        memo[gender.mapping_value] = result.gender_count
+        memo[gender.mapping_value] = result.gender_count if gender.present?
         memo
       end
     end
