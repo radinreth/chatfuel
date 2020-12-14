@@ -54,6 +54,7 @@ en:
   feedback_like: Like
   feedback_dislike: Dislike
   loading: Loading...
+  download_chart: Download Chart
   sidebar:
     dashboard: Dashboard
     home: Home
