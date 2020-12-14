@@ -16,7 +16,7 @@
       = subheader
 
     .tools
-      = link_to "#", class: "chart-dl text-dark", "data-name": "#{@name}" do
+      = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
         %i.fa.fa-download
 
   .card-body
