@@ -6,17 +6,12 @@ class AccessMainService < Report
 
   def transform
     {
-      colors: generate_colors,
+      colors: colors.first,
       dataset: dataset
     }
   end
 
   private
-    def generate_colors
-      return [] unless @result
-
-      super.first
-    end
 
     def dataset
       return {} unless @result

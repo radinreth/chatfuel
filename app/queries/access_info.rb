@@ -6,18 +6,12 @@ class AccessInfo < Report
 
   def transform
     {
-      colors: generate_colors,
+      colors: colors,
       dataset: dataset
     }
   end
 
   private
-    def generate_colors
-      return [] unless @result
-
-      super.take(@result.count)
-    end
-
     def dataset
       return {} unless @result
 
