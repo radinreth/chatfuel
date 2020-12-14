@@ -5,11 +5,11 @@ class Feedback < Report
     end
 
     def display_ratings
-      @variable.values.display_ratings
+      @variable.values.reorder(:raw_value).display_ratings
     end
 
     def colors_mapping
-      colors = %w(#FFAB00 #B71C1C #2962FF)
+      colors = %w(#B71C1C #FFAB00 #2962FF)
       display_ratings.map(&:raw_value).zip(colors).to_h
     end
 end
