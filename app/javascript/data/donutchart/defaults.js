@@ -1,4 +1,5 @@
 import { sum } from '../../utils/array'
+import { initOptions } from '../../data/defaults'
 
 let mapLabel = (chart, label, i) => {
   let meta = chart.getDatasetMeta(0);
@@ -38,6 +39,10 @@ const options = {
     }
   },
   cutoutPercentage: 80,
+  watermark: {
+    ...initOptions.watermark,
+    position: "front"
+  },
   plugins: {
     datalabels: {
       backgroundColor: function(context) {
