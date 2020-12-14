@@ -1,4 +1,5 @@
 import { sum } from '../utils/array'
+import * as defaults from '../data/defaults'
 
 let mapLabel = (chart, label, i) => {
   let meta = chart.getDatasetMeta(0);
@@ -53,12 +54,18 @@ export const genderInfo = () => {
   };
 
   let options = {
+    ...defaults.initOptions,
     legend: {
       position: "left",
       labels: {
         boxWidth: 12,
         generateLabels: generateLabels
       }
+    },
+    scales: {},
+    watermark: {
+      ...defaults.initOptions.watermark,
+      position: "front"
     },
     plugins: {
       datalabels: {
