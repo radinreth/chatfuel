@@ -1,4 +1,4 @@
-class FeedbackTrend < Report
+class FeedbackTrend < Feedback
   def result
     @result = group_count
     self
@@ -13,17 +13,14 @@ class FeedbackTrend < Report
 
   private
 
-    def display_ratings
-      @variable.values.display_ratings.map { |v| v.mapping_value }
-    end
-
     def tuned_dataset
       @values = raw_dataset.values
 
-      display_ratings.map.with_index do |mapping_value, index|
+      display_values.map.with_index do |values|
+        raw_value, mapping_value = values
         {
           label: mapping_value,
-          backgroundColor: colors[index],
+          backgroundColor: colors_mapping[raw_value],
           data: @values.map { |raw| raw[mapping_value] || 0 }
         }
       end
