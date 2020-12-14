@@ -30,7 +30,7 @@ class FeedbackSubCategories < Report
       values.map.with_index do |mapping_value, index|
         {
           label: mapping_value,
-          backgroundColor: generate_colors[index],
+          backgroundColor: colors[index],
           data: @values.map { |raw| raw[mapping_value] || 0 }
         }
       end
