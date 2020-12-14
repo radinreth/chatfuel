@@ -5,7 +5,7 @@ class FeedbackSubCategories < Report
   end
 
   def transform
-    @query.options[:district_id].each_with_object({}) do |district_id, hash|
+    @query.district_codes.each_with_object({}) do |district_id, hash|
       hash[district_id] ||= {}
       district = ::Pumi::District.find_by_id(district_id)
       hash[district_id][:locationName] = district.send("name_#{I18n.locale}".to_sym)
@@ -52,7 +52,7 @@ class FeedbackSubCategories < Report
 
     def group_count
       StepValue.joins(:message)\
-        .where(messages: { district_id: @query.options[:district_id] })\
+        .where(messages: { district_id: @query.district_codes })\
         .where(variable: [like, dislike])\
         .group("messages.district_id")\
         .group(:variable_id, :variable_value_id)\
