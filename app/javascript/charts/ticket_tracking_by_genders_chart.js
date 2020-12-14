@@ -68,6 +68,8 @@ export const ticketTrackingByGenders = () => {
         borderColor: 'white',
         borderRadius: 25,
         borderWidth: 2,
+        borderRadius: 100,
+        padding: 10,
         color: 'white',
         display: true,
         font: {
