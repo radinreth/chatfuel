@@ -20,12 +20,18 @@ export const genderInfo = () => {
   };
 
   let options = {
+    ...defaults.initOptions,
     legend: {
       position: "left",
       labels: {
         boxWidth: 12,
         generateLabels: generateLabels
       }
+    },
+    scales: {},
+    watermark: {
+      ...defaults.initOptions.watermark,
+      position: "front"
     },
     plugins: {
       datalabels: {
