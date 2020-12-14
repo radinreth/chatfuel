@@ -66,7 +66,8 @@ export const genderInfo = () => {
           return context.dataset.backgroundColor;
         },
         borderColor: 'white',
-        borderRadius: 25,
+        borderRadius: 100,
+        padding: 10,
         borderWidth: 2,
         color: 'white',
         display: isDisplay,
