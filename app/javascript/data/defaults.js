@@ -50,5 +50,12 @@ export var initOptions = {
         },
       }
     }]
+  },
+  watermark: {
+    image: "https://www.freepnglogos.com/uploads/certified-png/certified-seal-transparent-png-blank-certified-26.png",
+    x: 492/2-128,
+    y: 246/2-128,
+    opacity: 0.2,
+    position: "back",
   }
 };
