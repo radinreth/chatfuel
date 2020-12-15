@@ -13,7 +13,8 @@ module Filterable
       start_date: @start_date,
       end_date: @end_date,
       platform: platform,
-      gender: params[:gender]
+      gender: params[:gender],
+      period: params[:period]
     }.with_indifferent_access
   end
 
