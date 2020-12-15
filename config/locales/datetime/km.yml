@@ -1,6 +1,7 @@
 km:
   period:
     month: ខែ
+    quarter: ត្រីមាស
   date:
     abbr_month_names:
       - 
