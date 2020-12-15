@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :dashboard, to: "dashboard#show"
     get :home, to: "home#index"
     get "welcomes/filter"
+    get "welcomes/q"
 
     resources :users
     resources :tickets, only: [:index]

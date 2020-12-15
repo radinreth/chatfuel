@@ -1,6 +1,7 @@
 en:
   period:
     month: month
+    quarter: quarter
   date:
     abbr_month_names:
       - 
