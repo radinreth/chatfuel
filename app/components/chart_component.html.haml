@@ -2,11 +2,13 @@
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary
       = @name
-
+      = addon
     .tools
       = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
         %i.fa.fa-download
 
   .card-body
     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
+      - if @filterable
+        %i.fas.fa-sync.fa-spin.position-absolute.d-none
       = body

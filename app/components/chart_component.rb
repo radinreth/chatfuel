@@ -1,7 +1,8 @@
 class ChartComponent < ViewComponent::Base
-  with_content_areas :body
+  with_content_areas :addon, :body
 
-  def initialize(name: '')
+  def initialize(name: '', filterable: false)
     @name = name
+    @filterable = filterable
   end
 end

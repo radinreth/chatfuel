@@ -1,5 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
+import { accessInfo } from '../charts/access_info_chart';
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -19,6 +20,24 @@ OWSO.WelcomesIndex = (() => {
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
+    onChangePeriod(); 
+  }
+
+  function onChangePeriod() {
+    $(document).on("change", ".period", function() {
+      let period = $(this).val();
+      let spin = $(".fa-sync");
+      let canvas = spin.next();
+      
+      spin.removeClass("d-none");
+      canvas.css({ opacity: 0.3 });
+
+      $.get('/welcomes/q', $('#q').serialize()+`&period=${period}`, function(result) {
+        accessInfo(result);
+        spin.addClass("d-none");
+        canvas.css({ opacity: 1 });
+      }, "json");
+    })
   }
 
   function onClickTabNavigation() {
