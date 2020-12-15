@@ -1,7 +1,7 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-import { accessInfo } from '../charts/access_info_chart';
-import { mostTrackedPeriodic } from '../charts/most_tracked_periodic_chart';
+import { extractData as e1 } from '../charts/access_info_chart';
+import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -26,28 +26,41 @@ OWSO.WelcomesIndex = (() => {
 
   function onChangePeriod() {
     $(document).on("change", ".access-period", function() {
-      fetchResultSet('/welcomes/q/access-info', this, accessInfo, "chart_information_access_by_period")
+      let option = {
+        url: '/welcomes/q/access-info',
+        self: this,
+        extractor: e1,
+        canvasId: "chart_information_access_by_period"
+      }
+
+      fetchResultSet(option)
     })
 
     $(document).on("change", ".track-period", function() {
-      fetchResultSet('/welcomes/q/service-tracked', this, mostTrackedPeriodic, "chart_most_service_tracked_periodically")
+      let option = {
+        url: '/welcomes/q/service-tracked',
+        self: this,
+        extractor: e2,
+        canvasId: "chart_most_service_tracked_periodically"
+      }
+
+      fetchResultSet(option)
     })
   }
 
-  function fetchResultSet(url, thiz, callback, canvasId) {
-    let period = $(thiz).val()
+  function fetchResultSet(option) {
+    let period = $(option.self).val()
     let serializedParams = $('#q').serialize()+`&period=${period}`
-    let header = $(thiz).closest(".card-header");
+    let header = $(option.self).closest(".card-header");
     let $spin = $(header.next().find(".fa-sync")[0]);
 
     loading($spin);
-    // find chart instance
-    let chart = findChartInstance(canvasId)
-    chart.destroy()
-    // console.log(chart)
+    let chart = findChartInstance(option.canvasId)
 
-    $.get(url, serializedParams, function(result) {
-      callback(result);
+    $.get(option.url, serializedParams, function(result) {
+      chart.data = option.extractor(result);
+      chart.update();
+
       loaded($spin);
     }, "json");
   }
