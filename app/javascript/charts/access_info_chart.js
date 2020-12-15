@@ -1,13 +1,10 @@
 import * as defaults from '../data/defaults'
 
-export const accessInfo = (collection = null) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
-
-  let { colors, dataset } = collection || gon.accessInfo;
+export const extractData = (raw) => {
+  let { colors, dataset } = raw;
   let [monthLabels, values] = [_.keys(dataset), _.values(dataset)];
 
-  let data = {
+  return {
     labels: monthLabels,
     datasets: [
       {
@@ -17,9 +14,15 @@ export const accessInfo = (collection = null) => {
       }
     ]
   };
+}
 
+export const accessInfo = (collection = null) => {
+  let type = 'bar', 
+      plugins = [chartDataLabels];
+
+  let data = extractData(collection || gon.accessInfo);
   let { scales } = defaults.initOptions
-  let max = _.max(values)
+  let max = _.max(data.datasets.data)
   let suggestedMax = Math.round( max * 1.2 )
 
   let options = {
