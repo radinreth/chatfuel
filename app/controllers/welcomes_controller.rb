@@ -1,9 +1,9 @@
 class WelcomesController < PublicAccessController
   include Filterable
 
-  before_action :set_daterange, only: :index
-  before_action :set_query, :set_gon, only: :index
-  before_action :set_active_tab_nav, only: :index
+  before_action :set_daterange, only: [:index, :q]
+  before_action :set_query, :set_gon, only: [:index, :q]
+  before_action :set_active_tab_nav, only: [:index, :q]
 
   def access_info
     render json: @query.access_info, status: :ok
@@ -17,6 +17,10 @@ class WelcomesController < PublicAccessController
 
   def filter
     render json: { data: @location_filter.display_name }
+  end
+
+  def q
+    render json: @query.access_info, status: :ok
   end
 
   private

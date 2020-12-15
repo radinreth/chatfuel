@@ -1,10 +1,10 @@
 import * as defaults from '../data/defaults'
 
-export const AccessInfoChart = (ctx) => {
+export const accessInfo = (collection = null) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { colors, dataset } = gon.accessInfo;
+  let { colors, dataset } = collection || gon.accessInfo;
   let [monthLabels, values] = [_.keys(dataset), _.values(dataset)];
 
   let data = {

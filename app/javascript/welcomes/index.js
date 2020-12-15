@@ -1,9 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-import formater from '../data/formater'
-import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
-
-import * as defaults from '../data/defaults'
+import { accessInfo } from '../charts/access_info_chart';
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -19,10 +16,28 @@ OWSO.WelcomesIndex = (() => {
     OWSO.DashboardShow.multiSelectDistricts();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
 
-    onWindowScroll()
-    onChangeDistrict()
-    onModalSave()
-    registerTab()
+    onWindowScroll();
+    onChangeDistrict();
+    onModalSave();
+    onClickTabNavigation();
+    onChangePeriod(); 
+  }
+
+  function onChangePeriod() {
+    $(document).on("change", ".period", function() {
+      let period = $(this).val();
+      let spin = $(".fa-sync");
+      let canvas = spin.next();
+      
+      spin.removeClass("d-none");
+      canvas.css({ opacity: 0.3 });
+
+      $.get('/welcomes/q', $('#q').serialize()+`&period=${period}`, function(result) {
+        accessInfo(result);
+        spin.addClass("d-none");
+        canvas.css({ opacity: 1 });
+      }, "json");
+    })
   }
 
   function onClickTabNavigation() {

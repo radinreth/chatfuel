@@ -4,6 +4,7 @@ en:
     quarterly: quarterly
     yearly: yearly
     month: month
+    quarter: quarter
   date:
     abbr_month_names:
       - 

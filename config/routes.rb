@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
     get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
     get "welcomes/filter"
+    get "welcomes/q"
 
     resources :users
     resources :tickets, only: [:index]
