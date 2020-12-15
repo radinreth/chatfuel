@@ -26,26 +26,36 @@ OWSO.WelcomesIndex = (() => {
 
   function onChangePeriod() {
     $(document).on("change", ".access-period", function() {
-      fetchResultSet('/welcomes/q/access-info', this, accessInfo)
+      fetchResultSet('/welcomes/q/access-info', this, accessInfo, "chart_information_access_by_period")
     })
 
     $(document).on("change", ".track-period", function() {
-      fetchResultSet('/welcomes/q/service-tracked', this, mostTrackedPeriodic)
+      fetchResultSet('/welcomes/q/service-tracked', this, mostTrackedPeriodic, "chart_most_service_tracked_periodically")
     })
   }
 
-  function fetchResultSet(url, thiz, callback) {
+  function fetchResultSet(url, thiz, callback, canvasId) {
     let period = $(thiz).val()
     let serializedParams = $('#q').serialize()+`&period=${period}`
     let header = $(thiz).closest(".card-header");
     let $spin = $(header.next().find(".fa-sync")[0]);
 
     loading($spin);
+    // find chart instance
+    let chart = findChartInstance(canvasId)
+    chart.destroy()
+    // console.log(chart)
 
     $.get(url, serializedParams, function(result) {
       callback(result);
       loaded($spin);
     }, "json");
+  }
+
+  function findChartInstance(id) {
+    return _.find(Chart.instances, (instance) => {
+      return instance.chart.canvas.id == id
+    })
   }
 
   function loading(spin) {
