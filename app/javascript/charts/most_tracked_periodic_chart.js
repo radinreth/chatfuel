@@ -1,15 +1,12 @@
 import * as defaults from '../data/defaults'
 
-export const mostTrackedPeriodic = ( collection = null) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
-
-  let { label, colors, dataset } = collection || gon.mostTrackedPeriodic;
+export const extractData = (raw) => {
+  let { label, colors, dataset } = raw;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
 
-  let data = {
+  return {
     labels: dataLabels,
     datasets: [
       {
@@ -21,9 +18,15 @@ export const mostTrackedPeriodic = ( collection = null) => {
       }
     ]
   };
+}
 
+export const mostTrackedPeriodic = ( collection = null) => {
+  let type = 'bar', 
+      plugins = [chartDataLabels];
+
+  let data = extractData(collection || gon.mostTrackedPeriodic);
   let { scales } = defaults.initOptions
-  let max = _.max(counts)
+  let max = _.max(data.datasets.data)
   let suggestedMax = Math.round( max * 1.40 )
 
   let options = {
