@@ -1,9 +1,9 @@
 class WelcomesController < PublicAccessController
   include Filterable
 
-  before_action :set_daterange, only: [:index, :q]
-  before_action :set_query, :set_gon, only: [:index, :q]
-  before_action :set_active_tab_nav, only: [:index, :q]
+  before_action :set_daterange, except: :filter
+  before_action :set_query, :set_gon, except: :filter
+  before_action :set_active_tab_nav, except: :filter
 
   def index
     respond_to do |format|
@@ -16,8 +16,12 @@ class WelcomesController < PublicAccessController
     render json: { display_name: @location_filter.display_name, district_list_name: @location_filter.district_list_name }
   end
 
-  def q
+  def access_info
     render json: @query.access_info, status: :ok
+  end
+
+  def service_tracked
+    render json: @query.most_tracked_periodic, status: :ok
   end
 
   private

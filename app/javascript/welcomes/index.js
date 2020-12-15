@@ -1,6 +1,7 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import { accessInfo } from '../charts/access_info_chart';
+import { mostTrackedPeriodic } from '../charts/most_tracked_periodic_chart';
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -24,20 +25,37 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onChangePeriod() {
-    $(document).on("change", ".period", function() {
-      let period = $(this).val();
-      let spin = $(".fa-sync");
-      let canvas = spin.next();
-      
-      spin.removeClass("d-none");
-      canvas.css({ opacity: 0.3 });
-
-      $.get('/welcomes/q', $('#q').serialize()+`&period=${period}`, function(result) {
-        accessInfo(result);
-        spin.addClass("d-none");
-        canvas.css({ opacity: 1 });
-      }, "json");
+    $(document).on("change", ".access-period", function() {
+      fetchResultSet('/welcomes/q/access-info', this, accessInfo)
     })
+
+    $(document).on("change", ".track-period", function() {
+      fetchResultSet('/welcomes/q/service-tracked', this, mostTrackedPeriodic)
+    })
+  }
+
+  function fetchResultSet(url, thiz, callback) {
+    let period = $(thiz).val()
+    let serializedParams = $('#q').serialize()+`&period=${period}`
+    let header = $(thiz).closest(".card-header");
+    let $spin = $(header.next().find(".fa-sync")[0]);
+
+    loading($spin);
+
+    $.get(url, serializedParams, function(result) {
+      callback(result);
+      loaded($spin);
+    }, "json");
+  }
+
+  function loading(spin) {
+    spin.removeClass("d-none");
+    spin.next().css({ opacity: 0.3 });
+  }
+
+  function loaded(spin) {
+    spin.addClass("d-none");
+    spin.next().css({ opacity: 1 });
   }
 
   function onClickTabNavigation() {
