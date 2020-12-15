@@ -24,8 +24,11 @@
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_gender") }
 
           .col-xl-6.col-lg-5
-            - name = t("welcomes.information_access_by", period: t("period.month"))
-            = render( ChartComponent.new(name: name) ) do |c|
+            = render( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
+              - c.with(:addon) do
+                %select.form-control-sm.d-inline.period
+                  %option{ value: "month" }= t("period.month")
+                  %option{ value: "quarter" }= t("period.quarter")
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
 
           .col-xl-6.col-lg-5
