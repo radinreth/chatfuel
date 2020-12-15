@@ -10,7 +10,7 @@ km:
     time_period: ពេលវេលា
     most_requested_services: សេវាកម្មដែលត្រូវបានស្នើសុំភាគច្រើនជាងគេ
     information_access_by_gender: ការទទួលបានព័ត៌មានដោយយេនឌ័រ
-    information_access_by: ការទទួលបានព័ត៌មានដោយ %{period}
+    information_access_by: ការទទួលបានព័ត៌មានតាម
     number_access_by_main_services: ការចូលប្រើលេខតាមរយៈសេវាកម្មមេ
     most_service_tracked_by_periodic: សេវាកម្មភាគច្រើនតាមដានដោយ %{period}
     ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
