@@ -52,7 +52,7 @@ OWSO.WelcomesIndex = (() => {
     let period = $(option.self).val()
     let serializedParams = $('#q').serialize()+`&period=${period}`
     let header = $(option.self).closest(".card-header");
-    let $spin = $(header.next().find(".fa-sync")[0]);
+    let $spin = $(header.next().find(".loading")[0]);
 
     loading($spin);
     let chart = findChartInstance(option.canvasId)
@@ -62,7 +62,6 @@ OWSO.WelcomesIndex = (() => {
       let max = _.max(chart.data.datasets[0].data);
       let suggestedMax = Math.round( max * 1.40 );
       chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
-      console.log("scales: ", chart.options.scales, ", max: ", suggestedMax);
 
       chart.update();
 
