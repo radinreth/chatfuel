@@ -26,7 +26,7 @@
           .col-xl-6.col-lg-5
             = render( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
               - c.with(:addon) do
-                %select.form-control-sm.d-inline.access-period
+                %select.access-period
                   %option{ value: "month" }= t("period.month")
                   %option{ value: "quarter" }= t("period.quarter")
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
@@ -39,7 +39,7 @@
             - name = t("welcomes.most_service_tracked_by_periodic")
             = render( ChartComponent.new(name: name, filterable: true) ) do |c|
               - c.with(:addon) do
-                %select.form-control-sm.d-inline.track-period
+                %select.track-period
                   %option{ value: "month" }= t("period.month")
                   %option{ value: "quarter" }= t("period.quarter")
               - c.with(:body) do
