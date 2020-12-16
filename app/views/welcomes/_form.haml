@@ -51,8 +51,11 @@
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
-        %h5.modal-title
-          = t("welcomes.districts")
+        .district-title
+          %h5.modal-title
+            = t("welcomes.districts")
+          %small.help-text
+            = "(#{t("welcomes.multi_districts")})"
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
