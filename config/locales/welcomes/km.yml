@@ -8,6 +8,7 @@ km:
     province: ខេត្ត
     districts: ស្រុក
     time_period: ពេលវេលា
+    multi_districts: អ្នកអាចជ្រើសរើសស្រុកច្រើនជាងមួយ
     most_requested_services: សេវាកម្មដែលត្រូវបានស្នើសុំភាគច្រើនជាងគេ
     information_access_by_gender: ការទទួលបានព័ត៌មានដោយយេនឌ័រ
     information_access_by: ការទទួលបានព័ត៌មានតាម
