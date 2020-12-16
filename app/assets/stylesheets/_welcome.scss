@@ -135,11 +135,13 @@
     color: #e41010;
   }
 
-  .period {
+  .access-period,
+  .track-period {
     border: 0;
     height: 25px;
     padding: 0;
     margin: 0;
+    background-color: transparent;
     @extend .h5 !optional;
     @extend .text-primary !optional;
   }
