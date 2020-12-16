@@ -142,6 +142,15 @@
       padding: 0 25px;
     }
   }
+  
+  .district-title {
+    line-height: 0.5em;
+
+    .help-text {
+      color: #616161;
+      font-style: italic;
+    }
+  }
 
   .district-title {
     line-height: 0.5em;
