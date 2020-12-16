@@ -59,6 +59,11 @@ OWSO.WelcomesIndex = (() => {
 
     $.get(option.url, serializedParams, function(result) {
       chart.data = option.extractor(result);
+      let max = _.max(chart.data.datasets[0].data);
+      let suggestedMax = Math.round( max * 1.40 );
+      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
+      console.log("scales: ", chart.options.scales, ", max: ", suggestedMax);
+
       chart.update();
 
       loaded($spin);
