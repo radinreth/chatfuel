@@ -26,7 +26,7 @@ export const mostTrackedPeriodic = ( collection = null) => {
 
   let data = extractData(collection || gon.mostTrackedPeriodic);
   let { scales } = defaults.initOptions
-  let max = _.max(data.datasets.data)
+  let max = _.max(data.datasets[0].data)
   let suggestedMax = Math.round( max * 1.40 )
 
   let options = {
