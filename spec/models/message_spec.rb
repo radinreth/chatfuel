@@ -37,9 +37,8 @@ RSpec.describe Message do
 
     context "existence" do
       it "create a new message if not exist" do
-        expect {
-          described_class.create_or_return("Messenger", content)
-        }.to(change { Message.count })
+        new_message = described_class.create_or_return("Messenger", content)
+        expect(new_message).to be_persisted
       end
 
       it "returns if already created" do
