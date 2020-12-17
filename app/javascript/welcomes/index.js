@@ -1,5 +1,7 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
+import { extractData as e1 } from '../charts/access_info_chart';
+import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -19,6 +21,68 @@ OWSO.WelcomesIndex = (() => {
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
+    onChangePeriod(); 
+  }
+
+  function onChangePeriod() {
+    $(document).on("change", ".access-period", function() {
+      let option = {
+        url: '/welcomes/q/access-info',
+        self: this,
+        extractor: e1,
+        canvasId: "chart_information_access_by_period"
+      }
+
+      fetchResultSet(option)
+    })
+
+    $(document).on("change", ".track-period", function() {
+      let option = {
+        url: '/welcomes/q/service-tracked',
+        self: this,
+        extractor: e2,
+        canvasId: "chart_most_service_tracked_periodically"
+      }
+
+      fetchResultSet(option)
+    })
+  }
+
+  function fetchResultSet(option) {
+    let period = $(option.self).val()
+    let serializedParams = $('#q').serialize()+`&period=${period}`
+    let header = $(option.self).closest(".card-header");
+    let $spin = $(header.next().find(".loading")[0]);
+
+    loading($spin);
+    let chart = findChartInstance(option.canvasId)
+
+    $.get(option.url, serializedParams, function(result) {
+      chart.data = option.extractor(result);
+      let max = _.max(chart.data.datasets[0].data);
+      let suggestedMax = Math.round( max * 1.40 );
+      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
+
+      chart.update();
+
+      loaded($spin);
+    }, "json");
+  }
+
+  function findChartInstance(id) {
+    return _.find(Chart.instances, (instance) => {
+      return instance.chart.canvas.id == id
+    })
+  }
+
+  function loading(spin) {
+    spin.removeClass("d-none");
+    spin.next().css({ opacity: 0.3 });
+  }
+
+  function loaded(spin) {
+    spin.addClass("d-none");
+    spin.next().css({ opacity: 1 });
   }
 
   function onClickTabNavigation() {
