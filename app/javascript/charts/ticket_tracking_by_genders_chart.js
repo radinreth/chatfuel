@@ -20,6 +20,7 @@ export const ticketTrackingByGenders = () => {
   };
 
   let options = {
+    ...defaults.initOptions,
     legend: {
       position: "left",
       labels: {
@@ -45,7 +46,8 @@ export const ticketTrackingByGenders = () => {
         },
         formatter: Math.round
       }
-    }
+    },
+    scales: {}
   };
 
   new Chart('chart_ticket_tracking_by_gender', { type, plugins, data, options });
