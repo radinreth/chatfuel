@@ -31,9 +31,8 @@ class MostRequest < Report
   end
 
   def group_count
-    scope = @variable.step_values.joins(:message)
-    scope = scope.where.not(messages: { district_id: ["", "null"] })
-    scope = scope.where(messages: { district_id: @query.options[:district_id] }) if @query.options[:district_id].present?
+    scope = StepValue.filter(@variable.step_values, @query.options)
+    scope = scope.joins(:message)
     scope = scope.group("messages.district_id")
     scope = scope.group(:variable_value_id)
     scope = scope.count
