@@ -24,6 +24,8 @@ class AccessMainService < Report
 
     def raw_result
       scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.joins(:message)
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
       scope = scope.group("variable_value_id")
       scope.count
     end
