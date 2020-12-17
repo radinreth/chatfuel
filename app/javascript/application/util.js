@@ -14,7 +14,7 @@ OWSO.Util = {
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.font = "16px normal 'Helvetica Nueue'";
-          ctx.fillText('No data to display', width / 2, height / 2);
+          ctx.fillText(gon.no_data, width / 2, height / 2);
           ctx.restore();
         }
       }
