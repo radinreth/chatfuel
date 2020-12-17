@@ -32,12 +32,20 @@ class OverallRating < Feedback
       [pro_code] + super(key)
     end
 
+<<<<<<< HEAD
     def result_set
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
       scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
       scope = scope.group("sessions.province_id")
       scope = scope.group("sessions.district_id")
+=======
+    def group_count
+      scope = @variable.step_values.joins(:message)
+      scope = scope.where.not(messages: { district_id: ["", "null"] })
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
+      scope = scope.group("messages.district_id")
+>>>>>>> Filter other location
       scope = scope.group(:variable_value_id)
       scope.count
     end
