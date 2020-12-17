@@ -30,7 +30,7 @@ class Message < ApplicationRecord
   has_many :trackings, dependent: :destroy
 
   # scopes
-  default_scope -> { where.not(district_id: ["", "null"]).order(updated_at: :desc) }
+  default_scope -> { order(updated_at: :desc) }
 
   delegate :type, :session_id, to: :content
 
