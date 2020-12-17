@@ -39,10 +39,10 @@ class FeedbackTrend < Feedback
     end
 
     def group_count
-      @variable.step_values.joins(:message)\
-        .where.not(messages: { district_id: ["", "null"] })\
-        .group_by_month("messages.created_at", format: "%b")\
-        .group(:variable_value_id)\
-        .count
+      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.joins(:message)
+      scope = scope.group_by_month("messages.created_at", format: "%b")
+      scope = scope.group(:variable_value_id)
+      scope.count
     end
 end

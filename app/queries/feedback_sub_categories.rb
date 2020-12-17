@@ -5,7 +5,7 @@ class FeedbackSubCategories < Report
   end
 
   def transform
-    @query.district_codes.each_with_object({}) do |district_id, hash|
+    @query.district_codes_without_other.each_with_object({}) do |district_id, hash|
       hash[district_id] ||= {}
       district = ::Pumi::District.find_by_id(district_id)
       hash[district_id][:locationName] = district.send("name_#{I18n.locale}".to_sym)
@@ -51,12 +51,12 @@ class FeedbackSubCategories < Report
     end
 
     def group_count
-      StepValue.joins(:message)\
-        .where(messages: { district_id: @query.district_codes })\
-        .where(variable: [like, dislike])\
-        .group("messages.district_id")\
-        .group(:variable_id, :variable_value_id)\
-        .count
+      scope = StepValue.filter(StepValue.joins(:message), @query.options)
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
+      scope = scope.where(variable: [like, dislike])
+      scope = scope.group("messages.district_id")
+      scope = scope.group(:variable_id, :variable_value_id)
+      scope.count
     end
 
     def like
