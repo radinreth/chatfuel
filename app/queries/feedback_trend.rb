@@ -41,6 +41,7 @@ class FeedbackTrend < Feedback
     def group_count
       scope = StepValue.filter(@variable.step_values, @query.options)
       scope = scope.joins(:message)
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
       scope = scope.group_by_month("messages.created_at", format: "%b")
       scope = scope.group(:variable_value_id)
       scope.count
