@@ -41,8 +41,8 @@ class OverallRating < Feedback
       scope = scope.group("sessions.district_id")
 =======
     def group_count
-      scope = @variable.step_values.joins(:message)
-      scope = scope.where.not(messages: { district_id: ["", "null"] })
+      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.joins(:message)
       scope = scope.where(messages: { district_id: @query.district_codes_without_other })
       scope = scope.group("messages.district_id")
 >>>>>>> Filter other location
