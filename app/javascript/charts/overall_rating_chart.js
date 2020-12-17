@@ -23,6 +23,7 @@ export const overallRating = () => {
     },
     scales: {
       ...scales,
+      xAxes: [],
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
