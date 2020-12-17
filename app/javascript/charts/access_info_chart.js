@@ -40,6 +40,7 @@ export const accessInfo = (collection = null) => {
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
+          beginAtZero: true,
           suggestedMax: suggestedMax
         }
       }],
