@@ -9,6 +9,8 @@ import { feedbackTrend } from './feedback_trend_chart';
 import { feedbackSubCategories } from './feedback_sub_categories_chart';
 
 export const renderChart = function () {
+  OWSO.Util.chartReg();
+
   $.each( charts, function(_, f) { f() });
   $(".chart_feedback_by_sub_category").each(function(_, dom) {
     feedbackSubCategories(dom);
