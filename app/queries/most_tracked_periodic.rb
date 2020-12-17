@@ -31,9 +31,11 @@ class MostTrackedPeriodic < Report
   def group_count
     period = @query.options[:period].presence || :month
 
-    Ticket.joins("INNER JOIN trackings ON trackings.ticket_code = tickets.code")\
-      .group_by_period(period.to_sym, "trackings.created_at", format: "%d/%b")\
-      .group(:sector)\
-      .count
+    scope = Ticket.filter(@query.options)
+    scope = scope.joins(""" INNER JOIN trackings ON
+                            trackings.ticket_code = tickets.code""")
+    scope = scope.group_by_period(period.to_sym, "trackings.created_at", format: "%d/%b")
+    scope = scope.group(:sector)
+    scope.count
   end
 end

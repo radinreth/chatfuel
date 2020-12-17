@@ -23,6 +23,8 @@ class AccessMainService < Report
     end
 
     def raw_result
-      @variable.step_values.group("variable_value_id").count
+      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.group("variable_value_id")
+      scope.count
     end
 end
