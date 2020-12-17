@@ -1,4 +1,25 @@
 OWSO.Util = {
+  chartReg() {
+    Chart.plugins.register({
+      afterDraw: function(chart) {
+        let { datasets } = chart.data
+
+        if (datasets && datasets[0].data && datasets[0].data.length === 0) {
+          var ctx = chart.chart.ctx;
+          var width = chart.chart.width;
+          var height = chart.chart.height
+          chart.clear();
+    
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = "16px normal 'Helvetica Nueue'";
+          ctx.fillText(gon.no_data, width / 2, height / 2);
+          ctx.restore();
+        }
+      }
+    });
+  },
   dev() { return location.hostname == "localhost" },
 
   freshSession() {
