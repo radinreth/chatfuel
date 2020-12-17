@@ -1,4 +1,5 @@
 import { sum } from '../utils/array'
+import * as defaults from '../data/defaults'
 
 let mapLabel = (chart, label, i) => {
   let meta = chart.getDatasetMeta(0);
@@ -53,6 +54,7 @@ export const ticketTrackingByGenders = () => {
   };
 
   let options = {
+    ...defaults.initOptions,
     legend: {
       position: "left",
       labels: {
@@ -78,7 +80,8 @@ export const ticketTrackingByGenders = () => {
         },
         formatter: Math.round
       }
-    }
+    },
+    scales: {}
   };
 
   new Chart('chart_ticket_tracking_by_gender', { type, plugins, data, options });
