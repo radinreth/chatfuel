@@ -38,12 +38,11 @@ class OverallRating < Feedback
     end
 
     def group_count
-      scope = @variable.step_values.joins(:message)
-      scope = scope.where.not(messages: { district_id: ["", "null"] })
+      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.joins(:message)
       scope = scope.where(messages: { district_id: @query.district_codes_without_other })
       scope = scope.group("messages.district_id")
       scope = scope.group(:variable_value_id)
-      scope = scope.count
-      scope
+      scope.count
     end
 end
