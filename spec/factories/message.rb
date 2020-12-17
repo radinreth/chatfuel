@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :message do
     platform_name { "Messenger" }
     content { create(:text_message) }
-    district_id { ["0000", "0001"].sample }
 
     trait :text do
       association :content, factory: :text_message
