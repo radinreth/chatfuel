@@ -1,4 +1,5 @@
 class DistrictsController < Pumi::DistrictsController
+  include Filterable
   skip_before_action :check_guisso_cookie
 
   def index
@@ -6,22 +7,9 @@ class DistrictsController < Pumi::DistrictsController
   end
 
   private
+    def filter_districts
+      query = DashboardQuery.new(filter_options)
 
-  def filter_districts
-    real_district_codes.map { |id| Pumi::District.find_by_id(id) }
-  end
-
-  def real_district_codes
-    other_district_code = "0000"
-
-    all_district_codes - [other_district_code]
-  end
-
-  def all_district_codes
-    loc_var = Variable.location
-
-    return [] if loc_var.nil?
-
-    loc_var.values.map(&:raw_value)
-  end
+      query.district_codes_without_other.map { |id| Pumi::District.find_by_id(id) }
+    end
 end

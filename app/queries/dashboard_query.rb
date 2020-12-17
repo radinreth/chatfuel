@@ -206,6 +206,10 @@ class DashboardQuery
     options[:district_id].presence || all_district_codes
   end
 
+  def district_codes_without_other
+    district_codes - ["0000"]
+  end
+
   private
     def all_district_codes
       location = Variable.location
