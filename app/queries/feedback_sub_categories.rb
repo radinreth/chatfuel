@@ -9,7 +9,7 @@ class FeedbackSubCategories < Report
       hash[district_id] ||= {}
       district = ::Pumi::District.find_by_id(district_id)
       hash[district_id][:locationName] = district.send("name_#{I18n.locale}".to_sym)
-      hash[district_id][:ratingLabels] = raw_dataset[district_id].keys
+      hash[district_id][:ratingLabels] = raw_dataset[district_id].keys rescue []
       hash[district_id][:dataset] = tuned_dataset(district_id)
     end
   end
@@ -25,7 +25,7 @@ class FeedbackSubCategories < Report
     end
 
     def tuned_dataset(key)
-      @values = raw_dataset[key].values
+      @values = raw_dataset[key].values rescue []
 
       values.map.with_index do |mapping_value, index|
         {
