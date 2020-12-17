@@ -36,6 +36,7 @@ class WelcomesController < PublicAccessController
     def set_gon
       @gon_data = Gonify.new(@query).chart_data
       @gon_data[:all] = I18n.t("all")
+      @gon_data[:no_data] = I18n.t("no_data")
       @gon_data[:locale] = I18n.locale
 
       gon.push(@gon_data)
