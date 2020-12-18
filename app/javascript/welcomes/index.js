@@ -168,6 +168,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, renderChart }
+  return { init, renderChart, findChartInstance }
 
 })()
