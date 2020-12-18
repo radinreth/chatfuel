@@ -1,6 +1,5 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
 
@@ -104,6 +103,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, renderChart }
+  return { init, renderChart, findChartInstance }
 
 })()

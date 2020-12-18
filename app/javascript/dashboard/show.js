@@ -24,20 +24,11 @@ OWSO.DashboardShow = (() => {
       e.preventDefault();
 
       let target = $(e.currentTarget);
-      let el = $(this).closest(".card-header").next().find(".chart-wrapper")[0];
-      let area = el.getBoundingClientRect();
+      let canvasId = $(this).closest(".card-header").next().find(".chart-wrapper canvas").prop("id");
 
-      // related issue on github: https://github.com/niklasvh/html2canvas/issues/882
-      let canvas = await html2canvas(el, {
-        scrollX: 0,
-        scale: 2,
-        scrollY: -window.scrollY,
-        width: area.width,
-        height: area.height
-      });
-
+      let chart = OWSO.WelcomesIndex.findChartInstance(canvasId)
       let name = target.data("name");
-      download(canvas, { name });
+      download(chart.canvas, { name });
     })
   }
 
