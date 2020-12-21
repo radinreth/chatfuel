@@ -19,9 +19,10 @@ class AccessInfo < Report
     end
 
     def raw_result
-      period = @query.options[:period].presence || :month
+      raw_result = Message.unscope(:order).\
+                      accessed(@query.options).\
+                      group_by_period(period, :created_at, format: "%b/%Y").count
 
-      Message.unscope(:order).accessed(@query.options).\
-        group_by_period(period.to_sym, :created_at, format: "%d/%b").count
+      raw_result.transform_keys { |k| format_label(k) }
     end
 end
