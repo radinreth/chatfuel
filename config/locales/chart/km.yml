@@ -1,0 +1,3 @@
+km:
+  chart:
+    quarter_label: ត្រីមាស%{q}/%{y}
