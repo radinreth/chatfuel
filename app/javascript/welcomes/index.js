@@ -55,7 +55,7 @@ OWSO.WelcomesIndex = (() => {
     let $spin = $(header.next().find(".loading")[0]);
 
     loading($spin);
-    chart = findChartInstance(option.canvasId)
+    let chart = findChartInstance(option.canvasId)
 
     $.get(option.url, serializedParams, function(result) {
       chart.data = option.extractor(result);
@@ -73,10 +73,8 @@ OWSO.WelcomesIndex = (() => {
     let chart
 
     Chart.helpers.each(Chart.instances, function (instance) {
-      if (instance.chart.canvas.id === id) {
-        chart = instance;
-        return
-      }
+      let { canvas } = instance.chart
+      if (canvas.id === id) chart = instance; return
     });
 
     return chart
