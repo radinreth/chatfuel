@@ -5,11 +5,11 @@ class FeedbackSubCategories < Report
   end
 
   def transform
-    @query.district_codes.each_with_object({}) do |district_id, hash|
+    @query.district_codes_without_other.each_with_object({}) do |district_id, hash|
       hash[district_id] ||= {}
       district = ::Pumi::District.find_by_id(district_id)
       hash[district_id][:locationName] = district.send("name_#{I18n.locale}".to_sym)
-      hash[district_id][:ratingLabels] = raw_dataset[district_id].keys
+      hash[district_id][:ratingLabels] = raw_dataset[district_id].keys rescue []
       hash[district_id][:dataset] = tuned_dataset(district_id)
     end
   end
@@ -25,7 +25,7 @@ class FeedbackSubCategories < Report
     end
 
     def tuned_dataset(key)
-      @values = raw_dataset[key].values
+      @values = raw_dataset[key].values rescue []
 
       values.map.with_index do |mapping_value, index|
         {
@@ -51,12 +51,12 @@ class FeedbackSubCategories < Report
     end
 
     def group_count
-      StepValue.joins(:message)\
-        .where(messages: { district_id: @query.district_codes })\
-        .where(variable: [like, dislike])\
-        .group("messages.district_id")\
-        .group(:variable_id, :variable_value_id)\
-        .count
+      scope = StepValue.filter(StepValue.joins(:message), @query.options)
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
+      scope = scope.where(variable: [like, dislike])
+      scope = scope.group("messages.district_id")
+      scope = scope.group(:variable_id, :variable_value_id)
+      scope.count
     end
 
     def like
