@@ -16,7 +16,9 @@ class MostTrackedPeriodic < Report
 
   def dataset
     @result.each_with_object({}) do |(key, count), hash|
-      month, sector = key
+      date, sector = key
+      month = format_label(date)
+
       hash[month] = {
         value: replace_new_line(sector),
         count: count
@@ -29,12 +31,10 @@ class MostTrackedPeriodic < Report
   end
 
   def group_count
-    period = @query.options[:period].presence || :month
-
     scope = Ticket.filter(@query.options)
     scope = scope.joins(""" INNER JOIN trackings ON
                             trackings.ticket_code = tickets.code""")
-    scope = scope.group_by_period(period.to_sym, "trackings.created_at", format: "%d/%b")
+    scope = scope.group_by_period(period, "trackings.created_at", format: "%b/%Y")
     scope = scope.group(:sector)
     scope.count
   end
