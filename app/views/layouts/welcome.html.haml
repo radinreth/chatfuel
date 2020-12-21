@@ -3,6 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     = Gon::Base.render_data
+    %meta{ name: "turbolinks-visit-control", content: "reload" }
     = display_meta_tags SocialMetaTag.to_meta_tags
     = csrf_meta_tags
     = csp_meta_tag
@@ -21,12 +22,15 @@
       = yield
 
     :javascript
-      if(location.hostname !== "localhost") {
-        var div = document.createElement('div');
-        div.className = 'fb-customerchat';
-        div.setAttribute('page_id', '100352538508662');
-        div.setAttribute('ref', '');
-        document.body.appendChild(div);
+      if( !OWSO.Util.dev() ) {
+        if( $(".fb-customerchat").length == 0 ) {
+          var div = document.createElement('div');
+          div.className = 'fb-customerchat';
+          div.setAttribute('page_id', '100352538508662');
+          div.setAttribute('ref', '');
+          document.body.appendChild(div);
+        }
+
         window.fbMessengerPlugins = window.fbMessengerPlugins || {
           init: function () {
             FB.init({
