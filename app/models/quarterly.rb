@@ -6,6 +6,8 @@ class Quarterly
 
   def to_quarter
     (month_index / 3.0).ceil
+  rescue => exception
+    Raven.capture_exception(exception)
   end
 
   private
