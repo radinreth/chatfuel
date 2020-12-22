@@ -34,4 +34,11 @@ RSpec.describe Quarterly do
     end
   end
 
+  it "sends exception to sentry" do
+    q = Quarterly.new("invalid_month")
+
+    expect(Raven).to receive(:capture_exception)
+
+    q.to_quarter
+  end
 end
