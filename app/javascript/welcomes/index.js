@@ -70,9 +70,14 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function findChartInstance(id) {
-    return _.find(Chart.instances, (instance) => {
-      return instance.chart.canvas.id == id
-    })
+    let chart
+
+    Chart.helpers.each(Chart.instances, function (instance) {
+      let { canvas } = instance.chart
+      if (canvas.id === id) chart = instance; return
+    });
+
+    return chart
   }
 
   function loading(spin) {
