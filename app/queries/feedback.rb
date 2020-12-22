@@ -1,4 +1,6 @@
 class Feedback < Report
+  COLORS = %w(#f63e3e #ffbc00 #1cc88a)
+
   private
     def display_values
       display_ratings.map { |v| [v.raw_value, v.mapping_value] }
@@ -9,7 +11,6 @@ class Feedback < Report
     end
 
     def colors_mapping
-      colors = %w(#B71C1C #FFAB00 #2962FF)
-      display_ratings.map(&:raw_value).zip(colors).to_h
+      display_ratings.map(&:raw_value).zip(COLORS).to_h
     end
 end
