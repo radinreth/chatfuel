@@ -10,6 +10,7 @@
 .sub_categories.d-none
   = render "welcomes/sub_categories_canvas"
 
+= render partial: "welcomes/footer", locals: { year: Date.today.year }
 #popup.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1" }
   .modal-dialog.modal-xl{:role => "document"}
     .modal-content
