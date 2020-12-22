@@ -18,4 +18,16 @@ class Report
   def colors
     Color.generate(@result&.count.to_i)
   end
+
+  def period
+    (@query.options[:period].presence || 'month').to_sym
+  end
+
+  def format_label(k)
+    return k if period != :quarter
+
+    m, y = k.split("/")
+    q = Quarterly.new(m)
+    I18n.t("chart.quarter_label", q: q.to_quarter, y: y)
+  end
 end
