@@ -23,7 +23,9 @@ export const overallRating = () => {
     },
     scales: {
       ...scales,
-      xAxes: [],
+      xAxes: [{
+        maxBarThickness: 50,
+      }],
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
