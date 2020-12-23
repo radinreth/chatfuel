@@ -1,12 +1,10 @@
 import * as defaults from '../data/defaults'
 
-export const feedbackSubCategories = (ctx) => {
+export const feedbackSubCategories = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let id = $(ctx).data("id");
-  let { locationName, ratingLabels, dataset } = gon.feedbackSubCategories[id];
-  $(`[data-id="${id}"] + .label`).text(locationName);
+  let { ratingLabels, dataset } = gon.feedbackSubCategories;
 
   let data = {
     labels: ratingLabels,
@@ -16,7 +14,7 @@ export const feedbackSubCategories = (ctx) => {
   let { scales } = defaults.initOptions
   let flatten = _.flatten(_.map(dataset, e => e.data))
   let max = _.max(flatten)
-  let top = Math.round( max * 0.2 )
+  let suggestedMax = Math.round( max * 1.25 )
 
   let options = {
     ...defaults.initOptions,
@@ -28,7 +26,8 @@ export const feedbackSubCategories = (ctx) => {
       yAxes: [{
         ...scales.yAxes[0],
         ticks: {
-          max: max + top
+          beginAtZero: true,
+          suggestedMax: suggestedMax
         }
       }],
       xAxes: [{
@@ -41,5 +40,5 @@ export const feedbackSubCategories = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  return new Chart('chart_feedback_by_sub_category', { type, plugins, data, options });
 }
