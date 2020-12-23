@@ -1,7 +1,8 @@
 .card.shadow.mb-4{ role: "figure" }
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     .h5.m-0.font-weight-bold.text-primary.d-flex.justify-content-center.align-items-center
-      %span.d-inline-block.mr-3= @name
+      %span.d-inline-block.mr-3.chart-head
+        = @name
       = addon
     .tools
       = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
