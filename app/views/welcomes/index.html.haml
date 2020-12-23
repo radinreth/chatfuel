@@ -7,7 +7,7 @@
 .tabs-container
 
 #popup.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1" }
-  .modal-dialog.modal-xl{:role => "document"}
+  .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
@@ -15,7 +15,8 @@
       .modal-body
         -# = image_tag "pop-up-message.png", size: "1100x550", alt: "popup message"
         - @query.district_codes_without_other.each do |district_id|
-          %canvas.chart_feedback_by_sub_category{ "data-id": district_id }
+          = render( ChartComponent.new(name: t("welcomes.owso_feedback_trend")) ) do |c|
+            - c.with(:body) { content_tag(:canvas, nil, class: "chart_feedback_by_sub_category", "data-id": district_id) }
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
           = t("shared.cancel")
