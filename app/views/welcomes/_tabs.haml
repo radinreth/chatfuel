@@ -70,5 +70,7 @@
 
           .col-xl-6.col-lg-5
             = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories")) ) do |c|
+              - c.with(:addon) do
+                = link_to "Detail", "#", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#popup" }
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
       
