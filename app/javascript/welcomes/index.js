@@ -27,14 +27,36 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onLoadPopup() {
-    // dynamic content: image, or canvas
-    // update size of modal
-    // update title of modal
     $("#popup").on('show.bs.modal', function (event) {
-      $(".chart_feedback_by_sub_category").each(function(_, dom) {	
-        let id = $(dom).data("id");
-        feedbackSubCategories(dom, gon.feedbackSubCategories[id]);
-      });
+      let btn = $(event.relatedTarget);
+      let element = btn.data("element");
+      let modal = $(this);
+
+      let attrs = {
+        size: btn.data("size"),
+        title: btn.data("title"),
+        body: $(element).html(),
+        callback: btn.data("callback")
+      }
+
+      setupModal(modal, attrs);
+    });
+  }
+
+  function setupModal(modal, { size, title, body, callback }) {
+    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
+    modal.find(".modal-title").text(title);
+    modal.find(".modal-body").html(body);
+
+    if( callback !== undefined ) {
+      OWSO.WelcomesIndex[callback]();
+    }
+  }
+
+  function loadSubCategories() {
+    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
+      let id = $(dom).data("id");
+      feedbackSubCategories(dom, gon.feedbackSubCategories[id]);
     });
   }
 
@@ -187,6 +209,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, renderChart }
+  return { init, renderChart, loadSubCategories }
 
 })()
