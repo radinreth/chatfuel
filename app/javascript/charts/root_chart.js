@@ -12,6 +12,9 @@ export const renderChart = function () {
   OWSO.Util.chartReg();
 
   $.each( charts, function(_, f) { f() });
+
+  let ctx = 'chart_feedback_by_sub_category';
+  feedbackSubCategories(ctx, gon.feedbackSubCategories);
 }
 
 const charts = [  mostRequest, 
@@ -21,5 +24,4 @@ const charts = [  mostRequest,
                   mostTrackedPeriodic,
                   ticketTrackingByGenders,
                   overallRating,
-                  feedbackTrend,
-                  feedbackSubCategories ];
+                  feedbackTrend ];
