@@ -29,6 +29,7 @@
                 %select.access-period
                   %option{ value: "month" }= t("period.month")
                   %option{ value: "quarter" }= t("period.quarter")
+                  %option{ value: "year" }= t("period.year")
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
 
           .col-xl-6.col-lg-5
@@ -42,6 +43,7 @@
                 %select.track-period
                   %option{ value: "month" }= t("period.month")
                   %option{ value: "quarter" }= t("period.quarter")
+                  %option{ value: "year" }= t("period.year")
               - c.with(:body) do
                 %canvas#chart_most_service_tracked_periodically
 

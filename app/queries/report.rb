@@ -24,9 +24,11 @@ class Report
   end
 
   def format_label(k)
-    return k if period != :quarter
-
     m, y = k.split("/")
+
+    return k if period == :month
+    return y if period == :year
+
     q = Quarterly.new(m)
     I18n.t("chart.quarter_label", q: q.to_quarter, y: y)
   end
