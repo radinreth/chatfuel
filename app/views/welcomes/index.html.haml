@@ -6,7 +6,7 @@
 = render "welcomes/tabs/navigation"
 .tabs-container
 
-= render partial: "welcomes/footer", locals: { year: Date.today.year }
+= render "welcomes/footer"
 #popup.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1" }
   .modal-dialog.modal-xl{:role => "document"}
     .modal-content
