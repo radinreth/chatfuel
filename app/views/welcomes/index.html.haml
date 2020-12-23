@@ -19,7 +19,9 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
-        = image_tag "pop-up-message.png", class: "img-fluid", alt: "popup message"
+        -# = image_tag "pop-up-message.png", size: "1100x550", alt: "popup message"
+        - @query.district_codes_without_other.each do |district_id|
+          %canvas.chart_feedback_by_sub_category{ "data-id": district_id }
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
           = t("shared.cancel")

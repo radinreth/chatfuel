@@ -14,7 +14,6 @@ const setScale = ({ suggestedMax }) => {
     }],
     xAxes: [{
       ...scales.xAxes[0],
-      maxBarThickness: 50,
       ticks: {
         maxRotation: 0,
         minRotation: 0,
@@ -31,10 +30,7 @@ const setOptions = (ds) => {
   return {
     ...defaults.initOptions,
     legend: {
-      display: true,
-      labels: {
-        boxWidth: 12
-      }
+      display: true
     },
     scales: setScale({ suggestedMax: getMax(data, { padding: 1.25 }) })
   }
