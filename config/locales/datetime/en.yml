@@ -5,6 +5,7 @@ en:
     yearly: yearly
     month: month
     quarter: quarter
+    year: year
   date:
     abbr_month_names:
       - 
