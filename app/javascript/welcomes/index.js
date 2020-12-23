@@ -27,6 +27,9 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onLoadPopup() {
+    // dynamic content: image, or canvas
+    // update size of modal
+    // update title of modal
     $("#popup").on('show.bs.modal', function (event) {
       $(".chart_feedback_by_sub_category").each(function(_, dom) {	
         let id = $(dom).data("id");
