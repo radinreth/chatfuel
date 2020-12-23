@@ -61,8 +61,7 @@ class DashboardQuery
   end
 
   def feedback_sub_categories
-    result = ::FeedbackSubCategories.new(nil, self).result
-    result.transform
+    categories_all.merge(categories_separate)
   end
 
   def user_count
@@ -227,6 +226,16 @@ class DashboardQuery
   private
     def all_province_codes
       Session.pluck(:province_id).compact.uniq
+    end
+    
+    def categories_all
+      result = ::FeedbackSubCategories.new(nil, self).result
+      result.transform
+    end
+
+    def categories_separate
+      result = ::FeedbackSubCategoryItem.new(nil, self).result
+      result.transform
     end
 
     def all_district_codes
