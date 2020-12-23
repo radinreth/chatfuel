@@ -2,6 +2,7 @@ require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import { extractData as e1 } from '../charts/access_info_chart';
 import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
+import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -21,7 +22,17 @@ OWSO.WelcomesIndex = (() => {
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
-    onChangePeriod(); 
+    onChangePeriod();
+    onLoadPopup();
+  }
+
+  function onLoadPopup() {
+    $("#popup").on('show.bs.modal', function (event) {
+      $(".chart_feedback_by_sub_category").each(function(_, dom) {	
+        let id = $(dom).data("id");
+        feedbackSubCategories(dom, gon.feedbackSubCategories[id]);
+      });
+    });
   }
 
   function onChangePeriod() {
