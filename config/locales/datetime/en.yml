@@ -1,7 +1,8 @@
 en:
   period:
-    month: month
-    quarter: quarter
+    monthly: monthly
+    quarterly: quarterly
+    yearly: yearly
   date:
     abbr_month_names:
       - 

@@ -24,10 +24,7 @@ class Report
   end
 
   def format_label(k)
-    return k if period != :quarter
-
-    m, y = k.split("/")
-    q = Quarterly.new(m)
-    I18n.t("chart.quarter_label", q: q.to_quarter, y: y)
+    label = ChartLabels::BaseLabel.new(period, k)
+    label.instance.format
   end
 end
