@@ -1,4 +1,5 @@
 import { sum } from '../utils/array'
+import * as defaults from "../data/defaults"
 import { generateLabels } from '../data/piechart/defaults'
 
 export const ticketTrackingByGenders = () => {
