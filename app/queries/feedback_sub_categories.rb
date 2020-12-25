@@ -6,7 +6,7 @@ class FeedbackSubCategories < Report
 
   def transform
     {
-      locationName: I18n.t("all"),
+      locationName: I18n.t("welcomes.feedback_by_sub_categories"),
       ratingLabels: raw_dataset.keys,
       dataset: values.map.with_index do |mapping_value, index|
         {

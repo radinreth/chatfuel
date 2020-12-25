@@ -10,6 +10,9 @@ export const feedbackSubCategories = (ctx, rs) => {
     datasets: _.map(dataset, (el) => el)
   };
 
-  $(ctx).closest(".card-body").prev(".card-header").find(".chart-head").text(locationName);
+  $(document.getElementById(ctx))
+    .closest(".card-body")
+    .prev(".card-header")
+    .find(".chart-head").text(locationName);
   return new Chart(ctx, { type, plugins, data, options });
 }
