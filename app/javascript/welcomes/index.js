@@ -46,7 +46,12 @@ OWSO.WelcomesIndex = (() => {
   function setupModal(modal, { size, title, body, callback }) {
     modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
     modal.find(".modal-title").text(title);
-    modal.find(".modal-body").html(body);
+    let modalBody = modal.find(".modal-body");
+    if( modalBody.data("state") == "prune" ) {
+      modalBody.html(body);
+      $(".sub_categories").html("");
+      modalBody.data("state", "replaced");
+    }
 
     if( callback !== undefined ) {
       OWSO.WelcomesIndex[callback]();
@@ -56,7 +61,11 @@ OWSO.WelcomesIndex = (() => {
   function loadSubCategories() {
     $(".chart_feedback_by_sub_category").each(function(_, dom) {	
       let id = $(dom).data("id");
-      feedbackSubCategories(dom, gon.feedbackSubCategories[id]);
+      let ds = gon.feedbackSubCategories[id];
+
+      if( ds != undefined ) {
+        feedbackSubCategories(dom.id, ds);
+      }
     });
   }
 
