@@ -17,7 +17,7 @@ en:
     ticket_tracking_by_gender: Ticket Tracking by Gender
     overall_rating_by_owso: Overall Rating by OWSO
     owso_feedback_trend: OWSO Feedback Trend
-    feedback_by_sub_categories: Feedback by Sub Categories
+    feedback_by_sub_categories: Feedback by Sub Categories in %{name}
     overall_citizen_feedback: Overall Citizen Feedback
     feedback_by_gender: Feedback by Gender
     total_user_feedback: Total User Feedback
