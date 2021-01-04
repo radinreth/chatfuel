@@ -6,7 +6,7 @@ class GenderInfo < Report
 
   def transform
     {
-      colors: colors,
+      colors: Gender::COLORS,
       dataset: dataset
     }
   end
