@@ -92,6 +92,11 @@ class DashboardQuery
     Message.filter(@options)
   end
 
+  def total_users_visit_by_category
+    result = ::UserVisitEachFunction.new(nil, self).result
+    result.transform
+  end
+
   def total_users_visit_each_functions
     result = StepValue.total_users_visit_each_functions(@options)
 

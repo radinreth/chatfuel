@@ -1,3 +1,5 @@
+import { totalUserVisitByCategory } from '../charts/total_user_visit_by_category_chart'
+
 OWSO.DashboardShow = (() => {
 
   function init() {
@@ -9,6 +11,11 @@ OWSO.DashboardShow = (() => {
     onClickChartkickLegend()
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
+    renderCharts()
+  }
+
+  function renderCharts() {
+    totalUserVisitByCategory()
   }
 
   function multiSelectDistricts() {

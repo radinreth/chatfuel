@@ -7,6 +7,14 @@ class Gonify
     access_info_chart.merge citizen_feedback_chart
   end
 
+  def dashboard_data
+    {
+      totalUserByGender: @query.users_visited_by_each_genders,
+      totalUserVisitByCategory: @query.total_users_visit_by_category,
+      totalUserFeedback: @query.total_users_feedback,
+    }
+  end
+
   private
 
   def access_info_chart
