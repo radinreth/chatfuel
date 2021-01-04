@@ -17,6 +17,7 @@ en:
     copy: Copy
     whitelist_example: 'Example: * or 192.168.1.1; 192.168.1.2 (use semicolon seperator for multiple IPs)'
     detail: Detail
+    view_detail: view detail
     province: Province
     code: Code
     track_count: Track Count
