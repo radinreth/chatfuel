@@ -39,4 +39,16 @@ class Report
   def districts
     @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
   end
+
+  def location_filter
+    @location_filter = Filters::LocationFilter.new(province, districts)
+  end
+
+  def province
+    Pumi::Province.find_by_id(@query.options['province_id']) 
+  end
+
+  def districts
+    @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
+  end
 end
