@@ -23,7 +23,8 @@ export const totalUserVisitByCategory = () => {
     legend: {
       position: "left",
       labels: {
-        boxWidth: 12,
+        boxWidth: 8,
+        usePointStyle: true,
         generateLabels: generateLabels
       }
     },
@@ -47,6 +48,5 @@ export const totalUserVisitByCategory = () => {
     }
   };
 
-  console.log(data)
   new Chart('chart_total_user_visit', { type, plugins, data, options });
 }
