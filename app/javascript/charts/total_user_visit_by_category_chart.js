@@ -2,7 +2,7 @@ import { sum } from '../utils/array'
 import { generateLabels, isDisplay } from '../data/piechart/defaults'
 
 export const totalUserVisitByCategory = () => {
-  let type = 'pie', 
+  let type = 'doughnut', 
       plugins = [chartDataLabels];
 
   let { colors, dataset } = gon.totalUserVisitByCategory;

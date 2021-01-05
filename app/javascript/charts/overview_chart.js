@@ -1,12 +1,8 @@
 import * as defaults from '../data/defaults'
 
 export const extractData = (raw) => {
-  // let { colors, dataset } = raw;
-  // let [monthLabels, values] = [_.keys(dataset), _.values(dataset)];
-  
   return {
     labels: _.keys(raw[0].data),
-
     datasets: raw.map(function(ds) {
       return {
         label: ds.name,
@@ -17,17 +13,6 @@ export const extractData = (raw) => {
       }
     })
   };
-  
-  // return {
-  //   labels: monthLabels,
-  //   datasets: [
-  //     {
-  //       ...defaults.initData.datasets[0],
-  //       backgroundColor: colors,
-  //       data: values,
-  //     }
-  //   ]
-  // };
 }
 
 export const overview = () => {
@@ -35,9 +20,6 @@ export const overview = () => {
       plugins = [chartDataLabels];
 
   let data = extractData(gon.overview);
-  // let { scales } = defaults.initOptions
-  // let max = _.max(data.datasets[0].data)
-  // let suggestedMax = Math.round( max * 1.2 )
 
   let options = {
     plugins: {
@@ -46,21 +28,12 @@ export const overview = () => {
         display: false
       },
     },
-    // responsive: true,
-    // tooltips: {
-    //   mode: 'index',
-    //   intersect: false,
-    // },
-    // hover: {
-    //   mode: 'nearest',
-    //   intersect: true
-    // },
     scales: {
       xAxes: [{
         ticks:{
           display: true,
           autoSkip: true,
-          maxTicksLimit: 3,
+          maxTicksLimit: 6,
         }
       }]
     }
