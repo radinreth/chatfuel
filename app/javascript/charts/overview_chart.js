@@ -25,7 +25,7 @@ export const overview = () => {
     plugins: {
       datalabels: {
         ...defaults.initOptions.plugins.datalabels,
-        display: false
+        display: false,
       },
     },
     scales: {
@@ -33,6 +33,8 @@ export const overview = () => {
         ticks:{
           display: true,
           autoSkip: true,
+          maxRotation: 0,
+          minRotation: 0,
           maxTicksLimit: 6,
         }
       }]
