@@ -92,6 +92,11 @@ class DashboardQuery
     StepValue.total_users_feedback(@options)
   end
 
+  def users_feedback
+    result = ::UserFeedback.new(nil, self).result
+    result.transform
+  end
+
   def most_requested_service
     most_request_variable = Variable.most_request
     return unless most_request_variable.present?

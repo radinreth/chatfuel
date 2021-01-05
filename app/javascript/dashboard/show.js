@@ -1,4 +1,5 @@
 import { totalUserVisitByCategory } from '../charts/total_user_visit_by_category_chart'
+import { totalUserFeedback } from '../charts/total_user_feedback_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -16,6 +17,7 @@ OWSO.DashboardShow = (() => {
 
   function renderCharts() {
     totalUserVisitByCategory()
+    totalUserFeedback()
   }
 
   function multiSelectDistricts() {
