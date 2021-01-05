@@ -11,7 +11,7 @@ class Gonify
     {
       totalUserByGender: @query.users_visited_by_each_genders,
       totalUserVisitByCategory: @query.total_users_visit_by_category,
-      totalUserFeedback: @query.total_users_feedback,
+      totalUserFeedback: @query.users_feedback,
     }
   end
 
