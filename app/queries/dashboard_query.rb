@@ -142,6 +142,11 @@ class DashboardQuery
     default
   end
 
+  def ticket_tracking
+    result = ::TicketTracking.new(nil, self).result
+    result.transform
+  end
+
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 
