@@ -3,10 +3,12 @@
 module MarkAsConcern
   extend ActiveSupport::Concern
 
-  MARK_AS_FEEDBACK = Array.wrap(Variable::FEEDBACK)
-  MARK_AS_MOST_REQUEST = Array.wrap(Variable::MOST_REQUEST)
+  included do
+    before_save :ensure_unique_mark_as, if: :mark_as_changed?
+  end
+
   MARK_AS_LIST = %w(gender user_visit location ticket_tracking service_accessed)
-  WHITELIST_MARK_AS = MARK_AS_FEEDBACK + MARK_AS_MOST_REQUEST + MARK_AS_LIST
+  WHITELIST_MARK_AS = [Variable::FEEDBACK, Variable::MOST_REQUEST] + MARK_AS_LIST
 
   define_method :feedback? do self.mark_as == Variable::FEEDBACK end
   define_method :mark_as_feedback! do update(mark_as: Variable::FEEDBACK) end
@@ -16,6 +18,10 @@ module MarkAsConcern
   MARK_AS_LIST.each do |item|
     define_method "#{item}?".to_sym do self.mark_as == item end
     define_method "mark_as_#{item}!".to_sym do update(mark_as: item) end
+  end
+
+  def reset_mark_as!
+    self.mark_as = nil
   end
 
   module ClassMethods
