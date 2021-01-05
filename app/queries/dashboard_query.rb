@@ -143,7 +143,7 @@ class DashboardQuery
       accessed = Message.unscope(:order).accessed(@options)
 
       return {} unless accessed
-      data = accessed.group_by_day(:created_at).count
+      data = accessed.group_by_day(:created_at, format: "%b %e").count
 
       { name: I18n.t("dashboard.accessed"), data: data, color: "#ffbc00", title: I18n.t("dashboard.accessed_explain"), class_name: "rect__accessed", display_text: I18n.t("dashboard.accessed") } if data.present?
     end
@@ -151,7 +151,7 @@ class DashboardQuery
     # Ticket does not need to care about about platform(both, chatbot, ivr)
     # because it syncs from desktop app).
     def submitted
-      data = Ticket.filter(@options).group_by_day(:requested_date).count
+      data = Ticket.filter(@options).group_by_day(:requested_date, format: "%b %e").count
 
       { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain"), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted") } if data.present?
     end
