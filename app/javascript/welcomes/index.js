@@ -2,6 +2,7 @@ require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import { extractData as e1 } from '../charts/access_info_chart';
 import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
+import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -21,7 +22,51 @@ OWSO.WelcomesIndex = (() => {
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
-    onChangePeriod(); 
+    onChangePeriod();
+    onLoadPopup();
+  }
+
+  function onLoadPopup() {
+    $("#popup").on('show.bs.modal', function (event) {
+      let btn = $(event.relatedTarget);
+      let element = btn.data("element");
+      let modal = $(this);
+
+      let attrs = {
+        size: btn.data("size"),
+        title: btn.data("title"),
+        body: $(element).html(),
+        callback: btn.data("callback")
+      }
+
+      setupModal(modal, attrs);
+    });
+  }
+
+  function setupModal(modal, { size, title, body, callback }) {
+    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
+    modal.find(".modal-title").text(title);
+    let modalBody = modal.find(".modal-body");
+    if( modalBody.data("state") == "prune" ) {
+      modalBody.html(body);
+      $(".sub_categories").html("");
+      modalBody.data("state", "replaced");
+    }
+
+    if( callback !== undefined ) {
+      OWSO.WelcomesIndex[callback]();
+    }
+  }
+
+  function loadSubCategories() {
+    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let ds = gon.feedbackSubCategories[id];
+
+      if( ds != undefined ) {
+        feedbackSubCategories(dom.id, ds);
+      }
+    });
   }
 
   function onChangePeriod() {
@@ -173,6 +218,6 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, renderChart }
+  return { init, renderChart, loadSubCategories }
 
 })()

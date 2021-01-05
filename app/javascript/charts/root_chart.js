@@ -12,9 +12,9 @@ export const renderChart = function () {
   OWSO.Util.chartReg();
 
   $.each( charts, function(_, f) { f() });
-  $(".chart_feedback_by_sub_category").each(function(_, dom) {
-    feedbackSubCategories(dom);
-  });
+
+  let ctx = 'chart_feedback_by_sub_category';
+  feedbackSubCategories(ctx, gon.feedbackSubCategories);
 }
 
 const charts = [  mostRequest, 
