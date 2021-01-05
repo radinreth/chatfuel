@@ -1,8 +1,12 @@
 = render( ChartComponent.new(name: t("dashboard.total_user_gender")) ) do |c|
   - c.with(:config) do
-    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
+    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseCriteria" } do
       %i.fas.fa-cog.cog
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_gender") }
+
+= render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
+  - component.with(:body) do
+    = render partial: 'dashboard/variable_with_criteria', collection: @variables, as: :variable
 
 -# .card.shadow.mb-4
 -#   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between.position-relative
