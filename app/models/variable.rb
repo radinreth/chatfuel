@@ -19,10 +19,10 @@
 #  index_variables_on_mark_as  (mark_as)
 #
 
-require_relative "validators/mark_as_validator"
-
 class Variable < ApplicationRecord
   FEEDBACK = 'feedback'
+  MOST_REQUEST = 'most_request'
+
   include MarkAsConcern
 
   default_scope { order(created_at: :desc) }
@@ -34,13 +34,8 @@ class Variable < ApplicationRecord
   has_many :values, class_name: "VariableValue",
                     dependent: :destroy,
                     autosave: true
-  # scopes
-  scope :most_request, -> { find_by(is_most_request: true) }
 
-  # validations
-  validate do |variable|
-    Validators::MarkAsValidator.new(variable).validate
-  end
+  before_save :ensure_unique_mark_as, if: :mark_as_changed?
 
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
@@ -86,6 +81,10 @@ class Variable < ApplicationRecord
     values.any? { |value| value.is_criteria? }
   end
 
+  def reset_mark_as!
+    self.mark_as = nil
+  end
+
   private
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
@@ -93,5 +92,12 @@ class Variable < ApplicationRecord
 
     def rejected_values(attributes)
       attributes["raw_value"].blank?
+    end
+
+    def ensure_unique_mark_as
+      return if mark_as.blank?
+
+      variable = Variable.send(mark_as)
+      variable.reset_mark_as! if variable.present?
     end
 end
