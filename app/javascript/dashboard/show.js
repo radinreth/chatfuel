@@ -2,6 +2,7 @@ import { totalUserVisitByCategory } from '../charts/total_user_visit_by_category
 import { totalUserFeedback } from '../charts/total_user_feedback_chart'
 import { totalUserByGender } from '../charts/total_user_by_gender_chart'
 import { ticketTracking } from '../charts/ticket_tracking_chart'
+import { overview } from '../charts/overview_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -22,6 +23,7 @@ OWSO.DashboardShow = (() => {
     totalUserFeedback()
     totalUserByGender()
     ticketTracking()
+    overview()
   }
 
   function multiSelectDistricts() {
