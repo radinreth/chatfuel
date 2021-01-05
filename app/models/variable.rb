@@ -35,8 +35,6 @@ class Variable < ApplicationRecord
                     dependent: :destroy,
                     autosave: true
 
-  before_save :ensure_unique_mark_as, if: :mark_as_changed?
-
   validate :validate_unique_raw_value
   validates :name, presence: { message: I18n.t("variable.presence") }, uniqueness: true
   validates :name, format: { with: /\A[\w|\s|-]+\z/, message: I18n.t("variable.invalid_name") }, if: -> { name.present? }
@@ -79,10 +77,6 @@ class Variable < ApplicationRecord
 
   def criteria?
     values.any? { |value| value.is_criteria? }
-  end
-
-  def reset_mark_as!
-    self.mark_as = nil
   end
 
   private
