@@ -50,17 +50,22 @@ class DashboardQuery
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
   end
 
+  def users_by_genders
+    result = ::UserByGender.new(nil, self).result
+    result.transform
+  end
+
   def users_visited_by_each_genders
     result = StepValue.users_visited_by_each_genders(@options)
     result = result.group(:gender).count
 
-    return {} if Variable.gender.nil?
+    # return {} if Variable.gender.nil?
 
-    colors = ['#4e73df', '#fd7e14', '#1cc88a']
-    result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
-      mapping_gender = mapping_variable_value[raw_gender].mapping_value
-      gender[raw_gender] = [mapping_gender, count, colors[index]]
-    end
+    # colors = Gender::COLORS
+    # result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
+    #   mapping_gender = mapping_variable_value[raw_gender]&.mapping_value
+    #   gender[raw_gender] = [mapping_gender, count, colors[index]]
+    # end
   end
 
   def mapping_variable_value
