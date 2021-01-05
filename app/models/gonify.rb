@@ -9,7 +9,7 @@ class Gonify
 
   def dashboard_data
     {
-      totalUserByGender: @query.users_visited_by_each_genders,
+      totalUserByGender: @query.users_by_genders,
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,
     }
