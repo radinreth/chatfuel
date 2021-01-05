@@ -1,8 +1,10 @@
 = render( ChartComponent.new(name: t("dashboard.total_user_visit")) ) do |c|
   - c.with(:config) do
-    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
+    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#userVisitModal" } do
       %i.fas.fa-cog.cog
   - c.with(:body) { content_tag(:canvas, nil, id: "chart_total_user_visit") }
+
+= render 'dashboard/choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'userVisitModal'
 
 -# .card.shadow.mb-4
 -#   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
