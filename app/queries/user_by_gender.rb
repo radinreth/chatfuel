@@ -6,7 +6,7 @@ class UserByGender < Report
 
   def transform
     {
-      colors: Feedback::COLORS.reverse,
+      colors: Gender::COLORS,
       dataset: @result
     }
   end

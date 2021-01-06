@@ -6,10 +6,10 @@ export const totalUserByGender = () => {
       plugins = [chartDataLabels];
 
   let { colors, dataset } = gon.totalUserByGender;
-  let [feedbackLabels, values] = [_.keys(dataset), _.values(dataset)];
+  let [labels, values] = [_.keys(dataset), _.values(dataset)];
 
   let data = {
-    labels: feedbackLabels,
+    labels: labels,
     total: sum(values),
     datasets: [
       {
