@@ -1,6 +1,5 @@
 .col-xl-6.col-lg-5
   - name = t("dashboard.number_of_ticket_tracking")
-  - collection = @query.number_of_tracking_tickets
-
-  = render(ChartComponent.new(name: name, collection: collection)) do |c|
+  - downloadable = @query.number_of_tracking_tickets.present?
+  = render(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
     - c.with(:body) { content_tag(:canvas, nil, id: "number_of_ticket_tracking") }
