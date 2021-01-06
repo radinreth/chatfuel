@@ -1,5 +1,5 @@
 .card.shadow.mb-4{ role: "figure" }
-  .card-header
+  .card-header.pb-3
     .d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary.d-flex.justify-content-center.align-items-center
         %span.d-inline-block.mr-3.chart-head
@@ -9,7 +9,7 @@
         = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
           %i.fa.fa-download
         = config
-    %span.card-subheader
+    %span.card-subheader.position-absolute
       = subheader
 
   .card-body
