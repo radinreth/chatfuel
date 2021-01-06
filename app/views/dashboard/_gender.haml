@@ -1,7 +1,7 @@
 - name = t("dashboard.total_user_gender")
-- collection = @query.users_visited_by_each_genders
+- downloadable = @query.users_visited_by_each_genders.present?
 
-= render(ChartComponent.new(name: name, collection: collection)) do |c|
+= render(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
   - c.with(:config) { open_config_modal("#chooseCriteria") }
   - c.with(:subheader) { subheader }
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_gender") }

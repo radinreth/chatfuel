@@ -1,33 +1,7 @@
-= render( ChartComponent.new(name: t("dashboard.total_user_visit")) ) do |c|
-  - c.with(:config) do
-    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#userVisitModal" } do
-      %i.fas.fa-cog.cog
+- name = t("dashboard.total_user_visit")
+- downloadable = @query.total_users_visit_each_functions.present?
+= render( ChartComponent.new(name: name, downloadable: downloadable) ) do |c|
+  - c.with(:config) { open_config_modal("#userVisitModal") }
   - c.with(:body) { content_tag(:canvas, nil, id: "chart_total_user_visit") }
 
 = render 'dashboard/choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'userVisitModal'
-
--# .card.shadow.mb-4
--#   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
--#     .h5.m-0.font-weight-bold.text-primary
--#       = t("dashboard.total_user_visit")
-    
--#     .tools
--#       - if @query.total_users_visit_each_functions.present?
--#         = link_to "#", class: "chart-dl text-dark", "data-name": t("dashboard.total_user_visit") do
--#           %i.fa.fa-download
-
--#       - if policy(:dashboard).setting?
--#         = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
--#           %i.fas.fa-cog.cog
--#   .card-body
--#     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
--#       - if @query.total_users_visit_each_functions.present?
--#         %ul.list-unstyled
--#           - @query.user_visit.values.distinct_values.each_with_index do |value, index|
--#             %li
--#               %span.oval{ style: "background-color: #{chartjs_colors[index]}" }
--#               %span.oval-label.word-wrap-normal
--#                 = value.mapping_value
-
--#         
--#       = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80, plugins: { datalabels: { display: false} } }
