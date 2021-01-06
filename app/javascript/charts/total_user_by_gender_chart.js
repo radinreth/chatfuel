@@ -28,6 +28,7 @@ export const totalUserByGender = () => {
         generateLabels: generateLabels
       }
     },
+    cutoutPercentage: 80,
     plugins: {
       datalabels: {
         backgroundColor: function(context) {

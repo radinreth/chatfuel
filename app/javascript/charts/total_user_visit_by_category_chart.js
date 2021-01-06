@@ -28,6 +28,7 @@ export const totalUserVisitByCategory = () => {
         generateLabels: generateLabels
       }
     },
+    cutoutPercentage: 80,
     plugins: {
       datalabels: {
         backgroundColor: function(context) {
