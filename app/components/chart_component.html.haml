@@ -6,8 +6,9 @@
           = @name
         = addon
       .tools
-        = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
-          %i.fa.fa-download
+        - if @collection.present?
+          = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
+            %i.fa.fa-download
         = config
     %span.card-subheader.position-absolute
       = subheader
