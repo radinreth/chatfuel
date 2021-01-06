@@ -1,8 +1,5 @@
 .col-xl-6.col-lg-5
   = render( ChartComponent.new(name: t("dashboard.number_of_ticket_tracking")) ) do |c|
-    - c.with(:config) do
-      = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
-        %i.fas.fa-cog.cog
     - c.with(:body) { content_tag(:canvas, nil, id: "number_of_ticket_tracking") }
 
 -# - title = t("dashboard.number_of_ticket_tracking")
