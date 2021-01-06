@@ -2,6 +2,8 @@
   - c.with(:config) do
     = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseCriteria" } do
       %i.fas.fa-cog.cog
+  - c.with(:subheader) do
+    = subheader
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_gender") }
 
 = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
