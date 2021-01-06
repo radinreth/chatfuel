@@ -124,7 +124,6 @@ GEM
       mini_mime (>= 0.1.3)
     case_transform (0.2)
       activesupport
-    chartkick (3.4.0)
     childprocess (3.0.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.7)
@@ -536,7 +535,6 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.0)
-  chartkick (~> 3.4.0)
   coderay (~> 1.1, >= 1.1.2)
   database_cleaner-active_record (~> 1.8.0)
   devise (~> 4.7.1)
