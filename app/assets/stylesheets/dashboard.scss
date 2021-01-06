@@ -171,6 +171,16 @@
     bottom: 0
   }
 
+  .legend {
+    position: absolute;
+    left: 57px;
+    top: 30px;
+
+    .rect, .chartjs-line-legend {
+      visibility: hidden;
+    }
+  }
+
   .fa-male {
     @extend .fa-mars !optional;
   }
