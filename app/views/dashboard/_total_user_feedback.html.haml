@@ -1,5 +1,5 @@
 = render( ChartComponent.new(name: t("dashboard.total_user_feedback")) ) do |c|
-  - c.with(:body) { content_tag(:canvas, nil, id: "total_user_feedback") }
+  - c.with(:body) { content_tag(:canvas, nil, id: id, class: "total_user_feedback") }
 
 -# .card.shadow.mb-4
 -#   - users_feedback = @query.total_users_feedback
