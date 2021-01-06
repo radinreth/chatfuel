@@ -1,8 +1,10 @@
 = render( ChartComponent.new(name: t("dashboard.total_user_feedback")) ) do |c|
   - c.with(:config) do
-    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
+    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#userFeedbackModal" } do
       %i.fas.fa-cog.cog
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_feedback") }
+
+= render 'dashboard/choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'userFeedbackModal'
 
 -# .card.shadow.mb-4
 -#   - users_feedback = @query.total_users_feedback
