@@ -3,7 +3,13 @@
     - c.with(:config) do
       = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#overviewModal" } do
         %i.fas.fa-cog.cog
-    - c.with(:body) { content_tag(:canvas, nil, id: "overview") }
+    - c.with(:body) do
+      .legend.text-center
+        - @query.goals.each_with_index do |goal, index|
+          = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
+
+      = content_tag(:canvas, nil, id: "chart-overview")
+
 
 = render 'dashboard/choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :service_accessed?, modal_id: 'overviewModal'
 -# .col-xl-6.col-lg-5
