@@ -1,39 +1,10 @@
 .col-xl-6.col-lg-5
-  = render( ChartComponent.new(name: t("dashboard.overview")) ) do |c|
-    - c.with(:config) do
-      = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#overviewModal" } do
-        %i.fas.fa-cog.cog
+  - name = t("dashboard.overview")
+  - collection = @query.goals
+  = render( ChartComponent.new(name: name, collection: collection) ) do |c|
+    - c.with(:config) { open_config_modal("#overviewModal") }
     - c.with(:body) do
-      .legend.text-center
-        - @query.goals.each_with_index do |goal, index|
-          = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
-
+      -# = render "dashboard/overview/legend"
       = content_tag(:canvas, nil, id: "chart-overview")
 
-
 = render 'dashboard/choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :service_accessed?, modal_id: 'overviewModal'
--# .col-xl-6.col-lg-5
--#   .card.shadow.mb-4
--#     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
--#       .h5.m-0.font-weight-bold.text-primary
--#         = t("dashboard.overview")
-
--#       %div
--#         - if @query.goals.present?
--#           = link_to "#", class: "chart-dl text-dark", "data-name": t("dashboard.overview") do
--#             %i.fa.fa-download
-
--#         - if policy(:dashboard).setting?
--#           = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseAccessed" } do
--#             %i.fas.fa-cog.cog
-
--#     .card-body
--#       .chart-wrapper
--#         .legend.text-center
--#           - @query.goals.each_with_index do |goal, index|
--#             = render partial: "dashboard/overview/legend", locals: { title: goal[:title], index: index, class_name: goal[:class_name], display_text: goal[:display_text] }
-
--#         .d-flex.justify-content-around.align-items-center
--#           = render 'dashboard/choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :service_accessed?, modal_id: 'chooseAccessed'
--#           - colors = @query.goals.map {|g| g[:color]}
--#           = line_chart @query.goals.map { |goal| { name: goal[:name], data: goal[:data] } }, colors: colors, id: "chart-overview", width: "100%", height: "300px", legend: false, messages: { empty: t("no_data") }, library: { plugins: { datalabels: { display: false } } }
