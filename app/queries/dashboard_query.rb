@@ -59,13 +59,12 @@ class DashboardQuery
     result = StepValue.users_visited_by_each_genders(@options)
     result = result.group(:gender).count
 
-    # return {} if Variable.gender.nil?
+    return {} if Variable.gender.nil?
 
-    # colors = Gender::COLORS
-    # result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
-    #   mapping_gender = mapping_variable_value[raw_gender]&.mapping_value
-    #   gender[raw_gender] = [mapping_gender, count, colors[index]]
-    # end
+    result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
+      mapping_gender = mapping_variable_value[raw_gender]&.mapping_value
+      gender[mapping_gender] = count
+    end
   end
 
   def mapping_variable_value
