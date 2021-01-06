@@ -1,20 +1,6 @@
 .col-xl-6.col-lg-5
-  = render( ChartComponent.new(name: t("dashboard.number_of_ticket_tracking")) ) do |c|
+  - name = t("dashboard.number_of_ticket_tracking")
+  - collection = @query.number_of_tracking_tickets
+
+  = render(ChartComponent.new(name: name, collection: collection)) do |c|
     - c.with(:body) { content_tag(:canvas, nil, id: "number_of_ticket_tracking") }
-
--# - title = t("dashboard.number_of_ticket_tracking")
--# .col-xl-6.col-lg-5
--#   .card.shadow.mb-4
--#     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
--#       .h5.m-0.font-weight-bold.text-primary
--#         = title
-
--#       - if @query.number_of_tracking_tickets.present?
--#         = link_to "#", class: "chart-dl", "data-name": title do
--#           %i.fa.fa-download
--#     .card-body
--#       .chart-wrapper
--#         - if @query.number_of_tracking_tickets.present?
--#           %span.invisible= title
-
--#         = column_chart @query.number_of_tracking_tickets, width: "100%", height: "300px", library: { plugins: { datalabels: { display: false } }, scales: { xAxes: [{ maxBarThickness: 50 }] } }, messages: { empty: t("no_data") }
