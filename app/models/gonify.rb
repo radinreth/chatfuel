@@ -4,7 +4,7 @@ class Gonify
   end
 
   def chart_data
-    access_info_chart.merge citizen_feedback_chart
+    access_info_chart.merge(citizen_feedback_chart, dashboard_data)
   end
 
   def dashboard_data
