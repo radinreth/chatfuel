@@ -1,7 +1,7 @@
 .col-xl-6.col-lg-5
   - name = t("dashboard.overview")
-  - collection = @query.goals
-  = render( ChartComponent.new(name: name, collection: collection) ) do |c|
+  - downloadable = @query.goals.present?
+  = render( ChartComponent.new(name: name, downloadable: downloadable) ) do |c|
     - c.with(:config) { open_config_modal("#overviewModal") }
     - c.with(:body) do
       -# = render "dashboard/overview/legend"

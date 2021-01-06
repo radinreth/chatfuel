@@ -1,9 +1,9 @@
 class ChartComponent < ViewComponent::Base
   with_content_areas :addon, :subheader, :body, :config
 
-  def initialize(name: '', collection: [], filterable: false)
+  def initialize(name: '', downloadable: true, filterable: false)
     @name = name
-    @collection = collection
+    @downloadable = downloadable
     @filterable = filterable
   end
 end

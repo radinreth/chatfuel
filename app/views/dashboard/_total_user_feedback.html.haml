@@ -1,34 +1,4 @@
-= render( ChartComponent.new(name: t("dashboard.total_user_feedback")) ) do |c|
+- name = t("dashboard.total_user_feedback")
+- downloadable = @query.total_users_feedback.present?
+= render(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
   - c.with(:body) { content_tag(:canvas, nil, id: id, class: "total_user_feedback") }
-
--# .card.shadow.mb-4
--#   - users_feedback = @query.total_users_feedback
--#   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
--#     .h5.m-0.font-weight-bold.text-primary
--#       = title
--#     - if users_feedback.values.sum > 0
--#       = link_to "#", class: "chart-dl text-dark", "data-name": title do
--#         %i.fa.fa-download
--#   .card-body
--#     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
--#       - if users_feedback.values.sum > 0
--#         %ul.list-unstyled
--#           %li
--#             %span.oval.oval--green
--#             %span.oval-emoji 😍
--#             %span.oval-label-km.word-wrap-normal
--#               = t("dashboard.like")
--#           %li
--#             %span.oval.oval--orange
--#             %span.oval-emoji 😊
--#             %span.oval-label-km.word-wrap-normal
--#               = t("dashboard.acceptable")
--#           %li
--#             %span.oval.oval--yellow
--#             %span.oval-emoji 😞
--#             %span.oval-label-km.word-wrap-normal
--#               = t("dashboard.dislike")
--#       - else
--#         - users_feedback = {}
-        
--#       = pie_chart users_feedback, colors: Feedback::COLORS.reverse, width: "200px", height: "200px", donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80, plugins: { datalabels: { display: false} } }
