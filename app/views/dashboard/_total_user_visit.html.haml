@@ -3,15 +3,13 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       .h5.m-0.font-weight-bold.text-primary
         = t("dashboard.total_user_visit")
-
-      
       .tools
         - if @query.total_users_visit_each_functions.present?
           = link_to "#", class: "chart-dl text-dark", "data-target": "#total_user_visit" do
             %i.fa.fa-download
 
         - if policy(:dashboard).setting?
-          = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
+          = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseTotalUserVisit" } do
             %i.fas.fa-cog.cog
     .card-body
       #total_user_visit.pt-4.d-flex.justify-content-around.align-items-center
@@ -23,5 +21,5 @@
                 %span.oval-label.word-wrap-normal
                   = value.mapping_value
 
-        = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'chooseDictionary'
+        = render 'choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'chooseTotalUserVisit'
         = pie_chart @query.total_users_visit_each_functions, colors: @query.user_visit && chartjs_colors.take(@query.user_visit.values.count), donut: true, legend: false, messages: { empty: t("no_data") }, library: { cutoutPercentage: 80 }
