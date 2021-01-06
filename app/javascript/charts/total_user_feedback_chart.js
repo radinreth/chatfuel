@@ -49,5 +49,8 @@ export const totalUserFeedback = () => {
     }
   };
 
-  new Chart('total_user_feedback', { type, plugins, data, options });
+  $.each($('.total_user_feedback'), function(i, ele) {
+    let canvasId = $(ele).attr("id");
+    new Chart(canvasId, { type, plugins, data, options });
+  });
 }
