@@ -9,6 +9,7 @@ import { feedbackTrend } from './feedback_trend_chart';
 import { feedbackSubCategories } from './feedback_sub_categories_chart';
 import { totalUserVisitByCategory } from './total_user_visit_by_category_chart';
 import { totalUserFeedback } from './total_user_feedback_chart';
+import { totalUserByGender } from './total_user_by_gender_chart';
 
 export const renderChart = function () {
   OWSO.Util.chartReg();
@@ -28,4 +29,5 @@ const charts = [  mostRequest,
                   overallRating,
                   feedbackTrend,
                   totalUserVisitByCategory,
-                  totalUserFeedback ];
+                  totalUserFeedback,
+                  totalUserByGender ];
