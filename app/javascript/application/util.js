@@ -1,10 +1,12 @@
+import { sum } from '../utils/array'
+
 OWSO.Util = {
   chartReg() {
     Chart.plugins.register({
       afterDraw: function(chart) {
         let { datasets } = chart.data
 
-        if (datasets && datasets[0].data && datasets[0].data.length === 0) {
+        if (datasets && datasets[0].data && sum(datasets[0].data) === 0) {
           var ctx = chart.chart.ctx;
           var width = chart.chart.width;
           var height = chart.chart.height
