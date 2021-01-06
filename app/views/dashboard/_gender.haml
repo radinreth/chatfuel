@@ -1,42 +1,11 @@
-= render( ChartComponent.new(name: t("dashboard.total_user_gender")) ) do |c|
-  - c.with(:config) do
-    = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseCriteria" } do
-      %i.fas.fa-cog.cog
-  - c.with(:subheader) do
-    = subheader
+- name = t("dashboard.total_user_gender")
+- collection = @query.users_visited_by_each_genders
+
+= render(ChartComponent.new(name: name, collection: collection)) do |c|
+  - c.with(:config) { open_config_modal("#chooseCriteria") }
+  - c.with(:subheader) { subheader }
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_gender") }
 
 = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
   - component.with(:body) do
     = render partial: 'dashboard/variable_with_criteria', collection: @variables, as: :variable
-
--# .card.shadow.mb-4
--#   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between.position-relative
--#     .h5.m-0.font-weight-bold.text-primary
--#       = title
--#     .tools.d-flex.align-items-center
--#       - if @query.users_visited_by_each_genders.present?
--#         = link_to "#", class: "chart-dl text-dark", "data-name": title do
--#           %i.fa.fa-download
--#       - if policy(:dashboard).setting?
--#         = link_to "#", class: "ml-2", data: { toggle: "modal", target: "#chooseDictionary" } do
--#           %i.fas.fa-cog.cog
-    
--#     - if @criteria.present?
--#       %span.mr-2.badge.badge-light.criteria-breadcrumb
--#         = @criteria.variable_name
--#         &raquo;
--#         = @criteria.mapping_value
-
--#   .card-body
--#     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center
--#       - agg_genders = @query.users_visited_by_each_genders
--#       - if agg_genders.present?
--#         %ul.list-unstyled
--#           = render partial: "dashboard/overview/users_visited_by_each_genders", collection: agg_genders, as: :gender
-
--#         = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseDictionary')) do |component|
--#           - component.with(:body) do
--#             = render partial: 'dashboard/variable_with_criteria', collection: @variables, as: :variable
--#         - colors = agg_genders.values.map(&:pop)
--#       = pie_chart agg_genders.values, colors: colors, width: "200px", height: "200px", legend: false, messages: { empty: t("no_data") }, library: { plugins: { datalabels: { display: false } } }
