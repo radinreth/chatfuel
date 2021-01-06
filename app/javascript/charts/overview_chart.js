@@ -22,6 +22,9 @@ export const overview = () => {
   let data = extractData(gon.overview);
 
   let options = {
+    legend: {
+      display: true
+    },
     plugins: {
       datalabels: {
         ...defaults.initOptions.plugins.datalabels,
@@ -41,5 +44,5 @@ export const overview = () => {
     }
   }
 
-  new Chart('overview', { type, plugins, data, options });
+  new Chart('chart-overview', { type, plugins, data, options });
 }
