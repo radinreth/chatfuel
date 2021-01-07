@@ -1,0 +1,1 @@
+export var sum = ( array ) => _.reduce( array, (acc, val) => acc + val, 0)
