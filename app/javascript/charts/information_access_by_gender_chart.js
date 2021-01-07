@@ -2,7 +2,7 @@ import { sum } from '../utils/array'
 import { generateLabels, isDisplay } from '../data/piechart/defaults'
 
 export const genderInfo = () => {
-  let type = 'pie', 
+  let type = 'doughnut', 
       plugins = [chartDataLabels];
 
   let { colors, dataset } = gon.genderInfo;
@@ -20,6 +20,11 @@ export const genderInfo = () => {
   };
 
   let options = {
+    layout: {
+      padding: {
+        top: 15,
+      }
+    },
     legend: {
       position: "left",
       labels: {
@@ -27,20 +32,20 @@ export const genderInfo = () => {
         generateLabels: generateLabels
       }
     },
+    cutoutPercentage: 70,
     plugins: {
       datalabels: {
         backgroundColor: function(context) {
           return context.dataset.backgroundColor;
         },
+        anchor: "end",
         borderColor: 'white',
         borderRadius: 100,
-        padding: 10,
-        borderWidth: 2,
+        borderWidth: 1,
         color: 'white',
         display: isDisplay,
         font: {
           family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-          weight: 'bold'
         },
         formatter: Math.round
       }
