@@ -1,17 +1,11 @@
 import * as defaults from '../data/defaults'
-
-export const extractData = ({ ratingLabels, dataset }) => {
-  return {
-    labels: ratingLabels,
-    datasets: _.map(dataset, (el) => el)
-  };
-}
+import formater from '../data/formater'
 
 export const feedbackTrend = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let data = extractData(gon.feedbackTrend);
+  let data = formater.feedbackTrend(gon.feedbackTrend);
 
   let { scales } = defaults.initOptions
   let flatten = _.flatten(_.map(gon.feedbackTrend.dataset, e => e.data))

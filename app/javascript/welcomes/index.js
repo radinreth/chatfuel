@@ -1,8 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-import { extractData as e1 } from '../charts/access_info_chart';
-import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
-import { extractData as e3 } from '../charts/feedback_trend_chart';
+import formater from '../data/formater'
 import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
@@ -88,7 +86,7 @@ OWSO.WelcomesIndex = (() => {
       let option = {
         url: '/welcomes/q/access-info',
         self: this,
-        extractor: e1,
+        extractor: formater.accessInfo,
         canvasId: "chart_information_access_by_period"
       }
 
@@ -99,7 +97,7 @@ OWSO.WelcomesIndex = (() => {
       let option = {
         url: '/welcomes/q/service-tracked',
         self: this,
-        extractor: e2,
+        extractor: formater.mostServiceTracked,
         canvasId: "chart_most_service_tracked_periodically"
       }
 
@@ -110,7 +108,7 @@ OWSO.WelcomesIndex = (() => {
       let option = {
         url: '/welcomes/q/feedback-trend',
         self: this,
-        extractor: e3,
+        extractor: formater.feedbackTrend,
         canvasId: "chart_owso_feedback_trend"
       }
 
