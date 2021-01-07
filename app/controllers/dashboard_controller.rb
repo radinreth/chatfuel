@@ -20,6 +20,7 @@ class DashboardController < ApplicationController
   def set_gon
     @query = DashboardQuery.new(filter_options)
     gon_data = Gonify.new(@query).dashboard_data
+    gon_data[:no_data] = I18n.t("no_data")
     gon.push(gon_data)
   end
 end

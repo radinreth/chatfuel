@@ -6,7 +6,7 @@ OWSO.Util = {
       afterDraw: function(chart) {
         let { datasets } = chart.data
 
-        if (datasets && datasets[0].data && sum(datasets[0].data) === 0) {
+        if (datasets.length == 0 || (datasets && datasets[0].data && sum(datasets[0].data) === 0)) {
           var ctx = chart.chart.ctx;
           var width = chart.chart.width;
           var height = chart.chart.height
@@ -15,6 +15,7 @@ OWSO.Util = {
           ctx.save();
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#888';
           ctx.font = "16px normal 'Helvetica Nueue'";
           ctx.fillText(gon.no_data, width / 2, height / 2);
           ctx.restore();
