@@ -1,18 +1,20 @@
 import * as defaults from '../data/defaults'
 
+export const extractData = ({ ratingLabels, dataset }) => {
+  return {
+    labels: ratingLabels,
+    datasets: _.map(dataset, (el) => el)
+  };
+}
+
 export const feedbackTrend = () => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { labels, dataset } = gon.feedbackTrend;
-
-  let data = {
-    labels: labels,
-    datasets: _.map(dataset, (el) => el)
-  };
+  let data = extractData(gon.feedbackTrend);
 
   let { scales } = defaults.initOptions
-  let flatten = _.flatten(_.map(dataset, e => e.data))
+  let flatten = _.flatten(_.map(gon.feedbackTrend.dataset, e => e.data))
   let max = _.max(flatten)
   let suggestedMax = Math.round( max * 1.20 )
 
@@ -42,6 +44,7 @@ export const feedbackTrend = () => {
       }],
       xAxes: [{
         ...scales.xAxes[0],
+        maxBarThickness: 50,
         ticks: {
           maxRotation: 0,
           minRotation: 0,

@@ -27,6 +27,10 @@ class WelcomesController < PublicAccessController
     render json: @query.most_tracked_periodic, status: :ok
   end
 
+  def feedback_trend
+    render json: @query.feedback_trend, status: :ok
+  end
+
   private
     def set_active_tab_nav
       @active_tab = params[:q][:active_tab] if params[:q]
