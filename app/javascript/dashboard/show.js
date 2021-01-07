@@ -19,6 +19,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function renderCharts() {
+    OWSO.Util.chartReg();
     totalUserVisitByCategory()
     totalUserFeedback()
     totalUserByGender()

@@ -1,6 +1,8 @@
 import * as defaults from '../data/defaults'
 
 export const extractData = (raw) => {
+  if(raw.length == 0) return {}
+
   return {
     labels: _.keys(raw[0].data),
     datasets: raw.map(function(ds) {
