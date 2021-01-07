@@ -2,6 +2,7 @@ require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import { extractData as e1 } from '../charts/access_info_chart';
 import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
+import { extractData as e3 } from '../charts/feedback_trend_chart';
 import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
@@ -45,6 +46,17 @@ OWSO.WelcomesIndex = (() => {
 
     $(document).on("change", ".track-period", function() {
       fetchResultSet('/welcomes/q/service-tracked', this, mostTrackedPeriodic)
+    })
+
+    $(document).on("change", ".feedback-trend", function() {
+      let option = {
+        url: '/welcomes/q/feedback-trend',
+        self: this,
+        extractor: e3,
+        canvasId: "chart_owso_feedback_trend"
+      }
+
+      fetchResultSet(option)
     })
   }
 
