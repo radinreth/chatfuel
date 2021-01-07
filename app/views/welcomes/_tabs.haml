@@ -25,7 +25,7 @@
           .col-lg-6
             = render( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
               - c.with(:addon) do
-                %select.access-period.period-filter
+                %select.period-filter{ data: { resourcepath: "access-info", formater: "accessInfo", canvasid: "chart_information_access_by_period" }}
                   %option{ value: "month" }= t("period.monthly")
                   %option{ value: "quarter" }= t("period.quarterly")
                   %option{ value: "year" }= t("period.yearly")
@@ -39,7 +39,7 @@
             - name = t("welcomes.most_service_tracked_by_periodic")
             = render( ChartComponent.new(name: name, filterable: true) ) do |c|
               - c.with(:addon) do
-                %select.track-period.period-filter
+                %select.period-filter{ data: { resourcepath: "service-tracked", formater: "mostServiceTracked", canvasid: "chart_most_service_tracked_periodically" }}
                   %option{ value: "month" }= t("period.monthly")
                   %option{ value: "quarter" }= t("period.quarterly")
                   %option{ value: "year" }= t("period.yearly")
@@ -68,7 +68,7 @@
           .col-xl-6.col-lg-5
             = render( ChartComponent.new(name: t("welcomes.owso_feedback_trend"), filterable: true) ) do |c|
               - c.with(:addon) do
-                %select.feedback-trend.period-filter
+                %select.period-filter{ data: { resourcepath: "feedback-trend", formater: "feedbackTrend", canvasid: "chart_owso_feedback_trend" }}
                   %option{ value: "month" }= t("period.monthly")
                   %option{ value: "quarter" }= t("period.quarterly")
                   %option{ value: "year" }= t("period.yearly")
