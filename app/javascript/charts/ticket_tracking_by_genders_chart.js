@@ -2,7 +2,7 @@ import { sum } from '../utils/array'
 import { generateLabels } from '../data/piechart/defaults'
 
 export const ticketTrackingByGenders = () => {
-  let type = 'pie', 
+  let type = 'doughnut', 
       plugins = [chartDataLabels];
 
   let { colors, dataset } = gon.ticketTrackingByGenders;
@@ -20,6 +20,11 @@ export const ticketTrackingByGenders = () => {
   };
 
   let options = {
+    layout: {
+      padding: {
+        top: 15,
+      }
+    },
     legend: {
       position: "left",
       labels: {
@@ -27,21 +32,25 @@ export const ticketTrackingByGenders = () => {
         generateLabels: generateLabels
       }
     },
+    cutoutPercentage: 80,
     plugins: {
       datalabels: {
         backgroundColor: function(context) {
           return context.dataset.backgroundColor;
         },
+        anchor: "end",
         borderColor: 'white',
-        borderRadius: 25,
-        borderWidth: 2,
+        padding: function(ctx) {
+          var index = ctx.dataIndex;
+          var value = ctx.dataset.data[index];
+          return value < 10 ? { left: 6, right: 6, top: 3, bottom: 3 } : 5;
+        },
         borderRadius: 100,
-        padding: 10,
+        borderWidth: 1,
         color: 'white',
         display: true,
         font: {
           family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-          weight: 'bold'
         },
         formatter: Math.round
       }

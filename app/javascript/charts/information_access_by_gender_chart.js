@@ -32,7 +32,7 @@ export const genderInfo = () => {
         generateLabels: generateLabels
       }
     },
-    cutoutPercentage: 70,
+    cutoutPercentage: 80,
     plugins: {
       datalabels: {
         backgroundColor: function(context) {
@@ -40,6 +40,11 @@ export const genderInfo = () => {
         },
         anchor: "end",
         borderColor: 'white',
+        padding: function(ctx) {
+          var index = ctx.dataIndex;
+          var value = ctx.dataset.data[index];
+          return value < 10 ? { left: 6, right: 6, top: 3, bottom: 3 } : 5;
+        },
         borderRadius: 100,
         borderWidth: 1,
         color: 'white',
