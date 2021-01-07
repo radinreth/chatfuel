@@ -1,4 +1,5 @@
 class Gender
+  COLORS = ['#4e73df', '#fd7e14', '#1cc88a']
   MALE = :male
   FEMALE = :female
   OTHER = :other

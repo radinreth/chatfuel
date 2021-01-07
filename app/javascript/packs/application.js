@@ -15,6 +15,7 @@ require("toastr")
 require("select2")
 
 require('application/pumi')
+window._ = require("underscore")
 
 import "bootstrap-toggle/js/bootstrap-toggle"
 
