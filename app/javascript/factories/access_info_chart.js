@@ -1,23 +1,11 @@
 import * as defaults from '../data/defaults'
+import formater from '../data/formater'
 
 export const accessInfo = (collection = null) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { colors, dataset } = collection || gon.accessInfo;
-  let [monthLabels, values] = [_.keys(dataset), _.values(dataset)];
-
-  let data = {
-    labels: monthLabels,
-    datasets: [
-      {
-        ...defaults.initData.datasets[0],
-        backgroundColor: colors,
-        data: values,
-      }
-    ]
-  };
-
+  let data = formater.accessInfo(collection || gon.accessInfo);
   let { scales } = defaults.initOptions
   let max = _.max(values)
   let suggestedMax = Math.round( max * 1.2 )
