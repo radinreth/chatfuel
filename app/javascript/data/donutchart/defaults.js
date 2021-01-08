@@ -62,7 +62,7 @@ const options = {
   }
 }
 
-export const doughnutData = function(data) {
+export const donutData = function(data) {
   let { colors, dataset } = data;
   let [labels, values] = [_.keys(dataset), _.values(dataset)];
 
@@ -75,7 +75,7 @@ export const doughnutData = function(data) {
   };
 }
 
-export const doughnutConfig = {
+export const donutConfig = {
   type: 'doughnut', 
   plugins: [chartDataLabels],
   options: options,
