@@ -313,6 +313,17 @@
     text-decoration: none;
     color: #e41010;
   }
+  
+  .chat-with-us {
+    position: fixed;
+    bottom: 19px;
+    z-index: 9999;
+    right: 96px;
+    background-color: #002f6c;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
 
   .social-share-button {
     margin-bottom: 30px;
