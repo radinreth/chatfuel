@@ -4,6 +4,13 @@ class Report
     @query = query
   end
 
+  def chart_options
+    {
+      colors: colors,
+      dataset: dataset
+    }
+  end
+
   private
 
   def find_objects_by(key)
@@ -13,10 +20,6 @@ class Report
     variable_value = VariableValue.find(variable_value_id)
 
     [district, variable_value]
-  end
-
-  def colors
-    Color.generate(@result&.count.to_i)
   end
 
   def period
@@ -39,4 +42,10 @@ class Report
   def districts
     @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
   end
+
+  def colors
+    Color.generate(dataset&.count.to_i)
+  end
+
+  def dataset; raise 'must be implemented in subclass' end
 end

@@ -38,8 +38,8 @@ class DashboardQuery
   end
 
   def total_users_visit_by_category
-    result = ::UserVisitEachFunction.new(nil, self).result
-    result.transform
+    user_visit_report = ::UserVisitEachFunction.new(nil, self)
+    user_visit_report.chart_options
   end
 
   def total_users_visit_each_functions
@@ -51,8 +51,8 @@ class DashboardQuery
   end
 
   def users_by_genders
-    result = ::UserByGender.new(nil, self).result
-    result.transform
+    users_gender_report = ::UserByGender.new(nil, self)
+    users_gender_report.chart_options
   end
 
   def users_visited_by_each_genders
@@ -87,8 +87,8 @@ class DashboardQuery
   end
 
   def ticket_tracking
-    result = ::TicketTracking.new(nil, self).result
-    result.transform
+    ticket_tracking_report = ::TicketTracking.new(nil, self)
+    ticket_tracking_report.chart_options
   end
 
   def number_of_tracking_tickets
@@ -102,8 +102,8 @@ class DashboardQuery
   end
 
   def users_feedback
-    result = ::UserFeedback.new(nil, self).result
-    result.transform
+    users_feedback_report = ::UserFeedback.new(nil, self)
+    users_feedback_report.chart_options
   end
 
   def most_requested_service

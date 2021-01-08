@@ -1,13 +1,9 @@
 class UserByGender < Report
-  def result
-    @result = @query.users_visited_by_each_genders
-    self
+  def dataset
+    @query.users_visited_by_each_genders
   end
 
-  def transform
-    {
-      colors: Gender::COLORS,
-      dataset: @result
-    }
+  def colors
+    Gender::COLORS
   end
 end
