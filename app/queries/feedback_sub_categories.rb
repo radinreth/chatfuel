@@ -18,6 +18,10 @@ class FeedbackSubCategories < Report
     }
   end
 
+  def colors
+    Color.generate(values.count)
+  end
+
   private
     def values
       mapping_values(like) & mapping_values(dislike)
