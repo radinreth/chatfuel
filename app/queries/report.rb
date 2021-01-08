@@ -43,23 +43,9 @@ class Report
     @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
   end
 
-<<<<<<< HEAD
   def colors
     Color.generate(dataset&.count.to_i)
   end
 
   def dataset; raise 'must be implemented in subclass' end
-=======
-  def location_filter
-    @location_filter = Filters::LocationFilter.new(province, districts)
-  end
-
-  def province
-    Pumi::Province.find_by_id(@query.options['province_id']) 
-  end
-
-  def districts
-    @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
-  end
->>>>>>> Enhance sub categories
 end
