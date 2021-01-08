@@ -6,8 +6,6 @@ class WelcomesController < PublicAccessController
   before_action :set_active_tab_nav, except: :filter
 
   def index
-    @query = DashboardQuery.new(filter_options)
-
     respond_to do |format|
       format.html { render layout: "welcome" }
       format.js
