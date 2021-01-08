@@ -17,10 +17,6 @@
     %span.card-subheader.position-absolute
       = subheader
 
-    .tools
-      = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
-        %i.fa.fa-download
-
   .card-body
     .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative
       - if @filterable
