@@ -7,14 +7,15 @@ window.$ = require("jquery")
 window.html2canvas = require("html2canvas/dist/html2canvas")
 require("bootstrap")
 require("moment")
-require("chartkick")
-require("chart.js")
+window.chartDataLabels = require("chartjs-plugin-datalabels")
+// require("chart.js")
 require("daterangepicker")
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min")
 require("toastr")
 require("select2")
 
 require('application/pumi')
+window._ = require("underscore")
 
 import "bootstrap-toggle/js/bootstrap-toggle"
 

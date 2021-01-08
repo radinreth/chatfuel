@@ -1,0 +1,21 @@
+.card.shadow.mb-4{ role: "figure" }
+  .card-header.position-relative
+    .d-flex.flex-row.align-items-center.justify-content-between
+      .h5.m-0.font-weight-bold.text-primary.d-flex.justify-content-center.align-items-center
+        %span.d-inline-block.mr-3.chart-head
+          = @name
+        = addon
+      .tools
+        - if @downloadable
+          = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
+            %i.fa.fa-download
+        = config
+    %span.card-subheader.position-absolute
+      = subheader
+
+  .card-body
+    .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative
+      - if @filterable
+        %p.loading.position-absolute.d-none
+          = t("loading")
+      = body
