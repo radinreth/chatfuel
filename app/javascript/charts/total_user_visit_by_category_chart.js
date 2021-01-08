@@ -1,5 +1,5 @@
 import { sum } from '../utils/array'
-import { generateLabels, isDisplay } from '../data/piechart/defaults'
+import { generateLabels, isDisplay } from '../data/donutchart/defaults'
 
 export const totalUserVisitByCategory = () => {
   let type = 'doughnut', 
