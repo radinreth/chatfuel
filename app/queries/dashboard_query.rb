@@ -37,6 +37,11 @@ class DashboardQuery
     Message.filter(@options)
   end
 
+  def total_users_visit_by_category
+    user_visit_report = ::UserVisitEachFunction.new(nil, self)
+    user_visit_report.chart_options
+  end
+
   def total_users_visit_each_functions
     result = StepValue.total_users_visit_each_functions(@options)
 
@@ -45,16 +50,20 @@ class DashboardQuery
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
   end
 
+  def users_by_genders
+    users_gender_report = ::UserByGender.new(nil, self)
+    users_gender_report.chart_options
+  end
+
   def users_visited_by_each_genders
     result = StepValue.users_visited_by_each_genders(@options)
     result = result.group(:gender).count
 
     return {} if Variable.gender.nil?
 
-    colors = ['#4e73df', '#fd7e14', '#1cc88a']
     result.each_with_object({}).with_index do |((raw_gender, count), gender), index|
-      mapping_gender = mapping_variable_value[raw_gender].mapping_value
-      gender[raw_gender] = [mapping_gender, count, colors[index]]
+      mapping_gender = mapping_variable_value[raw_gender]&.mapping_value
+      gender[mapping_gender] = count
     end
   end
 
@@ -77,6 +86,11 @@ class DashboardQuery
     default
   end
 
+  def ticket_tracking
+    ticket_tracking_report = ::TicketTracking.new(nil, self)
+    ticket_tracking_report.chart_options
+  end
+
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 
@@ -85,6 +99,11 @@ class DashboardQuery
 
   def total_users_feedback
     StepValue.total_users_feedback(@options)
+  end
+
+  def users_feedback
+    users_feedback_report = ::UserFeedback.new(nil, self)
+    users_feedback_report.chart_options
   end
 
   def most_requested_service
@@ -123,7 +142,7 @@ class DashboardQuery
       accessed = Message.unscope(:order).accessed(@options)
 
       return {} unless accessed
-      data = accessed.group_by_day(:created_at).count
+      data = accessed.group_by_day(:created_at, format: "%b %e").count
 
       { name: I18n.t("dashboard.accessed"), data: data, color: "#ffbc00", title: I18n.t("dashboard.accessed_explain"), class_name: "rect__accessed", display_text: I18n.t("dashboard.accessed") } if data.present?
     end
@@ -131,7 +150,7 @@ class DashboardQuery
     # Ticket does not need to care about about platform(both, chatbot, ivr)
     # because it syncs from desktop app).
     def submitted
-      data = Ticket.filter(@options).group_by_day(:requested_date).count
+      data = Ticket.filter(@options).group_by_day(:requested_date, format: "%b %e").count
 
       { name: I18n.t("dashboard.submitted"), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain"), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted") } if data.present?
     end

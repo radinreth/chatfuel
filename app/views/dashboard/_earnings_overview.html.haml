@@ -1,7 +1,10 @@
 .row
-  = render "gender"
-  = render "total_user_visit"
-  = render "total_user_feedback"
-  = render "overview"
-  = render "number_of_tracked_ticket"
-
+  .col-xl-4.col-lg-5
+    = render partial: "dashboard/gender", locals: { title: t("dashboard.total_user_gender") }
+  .col-xl-4.col-lg-5
+    = render "dashboard/total_user_visit"
+  .col-xl-4.col-lg-5
+    = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
+  
+  = render "dashboard/overview"
+  = render "dashboard/number_of_tracked_ticket"
