@@ -1,8 +1,8 @@
-import { doughnutData, doughnutConfig } from '../data/doughnutchart/defaults'
+import { donutData, donutConfig } from '../data/donutchart/defaults'
 
 export const genderInfo = () => {
   new Chart('chart_information_access_by_gender', {
-    ...doughnutConfig,
-    data: doughnutData(gon.genderInfo) 
+    ...donutConfig,
+    data: donutData(gon.genderInfo)
   });
 }
