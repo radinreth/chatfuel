@@ -21,6 +21,11 @@ let mapLabel = (chart, label, i) => {
   }
 }
 
+export const generateLabels = function(chart) {
+  let data = chart.data
+  return _.map(data.labels, mapLabel.bind(null, chart))
+}
+
 const options = {
   layout: {
     padding: {
@@ -31,10 +36,7 @@ const options = {
     position: "left",
     labels: {
       boxWidth: 12,
-      generateLabels: function(chart) {
-        let data = chart.data
-        return _.map(data.labels, mapLabel.bind(null, chart))
-      }
+      generateLabels: generateLabels
     }
   },
   cutoutPercentage: 80,
