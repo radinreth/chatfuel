@@ -77,7 +77,13 @@
 
     @media (min-width: 992px) {
       &.inc-top {
-        top: 46px;
+        top: 5px;
+      }
+    }
+
+    @media (min-width: 1370px) {
+      &.inc-top {
+        top: 48px;
       }
     }
   }
@@ -102,31 +108,6 @@
     &:hover {
       background-color: #82071f;
       border-color: #82071f;
-    }
-  }
-
-  .tab-navigation {
-    top: 100px;
-    padding-top: 15px;
-    z-index: 996;
-    background: white;
-
-    @media (max-width: 992px) {
-      top: 446px;
-    }
-  }
-
-  .sidebar-left {
-    position: fixed;
-    top: 30%;
-    padding-left: 5%;
-    z-index: 1000;
-    left: 0;
-    transition: all 0.1s ease-in;
-
-    @media (max-width: 576px) {
-      padding-left: 0;
-      left: -15px;
     }
   }
 
@@ -184,103 +165,8 @@
     }
   }
 
-  #btn-search {
-    align-self: flex-end;
-  }
-
-  // override select2 to fit height with bootstrap form-control
-  .select2-selection__rendered {
-    padding: 2px;
-  }
-
-  .select2-container--bootstrap .select2-selection--single {
-    height: 38px;
-  }
-
   .chart-dl {
     display: none;
-  }
-
-  .shadow {
-    box-shadow: 1px 1px 1px rgba(204, 204,204,50%);
-  }
-
-  .branding-logo {
-    height: 72px;
-  }
-  
-  #logo-container {
-    background: #002f6c;
-    border-bottom: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #cccccc24;
-    padding: 15px;
-  }
-  
-  #form-query {
-    background-color: #FFF;
-    transition: all 0.1s ease-in;
-
-    &.highlight {
-      color: #FFF;
-      background-color: #002f6c;
-    }
-  }
-
-  #logo-container,
-  #form-query {
-    position: -webkit-sticky;
-    position: sticky;
-    top: -1px;
-    z-index: 999;
-  }
-
-  .modal-backdrop {
-    z-index: 1000;
-  }
-
-  &.modal-open {
-    padding: 0 !important;
-  }
-
-  canvas{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-  }
-
-  .switch-lang {
-    z-index: 1000;
-    top: 30px;
-    right: 20px;
-
-    @media (min-width: 992px) {
-      &.inc-top {
-        top: 46px;
-      }
-    }
-  }
-
-  #q_districts {
-    position: relative;
-    background-color: #FFF;
-  }
-
-  .fixed-lh-3 {
-    line-height: 3em;
-  }
-
-  .tabs-container {
-    min-height: 300px;
-  }
-
-  .secondary-branding-color {
-    background-color: #ba0d2f;
-    border-color: #ba0d2f;
-
-    &:hover {
-      background-color: #82071f;
-      border-color: #82071f;
-    }
   }
 
   .tab-navigation {
@@ -288,9 +174,8 @@
     padding-top: 15px;
     z-index: 996;
     background: white;
-
     @media (max-width: 992px) {
-      top: 446px;
+      top: 415px;
     }
   }
 
@@ -304,13 +189,8 @@
 
     @media (max-width: 576px) {
       padding-left: 0;
-      left: -15px;
+      left: -32px;
     }
-  }
-
-  abbr[title] {
-    text-decoration: none;
-    color: #e41010;
   }
   
   .chat-with-us {
@@ -322,22 +202,5 @@
     color: white;
     padding: 5px 15px;
     border-radius: 10px;
-  }
-
-  .social-share-button {
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    a {
-      display: block;
-      margin-bottom: 8px;
-      width: 36px;
-      height: 36px;
-      background-size: 36px;
-      background-position: 0;
-    }
   }
 }
