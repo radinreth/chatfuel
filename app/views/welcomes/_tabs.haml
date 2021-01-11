@@ -73,6 +73,6 @@
             = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name(:short))) ) do |c|
               - c.with(:subheader) do
                 = "(#{ @location_filter.full_district_list_name.presence || I18n.t("dashboard.all") })"
-                = link_to t("sites.view_detail"), "#", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.detail"), element: ".sub_categories", callback: "loadSubCategories" }
+                = link_to t("sites.view_detail"), "#", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
       
