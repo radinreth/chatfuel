@@ -21,7 +21,8 @@
             = render partial: "welcomes/logo", locals: { tabindex: 1 }
       = yield
     
-    = render "welcomes/chatbot_short_into"
+    - if Rails.env.production?
+      = render "welcomes/chatbot_short_into"
 
     :javascript
       if( !OWSO.Util.dev() ) {
