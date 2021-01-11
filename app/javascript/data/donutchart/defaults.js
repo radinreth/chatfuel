@@ -87,3 +87,9 @@ export const donutConfig = {
   plugins: [chartDataLabels],
   options: options,
 }
+
+export const labels = {
+  boxWidth: 12,
+  usePointStyle: false,
+  generateLabels: generateLabels
+}

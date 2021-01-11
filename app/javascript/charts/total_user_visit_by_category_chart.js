@@ -1,5 +1,5 @@
 import { sum } from '../utils/array'
-import { labels } from '../data/piechart/defaults'
+import { labels } from '../data/donutchart/defaults'
 
 export const totalUserVisitByCategory = () => {
   let type = 'doughnut', 

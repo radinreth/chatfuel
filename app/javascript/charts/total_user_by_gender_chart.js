@@ -1,5 +1,5 @@
 import { sum } from '../utils/array'
-import { labels as optionLabels } from '../data/piechart/defaults'
+import { labels as optionLabels } from '../data/donutchart/defaults'
 
 export const totalUserByGender = () => {
   let type = 'doughnut', 
