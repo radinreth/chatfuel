@@ -1,5 +1,5 @@
 import { sum } from '../utils/array'
-import { generateLabels, isDisplay } from '../data/piechart/defaults'
+import { labels } from '../data/piechart/defaults'
 
 export const totalUserVisitByCategory = () => {
   let type = 'doughnut', 
@@ -22,11 +22,7 @@ export const totalUserVisitByCategory = () => {
   let options = {
     legend: {
       position: "left",
-      labels: {
-        boxWidth: 8,
-        usePointStyle: true,
-        generateLabels: generateLabels
-      }
+      labels: labels
     },
     cutoutPercentage: 80,
     plugins: {
