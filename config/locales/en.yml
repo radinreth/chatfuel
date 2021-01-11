@@ -139,7 +139,7 @@ en:
   dashboard:
     title: Dashboard
     total_user_gender: Total User by gender
-    total_user_visit: Total User by Category
+    total_user_visit: Total Visits by Access Types
     total_user_feedback: Total User Feedback
     number_of_ticket_tracking: Ticket Tracking(times)
     both: Both
@@ -148,7 +148,7 @@ en:
     province: Province
     show: Show
     active_user: Active User
-    total_users: Total Users
+    total_users: Total Visits
     total_uniq_users: Total Unique Users
     average_using_time: Average Using Time
     most_request_service: Most Request Services
