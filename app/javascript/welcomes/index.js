@@ -24,6 +24,19 @@ OWSO.WelcomesIndex = (() => {
     onClickTabNavigation();
     onChangePeriod();
     onLoadPopup();
+    onTabOverDaterange();
+  }
+
+  function onTabOverDaterange() {
+    let picker = $('.datepicker_date');
+
+    $(".input-daterange")
+      .focus(function(){
+        picker.data('daterangepicker').show();
+      })
+      .blur(function(){
+        picker.data('daterangepicker').hide();
+    });
   }
 
   function onLoadPopup() {
