@@ -32,19 +32,25 @@ OWSO.DashboardShow = (() => {
   }
 
   function attachEventClickToChartDownloadButton() {
-    $(".chart-dl").click(async function(e) {
+    $(document).on("click", ".chart-dl", function(e) {
       e.preventDefault();
 
-      let target = $(e.currentTarget).data("target");
-      let fileName = target != undefined ? target.replace(/\#/, "") : "my-chart";
-      let canvas = await html2canvas($(target)[0], { scale: 2 });
-      let link = document.getElementById("link");
+      let target = $(e.currentTarget);
+      let canvasId = $(this).closest(".card-header").next().find(".chart-wrapper canvas").prop("id");
 
-      link.setAttribute('download', `${ fileName }.png`);
-      link.setAttribute('target', '_blank');
-      link.setAttribute('href', canvas.toDataURL("image/png"));
-      link.click();
+      let chart = OWSO.Util.findChartInstance(canvasId);
+      let name = target.data("name");
+      download(chart.canvas, { name });
     })
+  }
+
+  function download(canvas, options) {
+    let link = document.getElementById("link");
+
+    link.setAttribute('download', `${ options['name'] || 'my-chart' }.png`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', canvas.toDataURL("image/png"));
+    link.click();
   }
 
   function onClickChartkickLegend() {
