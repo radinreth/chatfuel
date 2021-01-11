@@ -3,7 +3,7 @@ en:
     header: "Our piloting areas"
     search: Search
     summary: Summary
-    access_info: Access Information
+    access_info: Information Access
     citizen_feedback: Citizen Feedback
     province: Province
     districts: Districts
@@ -12,7 +12,7 @@ en:
     most_requested_services: Most Requested Service by OWSO
     information_access_by_gender: Information Access by Gender
     information_access_by: Information Access by
-    number_access_by_main_services: Number Access by Main Service
+    number_access_by_main_services: Information Access by OWSO Selected Services
     most_service_tracked_by_periodic: Most Service Tracked by
     ticket_tracking_by_gender: Ticket Tracking by Gender
     overall_rating_by_owso: Overall Rating by OWSO
