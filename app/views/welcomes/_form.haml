@@ -45,7 +45,7 @@
 
               -# submit
               .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search", data: { disable_with: "<small>#{t("loading")}</small>" }
+                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, role: "button", id: "btn-search", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
 #districtsModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "districtsModal", :role => "dialog", :tabindex => "-1" }
