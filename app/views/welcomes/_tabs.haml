@@ -82,13 +82,10 @@
                   - c.with(:body) { content_tag(:canvas, nil, id: "chart_owso_feedback_trend") }
                   - c.with(:hint) { t("hint.owso_feedback_trend") }
 
-              .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name)) ) do |c|
-                  - c.with(:subheader) do
-                    %span{ data: { toggle: "tooltip", title: full_district_list_name } }
-                      = show_location_detail
-                    &middot;
-                    = link_to t("sites.view_detail"), "#", id: "link-view-detail", name: "link_view_detail", role: "link", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
-                  - c.with(:hint) { t("hint.feedback_by_sub_categories") }
+          .col-xl-6.col-lg-5
+            = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name(:short))) ) do |c|
+              - c.with(:subheader) do
+                = "(#{ @location_filter.full_district_list_name.presence || I18n.t("dashboard.all") })"
+                = link_to t("sites.view_detail"), "#", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
+              - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
       
