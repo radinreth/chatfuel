@@ -31,3 +31,9 @@ export const generateLabels = function(chart) {
   let data = chart.data
   return _.map(data.labels, mapLabel.bind(null, chart))
 }
+
+export const labels = {
+  boxWidth: 12,
+  usePointStyle: false,
+  generateLabels: generateLabels
+}
