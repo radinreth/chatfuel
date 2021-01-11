@@ -88,5 +88,12 @@ OWSO.Util = {
       txtarea.focus();
     }
     txtarea.scrollTop = scrollPos;
+  },
+
+  findChartInstance: (canvasId) => {
+    return _.find(Chart.instances, (instance) => {
+      let {canvas} = instance.chart;
+      return canvas.id == canvasId;
+    });
   }
 };

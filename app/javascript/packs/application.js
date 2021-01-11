@@ -4,7 +4,6 @@ require("@rails/activestorage").start()
 require("channels")
 
 window.$ = require("jquery")
-window.html2canvas = require("html2canvas/dist/html2canvas")
 require("bootstrap")
 require("moment")
 window.chartDataLabels = require("chartjs-plugin-datalabels")
