@@ -1,5 +1,5 @@
 import { sum } from '../utils/array'
-import { generateLabels } from '../data/piechart/defaults'
+import { labels as optionLabels } from '../data/piechart/defaults'
 
 export const totalUserByGender = () => {
   let type = 'doughnut', 
@@ -22,11 +22,7 @@ export const totalUserByGender = () => {
   let options = {
     legend: {
       position: "left",
-      labels: {
-        boxWidth: 8,
-        usePointStyle: true,
-        generateLabels: generateLabels
-      }
+      labels: optionLabels
     },
     cutoutPercentage: 80,
     plugins: {
