@@ -10,11 +10,10 @@ class DashboardQuery
 
   def most_requested_services
     most_request = Variable.most_request
-
-    return {} unless most_request.present?
-
     most_requested_report = ::MostRequest.new(most_request, self)
     most_requested_report.chart_options
+  rescue
+    {}
   end
 
   def gender_info
