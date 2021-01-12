@@ -1,35 +1,17 @@
 class TicketTrackingByGenders < Report
-  def result
-    @result = group_count
-    self
-  end
-
-  def transform
-    {
-      colors: colors,
-      dataset: dataset
-    }
-  end
-
-  def colors
-    Gender::COLORS
-  end
-
   private
     def dataset
-      return {} unless @result
-
-      @result.transform_keys do |raw|
+      result_set.transform_keys do |raw|
         gender = @query.mapping_variable_value[raw]
         gender.mapping_value if gender.present?
       end
     end
 
-    def group_count
-      Message.filter(@query.options).unscope(:order)\
-        .where.not(gender: ["", "null"])\
-        .joins(:trackings)\
-        .group(:gender)\
-        .count
+    def result_set
+      scope = Message.filter(@query.options).unscope(:order)
+      scope = scope.where.not(gender: ["", "null"])
+      scope = scope.joins(:trackings)
+      scope = scope.group(:gender)
+      scope.count
     end
 end
