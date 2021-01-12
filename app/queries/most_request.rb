@@ -1,5 +1,9 @@
 class MostRequest < BasicReport
 
+  def chart_label
+    { label: I18n.t("welcomes.most_requested_services") }
+  end
+
   def dataset
     result_set.each_with_object({}) do |(key, count), hash|
       district, variable_value = find_objects_by(key)
