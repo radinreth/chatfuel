@@ -33,9 +33,7 @@ class DashboardQuery
   end
 
   def most_tracked_periodic
-    most_request = Variable.most_request
-    result = ::MostTrackedPeriodic.new(most_request, self).result
-    result.transform
+    ::MostTrackedPeriodic.new(nil, self).chart_options
   end
 
   def ticket_tracking_by_genders
