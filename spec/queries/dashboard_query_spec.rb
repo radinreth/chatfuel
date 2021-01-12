@@ -156,6 +156,12 @@ RSpec.describe DashboardQuery.new do
     end
   end
 
+  describe "#ticket_tracking_by_genders" do
+    it "returns hash that include :colors, :dataset as keys" do
+      expect(subject.ticket_tracking_by_genders).to include(:colors, :dataset)
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
