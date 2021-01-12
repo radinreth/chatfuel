@@ -17,9 +17,8 @@ class DashboardQuery
   end
 
   def gender_info
-    result = ::GenderInfo.new(nil, self).result
-
-    result.transform
+    gender_info_report = ::GenderInfo.new(nil, self)
+    gender_info_report.chart_options
   end
 
   def access_info
