@@ -1,7 +1,8 @@
 module Chart::ReportHelper
   def most_requested_services
     most_request = Variable.most_request
-    ::MostRequest.new(most_request, self).chart_options
+    most_requested_report = ::MostRequest.new(most_request, self)
+    most_requested_report.chart_options
   rescue
     {}
   end
