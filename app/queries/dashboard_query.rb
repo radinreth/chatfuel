@@ -17,20 +17,18 @@ class DashboardQuery
   end
 
   def gender_info
-    gender_info_report = ::GenderInfo.new(nil, self)
-    gender_info_report.chart_options
+    ::GenderInfo.new(nil, self).chart_options
   end
 
   def access_info
-    access_info_report = ::AccessInfo.new(nil, self)
-    access_info_report.chart_options
+    ::AccessInfo.new(nil, self).chart_options
   end
 
   def access_main_service
     main_service = Variable.service_accessed
-    result = ::AccessMainService.new(main_service, self).result
-
-    result.transform
+    ::AccessMainService.new(main_service, self).chart_options
+  rescue
+    {}
   end
 
   def most_tracked_periodic
