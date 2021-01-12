@@ -162,6 +162,23 @@ RSpec.describe DashboardQuery.new do
     end
   end
 
+  describe "#feedback_trend" do
+    context "WITHOUT feedback variable" do
+      it "returns empty hash" do
+        expect(subject.feedback_trend).to eq({})
+      end
+    end
+
+    context "WITH feedback variable" do
+      let(:variable) { build(:variable) }
+
+      it "returns hash that include :ratingLabels, :dataset as keys" do
+        allow(Variable).to receive(:feedback).and_return(variable)
+        expect(subject.feedback_trend).to include(:ratingLabels, :dataset)
+      end
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
