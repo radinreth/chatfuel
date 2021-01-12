@@ -1,19 +1,14 @@
 class OverallRating < Feedback
-  def result
-    @result = group_count
-    self
-  end
-
-  def transform
+  def chart_options
     {
-      ratingLabels: raw_dataset.keys,
-      dataset: tuned_dataset
+      ratingLabels: result_set_mapping.keys,
+      dataset: dataset
     }
   end
 
   private
-    def tuned_dataset
-      @values = raw_dataset.values
+    def dataset
+      @values = result_set_mapping.values
 
       display_values.map do |values|
         raw_value, mapping_value = values
@@ -25,10 +20,10 @@ class OverallRating < Feedback
       end
     end
 
-    def raw_dataset
-      return {} unless @result
+    def result_set_mapping
+      return {} unless result_set
 
-      @result.each_with_object({}).with_index do |((key, count), hash), index|
+      result_set.each_with_object({}).with_index do |((key, count), hash), index|
         district, variable_value = find_objects_by(key)
         location = district.send("name_#{I18n.locale}".to_sym)
 
@@ -37,7 +32,7 @@ class OverallRating < Feedback
       end
     end
 
-    def group_count
+    def result_set
       scope = StepValue.filter(@variable.step_values, @query.options)
       scope = scope.joins(:message)
       scope = scope.where(messages: { district_id: @query.district_codes_without_other })
