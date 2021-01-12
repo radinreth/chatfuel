@@ -14,8 +14,8 @@ class DashboardQuery
 
     return {} unless Variable.most_request
 
-    result = ::MostRequest.new(most_request, self).result
-    result.transform
+    most_requested_report = ::MostRequest.new(most_request, self)
+    most_requested_report.chart_options
   end
 
   def gender_info
