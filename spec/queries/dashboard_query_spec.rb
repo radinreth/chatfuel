@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe DashboardQuery.new do
+
+  describe "#most_requested_services" do
+    context "WITHOUT most_request variable" do
+      it "returns empty hash" do
+        expect(subject.most_requested_services).to eq({})
+      end
+    end
+
+    context "WITH most_request variable" do
+      let(:variable) { build(:variable) }
+
+      it "returns hash that include :colors, :dataset, :label as keys" do
+        allow(Variable).to receive(:most_request).and_return(variable)
+        expect(subject.most_requested_services).to include(:colors, :dataset, :label)
+      end
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
