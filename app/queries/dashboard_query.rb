@@ -47,8 +47,9 @@ class DashboardQuery
 
   def feedback_trend
     feedback = Variable.feedback
-    result = ::FeedbackTrend.new(feedback, self).result
-    result.transform
+    ::FeedbackTrend.new(feedback, self).chart_options
+  rescue
+    {}
   end
 
   def feedback_sub_categories
