@@ -36,6 +36,23 @@ RSpec.describe DashboardQuery.new do
     end
   end
 
+  describe "#access_main_service" do
+    context "WITHOUT service_accessed variable" do
+      it "returns empty hash" do
+        expect(subject.access_main_service).to eq({})
+      end
+    end
+
+    context "WITH service_accessed variable" do
+      let(:variable) { build(:variable) }
+
+      it "returns hash that include :colors, :dataset as keys" do
+        allow(Variable).to receive(:service_accessed).and_return(variable)
+        expect(subject.access_main_service).to include(:colors, :dataset)
+      end
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
