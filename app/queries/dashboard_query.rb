@@ -37,8 +37,7 @@ class DashboardQuery
   end
 
   def ticket_tracking_by_genders
-    result = ::TicketTrackingByGenders.new(nil, self).result
-    result.transform
+    ::TicketTrackingByGenders.new(nil, self).chart_options
   end
 
   def overall_rating
