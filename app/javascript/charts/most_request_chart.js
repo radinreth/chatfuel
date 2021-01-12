@@ -22,7 +22,7 @@ export const mostRequest = () => {
   };
 
   let max = _.max(counts)
-  let suggestedMax = Math.round( max * 1.4 )
+  let suggestedMax = Math.round( max * 2 )
 
   let options = {
     ...defaults.initOptions,
