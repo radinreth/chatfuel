@@ -27,7 +27,10 @@ export const feedbackTrend = () => {
       }
     },
     legend: {
-      display: true
+      display: true,
+      labels: {
+        boxWidth: 12
+      }
     },
     scales: {
       ...scales,

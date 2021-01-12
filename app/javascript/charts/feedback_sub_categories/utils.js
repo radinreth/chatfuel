@@ -30,7 +30,10 @@ const setOptions = (ds) => {
   return {
     ...defaults.initOptions,
     legend: {
-      display: true
+      display: true,
+      labels: {
+        boxWidth: 12
+      }
     },
     scales: setScale({ suggestedMax: getMax(data, { padding: 1.25 }) })
   }
