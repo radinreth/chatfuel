@@ -28,3 +28,5 @@ NUMBER_OF_SYNC_LOG=5
 
 # Shell with unicode support
 LANG=C.UTF-8
+
+ENDPOINT_URL=
