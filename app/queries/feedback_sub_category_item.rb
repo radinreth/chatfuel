@@ -1,17 +1,17 @@
 class FeedbackSubCategoryItem < FeedbackSubCategories
-  def transform
+  def chart_options
     @query.district_codes_without_other.each_with_object({}) do |district_id, hash|
       hash[district_id] ||= {}
       district = ::Pumi::District.find_by_id(district_id)
       hash[district_id][:locationName] = district.send("name_#{I18n.locale}".to_sym)
-      hash[district_id][:ratingLabels] = raw_dataset[district_id].keys rescue []
-      hash[district_id][:dataset] = tuned_dataset(district_id)
+      hash[district_id][:ratingLabels] = result_set_mapping[district_id].keys rescue []
+      hash[district_id][:dataset] = dataset(district_id)
     end
   end
 
   private
-    def tuned_dataset(key)
-      @values = raw_dataset[key].values rescue []
+    def dataset(key)
+      @values = result_set_mapping[key].values rescue []
 
       values.map.with_index do |mapping_value, index|
         {
@@ -22,13 +22,13 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
       end
     end
 
-    def raw_dataset
-      return {} unless @result
+    def result_set_mapping
+      return {} unless result_set
 
-      @result.each_with_object({}) do |(key, count), hash|
-        district_id, variable_id, value_id = key
-        variable = Variable.find(variable_id)
+      result_set.each_with_object({}) do |(key, count), hash|
+        variable_id, value_id, district_id = key
         variable_value = VariableValue.find(value_id)
+        variable = variable_value.variable
 
         hash[district_id] ||= {}
         hash[district_id][I18n.t(variable.name)] ||= {}
@@ -36,12 +36,8 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
       end
     end
 
-    def group_count
-      scope = StepValue.filter(StepValue.joins(:message), @query.options)
-      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
-      scope = scope.where(variable: [like, dislike])
-      scope = scope.group("messages.district_id")
-      scope = scope.group(:variable_id, :variable_value_id)
+    def result_set
+      scope = sql.group("messages.district_id")
       scope.count
     end
 end

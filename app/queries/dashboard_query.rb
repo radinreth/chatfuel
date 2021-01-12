@@ -55,6 +55,8 @@ class DashboardQuery
 
   def feedback_sub_categories
     categories_all.merge(categories_separate)
+  rescue
+    {}
   end
 
   def user_count
@@ -187,13 +189,11 @@ class DashboardQuery
 
   private
     def categories_all
-      result = ::FeedbackSubCategories.new(nil, self).result
-      result.transform
+      ::FeedbackSubCategories.new(nil, self).chart_options
     end
 
     def categories_separate
-      result = ::FeedbackSubCategoryItem.new(nil, self).result
-      result.transform
+      ::FeedbackSubCategoryItem.new(nil, self).chart_options
     end
 
     def all_district_codes
