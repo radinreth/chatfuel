@@ -23,9 +23,8 @@ class DashboardQuery
   end
 
   def access_info
-    result = ::AccessInfo.new(nil, self).result
-
-    result.transform
+    access_info_report = ::AccessInfo.new(nil, self)
+    access_info_report.chart_options
   end
 
   def access_main_service
