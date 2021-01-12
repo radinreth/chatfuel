@@ -25,6 +25,17 @@ RSpec.describe DashboardQuery.new do
     end
   end
 
+  describe "#access_info" do
+    let(:variable) { build(:variable) }
+    let(:message) { build(:message, :text) }
+    let(:step_value) { create(:step_value, message: message, variable: variable) }
+
+    it "returns hash that include :colors, :dataset as keys" do
+      allow(Variable).to receive(:service_accessed).and_return(variable)
+      expect(subject.access_info).to include(:colors, :dataset)
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
