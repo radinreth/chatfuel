@@ -43,8 +43,9 @@ class DashboardQuery
 
   def overall_rating
     feedback = Variable.feedback
-    result = ::OverallRating.new(feedback, self).result
-    result.transform
+    ::OverallRating.new(feedback, self).chart_options
+  rescue
+    {}
   end
 
   def feedback_trend
