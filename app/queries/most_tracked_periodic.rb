@@ -5,12 +5,9 @@ class MostTrackedPeriodic < BasicReport
       date, sector = key
       month = format_label(date)
 
-      hash[month] = {
-        value: replace_new_line(sector),
-        count: count
-      } if !hash[month] || hash[month][:count] < count
+    def label
+      { label: I18n.t("welcomes.most_requested_services") }
     end
-  end
 
   private
     def replace_new_line(str)

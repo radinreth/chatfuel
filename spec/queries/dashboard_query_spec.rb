@@ -150,6 +150,12 @@ RSpec.describe DashboardQuery.new do
     end
   end
 
+  describe "#most_tracked_periodic" do
+    it "returns hash that include :colors, :dataset, :label as keys" do
+      expect(subject.most_tracked_periodic).to include(:colors, :dataset, :label)
+    end
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
