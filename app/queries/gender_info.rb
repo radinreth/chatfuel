@@ -5,7 +5,7 @@ class GenderInfo < Report
 
   private
     def dataset
-      return {} unless @result
+      return {} unless @query.unique_by_genders
 
       @query.unique_by_genders.inject({}) do |memo, result|
         gender = @query.mapping_variable_value[result.gender]
