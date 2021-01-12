@@ -1,21 +1,16 @@
 class MostRequest < Report
-  def result
-    @result = group_count
-    self
-  end
-
-  def transform
-    {
-      label: I18n.t("welcomes.most_requested_services"),
-      colors: colors,
-      dataset: dataset
-    }
+  def chart_options
+    super.merge chart_label
   end
 
   private
 
+  def chart_label
+    { label: I18n.t("welcomes.most_requested_services") }
+  end
+
   def dataset
-    @result.each_with_object({}) do |(key, count), hash|
+    group_count.each_with_object({}) do |(key, count), hash|
       district, variable_value = find_objects_by(key)
       hash_key = district.send("name_#{I18n.locale}".to_sym)
 
