@@ -95,8 +95,7 @@ class DashboardQuery
   end
 
   def total_users_visit_by_category
-    user_visit_report = ::UserVisitEachFunction.new(nil, self)
-    user_visit_report.chart_options
+    ::UserVisitEachFunction.new(nil, self).chart_options
   end
 
   def total_users_visit_each_functions
@@ -112,8 +111,7 @@ class DashboardQuery
   end
 
   def users_by_genders
-    users_gender_report = ::UserByGender.new(nil, self)
-    users_gender_report.chart_options
+    ::UserByGender.new(nil, self).chart_options
   end
 
   def users_visited_by_each_genders
