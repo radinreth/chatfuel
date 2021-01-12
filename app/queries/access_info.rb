@@ -1,28 +1,15 @@
 class AccessInfo < Report
-  def result
-    @result = raw_result
-    self
-  end
-
-  def transform
-    {
-      colors: colors,
-      dataset: dataset
-    }
-  end
-
   private
     def dataset
-      return {} unless @result
-
-      @result
+      result_set.transform_keys { |k| format_label(k) }
     end
 
-    def raw_result
-      raw_result = Message.unscope(:order).\
-                      accessed(@query.options).\
-                      group_by_period(period, :created_at, format: "%b/%Y").count
-
-      raw_result.transform_keys { |k| format_label(k) }
+    def result_set
+      scope = Message.unscope(:order)
+      scope = scope.accessed(@query.options)
+      scope = scope.group_by_period(period, :created_at, format: "%b/%Y")
+      scope.count
+    rescue
+      {}
     end
 end
