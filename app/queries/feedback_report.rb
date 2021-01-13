@@ -27,7 +27,7 @@ class FeedbackReport < GenericReport
     Variable.find_by(name: 'feedback_dislike')
   end
 
-  def mapping(rs)
+  def accumulate_rating_each_variable(rs)
     rs.each_with_object({}) do |(key, count), hash|
       variable_id, value_id, district_id = key
       variable_value = VariableValue.find(value_id)
@@ -39,7 +39,7 @@ class FeedbackReport < GenericReport
     end
   end
 
-  def chart_item(mapping_value, index, data_values)
+  def dataset_item(mapping_value, index, data_values)
     {
       label: mapping_value,
       backgroundColor: colors[index],

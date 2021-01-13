@@ -6,7 +6,7 @@ class FeedbackSubCategories < FeedbackReport
 
     def dataset
       values.map.with_index do |mapping_value, index|
-        chart_item(mapping_value, index, data_values)
+        dataset_item(mapping_value, index, data_values)
       end
     end
 
@@ -15,7 +15,7 @@ class FeedbackSubCategories < FeedbackReport
     end
 
     def result_set_mapping
-      mapping(result_set)
+      accumulate_rating_each_variable(result_set)
     end
 
     def result_set
