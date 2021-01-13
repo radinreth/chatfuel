@@ -1,12 +1,9 @@
 class OverallRating < Feedback
-  def chart_options
-    {
-      ratingLabels: result_set_mapping.keys,
-      dataset: dataset
-    }
-  end
-
   private
+    def labels
+      result_set_mapping.keys
+    end
+
     def dataset
       @values = result_set_mapping.values
 

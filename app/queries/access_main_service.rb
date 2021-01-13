@@ -1,4 +1,4 @@
-class AccessMainService < Report
+class AccessMainService < BasicReport
   private
     def dataset
       result_set.transform_keys do |value_id|
