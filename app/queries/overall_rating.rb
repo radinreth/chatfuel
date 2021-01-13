@@ -1,4 +1,5 @@
 class OverallRating < Feedback
+<<<<<<< HEAD
   def chart_options
 <<<<<<< HEAD
     mapping.each_with_object({}) do |(pro, districts), hash|
@@ -49,7 +50,13 @@ class OverallRating < Feedback
     }
   end
 
+=======
+>>>>>>> Review pull request
   private
+    def labels
+      result_set_mapping.keys
+    end
+
     def dataset
       @values = result_set_mapping.values
 

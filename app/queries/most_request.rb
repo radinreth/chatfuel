@@ -1,6 +1,6 @@
 class MostRequest < BasicReport
 
-  def chart_label
+  def label
     { label: I18n.t("welcomes.most_requested_services") }
   end
 
