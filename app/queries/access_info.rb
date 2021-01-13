@@ -1,9 +1,9 @@
 class AccessInfo < BasicReport
-  private
-    def dataset
-      result_set.transform_keys { |k| format_label(k) }
-    end
+  def dataset
+    result_set.transform_keys { |k| format_label(k) }
+  end
 
+  private
     def result_set
       scope = Message.unscope(:order)
       scope = scope.accessed(@query.options)

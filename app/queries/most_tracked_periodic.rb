@@ -1,6 +1,6 @@
 class MostTrackedPeriodic < BasicReport
   def chart_options
-    super.merge(label, dataset: dataset)
+    super.merge label
   end
 
   private
