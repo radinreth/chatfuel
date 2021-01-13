@@ -12,12 +12,12 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
       @values = result_set_mapping[key].values rescue []
 
       values.map.with_index do |mapping_value, index|
-        chart_item(mapping_value, index, @values)
+        dataset_item(mapping_value, index, @values)
       end
     end
 
     def result_set_mapping
-      mapping(result_set)
+      accumulate_rating_each_variable(result_set)
     end
 
     def result_set
