@@ -3,7 +3,7 @@ import * as defaults from '../data/defaults'
 export const mostRequest = () => {
   let type = 'bar', plugins = [chartDataLabels];
 
-  let { label, colors, dataset } = gon.mostRequest;
+  let { colors, dataset } = gon.mostRequest;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -13,7 +13,7 @@ export const mostRequest = () => {
     datasets: [
       {
         ...defaults.initData.datasets[0],
-        label: label,
+        label: gon.most_requested_label,
         backgroundColor: colors,
         dataTitles: titles,
         data: counts,
