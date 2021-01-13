@@ -11,11 +11,15 @@ class OverallRating < Feedback
     def dataset(districts)
       satisfied.map do |status|
         {
-          label: I18n.t(status),
+          label: named_status(status),
           backgroundColor: colors_mapping[status],
           data: districts.keys.map { |district_name| districts[district_name][status] }
         }
       end
+    end
+
+    def named_status(status)
+      display_ratings.find_by(status: status)&.mapping_value || I18n.t(status)
     end
 
     def colors_mapping
@@ -44,11 +48,10 @@ class OverallRating < Feedback
     end
 
     def result_set
-      scope = StepValue.filter(@query.options, @variable.step_values)
-      scope = scope.joins(:session)
-      scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
-      scope = scope.group("sessions.province_id")
-      scope = scope.group("sessions.district_id")
+      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = scope.joins(:message)
+      scope = scope.where(messages: { district_id: @query.district_codes_without_other })
+      scope = scope.group("messages.district_id")
       scope = scope.group(:variable_value_id)
       scope.count
     end

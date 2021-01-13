@@ -4,10 +4,10 @@ export const feedbackTrend = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { ratingLabels, dataset } = gon.feedbackTrend;
+  let { labels, dataset } = gon.feedbackTrend;
 
   let data = {
-    labels: ratingLabels,
+    labels: labels,
     datasets: _.map(dataset, (el) => el)
   };
 

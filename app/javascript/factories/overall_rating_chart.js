@@ -4,10 +4,10 @@ export const overallRating = (ctx) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let { ratingLabels, dataset } = gon.overallRating;
+  let { labels, dataset } = gon.overallRating;
 
   let data = {
-    labels: ratingLabels,
+    labels: labels,
     datasets: _.map(dataset, (el) => el)
   };
 
