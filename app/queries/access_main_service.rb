@@ -1,12 +1,12 @@
 class AccessMainService < BasicReport
-  private
-    def dataset
-      result_set.transform_keys do |value_id|
-        value = VariableValue.find(value_id)
-        value.mapping_value
-      end
+  def dataset
+    result_set.transform_keys do |value_id|
+      value = VariableValue.find(value_id)
+      value.mapping_value
     end
-
+  end
+  
+  private
     def result_set
       scope = StepValue.filter(@variable.step_values, @query.options)
       scope = scope.joins(:message)
