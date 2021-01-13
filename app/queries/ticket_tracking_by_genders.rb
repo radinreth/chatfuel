@@ -11,6 +11,10 @@ class TicketTrackingByGenders < Report
     }
   end
 
+  def colors
+    Gender::COLORS
+  end
+
   private
     def dataset
       return {} unless @result
