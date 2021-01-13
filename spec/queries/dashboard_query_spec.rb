@@ -75,9 +75,9 @@ RSpec.describe DashboardQuery.new do
     context "WITH feedback variable" do
       let(:variable) { build(:variable) }
 
-      it "returns hash that include :ratingLabels, :dataset as keys" do
+      it "returns hash that include :labels, :dataset as keys" do
         allow(Variable).to receive(:feedback).and_return(variable)
-        expect(subject.feedback_trend).to include(:ratingLabels, :dataset)
+        expect(subject.feedback_trend).to include(:labels, :dataset)
       end
     end
   end
@@ -92,9 +92,9 @@ RSpec.describe DashboardQuery.new do
     context "WITH feedback variable" do
       let(:variable) { build(:variable) }
 
-      it "returns hash that include :ratingLabels, :dataset as keys" do
+      it "returns hash that include :labels, :dataset as keys" do
         allow(Variable).to receive(:feedback).and_return(variable)
-        expect(subject.overall_rating).to include(:ratingLabels, :dataset)
+        expect(subject.overall_rating).to include(:labels, :dataset)
       end
     end
   end
@@ -109,9 +109,9 @@ RSpec.describe DashboardQuery.new do
     xcontext "WITH feedback variable" do
       let(:variable) { build(:variable) }
 
-      it "returns hash that include :ratingLabels, :dataset, :locationName as keys" do
+      it "returns hash that include :labels, :dataset as keys" do
         allow(Variable).to receive(:feedback).and_return(variable)
-        expect(subject.feedback_sub_categories).to include(:ratingLabels, :dataset, :locationName)
+        expect(subject.feedback_sub_categories).to include(:labels, :dataset)
       end
     end
   end
