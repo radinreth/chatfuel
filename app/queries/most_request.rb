@@ -1,21 +1,7 @@
-class MostRequest < Report
-  def result
-    @result = group_count
-    self
-  end
-
-  def transform
-    {
-      label: I18n.t("welcomes.most_requested_services"),
-      colors: colors,
-      dataset: dataset
-    }
-  end
-
-  private
+class MostRequest < BasicReport
 
   def dataset
-    @result.each_with_object({}) do |(key, count), hash|
+    result_set.each_with_object({}) do |(key, count), hash|
       district, variable_value = find_objects_by(key)
       hash_key = district.send("name_#{I18n.locale}".to_sym)
 
@@ -26,11 +12,13 @@ class MostRequest < Report
     end
   end
 
+  private
+
   def replace_new_line(str)
     str.sub(/\s/, "\n")
   end
 
-  def group_count
+  def result_set
     scope = StepValue.filter(@variable.step_values, @query.options)
     scope = scope.joins(:message)
     scope = scope.where(messages: { district_id: @query.district_codes_without_other })

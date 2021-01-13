@@ -1,24 +1,17 @@
-class GenderInfo < Report
-  def result
-    @result = @query.unique_by_genders
-    self
+class GenderInfo < BasicReport
+  def colors
+    Gender::COLORS
   end
 
-  def transform
-    {
-      colors: Gender::COLORS,
-      dataset: dataset
-    }
-  end
+  def dataset
+    genders ||= @query.unique_by_genders
 
-  private
-    def dataset
-      return {} unless @result
+    return {} unless genders.present?
 
-      @result.inject({}) do |memo, result|
-        gender = @query.mapping_variable_value[result.gender]
-        memo[gender.mapping_value] = result.gender_count if gender.present?
-        memo
-      end
+    genders.inject({}) do |memo, result|
+      gender = @query.mapping_variable_value[result.gender]
+      memo[gender.mapping_value] = result.gender_count if gender.present?
+      memo
     end
+  end
 end

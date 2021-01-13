@@ -1,4 +1,5 @@
 class DashboardQuery
+  include Chart::ReportHelper
   attr_reader :options
 
   def initialize(options = {})
@@ -6,61 +7,6 @@ class DashboardQuery
     platform = platform_param[@options[:platform].try(:to_sym)]
     @options[:platform_name] = ["Messenger", "Telegram", "Verboice"]
     @options.merge!(platform) if platform.present?
-  end
-
-  def most_requested_services
-    most_request = Variable.most_request
-
-    return {} unless most_request.present?
-
-    result = ::MostRequest.new(most_request, self).result
-    result.transform
-  end
-
-  def gender_info
-    result = ::GenderInfo.new(nil, self).result
-
-    result.transform
-  end
-
-  def access_info
-    result = ::AccessInfo.new(nil, self).result
-
-    result.transform
-  end
-
-  def access_main_service
-    main_service = Variable.service_accessed
-    result = ::AccessMainService.new(main_service, self).result
-
-    result.transform
-  end
-
-  def most_tracked_periodic
-    most_request = Variable.most_request
-    result = ::MostTrackedPeriodic.new(most_request, self).result
-    result.transform
-  end
-
-  def ticket_tracking_by_genders
-    result = ::TicketTrackingByGenders.new(nil, self).result
-    result.transform
-  end
-
-  def overall_rating
-    feedback = Variable.feedback
-    result = ::OverallRating.new(feedback, self).result
-    result.transform
-  end
-
-  def feedback_trend
-    feedback = Variable.feedback
-    result = ::FeedbackTrend.new(feedback, self).result
-    result.transform
-  end
-
-  def feedback_sub_categories
-    categories_all.merge(categories_separate)
   end
 
   def user_count
@@ -92,22 +38,12 @@ class DashboardQuery
     Message.filter(@options)
   end
 
-  def total_users_visit_by_category
-    user_visit_report = ::UserVisitEachFunction.new(nil, self)
-    user_visit_report.chart_options
-  end
-
   def total_users_visit_each_functions
     result = StepValue.total_users_visit_each_functions(@options)
 
     return {} if result.blank?
 
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
-  end
-
-  def users_by_genders
-    users_gender_report = ::UserByGender.new(nil, self)
-    users_gender_report.chart_options
   end
 
   def users_visited_by_each_genders
@@ -141,11 +77,6 @@ class DashboardQuery
     default
   end
 
-  def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
-  end
-
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 
@@ -154,11 +85,6 @@ class DashboardQuery
 
   def total_users_feedback
     StepValue.total_users_feedback(@options)
-  end
-
-  def users_feedback
-    users_feedback_report = ::UserFeedback.new(nil, self)
-    users_feedback_report.chart_options
   end
 
   def most_requested_service
@@ -194,16 +120,6 @@ class DashboardQuery
   end
 
   private
-    def categories_all
-      result = ::FeedbackSubCategories.new(nil, self).result
-      result.transform
-    end
-
-    def categories_separate
-      result = ::FeedbackSubCategoryItem.new(nil, self).result
-      result.transform
-    end
-
     def all_district_codes
       location = Variable.location
       return [] unless location

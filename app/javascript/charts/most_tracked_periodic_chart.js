@@ -1,7 +1,7 @@
 import * as defaults from '../data/defaults'
 
 export const extractData = (raw) => {
-  let { label, colors, dataset } = raw;
+  let { colors, dataset } = raw;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -11,7 +11,7 @@ export const extractData = (raw) => {
     datasets: [
       {
         ...defaults.initData.datasets[0],
-        label: label,
+        label: gon.most_tracked_label,
         backgroundColor: colors,
         dataTitles: titles,
         data: counts,
