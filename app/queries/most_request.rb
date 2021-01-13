@@ -1,11 +1,11 @@
-class MostRequest < Report
+class MostRequest < BasicReport
   def chart_options
-    super.merge chart_label
+    super.merge label
   end
 
   private
 
-  def chart_label
+  def label
     { label: I18n.t("welcomes.most_requested_services") }
   end
 

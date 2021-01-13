@@ -1,4 +1,4 @@
-class TicketTrackingByGenders < Report
+class TicketTrackingByGenders < BasicReport
   private
     def dataset
       result_set.transform_keys do |raw|

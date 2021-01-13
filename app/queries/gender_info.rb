@@ -1,4 +1,4 @@
-class GenderInfo < Report
+class GenderInfo < BasicReport
   def colors
     Gender::COLORS
   end

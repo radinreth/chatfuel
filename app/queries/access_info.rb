@@ -1,4 +1,4 @@
-class AccessInfo < Report
+class AccessInfo < BasicReport
   private
     def dataset
       result_set.transform_keys { |k| format_label(k) }

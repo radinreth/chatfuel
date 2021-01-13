@@ -1,4 +1,4 @@
-class Feedback < Report
+class Feedback < GenericReport
   COLORS = %w(#f63e3e #ffbc00 #1cc88a)
 
   private
