@@ -11,11 +11,15 @@ class OverallRating < Feedback
     def dataset(districts)
       satisfied.map do |status|
         {
-          label: I18n.t(status),
+          label: named_status(status),
           backgroundColor: colors_mapping[status],
           data: districts.keys.map { |district_name| districts[district_name][status] }
         }
       end
+    end
+
+    def named_status(status)
+      display_ratings.find_by(status: status)&.mapping_value || I18n.t(status)
     end
 
     def colors_mapping
