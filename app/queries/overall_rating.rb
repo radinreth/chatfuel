@@ -1,5 +1,6 @@
 class OverallRating < Feedback
 <<<<<<< HEAD
+<<<<<<< HEAD
   def chart_options
 <<<<<<< HEAD
     mapping.each_with_object({}) do |(pro, districts), hash|
@@ -56,20 +57,26 @@ class OverallRating < Feedback
     def labels
       result_set_mapping.keys
     end
+=======
+  def labels
+    result_set_mapping.keys
+  end
+>>>>>>> Move #dataset, #colors, #labels to public
 
-    def dataset
-      @values = result_set_mapping.values
+  def dataset
+    @values = result_set_mapping.values
 
-      display_values.map do |values|
-        raw_value, mapping_value = values
-        {
-          label: mapping_value,
-          backgroundColor: colors_mapping[raw_value],
-          data: @values.map { |raw| raw[mapping_value] || 0 }
-        }
-      end
+    display_values.map do |values|
+      raw_value, mapping_value = values
+      {
+        label: mapping_value,
+        backgroundColor: colors_mapping[raw_value],
+        data: @values.map { |raw| raw[mapping_value] || 0 }
+      }
     end
+  end
 
+  private
     def result_set_mapping
       return {} unless result_set
 
