@@ -4,9 +4,11 @@ class GenderInfo < BasicReport
   end
 
   def dataset
-    return {} unless @query.unique_by_genders
+    genders ||= @query.unique_by_genders
 
-    @query.unique_by_genders.inject({}) do |memo, result|
+    return {} unless genders.present?
+
+    genders.inject({}) do |memo, result|
       gender = @query.mapping_variable_value[result.gender]
       memo[gender.mapping_value] = result.gender_count if gender.present?
       memo
