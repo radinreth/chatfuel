@@ -19,7 +19,8 @@ export const overallRating = () => {
   let options = {
     ...defaults.initOptions,
     legend: {
-      display: true
+      display: true,
+      labels: { boxWidth: 12 }
     },
     scales: {
       ...scales,
