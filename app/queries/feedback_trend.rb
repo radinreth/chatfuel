@@ -1,24 +1,20 @@
 class FeedbackTrend < Feedback
-
+  def labels
+    result_set_mapping.keys
+  end
+  
+  def dataset
+    display_values.map.with_index do |values|
+      raw_value, mapping_value = values
+      {
+        label: mapping_value,
+        backgroundColor: colors_mapping[raw_value],
+        data: result_set_mapping.values.map { |raw| raw[mapping_value] || 0 }
+      }
+    end
+  end
+  
   private
-
-    def labels
-      result_set_mapping.keys
-    end
-
-    def dataset
-      @values = result_set_mapping.values
-
-      display_values.map.with_index do |values|
-        raw_value, mapping_value = values
-        {
-          label: mapping_value,
-          backgroundColor: colors_mapping[raw_value],
-          data: @values.map { |raw| raw[mapping_value] || 0 }
-        }
-      end
-    end
-
     def result_set_mapping
       return {} unless result_set
 

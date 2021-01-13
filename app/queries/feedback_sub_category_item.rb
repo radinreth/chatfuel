@@ -7,15 +7,15 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
     end
   end
 
-  private
-    def dataset(key)
-      @values = result_set_mapping[key].values rescue []
-
-      values.map.with_index do |mapping_value, index|
-        dataset_item(mapping_value, index, @values)
-      end
+  def dataset(key)
+    @values = result_set_mapping[key].values rescue []
+    
+    values.map.with_index do |mapping_value, index|
+      dataset_item(mapping_value, index, @values)
     end
-
+  end
+  
+  private
     def result_set_mapping
       accumulate_rating_each_variable(result_set)
     end

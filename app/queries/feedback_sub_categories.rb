@@ -1,15 +1,15 @@
 class FeedbackSubCategories < FeedbackReport
+  def labels
+    result_set_mapping["all"].keys
+  end
+  
+  def dataset
+    values.map.with_index do |mapping_value, index|
+      dataset_item(mapping_value, index, data_values)
+    end
+  end
+  
   private
-    def labels
-      result_set_mapping["all"].keys
-    end
-
-    def dataset
-      values.map.with_index do |mapping_value, index|
-        dataset_item(mapping_value, index, data_values)
-      end
-    end
-
     def data_values
       result_set_mapping["all"].values
     end

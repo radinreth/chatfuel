@@ -8,6 +8,8 @@ class Report
     { dataset: dataset }
   end
 
+  def dataset; raise 'must be implemented in subclass' end
+
   private
 
   def find_objects_by(key)
@@ -39,6 +41,4 @@ class Report
   def districts
     @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
   end
-
-  def dataset; raise 'must be implemented in subclass' end
 end

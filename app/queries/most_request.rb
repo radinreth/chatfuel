@@ -3,12 +3,6 @@ class MostRequest < BasicReport
     super.merge label
   end
 
-  private
-
-  def label
-    { label: I18n.t("welcomes.most_requested_services") }
-  end
-
   def dataset
     group_count.each_with_object({}) do |(key, count), hash|
       district, variable_value = find_objects_by(key)
@@ -19,6 +13,12 @@ class MostRequest < BasicReport
         count: count
       } if !hash[hash_key] || hash[hash_key][:count] < count
     end
+  end
+
+  private
+
+  def label
+    { label: I18n.t("welcomes.most_requested_services") }
   end
 
   def replace_new_line(str)
