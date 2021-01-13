@@ -8,6 +8,7 @@ class MostTrackedPeriodic < BasicReport
     def label
       { label: I18n.t("welcomes.most_requested_services") }
     end
+  end
 
   private
     def replace_new_line(str)

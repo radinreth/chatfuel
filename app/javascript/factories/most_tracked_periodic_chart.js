@@ -1,10 +1,7 @@
 import * as defaults from '../data/defaults'
 
-export const mostTrackedPeriodic = ( collection = null) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
-
-  let { label, colors, dataset } = collection || gon.mostTrackedPeriodic;
+export const extractData = (raw) => {
+  let { colors, dataset } = raw;
   let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
   let titles = _.map(values, el => el.value);
   let counts = _.map(values, el => el.count);
@@ -14,7 +11,7 @@ export const mostTrackedPeriodic = ( collection = null) => {
     datasets: [
       {
         ...defaults.initData.datasets[0],
-        label: label,
+        label: gon.most_tracked_label,
         backgroundColor: colors,
         dataTitles: titles,
         data: counts,
