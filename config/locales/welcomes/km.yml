@@ -4,7 +4,7 @@ km:
     search: ស្វែងរក
     summary: សង្ខេប
     access_info: ព័ត៌មានចូលប្រើ
-    citizen_feedback: មតិប្រជាពលរដ្ឋ
+    citizen_feedback: មតិយោបល់ប្រជាពលរដ្ឋ
     province: ខេត្ត
     districts: ស្រុក
     time_period: ពេលវេលា
@@ -16,9 +16,9 @@ km:
     most_service_tracked_by_periodic: សេវាកម្មភាគច្រើនតាមដានតាម
     ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
     overall_rating_by_owso: ការវាយតម្លៃរួមដោយការិយាល័យច្រកចេញចូលតែមួយ
-    owso_feedback_trend: មតិប្រតិកម្ម OWSO
+    owso_feedback_trend: មតិស្ថាបនា OWSO
     feedback_by_sub_categories: មតិយោបល់តាមប្រភេទរងក្នុង%{name}
     overall_citizen_feedback: មតិយោបល់របស់ប្រជាពលរដ្ឋទូទៅ
-    feedback_by_gender: មតិត្រឡប់តាមភេទ
-    total_user_feedback: មតិអ្នកប្រើសរុប
+    feedback_by_gender: មតិយោបល់តាមភេទ
+    total_user_feedback: មតិយោបល់អ្នកប្រើសរុប
     chat_with_us: សូមជជែកជាមួយយើងខ្ញុំ!
