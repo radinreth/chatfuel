@@ -14,6 +14,7 @@ const setScale = ({ suggestedMax }) => {
     }],
     xAxes: [{
       ...scales.xAxes[0],
+      maxBarThickness: 50,
       ticks: {
         maxRotation: 0,
         minRotation: 0,
