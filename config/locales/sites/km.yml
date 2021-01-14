@@ -18,7 +18,7 @@ km:
     whitelist_example: 'ឧទាហរណ៍: * ឬ 192.168.1.1; 192.168.1.2 (ប្រើប្រាស់ សញ្ញាក្បៀស សម្រាប់ IP ច្រើន)'
     detail: ព័ត៌មានលំអិត
     view_detail: មើលព័ត៌មានលំអិត
-    sub_category_detail: មតិប្រតិកម្មលំអិតតាមប្រភេទរងនៅក្នុង%{province}
+    sub_category_detail: មតិយោបល់លំអិតតាមប្រភេទរងនៅក្នុង%{province}
     province: ខេត្ត
     code: លេខកូដ
     track_count: ចំនួនតាមដាន
