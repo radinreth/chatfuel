@@ -42,7 +42,9 @@ class WelcomesController < PublicAccessController
 
     def set_gon
       @gon_data = Gonify.new(@query).chart_data
-      gon.push(@gon_data, t_gon)
+      @gon_data.merge!(t_gon)
+
+      gon.push(@gon_data)
     end
 
     def default_start_date
