@@ -170,7 +170,7 @@ km:
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
     district: ស្រុក
     all_province: គ្រប់ខេត្ត
-    all_district: គ្រប់ស្រុក
+    all_district: គ្រប់ស្រុក/ក្រុង
     all: គ្រប់ខេត្ត/ក្រុង
     location: ទីតាំង
   reports:
