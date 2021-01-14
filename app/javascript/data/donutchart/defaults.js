@@ -31,6 +31,7 @@ const options = {
   layout: {
     padding: {
       top: 15,
+      bottom: 15
     }
   },
   legend: {
