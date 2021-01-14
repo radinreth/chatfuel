@@ -1,6 +1,6 @@
-export const feedbackTrend = ({ ratingLabels, dataset }) => {
+export const feedbackTrend = ({ labels, dataset }) => {
   return {
-    labels: ratingLabels,
+    labels: labels,
     datasets: _.map(dataset, (el) => el)
   };
 }
