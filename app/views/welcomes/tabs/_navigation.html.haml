@@ -10,3 +10,19 @@
       %li.nav-item
         %a#citizen-feedback-tab.nav-link{tabindex: 10, "aria-controls" => "citizen-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#citizen-feedback", :role => "tab"}
           = t("welcomes.citizen_feedback")
+
+    %ul.list-inline
+      %li.list-inline-item
+        = f.radio_button :gender, 0
+        all
+      %li.list-inline-item
+        = f.radio_button :gender, 0
+        female
+      %li.list-inline-item
+        = f.radio_button :gender, 0
+        male
+      %li.list-inline-item
+        = f.radio_button :gender, 0
+        other
+
+      -# = f.input_field :gender, as: :radio_buttons, label: false, collection: [['0', 'all'], ['1', 'female'], ['2', 'male'], ['3', 'other']], label_method: :second, value_method: :first
