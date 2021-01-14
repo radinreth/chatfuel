@@ -1,7 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-import { extractData as e1 } from '../charts/access_info_chart';
-import { extractData as e2 } from '../charts/most_tracked_periodic_chart';
+import formater from '../data/formater'
 import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
@@ -70,40 +69,32 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onChangePeriod() {
-    $(document).on("change", ".access-period", function() {
+    $(document).on("change", ".period-filter", function() {
+      let path = $(this).data("resourcepath");
+      let url = `/welcomes/q/${path}`;
+
       let option = {
-        url: '/welcomes/q/access-info',
-        self: this,
-        extractor: e1,
-        canvasId: "chart_information_access_by_period"
+        url: url,
+        target: this,
+        extractor: formater[$(this).data("formater")],
+        canvasId: $(this).data("canvasid")
       }
 
-      fetchResultSet(option)
-    })
-
-    $(document).on("change", ".track-period", function() {
-      let option = {
-        url: '/welcomes/q/service-tracked',
-        self: this,
-        extractor: e2,
-        canvasId: "chart_most_service_tracked_periodically"
-      }
-
-      fetchResultSet(option)
-    })
+      fetchResultSet(option);
+    });
   }
 
-  function fetchResultSet(option) {
-    let period = $(option.self).val()
+  function fetchResultSet({ url, target, extractor, canvasId }) {
+    let period = $(target).val()
     let serializedParams = $('#q').serialize()+`&period=${period}`
-    let header = $(option.self).closest(".card-header");
+    let header = $(target).closest(".card-header");
     let $spin = $(header.next().find(".loading")[0]);
 
     loading($spin);
-    let chart = findChartInstance(option.canvasId)
+    let chart = findChartInstance(canvasId)
 
-    $.get(option.url, serializedParams, function(result) {
-      chart.data = option.extractor(result);
+    $.get(url, serializedParams, function(result) {
+      chart.data = extractor(result);
       let max = _.max(chart.data.datasets[0].data);
       let suggestedMax = Math.round( max * 1.40 );
       chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;

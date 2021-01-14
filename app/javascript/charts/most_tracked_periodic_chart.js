@@ -1,30 +1,11 @@
 import * as defaults from '../data/defaults'
-
-export const extractData = (raw) => {
-  let { colors, dataset } = raw;
-  let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
-  let titles = _.map(values, el => el.value);
-  let counts = _.map(values, el => el.count);
-
-  return {
-    labels: dataLabels,
-    datasets: [
-      {
-        ...defaults.initData.datasets[0],
-        label: gon.most_tracked_label,
-        backgroundColor: colors,
-        dataTitles: titles,
-        data: counts,
-      }
-    ]
-  };
-}
+import formater from '../data/formater'
 
 export const mostTrackedPeriodic = ( collection = null) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let data = extractData(collection || gon.mostTrackedPeriodic);
+  let data = formater.mostServiceTracked(collection || gon.mostTrackedPeriodic);
   let { scales } = defaults.initOptions
   let max = _.max(data.datasets[0].data)
   let suggestedMax = Math.round( max * 1.40 )

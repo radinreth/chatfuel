@@ -1,26 +1,11 @@
 import * as defaults from '../data/defaults'
-
-export const extractData = (raw) => {
-  let { colors, dataset } = raw;
-  let [monthLabels, values] = [_.keys(dataset), _.values(dataset)];
-
-  return {
-    labels: monthLabels,
-    datasets: [
-      {
-        ...defaults.initData.datasets[0],
-        backgroundColor: colors,
-        data: values,
-      }
-    ]
-  };
-}
+import formater from '../data/formater'
 
 export const accessInfo = (collection = null) => {
   let type = 'bar', 
       plugins = [chartDataLabels];
 
-  let data = extractData(collection || gon.accessInfo);
+  let data = formater.accessInfo(collection || gon.accessInfo);
   let { scales } = defaults.initOptions
   let max = _.max(data.datasets[0].data)
   let suggestedMax = Math.round( max * 1.2 )
