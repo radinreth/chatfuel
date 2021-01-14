@@ -12,9 +12,9 @@ RSpec.describe DashboardQuery.new do
     context "WITH most_request variable" do
       let(:variable) { build(:variable) }
 
-      it "returns hash that include :colors, :dataset, :label as keys" do
+      it "returns hash that include :colors, :dataset as keys" do
         allow(Variable).to receive(:most_request).and_return(variable)
-        expect(subject.most_requested_services).to include(:colors, :dataset, :label)
+        expect(subject.most_requested_services).to include(:colors, :dataset)
       end
     end
   end
@@ -54,8 +54,8 @@ RSpec.describe DashboardQuery.new do
   end
 
   describe "#most_tracked_periodic" do
-    it "returns hash that include :colors, :dataset, :label as keys" do
-      expect(subject.most_tracked_periodic).to include(:colors, :dataset, :label)
+    it "returns hash that include :colors, :dataset as keys" do
+      expect(subject.most_tracked_periodic).to include(:colors, :dataset)
     end
   end
 
