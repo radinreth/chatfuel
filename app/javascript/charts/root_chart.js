@@ -9,7 +9,7 @@ import { feedbackTrend } from './feedback_trend_chart';
 import { feedbackSubCategories } from './feedback_sub_categories_chart';
 import { userVisit } from './total_user_visit_by_category_chart';
 import { totalUserFeedback } from './total_user_feedback_chart';
-import { totalUserByGender } from './total_user_by_gender_chart';
+import { userGender } from './total_user_by_gender_chart';
 
 export const renderChart = function () {
   OWSO.Util.chartReg();
@@ -20,6 +20,7 @@ export const renderChart = function () {
   feedbackSubCategories(ctx, gon.feedbackSubCategories);
 
   userVisit.render();
+  userGender.render();
 }
 
 const charts = [  mostRequest, 
@@ -30,5 +31,4 @@ const charts = [  mostRequest,
                   ticketTrackingByGenders,
                   overallRating,
                   feedbackTrend,
-                  totalUserFeedback,
-                  totalUserByGender ];
+                  totalUserFeedback];
