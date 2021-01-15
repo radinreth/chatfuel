@@ -36,15 +36,21 @@ class BaseChart {
     }
   }
 
-  render = (opts = {}) => {
-    let options = (opts['watermark'] == false) ? this.options : _.extend(this.options, this.watermarkOption);
+  config = (opts = {}) => {
+    let options = (opts['watermark'] == false) ? this.options : this.optionsWithWatermark();
 
-    new Chart(this.chartId, {
+    return {
       type: this.type,
       plugins: this.plugins,
       options: options,
       data: this.dataset()
-    });
+    }
+  };
+
+  optionsWithWatermark = () => _.extend(this.options, this.watermarkOption);
+
+  render = (opts = {}) => {
+    new Chart(this.chartId, this.config(opts));
   };
 }
 
