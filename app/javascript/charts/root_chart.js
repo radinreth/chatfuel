@@ -7,7 +7,7 @@ import { ticketTrackingByGenders } from './ticket_tracking_by_genders_chart';
 import { overallRating } from './overall_rating_chart';
 import { feedbackTrend } from './feedback_trend_chart';
 import { feedbackSubCategories } from './feedback_sub_categories_chart';
-import { totalUserVisitByCategory } from './total_user_visit_by_category_chart';
+import { userVisit } from './total_user_visit_by_category_chart';
 import { totalUserFeedback } from './total_user_feedback_chart';
 import { totalUserByGender } from './total_user_by_gender_chart';
 
@@ -18,6 +18,8 @@ export const renderChart = function () {
 
   let ctx = 'chart_feedback_by_sub_category';
   feedbackSubCategories(ctx, gon.feedbackSubCategories);
+
+  userVisit.render();
 }
 
 const charts = [  mostRequest, 
@@ -28,6 +30,5 @@ const charts = [  mostRequest,
                   ticketTrackingByGenders,
                   overallRating,
                   feedbackTrend,
-                  totalUserVisitByCategory,
                   totalUserFeedback,
                   totalUserByGender ];
