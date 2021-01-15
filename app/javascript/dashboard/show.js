@@ -1,6 +1,7 @@
 import { userVisit } from '../charts/total_user_visit_by_category_chart'
 import { userGender } from '../charts/total_user_by_gender_chart'
-import { totalUserFeedback } from '../charts/total_user_feedback_chart'
+import { userFeedback } from '../charts/total_user_feedback_chart'
+
 import { ticketTracking } from '../charts/ticket_tracking_chart'
 import { overview } from '../charts/overview_chart'
 
@@ -23,8 +24,8 @@ OWSO.DashboardShow = (() => {
 
     userVisit.render({watermark: false});
     userGender.render({watermark: false});
-    totalUserFeedback()
-    
+    userFeedback.render({watermark: false})
+
     ticketTracking()
     overview()
   }
