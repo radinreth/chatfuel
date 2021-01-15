@@ -39,7 +39,7 @@ class BaseChart {
   render = (opts = {}) => {
     let options = (opts['watermark'] == false) ? this.options : _.extend(this.options, this.watermarkOption);
 
-    new Chart('chart_total_user_visit', {
+    new Chart(this.chartId, {
       type: this.type,
       plugins: this.plugins,
       options: options,
