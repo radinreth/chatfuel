@@ -3,6 +3,12 @@ import stamp from "../images/stamp.png";
 class BaseChart {
   plugins = [chartDataLabels];
   baseOptions = {
+    layout: {
+      padding: {
+        bottom: 15,
+        top: 15,
+      }
+    },
     legend: { display: false },
     plugins: {
       datalabels: {
