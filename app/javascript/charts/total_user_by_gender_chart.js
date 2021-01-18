@@ -1,24 +1,9 @@
-import { sum } from '../utils/array'
 import DonutChart from './donut_chart'
+import { extractDonutDataset } from '../utils'
 
 class UserGender extends DonutChart {
   chartId = "total_user_gender";
-
-  dataset = () => {
-    let { colors, dataset } = gon.totalUserByGender;
-    let [labels, values] = [_.keys(dataset), _.values(dataset)];
-
-    return {
-      labels: labels,
-      total: sum(values),
-      datasets: [
-        {
-          backgroundColor: colors,
-          data: values,
-        }
-      ]
-    };
-  }
+  dataset = () => extractDonutDataset(gon.totalUserByGender);
 }
 
 export const userGender = new UserGender();

@@ -1,5 +1,5 @@
-import { sum } from '../utils/array'
 import DonutChart from './donut_chart'
+import { extractDonutDataset } from '../utils'
 
 class UserFeedback extends DonutChart {
   render = (opts) => {
@@ -9,21 +9,7 @@ class UserFeedback extends DonutChart {
     });
   }
 
-  dataset = () => {
-    let { colors, dataset } = gon.totalUserFeedback;
-    let [labels, values] = [_.keys(dataset), _.values(dataset)];
-
-    return {
-      labels: labels,
-      total: sum(values),
-      datasets: [
-        {
-          backgroundColor: colors,
-          data: values,
-        }
-      ]
-    };
-  }
+  dataset = () => extractDonutDataset(gon.totalUserFeedback);
 }
 
 export const userFeedback = new UserFeedback();
