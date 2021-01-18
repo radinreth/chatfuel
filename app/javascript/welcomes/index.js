@@ -29,12 +29,13 @@ OWSO.WelcomesIndex = (() => {
   function ssbInterceptor() {
     $(".ssb-icon").click(function(){
       let site = $(this).data("site");
+      let csrfToken = $("meta[name=csrf-token]")[0].content;
 
       $.ajax({
         url: '/api/v1/social_shares',
         type: 'post',
         data: {social_share: {site_name: site}},
-        headers: { Authorization: 'Token token=abc123' },
+        headers: { Authorization: `Token token=${csrfToken}` },
         dataType: 'json',
         success: function (data) {
           console.info("result: ", data);

@@ -19,7 +19,7 @@ module Api
 
       def restrict_access
         authenticate_or_request_with_http_token do |token, _options|
-          token == ENV["TOKEN"]
+          token == session[:_csrf_token]
         end
       end
     end
