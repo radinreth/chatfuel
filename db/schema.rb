@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_014012) do
+ActiveRecord::Schema.define(version: 2021_01_18_063937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -169,6 +169,12 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.string "name_km"
     t.index ["deleted_at"], name: "index_sites_on_deleted_at"
     t.index ["name_en"], name: "index_sites_on_name_en"
+  end
+
+  create_table "social_shares", force: :cascade do |t|
+    t.string "site_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "step_values", force: :cascade do |t|
