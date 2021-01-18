@@ -181,11 +181,20 @@
     z-index: 1000;
     left: 0;
     transition: all 0.1s ease-in;
+    text-align: center;
 
     @media (max-width: 576px) {
       padding-left: 0;
       left: -32px;
     }
+  }
+
+  .share-icon {
+    padding: 7px 11px;
+    display: inline-block;
+    background: #c1c1c1;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
   
   .chat-with-us {
