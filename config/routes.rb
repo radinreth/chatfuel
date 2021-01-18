@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       put :me, controller: "sites", action: "check"
       concerns :api_base
+      resources :social_shares, only: [:create]
     end
   end
 
