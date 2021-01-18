@@ -15,6 +15,7 @@ RSpec.describe Api::V1::SocialSharesController do
 
   context "WITH valid TOKEN" do
     before do
+      request.session["_csrf_token"] = "abc123"
       request.headers["Authorization"] = "Token token=abc123"
     end
 
