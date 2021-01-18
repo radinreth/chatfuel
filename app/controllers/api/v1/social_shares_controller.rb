@@ -1,6 +1,6 @@
 module Api
   module V1
-    class SocialSharesController < ApplicationController
+    class SocialSharesController < ::ActionController::Base
       def create
         social_share = SocialShare.new(social_share_params)
 
@@ -15,12 +15,6 @@ module Api
 
       def social_share_params
         params.require(:social_share).permit(:site_name)
-      end
-
-      def restrict_access
-        authenticate_or_request_with_http_token do |token, _options|
-          token == session[:_csrf_token]
-        end
       end
     end
   end
