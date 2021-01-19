@@ -1,4 +1,5 @@
 require("@rails/ujs").start()
+global.Rails = Rails
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
@@ -15,7 +16,6 @@ require('packs/social-share-button.js.erb')
 window._ = require("underscore")
 
 require('application/pumi')
-window._ = require("underscore")
 
 import "bootstrap-toggle/js/bootstrap-toggle"
 

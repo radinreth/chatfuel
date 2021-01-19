@@ -23,6 +23,14 @@ OWSO.WelcomesIndex = (() => {
     onClickTabNavigation();
     onChangePeriod();
     onLoadPopup();
+    onGenderChange();
+  }
+
+  function onGenderChange() {
+    $(".q-gender").change(function(){
+      loading( $(".loading") );
+      Rails.fire(this.form, "submit");
+    });
   }
 
   function onLoadPopup() {
