@@ -18,7 +18,7 @@
       #logo-container.mb-5
         .container
           .text-center
-            = render partial: "welcomes/logo", locals: { tabindex: 1 }
+            = render partial: "welcomes/logo", locals: { tabindex: 1, id: "link-to-usaid-logo" }
       = yield
     
     - if Rails.env.production?
