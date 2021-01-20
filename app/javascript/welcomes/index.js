@@ -143,6 +143,7 @@ OWSO.WelcomesIndex = (() => {
       } else {
         $("#show-districts").text(gon.all);
         $("#q_districts").val("");
+        $(".tooltip-district").attr("data-original-title", "");
       }
 
       $("#districtsModal").modal("hide");
