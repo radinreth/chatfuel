@@ -80,6 +80,6 @@
                 %span{ data: { toggle: "tooltip", title: full_district_list_name } }
                   = show_location_detail
                 &middot;
-                = link_to t("sites.view_detail"), "#", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
+                = link_to t("sites.view_detail"), "#", id: "link-view-detail", role: "link", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
       
