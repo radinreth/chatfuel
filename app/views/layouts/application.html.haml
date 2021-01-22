@@ -3,13 +3,13 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title OW4C | InSTEDD iLab Southeast Asia
-    = Gon::Base.render_data
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body{ id: css_class_name }
+    = Gon::Base.render_data
     #wrapper.d-flex.h-100
       = render "shared/sb-admin/sidebar"
 
