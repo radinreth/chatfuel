@@ -33,6 +33,7 @@ class Session < ApplicationRecord
 
   # TODO: reference session
   has_many :step_values, dependent: :destroy
+  has_many :trackings, dependent: :destroy
 
   default_scope -> { order(updated_at: :desc) }
 
@@ -45,16 +46,36 @@ class Session < ApplicationRecord
   after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
-    session = find_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
+    session = find_or_initialize_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
 
-    if !session || session&.completed?
-      session = create(platform_name: platform_name, session_id: session_id, source_id: session_id)
-    else
-      session.touch :last_interaction_at
-    end
+    return session.clone if session.completed?
 
+    session.last_interaction_at = Time.now
+    session.save!
     session
   end
+
+  def clone
+    prev = last_completed_before(Time.now)
+    return self unless prev.present?
+
+    attrs = prev.attributes.slice(*clone_attributes)
+    session = Session.create!(attrs.merge({ repeated: true }))
+    session.clone_relations
+  end
+
+  def clone_relations
+    step_values.clone_step :gender, gender
+    step_values.clone_step :location, district_id
+    self
+  end
+
+  def last_completed(time = created_at)
+    Session.completed.where(platform_name: platform_name, session_id: session_id)\
+                      .where("last_interaction_at <= ?", time)\
+                      .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
+  end
+  alias_method :last_completed_before, :last_completed
 
   def mask_session_id
     return md5_session_id if ivr?
@@ -104,5 +125,9 @@ class Session < ApplicationRecord
 
     def set_province_id
       self.province_id = district_id[0..1]
+    end
+
+    def clone_attributes
+      %w(platform_name content_type content_id gender province_id district_id)
     end
 end

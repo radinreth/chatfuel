@@ -24,5 +24,5 @@ require 'rails_helper'
 RSpec.describe Tracking, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[incorrect incomplete completed]) }
   it { is_expected.to have_attribute(:tracking_datetime) }
-  it { is_expected.to belong_to(:message) }
+  it { is_expected.to belong_to(:session) }
 end
