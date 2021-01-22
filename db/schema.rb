@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.string "gender", default: ""
     t.boolean "repeated", default: false
     t.string "source_id", null: false
-    t.index ["platform_name", "session_id", "source_id"], name: "index_sessions_on_platform_name_and_session_id_and_source_id"
   end
 
   create_table "settings", force: :cascade do |t|

@@ -16,10 +16,6 @@
 #  session_id          :string           not null
 #  source_id           :string           not null
 #
-# Indexes
-#
-#  index_sessions_on_platform_name_and_session_id_and_source_id  (platform_name,session_id,source_id)
-#
 class Session < ApplicationRecord
   include CsvConcern
   include Session::FilterableConcern
@@ -118,6 +114,6 @@ class Session < ApplicationRecord
     end
 
     def clone_attributes
-      %w(platform_name content_type content_id gender province_id district_id)
+      %w(platform_name session_id source_id gender province_id district_id)
     end
 end
