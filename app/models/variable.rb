@@ -88,7 +88,12 @@ class Variable < ApplicationRecord
     def ensure_unique_mark_as
       return if mark_as.blank?
 
-      variable = Variable.send(mark_as)
-      variable.reset_mark_as! if variable.present?
+      Variable.where(mark_as: mark_as).each(&:reset_mark_as!)
+    end
+
+    def ensure_unique_most_request
+      Variable.where(is_most_request: true).each do |variable|
+        variable.update_attribute(:is_most_request, false)
+      end
     end
 end

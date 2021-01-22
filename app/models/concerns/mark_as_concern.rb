@@ -5,6 +5,7 @@ module MarkAsConcern
 
   included do
     before_save :ensure_unique_mark_as, if: :mark_as_changed?
+    before_save :ensure_unique_most_request, if: :is_most_request?
   end
 
   MARK_AS_LIST = %w(gender user_visit location ticket_tracking service_accessed)
@@ -21,7 +22,7 @@ module MarkAsConcern
   end
 
   def reset_mark_as!
-    self.mark_as = nil
+    update_attribute(:mark_as, nil)
   end
 
   module ClassMethods
