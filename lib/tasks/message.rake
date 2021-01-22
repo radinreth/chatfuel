@@ -31,12 +31,11 @@ namespace :message do
   end
 
   desc "Migrate missing gender when start new session"
-  task migrate_missing_gender_on_new_session: :environment do
+  task :migrate_missing_gender_on_new_session, [:klazz] => [:environment] do |task, args|
     ActiveRecord::Base.record_timestamps = false
-
     ActiveRecord::Base.transaction do
       # messenger
-      no_basic_info_text_messages = Message.where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
+      no_basic_info_text_messages = args[:klazz].where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
       no_basic_info_text_messages.find_each do |message|
         last_prev_message =  message.last_completed
 
@@ -48,12 +47,14 @@ namespace :message do
         end
       end
     end
+  ensure
+    ActiveRecord::Base.record_timestamps = true
   end
   
   desc "Migrate message to session"
   task migrate_to_session: :environment do
     return unless defined? Message
-
+    ActiveRecord::Base.record_timestamps = false
     ActiveRecord::Base.transaction do
       Message.find_each do |message|
         Session.create! do |session|
@@ -69,7 +70,6 @@ namespace :message do
         end
       end
     end
-
   ensure
     ActiveRecord::Base.record_timestamps = true
   end

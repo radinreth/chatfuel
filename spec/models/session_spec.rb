@@ -17,6 +17,7 @@ require 'rails_helper'
 
 RSpec.describe Session, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[incomplete completed]) }
+  it { is_expected.to have_many(:trackings) }
 
   describe "set_province_id" do
     let(:session) { create(:session, district_id: "03122345") }
