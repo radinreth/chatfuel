@@ -20,5 +20,5 @@
       .modal-body{ "data-state": "prune" }
         = image_tag "pop-up-message.png", size: "1100x550", alt: "popup message", role: "img"
       .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
           = t("shared.cancel")
