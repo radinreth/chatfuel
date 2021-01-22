@@ -1,6 +1,6 @@
 class UserFeedback < Report
   def dataset
-    hash = StepValue.total_users_feedback(@query.options)
+    hash = StepValue.total_users_feedback(Variable.feedback, @query.options)
     hash.transform_keys { |k| "#{icon_map[k]} #{k}" }
   end
 
