@@ -24,7 +24,7 @@
           = render( ChartComponent.new(name: t("welcomes.owso_feedback_trend")) ) do |c|
             - c.with(:body) { content_tag(:canvas, nil, class: "chart_feedback_by_sub_category", "data-id": district_id) }
       .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
           = t("shared.cancel")
 =======
 >>>>>>> Render visualize
