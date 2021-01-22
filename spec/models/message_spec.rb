@@ -21,8 +21,6 @@
 require "rails_helper"
 
 RSpec.describe Message do
-  it { is_expected.to have_many(:trackings) }
-
   describe "associations" do
     it { should belong_to(:content) }
   end
