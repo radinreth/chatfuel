@@ -7,7 +7,7 @@ module Api
 
       before_action :json_response
 
-      def show
+      def create
         set_attributes
 
         prepend_title if schedule_request?
