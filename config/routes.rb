@@ -92,6 +92,8 @@ Rails.application.routes.draw do
 
     resources :ivrs, only: [:create]
     resource :map_preview, only: [:show]
+    resource :chatbot_tracks, only: [:show]
+    resource :ivr_tracks, only: [:show]
     resources :chatbots, only: [:create] do
       post :mark_as_completed, on: :collection
     end
