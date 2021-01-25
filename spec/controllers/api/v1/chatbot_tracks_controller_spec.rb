@@ -9,10 +9,10 @@ RSpec.describe Api::V1::ChatbotTracksController, type: :controller do
     create(:message, content: content)
   end
 
-  it "GET :show" do
+  it "POST :create" do
     params = { platform_name: "Messenger", messenger_user_id: 123, code: "1234-56789" }
 
-    get :show, params: params
+    post :create, params: params
 
     expect(response).to have_http_status(:ok)
   end
@@ -22,7 +22,7 @@ RSpec.describe Api::V1::ChatbotTracksController, type: :controller do
 
     params = { platform_name: "Messenger", messenger_user_id: 123, code: "1234-56789" }
 
-    get :show, params: params
+    post :create, params: params
 
     expect(response.body).to include("completed")
   end
