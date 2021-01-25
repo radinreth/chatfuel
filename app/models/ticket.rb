@@ -83,6 +83,10 @@ class Ticket < ApplicationRecord
     scope
   end
 
+  def approve!
+    update_attribute(:status, 'approved')
+  end
+
   private
     def set_status
       self.status = status.try(:downcase) || STATUSES[0]
