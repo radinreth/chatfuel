@@ -3,5 +3,6 @@
 = render( ChartComponent.new(name: name, downloadable: downloadable) ) do |c|
   - c.with(:config) { open_config_modal("#userVisitModal") }
   - c.with(:body) { content_tag(:canvas, nil, id: "chart_total_user_visit") }
+  - c.with(:hint) { t("hint.total_user_by_category") }
 
 = render 'dashboard/choose_dictionary_modal', url: set_user_visit_dictionaries_path, checked_method: :user_visit?, modal_id: 'userVisitModal'
