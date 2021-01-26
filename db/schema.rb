@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_063937) do
     t.index ["name_en"], name: "index_sites_on_name_en"
   end
 
-  create_table "social_shares", force: :cascade do |t|
-    t.string "site_name"
+  create_table "social_providers", force: :cascade do |t|
+    t.string "provider_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -31,9 +31,9 @@ OWSO.WelcomesIndex = (() => {
       let site = $(this).data("site");
 
       $.ajax({
-        url: '/api/v1/social_shares',
+        url: '/api/v1/social_providers',
         type: 'post',
-        data: {social_share: {site_name: site}},
+        data: {social_provider: {provider_name: site}},
         dataType: 'json',
       });
     });
