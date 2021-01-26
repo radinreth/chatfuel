@@ -7,16 +7,16 @@ namespace :session do
     end
 
     ActiveRecord::Base.record_timestamps = false
-    
+
     ActiveRecord::Base.transaction do
       Message.find_each do |message|
-        print "."
         session = Session.find_by(session_id: message.session_id)
         session.gender = message.gender
         session.save
       end
     end
 
+  ensure
     ActiveRecord::Base.record_timestamps = true
   end
 
@@ -31,14 +31,26 @@ namespace :session do
     
     ActiveRecord::Base.transaction do
       Session.find_each do |session|
-        print "."
         session.source_id = session.session_id
         session.save
       end
     end
-
+  ensure
     ActiveRecord::Base.record_timestamps = true
   end
 
+  desc "Copy gender from message"
+  task copy_gender_from_message: :environment do
+    ActiveRecord::Base.record_timestamps = false
+    Session.reset_column_information
+    ActiveRecord::Base.transaction do
+      Message.where.not(gender: ['', nil]).find_each do |message|
+        session = Session.find(message.id)
+        session.update!(gender: message.gender)
+      end
+    end
+  ensure
+    ActiveRecord::Base.record_timestamps = true
+  end
 
 end
