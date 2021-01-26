@@ -15,7 +15,7 @@ class VoiceMessage < ApplicationRecord
   # associations
   has_one :message, as: :content, dependent: :destroy
 
-  alias_attribute :session_id, :address
+  alias_attribute :session_id, :callsid
 
   def type
     "IVR"
