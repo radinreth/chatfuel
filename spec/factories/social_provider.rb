@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :social_share do
+  factory :social_provider do
   end
 end
