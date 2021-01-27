@@ -4,10 +4,14 @@ en:
     search: Search
     summary: Summary
 <<<<<<< HEAD
+<<<<<<< HEAD
     access_info: OWSO Information Accessed
 =======
     access_info: Information Access
 >>>>>>> Update translation
+=======
+    access_info: Citizen Information Access
+>>>>>>> Update chart title
     citizen_feedback: Citizen Feedback
     province: Province
     districts: Districts
@@ -17,12 +21,17 @@ en:
     information_access_by_gender: Total Feedback By Gender
     information_access_by: Information Access by
 <<<<<<< HEAD
+<<<<<<< HEAD
     number_access_by_main_services: Most popular service information requested by OWSO
     most_service_tracked_by_periodic: Most Popular by
 =======
     number_access_by_main_services: Information Access by OWSO Selected Services
     most_service_tracked_by_periodic: Most Service Tracked by
 >>>>>>> Update translation
+=======
+    number_access_by_main_services: Most popular service information requested by OWSO
+    most_service_tracked_by_periodic: Most Popular by
+>>>>>>> Update chart title
     ticket_tracking_by_gender: Ticket Tracking by Gender
     overall_rating_by_owso: Overall Rating by OWSO
     owso_feedback_trend: OWSO Feedback Trend
