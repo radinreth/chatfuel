@@ -5,3 +5,14 @@ en:
     total_user_feedback: This chart represents a summary of the total feedback submitted by citizens via the OW4C’s tech tools.
     user_access: n/a
     ticket_tracking: n/a
+    # static website
+    most_requested_services: This chart represents the most asked for service by citizens using the OW4C’s tech tools.
+    information_access_by_gender: This chart represents the total number of citizens by gender that  accessed for OWSO information by the OW4C tech tools.
+    information_access_by_period: This chart represents the number of citizens that accessed OWSO information on OW4C tech tools filtered by month/quarter/year.
+    number_access_by_main_services: This chart represents, by  the most popular OWSO service information is requested for on the OW4C tech tools, by OWSO.
+    most_service_tracked_by_periodic: This chart represents the selected OWSO services that the citizens track the most using our OW4C’s tech tools ticket tracking features. The data is filtered by month/quarter/year
+    ticket_tracking_by_gender: This chart represents the number of citizens using our OW4C’s tech tools tracking feature filtered by gender.
+    overall_rating_by_owso: This chart represents the overall rating by OWSO in OW4C piloted districts. Each of the overall ratings (Like, Acceptable, Dislike) are filtered from real time citizen feedback.
+    owso_feedback_trend: This chart represents the feedback trend of overall rating by citizen for each piloted OWSO district by month/quarter/year
+    feedback_by_sub_categories: This chart represents the details of the citizen feedback with specific areas of the like & dislike from citizens.
+    
