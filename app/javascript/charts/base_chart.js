@@ -4,6 +4,12 @@ class BaseChart {
   plugins = [chartDataLabels];
   baseOptions = {
     legend: { display: false },
+    layout: {
+      padding: {
+        top: 5,
+        bottom: 5
+      }
+    },
     plugins: {
       datalabels: {
         formatter: Math.round,
