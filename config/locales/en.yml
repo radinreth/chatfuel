@@ -128,8 +128,8 @@ en:
       empty: There is no data yet
   dashboard:
     title: Dashboard
-    total_user_gender: Total User by gender
-    total_user_visit: Total User by Category
+    total_user_gender: Information Access by Gender
+    total_user_visit: Total Visits by Type of Service
     total_user_feedback: Total User Feedback
     number_of_ticket_tracking: Ticket Tracking(times)
     both: Both

@@ -4,6 +4,7 @@
 = render(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
   - c.with(:config) { open_config_modal("#chooseCriteria") }
   - c.with(:subheader) { subheader }
+  - c.with(:hint) { t("hint.total_user_by_gender") }
   - c.with(:body) { content_tag(:canvas, nil, id: "total_user_gender") }
 
 = render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
