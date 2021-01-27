@@ -1,7 +1,7 @@
 en:
   hint:
-    total_user_by_gender: This chart represents the total number of users using the OW4C’s feedback feature filtered by genders
-    total_user_by_category: This chart represents the total visits of citizens accessing the different services offered by the OW4C’s tech tools.
-    total_user_feedback: This chart represents the total user feedback on their overall rating of OWSO’s services delivery within the OW4C piloted districts.
+    total_user_by_gender: This chart represents the total number of citizens by gender that  accessed for OWSO information by the OW4C tech tools.
+    total_user_by_category: This chart represents the total visits of citizens accessing the  3 different services offered by the  OW4C’s tech tools.
+    total_user_feedback: This chart represents a summary of the total feedback submitted by citizens via the OW4C’s tech tools.
     user_access: n/a
     ticket_tracking: n/a
