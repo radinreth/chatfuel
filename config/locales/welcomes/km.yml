@@ -18,7 +18,11 @@ km:
     overall_rating_by_owso: មតិយោបល់របស់ប្រជាពលរដ្ឋ បែងចែកតាមច្រក
     owso_feedback_trend: មតិយោបល់ប្រជាពលរដ្ឋប្រៀបធៀបតាមខែ ត្រីមាស និងឆ្នាំ
     feedback_by_sub_categories: មតិយោបល់ប្រជាពលរដ្ឋតាមផ្នែកតូចៗក្នុង%{name}
+<<<<<<< HEAD
     overall_citizen_feedback: ចំនួនមតិយោបល់របស់ប្រជាពលរដ្ឋ
+=======
+    overall_citizen_feedback: មតិយោបល់របស់ប្រជាពលរដ្ឋទូទៅ
+>>>>>>> Update chart title
     feedback_by_gender: មតិយោបល់តាមភេទ
     total_user_feedback: មតិយោបល់អ្នកប្រើសរុប
     chat_with_us: សូមជជែកជាមួយយើងខ្ញុំ!
