@@ -5,6 +5,10 @@ class TicketTrackingByGenders < BasicReport
       gender.mapping_value if gender.present?
     end
   end
+
+  def colors
+    Gender::COLORS
+  end
   
   private
     def result_set
