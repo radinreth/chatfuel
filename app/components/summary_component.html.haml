@@ -1,0 +1,13 @@
+.col-xl-3.col-md-6.mb-4
+  .card.shadow.h-100.py-2{ class: "border-left-#{@style}"}
+    = config
+    .card-body.pb-0
+      .row.no-gutters.align-items-center{ style: "min-height: 77px" }
+        .col.mr-2
+          .text-xs.font-weight-bold.text-uppercase.mb-1{ class: "text-#{@style}"}
+            = title
+          .mb-0.font-weight-bold.text-gray-800.mt-2{ class: helpers.toggle_class_name("h4", desc.blank?) }
+            = @count
+          = desc
+        .col-auto
+          %i.fas.fa-2x.text-gray-300{ class: fa_icon }

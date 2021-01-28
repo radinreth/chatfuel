@@ -1,54 +1,30 @@
 .row
-  .col-xl-4.col-md-6.mb-4
-    .card.border-left-success.shadow.h-100.py-2
-      .card-body
-        .row.no-gutters.align-items-center
-          .col.mr-2
-            .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
-              = t("dashboard.total_users")
-            .h4.mb-0.font-weight-bold.text-gray-800.mt-2
-              = @query.user_count
-          .col-auto
-            %i.fas.fa-users.fa-2x.text-gray-300
+  = render( SummaryComponent.new(style: "success", count: @query.user_count) ) do |c|
+    = c.with(:title) { t("dashboard.total_users") }
+    = c.with(:fa_icon) { "fa-users" }
 
-  .col-xl-4.col-md-6.mb-4
-    .card.border-left-primary.shadow.h-100.py-2
-      .card-body.pb-0
-        .row.no-gutters.align-items-center
-          .col.mr-2
-            .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
-              = t("dashboard.total_uniq_users")
-            .mb-0.font-weight-bold.text-gray-800
-              = @query.user_unique_count
-
-            %ul.list-inline.m-0
-              - if Variable.gender.present?
-                = render partial: "unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
-
-          .col-auto
-            %i.fas.fa-user.fa-2x.text-gray-300
+  = render( SummaryComponent.new(style: "danger", count: @query.user_accessed_count) ) do |c|
+    = c.with(:title) { t("dashboard.total_users_accessed") }
+    = c.with(:fa_icon) { "fa-landmark" }
   
-  .col-xl-4.col-md-6.mb-4
-    .card.border-left-warning.shadow.h-100.py-2
+  = render( SummaryComponent.new(style: "primary", count: @query.user_unique_count) ) do |c|
+    = c.with(:title) { t("dashboard.total_uniq_users") }
+    = c.with(:fa_icon) { "fa-user" }
+    = c.with(:desc) do
+      %ul.list-inline.m-0
+        - if Variable.gender.present?
+          = render partial: "unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
+
+  - most_req = @query.most_requested_service
+  = render( SummaryComponent.new(style: "warning", count: most_req&.fetch(:key).presence || t("not_available")) ) do |c|
+    = c.with(:config) do
       - if policy(:dashboard).setting?
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
           %i.fas.fa-cog.cog.float
-
         = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
-
-      .card-body.pb-0
-        .row.no-gutters.align-items-center
-          .col.mr-2
-            .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
-              = t("dashboard.most_request_service")
-
-            - most_req = @query.most_requested_service
-            .mb-0.font-weight-bold.text-gray-800
-              = most_req&.fetch(:key).presence || t("not_available")
-
-            - if most_req.present?
-              %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
-                = "#{most_req[:value]}/#{@query.total_requested_service}"
-
-          .col-auto
-            %i.fas.fa-file-alt.fa-2x.text-gray-300
+    = c.with(:title) { t("dashboard.most_request_service") }
+    = c.with(:fa_icon) { "fa-file-alt" }
+    = c.with(:desc) do
+      - if most_req.present?
+        %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
+          = "#{most_req[:value]}/#{@query.total_requested_service}"
