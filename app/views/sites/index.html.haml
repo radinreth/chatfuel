@@ -19,7 +19,7 @@
           .modal-wrapper
 
     .total-info.mb-2
-      = t("paginate_info_html", name: t("sites.sites"), items_count: @pagy.items, collection_count: @pagy.count)
+      = t("paginate_info_html", name: t("sites.sites"), items_range: pagy_range, collection_count: @pagy.count)
       
     .custom-table.table.table-bordered
       .custom-row.thead
@@ -32,7 +32,7 @@
       - @provinces.each_with_index do |province, index|
         .custom-row.accordion-toggle.pointer{"data-target" => "#row-#{index}", "data-toggle" => "collapse"}
           .custom-col.col-no
-            = index + 1
+            = pagy_item_index(index)
           .custom-col.d-flex
             %span.flex-grow-1
               = province['id']

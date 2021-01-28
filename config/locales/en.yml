@@ -25,7 +25,7 @@ en:
   app_version: Version %{version}
   not_available: N/A
   no_data: There is no data to be shown
-  paginate_info_html: "Displaying %{name} <strong>1 - %{items_count}</strong> of <strong>%{collection_count}</strong> in total"
+  paginate_info_html: "Displaying %{name} <strong>%{items_range}</strong> of <strong>%{collection_count}</strong> in total"
   max_download_size: Download size is too big
   download_csv: Download CSV
   dictionary: Dictionary

@@ -1,5 +1,5 @@
 %tr
-  %td= dictionary_counter + 1
+  %td= pagy_item_index(dictionary_counter)
   %td= dictionary.name
   %td
     - dictionary.roles.each do |role|
