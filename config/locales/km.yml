@@ -140,6 +140,7 @@ km:
     show: បង្ហាញ
     active_user: អ្នកប្រើប្រាស់សកម្ម
     total_users: អ្នកប្រើប្រាស់សរុប
+    total_users_accessed: អ្នកចូលទស្សនាសរុប
     total_uniq_users: អ្នកប្រើប្រាស់ប្លែកៗគ្នាសរុប
     average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
     most_request_service: សេវាកម្មស្នើសុំច្រើនជាងគេ
