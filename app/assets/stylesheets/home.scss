@@ -21,7 +21,7 @@
     cursor: pointer;
   }
 
-  @media(max-width: 515px) {
+  @media(max-width: $extra-small-screen) {
     .province__select-option,
     .date-filter__choose-option {
       max-width: 230.25px;
