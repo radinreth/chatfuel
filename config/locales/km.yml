@@ -26,7 +26,7 @@ km:
   not_available: មិនមានទិន្នន័យ
   no_data: មិនមានទិន្នន័យត្រូវបង្ហាញទេ
   presence: តំរូវអោយបញ្ចូលតម្លៃ
-  paginate_info_html: "បង្ហាញ %{name} ពី <strong>1 - %{items_count}</strong> ក្នុងចំនួនសរុប <strong>%{collection_count}</strong>"
+  paginate_info_html: "បង្ហាញ %{name} ពី <strong>%{items_range}</strong> ក្នុងចំនួនសរុប <strong>%{collection_count}</strong>"
   max_download_size: ទំហំទាញយកធំពេក
   download_csv: ទាញយក CSV
   dictionary: ពាក្យគន្លឹះ

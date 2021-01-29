@@ -1,5 +1,5 @@
 %tr{ id: "tr_#{ticket.id}" }
-  %td= ticket_counter + 1
+  %td= pagy_item_index(ticket_counter)
   %td= ticket.code
   %td= ticket.tel
   %td= ticket.dist_gis
