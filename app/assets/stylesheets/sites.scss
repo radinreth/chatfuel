@@ -7,21 +7,4 @@
   .col-no {
     width: 7%;
   }
-
-  @media (max-width: 590px) {
-    .form-group span {
-      display: none !important;
-    }
-  }
-
-  @media (max-width: 930px) {
-    .form-wrap {
-      flex-direction: column;
-    }
-
-    .actions {
-      margin-top: 15px;
-      align-self: flex-end;
-    }
-  }
 }
