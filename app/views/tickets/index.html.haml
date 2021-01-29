@@ -3,9 +3,8 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      .d-flex.align-items-center.justify-content-between
-        .d-flex.align-items-center
-          = render 'shared/sb-admin/filter_search', placeholder: t('tickets.type_ticket_code'), url: tickets_path
+      = render(SearchFormComponent.new(placeholder: t('tickets.type_ticket_code'), url: tickets_path))
+
     .total-info.mb-2
       = t("paginate_info_html", name: t("tickets.title"), items_range: pagy_range, collection_count: @pagy.count)
     .table-responsive

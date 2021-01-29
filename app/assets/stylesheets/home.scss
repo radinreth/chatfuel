@@ -20,4 +20,11 @@
   .timeago {
     cursor: pointer;
   }
+
+  @media(max-width: 515px) {
+    .province__select-option,
+    .date-filter__choose-option {
+      max-width: 230.25px;
+    }
+  }
 }

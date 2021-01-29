@@ -2,8 +2,8 @@
 
 .card.shadow.mb-4
   .card-body
-    .mb-4.d-flex.align-items-center
-      = render 'shared/sb-admin/filter_search', placeholder: t('users.type_email'), url: users_path
+    .mb-4
+      = render(SearchFormComponent.new(placeholder: t('users.type_email'), url: users_path))
 
     .table-responsive
       %table.table.table-bordered

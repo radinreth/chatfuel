@@ -1,4 +1,9 @@
-@media (max-width: 1350px) {
+$large-screen: 1350px;
+$medium-screen: 1070px;
+$small-screen: 930px;
+$extra-small-screen: 590px;
+
+@media (max-width: $large-screen) {
   .filter-options {
     flex-direction: column;
     flex-wrap: nowrap !important;
@@ -14,13 +19,11 @@
   }
 }
 
-@media (min-width: 1070px) {
-  .date-group {
-    flex-wrap: nowrap;
-  }
+.date-group {
+  flex-wrap: nowrap;
 }
 
-@media (max-width: 1070px) {
+@media (max-width: $medium-screen) {
   .form {
     flex-wrap: wrap;
 
@@ -45,5 +48,22 @@
     .gender-options .select2-selection--single {
       width: 247.25px;
     }
+  }
+}
+
+@media (max-width: $small-screen) {
+  .form-wrap {
+    flex-direction: column;
+  }
+
+  .actions {
+    margin-top: 15px;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: $extra-small-screen) {
+  .form-group span {
+    display: none !important;
   }
 }

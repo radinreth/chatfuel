@@ -3,8 +3,7 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      .d-flex.align-items-center.justify-content-between
-        = render 'shared/sb-admin/filter_search', placeholder: t('sites.type_track_code'), url: site_path
+      = render(SearchFormComponent.new(placeholder: t('sites.type_track_code'), url: site_path))
 
     .table-responsive
       %table.table.table-bordered
