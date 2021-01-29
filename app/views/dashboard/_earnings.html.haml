@@ -2,19 +2,25 @@
   .col-xl-4.col-md-6.mb-4
     .card.border-left-success.shadow.h-100.py-2
       .card-body
-        .row.no-gutters.align-items-center
+        .row.no-gutters.align-items-center.justify-content-center
+          %p.loading.position-absolute.m-0.d-none
+            = t("loading")
           .col.mr-2
             .text-xs.font-weight-bold.text-success.text-uppercase.mb-1
               = t("dashboard.total_users")
             .h4.mb-0.font-weight-bold.text-gray-800.mt-2
               = @query.user_count
+            
+            %small.font-0.d-block &nbsp;
           .col-auto
             %i.fas.fa-users.fa-2x.text-gray-300
 
   .col-xl-4.col-md-6.mb-4
     .card.border-left-primary.shadow.h-100.py-2
       .card-body.pb-0
-        .row.no-gutters.align-items-center
+        .row.no-gutters.align-items-center.justify-content-center
+          %p.loading.position-absolute.m-0.d-none
+            = t("loading")
           .col.mr-2
             .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1
               = t("dashboard.total_uniq_users")
@@ -37,7 +43,9 @@
         = render 'dashboard/choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
 
       .card-body.pb-0
-        .row.no-gutters.align-items-center
+        .row.no-gutters.align-items-center.justify-content-center
+          %p.loading.position-absolute.m-0.d-none
+            = t("loading")
           .col.mr-2
             .text-xs.font-weight-bold.text-warning.text-uppercase.mb-1
               = t("dashboard.most_request_service")

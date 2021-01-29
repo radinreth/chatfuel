@@ -8,7 +8,11 @@ class FeedbackSubCategories < FeedbackReport
       dataset_item(mapping_value, index, data_values)
     end
   end
-  
+
+  def colors
+    Color.generate(values.count)
+  end
+
   private
     def data_values
       result_set_mapping["all"].values
