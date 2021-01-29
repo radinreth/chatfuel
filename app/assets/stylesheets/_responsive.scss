@@ -35,20 +35,18 @@
       justify-content: space-between;
     }
 
-    .gender-options,
     .province__select-option {
       margin-right: 0 !important;
       width: 247.25px;
     }
 
-    // .gender-options .select2-container--bootstrap,
-    // .gender-options .select2-selection--single {
-    //   width: 247.25px;
-    // }
+    .gender-options {
+      margin: 0 !important;
+    }
   }
 }
 
-@media (max-width: $small-screen) {
+@media (max-width: $extra-small-screen) {
   .form-wrap {
     flex-direction: column;
   }
