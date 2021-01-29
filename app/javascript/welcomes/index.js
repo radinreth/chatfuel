@@ -23,7 +23,15 @@ OWSO.WelcomesIndex = (() => {
     onClickTabNavigation();
     onChangePeriod();
     onLoadPopup();
+    onGenderChange();
     ssbInterceptor();
+  }
+
+  function onGenderChange() {
+    $(".q-gender").change(function(){
+      loading( $(".loading") );
+      Rails.fire(this.form, "submit");
+    });
   }
 
   function ssbInterceptor() {
