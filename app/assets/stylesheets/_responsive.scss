@@ -20,7 +20,7 @@
   flex-wrap: nowrap;
 }
 
-@media (max-width: $medium-screen) {
+@media (max-width: $large-screen) {
   .form {
     flex-wrap: wrap;
 
@@ -41,10 +41,10 @@
       width: 247.25px;
     }
 
-    .gender-options .select2-container--bootstrap,
-    .gender-options .select2-selection--single {
-      width: 247.25px;
-    }
+    // .gender-options .select2-container--bootstrap,
+    // .gender-options .select2-selection--single {
+    //   width: 247.25px;
+    // }
   }
 }
 
@@ -56,11 +56,12 @@
   .actions {
     margin-top: 15px;
     align-self: flex-end;
+    width: 100%;
   }
 }
 
 @media (max-width: $extra-small-screen) {
-  .form-group span {
+  .form-group .search-label {
     display: none !important;
   }
 }
