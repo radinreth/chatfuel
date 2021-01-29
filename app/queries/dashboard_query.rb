@@ -20,6 +20,10 @@ class DashboardQuery
     sessions.select("DISTINCT ON (content_id, content_type) *").unscope(:order)
   end
 
+  def user_accessed_count
+    total_users_visit_each_functions.values.sum
+  end
+
   def unique_by_genders
     raw_sql = <<~SQL
       SELECT gender, COUNT(gender) AS gender_count FROM (
