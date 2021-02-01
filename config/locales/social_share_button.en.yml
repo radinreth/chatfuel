@@ -1,5 +1,6 @@
 en:
   social_share_button:
+    share_on: Share on
     share_to: Share to %{name}
     twitter: Twitter
     facebook: Facebook
