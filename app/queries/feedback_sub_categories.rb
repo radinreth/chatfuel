@@ -9,10 +9,6 @@ class FeedbackSubCategories < FeedbackReport
     end
   end
 
-  def colors
-    Color.generate(values.count)
-  end
-
   private
     def data_values
       result_set_mapping["all"].values
