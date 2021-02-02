@@ -1,12 +1,11 @@
 .card.shadow.mb-4{ role: "figure" }
   .card-header.position-relative
     .d-flex.flex-row.align-items-center.justify-content-between
-      .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
+      .h5.chart-title.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
         %span.text-primary.d-inline-block.mr-1.chart-head.text-capitalize{ data: { toggle: "tooltip", title: hint } }
           = @name
         - if hint.present?
-          %span{ data: { toggle: "tooltip", title: hint } }
-            %i.icon-hint.far.fa-question-circle
+          %i.icon-hint.far.fa-question-circle
         &nbsp;
         = addon
       .tools
