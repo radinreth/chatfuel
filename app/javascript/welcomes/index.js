@@ -213,6 +213,12 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  return { init, renderChart, loadSubCategories }
+  function scrollToForm() {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#form-query").offset().top
+    }, 500);
+  }
+
+  return { init, renderChart, loadSubCategories, scrollToForm }
 
 })()
