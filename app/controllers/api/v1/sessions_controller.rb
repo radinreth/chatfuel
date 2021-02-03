@@ -5,7 +5,7 @@ module Api
     class SessionsController < ApplicationController
       skip_before_action :restrict_access
       before_action :set_variable, only: [:create]
-      before_action :set_session
+      before_action :set_session, only: [:create]
       before_action :set_step, only: [:create]
 
       def create
