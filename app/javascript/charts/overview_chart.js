@@ -1,50 +1,9 @@
-import * as defaults from '../data/defaults'
+import LineChart from './line_chart'
+import { extractLineDataset } from '../utils'
 
-export const extractData = (raw) => {
-  if(raw.length == 0) return {}
-
-  return {
-    labels: _.keys(raw[0].data),
-    datasets: raw.map(function(ds) {
-      return {
-        label: ds.name,
-        backgroundColor: ds.color,
-        borderColor: ds.color,
-        data: _.values(ds.data),
-        fill: false,
-      }
-    })
-  };
+class OverviewChart extends LineChart {
+  chartId = "chart-overview";
+  dataset = () => extractLineDataset(gon.overview);
 }
 
-export const overview = () => {
-  let type = 'line', 
-      plugins = [chartDataLabels];
-
-  let data = extractData(gon.overview);
-
-  let options = {
-    legend: {
-      display: true
-    },
-    plugins: {
-      datalabels: {
-        ...defaults.initOptions.plugins.datalabels,
-        display: false,
-      },
-    },
-    scales: {
-      xAxes: [{
-        ticks:{
-          display: true,
-          autoSkip: true,
-          maxRotation: 0,
-          minRotation: 0,
-          maxTicksLimit: 6,
-        }
-      }]
-    }
-  }
-
-  new Chart('chart-overview', { type, plugins, data, options });
-}
+export const overview = new OverviewChart();
