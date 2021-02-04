@@ -27,7 +27,7 @@ OWSO.DashboardShow = (() => {
     userFeedback.render({watermark: false})
 
     ticketTracking.render({watermark: false});
-    overview()
+    overview.render({watermark: false});
   }
 
   function multiSelectDistricts() {
