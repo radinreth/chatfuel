@@ -43,7 +43,9 @@ class BaseChart {
   }
 
   config = (opts = {}) => {
-    let options = (opts['watermark'] == false) ? this.options : this.optionsWithWatermark();
+    let options = (opts['watermark'] == false) ?
+                      this.options.bind(this, { suggestedMax: this.suggestedMax })() : 
+                      this.optionsWithWatermark();
 
     return {
       type: this.type,
@@ -53,7 +55,7 @@ class BaseChart {
     }
   };
 
-  optionsWithWatermark = () => _.extend(this.options, this.watermarkOption);
+  optionsWithWatermark = () => _.extend(this.options(), this.watermarkOption);
 
   render = (opts = {}) => {
     new Chart(this.chartId, this.config(opts));
