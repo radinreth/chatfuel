@@ -15,3 +15,24 @@ export const extractDonutDataset = (ds) => {
     ]
   }
 }
+
+export const extractBarDataset = (ds) => {
+  let { labels, colors, values } = extract(ds);
+
+  return {
+    labels: labels,
+    datasets: [
+      {
+        maxBarThickness: 36,
+        minBarLength: 2,
+        backgroundColor: colors,
+        data: values,
+      }
+    ]
+  };
+}
+
+export var m = function ( data ) {
+  console.log(data)
+  return Math.round( _.max(data) * 1.2 )
+}

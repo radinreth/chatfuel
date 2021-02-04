@@ -26,7 +26,7 @@ OWSO.DashboardShow = (() => {
     userGender.render({watermark: false});
     userFeedback.render({watermark: false})
 
-    ticketTracking()
+    ticketTracking.render({watermark: false});
     overview()
   }
 
