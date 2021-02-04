@@ -4,7 +4,7 @@ class LineChart extends BaseChart {
   type = "line";
 
   options () {
-    let { plugins } = this.baseOptions
+    let { plugins } = this.baseOptions;
 
     return Object.assign({}, this.baseOptions, {
       legend: {
