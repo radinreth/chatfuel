@@ -4,7 +4,7 @@ import { labels } from '../data/donutchart/defaults'
 class DonutChart extends BaseChart {
   type = "doughnut";
 
-  options (suggestedMax = undefined) {
+  options () {
     return Object.assign({}, this.baseOptions, {
       legend: {
         position: "left",

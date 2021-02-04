@@ -3,7 +3,12 @@ import BaseChart from "./base_chart";
 class BarChart extends BaseChart {
   type = "bar";
 
-  options (suggestedMax = undefined) {
+  _suggestedMax = () => {
+    let { data } = this.dataset().datasets[0];
+    return this.suggestedMax(data);
+  }
+
+  options () {
     return Object.assign({}, this.baseOptions, {
       plugins: {
         datalabels: {
@@ -22,7 +27,7 @@ class BarChart extends BaseChart {
         yAxes: [{
           ticks: {
             beginAtZero: true,
-            suggestedMax: suggestedMax,
+            suggestedMax: this._suggestedMax(),
           }
         }],
         xAxes: [{

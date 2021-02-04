@@ -43,12 +43,9 @@ class BaseChart {
   }
 
   config = (opts = {}) => {
-    let { data } = this.dataset().datasets[0];
-    let suggestedMax = this.suggestedMax(data);
-
-    let options = (opts['watermark'] == false) ?
-                      this.options.bind(this)(suggestedMax) : 
-                      this.optionsWithWatermark();
+    let options = (opts['watermark'] == false) ? 
+                    this.options() :
+                    this.optionsWithWatermark();
 
     return {
       type: this.type,
