@@ -1,15 +1,11 @@
 import BarChart from './bar_chart'
-import { extractBarDataset, m } from '../utils'
+import { extractBarDataset, suggestedMax } from '../utils'
 
 class TicketTrackingChart extends BarChart {
-  constructor() {
-    super();
-    this.data = extractBarDataset(gon.ticketTracking);
-  }
-
   chartId = "number_of_ticket_tracking";
-  suggestedMax = m( this.data );
-  dataset = () => this.data;
+
+  suggestedMax = (data) => suggestedMax(data);
+  dataset = () => extractBarDataset(gon.ticketTracking);
 }
 
 export const ticketTracking = new TicketTrackingChart();
