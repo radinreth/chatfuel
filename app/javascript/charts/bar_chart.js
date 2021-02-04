@@ -9,10 +9,12 @@ class BarChart extends BaseChart {
   }
 
   options () {
+    let { plugins } = this.baseOptions;
+
     return Object.assign({}, this.baseOptions, {
       plugins: {
         datalabels: {
-          ...this.baseOptions.plugins.datalabels,
+          ...plugins.datalabels,
           anchor: "end",
           align: "end",
           color: "#333",

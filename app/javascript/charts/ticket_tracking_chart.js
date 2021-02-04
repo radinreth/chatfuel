@@ -1,5 +1,5 @@
 import BarChart from './bar_chart'
-import { extractBarDataset, suggestedMax } from '../utils'
+import { extractBarDataset, suggestedMax } from '../utils/bar_chart'
 
 class TicketTrackingChart extends BarChart {
   chartId = "number_of_ticket_tracking";

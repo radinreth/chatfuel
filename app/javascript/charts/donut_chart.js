@@ -5,6 +5,8 @@ class DonutChart extends BaseChart {
   type = "doughnut";
 
   options () {
+    let { plugins } = this.baseOptions;
+
     return Object.assign({}, this.baseOptions, {
       legend: {
         position: "left",
@@ -12,7 +14,7 @@ class DonutChart extends BaseChart {
       },
       plugins: {
         datalabels: {
-          ...this.baseOptions.plugins.datalabels,
+          ...plugins.datalabels,
           borderWidth: 1,
           padding: function(context) {
             var index = context.dataIndex;
