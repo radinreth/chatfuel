@@ -5,6 +5,7 @@ module Api
     class ChatbotsController < SessionsController
       def mark_as_completed
         @session&.completed!
+        head :ok
       end
 
       private
