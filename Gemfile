@@ -42,7 +42,7 @@ gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'oj', '~> 3.10', '>= 3.10.6'
 
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'rails-settings-cached', '~> 2.0'
 
 gem 'paranoia', '~> 2.2'
