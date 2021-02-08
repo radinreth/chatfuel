@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.integer "status", default: 0
     t.string "district_id"
     t.string "province_id"
-    t.datetime "last_interaction_at"
+    t.datetime "last_interaction_at", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "gender", default: ""
