@@ -38,7 +38,6 @@ class Session < ApplicationRecord
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
 
   before_update :set_province_id, if: -> { district_id_changed? }
-  after_save :update_last_interaction_time
   after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
@@ -105,9 +104,6 @@ class Session < ApplicationRecord
   end
 
   private
-    def update_last_interaction_time
-      touch :last_interaction_at
-    end
 
     def set_province_id
       self.province_id = district_id[0..1]
