@@ -17,6 +17,17 @@ OWSO.DashboardShow = (() => {
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
     renderCharts()
+    tooltipChart()
+  }
+
+  function tooltipChart() {
+    $(".chart-name")
+      .mouseover(function() {
+        $(this).next().tooltip("show");
+      })
+      .mouseleave(function() {
+        $(this).next().tooltip("hide");
+      });
   }
 
   function renderCharts() {
