@@ -47,6 +47,7 @@ class Ticket < ApplicationRecord
   scope :completed, -> { where(status: ['approved', 'delivered']) }
 
   delegate :platform_name, to: :message, allow_nil: true
+  delegate :platform_name, to: :session, allow_nil: true
 
   # Instand methods
   def progress_status
@@ -65,6 +66,12 @@ class Ticket < ApplicationRecord
           find_by("variable_values.raw_value=?", code)
   end
 
+  def session
+    Session.joins(step_values: :variable_value).
+          order("sessions.last_interaction_at DESC").
+          find_by("variable_values.raw_value=?", code)
+  end
+
   # Class methods
   def self.filter(params = {})
     scope = all
@@ -74,6 +81,10 @@ class Ticket < ApplicationRecord
     scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
     scope = scope.where("DATE(requested_date) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope
+  end
+
+  def approve!
+    update_attribute(:status, 'approved')
   end
 
   private

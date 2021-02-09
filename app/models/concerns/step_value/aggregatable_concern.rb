@@ -1,0 +1,43 @@
+module StepValue::AggregatableConcern
+  extend ActiveSupport::Concern
+
+  included do
+    def self.total_users_feedback(variable, params = {})
+      scope = filter(params.merge(variable_id: variable))
+
+      statuses = VariableValue.statuses
+      default = statuses.transform_values { 0 }
+      result = scope.joins(:variable_value).group(:status).count.map do |k, v|
+        [statuses.key(k), v]
+      end.to_h
+
+      default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
+    end
+
+    def self.users_visited_by_each_genders(params = {})
+      params = params.merge(variable_value: VariableValue.kind_of_criteria)
+      
+      scope = joins(:session).where.not(sessions: { gender: '' })
+      scope = filter(params, scope)
+    end
+
+    def self.total_users_visit(variable, params = {})
+      key = "mapping_value_#{ I18n.locale }".to_sym
+      
+      scope = joins(variable_value: :variable)
+      scope = filter(params.merge(variable_id: variable), scope)
+      scope = scope.order(key)
+      scope = scope.group(key)
+
+      scope.count
+    end
+
+    def self.agg_value_count variable, params = {}
+      scope = filter(params.merge(variable_id: variable))
+      scope = scope.order("count_all DESC")
+      scope = scope.group("variable_value_id")
+      scope.count
+    end
+  end
+
+end

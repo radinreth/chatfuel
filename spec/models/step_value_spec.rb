@@ -5,7 +5,8 @@
 #  id                :bigint(8)        not null, primary key
 #  created_at        :datetime
 #  updated_at        :datetime
-#  message_id        :bigint(8)        not null
+#  message_id        :bigint(8)
+#  session_id        :bigint(8)
 #  site_id           :bigint(8)
 #  variable_id       :bigint(8)        not null
 #  variable_value_id :bigint(8)        not null
@@ -13,6 +14,7 @@
 # Indexes
 #
 #  index_step_values_on_message_id         (message_id)
+#  index_step_values_on_session_id         (session_id)
 #  index_step_values_on_site_id            (site_id)
 #  index_step_values_on_variable_id        (variable_id)
 #  index_step_values_on_variable_value_id  (variable_value_id)
@@ -20,6 +22,7 @@
 # Foreign Keys
 #
 #  fk_rails_...  (message_id => messages.id)
+#  fk_rails_...  (session_id => sessions.id)
 #  fk_rails_...  (site_id => sites.id)
 #  fk_rails_...  (variable_id => variables.id)
 #  fk_rails_...  (variable_value_id => variable_values.id)
@@ -32,25 +35,25 @@ RSpec.describe StepValue, type: :model do
     let(:variable_value) { build(:variable_value, variable: variable) }
     let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable) }
 
-    context "when set_message_district_id" do
+    context "when set_session_district_id" do
       it "return district_id" do
         variable_value.raw_value = '0102'
         variable.mark_as = "location"
 
         step_value.save
 
-        expect(step_value.message.district_id).to eq('0102')
+        expect(step_value.session.district_id).to eq('0102')
       end
     end
 
-    context "when set_message_gender" do
+    context "when set_session_gender" do
       it "returns male" do
         variable_value.raw_value = 'm'
         variable.mark_as = "gender"
 
         step_value.save
 
-        expect(step_value.message.gender).to eq('male')
+        expect(step_value.session.gender).to eq('male')
       end
     end
   end
@@ -74,12 +77,12 @@ RSpec.describe StepValue, type: :model do
   end
 
   describe ".create_tracking" do
-    let(:variable) { build(:variable, :ticket_tracking) }
+    let(:variable) { build(:variable, mark_as: 'ticket_tracking') }
     let(:variable_value) { build(:variable_value, variable: variable) }
 
     it ".create_tracking" do
       expect {
-        StepValue.create! variable: variable, variable_value: variable_value, message: build(:message)
+        StepValue.create! variable: variable, variable_value: variable_value, message: build(:message), session: build(:session)
       }.to change { Tracking.count }.by 1
     end
   end

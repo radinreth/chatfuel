@@ -63,6 +63,8 @@ class VariableValue < ApplicationRecord
 
   def mapping_value
     send("mapping_value_#{I18n.locale}".to_sym)
+  rescue
+    send(:mapping_value)
   end
 
   def plain_values
@@ -81,7 +83,7 @@ class VariableValue < ApplicationRecord
   end
 
   def self.kind_of_criteria
-    where("mapping_value_en=:mapping_value OR mapping_value_km=:mapping_value", mapping_value: criteria.mapping_value)
+    where("mapping_value_en=:mapping_value OR mapping_value_km=:mapping_value", mapping_value: criteria&.mapping_value)
   end
 
   private

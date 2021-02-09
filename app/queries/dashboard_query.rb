@@ -17,7 +17,9 @@ class DashboardQuery
   end
 
   def user_unique
-    sessions.select("DISTINCT ON (content_id, content_type) *").unscope(:order)
+    return [] if user_count <= 0
+
+    sessions.select("DISTINCT ON (session_id) *").unscope(:order)
   end
 
   def user_accessed_count
@@ -25,6 +27,8 @@ class DashboardQuery
   end
 
   def unique_by_genders
+    return if user_unique_count <= 0
+
     raw_sql = <<~SQL
       SELECT gender, COUNT(gender) AS gender_count FROM (
         #{ user_unique.to_sql }
@@ -34,11 +38,11 @@ class DashboardQuery
       ORDER BY gender
     SQL
 
-    Message.find_by_sql(raw_sql)
+    Session.find_by_sql(raw_sql)
   end
 
   def sessions
-    Message.filter(@options)
+    Session.filter(@options)
   end
 
   def total_users_visit_by_category
@@ -47,7 +51,11 @@ class DashboardQuery
   end
 
   def total_users_visit_each_functions
-    result = StepValue.total_users_visit_each_functions(@options)
+    variable = Variable.user_visit
+
+    return {}  if variable.nil?
+    
+    result = StepValue.total_users_visit(variable, @options)
 
     return {} if result.blank?
 
@@ -102,7 +110,11 @@ class DashboardQuery
   end
 
   def total_users_feedback
-    StepValue.total_users_feedback(@options)
+    variable = Variable.feedback
+
+    return [] if variable.nil?
+
+    StepValue.total_users_feedback(variable, @options)
   end
 
   def users_feedback
@@ -114,12 +126,12 @@ class DashboardQuery
     most_request_variable = Variable.most_request
     return unless most_request_variable.present?
 
-    top_hit = most_request_variable.agg_values_count(@options).first
+    top_hit = most_request_variable.agg_value_count(@options).first
     most_request_variable.transform_key_result(*top_hit) if top_hit.present?
   end
 
   def total_requested_service
-    Variable.most_request.agg_values_count(@options).values.sum
+    Variable.most_request.agg_value_count(@options).values.sum
   end
 
   def goals
@@ -143,7 +155,7 @@ class DashboardQuery
     end
 
     def accessed
-      accessed = Message.unscope(:order).accessed(@options)
+      accessed = Session.unscope(:order).accessed(@options)
 
       return {} unless accessed
       data = accessed.group_by_day(:created_at, format: "%b %e").count
