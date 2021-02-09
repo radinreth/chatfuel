@@ -30,5 +30,8 @@ NUMBER_OF_SYNC_LOG=5
 LANG=C.UTF-8
 
 ENDPOINT_URL=
+
+# https://developers.google.com/recaptcha/docs/invisible
+# https://github.com/ambethia/recaptcha
 RECAPTCHA_SITE_KEY=
 RECAPTCHA_SECRET_KEY=
