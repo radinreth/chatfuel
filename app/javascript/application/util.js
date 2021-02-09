@@ -25,6 +25,7 @@ OWSO.Util = {
       }
     });
   },
+
   isEmpty(datasets) {
     return sum(_.flatten(_.map(datasets, ds => ds.data))) == 0
   },
