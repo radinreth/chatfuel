@@ -1,3 +1,5 @@
+@import "responsive_grid_system";
+
 #homes-show {
   th {
     font-size: 0.8em;
@@ -20,4 +22,11 @@
   .timeago {
     cursor: pointer;
   }
+
+  // @media(max-width: $extra-small-screen) {
+  //   .province__select-option,
+  //   .date-filter__choose-option {
+  //     max-width: 230.25px;
+  //   }
+  // }
 }

@@ -1,0 +1,9 @@
+.actions.d-flex.align-items-center.justify-content-center
+  = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
+    %i.fas.fa-file-upload.fa-fw
+    = t("sites.new_import.title")
+  = render "import-site-modal", site: @site
+  = link_to new_site_path, remote: true, class: "btn btn-primary" do
+    %i.fas.fa-plus.fa-fw
+    = t("sites.new_site")
+  .modal-wrapper

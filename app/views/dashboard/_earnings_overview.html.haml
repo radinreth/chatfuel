@@ -1,9 +1,9 @@
 .row
-  .col-xl-4.col-lg-5
+  .col-xl-4.col-lg-6
     = render partial: "dashboard/gender", locals: { title: t("dashboard.total_user_gender") }
-  .col-xl-4.col-lg-5
+  .col-xl-4.col-lg-6
     = render "dashboard/total_user_visit"
-  .col-xl-4.col-lg-5
+  .col-xl-4.col-lg-6
     = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
   
   = render "dashboard/overview"

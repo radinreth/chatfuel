@@ -1,0 +1,65 @@
+@import "responsive_grid_system";
+
+@media (max-width: $large-screen) {
+  .filter-options {
+    flex-direction: column;
+    flex-wrap: nowrap !important;
+  }
+
+  .platform-list {
+    max-width: 100% !important;
+  }
+
+  .form {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.date-group {
+  flex-wrap: nowrap;
+}
+
+@media (max-width: $large-screen) {
+  .form {
+    flex-wrap: wrap;
+
+    & > div {
+      margin-bottom: 5px;
+    }
+
+    .gender,
+    .province,
+    .date-filter {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .province__select-option {
+      margin-right: 0 !important;
+      width: 247.25px;
+    }
+
+    .gender-options {
+      margin: 0 !important;
+    }
+  }
+}
+
+@media (max-width: $extra-small-screen) {
+  .form-wrap {
+    flex-direction: column;
+  }
+
+  .actions {
+    margin-top: 15px;
+    align-self: flex-end;
+    width: 100%;
+  }
+}
+
+@media (max-width: $extra-small-screen) {
+  .form-group .search-label {
+    display: none !important;
+  }
+}

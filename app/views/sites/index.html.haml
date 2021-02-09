@@ -3,20 +3,8 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      .d-flex.align-items-center.justify-content-between
-        = render 'shared/sb-admin/filter_search', placeholder: t('sites.type_name_or_code'), url: sites_path
-
-        .actions
-          = link_to "#", class: "btn btn-secondary mr-2", data: { toggle: "modal", target: "#importSiteModal" } do
-            %i.fas.fa-file-upload.fa-fw
-            = t("sites.new_import.title")
-          = render "import-site-modal", site: @site
-
-          = link_to new_site_path, remote: true, class: "btn btn-primary" do
-            %i.fas.fa-plus.fa-fw
-            = t("sites.new_site")
-
-          .modal-wrapper
+      = render(SearchFormComponent.new(placeholder: t('sites.type_name_or_code'), url: sites_path)) do |c|
+        = c.with(:action) { render "search_action" }
 
     .total-info.mb-2
       = t("paginate_info_html", name: t("sites.sites"), items_range: pagy_range, collection_count: @pagy.count)
