@@ -13,7 +13,7 @@
     = c.with(:desc) do
       %ul.list-inline.m-0
         - if Variable.gender.present?
-          = render partial: "unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
+          = render partial: "dashboard/unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
 
   - most_req = @query.most_requested_service
   = render( SummaryComponent.new(style: "warning", count: most_req&.fetch(:key).presence || t("not_available")) ) do |c|
