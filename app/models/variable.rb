@@ -68,11 +68,8 @@ class Variable < ApplicationRecord
     { key: value.mapping_value, value: count }
   end
 
-  def agg_values_count(options)
-    scope = StepValue.filter(step_values, options)
-    scope = scope.order("count_all DESC")
-    scope = scope.group("variable_value_id")
-    scope.count
+  def agg_value_count(options)
+    StepValue.agg_value_count(self, options)
   end
 
   def criteria?
@@ -91,7 +88,12 @@ class Variable < ApplicationRecord
     def ensure_unique_mark_as
       return if mark_as.blank?
 
-      variable = Variable.send(mark_as)
-      variable.reset_mark_as! if variable.present?
+      Variable.where(mark_as: mark_as).each(&:reset_mark_as!)
+    end
+
+    def ensure_unique_most_request
+      Variable.where(is_most_request: true).each do |variable|
+        variable.update_attribute(:is_most_request, false)
+      end
     end
 end

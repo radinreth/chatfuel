@@ -86,6 +86,21 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.string "session_type", default: ""
+    t.string "platform_name", default: ""
+    t.integer "status", default: 0
+    t.string "district_id"
+    t.string "province_id"
+    t.datetime "last_interaction_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "gender", default: ""
+    t.boolean "repeated", default: false
+    t.string "source_id", null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -134,9 +149,11 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.bigint "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.bigint "message_id", null: false
+    t.bigint "message_id"
     t.bigint "variable_id", null: false
+    t.bigint "session_id"
     t.index ["message_id"], name: "index_step_values_on_message_id"
+    t.index ["session_id"], name: "index_step_values_on_session_id"
     t.index ["site_id"], name: "index_step_values_on_site_id"
     t.index ["variable_id"], name: "index_step_values_on_variable_id"
     t.index ["variable_value_id"], name: "index_step_values_on_variable_value_id"
@@ -221,10 +238,10 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.string "ticket_code"
     t.string "site_code"
     t.datetime "tracking_datetime"
-    t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id"], name: "index_trackings_on_message_id"
+    t.bigint "session_id"
+    t.index ["session_id"], name: "index_trackings_on_session_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -319,11 +336,12 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
   add_foreign_key "role_variables", "variables"
   add_foreign_key "site_settings", "sites"
   add_foreign_key "step_values", "messages"
+  add_foreign_key "step_values", "sessions"
   add_foreign_key "step_values", "sites"
   add_foreign_key "step_values", "variable_values"
   add_foreign_key "step_values", "variables"
   add_foreign_key "tickets", "sites"
-  add_foreign_key "trackings", "messages"
+  add_foreign_key "trackings", "sessions"
   add_foreign_key "users", "roles"
   add_foreign_key "variable_values", "variables"
 end

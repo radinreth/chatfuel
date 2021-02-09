@@ -31,9 +31,8 @@ namespace :message do
   end
 
   desc "Migrate missing gender when start new session"
-  task migrate_missing_gender_on_new_session: :environment do
+  task migrate_missing_gender_on_new_session: :environment do |task, args|
     ActiveRecord::Base.record_timestamps = false
-
     ActiveRecord::Base.transaction do
       # messenger
       no_basic_info_text_messages = Message.where(platform_name: "Messenger", province_id: nil, district_id: nil, gender: "")
@@ -48,7 +47,29 @@ namespace :message do
         end
       end
     end
-
+  ensure
+    ActiveRecord::Base.record_timestamps = true
+  end
+  
+  desc "Migrate message to session"
+  task migrate_to_session: :environment do
+    return unless defined? Message
+    ActiveRecord::Base.record_timestamps = false
+    ActiveRecord::Base.transaction do
+      Message.find_each do |message|
+        Session.create! do |session|
+          session.id = message.id
+          session.session_id = message.session_id
+          session.platform_name = message.platform_name
+          session.status = message.status
+          session.district_id = message.district_id
+          session.province_id = message.province_id
+          session.last_interaction_at = message.last_interaction_at
+          session.created_at = message.created_at
+          session.updated_at = message.updated_at
+        end
+      end
+    end
   ensure
     ActiveRecord::Base.record_timestamps = true
   end
@@ -61,6 +82,30 @@ namespace :message do
     Message.where(" DATE(last_interaction_at) < DATE(updated_at) AND
                     DATE(last_interaction_at)=?", datetime).find_each do |message|
       message.update(last_interaction_at: message.updated_at)
+    end
+  end
+
+  desc "Migrate tracking where step values belongs to ticket tracking"
+  task migrate_tracking: :environment do
+    tracking_variable = Variable.ticket_tracking
+
+    if tracking_variable.present?
+
+      ActiveRecord::Base.transaction do
+        tracking_variable.step_values.find_each do |step_value|
+          tracking = Tracking.new do |t|
+            t.ticket_code = step_value.variable_value.raw_value
+            t.site_code = step_value.variable_value.raw_value[0...4]
+            t.status = step_value.variable_value.ticket_status
+            t.tracking_datetime = step_value.created_at
+            t.message = step_value.message
+            t.session = step_value.session
+          end
+
+          tracking.save
+        end
+      end
+
     end
   end
 end

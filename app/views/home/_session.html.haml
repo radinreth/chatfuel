@@ -1,23 +1,23 @@
-- step_values = message.step_values.order(updated_at: :desc)
+- step_values = session.step_values.order(updated_at: :desc)
 
 %tr
   %td.border-right-0.border-bottom-0
     .session.nowrap-space
       = link_to "#collapse#{index}", type: "button", data: { toggle: "collapse" }, class: "collapsed btn-collapse btn btn-outline btn-sm mr-3" do
         %i.fas.fa-angle-right
-      = image_tag "#{message.platform_name.downcase}.svg", width: 18
-      - if message.repeated?
+      = image_tag "#{session.platform_name.downcase}.svg", width: 18
+      - if session.repeated?
         %span{ data: { toggle: "tooltip" }, title: t("repeated")}
           .fa.fa-redo.fa-sm
-      = message.session_id
+      = session.mask_session_id
   %td.border-left-0.border-bottom-0
     - result = []
     - step_values.order(:id).each do |step|
       - result << render_from_string(step.variable_value.mapping_value)
     = result.compact.join(", ").html_safe
   %td.border-left-0.border-right-0.border-bottom-0
-    %span.timeago{ "data-full-datetime": display_datetime(message.last_interaction_at) }
-      = time_ago_in_words(message.last_interaction_at)
+    %span.timeago{ "data-full-datetime": display_datetime(session.last_interaction_at) }
+      = time_ago_in_words(session.last_interaction_at)
 
 %tr
   %td.p-0.border-top-0{ colspan: 3 }

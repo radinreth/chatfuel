@@ -6,9 +6,12 @@ module CsvConcern
   def to_csv(variables)
     row = []
 
-    row << session_id
+    # can't call inline csv doesn't work
+    repeated_value = repeated ? true : nil
+
+    row << mask_session_id
     row << created_at
-    row << repeated
+    row << repeated_value
     row << field_values(variables)
 
     row
