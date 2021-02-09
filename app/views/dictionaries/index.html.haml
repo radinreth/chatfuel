@@ -3,16 +3,8 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      .d-flex.align-items-center.justify-content-between
-        .d-flex.align-items-center
-          = render 'shared/sb-admin/filter_search', placeholder: t('dictionaries.type_name'), url: dictionaries_path
-
-        .actions
-          = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newDictionaryModal" } do
-            %i.fas.fa-plus.fa-fw
-            = t('dictionaries.new_dictionary')
-
-          = render "create-new-dictionary-modal", dictionary: @variable
+      = render(SearchFormComponent.new(placeholder: t('dictionaries.type_name'), url: dictionaries_path)) do |c|
+        = c.with(:action) { render "search_action" }
 
     .total-info.mb-2
       = t("paginate_info_html", name: t("dictionaries.dictionaries"), items_range: pagy_range, collection_count: @pagy.count)

@@ -1,4 +1,4 @@
-.my-4.d-flex.flex-wrap
+.my-4.d-flex.flex-wrap.filter-options
   .flex-grow-1
     %ul.list-inline.platform-list
       - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code], gender: params[:gender]}
@@ -14,7 +14,7 @@
       .gender.d-flex.align-items-center
         .filter-label.mr-2
           = t("dictionaries.gender")
-        .form-group.mb-0.mr-3
+        .form-group.mb-0.mr-3.gender-options
           %select.form-control.select.province__select-option{ name: "gender", onchange: "this.form.submit()"}
             %option{ value: "" }= t('all')
             = render(GenderOptionComponent.new(name: "male"))
@@ -31,5 +31,5 @@
           %span.mr-2
             =t("dashboard.show")
         .date-filter__choose-option
-          .input-group
+          .input-group.date-group
             = render "shared/input_date_range"

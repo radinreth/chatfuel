@@ -1,0 +1,5 @@
+.actions.d-flex.align-items-center.justify-content-center
+  = link_to "#", class: "btn btn-primary", data: { toggle: "modal", target: "#newDictionaryModal" } do
+    %i.fas.fa-plus.fa-fw
+    = t('dictionaries.new_dictionary')
+  = render "create-new-dictionary-modal", dictionary: @variable
