@@ -91,7 +91,7 @@ Rails.application.routes.draw do
     resources :sites, param: :site_code, only: [:update]
 
     resources :ivrs, only: [:create]
-    resource :map_preview, only: [:show], defaults: { locale: :km }
+    resource :map_preview, only: [:show], defaults: { locale: 'km' }
     resources :chatbot_tracks, only: [:create]
     resources :ivr_tracks, only: [:create]
     resources :chatbots, only: [:create] do
