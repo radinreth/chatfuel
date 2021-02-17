@@ -21,7 +21,7 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
     end
 
     def result_set
-      scope = sql.group("messages.district_id")
+      scope = sql.group("sessions.district_id")
       scope.count
     end
 end
