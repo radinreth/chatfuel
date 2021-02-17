@@ -1,6 +1,6 @@
 class FeedbackReport < GenericReport
   def sql
-    scope = StepValue.filter(StepValue.joins(:message), @query.options)
+    scope = StepValue.filter(@query.options, StepValue.joins(:message))
     scope = scope.where(messages: { district_id: @query.district_codes_without_other })
     scope = scope.where(variable: [like, dislike])
     scope = scope.group(:variable_id, :variable_value_id)

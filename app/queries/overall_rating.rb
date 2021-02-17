@@ -30,7 +30,7 @@ class OverallRating < Feedback
     end
 
     def result_set
-      scope = StepValue.filter(@variable.step_values, @query.options)
+      scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:message)
       scope = scope.where(messages: { district_id: @query.district_codes_without_other })
       scope = scope.group("messages.district_id")
