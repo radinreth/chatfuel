@@ -219,6 +219,15 @@ OWSO.WelcomesIndex = (() => {
     }, 500);
   }
 
-  return { init, renderChart, loadSubCategories, scrollToForm }
+  function flashTooltip() {
+    let tooltipComponent = $($(".chart-title")[0]).find("span");
+    tooltipComponent.tooltip("show");
+    
+    setTimeout(function() {
+      tooltipComponent.tooltip("hide");
+    }, 3000);
+  }
+
+  return { init, renderChart, loadSubCategories, scrollToForm, flashTooltip }
 
 })()
