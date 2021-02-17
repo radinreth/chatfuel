@@ -12,7 +12,7 @@ class TicketTrackingByGenders < BasicReport
   
   private
     def result_set
-      scope = Message.filter(@query.options).unscope(:order)
+      scope = Session.filter(@query.options).unscope(:order)
       scope = scope.where.not(gender: ["", "null"])
       scope = scope.joins(:trackings)
       scope = scope.group(:gender)
