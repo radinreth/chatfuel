@@ -2,7 +2,7 @@ module Previewable
   extend ActiveSupport::Concern
 
   included do
-    skip_before_action :restrict_access
+    skip_before_action :restrict_access, only: :map
     before_action :set_site, only: :map
   end
 
