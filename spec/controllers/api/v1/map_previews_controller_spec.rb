@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Api::V1::MapPreviewsController, type: :controller do
   describe "routes" do
-    it { should route(:get, "/api/v1/map_preview").to(action: :show, format: :json) }
+    it { should route(:get, "/api/v1/map_preview").to(action: :show, format: :json, locale: "km") }
   end
 
   describe "actions" do
