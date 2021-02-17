@@ -1,6 +1,8 @@
 module Api
   module V1
     class SitesController < ApplicationController
+      include Previewable
+
       def update
         SyncHistoryLog.create(payload: ticket_params, site_id: @site.id)
 
