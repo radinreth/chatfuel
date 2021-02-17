@@ -4,7 +4,8 @@
       .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
         %span.chart-name.text-primary.d-inline-block.mr-1.chart-head.text-capitalize
           = @name
-          - if hint.present?
+        - if hint.present?
+          %span{ data: { toggle: "tooltip", title: hint } }
             %i.icon-hint.far.fa-question-circle
         = addon
       .tools.d-flex
