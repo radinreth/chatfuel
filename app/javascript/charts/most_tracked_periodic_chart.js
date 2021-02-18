@@ -32,5 +32,5 @@ export const mostTrackedPeriodic = ( collection = null) => {
     }
   };
 
-  new Chart('chart_most_service_tracked_periodically', { type, plugins, data, options });
+  OWSO.Util.createOrUpdate('chart_most_service_tracked_periodically', { type, plugins, data, options });
 }
