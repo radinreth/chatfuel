@@ -40,5 +40,5 @@ export const accessInfo = (collection = null) => {
     }
   }
 
-  new Chart('chart_information_access_by_period', { type, plugins, data, options });
+  OWSO.Util.createOrUpdate('chart_information_access_by_period', { type, plugins, data, options });
 }

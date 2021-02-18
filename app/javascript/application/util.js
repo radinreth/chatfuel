@@ -1,6 +1,12 @@
 import { sum } from '../utils/array'
 
 OWSO.Util = {
+  createOrUpdate(canvasId, options) {
+    let chart = this.findChartInstance(canvasId);
+
+    if( chart != undefined ) chart.destroy();
+    new Chart(canvasId, options);
+  },
   chartReg() {
     let thiz = this;
 
