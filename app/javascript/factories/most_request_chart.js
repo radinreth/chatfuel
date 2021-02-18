@@ -38,5 +38,5 @@ export const MostRequestChart = (ctx) => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  OWSO.Util.createOrUpdate("chart_most_requested_services", { type, plugins, data, options });
 }

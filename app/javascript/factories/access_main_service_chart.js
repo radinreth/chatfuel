@@ -63,5 +63,5 @@ export const accessMainService = (ctx) => {
     }
   }
 
-  return new Chart(ctx, { type, plugins, data, options });
+  OWSO.Util.createOrUpdate('chart_number_access_by_main_services', { type, plugins, data, options });
 }

@@ -44,5 +44,5 @@ export const feedbackTrend = () => {
     }
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  OWSO.Util.createOrUpdate('chart_owso_feedback_trend', { type, plugins, data, options });
 }
