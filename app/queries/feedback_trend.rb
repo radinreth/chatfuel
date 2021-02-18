@@ -31,7 +31,7 @@ class FeedbackTrend < Feedback
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
       scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
-      scope = scope.group_by_period(period, "messages.created_at", format: "%b")
+      scope = scope.group_by_period(period, "sessions.created_at", format: "%b")
       scope = scope.group(:variable_value_id)
       scope.count
     end
