@@ -36,5 +36,5 @@ export const overallRating = () => {
     }
   };
 
-  new Chart('chart_overall_rating_by_owso', { type, plugins, data, options });
+  OWSO.Util.createOrUpdate('chart_overall_rating_by_owso', { type, plugins, data, options });
 }

@@ -10,5 +10,5 @@ export const feedbackSubCategories = (ctx, rs) => {
     datasets: _.map(dataset, (el) => el)
   };
 
-  return new Chart(ctx, { type, plugins, data, options });
+  OWSO.Util.createOrUpdate(ctx, { type, plugins, data, options });
 }
