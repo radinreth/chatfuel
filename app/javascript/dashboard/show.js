@@ -22,13 +22,17 @@ OWSO.DashboardShow = (() => {
   }
 
   function tooltipChart() {
-    $(".chart-name")
-      .mouseover(function() {
-        $(this).next().tooltip("show");
-      })
-      .mouseleave(function() {
-        $(this).next().tooltip("hide");
-      });
+    $(document)
+      .on("mouseover", ".chart-name", showToolTip )
+      .on("mouseleave", ".chart-name", hideToolTip );
+  }
+
+  function showToolTip() {
+    $(this).next().tooltip("show")
+  }
+
+  function hideToolTip() {
+    $(this).next().tooltip("hide")
   }
 
   function renderCharts() {
@@ -147,5 +151,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, attachEventClickToChartDownloadButton }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, attachEventClickToChartDownloadButton, tooltipChart }
 })();
