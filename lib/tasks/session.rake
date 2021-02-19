@@ -102,7 +102,7 @@ namespace :session do
   end
 
   namespace :migrate_empty_gender_and_location_to_other do
-    csv_file = Rails.root.join('db', 'datasources', "empty_gender_location_#{Time.current.to_formatted_s(:number)}.csv")
+    csv_file = Rails.root.join('db', 'datasources', "empty_gender_location_#{Date.current.to_formatted_s(:number)}.csv")
 
     desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
     task up: :environment do
