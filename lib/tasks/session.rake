@@ -101,11 +101,12 @@ namespace :session do
   namespace :migrate_empty_gender_and_location_to_other do
     desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
     task up: :environment do
+      ActiveRecord::Base.record_timestamps = false
       ActiveRecord::Base.transaction do
         CSV.open(csv_file_path, "wb") do |csv|
           csv << header_csv
 
-          Session.where(gender: nil).find_each do |session|
+          Session.where(gender: nil, platform_name: "Messenger").find_each do |session|
             session.set_other_gender
             session.set_00_province
             session.set_0000_district
@@ -116,11 +117,14 @@ namespace :session do
 
       rescue => exception
         puts exception.message
+      ensure
+        ActiveRecord::Base.record_timestamps = true
       end
     end
 
     desc 'Rollback session empty gender, location to old state'
     task down: :environment do
+      ActiveRecord::Base.record_timestamps = false
       ActiveRecord::Base.transaction do
         CSV.foreach(csv_file_path, headers: true).each do |row|
           session = Session.find(row["session_id"])
@@ -128,12 +132,14 @@ namespace :session do
         end
       rescue => e
         puts e.message
+      ensure
+        ActiveRecord::Base.record_timestamps = true
       end
     end
   end
   
   def header_csv
-    %w(session_id migrated_at old_gender new_gender 
+    %w(session_id migrated_at platform_name old_gender new_gender 
       old_province_id new_province_id old_district_id new_district_id)
   end
 
