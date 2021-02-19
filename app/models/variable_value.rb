@@ -10,6 +10,7 @@
 #  raw_value         :string           not null
 #  status            :string           default("acceptable")
 #  step_values_count :integer(4)       default(0)
+#  type_of           :string           default("")
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  variable_id       :bigint(8)        not null
