@@ -55,8 +55,8 @@ namespace :session do
     ActiveRecord::Base.record_timestamps = true
   end
 
-  namespace :empty_gender_location do
-    csv_file = "empty_gender_location_#{Date.current.strftime}.csv"
+  namespace :migrate_empty_gender_and_location_to_other do
+    csv_file = Rails.root.join('db', 'datasources', "empty_gender_location_#{Time.current.to_formatted_s(:number)}.csv")
 
     desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
     task up: :environment do
@@ -76,9 +76,10 @@ namespace :session do
               raise "Session #{session.id} cannot be saved due to #{session.errors.messages}"
             end
           end
-
-          puts "== Done migration =="
         end
+
+      rescue => exception
+        puts exception.message
       end
     end
 
@@ -95,8 +96,8 @@ namespace :session do
               district_id: row["old_district_id"] )
           end
         end
-
-        puts "== Done rollback =="
+      rescue => e
+        puts e.message
       end
     end
   end
