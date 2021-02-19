@@ -98,25 +98,55 @@ namespace :session do
     end
   end
 
-  desc 'Migrate session\'s `""` or `nil` gender to `other`'
-  task migrate_gender_empty_to_other: :environment do
-    ActiveRecord::Base.transaction do
-      CSV.open("file.csv", "wb") do |csv|
-        csv << ['session_id', 'migrated_at', 'old_gender', 'new_gender', 'old_province_id', 'new_province_id', 'old_district_id', 'new_district_id']
+  namespace :empty_gender_location do
+    csv_file = "empty_gender_location_#{Date.current.strftime}.csv"
 
-        Session.where(gender: nil).limit(5).find_each do |session|
-          session.gender = 'other'
-          session.province_id = '00' unless session.province_id?
-          session.district_id = '0000' unless session.district_id?
+    desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
+    task up: :environment do
+      ActiveRecord::Base.transaction do
+        CSV.open(csv_file, "wb") do |csv|
+          csv << header_csv
 
-          if true
-            csv << body_csv(session) 
-          else
-            raise "Session #{session.id} cannot be saved due to #{session.errors.messages}"
+          Session.where(gender: nil).find_each do |session|
+            session.gender = 'other'
+            session.province_id = '00' unless session.province_id?
+            session.district_id = '0000' unless session.district_id?
+            row = body_csv(session)
+
+            if session.save
+              csv << row
+            else
+              raise "Session #{session.id} cannot be saved due to #{session.errors.messages}"
+            end
           end
+
+          puts "== Done migration =="
         end
       end
     end
+
+    desc 'Rollback session empty gender, location to old state'
+    task down: :environment do
+      ActiveRecord::Base.transaction do
+        CSV.foreach(csv_file, headers: true, encoding: "bom|utf-8").each do |row|
+          session = Session.find(row["session_id"])
+
+          if session.present?
+            session.update_columns(
+              gender: row["old_gender"],
+              province_id: row["old_province_id"],
+              district_id: row["old_district_id"] )
+          end
+        end
+
+        puts "== Done rollback =="
+      end
+    end
+  end
+  
+  def header_csv
+    %w(session_id migrated_at old_gender new_gender 
+      old_province_id new_province_id old_district_id new_district_id)
   end
 
   def body_csv(session)
