@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_063937) do
+ActiveRecord::Schema.define(version: 2021_02_18_092044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -341,6 +341,7 @@ ActiveRecord::Schema.define(version: 2021_01_18_063937) do
     t.string "hint", limit: 255, default: ""
     t.string "mapping_value_km", default: ""
     t.boolean "is_criteria", default: false
+    t.string "type_of", default: ""
     t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 

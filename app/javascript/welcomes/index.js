@@ -16,6 +16,7 @@ OWSO.WelcomesIndex = (() => {
     OWSO.DashboardShow.renderDatetimepicker();
     OWSO.DashboardShow.multiSelectDistricts();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
+    OWSO.DashboardShow.tooltipChart();
 
     onWindowScroll();
     onChangeDistrict();

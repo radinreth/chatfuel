@@ -58,7 +58,7 @@ class BaseChart {
   optionsWithWatermark = () => _.extend(this.options(), this.watermarkOption);
 
   render = (opts = {}) => {
-    new Chart(this.chartId, this.config(opts));
+    OWSO.Util.createOrUpdate(this.chartId, this.config(opts));
   };
 }
 
