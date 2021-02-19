@@ -46,3 +46,6 @@ node_modules/
 
 # Puma need tmp/pids directory to start
 !tmp/pids/.keep
+
+# Log from migration empty session's gender, location to other
+db/datasources
