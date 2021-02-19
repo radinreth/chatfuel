@@ -29,7 +29,7 @@
         if( $(".fb-customerchat").length == 0 ) {
           var div = document.createElement('div');
           div.className = 'fb-customerchat';
-          div.setAttribute('page_id', '100352538508662');
+          div.setAttribute('page_id', '#{ENV["FACEBOOK_PAGE_ID"]}');
           div.setAttribute('ref', '');
           document.body.appendChild(div);
         }
@@ -37,7 +37,7 @@
         window.fbMessengerPlugins = window.fbMessengerPlugins || {
           init: function () {
             FB.init({
-              appId            : '1678638095724206',
+              appId            : '#{ENV["FACEBOOK_APP_ID"]}',
               autoLogAppEvents : true,
               xfbml            : true,
               version          : 'v8.0'
