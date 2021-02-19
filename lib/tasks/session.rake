@@ -99,25 +99,18 @@ namespace :session do
   end
 
   namespace :migrate_empty_gender_and_location_to_other do
-    csv_file = Rails.root.join('db', 'datasources', "empty_gender_location_#{Date.current.to_formatted_s(:number)}.csv")
-
     desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
     task up: :environment do
       ActiveRecord::Base.transaction do
-        CSV.open(csv_file, "wb") do |csv|
+        CSV.open(csv_file_path, "wb") do |csv|
           csv << header_csv
 
           Session.where(gender: nil).find_each do |session|
-            session.gender = 'other'
-            session.province_id = '00' unless session.province_id?
-            session.district_id = '0000' unless session.district_id?
-            row = body_csv(session)
-
-            if session.save
-              csv << row
-            else
-              raise "Session #{session.id} cannot be saved due to #{session.errors.messages}"
-            end
+            session.set_other_gender
+            session.set_00_province
+            session.set_0000_district
+            csv << session.row_csv
+            raise session.err_msg unless session.save
           end
         end
 
@@ -129,15 +122,9 @@ namespace :session do
     desc 'Rollback session empty gender, location to old state'
     task down: :environment do
       ActiveRecord::Base.transaction do
-        CSV.foreach(csv_file, headers: true, encoding: "bom|utf-8").each do |row|
+        CSV.foreach(csv_file_path, headers: true).each do |row|
           session = Session.find(row["session_id"])
-
-          if session.present?
-            session.update_columns(
-              gender: row["old_gender"],
-              province_id: row["old_province_id"],
-              district_id: row["old_district_id"] )
-          end
+          session.rollback_to_old_state(row)
         end
       rescue => e
         puts e.message
@@ -150,12 +137,11 @@ namespace :session do
       old_province_id new_province_id old_district_id new_district_id)
   end
 
-  def body_csv(session)
-    row = [session.id, Date.current.strftime]
-    [:gender, :province_id, :district_id].each do |attr|
-      row << session.send("#{attr}_was".to_sym)
-      row << session.send(attr)
-    end
-    row
+  def csv_file_path
+    Rails.root.join('db', 'datasources', "empty_gender_location_#{current_date_as_num}.csv")
+  end
+
+  def current_date_as_num
+    Date.current.to_formatted_s(:number)
   end
 end
