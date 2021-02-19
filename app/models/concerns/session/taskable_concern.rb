@@ -14,7 +14,7 @@ module Session::TaskableConcern
   end
 
   def row_csv
-    row = [id, Time.current]
+    row = [id, Time.current, platform_name]
     %i(gender province_id district_id).each do |attr|
       row << send("#{attr}_was".to_sym)
       row << send(attr)
