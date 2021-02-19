@@ -5,7 +5,7 @@ class GenderInfo < BasicReport
 
   def dataset
     sql.each_with_object({}) do |(raw_gender, count), gender|
-      mapping_gender = @query.mapping_variable_value[raw_gender].mapping_value
+      mapping_gender = @query.mapping_variable_value[raw_gender]&.mapping_value
       gender[mapping_gender] = count
     end
   end
