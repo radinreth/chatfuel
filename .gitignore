@@ -35,7 +35,6 @@ yarn-debug.log*
 /log
 
 .env
-docker-env
 app.env
 
 app/assets/javascripts/i18n/
