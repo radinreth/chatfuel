@@ -32,7 +32,7 @@ module StepValue::AggregatableConcern
       scope.count
     end
 
-    def self.agg_value_count variable, params = {}
+    def self.agg_value_count(variable, params = {})
       scope = filter(params.merge(variable_id: variable))
       scope = scope.order("count_all DESC")
       scope = scope.group("variable_value_id")
@@ -40,4 +40,13 @@ module StepValue::AggregatableConcern
     end
   end
 
+  module ClassMethods
+    def total_users_feedback_by_gender(variable_value, options)
+      scope = StepValue.filter(options)
+      scope = scope.where(variable_value: variable_value)
+      scope = scope.joins(:session)
+      scope = scope.group(:gender)
+      scope.count
+    end
+  end
 end
