@@ -134,6 +134,7 @@ km:
     total_user_gender: ការទទួលព័ត៌មានរបស់ប្រជាពលរដ្ឋតាមភេទ
     total_user_visit: ចំនួនដងនៃការចូលទស្សនាសរុបតាមផ្នែកនីមួយៗ
     total_user_feedback: ចំនួនមតិយោបល់សរុបរបស់អ្នកប្រើប្រាស់
+    total_user_feedback_groupby_gender: ចំនួនមតិយោបល់ បែងចែកតាមភេទ
     number_of_ticket_tracking: ការតាមដានសំបុត្រ(ចំនួនដង)
     both: ទាំងពីរ
     ivr: ខលចូល
