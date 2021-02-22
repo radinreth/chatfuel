@@ -12,6 +12,7 @@ class Gonify
       totalUserByGender: @query.users_by_genders,
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,
+      totalUserFeedbackByGender: @query.total_users_feedback_by_gender,
       ticketTracking: @query.ticket_tracking,
       overview: @query.goals
     }

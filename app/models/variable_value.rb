@@ -24,6 +24,7 @@
 #
 class VariableValue < ApplicationRecord
   enum status: { like: "0", acceptable: "1", dislike: "2" }
+  USER_FEEDBACK = 'user_feedback'
 
   # associations
   belongs_to :variable
@@ -84,6 +85,15 @@ class VariableValue < ApplicationRecord
 
   def self.kind_of_criteria
     where("mapping_value_en=:mapping_value OR mapping_value_km=:mapping_value", mapping_value: criteria&.mapping_value)
+  end
+
+  def self.user_feedback
+    find_by(type_of: USER_FEEDBACK)
+  end
+
+  def self.type_of_user_feedback
+    return [] unless user_feedback
+    where("mapping_value_en=:mapping_value OR mapping_value_km=:mapping_value", mapping_value: user_feedback.mapping_value)
   end
 
   private

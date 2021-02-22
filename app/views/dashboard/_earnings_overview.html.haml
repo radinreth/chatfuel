@@ -4,7 +4,10 @@
   .col-xl-4.col-lg-6
     = render "dashboard/total_user_visit"
   .col-xl-4.col-lg-6
-    = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
+    = render partial: "dashboard/total_user_feedback_groupby_gender", locals: { id: "total_users_feedback_by_gender", title: t("dashboard.total_user_feedback_groupby_gender") }
   
-  = render "dashboard/overview"
+  .col-xl-6.col-lg-6
+    = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
   = render "dashboard/number_of_tracked_ticket"
+
+  = render "dashboard/overview"
