@@ -6,7 +6,6 @@ README.md
 Dockerfile
 docker-compose.prod.yml
 app.env
-docker-env
 
 # OS X
 .DS_Store
@@ -46,3 +45,6 @@ node_modules/
 
 # Puma need tmp/pids directory to start
 !tmp/pids/.keep
+
+# Log from migration empty session's gender, location to other
+db/datasources
