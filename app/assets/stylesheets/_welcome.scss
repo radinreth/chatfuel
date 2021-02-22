@@ -214,7 +214,7 @@
 
   // override recaptcha position
   .grecaptcha-badge {
-    bottom: 100px !important;
+    bottom: 50% !important;
     z-index: 9;
   }
 }
