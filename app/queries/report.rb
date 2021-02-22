@@ -5,7 +5,7 @@ class Report
   end
 
   def chart_options
-    { dataset: dataset }
+    { colors: colors, dataset: dataset }
   end
 
   def dataset; raise 'must be implemented in subclass' end
@@ -32,6 +32,10 @@ class Report
 
   def location_filter
     @location_filter = Filters::LocationFilter.new(province, districts)
+  end
+
+  def colors
+    Color.generate(dataset&.count.to_i)
   end
 
   def province
