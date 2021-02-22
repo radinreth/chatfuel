@@ -9,7 +9,6 @@ OWSO.Util = {
         let { datasets } = chart.data
 
         if (datasets.length == 0 || thiz.isEmpty(datasets)) {
-          debugger
           var ctx = chart.chart.ctx;
           var width = chart.chart.width;
           var height = chart.chart.height
