@@ -41,10 +41,12 @@ OWSO.DashboardShow = (() => {
     userVisit.render({watermark: false});
     userGender.render({watermark: false});
     userFeedback.render({watermark: false})
-
     ticketTracking.render({watermark: false});
     overview.render({watermark: false});
     feedbackByGender.render({watermark: false});
+
+    // public dashboard
+    
   }
 
   function multiSelectDistricts() {

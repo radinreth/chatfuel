@@ -16,3 +16,10 @@
 
   .col-xl-6.col-lg-6
     = render partial: "dashboard/overview", locals: { id: "chart-overview", title: t("dashboard.overview") }
+
+  -# charts from public dashboard
+
+  .col-xl-6.col-lg-6
+    = render( ChartComponent.new(name: t("welcomes.most_requested_services")) ) do |c|
+      - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services") }
+      - c.with(:hint) { t("hint.most_requested_services") }
