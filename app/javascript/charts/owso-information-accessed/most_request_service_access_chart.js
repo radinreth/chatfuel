@@ -8,4 +8,4 @@ class MostRequestServiceAccessChart extends FilteredBarChart {
   dataset = () => this.format(gon.mostRequest);
 }
 
-export const mostRequestServiceAccess = new MostRequestServiceAccessChart();
+export const mostRequest = new MostRequestServiceAccessChart();
