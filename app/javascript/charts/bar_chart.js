@@ -8,6 +8,11 @@ class BarChart extends BaseChart {
     return this.suggestedMax(data);
   }
 
+  dataFormat = () => ({
+    maxBarThickness: 36,
+    minBarLength: 2,
+  })
+
   options () {
     let { plugins } = this.baseOptions;
 
@@ -21,7 +26,16 @@ class BarChart extends BaseChart {
           borderWidth: 0,
           padding: 0,
           backgroundColor: undefined,
-          display: true
+          display: true,
+          textAlign: "center",
+          font: {
+            weight: 'normal'
+          },
+          formatter: function(value, context) {
+            let { dataTitles } = context.dataset
+            if( dataTitles == undefined ) return value
+            else return dataTitles[context.dataIndex] + "\n" + value;
+          }
         }
       },
       cutoutPercentage: 80,
