@@ -1,4 +1,8 @@
 km:
+  period:
+    monthly: ខែ
+    quarterly: ត្រីមាស
+    yearly: ឆ្នាំ
   datetime:
     distance_in_words:
       about_x_hours:
