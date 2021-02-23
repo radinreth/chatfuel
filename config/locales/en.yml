@@ -133,6 +133,7 @@ en:
     total_user_gender: Information Access by Gender
     total_user_visit: Total Visits by Type of Service
     total_user_feedback: Total User Feedback
+    total_user_feedback_groupby_gender: Total Feedback
     number_of_ticket_tracking: Ticket Tracking(times)
     both: Both
     ivr: IVR

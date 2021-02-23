@@ -122,6 +122,11 @@ class DashboardQuery
     users_feedback_report.chart_options
   end
 
+  def total_users_feedback_by_gender
+    report = ::UserFeedbackGender.new(nil, self)
+    report.chart_options
+  end
+
   def most_requested_service
     most_request_variable = Variable.most_request
     return unless most_request_variable.present?

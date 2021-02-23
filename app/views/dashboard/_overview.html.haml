@@ -1,4 +1,4 @@
-.col-xl-6.col-lg-6
+.col-xl-12.col-lg-6
   - name = t("dashboard.overview")
   - downloadable = @query.goals.present?
   = render( ChartComponent.new(name: name, downloadable: downloadable) ) do |c|

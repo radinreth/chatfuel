@@ -2,11 +2,13 @@ import { sum } from '../utils/array'
 
 OWSO.Util = {
   chartReg() {
+    let thiz = this;
+
     Chart.plugins.register({
       afterDraw: function(chart) {
         let { datasets } = chart.data
 
-        if (datasets.length == 0 || (datasets && datasets[0].data && sum(datasets[0].data) === 0)) {
+        if (datasets.length == 0 || thiz.isEmpty(datasets)) {
           var ctx = chart.chart.ctx;
           var width = chart.chart.width;
           var height = chart.chart.height
@@ -23,6 +25,10 @@ OWSO.Util = {
       }
     });
   },
+  isEmpty(datasets) {
+    return sum(_.flatten(_.map(datasets, ds => ds.data))) == 0
+  },
+
   dev() { return location.hostname == "localhost" },
 
   freshSession() {
