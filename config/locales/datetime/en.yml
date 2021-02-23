@@ -1,4 +1,8 @@
 en:
+  period:
+    monthly: monthly
+    quarterly: quarterly
+    yearly: yearly
   datetime:
     distance_in_words:
       about_x_hours:
