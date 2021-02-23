@@ -1,42 +1,27 @@
-import * as defaults from '../data/defaults'
+import BarChart from './bar_chart'
+import { extract } from '../utils'
+import { suggestedMax } from '../utils/bar_chart'
 
-export const MostRequestChart = (ctx) => {
-  let type = 'bar', 
-      plugins = [chartDataLabels];
+class MostRequest extends BarChart {
+  ancestor = new BarChart();
+  chartId = 'chart_most_requested_services';
 
-  let { colors, dataset } = gon.mostRequest;
-  let [dataLabels, values] = [_.keys(dataset), _.values(dataset)];
-  let titles = _.map(values, el => el.value);
-  let counts = _.map(values, el => el.count);
+  suggestedMax = (data) => suggestedMax(data, 1.5);
+  dataset = () => this.format(gon.mostRequest);
+  dataTitles = (data) => _.map(data.values, el => el.value);
+  dataCounts = (data) => _.map(data.values, el => el.count);
 
-  let data = {
-    labels: dataLabels,
-    datasets: [
-      {
-        ...defaults.initData.datasets[0],
-        label: gon.most_requested_label,
-        backgroundColor: colors,
-        dataTitles: titles,
-        data: counts,
-      }
-    ]
-  };
-
-  let max = _.max(counts)
-  let suggestedMax = Math.round( max * 1.4 )
-
-  let options = {
-    ...defaults.initOptions,
-    scales: {
-      ...defaults.initOptions.scales,
-      yAxes: [{
-        display: true,
-        ticks: {
-          suggestedMax: suggestedMax,
-        }
-      }]
-    }
-  };
-
-  OWSO.Util.createOrUpdate("chart_most_requested_services", { type, plugins, data, options });
+  format = (ds) => {
+    let data = extract(ds);
+    return {  labels: _.keys(ds.dataset),
+              datasets: [
+                { ...this.ancestor.dataFormat(),
+                  backgroundColor: data.colors,
+                  dataTitles: this.dataTitles(data),
+                  data: this.dataCounts(data) }
+              ]
+            };
+  }
 }
+
+export const mostRequest = new MostRequest();
