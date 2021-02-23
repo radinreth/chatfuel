@@ -16,6 +16,6 @@ export const extractBarDataset = (ds) => {
   };
 }
 
-export const suggestedMax = function ( array ) {
-  return Math.round( _.max(array) * 1.2 )
+export const suggestedMax = function ( array, scale = 1.2 ) {
+  return Math.round( _.max(array) * scale )
 }
