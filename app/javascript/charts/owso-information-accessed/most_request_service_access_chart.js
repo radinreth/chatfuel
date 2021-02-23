@@ -1,8 +1,8 @@
-import BarChart from './bar_chart'
-import { extract } from '../utils'
-import { suggestedMax } from '../utils/bar_chart'
+import BarChart from '../bar_chart'
+import { extract } from '../../utils'
+import { suggestedMax } from '../../utils/bar_chart'
 
-class MostRequest extends BarChart {
+class MostRequestServiceAccessChart extends BarChart {
   ancestor = new BarChart();
   chartId = 'chart_most_requested_services';
 
@@ -24,4 +24,4 @@ class MostRequest extends BarChart {
   }
 }
 
-export const mostRequest = new MostRequest();
+export const mostRequestServiceAccess = new MostRequestServiceAccessChart();
