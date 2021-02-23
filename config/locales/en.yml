@@ -46,6 +46,7 @@ en:
   location_no_district: "%{province}"
   district_count: "%{count} districts"
   repeated: Finish and restart session
+  loading: Loading...
   download_chart: Download Chart
   visitor_count: Visitor count
   feedback_like: Like

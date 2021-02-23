@@ -47,6 +47,7 @@ km:
   location_no_district: "%{province}"
   district_count: "ស្រុកចំនួន %{count}"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
+  loading: ដំណើការ...
   download_chart: ទាញយកក្រាប
   visitor_count: ចំនួនអ្នកចូលទស្សនា
   feedback_like: ចូលចិត្ត

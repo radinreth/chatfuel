@@ -3,21 +3,6 @@ km:
     monthly: ខែ
     quarterly: ត្រីមាស
     yearly: ឆ្នាំ
-  date:
-    abbr_month_names:
-      - 
-      - មករា
-      - កុម្ភៈ
-      - មិនា
-      - មេសា
-      - ឧសភា
-      - មិថុនា
-      - កក្កដា
-      - សីហា
-      - កញ្ញា
-      - តុលា
-      - វិច្ឆិកា
-      - ធ្នូ
   datetime:
     distance_in_words:
       about_x_hours:

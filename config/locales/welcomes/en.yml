@@ -1,24 +1,24 @@
 en:
   welcomes:
-    # header: Our piloting areas
-    # search: Search
-    # summary: Summary
-    # access_info: OWSO Information Accessed
-    # citizen_feedback: Citizen Feedback
-    # province: Province
-    # districts: Districts
-    # time_period: Time period
-    # multi_districts: You can select more than one districts
+    header: Our piloting areas
+    search: Search
+    summary: Summary
+    access_info: OWSO Information Accessed
+    citizen_feedback: Citizen Feedback
+    province: Province
+    districts: Districts
+    time_period: Time period
+    multi_districts: You can select more than one districts
     most_requested_services: Most Requested Service by OWSO
-    # information_access_by_gender: Total Feedback By Gender
-    # information_access_by: Information Access by
-    # number_access_by_main_services: Most popular service information requested by OWSO
-    # most_service_tracked_by_periodic: Most Popular by
-    # ticket_tracking_by_gender: Ticket Tracking by Gender
-    # overall_rating_by_owso: Overall Rating by OWSO
-    # owso_feedback_trend: OWSO Feedback Trend
-    # feedback_by_sub_categories: Feedback by Sub Categories in %{name}
-    # overall_citizen_feedback: Total User Feedback - Overall Rating
-    # feedback_by_gender: Feedback by Gender
-    # total_user_feedback: Total User Feedback
-    # chat_with_us: Please chat with us!
+    information_access_by_gender: Total Feedback By Gender
+    information_access_by: Information Access by
+    number_access_by_main_services: Most popular service information requested by OWSO
+    most_service_tracked_by_periodic: Most Popular by
+    ticket_tracking_by_gender: Ticket Tracking by Gender
+    overall_rating_by_owso: Overall Rating by OWSO
+    owso_feedback_trend: OWSO Feedback Trend
+    feedback_by_sub_categories: Feedback by Sub Categories in %{name}
+    overall_citizen_feedback: Total User Feedback - Overall Rating
+    feedback_by_gender: Feedback by Gender
+    total_user_feedback: Total User Feedback
+    chat_with_us: Please chat with us!

@@ -42,7 +42,7 @@ class Filters::LocationFilter
   end
 
   def full_district_list_name
-    districts.map { |district| district.send(field_name) }.to_sentence
+    Array.wrap(districts).map { |district| district.send(field_name) }.to_sentence
   end
 
   private
