@@ -6,7 +6,7 @@ RSpec.describe "routes for chatbots" do
   end
 
   it "routes to preview map" do
-    expect(get("/api/v1/map_preview")).to route_to("api/v1/map_previews#show", format: :json)
+    expect(get("/api/v1/map_preview")).to route_to("api/v1/map_previews#show", format: :json, locale: 'km')
   end
 
   it "routes to mark_as_completed" do
