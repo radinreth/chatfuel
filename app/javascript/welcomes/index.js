@@ -1,7 +1,7 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import formater from '../data/formater'
-import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
+import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -50,12 +50,10 @@ OWSO.WelcomesIndex = (() => {
       fetchResultSet(option)
     })
 
-    $(document).on("change", ".track-period", function() {
-      let option = {
-        url: '/welcomes/q/service-tracked',
-        self: this,
-        extractor: formater.mostServiceTracked,
-        canvasId: "chart_most_service_tracked_periodically"
+      if( ds != undefined ) {
+        subCategoriesFeedback.chartId = dom.id;
+        subCategoriesFeedback.ds = ds;
+        subCategoriesFeedback.render();
       }
 
       fetchResultSet(option)
