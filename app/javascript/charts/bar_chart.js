@@ -4,9 +4,11 @@ class BarChart extends BaseChart {
   type = "bar";
 
   _suggestedMax = () => {
-    let { data } = this.dataset().datasets[0];
+    let data = this.flatten(this.dataset());
     return this.suggestedMax(data);
   }
+
+  flatten = (ds) => _.flatten( _.map(ds.datasets, item => item.data) );
 
   dataFormat = () => ({
     maxBarThickness: 36,
@@ -16,7 +18,9 @@ class BarChart extends BaseChart {
   options () {
     let { plugins } = this.baseOptions;
 
-    return Object.assign({}, this.baseOptions, {
+    return Object.assign({}, 
+      this.baseOptions, 
+      this.childOptions, {
       plugins: {
         datalabels: {
           ...plugins.datalabels,
