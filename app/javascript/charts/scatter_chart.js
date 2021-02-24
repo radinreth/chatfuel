@@ -2,19 +2,11 @@ import LineChart from "./line_chart";
 
 class ScatterChart extends LineChart {
   ancestor = new LineChart();
-  scatterOption = {
-    fill: false,
-    pointRadius: 5,
-    pointHoverRadius: 10,
-    showLine: false
-  }
 
   options = () => {
     return {
       ...this.ancestor.options(),
-      legend: {
-        display: false,
-      },
+      legend: { display: false, },
       layout: {
         padding: {
           right: 50
@@ -32,17 +24,16 @@ class ScatterChart extends LineChart {
             maxRotation: 45,
             minRotation: 45,
             callback: function(value) {
-              var maxLength = 10;
-              if( value.length >= maxLength ) {
-                return `${value.substr(0, 10)}...`;
-              } else {
-                return value;
-              }
+              let maxLength = 10,
+                  ellipsisValue = `${value.substr(0, 10)}...`;
+          
+              return (value.length >= maxLength) ? ellipsisValue : value;
             },
           }
         }],
         yAxes: [{
           ticks: {
+            suggestedMax: this._suggestedMax(),
           }
         }]
       },
@@ -54,9 +45,7 @@ class ScatterChart extends LineChart {
           textAlign: "center",
           backgroundColor: "#2F3559",
           color: "#FFF",
-          font: {
-            size: 10
-          }
+          font: { size: 10 }
         }
       }
     }
