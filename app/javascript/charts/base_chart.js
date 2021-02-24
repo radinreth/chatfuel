@@ -2,6 +2,14 @@ import stamp from "../images/stamp.png";
 
 class BaseChart {
   plugins = [chartDataLabels];
+  
+  _suggestedMax = () => {
+    let data = this.flatten(this.dataset());
+    return this.suggestedMax(data);
+  }
+
+  flatten = (ds) => _.flatten( _.map(ds.datasets, item => item.data) );
+
   baseOptions = {
     legend: { display: false },
     layout: {
