@@ -8,11 +8,6 @@ class BarChart extends BaseChart {
     minBarLength: 2,
   })
 
-  dataFormat = () => ({
-    maxBarThickness: 36,
-    minBarLength: 2,
-  })
-
   options () {
     let { plugins } = this.baseOptions;
 
