@@ -8,13 +8,6 @@ class BarChart extends BaseChart {
     minBarLength: 2,
   })
 
-  flatten = (ds) => _.flatten( _.map(ds.datasets, item => item.data) );
-
-  dataFormat = () => ({
-    maxBarThickness: 36,
-    minBarLength: 2,
-  })
-
   options () {
     let { plugins } = this.baseOptions;
 
