@@ -1,7 +1,7 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import formater from '../data/formater'
-import { feedbackSubCategories } from "../charts/feedback_sub_categories_chart";
+import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -78,7 +78,9 @@ OWSO.WelcomesIndex = (() => {
       let ds = gon.feedbackSubCategories[id];
 
       if( ds != undefined ) {
-        feedbackSubCategories(dom.id, ds);
+        subCategoriesFeedback.chartId = dom.id;
+        subCategoriesFeedback.ds = ds;
+        subCategoriesFeedback.render();
       }
     });
   }
