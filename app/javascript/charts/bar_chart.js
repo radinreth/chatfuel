@@ -3,11 +3,6 @@ import BaseChart from "./base_chart";
 class BarChart extends BaseChart {
   type = "bar";
 
-  _suggestedMax = () => {
-    let { data } = this.dataset().datasets[0];
-    return this.suggestedMax(data);
-  }
-
   dataFormat = () => ({
     maxBarThickness: 36,
     minBarLength: 2,
@@ -47,6 +42,7 @@ class BarChart extends BaseChart {
           }
         }],
         xAxes: [{
+          maxBarThickness: 50,
           ticks: {
             maxRotation: 0,
             minRotation: 0,
