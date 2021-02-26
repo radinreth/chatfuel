@@ -34,10 +34,10 @@
       - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
       - c.with(:hint) { t("hint.information_access_by_period") }
 
-  -# .col-lg-6
-  -#   = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
-  -#     - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
-  -#     - c.with(:hint) { t("hint.number_access_by_main_services") }
+  .col-lg-6
+    = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
+      - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
+      - c.with(:hint) { t("hint.number_access_by_main_services") }
 
   -# .col-lg-6
   -#   - name = t("welcomes.most_service_tracked_by_periodic")
