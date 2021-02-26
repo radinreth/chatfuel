@@ -11,7 +11,9 @@ class BarChart extends BaseChart {
   options () {
     let { plugins } = this.baseOptions;
 
-    return Object.assign({}, this.baseOptions, {
+    return Object.assign({}, 
+      this.baseOptions, 
+      this.childOptions, {
       plugins: {
         datalabels: {
           ...plugins.datalabels,
