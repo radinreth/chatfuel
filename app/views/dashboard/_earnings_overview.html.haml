@@ -51,10 +51,10 @@
       - c.with(:body) do
         %canvas#chart_most_service_tracked_periodically
 
-  -# .col-lg-6
-  -#   = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
-  -#     - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
-  -#     - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
+  .col-lg-6
+    = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
+      - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
+      - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
 
   -# .col-lg-6
   -#   = render( ChartComponent.new(name: t("welcomes.information_access_by_gender")) ) do |c|
