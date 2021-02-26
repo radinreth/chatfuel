@@ -8,6 +8,7 @@ import { feedbackByGender } from '../charts/feedback_by_gender_chart'
 
 import { mostRequest } from '../charts/most_request_chart'
 import { informationAccess } from '../charts/owso-information-accessed/access_info_chart'
+import { mainServiceAccess } from '../charts/owso-information-accessed/access_main_service_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -51,6 +52,7 @@ OWSO.DashboardShow = (() => {
     // public dashboard
     mostRequest.render()
     informationAccess.render()
+    mainServiceAccess.render()
   }
 
   function multiSelectDistricts() {
