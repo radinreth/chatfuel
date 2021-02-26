@@ -15,6 +15,7 @@ import { ticketTrackingAccess } from '../charts/owso-information-accessed/ticket
 import { genderFeedback } from '../charts/citizen-feedback/gender_feedback_chart'
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
+import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -29,6 +30,52 @@ OWSO.DashboardShow = (() => {
     multiSelectDistricts()
     renderCharts()
     tooltipChart()
+    onLoadPopup();
+  }
+
+  function onLoadPopup() {
+    $("#popup").on('show.bs.modal', function (event) {
+      let btn = $(event.relatedTarget);
+      let element = btn.data("element");
+      let modal = $(this);
+
+      let attrs = {
+        size: btn.data("size"),
+        title: btn.data("title"),
+        body: $(element).html(),
+        callback: btn.data("callback")
+      }
+
+      setupModal(modal, attrs);
+    });
+  }
+
+  function setupModal(modal, { size, title, body, callback }) {
+    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
+    modal.find(".modal-title").text(title);
+    let modalBody = modal.find(".modal-body");
+    if( modalBody.data("state") == "prune" ) {
+      modalBody.html(body);
+      $(".sub_categories").html("");
+      modalBody.data("state", "replaced");
+    }
+
+    if( callback !== undefined ) {
+      OWSO.DashboardShow[callback]();
+    }
+  }
+
+  function loadSubCategories() {
+    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let ds = gon.feedbackSubCategories[id];
+
+      if( ds != undefined ) {
+        subCategoriesFeedback.chartId = dom.id;
+        subCategoriesFeedback.ds = ds;
+        subCategoriesFeedback.render();
+      }
+    });
   }
 
   function tooltipChart() {
@@ -61,6 +108,7 @@ OWSO.DashboardShow = (() => {
     genderFeedback.render()
     overallFeedback.render()
     trendingFeedback.render()
+    subCategoriesFeedback.render()
   }
 
   function multiSelectDistricts() {
@@ -159,5 +207,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, loadSubCategories }
 })();
