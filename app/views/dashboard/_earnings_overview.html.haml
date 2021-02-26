@@ -1,13 +1,18 @@
 .row
   .col-xl-4.col-lg-6
-    = render partial: "dashboard/gender", locals: { title: t("dashboard.total_user_gender") }
+    = render partial: "dashboard/gender", locals: { id: "total_user_gender", title: t("dashboard.total_user_gender") }
+
   .col-xl-4.col-lg-6
-    = render "dashboard/total_user_visit"
+    = render partial: "dashboard/total_user_visit", locals: { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
+
   .col-xl-4.col-lg-6
     = render partial: "dashboard/total_user_feedback_groupby_gender", locals: { id: "total_users_feedback_by_gender", title: t("dashboard.total_user_feedback_groupby_gender") }
   
   .col-xl-6.col-lg-6
     = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
-  = render "dashboard/number_of_tracked_ticket"
 
-  = render "dashboard/overview"
+  .col-xl-6.col-lg-6
+    = render partial: "dashboard/number_of_tracked_ticket", locals: { id: "number_of_ticket_tracking", title: t("dashboard.number_of_ticket_tracking") }
+
+  .col-xl-6.col-lg-6
+    = render partial: "dashboard/overview", locals: { id: "chart-overview", title: t("dashboard.overview") }
