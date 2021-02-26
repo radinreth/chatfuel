@@ -200,4 +200,21 @@
     border-radius: 50%;
     background-image: image-url("lgbtq.png");
   }
+
+  // decrease select2 size
+
+  .select2-container {
+    width: auto !important;
+  }
+  .select2-selection__rendered {
+    padding: 2px;
+  }
+  .period-filter,
+  .access-period,
+  .track-period {
+    & + span .select2-selection.select2-selection--single {
+      height: 25px;
+      padding: 0 2em 0 0.5em;
+    }
+  }
 }
