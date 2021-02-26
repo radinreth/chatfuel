@@ -6,9 +6,10 @@ import { ticketTracking } from '../charts/ticket_tracking_chart'
 import { overview } from '../charts/overview_chart'
 import { feedbackByGender } from '../charts/feedback_by_gender_chart'
 
-import { mostRequest } from '../charts/most_request_chart'
+import { mostRequest } from '../charts/owso-information-accessed/most_request_chart'
 import { informationAccess } from '../charts/owso-information-accessed/access_info_chart'
 import { mainServiceAccess } from '../charts/owso-information-accessed/access_main_service_chart'
+import { mostPopularAccess } from '../charts/owso-information-accessed/most_tracked_periodic_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -53,6 +54,7 @@ OWSO.DashboardShow = (() => {
     mostRequest.render()
     informationAccess.render()
     mainServiceAccess.render()
+    mostPopularAccess.render()
   }
 
   function multiSelectDistricts() {
