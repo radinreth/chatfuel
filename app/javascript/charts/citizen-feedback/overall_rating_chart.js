@@ -5,6 +5,7 @@ class OverallFeedbackChart extends GroupBarChart {
 
   format = () => {
     let { labels, dataset } = gon.overallRating;
+
     return { labels, datasets: _.map(dataset, (el) => el) };
   }
 }

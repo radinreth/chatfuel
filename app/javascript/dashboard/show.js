@@ -13,6 +13,7 @@ import { mostPopularAccess } from '../charts/owso-information-accessed/most_trac
 import { ticketTrackingAccess } from '../charts/owso-information-accessed/ticket_tracking_by_genders_chart'
 
 import { genderFeedback } from '../charts/citizen-feedback/gender_feedback_chart'
+import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 
 OWSO.DashboardShow = (() => {
 
@@ -61,6 +62,7 @@ OWSO.DashboardShow = (() => {
     ticketTrackingAccess.render()
 
     genderFeedback.render()
+    overallFeedback.render()
   }
 
   function multiSelectDistricts() {
