@@ -1,4 +1,5 @@
 class DashboardQuery
+  include Chart::ReportHelper
   attr_reader :options
 
   def initialize(options = {})
@@ -151,7 +152,22 @@ class DashboardQuery
     @feedback ||= Variable.feedback
   end
 
+  def district_codes
+    options[:district_id].presence || all_district_codes
+  end
+
+  def district_codes_without_other
+    district_codes - ["0000"]
+  end
+
   private
+    def all_district_codes
+      location = Variable.location
+      return [] unless location
+
+      location.values.map(&:raw_value)
+    end
+
     def platform_param
       {
         ivr: { platform_name: ["Verboice"], content_type: 'VoiceMessage' },
