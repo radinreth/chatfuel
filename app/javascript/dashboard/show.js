@@ -6,6 +6,8 @@ import { ticketTracking } from '../charts/ticket_tracking_chart'
 import { overview } from '../charts/overview_chart'
 import { feedbackByGender } from '../charts/feedback_by_gender_chart'
 
+import { mostRequest } from '../charts/most_request_chart'
+
 OWSO.DashboardShow = (() => {
 
   function init() {
@@ -42,7 +44,7 @@ OWSO.DashboardShow = (() => {
     feedbackByGender.render({watermark: false});
 
     // public dashboard
-    
+    mostRequest.render()
   }
 
   function multiSelectDistricts() {
