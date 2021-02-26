@@ -64,8 +64,8 @@ module Chart::ReportHelper
 
   def feedback_sub_categories
     categories_all.merge(categories_separate)
-  rescue
-    {}
+  # rescue
+  #   {}
   end
 
   private
