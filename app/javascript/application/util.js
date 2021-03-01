@@ -1,6 +1,13 @@
 import { sum } from '../utils/array'
 
 OWSO.Util = {
+  createOrUpdate(canvasId, options) {
+    let chart = this.findChartInstance(canvasId);
+
+    // https://stackoverflow.com/questions/24785713/chart-js-load-totally-new-data
+    if( chart != undefined ) chart.destroy();
+    new Chart(canvasId, options);
+  },
   chartReg() {
     let thiz = this;
 
@@ -25,6 +32,7 @@ OWSO.Util = {
       }
     });
   },
+
   isEmpty(datasets) {
     return sum(_.flatten(_.map(datasets, ds => ds.data))) == 0
   },
