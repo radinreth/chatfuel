@@ -16,6 +16,7 @@ import { genderFeedback } from '../charts/citizen-feedback/gender_feedback_chart
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
+import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
 
@@ -31,6 +32,60 @@ OWSO.DashboardShow = (() => {
     renderCharts()
     tooltipChart()
     onLoadPopup();
+    onChangePeriod()
+  }
+
+  function onChangePeriod() {
+    $(document).on("change", ".period-filter", function() {
+      let path = $(this).data("resourcepath");
+      let url = `/welcomes/q/${path}`;
+
+      let option = {
+        url: url,
+        target: this,
+        extractor: formater[$(this).data("formater")],
+        canvasId: $(this).data("canvasid")
+      }
+
+      // console.log('option: ', option)
+      fetchResultSet(option);
+    });
+  }
+
+  function fetchResultSet({ url, target, extractor, canvasId }) {
+    let period = $(target).val()
+    let serializedParams = $('#q').serialize()+`&period=${period}`
+    let header = $(target).closest(".card-header");
+    let $spin = $(header.next().find(".loading")[0]);
+
+    loading($spin);
+    let chart = OWSO.Util.findChartInstance(canvasId)
+
+    $.get(url, serializedParams, function(result) {
+      console.log("requested: ....", chart, canvasId)
+      chart.data = extractor(result);
+      let max = _.max(flatten(chart.data.datasets));
+      let suggestedMax = Math.round( max * 1.40 );
+      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
+
+      chart.update();
+
+      loaded($spin);
+    }, "json");
+  }
+
+  function flatten(ds) {
+    return _.flatten( _.map(ds, d => d.data) )
+  }
+
+  function loading(spin) {
+    spin.removeClass("d-none");
+    spin.next().css({ opacity: 0.3 });
+  }
+
+  function loaded(spin) {
+    spin.addClass("d-none");
+    spin.next().css({ opacity: 1 });
   }
 
   function onLoadPopup() {
