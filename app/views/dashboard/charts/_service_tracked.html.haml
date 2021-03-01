@@ -1,0 +1,8 @@
+= render( ChartComponent.new(name: title, filterable: true) ) do |c|
+  - c.with(:addon) do
+    %select.period-filter{ data: { resourcepath: "service-tracked", formater: "mostServiceTracked", canvasid: id }}
+      %option{ value: "month" }= t("period.monthly")
+      %option{ value: "quarter" }= t("period.quarterly")
+      %option{ value: "year" }= t("period.yearly")
+  - c.with(:hint) { t("hint.most_service_tracked_by_periodic") }
+  - c.with(:body) { content_tag(:canvas, nil, id: id) }
