@@ -1,25 +1,25 @@
 .row
   .col-xl-4.col-lg-6
-    = render partial: "dashboard/gender", locals: { id: "total_user_gender", title: t("dashboard.total_user_gender") }
+    = render partial: "dashboard/gender", locals: locals[:gender]
 
   .col-xl-4.col-lg-6
-    = render partial: "dashboard/total_user_visit", locals: { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
+    = render partial: "dashboard/total_user_visit", locals: locals[:total_user_visit]
 
   .col-xl-4.col-lg-6
-    = render partial: "dashboard/total_user_feedback_groupby_gender", locals: { id: "total_users_feedback_by_gender", title: t("dashboard.total_user_feedback_groupby_gender") }
+    = render partial: "dashboard/total_user_feedback_groupby_gender", locals: locals[:feedback_by_gender]
   
-  .col-xl-6.col-lg-6
-    = render partial: "dashboard/total_user_feedback", locals: { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
+  .col-lg-6
+    = render partial: "dashboard/total_user_feedback", locals: locals[:user_feedback]
 
-  .col-xl-6.col-lg-6
-    = render partial: "dashboard/number_of_tracked_ticket", locals: { id: "number_of_ticket_tracking", title: t("dashboard.number_of_ticket_tracking") }
+  .col-lg-6
+    = render partial: "dashboard/number_of_tracked_ticket", locals: locals[:tracked_ticket]
 
-  .col-xl-6.col-lg-6
-    = render partial: "dashboard/overview", locals: { id: "chart-overview", title: t("dashboard.overview") }
+  .col-lg-6
+    = render partial: "dashboard/overview", locals: locals[:overview]
 
   -# charts from public dashboard
 
-  .col-xl-6.col-lg-6
+  .col-lg-6
     = render partial: "dashboard/charts/most_requested_services", locals: locals[:most_requested_services]
 
   .col-lg-6
