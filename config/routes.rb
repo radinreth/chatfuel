@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     root "home#index"
     get :dashboard, to: "dashboard#show"
     get :home, to: "home#index"
+    get "welcomes/q/access-info", to: "welcomes#access_info"
+    get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
+    get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
 
     resources :users
     resources :tickets, only: [:index]
