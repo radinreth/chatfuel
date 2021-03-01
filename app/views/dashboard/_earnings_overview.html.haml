@@ -1,50 +1,48 @@
-.row
-  .col-xl-4.col-lg-6
-    = render partial: "dashboard/gender", locals: locals[:gender]
+%nav
+  #nav-tab.nav.nav-tabs{:role => "tablist"}
+    %a#nav-summary-tab.nav-item.nav-link.active{"aria-controls" => "nav-summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-summary", :role => "tab"} summary
+    %a#nav-accessed-tab.nav-item.nav-link{"aria-controls" => "nav-accessed", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-accessed", :role => "tab"} owso information accessed
+    %a#nav-feedback-tab.nav-item.nav-link{"aria-controls" => "nav-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-feedback", :role => "tab"} citizen feedback
 
-  .col-xl-4.col-lg-6
-    = render partial: "dashboard/total_user_visit", locals: locals[:total_user_visit]
+  #nav-tabContent.tab-content.pt-4
+    #nav-summary.tab-pane.fade.show.active{"aria-labelledby" => "nav-summary-tab", :role => "tabpanel"}
+      .row
+        .col-lg-6
+          = render partial: "dashboard/total_user_visit", locals: locals[:total_user_visit]
+        .col-lg-6
+          = render partial: "dashboard/overview", locals: locals[:overview]
 
-  .col-xl-4.col-lg-6
-    = render partial: "dashboard/total_user_feedback_groupby_gender", locals: locals[:feedback_by_gender]
-  
-  .col-lg-6
-    = render partial: "dashboard/total_user_feedback", locals: locals[:user_feedback]
+    #nav-accessed.tab-pane.fade{"aria-labelledby" => "nav-accessed-tab", :role => "tabpanel"}
+      .row
+        .col-lg-6
+          = render partial: "dashboard/gender", locals: locals[:gender]
+        .col-lg-6
+          = render partial: "dashboard/number_of_tracked_ticket", locals: locals[:tracked_ticket]
+        .col-lg-6
+          = render partial: "dashboard/charts/most_requested_services", locals: locals[:most_requested_services]
+        .col-lg-6
+          = render partial: "dashboard/charts/information_access", locals: locals[:information_access]
+        .col-lg-6
+          = render partial: "dashboard/charts/main_services_access", locals: locals[:main_services_access]
+        .col-lg-6
+          = render partial: "dashboard/charts/service_tracked", locals: locals[:service_tracked]
+        .col-lg-6
+          = render partial: "dashboard/charts/ticket_tracking", locals: locals[:ticket_tracking]
+        .col-lg-6
+          = render partial: "dashboard/charts/access_by_gender", locals: locals[:access_by_gender]
 
-  .col-lg-6
-    = render partial: "dashboard/number_of_tracked_ticket", locals: locals[:tracked_ticket]
-
-  .col-lg-6
-    = render partial: "dashboard/overview", locals: locals[:overview]
-
-  -# charts from public dashboard
-
-  .col-lg-6
-    = render partial: "dashboard/charts/most_requested_services", locals: locals[:most_requested_services]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/information_access", locals: locals[:information_access]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/main_services_access", locals: locals[:main_services_access]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/service_tracked", locals: locals[:service_tracked]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/ticket_tracking", locals: locals[:ticket_tracking]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/access_by_gender", locals: locals[:access_by_gender]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/overall_rating", locals: locals[:overall_rating]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/feedback_trend", locals: locals[:feedback_trend]
-
-  .col-lg-6
-    = render partial: "dashboard/charts/sub_categories", locals: locals[:sub_categories]
+    #nav-feedback.tab-pane.fade{"aria-labelledby" => "nav-feedback-tab", :role => "tabpanel"}
+      .row
+        .col-lg-6
+          = render partial: "dashboard/total_user_feedback_groupby_gender", locals: locals[:feedback_by_gender]
+        .col-lg-6
+          = render partial: "dashboard/total_user_feedback", locals: locals[:user_feedback]
+        .col-lg-6
+          = render partial: "dashboard/charts/overall_rating", locals: locals[:overall_rating]
+        .col-lg-6
+          = render partial: "dashboard/charts/feedback_trend", locals: locals[:feedback_trend]
+        .col-lg-6
+          = render partial: "dashboard/charts/sub_categories", locals: locals[:sub_categories]
 
 .sub_categories.d-none
   - @query.district_codes_without_other.each do |district_id|
