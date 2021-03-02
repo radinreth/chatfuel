@@ -1,11 +1,8 @@
 
 $( document ).on('turbolinks:load', function() {
-  var $body = $('body');
-  let { dev, freshSession } = OWSO.Util;
-
-  $body.tooltip({ selector: '[data-toggle="tooltip"]' });
-  $body.popover({ selector: '[data-toggle="popover"]' });
-  if( !dev() && freshSession() ) $('#popup').modal('show');
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+  OWSO.Util.closeAlert();
 
   let currentPage = OWSO.Util.getCurrentPage();
   !!OWSO[currentPage] && OWSO[currentPage].init();
