@@ -28,11 +28,11 @@
         .col-lg-6
           = render partial: "dashboard/charts/service_tracked", locals: locals[:service_tracked]
         .col-lg-6
-          = render partial: "dashboard/charts/ticket_tracking", locals: locals[:ticket_tracking]
+          = render partial: "dashboard/overview", locals: locals[:overview]
         .col-lg-6
           = render partial: "dashboard/number_of_tracked_ticket", locals: locals[:tracked_ticket]
         .col-lg-6
-          = render partial: "dashboard/overview", locals: locals[:overview]
+          = render partial: "dashboard/charts/ticket_tracking", locals: locals[:ticket_tracking]
 
     #nav-feedback.tab-pane.fade{"aria-labelledby" => "nav-feedback-tab", :role => "tabpanel"}
       .row
