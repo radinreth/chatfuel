@@ -1,26 +1,11 @@
-import { userVisit } from '../charts/total_user_visit_by_category_chart'
-import { userGender } from '../charts/total_user_by_gender_chart'
-import { userFeedback } from '../charts/total_user_feedback_chart'
-
-import { ticketTracking } from '../charts/ticket_tracking_chart'
-import { overview } from '../charts/overview_chart'
-import { feedbackByGender } from '../charts/feedback_by_gender_chart'
-
-import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
-import { informationAccess } from '../charts/owso-information-accessed/access_info_chart'
-import { mainServiceAccess } from '../charts/owso-information-accessed/access_main_service_chart'
-import { mostPopularAccess } from '../charts/owso-information-accessed/most_tracked_periodic_chart'
-import { ticketTrackingAccess } from '../charts/owso-information-accessed/ticket_tracking_by_genders_chart'
-
-import { genderFeedback } from '../charts/citizen-feedback/gender_feedback_chart'
-import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
-import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
 
   function init() {
+    OWSO.Charts.render();
+
     attachEventToCollapsedButton()
     attachEventToVariableFilter()
     renderDatetimepicker()
@@ -29,7 +14,7 @@ OWSO.DashboardShow = (() => {
     onClickChartkickLegend()
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
-    renderCharts()
+    // renderCharts()
     tooltipChart()
     onLoadPopup();
     onChangePeriod()
@@ -148,26 +133,6 @@ OWSO.DashboardShow = (() => {
   }
 
   function renderCharts() {
-    OWSO.Util.chartReg();
-
-    userVisit.render({watermark: false});
-    userGender.render({watermark: false});
-    userFeedback.render({watermark: false})
-    ticketTracking.render({watermark: false});
-    overview.render({watermark: false});
-    feedbackByGender.render({watermark: false});
-
-    // public dashboard
-    mostRequest.render()
-    informationAccess.render()
-    mainServiceAccess.render()
-    mostPopularAccess.render()
-    ticketTrackingAccess.render()
-
-    genderFeedback.render()
-    overallFeedback.render()
-    trendingFeedback.render()
-    subCategoriesFeedback.render()
   }
 
   function multiSelectDistricts() {

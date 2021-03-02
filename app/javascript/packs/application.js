@@ -23,6 +23,7 @@ require("application/namespace")
 require("application/util")
 require("application/loader")
 
+require("charts/index")
 require("sites/settings/setting")
 require("sites/api_keys/show")
 require("sites/index")
