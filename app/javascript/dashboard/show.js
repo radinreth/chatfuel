@@ -14,7 +14,6 @@ OWSO.DashboardShow = (() => {
     onClickChartkickLegend()
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
-    // renderCharts()
     tooltipChart()
     onLoadPopup();
     onChangePeriod()
@@ -32,7 +31,6 @@ OWSO.DashboardShow = (() => {
         canvasId: $(this).data("canvasid")
       }
 
-      // console.log('option: ', option)
       fetchResultSet(option);
     });
   }
