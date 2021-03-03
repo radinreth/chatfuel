@@ -1,3 +1,4 @@
+import BaseChart from '../charts/base_chart';
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 import formater from '../data/formater'
 
@@ -17,6 +18,21 @@ OWSO.DashboardShow = (() => {
     tooltipChart()
     onLoadPopup();
     onChangePeriod()
+    loadProvinceSubCategories()
+  }
+
+  function loadProvinceSubCategories() {
+    $(".chart_feedback_by_categories").each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let ds = gon.feedbackSubCategories[id];
+
+      if( ds != undefined ) {
+        subCategoriesFeedback.chartId = dom.id;
+        subCategoriesFeedback.ds = ds;
+        subCategoriesFeedback._suggestedMax();
+        subCategoriesFeedback.render();
+      }
+    });
   }
 
   function onChangePeriod() {
@@ -80,6 +96,7 @@ OWSO.DashboardShow = (() => {
       let attrs = {
         size: btn.data("size"),
         title: btn.data("title"),
+        // body: $(element).toArray().map(v => $(v).html()),
         body: $(element).html(),
         callback: btn.data("callback")
       }
