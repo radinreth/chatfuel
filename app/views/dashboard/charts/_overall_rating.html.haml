@@ -1,3 +1,3 @@
 = render( ChartComponent.new(name: title) ) do |c|
-  - c.with(:body) { content_tag(:canvas, nil, id: id) }
+  - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_overall_rating_#{province_code}", class: "chart_feedback_overall_rating", "data-id": province_code) }
   - c.with(:hint) { t("hint.overall_rating_by_owso") }

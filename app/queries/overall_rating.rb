@@ -8,7 +8,7 @@ class OverallRating < Feedback
             {
               label: mapping_value,
               backgroundColor: colors_mapping[raw_value],
-              data: districts.values.map { |raw| raw[id] || 0 }
+              data: districts.values.map { |raw| raw[mapping_value] || 0 }
             }
           end
     end
@@ -18,12 +18,18 @@ class OverallRating < Feedback
     
     def mapping
       result_set.each_with_object({}) do |(key, count), hash|
-        pro, dis, var = key
+        pro, dis, var = find_objects_by(key)
+        location = dis.send("name_#{I18n.locale}".to_sym)
       
         hash[pro] ||= {}
-        hash[pro][dis] ||= {}
-        hash[pro][dis][var] ||= count
+        hash[pro][location] ||= {}
+        hash[pro][location][var.mapping_value] ||= count
       end
+    end
+
+    def find_objects_by(key)
+      pro_code = key.shift
+      [pro_code] + super(key)
     end
 
     def result_set
