@@ -76,6 +76,14 @@ class Variable < ApplicationRecord
     values.any? { |value| value.is_criteria? }
   end
 
+  def self.feedback_like
+    find_by(name: 'feedback_like')
+  end
+
+  def self.feedback_dislike
+    find_by(name: 'feedback_dislike')
+  end
+
   private
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
