@@ -55,56 +55,119 @@ namespace :session do
     ActiveRecord::Base.record_timestamps = true
   end
 
-  namespace :migrate_empty_gender_and_location_to_other do
-    desc 'Migrate session\'s `""` or `nil` gender to `other`, `00` for province_id, `0000` for district_id'
-    task up: :environment do
-      ActiveRecord::Base.record_timestamps = false
-      ActiveRecord::Base.transaction do
-        CSV.open(csv_file_path, "wb") do |csv|
-          csv << header_csv
+  desc "Simulate sessions from kompong chhnang"
+  task simulate_data: :environment do
+    ActiveRecord::Base.transaction do
+      sessions = Session.where.not( province_id: [nil, ""], 
+        district_id:[nil, ""], 
+        gender: nil).limit(30)
 
-          Session.where(gender: nil, platform_name: "Messenger").find_each do |session|
-            session.set_other_gender
-            session.set_00_province
-            session.set_0000_district
-            csv << session.row_csv
-            raise session.err_msg unless session.save
+        sessions.find_each do |session|
+
+          cloned_attrib = session.attributes.except("id")
+          platform_name, session_id, source_id = random_channel
+        
+          cloned_attrib["session_id"] = session_id
+          cloned_attrib["source_id"] = source_id
+          cloned_attrib["platform_name"] = platform_name
+          cloned_attrib["gender"] = random_gender
+          cloned_attrib["repeated"] = random_repeated
+          cloned_attrib["district_id"] = random_district_ids
+          cloned_attrib["province_id"] = kompong_chhnang_id
+          cloned_attrib["status"] = random_statuses
+        
+          cloned = Session.new(cloned_attrib)
+        
+          cloned.clone_relations if cloned.save
+          # feedback like, dislike
+          if [true, false].sample
+            cloned.step_values.clone_step :feedback_like, like_values.sample
+          else
+            cloned.step_values.clone_step :feedback_dislike, dislike_values.sample
           end
+          print "."
         end
-
-      rescue => exception
-        puts exception.message
-      ensure
-        ActiveRecord::Base.record_timestamps = true
-      end
     end
+  end
 
-    desc 'Rollback session empty gender, location to old state'
-    task down: :environment do
-      ActiveRecord::Base.record_timestamps = false
-      ActiveRecord::Base.transaction do
-        CSV.foreach(csv_file_path, headers: true).each do |row|
-          session = Session.find(row["session_id"])
-          session.rollback_to_old_state(row)
-        end
-      rescue => e
-        puts e.message
-      ensure
-        ActiveRecord::Base.record_timestamps = true
-      end
-    end
+  def like
+    Variable.feedback_like
+  end
+
+  def like_values 
+    like.values.map &:raw_value
+  end
+
+  def dislike
+    Variable.feedback_dislike
+  end
+
+  def dislike_values
+    dislike.values.map &:raw_value
+  end
+
+  def kompong_chhnang_id
+    "04"
   end
   
-  def header_csv
-    %w(session_id migrated_at platform_name old_gender new_gender 
-      old_province_id new_province_id old_district_id new_district_id)
+  def random_statuses
+    %w(incomplete completed).sample
+  end
+  
+  def random_district_ids
+    %w(0401 0402 0403 0404 0405 0406 0407 0408).sample
+  end
+  
+  def random_repeated
+    [true, false].sample
+  end
+  
+  def random_gender
+    ["male", "female", "other"].sample
+  end
+  
+  def random_channel
+    platform_name = %w(IMessenger IVerboice).sample
+    platform = platform_name.constantize.new
+    platform.random
+  end
+  
+  class IMessenger
+    def random
+      [platform_name, session_id, source_id]
+    end
+  
+    private
+      def platform_name
+        "Messenger"
+      end
+  
+      def session_id
+        rand(10 ** 16)
+      end
+  
+      def source_id
+        session_id
+      end
+  end
+  
+  class IVerboice
+    def random
+      [platform_name, session_id, source_id]
+    end
+  
+    private
+      def platform_name
+        "Verboice"
+      end
+  
+      def session_id
+        FFaker::PhoneNumber.phone_number
+      end
+      
+      def source_id
+        rand(10 ** 6)
+      end
   end
 
-  def csv_file_path
-    Rails.root.join('db', 'datasources', "empty_gender_location_#{current_date_as_num}.csv")
-  end
-
-  def current_date_as_num
-    Date.current.to_formatted_s(:number)
-  end
 end
