@@ -1,5 +1,5 @@
-import BaseChart from '../charts/base_chart';
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
+import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
@@ -19,6 +19,21 @@ OWSO.DashboardShow = (() => {
     onLoadPopup();
     onChangePeriod()
     loadProvinceSubCategories()
+    loadProvinceOverallRating()
+  }
+
+  function loadProvinceOverallRating() {
+    $(".chart_feedback_overall_rating").each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let ds = gon.overallRating[id];
+
+      if( ds != undefined ) {
+        overallFeedback.chartId = dom.id;
+        overallFeedback.ds = ds;
+        overallFeedback._suggestedMax();
+        overallFeedback.render();
+      }
+    });
   }
 
   function loadProvinceSubCategories() {
