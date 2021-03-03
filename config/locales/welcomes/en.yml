@@ -18,6 +18,7 @@ en:
     overall_rating_by_owso: Overall Rating by OWSO
     owso_feedback_trend: OWSO Feedback Trend
     feedback_by_sub_categories: Feedback by Sub Categories in %{name}
+    feedback_by_sub_categories_title: Feedback by Sub Categories
     overall_citizen_feedback: Total User Feedback - Overall Rating
     feedback_by_gender: Feedback by Gender
     total_user_feedback: Total User Feedback
