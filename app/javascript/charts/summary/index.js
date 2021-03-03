@@ -12,6 +12,6 @@ export const summary = {
     userFeedback.render({watermark: false})
     ticketTracking.render({watermark: false});
     overview.render({watermark: false});
-    feedbackByGender.render({watermark: false});
+    // feedbackByGender.render({watermark: false});
   }
 }

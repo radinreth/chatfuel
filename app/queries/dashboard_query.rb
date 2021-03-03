@@ -152,6 +152,14 @@ class DashboardQuery
     @feedback ||= Variable.feedback
   end
 
+  def province_codes
+    options[:province_id].presence || all_province_codes
+  end
+
+  def province_codes_without_other
+    province_codes - ["00", "nu"]
+  end
+
   def district_codes
     options[:district_id].presence || all_district_codes
   end
@@ -161,6 +169,10 @@ class DashboardQuery
   end
 
   private
+    def all_province_codes
+      Session.pluck(:province_id).compact.uniq
+    end
+
     def all_district_codes
       location = Variable.location
       return [] unless location
