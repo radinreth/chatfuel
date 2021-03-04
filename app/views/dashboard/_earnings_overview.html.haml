@@ -39,18 +39,39 @@
         .col-lg-6
           = render partial: "dashboard/charts/access_by_gender", locals: locals[:access_by_gender]
         .col-lg-6
-          = render partial: "dashboard/charts/overall_rating", locals: locals[:overall_rating]
-        .col-lg-6
           = render partial: "dashboard/charts/feedback_trend", locals: locals[:feedback_trend]
-        .col-lg-6
-          = render partial: "dashboard/charts/sub_categories", locals: locals[:sub_categories]
-        .col-lg-6
-          = render partial: "dashboard/total_user_feedback_groupby_gender", locals: locals[:feedback_by_gender]
 
-.sub_categories.d-none
-  - @query.district_codes_without_other.each do |district_id|
-    = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: district(district_id).send(t_name) )) ) do |c|
-      - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category_#{district_id}", class: "chart_feedback_by_sub_category", "data-id": district_id) }
+        - @query.province_codes_without_other.each do |province_code|
+          .col-lg-12
+            %fieldset.p-3.mb-3{ style: "border: 1px solid #ddd;background-color: #ececec;" }
+              %legend{ style: "width: auto;background: white;padding: 0 15px;" }
+                = province(province_code).send(t_name)
+              .row
+                .col-lg-6
+                  = render partial: "dashboard/charts/overall_rating", locals: locals[:overall_rating].merge(province_code: province_code)
+                .col-lg-6
+                  = render partial: "dashboard/charts/sub_categories", locals: locals[:sub_categories].merge( province_code: province_code)
+                -# .col-lg-6
+                -#   = render partial: "dashboard/total_user_feedback_groupby_gender", locals: locals[:feedback_by_gender]
+
+
+- @query.province_codes_without_other.each do |province_id|
+  .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1", "class": "sub_categories_#{province_id}" }
+    .modal-dialog.modal-lg{:role => "document"}
+      .modal-content
+        .modal-header
+          %h5.modal-title
+            = t("sites.sub_category_detail", province: province(province_id).send(t_name))
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          - @query.district_codes_without_other.each do |district_id|
+            - if district_id[0...2] == province_id
+              = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: district(district_id).send(t_name) )) ) do |c|
+                - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category_#{district_id}", class: "chart_feedback_by_sub_category", "data-id": district_id, "data-provinceid": province_id) }
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
+            = t("shared.cancel")
 
 #popup.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1" }
   .modal-dialog.modal-xl{:role => "document"}
