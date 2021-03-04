@@ -59,7 +59,7 @@ module ChartsHelper
       },
       sub_categories: {
         id: "chart_feedback_by_sub_category",
-        title: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name),
+        title: t("welcomes.feedback_by_sub_categories_title"),
       }
     }
   end

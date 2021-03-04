@@ -103,40 +103,27 @@ OWSO.DashboardShow = (() => {
   }
 
   function onLoadPopup() {
-    $("#popup").on('show.bs.modal', function (event) {
+    $(".modal").on('show.bs.modal', function (event) {
       let btn = $(event.relatedTarget);
-      let element = btn.data("element");
-      let modal = $(this);
 
       let attrs = {
-        size: btn.data("size"),
-        title: btn.data("title"),
-        // body: $(element).toArray().map(v => $(v).html()),
-        body: $(element).html(),
+        provinceId: btn.data("id"),
         callback: btn.data("callback")
       }
 
-      setupModal(modal, attrs);
+      setupModal(attrs);
     });
   }
 
-  function setupModal(modal, { size, title, body, callback }) {
-    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
-    modal.find(".modal-title").text(title);
-    let modalBody = modal.find(".modal-body");
-    if( modalBody.data("state") == "prune" ) {
-      modalBody.html(body);
-      $(".sub_categories").html("");
-      modalBody.data("state", "replaced");
-    }
-
+  function setupModal({ provinceId, callback }) {
     if( callback !== undefined ) {
-      OWSO.DashboardShow[callback]();
+      OWSO.DashboardShow[callback](provinceId);
     }
   }
 
-  function loadSubCategories() {
-    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
+  function loadSubCategories(provinceId) {
+    let elements = `.chart_feedback_by_sub_category[data-provinceid=${provinceId}]`
+    $(elements).each(function(_, dom) {	
       let id = $(dom).data("id");
       let ds = gon.feedbackSubCategories[id];
 
@@ -160,9 +147,6 @@ OWSO.DashboardShow = (() => {
 
   function hideToolTip() {
     $(this).next().tooltip("hide")
-  }
-
-  function renderCharts() {
   }
 
   function multiSelectDistricts() {
