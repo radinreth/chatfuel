@@ -32,7 +32,7 @@ OWSO.DashboardShow = (() => {
 
   function loadProvinceOverallRating() {
     $(".chart_feedback_overall_rating").each(function(_, dom) {
-      let id = $(dom).data("id");
+      let id = $(dom).data("provinceid");
       let data = gon.overallRating[id];
       loadChart(overallFeedback, dom.id, data)
     });
@@ -40,7 +40,7 @@ OWSO.DashboardShow = (() => {
 
   function loadProvinceSubCategories() {
     $(".chart_feedback_by_categories").each(function(_, dom) {
-      let id = $(dom).data("id");
+      let id = $(dom).data("provinceid");
       let data = gon.feedbackSubCategories[id];
       loadChart(subCategoriesFeedback, dom.id, data)
     });
@@ -103,7 +103,7 @@ OWSO.DashboardShow = (() => {
       let btn = $(event.relatedTarget);
 
       let attrs = {
-        provinceId: btn.data("id"),
+        provinceId: btn.data("provinceid"),
         callback: btn.data("callback")
       }
 
