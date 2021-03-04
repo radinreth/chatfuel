@@ -10,7 +10,7 @@
         = link_to t("dashboard.chatbot"), url_for(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
   %div
-    %form.float-right.form.d-flex{ action: url_for }
+    %form#q.float-right.form.d-flex{ action: url_for }
       .gender.d-flex.align-items-center
         .filter-label.mr-2
           = t("dictionaries.gender")

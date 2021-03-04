@@ -1,14 +1,12 @@
-import { userVisit } from '../charts/total_user_visit_by_category_chart'
-import { userGender } from '../charts/total_user_by_gender_chart'
-import { userFeedback } from '../charts/total_user_feedback_chart'
-
-import { ticketTracking } from '../charts/ticket_tracking_chart'
-import { overview } from '../charts/overview_chart'
-import { feedbackByGender } from '../charts/feedback_by_gender_chart'
+import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
+import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
+import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
 
   function init() {
+    OWSO.Charts.render();
+
     attachEventToCollapsedButton()
     attachEventToVariableFilter()
     renderDatetimepicker()
@@ -17,8 +15,115 @@ OWSO.DashboardShow = (() => {
     onClickChartkickLegend()
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
-    renderCharts()
     tooltipChart()
+
+    onLoadPopup();
+    onChangePeriod()
+    loadProvinceSubCategories()
+    loadProvinceOverallRating()
+  }
+
+  function loadChart(instance, element, data) {
+    if( data != undefined ) {
+      instance.chartId = element;
+      instance.ds = data;
+      instance.render();
+    }
+  }
+
+  function loadProvinceOverallRating() {
+    $(".chart_feedback_overall_rating").each(function(_, dom) {
+      let id = $(dom).data("provinceid");
+      let data = gon.overallRating[id];
+      loadChart(overallFeedback, dom.id, data)
+    });
+  }
+
+  function loadProvinceSubCategories() {
+    $(".chart_feedback_by_categories").each(function(_, dom) {
+      let id = $(dom).data("provinceid");
+      let data = gon.feedbackSubCategories[id];
+      loadChart(subCategoriesFeedback, dom.id, data)
+    });
+  }
+
+  function onChangePeriod() {
+    $(document).on("change", ".period-filter", function() {
+      let path = $(this).data("resourcepath");
+      let url = `/welcomes/q/${path}`;
+
+      let option = {
+        url: url,
+        target: this,
+        extractor: formater[$(this).data("formater")],
+        canvasId: $(this).data("canvasid")
+      }
+
+      fetchResultSet(option);
+    });
+  }
+
+  function fetchResultSet({ url, target, extractor, canvasId }) {
+    let period = $(target).val()
+    let serializedParams = $('#q').serialize()+`&period=${period}`
+    let header = $(target).closest(".card-header");
+    let $spin = $(header.next().find(".loading")[0]);
+
+    loading($spin);
+    let chart = OWSO.Util.findChartInstance(canvasId)
+
+    $.get(url, serializedParams, function(result) {
+      chart.data = extractor(result);
+      let max = _.max(flatten(chart.data.datasets));
+      let suggestedMax = Math.round( max * 1.40 );
+      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
+
+      chart.update();
+
+      loaded($spin);
+    }, "json");
+  }
+
+  function flatten(ds) {
+    return _.flatten( _.map(ds, d => d.data) )
+  }
+
+  function loading(spin) {
+    spin.removeClass("d-none");
+    spin.next().css({ opacity: 0.3 });
+  }
+
+  function loaded(spin) {
+    spin.addClass("d-none");
+    spin.next().css({ opacity: 1 });
+  }
+
+  function onLoadPopup() {
+    $(".modal").on('show.bs.modal', function (event) {
+      let btn = $(event.relatedTarget);
+
+      let attrs = {
+        provinceId: btn.data("provinceid"),
+        callback: btn.data("callback")
+      }
+
+      setupModal(attrs);
+    });
+  }
+
+  function setupModal({ provinceId, callback }) {
+    if( callback !== undefined ) {
+      OWSO.DashboardShow[callback](provinceId);
+    }
+  }
+
+  function loadSubCategories(provinceId) {
+    let elements = `.chart_feedback_by_sub_category[data-provinceid=${provinceId}]`
+    $(elements).each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let data = gon.feedbackSubCategories[id];
+      loadChart(subCategoriesFeedback, dom.id, data)
+    });
   }
 
   function tooltipChart() {
@@ -29,18 +134,6 @@ OWSO.DashboardShow = (() => {
       .mouseleave(function() {
         $(this).next().tooltip("hide");
       });
-  }
-
-  function renderCharts() {
-    OWSO.Util.chartReg();
-
-    userVisit.render({watermark: false});
-    userGender.render({watermark: false});
-    userFeedback.render({watermark: false})
-
-    ticketTracking.render({watermark: false});
-    overview.render({watermark: false});
-    feedbackByGender.render({watermark: false});
   }
 
   function multiSelectDistricts() {
@@ -139,5 +232,5 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts }
+  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, loadSubCategories }
 })();

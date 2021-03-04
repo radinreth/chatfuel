@@ -1,0 +1,10 @@
+.col-lg-12
+  %fieldset.p-3.mb-3.group-chart
+    %legend= province(province_id).send(t_name)
+    .row
+      .col-lg-6
+        - overall_rating_locals = { title: t("welcomes.overall_rating_by_owso"), province_id: province_id }
+        = render partial: "dashboard/charts/overall_rating", locals: overall_rating_locals
+      .col-lg-6
+        - sub_categories_locals = { title: t("welcomes.feedback_by_sub_categories_title"), province_id: province_id }
+        = render partial: "dashboard/charts/sub_categories", locals: sub_categories_locals

@@ -1,0 +1,3 @@
+= render( ChartComponent.new(name: title) ) do |c|
+  - c.with(:body) { content_tag(:canvas, nil, id: id) }
+  - c.with(:hint) { t("hint.ticket_tracking_by_gender") }

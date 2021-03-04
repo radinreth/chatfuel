@@ -21,9 +21,10 @@ class Filters::LocationFilter
 
     I18n.t("location", province: province_name, district: district_name)
   end
-  
-  def province_name
-    province? ? province.send(field_address) : I18n.t("dashboard.all")
+
+  def province_name(type = :long)
+    name_type = type == :short ? field_name : field_address
+    province? ? province.send(name_type) : I18n.t("dashboard.all")
   end
 
   def district_name
@@ -37,9 +38,11 @@ class Filters::LocationFilter
   def district_list_name
     return unless multi_districts?
     
-    districts.map do |district|
-      district.send(field_name)
-    end.to_sentence
+    full_district_list_name
+  end
+
+  def full_district_list_name
+    Array.wrap(districts).map { |district| district.send(field_name) }.to_sentence
   end
 
   private

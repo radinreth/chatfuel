@@ -1,0 +1,8 @@
+= render( ChartComponent.new(name: title) ) do |c|
+  - c.with(:subheader) do
+    %span{ data: { toggle: "tooltip", title: full_district_list_name } }
+      = show_location_detail
+    &middot;
+    = link_to t("sites.view_detail"), "#", id: "link-view-detail", name: "link_view_detail", role: "link", data: { toggle: "modal", target: ".sub_categories_#{province_id}", provinceid: province_id, callback: "loadSubCategories" }
+  - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_categories_#{province_id}", class: "chart_feedback_by_categories", "data-provinceid": province_id) }
+  - c.with(:hint) { t("hint.feedback_by_sub_categories") }

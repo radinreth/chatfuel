@@ -2,6 +2,14 @@ import stamp from "../images/stamp.png";
 
 class BaseChart {
   plugins = [chartDataLabels];
+  
+  _suggestedMax = () => {
+    let data = this.flatten(this.dataset());
+    return this.suggestedMax(data);
+  }
+
+  flatten = (ds) => _.flatten( _.map(ds.datasets, item => item.data) );
+
   baseOptions = {
     legend: { display: false },
     layout: {
@@ -58,7 +66,7 @@ class BaseChart {
   optionsWithWatermark = () => _.extend(this.options(), this.watermarkOption);
 
   render = (opts = {}) => {
-    new Chart(this.chartId, this.config(opts));
+    OWSO.Util.createOrUpdate(this.chartId, this.config(opts));
   };
 }
 
