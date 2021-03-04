@@ -7,10 +7,11 @@
         - if hint.present?
           %span{ data: { toggle: "tooltip", title: hint } }
             %i.icon-hint.far.fa-question-circle
+        &nbsp;
         = addon
       .tools.d-flex
         - if @downloadable
-          = link_to "#", class: "chart-dl text-dark", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
+          = link_to "#", class: "chart-dl text-dark", role: "link", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
             %i.fa.fa-download
         = config
     %span.card-subheader.position-absolute
@@ -21,4 +22,5 @@
       - if @filterable
         %p.loading.position-absolute.d-none
           = t("loading")
+
       = body

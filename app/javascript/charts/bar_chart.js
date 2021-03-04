@@ -3,15 +3,17 @@ import BaseChart from "./base_chart";
 class BarChart extends BaseChart {
   type = "bar";
 
-  _suggestedMax = () => {
-    let { data } = this.dataset().datasets[0];
-    return this.suggestedMax(data);
-  }
+  dataFormat = () => ({
+    maxBarThickness: 36,
+    minBarLength: 2,
+  })
 
   options () {
     let { plugins } = this.baseOptions;
 
-    return Object.assign({}, this.baseOptions, {
+    return Object.assign({}, 
+      this.baseOptions, 
+      this.childOptions, {
       plugins: {
         datalabels: {
           ...plugins.datalabels,
@@ -21,7 +23,16 @@ class BarChart extends BaseChart {
           borderWidth: 0,
           padding: 0,
           backgroundColor: undefined,
-          display: true
+          display: true,
+          textAlign: "center",
+          font: {
+            weight: 'normal'
+          },
+          formatter: function(value, context) {
+            let { dataTitles } = context.dataset
+            if( dataTitles == undefined ) return value
+            else return dataTitles[context.dataIndex] + "\n" + value;
+          }
         }
       },
       cutoutPercentage: 80,
@@ -33,9 +44,11 @@ class BarChart extends BaseChart {
           }
         }],
         xAxes: [{
+          maxBarThickness: 50,
           ticks: {
             maxRotation: 0,
             minRotation: 0,
+            ...this.ticksOptions
           }
         }]
       }

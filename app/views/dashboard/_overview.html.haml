@@ -1,10 +1,8 @@
-.col-xl-12.col-lg-6
-  - name = t("dashboard.overview")
-  - downloadable = @query.goals.present?
-  = render( ChartComponent.new(name: name, downloadable: downloadable) ) do |c|
-    - c.with(:config) { open_config_modal("#overviewModal") }
-    - c.with(:body) do
-      -# = render "dashboard/overview/legend"
-      = content_tag(:canvas, nil, id: "chart-overview")
+- downloadable = @query.goals.present?
+= render( ChartComponent.new(name: title, downloadable: downloadable) ) do |c|
+  - c.with(:config) { open_config_modal("#overviewModal") }
+  - c.with(:body) do
+    -# = render "dashboard/overview/legend"
+    = content_tag(:canvas, nil, id: id)
 
 = render 'dashboard/choose_dictionary_modal', url: set_service_accessed_dictionaries_path, checked_method: :service_accessed?, modal_id: 'overviewModal'

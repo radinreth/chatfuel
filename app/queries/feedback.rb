@@ -1,9 +1,9 @@
-class Feedback < Report
+class Feedback < GenericReport
   COLORS = %w(#f63e3e #ffbc00 #1cc88a)
 
   private
     def display_values
-      display_ratings.map { |v| [v.raw_value, v.mapping_value] }
+      display_ratings.map { |v| [v.id, v.raw_value, v.mapping_value] }
     end
 
     def display_ratings
