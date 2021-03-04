@@ -6,19 +6,8 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
       hash[district_id][:dataset] = dataset(district_id)
     end
   end
-
-  def dataset(key)
-    @values = result_set_mapping[key].values rescue []
-    
-    values.map.with_index do |mapping_value, index|
-      dataset_item(mapping_value, index, @values)
-    end
-  end
   
   private
-    def result_set_mapping
-      accumulate_rating_each_variable(result_set)
-    end
 
     def result_set
       scope = sql.group("sessions.district_id")
