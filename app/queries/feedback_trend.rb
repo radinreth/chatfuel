@@ -5,7 +5,7 @@ class FeedbackTrend < Feedback
   
   def dataset
     display_values.map.with_index do |values|
-      raw_value, mapping_value = values
+      id, raw_value, mapping_value = values
       {
         label: mapping_value,
         backgroundColor: colors_mapping[raw_value],
