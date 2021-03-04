@@ -22,31 +22,27 @@ OWSO.DashboardShow = (() => {
     loadProvinceOverallRating()
   }
 
-  function loadProvinceOverallRating() {
-    $(".chart_feedback_overall_rating").each(function(_, dom) {	
-      let id = $(dom).data("id");
-      let ds = gon.overallRating[id];
+  function loadChart(instance, element, data) {
+    if( data != undefined ) {
+      instance.chartId = element;
+      instance.ds = data;
+      instance.render();
+    }
+  }
 
-      if( ds != undefined ) {
-        overallFeedback.chartId = dom.id;
-        overallFeedback.ds = ds;
-        overallFeedback._suggestedMax();
-        overallFeedback.render();
-      }
+  function loadProvinceOverallRating() {
+    $(".chart_feedback_overall_rating").each(function(_, dom) {
+      let id = $(dom).data("id");
+      let data = gon.overallRating[id];
+      loadChart(overallFeedback, dom.id, data)
     });
   }
 
   function loadProvinceSubCategories() {
-    $(".chart_feedback_by_categories").each(function(_, dom) {	
+    $(".chart_feedback_by_categories").each(function(_, dom) {
       let id = $(dom).data("id");
-      let ds = gon.feedbackSubCategories[id];
-
-      if( ds != undefined ) {
-        subCategoriesFeedback.chartId = dom.id;
-        subCategoriesFeedback.ds = ds;
-        subCategoriesFeedback._suggestedMax();
-        subCategoriesFeedback.render();
-      }
+      let data = gon.feedbackSubCategories[id];
+      loadChart(subCategoriesFeedback, dom.id, data)
     });
   }
 
