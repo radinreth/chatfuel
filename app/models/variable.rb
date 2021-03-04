@@ -84,6 +84,10 @@ class Variable < ApplicationRecord
     find_by(name: 'feedback_dislike')
   end
 
+  def self.feedback_rating
+    find_by(name: 'feedback_rating')
+  end
+
   private
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
