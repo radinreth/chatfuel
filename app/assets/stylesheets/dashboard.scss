@@ -210,4 +210,15 @@
       padding: 0 2em 0 0.5em;
     }
   }
+
+  .group-chart {
+    border: 1px solid #ddd;
+    background-color: #ececec;
+
+    legend {
+      width: auto;
+      background: white;
+      padding: 0 15px;
+    }
+  }
 }
