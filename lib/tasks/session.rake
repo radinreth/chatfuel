@@ -77,15 +77,29 @@ namespace :session do
           cloned = Session.new(cloned_attrib)
         
           cloned.clone_relations if cloned.save
-          # feedback like, dislike
+          # feedback sub categories  like, dislike
           if [true, false].sample
             cloned.step_values.clone_step :feedback_like, like_values.sample
           else
             cloned.step_values.clone_step :feedback_dislike, dislike_values.sample
           end
+
+          # overall rating by OWSO
+          if [true, false].sample
+            cloned.step_values.clone_step :feedback_rating, rating_values.sample
+          end
+
           print "."
         end
     end
+  end
+
+  def rating
+    Variable.feedback_rating
+  end
+
+  def rating_values
+    rating.values.map &:raw_value
   end
 
   def like
