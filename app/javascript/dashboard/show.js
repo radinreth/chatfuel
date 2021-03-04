@@ -16,6 +16,7 @@ OWSO.DashboardShow = (() => {
     attachEventClickToChartDownloadButton()
     multiSelectDistricts()
     tooltipChart()
+
     onLoadPopup();
     onChangePeriod()
     loadProvinceSubCategories()
@@ -72,7 +73,6 @@ OWSO.DashboardShow = (() => {
     let chart = OWSO.Util.findChartInstance(canvasId)
 
     $.get(url, serializedParams, function(result) {
-      console.log("requested: ....", chart, canvasId)
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));
       let suggestedMax = Math.round( max * 1.40 );
@@ -121,13 +121,8 @@ OWSO.DashboardShow = (() => {
     let elements = `.chart_feedback_by_sub_category[data-provinceid=${provinceId}]`
     $(elements).each(function(_, dom) {	
       let id = $(dom).data("id");
-      let ds = gon.feedbackSubCategories[id];
-
-      if( ds != undefined ) {
-        subCategoriesFeedback.chartId = dom.id;
-        subCategoriesFeedback.ds = ds;
-        subCategoriesFeedback.render();
-      }
+      let data = gon.feedbackSubCategories[id];
+      loadChart(subCategoriesFeedback, dom.id, data)
     });
   }
 
