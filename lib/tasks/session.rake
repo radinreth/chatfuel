@@ -1,3 +1,5 @@
+require_relative "sessions/fake"
+
 namespace :session do
   desc "Migrate gender from Message"
   task migrate_gender_from_message: :environment do
@@ -61,7 +63,6 @@ namespace :session do
         gender: nil).limit(30)
 
         sessions.find_each do |session|
-
           cloned_attrib = session.attributes.except("id")
           platform_name, session_id, source_id = random_channel
         
@@ -77,6 +78,7 @@ namespace :session do
           cloned = Session.new(cloned_attrib)
         
           cloned.clone_relations if cloned.save
+
           # feedback sub categories  like, dislike
           if [true, false].sample
             cloned.step_values.clone_step :feedback_like, like_values.sample
@@ -85,101 +87,13 @@ namespace :session do
           end
 
           # overall rating by OWSO
-          if [true, false].sample
-            cloned.step_values.clone_step :feedback_rating, rating_values.sample
-          end
+          cloned.step_values.clone_step :feedback_rating, rating_values.sample if [true, false].sample
 
           print "."
+
+        rescue => e
+          puts e.message
         end
     end
   end
-
-  def rating
-    Variable.feedback_rating
-  end
-
-  def rating_values
-    rating.values.map &:raw_value
-  end
-
-  def like
-    Variable.feedback_like
-  end
-
-  def like_values 
-    like.values.map &:raw_value
-  end
-
-  def dislike
-    Variable.feedback_dislike
-  end
-
-  def dislike_values
-    dislike.values.map &:raw_value
-  end
-
-  def kompong_chhnang_id
-    "04"
-  end
-  
-  def random_statuses
-    %w(incomplete completed).sample
-  end
-  
-  def random_district_ids
-    %w(0401 0402 0403 0404 0405 0406 0407 0408).sample
-  end
-  
-  def random_repeated
-    [true, false].sample
-  end
-  
-  def random_gender
-    ["male", "female", "other"].sample
-  end
-  
-  def random_channel
-    platform_name = %w(IMessenger IVerboice).sample
-    platform = platform_name.constantize.new
-    platform.random
-  end
-  
-  class IMessenger
-    def random
-      [platform_name, session_id, source_id]
-    end
-  
-    private
-      def platform_name
-        "Messenger"
-      end
-  
-      def session_id
-        rand(10 ** 16)
-      end
-  
-      def source_id
-        session_id
-      end
-  end
-  
-  class IVerboice
-    def random
-      [platform_name, session_id, source_id]
-    end
-  
-    private
-      def platform_name
-        "Verboice"
-      end
-  
-      def session_id
-        FFaker::PhoneNumber.phone_number
-      end
-      
-      def source_id
-        rand(10 ** 6)
-      end
-  end
-
 end
