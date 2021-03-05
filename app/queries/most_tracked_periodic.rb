@@ -1,12 +1,13 @@
 class MostTrackedPeriodic < BasicReport
-  
   def dataset
     result_set.each_with_object({}) do |(key, count), hash|
       date, sector = key
       month = format_label(date)
 
-    def label
-      { label: I18n.t("welcomes.most_requested_services") }
+      hash[month] = {
+        value: replace_new_line(sector),
+        count: count
+      } if !hash[month] || hash[month][:count] < count
     end
   end
 
