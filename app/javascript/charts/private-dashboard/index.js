@@ -9,7 +9,7 @@ export const dashboard = {
     userGender,
     userFeedback,
   ],
-  renderCharts: function() {
+  render: function() {
     _.each(this.instances, instance => instance.render());
   }
 }
