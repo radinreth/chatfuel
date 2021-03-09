@@ -1,7 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import formater from '../data/formater'
-import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -23,41 +22,26 @@ OWSO.WelcomesIndex = (() => {
     onModalSave();
     onClickTabNavigation();
     onChangePeriod();
-    onLoadPopup();
+    ssbInterceptor();
   }
 
-  function onLoadPopup() {
-    // dynamic content: image, or canvas
-    // update size of modal
-    // update title of modal
-    $("#popup").on('show.bs.modal', function (event) {
-      $(".chart_feedback_by_sub_category").each(function(_, dom) {	
-        let id = $(dom).data("id");
-        feedbackSubCategories(dom, gon.feedbackSubCategories[id]);
+  function ssbInterceptor() {
+    $(".ssb-icon").click(function(){
+      let site = $(this).data("site");
+
+      $.ajax({
+        url: '/api/v1/social_providers',
+        type: 'post',
+        data: {social_provider: {provider_name: site}},
+        dataType: 'json',
       });
     });
   }
 
   function onChangePeriod() {
-    $(document).on("change", ".access-period", function() {
-      let option = {
-        url: '/welcomes/q/access-info',
-        self: this,
-        extractor: formater.accessInfo,
-        canvasId: "chart_information_access_by_period"
-      }
-
-      fetchResultSet(option)
-    })
-
-      if( ds != undefined ) {
-        subCategoriesFeedback.chartId = dom.id;
-        subCategoriesFeedback.ds = ds;
-        subCategoriesFeedback.render();
-      }
-
-      fetchResultSet(option)
-    })
+    $(document).on("change", ".period-filter", function() {
+      let path = $(this).data("resourcepath");
+      let url = `/welcomes/q/${path}`;
 
     $(document).on("change", ".feedback-trend", function() {
       let option = {
@@ -331,6 +315,6 @@ OWSO.WelcomesIndex = (() => {
     }, 500);
   }
 
-  return { init, renderChart, loadSubCategories, scrollToForm }
+  return { init, renderChart, scrollToForm }
 
 })()
