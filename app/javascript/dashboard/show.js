@@ -258,5 +258,6 @@ OWSO.DashboardShow = (() => {
             attachEventClickToChartDownloadButton,
             runAsPublicDashboard,
             multiSelectDistricts,
+            onChangePeriod,
             tooltipChart }
 })();
