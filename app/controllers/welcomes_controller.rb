@@ -5,9 +5,6 @@ class WelcomesController < PublicAccessController
   before_action :set_query, :set_gon, except: :filter
   before_action :set_active_tab_nav, except: :filter
 
-  def access_info
-    render json: @query.access_info, status: :ok
-  end
   def index
     respond_to do |format|
       format.html { render layout: "welcome" }
