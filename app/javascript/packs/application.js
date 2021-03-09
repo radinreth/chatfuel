@@ -36,6 +36,5 @@ require("dictionaries/index")
 
 require("shared/sidebar")
 require("view/ticket")
-require("view/chart")
 require("view/sidebar_toggle")
 require("view/users")

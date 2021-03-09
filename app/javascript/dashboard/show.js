@@ -109,7 +109,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function onLoadPopup() {
-    $(".modal").on('show.bs.modal', function (event) {
+    $(document).on('show.bs.modal', ".modal", function (event) {
       let btn = $(event.relatedTarget);
 
       let attrs = {
@@ -129,6 +129,7 @@ OWSO.DashboardShow = (() => {
 
   function loadSubCategories(provinceId) {
     let elements = `.chart_feedback_by_sub_category[data-provinceid=${provinceId}]`
+
     $(elements).each(function(_, dom) {	
       let id = $(dom).data("id");
       let data = gon.feedbackSubCategories[id];
@@ -254,5 +255,14 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, loadSubCategories, attachEventClickToChartDownloadButton, tooltipChart }
+  return {  init,
+            renderDatetimepicker,
+            onChangeProvince,
+            multiSelectDistricts,
+            loadSubCategories,
+            attachEventClickToChartDownloadButton,
+            loadProvinceSubCategories,
+            loadProvinceOverallRating,
+            onLoadPopup,
+            tooltipChart }
 })();
