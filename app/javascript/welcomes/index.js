@@ -1,7 +1,6 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
 import formater from '../data/formater'
-import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_categories_chart";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -23,7 +22,6 @@ OWSO.WelcomesIndex = (() => {
     onModalSave();
     onClickTabNavigation();
     onChangePeriod();
-    onLoadPopup();
     ssbInterceptor();
   }
 
@@ -37,51 +35,6 @@ OWSO.WelcomesIndex = (() => {
         data: {social_provider: {provider_name: site}},
         dataType: 'json',
       });
-    });
-  }
-
-  function onLoadPopup() {
-    $("#popup").on('show.bs.modal', function (event) {
-      let btn = $(event.relatedTarget);
-      let element = btn.data("element");
-      let modal = $(this);
-
-      let attrs = {
-        size: btn.data("size"),
-        title: btn.data("title"),
-        body: $(element).html(),
-        callback: btn.data("callback")
-      }
-
-      setupModal(modal, attrs);
-    });
-  }
-
-  function setupModal(modal, { size, title, body, callback }) {
-    modal.find(".modal-dialog").removeClass("modal-xl").addClass(size);
-    modal.find(".modal-title").text(title);
-    let modalBody = modal.find(".modal-body");
-    if( modalBody.data("state") == "prune" ) {
-      modalBody.html(body);
-      $(".sub_categories").html("");
-      modalBody.data("state", "replaced");
-    }
-
-    if( callback !== undefined ) {
-      OWSO.WelcomesIndex[callback]();
-    }
-  }
-
-  function loadSubCategories() {
-    $(".chart_feedback_by_sub_category").each(function(_, dom) {	
-      let id = $(dom).data("id");
-      let ds = gon.feedbackSubCategories[id];
-
-      if( ds != undefined ) {
-        subCategoriesFeedback.chartId = dom.id;
-        subCategoriesFeedback.ds = ds;
-        subCategoriesFeedback.render();
-      }
     });
   }
 
@@ -226,6 +179,6 @@ OWSO.WelcomesIndex = (() => {
     }, 500);
   }
 
-  return { init, renderChart, loadSubCategories, scrollToForm }
+  return { init, renderChart, scrollToForm }
 
 })()
