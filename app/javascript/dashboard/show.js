@@ -245,14 +245,18 @@ OWSO.DashboardShow = (() => {
     })
   }
 
+  function runAsPublicDashboard() {
+    loadProvinceSubCategories()
+    loadProvinceOverallRating()
+    onLoadPopup()
+  }
+
   return {  init,
             renderDatetimepicker,
             onChangeProvince,
-            multiSelectDistricts,
             loadSubCategories,
             attachEventClickToChartDownloadButton,
-            loadProvinceSubCategories,
-            loadProvinceOverallRating,
-            onLoadPopup,
+            runAsPublicDashboard,
+            multiSelectDistricts,
             tooltipChart }
 })();
