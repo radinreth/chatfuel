@@ -2,12 +2,9 @@
 = render "welcomes/article"
 = render "welcomes/header"
 = render "welcomes/form"
-
-= render "welcomes/tabs/navigation"
-.tabs-container
-
+= render "welcomes/tabs/tabs"
 = render "welcomes/footer"
+= render "welcomes/popup_modal"
 
-.xxx
--# = render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id
--# = render "welcomes/popup_modal"
+#sub_categories_modals
+  <THIS IS A CONTENT OF FEEDBACK SUBCATEGORIES>
