@@ -5,7 +5,6 @@
         #menuContent.tab-content.pt-5
           #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
             = render "dashboard/earnings"
-
             .row
               .col-lg-6
                 = render partial: "dashboard/total_user_visit", locals: { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
@@ -58,7 +57,6 @@
 
           #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
             = render "dashboard/earnings"
-
             .row
               -# citizen feedback
               .col-lg-6
@@ -69,12 +67,9 @@
               .col-lg-6
                 = render partial: "dashboard/total_user_feedback", locals: { id: "total_citizen_feedback", title: t("welcomes.overall_citizen_feedback") }
 
-              .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.overall_rating_by_owso")) ) do |c|
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_overall_rating_by_owso") }
-                  - c.with(:hint) { t("hint.overall_rating_by_owso") }
+              = render partial: "dashboard/feedback_sub_categories", collection: @query.province_codes_without_other, as: :province_id
 
-              .col-xl-6.col-lg-5
+              .col-lg-6
                 = render( ChartComponent.new(name: t("welcomes.owso_feedback_trend"), filterable: true) ) do |c|
                   - c.with(:addon) do
                     %select.period-filter{ data: { resourcepath: "feedback-trend", formater: "feedbackTrend", canvasid: "chart_owso_feedback_trend" }}
@@ -83,14 +78,3 @@
                       %option{ value: "year" }= t("period.yearly")
                   - c.with(:body) { content_tag(:canvas, nil, id: "chart_owso_feedback_trend") }
                   - c.with(:hint) { t("hint.owso_feedback_trend") }
-
-              .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name)) ) do |c|
-                  - c.with(:subheader) do
-                    %span{ data: { toggle: "tooltip", title: full_district_list_name } }
-                      = show_location_detail
-                    &middot;
-                    = link_to t("sites.view_detail"), "#", id: "link-view-detail", name: "link_view_detail", role: "link", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.sub_category_detail", province: @location_filter.province_name(:short)), element: ".sub_categories", callback: "loadSubCategories" }
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
-                  - c.with(:hint) { t("hint.feedback_by_sub_categories") }
-      
