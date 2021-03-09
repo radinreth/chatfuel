@@ -6,9 +6,8 @@
 = render "welcomes/tabs/navigation"
 .tabs-container
 
--# modal content
-.sub_categories.d-none
-  = render "welcomes/sub_categories_canvas"
-
 = render "welcomes/footer"
-= render "welcomes/popup_modal"
+
+.xxx
+-# = render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id
+-# = render "welcomes/popup_modal"
