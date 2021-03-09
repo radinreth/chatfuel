@@ -16,12 +16,12 @@ OWSO.WelcomesIndex = (() => {
     OWSO.DashboardShow.multiSelectDistricts();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
     OWSO.DashboardShow.tooltipChart();
+    OWSO.DashboardShow.onChangePeriod();
 
     onWindowScroll();
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
-    onChangePeriod();
     ssbInterceptor();
   }
 
@@ -36,47 +36,6 @@ OWSO.WelcomesIndex = (() => {
         dataType: 'json',
       });
     });
-  }
-
-  function onChangePeriod() {
-    $(document).on("change", ".period-filter", function() {
-      let path = $(this).data("resourcepath");
-      let url = `/welcomes/q/${path}`;
-
-    $(document).on("change", ".feedback-trend", function() {
-      let option = {
-        url: '/welcomes/q/feedback-trend',
-        self: this,
-        extractor: formater.feedbackTrend,
-        canvasId: "chart_owso_feedback_trend"
-      }
-
-      fetchResultSet(option)
-    })
-  }
-
-  function fetchResultSet(url, thiz, callback) {
-    let period = $(thiz).val()
-    let serializedParams = $('#q').serialize()+`&period=${period}`
-    let header = $(thiz).closest(".card-header");
-    let $spin = $(header.next().find(".fa-sync")[0]);
-
-    loading($spin);
-
-    $.get(url, serializedParams, function(result) {
-      callback(result);
-      loaded($spin);
-    }, "json");
-  }
-
-  function loading(spin) {
-    spin.removeClass("d-none");
-    spin.next().css({ opacity: 0.3 });
-  }
-
-  function loaded(spin) {
-    spin.addClass("d-none");
-    spin.next().css({ opacity: 1 });
   }
 
   function onClickTabNavigation() {
@@ -259,8 +218,6 @@ OWSO.WelcomesIndex = (() => {
       $("#districtsModal").modal("hide")
     })
   }
-
-  
 
   function onWindowScroll() {
     formQuery = $("#form-query")
