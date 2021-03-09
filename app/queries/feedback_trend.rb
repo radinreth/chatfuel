@@ -9,6 +9,7 @@ class FeedbackTrend < Feedback
       {
         label: mapping_value,
         backgroundColor: colors_mapping[raw_value],
+        maxBarThickness: 50,
         data: result_set_mapping.values.map { |raw| raw[mapping_value] || 0 }
       }
     end
