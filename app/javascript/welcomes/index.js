@@ -16,12 +16,12 @@ OWSO.WelcomesIndex = (() => {
     OWSO.DashboardShow.multiSelectDistricts();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
     OWSO.DashboardShow.tooltipChart();
+    OWSO.DashboardShow.onChangePeriod();
 
     onWindowScroll();
     onChangeDistrict();
     onModalSave();
     onClickTabNavigation();
-    onChangePeriod();
     ssbInterceptor();
   }
 
@@ -36,53 +36,6 @@ OWSO.WelcomesIndex = (() => {
         dataType: 'json',
       });
     });
-  }
-
-  function onChangePeriod() {
-    $(document).on("change", ".period-filter", function() {
-      let path = $(this).data("resourcepath");
-      let url = `/welcomes/q/${path}`;
-
-      let option = {
-        url: url,
-        target: this,
-        extractor: formater[$(this).data("formater")],
-        canvasId: $(this).data("canvasid")
-      }
-
-      fetchResultSet(option);
-    });
-  }
-
-  function fetchResultSet({ url, target, extractor, canvasId }) {
-    let period = $(target).val()
-    let serializedParams = $('#q').serialize()+`&period=${period}`
-    let header = $(target).closest(".card-header");
-    let $spin = $(header.next().find(".loading")[0]);
-
-    loading($spin);
-    let chart = OWSO.Util.findChartInstance(canvasId)
-
-    $.get(url, serializedParams, function(result) {
-      chart.data = extractor(result);
-      let max = _.max(chart.data.datasets[0].data);
-      let suggestedMax = Math.round( max * 1.40 );
-      chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
-
-      chart.update();
-
-      loaded($spin);
-    }, "json");
-  }
-
-  function loading(spin) {
-    spin.removeClass("d-none");
-    spin.next().css({ opacity: 0.3 });
-  }
-
-  function loaded(spin) {
-    spin.addClass("d-none");
-    spin.next().css({ opacity: 1 });
   }
 
   function onClickTabNavigation() {
@@ -119,8 +72,6 @@ OWSO.WelcomesIndex = (() => {
       $("#districtsModal").modal("hide");
     })
   }
-
-  
 
   function onWindowScroll() {
     formQuery = $("#form-query");
