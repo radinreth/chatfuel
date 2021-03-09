@@ -8,7 +8,7 @@ module Filterable
   def filter_options
     platform = Session::PLATFORM_DICT[params[:platform].to_sym] if params[:platform].present?
     {
-      province_id: params['province_code'],
+      province_id: Array.wrap(params['province_code']),
       district_id: compact_district_codes,
       start_date: @start_date,
       end_date: @end_date,
