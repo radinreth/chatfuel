@@ -8,7 +8,8 @@ class OverallRating < Feedback
             {
               label: mapping_value,
               backgroundColor: colors_mapping[raw_value],
-              data: districts.values.map { |raw| raw[mapping_value] || 0 }
+              data: districts.values.map { |raw| raw[mapping_value] || 0 },
+              maxBarThickness: 50
             }
           end
     end
