@@ -2,9 +2,13 @@ window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
 
 $(".tab-navigation").removeClass("d-none");
 $(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { active_tab: @active_tab }) %>");
+
 $("#popup .modal-body").data("state", "prune");
-$(".sub_categories").html("<%= j(render "welcomes/sub_categories_canvas") %>");
+$(".xxx").html("<%= j(render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.WelcomesIndex.renderChart();
+OWSO.DashboardShow.loadProvinceSubCategories();
+OWSO.DashboardShow.loadProvinceOverallRating();
+OWSO.DashboardShow.onLoadPopup();
 OWSO.DashboardShow.multiSelectDistricts();
