@@ -10,6 +10,7 @@ export const accessInfo = ({ colors, dataset }) => {
         ...defaults.initData.datasets[0],
         backgroundColor: colors,
         data: values,
+        maxBarThickness: 50
       }
     ]
   };
