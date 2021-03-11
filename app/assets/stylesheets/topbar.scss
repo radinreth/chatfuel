@@ -1,21 +1,18 @@
-.topbar .dropdown-list {
-
+.topbar .dropdown-list,
+.locale-dropdown {
   width: 160px !important;
-  
-  .dropdown-item {
-    height: 46px;
-  }
+}
 
-  .dropdown-item .dropdown-list-image {
-    $size: 1.6rem;
-    
-    height: $size;
-    width: $size;
+.locale-dropdown__link {
+  height: 46px;
+}
 
-    img {
-      height: $size;
-      width: $size;
-    }
-  }
+.locale-dropdown__image_wrapper {
+  height: 1.6rem;
+  width: 1.6rem;
+}
 
+.locale-dropdown__image {
+  height: 1.6rem;
+  width: 1.6rem;
 }

@@ -9,16 +9,16 @@
         %span= t("language.#{I18n.locale}")
         %i.fas.fa-angle-down.fa-fw
 
-      .dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
-        = link_to url_for(request.query_parameters.merge(locale: 'km')), class: 'switch-language dropdown-item d-flex align-items-center' do
-          .dropdown-list-image.mr-3
-            = image_tag "khmer.png", alt: "locale", size: "24x24", class: "mr-2"
+      .locale-dropdown.dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
+        = link_to url_for(request.query_parameters.merge(locale: 'km')), class: 'locale-dropdown__link switch-language dropdown-item d-flex align-items-center' do
+          .locale-dropdown__image_wrapper.mr-3
+            = image_tag "khmer.png", alt: "locale", size: "24x24", class: "locale-dropdown__image mr-2"
           .font-weight-bold
             .text-truncate= t('language.km')
 
-        = link_to url_for(request.query_parameters.merge(locale: 'en')), class: 'switch-language dropdown-item d-flex align-items-center' do
-          .dropdown-list-image.mr-3
-            = image_tag "english.png", alt: "locale", size: "24x24", class: "mr-2"
+        = link_to url_for(request.query_parameters.merge(locale: 'en')), class: 'locale-dropdown__link switch-language dropdown-item d-flex align-items-center' do
+          .locale-dropdown__image_wrapper.mr-3
+            = image_tag "english.png", alt: "locale", size: "24x24", class: "locale-dropdown__image mr-2"
           .font-weight-bold
             .text-truncate= t('language.en')
 
