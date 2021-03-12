@@ -21,7 +21,7 @@
 
                 .collapse{id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
                   .card-body
-                    %ul.value-list
+                    %ul.config-modal__expand-list
                       - variable.values.distinct_values.each do |value|
                         %li= value.mapping_value
         .modal-footer

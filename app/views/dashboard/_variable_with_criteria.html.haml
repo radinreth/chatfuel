@@ -6,7 +6,7 @@
 
   .collapse{ class: toggle_class_name("show", variable.criteria?), id: "collapse#{variable.name}", "aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
     .card-body
-      %ul.list-unstyled.value-list
+      %ul.list-unstyled.config-modal__expand-list
         - variable.values.distinct_values.each do |value|
           %li
             = radio_button_tag "variable_value[id]", value.id, value.kind_of_criteria?, class: "align-baseline mr-2"

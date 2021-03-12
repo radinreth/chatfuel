@@ -1,6 +1,5 @@
 .legend.text-center
   - @query.goals.each_with_index do |goal, index|
-    -# %span.rect{ class: goal[:class_name] }
     %span{ data: { toggle: "tooltip", title: goal[:title] } }
       %span.word-wrap-normal.chartjs-line-legend{ "data-chart-index": index }
         = goal[:display_text]

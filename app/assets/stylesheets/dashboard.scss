@@ -1,7 +1,8 @@
-#dashboard-show {
+$text-color: #333;
 
+#dashboard-show {
   .cog {
-    color: #333;
+    color: $text-color;
 
     &__most_request {
       position: absolute;
@@ -10,10 +11,10 @@
     }
   }
 
-  .value-list {
+  .config-modal__expand-list {
     margin: 0;
     font-size: 16px;
-    color: #333;
+    color: $text-color;
   }
 
   input[type=radio] {
@@ -23,60 +24,6 @@
   #accordionExample.accordion {
     height: 450px;
     overflow-y: scroll;
-  }
-
-  .oval {
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    border-radius: 50%;
-    margin-bottom: 1px;
-    margin-right: 7px;
-
-    &--green {
-      background-color: #1cc88a;
-    }
-
-    &--orange {
-      background-color: #ffbc00;
-    }
-
-    &--yellow {
-      background-color: #f63e3e;
-    }
-  }
-
-  .oval-label {
-    font-size: 17px;
-    font-weight: 600;
-    color: #5a5c69;
-  }
-
-  .oval-emoji {
-    font-size: 21px;
-    vertical-align: middle;
-  }
-
-  .oval-label-km {
-    font-size: 16px;
-    font-weight: normal;
-    color: #5a5c69;
-  }
-
-  
-
-  .rect {
-    display:inline-block;
-    width: 44px;
-    height: 14px; 
-
-    &__accessed {
-      background-color: #ffbc00;
-    }
-
-    &__submitted {
-      background-color: #4e73df;
-    }
   }
 
   .chartjs-line-legend {
@@ -117,7 +64,7 @@
     left: 57px;
     top: 30px;
 
-    .rect, .chartjs-line-legend {
+    .chartjs-line-legend {
       visibility: hidden;
     }
   }
