@@ -11,8 +11,8 @@
         = addon
       .tools.d-flex
         - if @downloadable
-          = link_to "#", class: "chart-dl text-dark", role: "link", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
-            %i.fa.fa-download
+          = link_to "#", class: "btn-chart__download text-dark", role: "link", data: { name: @name, toggle: "tooltip", title: t(:download_chart) } do
+            %i.fa.fa-download.btn-chart__icon
         = config
     %span.card-subheader.position-absolute
       = subheader

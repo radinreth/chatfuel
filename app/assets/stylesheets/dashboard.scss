@@ -38,12 +38,13 @@ $text-color: #333;
     text-decoration: line-through;
   }
 
-  .chart-dl {
+  // download chart
+  .btn-chart__download {
     width: 20px;
+  }
 
-    i {
-      color: #333;
-    }
+  .btn-chart__icon {
+    color: $text-color;
   }
   
   div.tooltip-inner {

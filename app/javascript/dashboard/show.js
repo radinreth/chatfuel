@@ -151,7 +151,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function attachEventClickToChartDownloadButton() {
-    $(document).on("click", ".chart-dl", function(e) {
+    $(document).on("click", ".btn-chart__download", function(e) {
       e.preventDefault();
 
       let target = $(e.currentTarget);
