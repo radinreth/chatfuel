@@ -20,7 +20,7 @@
     = c.with(:config) do
       - if policy(:dashboard).setting?
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do
-          %i.fas.fa-cog.cog.float
+          %i.fas.fa-cog.cog.cog__most_request
         = render 'choose_dictionary_modal', url: set_most_request_dictionaries_path, checked_method: :most_request?, modal_id: 'mostRequest'
     = c.with(:title) { t("dashboard.most_request_service") }
     = c.with(:fa_icon) { "fa-file-alt" }

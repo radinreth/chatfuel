@@ -1,12 +1,13 @@
 #dashboard-show {
-  .cog.float {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-  }
 
   .cog {
     color: #333;
+
+    &__most_request {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+    }
   }
 
   .value-list {
