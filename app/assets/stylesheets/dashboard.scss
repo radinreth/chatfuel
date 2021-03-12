@@ -46,18 +46,9 @@ $text-color: #333;
   .btn-chart__icon {
     color: $text-color;
   }
-  
-  div.tooltip-inner {
-    max-width: 250px;
-  }
 
   .word-wrap-normal {
     word-wrap: normal;
-  }
-
-  .criteria-breadcrumb {
-    position: absolute;
-    bottom: 0
   }
 
   .legend {
@@ -70,6 +61,7 @@ $text-color: #333;
     }
   }
 
+  // total unique users icon
   .fa-male {
     @extend .fa-mars !optional;
   }
@@ -86,23 +78,19 @@ $text-color: #333;
   }
 
   // decrease select2 size
-  .period-filter,
-  .access-period,
-  .track-period {
-    & + span .select2-selection.select2-selection--single {
-      height: 25px;
-      padding: 0 2em 0 0.5em;
-    }
+  .period-filter + span .select2-selection {
+    height: 25px;
+    padding: 2px 2em 0 0.5em;
   }
 
   .group-chart {
     border: 1px solid #ddd;
     background-color: #ececec;
+  }
 
-    legend {
-      width: auto;
-      background: white;
-      padding: 0 15px;
-    }
+  .group-chart__legend {
+    width: auto;
+    background: white;
+    padding: 0 15px;
   }
 }

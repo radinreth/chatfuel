@@ -2,7 +2,8 @@
 - if datas && datas[:dataset].any?{|ds| ds[:data].count > 0}
   .col-lg-12
     %fieldset.p-3.mb-3.group-chart
-      %legend= province(province_id).send(t_name)
+      %legend.group-chart__legend
+        = province(province_id).send(t_name)
       .row
         .col-lg-6
           - overall_rating_locals = { title: t("welcomes.overall_rating_by_owso"), province_id: province_id }
