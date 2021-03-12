@@ -1,12 +1,12 @@
 .my-4.d-flex.flex-wrap.filter-options
   .flex-grow-1
-    %ul.list-inline.platform-list
+    %ul.platform-list
       - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code], gender: params[:gender]}
-      %li.list-inline-item{class: ('active' if params[:platform].blank?)}
+      %li.platform-list__item{class: get_css_active_class(nil)}
         = link_to t("dashboard.both"), url_for(param), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('ivr')}
+      %li.platform-list__item{class: get_css_active_class('ivr')}
         = link_to t("dashboard.ivr"), url_for(param.merge(platform: 'ivr')), class: 'text-decoration-none'
-      %li.list-inline-item{class: get_css_active_class('chatbot')}
+      %li.platform-list__item{class: get_css_active_class('chatbot')}
         = link_to t("dashboard.chatbot"), url_for(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
   %div
@@ -15,7 +15,7 @@
         .filter-label.mr-2
           = t("dictionaries.gender")
         .form-group.mb-0.mr-3.gender-options
-          %select.form-control.select.province__select-option{ name: "gender", onchange: "this.form.submit()"}
+          %select.form-control.select.province_filter{ name: "gender", onchange: "this.form.submit()"}
             %option{ value: "" }= t('all')
             = render(GenderOptionComponent.new(name: "male"))
             = render(GenderOptionComponent.new(name: "female"))
@@ -27,9 +27,9 @@
         = render 'dashboard/filter_location'
 
       .date-filter.d-flex.align-items-center
-        .date-filter__label
+        .filter-label
           %span.mr-2
             =t("dashboard.show")
-        .date-filter__choose-option
+        .daterange_filter
           .input-group.date-group
             = render "shared/input_date_range"

@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def get_css_active_class(name)
-    return 'active' if params['platform'] == name
+    return 'platform-list__item--active' if params['platform'] == name
   end
 
   %w(homes sites dictionaries reports users).each do |ctrl|

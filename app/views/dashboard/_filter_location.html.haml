@@ -1,6 +1,6 @@
 .filter-label.mr-2
   =t("dashboard.location")
-.province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }
+.province_filter.mr-3{ "data-target" => "#locationModal", "data-toggle" => "modal" }
   %span.d-block{ data: { toggle: "tooltip", title: @location_filter.district_list_name } }
     = @location_filter.display_name
 

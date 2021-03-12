@@ -1,21 +1,4 @@
-#dashboard-show,
-#home-index,
-#dashboard-ivr_dashboard-show,
-#dashboard-chatbot_dashboard-show {
-  .platform-list {
-    border-bottom: 1px solid #ccc;
-    max-width: 60%;
-    font-size: 1em;
-
-    .list-inline-item:not(:last-child) {
-      margin-right: 1.5em;
-    }
-
-    .active {
-      border-bottom: 3px solid #496edc;
-    }
-  }
-
+#dashboard-show {
   .cog.float {
     position: absolute;
     top: 15px;
@@ -79,49 +62,7 @@
     color: #5a5c69;
   }
 
-  .province__select-option {
-    display: inline;
-    padding: 6px 10px;
-    background-color: white;
-    border: 1px solid #efefef;
-    border-radius: 7px;
-    margin-right: 1em;
-    font-size: 0.875em;
-    min-width: 180px;
-
-    select {
-      color: rgba(25,32,56,0.8);
-      outline: none;
-    }
-  }
-
-  .date-filter__choose-option input {
-    border: 0;
-    background-color: #fff;
-    outline: none;
-    min-width: 190px;
-    padding: 6px 10px;
-  }
-  .date-filter__choose-option .input-group-text {
-    border: 0;
-    background-color: #fff;
-  }
-  .filter-label,
-  .date-filter__label,
-  .datepicker_date {
-    font-size: 0.875em;
-  }
-
-  .date-filter__choose-option {
-    border: 1px solid #efefef;
-    padding: 0 10px;
-    background-color: white;
-    border-radius: 7px;
-  }
-
-  .datepicker_date {
-    color: rgba(25,32,56,0.8);
-  }
+  
 
   .rect {
     display:inline-block;

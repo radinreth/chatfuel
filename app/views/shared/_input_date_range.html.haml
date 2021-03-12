@@ -1,6 +1,6 @@
 %input.start_date{ type: "hidden", name: "start_date", value: @start_date }
 %input.end_date{ type: "hidden", name: "end_date", value: @end_date }
-%input.datepicker_date{value: "#{@start_date} - #{@end_date}"}
+%input.datepicker_date.daterange_filter__input{value: "#{@start_date} - #{@end_date}"}
 .input-group-append
-  .input-group-text
+  .input-group-text.daterange_filter__icon
     %i.fas.fa-calendar-week.fa-sm

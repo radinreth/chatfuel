@@ -1,0 +1,62 @@
+$border-color: #efefef;
+$radius-size: 7px;
+
+.platform-list {
+  border-bottom: 1px solid $border-color;
+  max-width: 60%;
+  font-size: 1em;
+  list-style-type: none;
+  padding-left: 0;
+
+  &__item {
+    margin-right: 1.5em;
+    display: inline-block;
+  }
+
+  &__item--active {
+    border-bottom: 3px solid #496edc;
+  }
+}
+
+.filter-label {
+  font-size: 0.875em;
+  color: rgba(25,32,56,0.8);
+}
+
+.gender-options .select2-selection {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid $border-color;
+  border-radius: $radius-size;
+}
+
+.province_filter {
+  display: inline;
+  padding: 6px 10px;
+  border: 1px solid $border-color;
+  border-radius: $radius-size;
+  font-size: 0.875em;
+  min-width: 180px;
+  background-color: white;
+}
+
+.daterange_filter {
+  border: 1px solid $border-color;
+  padding: 0 10px;
+  border-radius: $radius-size;
+  background-color: white;
+
+  &__input {
+    border: 0;
+    outline: none;
+    min-width: 190px;
+    padding: 6px 10px;
+    font-size: 0.875em;
+    color: rgba(25,32,56,0.8);
+  }
+
+  &__icon {
+    border: 0;
+    background-color: #fff;
+  }
+}
