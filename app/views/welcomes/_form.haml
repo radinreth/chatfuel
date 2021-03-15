@@ -14,8 +14,8 @@
                   = render partial: "welcomes/logo", locals: { tabindex: 3, id: "link-usaid-logo" }
 
               -# province
-              = f.input_field :province, as: :hidden, name: "province_code", value: "02", role: "textbox"
-              = f.input :province, as: :select, label: t("welcomes.province"), include_blank: false, include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: false, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", role: "listbox", data: { "pumi-select-collection-label-method": @location_filter.field_name, "pumi-select-collection-url": "/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
+              = f.input_field :province, as: :hidden, name: "province_code", value: "", role: "textbox"
+              = f.input :province, as: :select, label: t("welcomes.province"), include_blank: t("all"), include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: false, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", role: "listbox", data: { "pumi-select-collection-label-method": @location_filter.field_name, "pumi-select-collection-url": "/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
 
               -# districts
               .form-group.q_district.select.col-lg-4.col-sm-12
