@@ -1,29 +1,44 @@
 class OverallRating < Feedback
   def chart_options
-    mapping.each_with_object({}) do |(pro, districts), hash|
-      hash[pro] ||= {}
-      hash[pro][:labels] = districts.keys
-      hash[pro][:dataset] = display_values.map do |values|
-            id, raw_value, mapping_value = values
-            {
-              label: mapping_value,
-              backgroundColor: colors_mapping[raw_value],
-              data: districts.values.map { |raw| raw[mapping_value] || 0 }
-            }
-          end
+    mapping.each_with_object({}) do |(pro_code, districts), hash|
+      hash[pro_code] ||= {}
+      hash[pro_code][:labels] = districts.keys
+      hash[pro_code][:dataset] = dataset(districts)
     end
   end
 
   private
+    def dataset(districts)
+      satisfied.map do |status|
+        {
+          label: named_status(status),
+          backgroundColor: colors_mapping[status],
+          data: districts.keys.map { |district_name| districts[district_name][status] }
+        }
+      end
+    end
+
+    def named_status(status)
+      display_ratings.find_by(status: status)&.mapping_value || I18n.t(status)
+    end
+
+    def colors_mapping
+      satisfied.zip(COLORS).to_h
+    end
+
+    def satisfied
+      VariableValue.statuses.keys.reverse
+    end
     
     def mapping
       result_set.each_with_object({}) do |(key, count), hash|
-        pro, dis, var = find_objects_by(key)
-        location = dis.send("name_#{I18n.locale}".to_sym)
+        pro_code, district, value = find_objects_by(key)
+        location = district.send("name_#{I18n.locale}".to_sym)
       
-        hash[pro] ||= {}
-        hash[pro][location] ||= {}
-        hash[pro][location][var.mapping_value] ||= count
+        hash[pro_code] ||= {}
+        hash[pro_code][location] ||= {}
+        prev_count = hash[pro_code][location][value.status].to_i
+        hash[pro_code][location][value.status] = (prev_count + count)
       end
     end
 
