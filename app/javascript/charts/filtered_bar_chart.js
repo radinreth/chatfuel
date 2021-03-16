@@ -1,17 +1,10 @@
 import BarChart from './bar_chart'
 import { extract } from '../utils'
+import { ticksOptions } from '../utils/bar_chart';
 
 class FilteredBarChart extends BarChart {
   ancestor = new BarChart();
-  ticksOptions = {
-    maxRotation: 45,
-    minRotation: 45,
-    callback: function(value) {
-      let maxLength = 10,
-          ellipsisValue = `${value.substr(0, 10)}...`;
-      return (value.length >= maxLength) ? ellipsisValue : value;
-    }
-  }
+  ticksOptions = ticksOptions
 
   dataTitles = (data) => _.map(data.values, el => el.value);
   dataCounts = (data) => _.map(data.values, el => el.count);
