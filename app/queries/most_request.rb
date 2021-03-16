@@ -10,7 +10,7 @@ class MostRequest < BasicReport
       hash[pro_code][:dataset][district_name] = {
         value: replace_new_line(variable_value.mapping_value),
         count: count
-      } if !hash[pro_code][:dataset][district_name] || hash[pro_code][:dataset][district_name][:count] < count
+      } if hash[pro_code][:dataset][district_name].nil? || hash[pro_code][:dataset][district_name][:count] < count
     end
   end
 
