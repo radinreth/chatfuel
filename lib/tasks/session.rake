@@ -60,7 +60,7 @@ namespace :session do
     ActiveRecord::Base.transaction do
       sessions = Session.where.not( province_id: [nil, ""], 
         district_id:[nil, ""], 
-        gender: nil).limit(30)
+        gender: nil).limit(100)
 
         sessions.find_each do |session|
           cloned_attrib = session.attributes.except("id")
@@ -78,6 +78,9 @@ namespace :session do
           cloned = Session.new(cloned_attrib)
         
           cloned.clone_relations if cloned.save
+
+          # most requested service
+          cloned.step_values.clone_step :most_request, most_request_values.sample
 
           # feedback sub categories  like, dislike
           if [true, false].sample
