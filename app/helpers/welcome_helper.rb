@@ -1,6 +1,6 @@
 module WelcomeHelper
-  def t_name
-    "full_name_#{I18n.locale}".to_sym
+  def t_name(name = 'full_name')
+    "#{name}_#{I18n.locale}".to_sym
   end
 
   def district(district_id)
