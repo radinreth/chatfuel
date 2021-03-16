@@ -3,6 +3,15 @@ import { extract } from '../utils'
 
 class FilteredBarChart extends BarChart {
   ancestor = new BarChart();
+  ticksOptions = {
+    maxRotation: 45,
+    minRotation: 45,
+    callback: function(value) {
+      let maxLength = 10,
+          ellipsisValue = `${value.substr(0, 10)}...`;
+      return (value.length >= maxLength) ? ellipsisValue : value;
+    }
+  }
 
   dataTitles = (data) => _.map(data.values, el => el.value);
   dataCounts = (data) => _.map(data.values, el => el.count);
