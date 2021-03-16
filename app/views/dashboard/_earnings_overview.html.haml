@@ -19,9 +19,8 @@
 
     #nav-accessed.tab-pane.fade{"aria-labelledby" => "nav-accessed-tab", :role => "tabpanel"}
       .row
-        .col-lg-6
-          - most_requested_locals = { id: "chart_most_requested_services", title: t("welcomes.most_requested_services") }
-          = render partial: "dashboard/charts/most_requested_services", locals: most_requested_locals
+        = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
+        
         .col-lg-6
           - gender_locals = { id: "total_user_gender", title: t("dashboard.total_user_gender") }
           = render partial: "dashboard/gender", locals: gender_locals
