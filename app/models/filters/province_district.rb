@@ -7,6 +7,7 @@ module Filters
       @districts = districts
     end
 
+<<<<<<< HEAD
     def display_name;end
     def described_name;end
 
@@ -14,6 +15,8 @@ module Filters
       "name_#{I18n.locale}".to_sym
     end
 
+=======
+>>>>>>> multi provinces
     private
 
     def province
