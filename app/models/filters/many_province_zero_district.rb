@@ -1,7 +1,7 @@
 module Filters
   class ManyProvinceZeroDistrict < ProvinceDistrict
     def display_name
-      "#{provinces.count} provinces"
+      "#{provinces.count} provinces selected"
     end
     
     def described_name
