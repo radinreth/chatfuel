@@ -21,6 +21,7 @@ OWSO.WelcomesIndex = (() => {
     onWindowScroll();
     onChangeDistrict();
     onModalSave();
+    onProvinceModalSave();
     onClickTabNavigation();
     ssbInterceptor();
   }
@@ -195,8 +196,13 @@ OWSO.WelcomesIndex = (() => {
   function onModalSave() {
     $(".btn-save").click(function(e) {
       e.preventDefault();
-      var provinceCode = $('#province').val()
-      var districtCode = $('.district_code').val().filter( e => e)
+      let provinceCode = $('.province_code').val().filter( e => e);
+      let districtCode = $('.district_code').val().filter( e => e);
+      let params = { 
+        locale: gon.locale,
+        province_code: provinceCode, 
+        district_code: districtCode 
+      };
 
       if( districtCode.length > 0 ) {
         $.get("/welcomes/filter", 
@@ -216,6 +222,43 @@ OWSO.WelcomesIndex = (() => {
       }
 
       $("#districtsModal").modal("hide")
+    })
+  }
+
+  function onProvinceModalSave() {
+    $(".btn-province-save").click(function(e) {
+      e.preventDefault();
+      let provinceCode = $('.province_code').val().filter( e => e);
+      let params = { 
+        locale: gon.locale,
+        province_code: provinceCode 
+      };
+
+      if( provinceCode.length > 0 ) {
+        $.get("/welcomes/filter", params, function(result) {
+          $("#show-provinces").text(result.display_name);
+          $("#q_provinces").val(provinceCode);
+          $(".tooltip-province").attr("data-original-title", result.display_name);
+
+          if( provinceCode.length == 1) {
+            pumi.filterSelectByValue(pumi.selectTarget("district"), provinceCode[0]);
+          } else {
+            $("#q_districts").val("");
+            $(".district_code").val(null).trigger('change')
+            pumi.toggleEnableSelect(pumi.selectTarget("district"), false);
+          }
+        })
+      } else {
+        $("#show-provinces").text(gon.all);
+        $("#q_provinces").val("");
+        $("#q_districts").val("");
+        $(".district_code").val(null).trigger('change')
+        $(".tooltip-province").attr("data-original-title", "");
+        pumi.toggleEnableSelect(pumi.selectTarget("district"), false)
+      }
+
+      
+      $("#provincesModal").modal("hide");
     })
   }
 

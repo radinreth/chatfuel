@@ -43,7 +43,7 @@ en:
   other: Other
   all: All
   location: "%{district} selected"
-  location_no_district: "%{province}"
+  location_no_district: "%{provinces}"
   district_count: "%{count} districts"
   repeated: Finish and restart session
   loading: Loading...
