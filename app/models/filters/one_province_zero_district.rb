@@ -4,8 +4,6 @@ module Filters
       province.name_en
     end
     
-    def described_name
-      province.name_en
-    end
+    def described_name;end
   end
 end

@@ -4,8 +4,6 @@ module Filters
       district.name_en
     end
     
-    def described_name
-      display_name
-    end
+    def described_name;end
   end
 end

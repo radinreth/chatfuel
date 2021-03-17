@@ -15,9 +15,7 @@ class Filters::LocationFilter
     # * province, 0 district
     # * province, 1 district
     # * province, * district
-    klass = [classify_province, classify_district].join
-    namespace = "Filters::#{klass}"
-    namespace.constantize.new(provinces, districts).display_name
+    klazz.display_name
 
     # return I18n.t("location_no_district", provinces: provinces_name) if province? && !districts?
     # return I18n.t("dashboard.all") if !province?
@@ -56,7 +54,7 @@ class Filters::LocationFilter
   # end
 
   def district_list_name
-    ""
+    klazz.described_name
     # return unless multi_districts?
     
     # full_district_list_name
@@ -75,6 +73,12 @@ class Filters::LocationFilter
   # end
 
   private
+
+  def klazz
+    combined = [classify_province, classify_district].join
+    klass = "Filters::#{combined}"
+    klass.constantize.new(provinces, districts)
+  end
 
   def province?
     districts.count == 1
