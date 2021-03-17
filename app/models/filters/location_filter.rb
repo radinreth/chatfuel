@@ -9,6 +9,10 @@ class Filters::LocationFilter
   delegate :display_name, :name_i18n, to: :klazz
   delegate :described_name, to: :klazz
 
+  # def field_address
+  #   "address_#{I18n.locale}".to_sym
+  # end
+
   private
 
   def klazz
