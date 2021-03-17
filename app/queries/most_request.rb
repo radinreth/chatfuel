@@ -25,6 +25,7 @@ class MostRequest < BasicReport
   def result_set
     scope = StepValue.filter(@query.options, @variable.step_values)
     scope = scope.joins(:session)
+    scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
     scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
     scope = scope.group("sessions.district_id")
     scope = scope.group(:variable_value_id)
