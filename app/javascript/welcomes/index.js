@@ -62,7 +62,7 @@ OWSO.WelcomesIndex = (() => {
         $.get("/welcomes/filter", params, function(result) {
           $("#show-districts").text(result.display_name);
           $("#q_districts").val(districtCode);
-          $(".tooltip-district").attr("data-original-title", result.district_list_name);
+          $(".tooltip-district").attr("data-original-title", result.described_name);
         })
       } else {
         $("#show-districts").text(gon.all);
@@ -87,7 +87,7 @@ OWSO.WelcomesIndex = (() => {
         $.get("/welcomes/filter", params, function(result) {
           $("#show-provinces").text(result.display_name);
           $("#q_provinces").val(provinceCode);
-          $(".tooltip-province").attr("data-original-title", result.display_name);
+          $(".tooltip-province").attr("data-original-title", result.described_name);
 
           if( provinceCode.length == 1) {
             pumi.filterSelectByValue(pumi.selectTarget("district"), provinceCode[0]);
