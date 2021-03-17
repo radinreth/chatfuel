@@ -44,7 +44,7 @@ km:
   other: ផ្សេងៗ
   all: ទាំងអស់
   location: "បានជ្រើសយក %{district}"
-  location_no_district: "%{province}"
+  location_no_district: "%{provinces}"
   district_count: "ស្រុកចំនួន %{count}"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   loading: ដំណើការ...
