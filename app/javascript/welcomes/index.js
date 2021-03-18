@@ -197,6 +197,7 @@ OWSO.WelcomesIndex = (() => {
       e.preventDefault();
       let provinceCode = $('.province_code').val().filter( e => e);
       let districtCode = $('.district_code').val().filter( e => e);
+
       let params = { 
         locale: gon.locale,
         province_code: provinceCode, 
@@ -205,18 +206,20 @@ OWSO.WelcomesIndex = (() => {
 
       if( districtCode.length > 0 ) {
         $.get("/welcomes/filter", params, function(result) {
-          $("#show-districts").text(result.display_name);
-          $("#q_districts").val(districtCode);
-          $(".tooltip-district").attr("data-original-title", result.described_name);
+          updateDistrict(result, districtCode);
         })
       } else {
-        $("#show-districts").text(gon.all);
-        $("#q_districts").val("");
-        $(".tooltip-district").attr("data-original-title", "");
+        resetDistrict();
       }
 
       $("#districtsModal").modal("hide")
     })
+  }
+
+  function updateDistrict(result, districtCode) {
+    $("#show-districts").text(result.display_name);
+    $("#q_districts").val(districtCode);
+    $(".tooltip-district").attr("data-original-title", result.described_name);
   }
 
   function onProvinceModalSave() {
@@ -228,34 +231,51 @@ OWSO.WelcomesIndex = (() => {
         province_code: provinceCode 
       };
 
-      if( provinceCode.length > 0 ) {
+      if( provinceCode.length == 0 ) {
+        resetProvince();
+        resetDistrict();
+      } else  {
         $.get("/welcomes/filter", params, function(result) {
-          $("#show-provinces").text(result.display_name);
-          $("#q_provinces").val(provinceCode);
-          $(".tooltip-province").attr("data-original-title", result.described_name);
+          updateProvince(result, provinceCode);
 
-          if( provinceCode.length == 1) {
-            pumi.filterSelectByValue(pumi.selectTarget("district"), provinceCode[0]);
-          } else {
-            $("#show-districts").text(gon.all);
-            $(".tooltip-district").attr("data-original-title", "");
-            $("#q_districts").val("");
-            $(".district_code").val(null).trigger('change')
-            pumi.toggleEnableSelect(pumi.selectTarget("district"), false);
+          if ( provinceCode.length == 1 ) {
+            pullDistricts(provinceCode);
+          } else if ( provinceCode.length > 1 ) {
+            resetDistrict();
           }
-        })
-      } else {
-        $("#show-provinces").text(gon.all);
-        $("#q_provinces").val("");
-        $("#q_districts").val("");
-        $(".district_code").val(null).trigger('change')
-        $(".tooltip-province").attr("data-original-title", "");
-        pumi.toggleEnableSelect(pumi.selectTarget("district"), false)
+        });
       }
-
       
       $("#provincesModal").modal("hide");
     })
+  }
+
+  function disableDistrict() {
+    pumi.toggleEnableSelect(pumi.selectTarget("district"), false);
+  }
+
+  function pullDistricts(provinceCode) {
+    pumi.filterSelectByValue(pumi.selectTarget("district"), provinceCode[0]);
+  }
+
+  function updateProvince(result, provinceCode) {
+    $("#q_provinces").val(provinceCode);
+    $("#show-provinces").text(result.display_name);
+    $(".tooltip-province").attr("data-original-title", result.described_name);
+  }
+
+  function resetProvince() {
+    $("#q_provinces").val("");
+    $("#show-provinces").text(gon.all);
+    $(".tooltip-province").attr("data-original-title", "");
+  }
+
+  function resetDistrict() {
+    disableDistrict();
+    $("#q_districts").val("");
+    $("#show-districts").text(gon.all);
+    $(".tooltip-district").attr("data-original-title", "");
+    $(".district_code").val(null).trigger('change');
   }
 
   function onWindowScroll() {
