@@ -19,7 +19,7 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll();
     onChangeDistrict();
-    onModalSave();
+    onDistrictModalSave();
     onProvinceModalSave();
     onClickTabNavigation();
     ssbInterceptor();
@@ -46,154 +46,8 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  function customChart() {
-    mostRequest()
-    genderInfo()
-    accessInfo()
-    accessMainService()
-    mostTrackedPeriodically()
-    ticketTrackingByGenders()
-
-    // citizen feedback
-    overallRating()
-    feedbackTrend()
-    feedbackSubCategories()
-  }
-
-  function feedbackSubCategories() {
-    var ctx = $('.chart_feedback_by_sub_category');
-    // var canvas = $('<canvas />', { class: "chart_feedback_by_sub_category" })
-    // canvas.insertAfter(".chart_feedback_by_sub_category")
-    // chart.feedbackSubCategories(ctx);
-    $(".chart_feedback_by_sub_category").each(function(i, dom) {
-      chart.feedbackSubCategories(dom);
-    } )
-    /*
-      number of charts base on search
-      each chart
-        like & dislike (value)
-    */
-    // var data = {
-    //   labels: ["Like", "Dislike"],
-    //   datasets: [
-    //     {
-    //       label: "staff",
-    //       backgroundColor: "#b7b5b3",
-    //       data: [60,55]
-    //     },    
-    //     {
-    //       label: "price",
-    //       backgroundColor: "#3864B1",
-    //       data: [55,80]
-    //     },
-    //     {
-    //       label: "working hour",
-    //       backgroundColor: "#D6D44C",
-    //       data: [40,55]
-    //     },
-    //     {
-    //       label: "document",
-    //       backgroundColor: "#65D4BD",
-    //       data: [80,45]
-    //     },
-    //     {
-    //       label: "process",
-    //       backgroundColor: "#43291F",
-    //       data: [35,55]
-    //     },
-    //     {
-    //       label: "delivery speed",
-    //       backgroundColor: "#da2c38",
-    //       data: [80,40]
-    //     },
-    //     {
-    //       label: "providing info",
-    //       backgroundColor: "#bdadea",
-    //       data: [60,30]
-    //     }
-    //   ]
-    // }
-
-    // var options = {
-    //   plugins: {
-    //     datalabels: {
-    //       display: false,
-    //       rotation: -90,
-    //       color: "#FFF",
-    //       textAlign: "center",
-    //       formatter: function(value, context) {
-    //         return context.dataset.label;
-    //       }
-    //     }
-    //   },
-    //   barValueSpacing: 20,
-    //   scales: {
-    //     yAxes: [{
-    //       ticks: {
-    //         max: 100,
-    //         min: 0,
-    //       }
-    //     }]
-    //   }
-    // }
-
-
-    // $.each( $('.chart_feedback_by_sub_category'), function(_, ctx) {
-    //   new Chart(ctx, {
-    //     type: 'bar',
-    //     data: data,
-    //     plugins: [chartDataLabels],
-    //     options: options
-    //   });
-    // } )
-
-      $("#exampleModal").modal("hide")
-    })
-  }
-
-  function feedbackTrend() {
-    var ctx = 'chart_owso_feedback_trend';
-    chart.feedbackTrend(ctx);
-  }
-
-  function overallRating() {
-    var ctx = 'chart_overall_rating_by_owso';
-    chart.overallRating(ctx);
-  }
-
-  function ticketTrackingByGenders() {
-    var ctx = 'chart_ticket_tracking_by_gender';
-    chart.ticketTrackingByGenders(ctx);
-  }
-
-  function mostTrackedPeriodically() {
-    var ctx = 'chart_most_service_tracked_periodically'
-    chart.mostTrackedPeriodic(ctx);
-  }
-
-  function accessMainService() {
-    var ctx = 'chart_number_access_by_main_services';
-    chart.accessMainService(ctx);
-  }
-
-  // access owso info by period { month, quater, semester }
-  function accessInfo() {
-    var ctx = 'chart_information_access_by_period';
-    chart.accessInfo(ctx);
-  }
-
-  function genderInfo() {
-    let ctx = 'chart_information_access_by_gender';
-    chart.genderInfo(ctx);
-  }
-
-  function mostRequest() {
-    let ctx = 'chart_most_requested_services';
-    chart.mostRequest(ctx)
-  }
-
-  function onModalSave() {
-    $(".btn-save").click(function(e) {
+  function onDistrictModalSave() {
+    $(".btn-district-save").click(function(e) {
       e.preventDefault();
       let provinceCode = $('.province_code').val().filter( e => e);
       let districtCode = $('.district_code').val().filter( e => e);
