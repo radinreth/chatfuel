@@ -8,7 +8,6 @@ module Filters
     end
 
     def display_name;end
-    
     def described_name;end
 
     def name_i18n
