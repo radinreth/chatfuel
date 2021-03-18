@@ -1,11 +1,11 @@
 module Filters
   class OneProvinceManyDistrict < ProvinceDistrict
     def display_name
-      "#{districts.count} districts selected"
+      I18n.t(:selected_districts, count: districts.count)
     end
     
     def described_name
-      districts.map(&:name_en).to_sentence
+      districts.map {|d| d.send(name_i18n)}.to_sentence
     end
   end
 end

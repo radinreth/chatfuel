@@ -43,9 +43,11 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
-  location: "បានជ្រើសយក %{district}"
+  location: "បានជ្រើសយក %{location}"
   location_no_district: "%{provinces}"
   district_count: "ស្រុកចំនួន %{count}"
+  selected_districts: "ស្រុកចំនួន %{count} បានជ្រើសយក"
+  selected_provinces: "ខេត្តចំនួន %{count} បានជ្រើសយក"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   loading: ដំណើការ...
   download_chart: ទាញយកក្រាប
