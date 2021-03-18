@@ -1,6 +1,5 @@
 require("../patches/jquery")
 import { renderChart } from '../charts/root_chart'
-import formater from '../data/formater'
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
