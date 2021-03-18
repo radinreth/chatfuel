@@ -1,7 +1,7 @@
 module Filters
   class OneProvinceOneDistrict < ProvinceDistrict
     def display_name
-      district.name_en
+      district.send(name_i18n)
     end
     
     def described_name;end

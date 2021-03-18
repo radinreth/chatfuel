@@ -238,6 +238,8 @@ OWSO.WelcomesIndex = (() => {
           if( provinceCode.length == 1) {
             pumi.filterSelectByValue(pumi.selectTarget("district"), provinceCode[0]);
           } else {
+            $("#show-districts").text(gon.all);
+            $(".tooltip-district").attr("data-original-title", "");
             $("#q_districts").val("");
             $(".district_code").val(null).trigger('change')
             pumi.toggleEnableSelect(pumi.selectTarget("district"), false);
