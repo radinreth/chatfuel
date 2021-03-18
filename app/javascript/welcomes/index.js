@@ -19,7 +19,7 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll();
     onChangeDistrict();
-    onModalSave();
+    onDistrictModalSave();
     onProvinceModalSave();
     onClickTabNavigation();
     ssbInterceptor();
@@ -46,8 +46,8 @@ OWSO.WelcomesIndex = (() => {
     })
   }
 
-  function onModalSave() {
-    $(".btn-save").click(function(e) {
+  function onDistrictModalSave() {
+    $(".btn-district-save").click(function(e) {
       e.preventDefault();
       let provinceCode = $('.province_code').val().filter( e => e);
       let districtCode = $('.district_code').val().filter( e => e);

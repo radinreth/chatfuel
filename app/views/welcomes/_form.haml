@@ -14,8 +14,6 @@
                   = render partial: "welcomes/logo", locals: { tabindex: 3, id: "link-usaid-logo" }
 
               -# province
-              -# = f.input_field :province, as: :hidden, name: "province_code", value: "", role: "textbox"
-              -# = f.input :province, as: :select, label: t("welcomes.province"), include_blank: t("all"), include_hidden: false, collection: [], label_method: :second, value_method: :first, disabled: false, wrapper_html: { class: "col-lg-4 col-sm-12" }, input_html: { tabindex: 2, name: "province_code", id: "province", class: "w-100", role: "listbox", data: { "pumi-select-collection-label-method": @location_filter.name_i18n, "pumi-select-collection-url": "/provinces", "pumi-select-collection-value-method": "id", "pumi-select-populate-on-load": "true", "pumi-select-target": "district", "pumi-select-has-hidden-value": true } }
               .form-group.q_province.select.col-lg-4.col-sm-12
                 %label.select.required.disabled
                   = t("welcomes.provinces")
@@ -59,44 +57,12 @@
                 = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, role: "button", id: "btn-search", value: "submitted", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
-#provincesModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "provincesModal", :role => "dialog", :tabindex => "-1" }
-  .modal-dialog.modal-dialog-centered{:role => "document"}
-    .modal-content
-      .modal-header
-        .province-title
-          %h5.modal-title
-            = t("welcomes.provinces")
-          %small.help-text
-            = "(#{t("welcomes.multi_provinces")})"
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button", role: "button", value: "dismiss"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        .position-relative
-          %select.province_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load": "true", "data-pumi-select-targetxxxx": "district", name: 'province_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
-            %option{value: ""}= t('dashboard.all_province')
-      .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
-          = t("shared.cancel")
-        %button.btn.btn-primary.btn-province-save{:type => "button", role: "button", value: "saved"}
-          = t("shared.save")
+= render( LocationModalComponent.new(component: 'province') ) do |c|
+  = c.with(:select_input) do
+    %select.province_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load": "true", name: 'province_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      %option{value: ""}= t('dashboard.all_province')
 
-#districtsModal.p-0.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "districtsModal", :role => "dialog", :tabindex => "-1" }
-  .modal-dialog.modal-dialog-centered{:role => "document"}
-    .modal-content
-      .modal-header
-        .district-title
-          %h5.modal-title
-            = t("welcomes.districts")
-          %small.help-text
-            = "(#{t("welcomes.multi_districts")})"
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button", role: "button", value: "dismiss"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        .position-relative
-          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
-            %option{value: ""}= t('dashboard.all_district')
-      .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
-          = t("shared.cancel")
-        %button.btn.btn-primary.btn-save{:type => "button", role: "button", value: "saved"}
-          = t("shared.save")
+= render( LocationModalComponent.new(component: 'district') ) do |c|
+  = c.with(:select_input) do
+    %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      %option{value: ""}= t('dashboard.all_district')
