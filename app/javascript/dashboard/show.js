@@ -92,7 +92,11 @@ OWSO.DashboardShow = (() => {
     loading($spin);
     let chart = OWSO.Util.findChartInstance(canvasId)
 
-    $.get(url, serializedParams, function(result) {
+    $.get(url, serializedParams, function(response) {
+      let result = response
+      let id = chart.canvas.id.slice(-2)
+      if(id.match(/^\d{2}$/)) result = response[id]
+
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));
       let suggestedMax = Math.round( max * 1.40 );
