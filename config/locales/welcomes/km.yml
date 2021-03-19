@@ -19,6 +19,7 @@ km:
     ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
     overall_rating_by_owso: មតិយោបល់របស់ប្រជាពលរដ្ឋ បែងចែកតាមច្រក
     owso_feedback_trend: មតិយោបល់ប្រជាពលរដ្ឋប្រៀបធៀបតាមខែ ត្រីមាស និងឆ្នាំ
+    feedback_trend: មតិយោបល់ប្រជាពលរដ្ឋតាមtrendក្នុង %{name}
     feedback_by_sub_categories: មតិយោបល់ប្រជាពលរដ្ឋតាមផ្នែកតូចៗក្នុង %{name}
     feedback_by_sub_categories_title: មតិយោបល់ប្រជាពលរដ្ឋតាមផ្នែកតូចៗ
     overall_citizen_feedback: ចំនួនមតិយោបល់របស់ប្រជាពលរដ្ឋ

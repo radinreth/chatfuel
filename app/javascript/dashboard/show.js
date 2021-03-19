@@ -151,6 +151,16 @@ OWSO.DashboardShow = (() => {
     });
   }
 
+  function loadFeedbackTrend(provinceId) {
+    let elements = `.chart_feedback_trend[data-provinceid=${provinceId}]`
+
+    $(elements).each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
+    });
+  }
+
   function tooltipChart() {
     $(document)
       .on("mouseover", ".chart-name", showToolTip )
@@ -281,6 +291,7 @@ OWSO.DashboardShow = (() => {
             renderDatetimepicker,
             onChangeProvince,
             loadSubCategories,
+            loadFeedbackTrend,
             attachEventClickToChartDownloadButton,
             runAsPublicDashboard,
             multiSelectDistricts,
