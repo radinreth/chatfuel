@@ -1,6 +1,7 @@
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
+import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
 import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
@@ -23,6 +24,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
     loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
   }
 
   function loadChart(instance, element, data) {
@@ -38,6 +40,14 @@ OWSO.DashboardShow = (() => {
       let id = $(dom).data("provinceid");
       let data = gon.mostRequest[id];
       loadChart(mostRequest, dom.id, data)
+    })
+  }
+  
+  function loadProvinceFeedbackTrend() {
+    $(".chart_owso_feedback_trend").each(function(_, dom) {
+      let id = $(dom).data("provinceid");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
     });
   }
 
@@ -259,6 +269,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
     loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
     onLoadPopup()
   }
 
