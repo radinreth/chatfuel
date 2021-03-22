@@ -5,7 +5,7 @@ class MostRequestServiceAccessChart extends FilteredBarChart {
   chartId = 'chart_most_requested_services';
 
   suggestedMax = (data) => suggestedMax(data, 1.5);
-  dataset = () => this.format(gon.mostRequest);
+  dataset = () => this.format(this.ds);
 }
 
 export const mostRequest = new MostRequestServiceAccessChart();
