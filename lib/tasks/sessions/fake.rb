@@ -14,6 +14,14 @@ def like_values
   like.values.map &:raw_value
 end
 
+def most_request_values
+  most_request.values.map &:raw_value
+end
+
+def most_request
+  Variable.most_request
+end
+
 def dislike
   Variable.feedback_dislike
 end
