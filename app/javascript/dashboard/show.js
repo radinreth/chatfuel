@@ -94,8 +94,10 @@ OWSO.DashboardShow = (() => {
 
     $.get(url, serializedParams, function(response) {
       let result = response
-      let id = chart.canvas.id.slice(-2)
-      if(id.match(/^\d{2}$/)) result = response[id]
+
+      // feedback trend filter under province
+      let proCode = chart.canvas.id.slice(-2)
+      if(proCode.match(/^\d{2}$/)) result = response[proCode]
 
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));

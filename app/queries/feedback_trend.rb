@@ -6,22 +6,24 @@ class FeedbackTrend < Feedback
   private
 
     def province
-      dataset(mapping(province_sql))
+      province_group = group_result(province_sql)
+      shape_result(province_group)
     end
 
     def district
-      dataset(mapping(district_sql))
+      district_group = group_result(district_sql)
+      shape_result(district_group)
     end
 
-    def dataset(_mapping)
-      _mapping.each_with_object({}) do |(pro_code, periods), hash|
+    def shape_result(result)
+      result.each_with_object({}) do |(pro_code, periods), hash|
         hash[pro_code] ||= {}
         hash[pro_code][:labels] = periods.keys
-        hash[pro_code][:dataset] = sub_dataset(periods)
+        hash[pro_code][:dataset] = dataset(periods)
       end
     end
 
-    def sub_dataset(periods)
+    def dataset(periods)
       satisfied.map do |status|
         {
           label: I18n.t(status),
@@ -39,7 +41,7 @@ class FeedbackTrend < Feedback
       VariableValue.statuses.keys.reverse
     end
 
-    def mapping(collection)
+    def group_result(collection)
       collection.each_with_object({}) do |(key, count), hash|
         province_code, period, value_id = key
         variable_value = VariableValue.find(value_id)
