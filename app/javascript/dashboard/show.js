@@ -258,6 +258,7 @@ OWSO.DashboardShow = (() => {
   function runAsPublicDashboard() {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
+    loadProvinceMostRequest()
     onLoadPopup()
   }
 

@@ -15,10 +15,7 @@
             = render "dashboard/earnings"
             .row
               -# Information Access
-              .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.most_requested_services")) ) do |c|
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services") }
-                  - c.with(:hint) { t("hint.most_requested_services") }
+              = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
 
               .col-lg-6
                 = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender"), id: "total_user_gender" }
