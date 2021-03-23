@@ -1,6 +1,7 @@
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
+import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
 import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
@@ -23,6 +24,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
     loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
   }
 
   function loadChart(instance, element, data) {
@@ -38,6 +40,14 @@ OWSO.DashboardShow = (() => {
       let id = $(dom).data("provinceid");
       let data = gon.mostRequest[id];
       loadChart(mostRequest, dom.id, data)
+    })
+  }
+  
+  function loadProvinceFeedbackTrend() {
+    $(".chart_owso_feedback_trend").each(function(_, dom) {
+      let id = $(dom).data("provinceid");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
     });
   }
 
@@ -82,7 +92,13 @@ OWSO.DashboardShow = (() => {
     loading($spin);
     let chart = OWSO.Util.findChartInstance(canvasId)
 
-    $.get(url, serializedParams, function(result) {
+    $.get(url, serializedParams, function(response) {
+      let result = response
+
+      // feedback trend filter under province
+      let proCode = chart.canvas.id.slice(-2)
+      if(proCode.match(/^\d{2}$/)) result = response[proCode]
+
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));
       let suggestedMax = Math.round( max * 1.40 );
@@ -134,6 +150,16 @@ OWSO.DashboardShow = (() => {
       let id = $(dom).data("id");
       let data = gon.feedbackSubCategories[id];
       loadChart(subCategoriesFeedback, dom.id, data)
+    });
+  }
+
+  function loadFeedbackTrend(provinceId) {
+    let elements = `.chart_feedback_trend[data-provinceid=${provinceId}]`
+
+    $(elements).each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
     });
   }
 
@@ -259,6 +285,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
     loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
     onLoadPopup()
   }
 
@@ -266,6 +293,7 @@ OWSO.DashboardShow = (() => {
             renderDatetimepicker,
             onChangeProvince,
             loadSubCategories,
+            loadFeedbackTrend,
             attachEventClickToChartDownloadButton,
             runAsPublicDashboard,
             multiSelectDistricts,
