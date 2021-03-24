@@ -14,11 +14,6 @@ class ApplicationController < ActionController::Base
       ahoy.track "track visitor", request.path_parameters
     end
   
-    def user_not_authorized
-      flash[:alert] = t("not_authorized")
-      redirect_to(request.referrer || root_path)
-    end
-
     def set_raven_context
       Raven.user_context(id: session[:current_user_id])
       Raven.extra_context(params: params.to_unsafe_h, url: request.url)
