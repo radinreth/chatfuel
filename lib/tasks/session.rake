@@ -61,37 +61,38 @@ namespace :session do
     ActiveRecord::Base.transaction do
       sessions = Session.where.not( province_id: [nil, ""], 
         district_id:[nil, ""], 
-        gender: nil).limit(100)
+        gender: nil).limit(300)
 
         sessions.find_each do |session|
           cloned_attrib = session.attributes.except("id")
-          platform_name, session_id, source_id = random_channel
+          faker = Sessions::Fake.new
         
-          cloned_attrib["session_id"] = session_id
-          cloned_attrib["source_id"] = source_id
-          cloned_attrib["platform_name"] = platform_name
-          cloned_attrib["gender"] = random_gender
-          cloned_attrib["repeated"] = random_repeated
-          cloned_attrib["district_id"] = random_district_ids
-          cloned_attrib["province_id"] = kompong_chhnang_id
-          cloned_attrib["status"] = random_statuses
+          cloned_attrib["session_id"] = faker.session_id
+          cloned_attrib["source_id"] = faker.source_id
+          cloned_attrib["platform_name"] = faker.platform_name
+
+          cloned_attrib["gender"] = faker.gender
+          cloned_attrib["repeated"] = faker.repeated
+          cloned_attrib["province_id"] = faker.province_id
+          cloned_attrib["district_id"] = faker.district_id
+          cloned_attrib["status"] = faker.status
         
           cloned = Session.new(cloned_attrib)
         
           cloned.clone_relations if cloned.save
 
           # most requested service
-          cloned.step_values.clone_step :most_request, most_request_values.sample
+          cloned.step_values.clone_step :most_request, faker.most_request_raw_value
 
           # feedback sub categories  like, dislike
           if [true, false].sample
-            cloned.step_values.clone_step :feedback_like, like_values.sample
+            cloned.step_values.clone_step :feedback_like, faker.like_raw_value
           else
-            cloned.step_values.clone_step :feedback_dislike, dislike_values.sample
+            cloned.step_values.clone_step :feedback_dislike, faker.dislike_raw_value
           end
 
           # overall rating by OWSO
-          cloned.step_values.clone_step :feedback_rating, rating_values.sample if [true, false].sample
+          cloned.step_values.clone_step :feedback_rating, faker.rating_raw_value if [true, false].sample
 
           print "."
 
