@@ -20,37 +20,37 @@
               .col-lg-6
                 = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender"), id: "total_user_gender" }
 
-          .col-lg-6
-            = render( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
-              - c.with(:addon) do
-                %select.access-period.period-filter
-                  %option{ value: "month" }= t("period.monthly")
-                  %option{ value: "quarter" }= t("period.quarterly")
-                  %option{ value: "year" }= t("period.yearly")
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
-              - c.with(:hint) { t("hint.information_access_by_period") }
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
+                  - c.with(:addon) do
+                    %select.access-period.period-filter
+                      %option{ value: "month" }= t("period.monthly")
+                      %option{ value: "quarter" }= t("period.quarterly")
+                      %option{ value: "year" }= t("period.yearly")
+                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
+                  - c.with(:hint) { t("hint.information_access_by_period") }
 
-          .col-lg-6
-            = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
-              - c.with(:hint) { t("hint.number_access_by_main_services") }
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
+                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
+                  - c.with(:hint) { t("hint.number_access_by_main_services") }
 
-          .col-lg-6
-            - name = t("welcomes.most_service_tracked_by_periodic")
-            = render( ChartComponent.new(name: name, filterable: true) ) do |c|
-              - c.with(:addon) do
-                %select.track-period.period-filter
-                  %option{ value: "month" }= t("period.monthly")
-                  %option{ value: "quarter" }= t("period.quarterly")
-                  %option{ value: "year" }= t("period.yearly")
-              - c.with(:hint) { t("hint.most_service_tracked_by_periodic") }
-              - c.with(:body) do
-                %canvas#chart_most_service_tracked_periodically
+              .col-lg-6
+                - name = t("welcomes.most_service_tracked_by_periodic")
+                = render( ChartComponent.new(name: name, filterable: true) ) do |c|
+                  - c.with(:addon) do
+                    %select.track-period.period-filter
+                      %option{ value: "month" }= t("period.monthly")
+                      %option{ value: "quarter" }= t("period.quarterly")
+                      %option{ value: "year" }= t("period.yearly")
+                  - c.with(:hint) { t("hint.most_service_tracked_by_periodic") }
+                  - c.with(:body) do
+                    %canvas#chart_most_service_tracked_periodically
 
-          .col-lg-6
-            = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
-              - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
+                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
+                  - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
 
           #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
             = render "dashboard/earnings"

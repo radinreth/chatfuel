@@ -1,6 +1,6 @@
 #form-query
   = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", id: "q", role: "search" } do |f|
-    = invisible_recaptcha_tags ui: :invisible
+    = invisible_recaptcha_tags ui: :invisible, "data-badge": "bottomleft"
 
     .mb-3
       .container
@@ -30,7 +30,7 @@
                   = t("welcomes.districts")
                   %abbr{ title: t("required.string") } *
                 %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
-                  #show-districts.form-control{"data-toggle": "modal", "data-target" => "#districtsModal"} 
+                  #show-districts.form-control{tabindex: 5, "data-toggle": "modal", "data-target" => "#districtsModal"} 
                     = t("all")
                   - district_codes = Array.wrap(params[:district_code]).select(&:present?)
                   = f.input_field :districts, as: :hidden, name: "district_code[]", multiple: true, class: "form-control text-truncate", value: district_codes, role: "listbox"
@@ -53,8 +53,8 @@
               = f.input :active_tab, as: :hidden, input_html: { role: "textbox" }
 
               -# submit
-              .form-group.m-0.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.submit t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search"
+              .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
+                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, role: "button", id: "btn-search", value: "submitted", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
 = render( LocationModalComponent.new(component: 'province') ) do |c|
