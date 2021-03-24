@@ -116,9 +116,7 @@
     color: #e41010;
   }
 
-  .access-period,
-  .feedback-trend,
-  .track-period {
+  .period-filter {
     & + span .select2-selection.select2-selection--single {
       height: 25px;
       padding: 0 2em 0 0.5em;
@@ -200,7 +198,7 @@
     position: fixed;
     top: 30%;
     padding-left: 5%;
-    z-index: 9999;
+    z-index: 1000;
     left: 0;
     transition: all 0.1s ease-in;
     text-align: center;
@@ -211,15 +209,16 @@
     }
   }
 
-  abbr[title] {
-    text-decoration: none;
-    color: #e41010;
+  .share-icon {
+    font-size: 0.8em;
+    display: inline-block;
+    margin-bottom: 8px;
   }
   
   .chat-with-us {
     position: fixed;
     bottom: 19px;
-    z-index: 9999;
+    z-index: 999;
     right: 96px;
     background-color: #002f6c;
     color: white;
@@ -230,7 +229,7 @@
 
   // override recaptcha position
   .grecaptcha-badge {
-    bottom: 100px !important;
+    bottom: 24px !important;
     z-index: 9;
   }
 }
