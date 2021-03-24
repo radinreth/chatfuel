@@ -4,4 +4,8 @@ class Guest
   def role
     Role.new(name: "guest")
   end
+
+  def email
+    "guest@example.com"
+  end
 end
