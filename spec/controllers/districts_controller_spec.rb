@@ -14,8 +14,14 @@ RSpec.describe DistrictsController do
     let(:value) { build(:variable_value, raw_value: "0204") }
     let!(:location) { create(:variable, :location, values: [ value ]) }
 
-    it ":index" do
+    it "is empty" do
       get :index
+
+      expect( response.body ).to include("[]")
+    end
+
+    it "returns districts belongs to the province" do
+      get :index, params: { province_id: "02" }
 
       expect( response.body ).to include(value.raw_value)
     end
