@@ -59,9 +59,9 @@ namespace :session do
   desc "Simulate sessions from kompong chhnang"
   task simulate_data: :environment do
     ActiveRecord::Base.transaction do
-      sessions = Session.where.not( province_id: [nil, ""], 
+      sessions = Session.unscoped.where.not( province_id: [nil, ""], 
         district_id:[nil, ""], 
-        gender: nil).limit(300)
+        gender: nil).order("RANDOM()").limit(300)
 
         sessions.find_each do |session|
           cloned_attrib = session.attributes.except("id")
