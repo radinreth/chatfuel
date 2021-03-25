@@ -13,7 +13,10 @@ gem "jbuilder", "~> 2.7"
 gem "alto_guisso", github: "instedd/alto_guisso", branch: "master"
 gem "alto_guisso_rails", github: "instedd/alto_guisso_rails", branch: "rails-5.1"
 gem "bootsnap", ">= 1.4.2", require: false
-gem "devise", "~> 4.7.1"
+
+# Issue related with devise-4.7.3, require to update omniauth-1.0.0.pr2
+# https://github.com/heartcombo/devise/commit/1d138dd40cdc291a427b89027d16a869818a5c19
+gem "devise", github: "heartcombo/devise", branch: "master"
 gem "jquery-rails", "~> 4.3.5"
 gem "verboice", "~> 0.7.0"
 gem "pagy", "~> 3.5"
@@ -51,7 +54,7 @@ gem "view_component", require: "view_component/engine"
 gem 'gon', '~> 6.4'
 gem 'social-share-button', '~> 1.2', '>= 1.2.3'
 gem 'ahoy_matey', '~> 3.0', '>= 3.0.5'
-gem 'meta-tags', '~> 2.14'
+gem 'meta-tags', '~> 2.13'
 gem 'recaptcha', '~> 5.6'
 
 group :development, :test do
