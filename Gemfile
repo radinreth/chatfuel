@@ -75,6 +75,11 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "annotate", "~> 3.1.0"
   gem "solargraph", "~> 0.38.5"
+
+  # profiling
+  gem 'rack-mini-profiler', '~> 2.3', '>= 2.3.1'
+  gem 'memory_profiler', '~> 1.0'
+  gem 'stackprof', '~> 0.2.16'
 end
 
 group :test do

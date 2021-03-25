@@ -267,6 +267,7 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     maruku (0.7.3)
+    memory_profiler (1.0.0)
     meta-tags (2.14.0)
       actionpack (>= 3.2.0, < 6.2)
     method_source (1.0.0)
@@ -326,6 +327,8 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
+    rack-mini-profiler (2.3.1)
+      rack (>= 1.2.0)
     rack-oauth2 (1.16.0)
       activesupport
       attr_required
@@ -509,6 +512,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
+    stackprof (0.2.16)
     strip_attributes (1.11.0)
       activemodel (>= 3.0, < 7.0)
     telegram-bot (0.14.4)
@@ -589,6 +593,7 @@ DEPENDENCIES
   jquery-rails (~> 4.3.5)
   liquid (~> 4.0, >= 4.0.3)
   listen (~> 3.2)
+  memory_profiler (~> 1.0)
   meta-tags (~> 2.13)
   momentjs-rails (~> 2.20.1)
   oj (~> 3.10, >= 3.10.6)
@@ -601,6 +606,7 @@ DEPENDENCIES
   pundit (~> 1.1.0)
   pundit-matchers (~> 1.6.0)
   rack-cors
+  rack-mini-profiler (~> 2.3, >= 2.3.1)
   rails (~> 6.0.3, >= 6.0.3.5)
   rails-controller-testing (~> 1.0.4)
   rails-settings-cached (~> 2.0)
@@ -620,6 +626,7 @@ DEPENDENCIES
   solargraph (~> 0.38.5)
   spring (~> 2.1.0)
   spring-watcher-listen (~> 2.0.0)
+  stackprof (~> 0.2.16)
   strip_attributes (~> 1.11.0)
   telegram-bot (~> 0.14.3)
   tilt (~> 2.0, >= 2.0.10)
