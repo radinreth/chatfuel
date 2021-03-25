@@ -92,7 +92,7 @@ namespace :session do
           end
 
           # overall rating by OWSO
-          cloned.step_values.clone_step :feedback_rating, faker.rating_raw_value if [true, false].sample
+          cloned.step_values.clone_step :feedback, faker.feedback_raw_value if [true, false].sample
 
           print "."
 

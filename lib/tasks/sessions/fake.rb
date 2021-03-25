@@ -48,8 +48,8 @@ module Sessions
       dislike_raw_values.sample
     end
 
-    def rating_raw_value
-      rating_raw_values.sample
+    def feedback_raw_value
+      feedback_raw_values.sample
     end
 
     private
@@ -70,8 +70,8 @@ module Sessions
         Variable.feedback_dislike.values.map &:raw_value
       end
 
-      def rating_raw_values
-        Variable.feedback_rating.values.map &:raw_value
+      def feedback_raw_values
+        Variable.feedback.values.map &:raw_value
       end
   end
 end
