@@ -43,13 +43,14 @@ class FeedbackTrend < Feedback
 
     def group_result(collection)
       collection.each_with_object({}) do |(key, count), hash|
-        province_code, period, value_id = key
+        province_code, duration, value_id = key
         variable_value = VariableValue.find(value_id)
 
+        format_duration = format_label(duration)
         hash[province_code] ||= {}
-        hash[province_code][period] ||= {}
-        prev_count = hash[province_code][period][variable_value.status].to_i
-        hash[province_code][period][variable_value.status] = (prev_count + count)
+        hash[province_code][format_duration] ||= {}
+        prev_count = hash[province_code][format_duration][variable_value.status].to_i
+        hash[province_code][format_duration][variable_value.status] = (prev_count + count)
       end
     end
 
