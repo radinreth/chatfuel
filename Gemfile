@@ -80,6 +80,9 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.3', '>= 2.3.1'
   gem 'memory_profiler', '~> 1.0'
   gem 'stackprof', '~> 0.2.16'
+
+  # n+1 query detection
+  gem 'bullet', '~> 6.1', '>= 6.1.4'
 end
 
 group :test do
