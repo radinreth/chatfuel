@@ -1,8 +1,10 @@
 class AccessMainService < BasicReport
   def dataset
-    result_set.transform_keys do |value_id|
-      value = VariableValue.find(value_id)
-      value.mapping_value
+    result_set.each_with_object({}) do |(key, count), hash|
+      value = VariableValue.find(key)
+      prev_count = hash[value.mapping_value].to_i
+      hash[value.mapping_value] ||= {}
+      hash[value.mapping_value] = (prev_count + count)
     end
   end
   
@@ -10,6 +12,7 @@ class AccessMainService < BasicReport
     def result_set
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
+      scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
       scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
       scope = scope.group("variable_value_id")
       scope.count

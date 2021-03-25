@@ -31,9 +31,9 @@
           div.className = 'fb-customerchat';
           div.setAttribute('page_id', '#{ENV["FACEBOOK_PAGE_ID"]}');
           div.setAttribute('ref', '');
+          div.setAttribute('theme_color', '#002f6c')
           document.body.appendChild(div);
         }
-
         window.fbMessengerPlugins = window.fbMessengerPlugins || {
           init: function () {
             FB.init({

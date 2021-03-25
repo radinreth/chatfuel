@@ -8,6 +8,11 @@ OWSO.Util = {
     if( chart != undefined ) chart.destroy();
     new Chart(canvasId, options);
   },
+  closeAlert: function() {
+    setTimeout(() => {
+      $(".alert").alert("close");
+    }, 5000);
+  },
   chartReg() {
     let thiz = this;
 

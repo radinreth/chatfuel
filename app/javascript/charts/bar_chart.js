@@ -4,7 +4,6 @@ class BarChart extends BaseChart {
   type = "bar";
 
   dataFormat = () => ({
-    maxBarThickness: 36,
     minBarLength: 2,
   })
 
@@ -44,10 +43,10 @@ class BarChart extends BaseChart {
           }
         }],
         xAxes: [{
-          maxBarThickness: 50,
           ticks: {
             maxRotation: 0,
             minRotation: 0,
+            ...this.ticksOptions
           }
         }]
       }

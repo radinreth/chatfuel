@@ -1,11 +1,17 @@
 class FeedbackSubCategories < FeedbackReport
-  def labels
-    result_set_mapping["all"].keys
+  def chart_options
+    @query.province_codes_without_other.each_with_object({}) do |province_id, hash|
+      hash[province_id] ||= {}
+      hash[province_id][:labels] = result_set_mapping[province_id].keys rescue []
+      hash[province_id][:dataset] = dataset(province_id)
+    end
   end
-  
-  def dataset
+
+  def dataset(key)
+    @values = result_set_mapping[key].values rescue []
+    
     values.map.with_index do |mapping_value, index|
-      dataset_item(mapping_value, index, data_values)
+      dataset_item(mapping_value, index, @values)
     end
   end
 
@@ -14,15 +20,12 @@ class FeedbackSubCategories < FeedbackReport
   end
 
   private
-    def data_values
-      result_set_mapping["all"].values
-    end
-
     def result_set_mapping
       accumulate_rating_each_variable(result_set)
     end
 
     def result_set
-      sql.count
+      scope = sql.group("sessions.province_id")
+      scope.count
     end
 end

@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 ruby "2.6.5"
 
-gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.3"
 gem "sass-rails", ">= 6"
@@ -13,7 +13,10 @@ gem "jbuilder", "~> 2.7"
 gem "alto_guisso", github: "instedd/alto_guisso", branch: "master"
 gem "alto_guisso_rails", github: "instedd/alto_guisso_rails", branch: "rails-5.1"
 gem "bootsnap", ">= 1.4.2", require: false
-gem "devise", "~> 4.7.1"
+
+# Issue related with devise-4.7.3, require to update omniauth-1.0.0.pr2
+# https://github.com/heartcombo/devise/commit/1d138dd40cdc291a427b89027d16a869818a5c19
+gem "devise", github: "heartcombo/devise", branch: "master"
 gem "jquery-rails", "~> 4.3.5"
 gem "verboice", "~> 0.7.0"
 gem "pagy", "~> 3.5"

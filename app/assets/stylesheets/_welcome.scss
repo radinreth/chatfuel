@@ -129,6 +129,21 @@
     display: block;
   }
   
+  .location-title {
+    line-height: 0.5em;
+
+    .help-text {
+      color: #616161;
+      font-style: italic;
+    }
+  }
+
+  .card-subheader {
+    font-size: small;
+    line-height: 1em;
+    display: block;
+  }
+  
   .district-title {
     line-height: 0.5em;
 

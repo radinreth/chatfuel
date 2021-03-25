@@ -1,6 +1,7 @@
 class FeedbackReport < GenericReport
   def sql
     scope = StepValue.filter(@query.options, StepValue.joins(:session))
+    scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
     scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
     scope = scope.where(variable: [like, dislike])
     scope = scope.group(:variable_id, :variable_value_id)
@@ -35,7 +36,8 @@ class FeedbackReport < GenericReport
 
       hash[hash_key(district_id)] ||= {}
       hash[hash_key(district_id)][I18n.t(variable.name)] ||= {}
-      hash[hash_key(district_id)][I18n.t(variable.name)][variable_value.mapping_value] = count
+      prev = hash[hash_key(district_id)][I18n.t(variable.name)][variable_value.mapping_value].to_i
+      hash[hash_key(district_id)][I18n.t(variable.name)][variable_value.mapping_value] = prev + count
     end
   end
 

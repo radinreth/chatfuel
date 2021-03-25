@@ -1,38 +1,54 @@
 class OverallRating < Feedback
-  def labels
-    result_set_mapping.keys
-  end
-
-  def dataset
-    @values = result_set_mapping.values
-
-    display_values.map do |values|
-      raw_value, mapping_value = values
-      {
-        label: mapping_value,
-        backgroundColor: colors_mapping[raw_value],
-        data: @values.map { |raw| raw[mapping_value] || 0 }
-      }
+  def chart_options
+    mapping.each_with_object({}) do |(pro_code, districts), hash|
+      hash[pro_code] ||= {}
+      hash[pro_code][:labels] = districts.keys
+      hash[pro_code][:dataset] = dataset(districts)
     end
   end
 
   private
-    def result_set_mapping
-      return {} unless result_set
-
-      result_set.each_with_object({}).with_index do |((key, count), hash), index|
-        district, variable_value = find_objects_by(key)
-        location = district.send("name_#{I18n.locale}".to_sym)
-
-        hash[location] ||= {}
-        hash[location][variable_value.mapping_value] = count
+    def dataset(districts)
+      satisfied.map do |status|
+        {
+          label: I18n.t(status),
+          backgroundColor: colors_mapping[status],
+          data: districts.keys.map { |district_name| districts[district_name][status].to_i }
+        }
       end
+    end
+
+    def colors_mapping
+      satisfied.zip(COLORS).to_h
+    end
+
+    def satisfied
+      VariableValue.statuses.keys.reverse
+    end
+    
+    def mapping
+      result_set.each_with_object({}) do |(key, count), hash|
+        pro_code, district, value = find_objects_by(key)
+        location = district.send("name_#{I18n.locale}".to_sym)
+      
+        hash[pro_code] ||= {}
+        hash[pro_code][location] ||= {}
+        prev_count = hash[pro_code][location][value.status].to_i
+        hash[pro_code][location][value.status] = (prev_count + count)
+      end
+    end
+
+    def find_objects_by(key)
+      pro_code = key.shift
+      [pro_code] + super(key)
     end
 
     def result_set
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
+      scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
       scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
+      scope = scope.group("sessions.province_id")
       scope = scope.group("sessions.district_id")
       scope = scope.group(:variable_value_id)
       scope.count

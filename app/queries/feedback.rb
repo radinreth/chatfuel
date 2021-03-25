@@ -3,7 +3,7 @@ class Feedback < GenericReport
 
   private
     def display_values
-      display_ratings.map { |v| [v.raw_value, v.mapping_value] }
+      display_ratings.map { |v| [v.id, v.raw_value, v.mapping_value] }
     end
 
     def display_ratings

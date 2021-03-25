@@ -43,16 +43,19 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
-  location: "បានជ្រើសយក %{district}"
-  location_no_district: "%{province}"
+  location: "បានជ្រើសយក %{location}"
+  location_no_district: "%{provinces}"
   district_count: "ស្រុកចំនួន %{count}"
+  selected_districts: "ស្រុកចំនួន %{count} បានជ្រើសយក"
+  selected_provinces: "ខេត្តចំនួន %{count} បានជ្រើសយក"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
+  loading: ដំណើការ...
   download_chart: ទាញយកក្រាប
+  feedback_like: ចូលចិត្ត
+  feedback_dislike: មិនចូលចិត្ត
   visitor_count: ចំនួនអ្នកចូលទស្សនា
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
-  loading: ដំណើការ...
-  download_chart: ទាញយកក្រាប
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម

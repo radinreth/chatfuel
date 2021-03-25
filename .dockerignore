@@ -6,6 +6,7 @@ README.md
 Dockerfile
 docker-compose.prod.yml
 app.env
+docker-env
 
 # OS X
 .DS_Store

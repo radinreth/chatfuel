@@ -2,13 +2,12 @@
 = render "welcomes/article"
 = render "welcomes/header"
 = render "welcomes/form"
-
-= render "welcomes/tabs/navigation"
-.tabs-container
-
--# modal content
-.sub_categories.d-none
-  = render "welcomes/sub_categories_canvas"
-
+= render "welcomes/tabs/tabs"
 = render "welcomes/footer"
 = render "welcomes/popup_modal"
+
+#sub_categories_modals
+  <THIS IS A CONTENT OF FEEDBACK SUBCATEGORIES>
+
+#feedback_trend_modals
+  <THIS IS A CONTENT OF FEEDBACK TREND>

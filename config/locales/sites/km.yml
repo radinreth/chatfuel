@@ -16,9 +16,10 @@ km:
     whitelist_ip: Whitelist IP(s)
     copy: ថតចម្លង
     whitelist_example: 'ឧទាហរណ៍: * ឬ 192.168.1.1; 192.168.1.2 (ប្រើប្រាស់ សញ្ញាក្បៀស សម្រាប់ IP ច្រើន)'
-    detail: ព័ត៌មានលំអិត
+    detail: ពត៌មានលំអិត
     view_detail: មើលព័ត៌មានលំអិត
     sub_category_detail: មតិយោបល់លំអិតតាមប្រភេទរងនៅក្នុង%{province}
+    feedback_trend_detail: និន្នាការមតិយោបល់លំអិតនៅក្នុង%{province}
     province: ខេត្ត
     code: លេខកូដ
     track_count: ចំនួនតាមដាន

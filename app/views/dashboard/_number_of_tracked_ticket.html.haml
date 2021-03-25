@@ -1,6 +1,4 @@
-.col-xl-6.col-lg-6
-  - name = t("dashboard.number_of_ticket_tracking")
-  - downloadable = @query.number_of_tracking_tickets.present?
-  = render(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
-    - c.with(:config) { "&nbsp;" }
-    - c.with(:body) { content_tag(:canvas, nil, id: "number_of_ticket_tracking") }
+- downloadable = @query.number_of_tracking_tickets.present?
+= render(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
+  - c.with(:config) { "&nbsp;" }
+  - c.with(:body) { content_tag(:canvas, nil, id: id) }

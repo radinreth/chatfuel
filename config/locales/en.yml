@@ -42,16 +42,19 @@ en:
   female: Female
   other: Other
   all: All
-  location: "%{district} selected"
-  location_no_district: "%{province}"
+  location: "%{location} selected"
+  location_no_district: "%{provinces}"
   district_count: "%{count} districts"
+  selected_districts: "%{count} districts selected"
+  selected_provinces: "%{count} provinces selected"
   repeated: Finish and restart session
+  loading: Loading...
   download_chart: Download Chart
+  feedback_like: Like
+  feedback_dislike: Dislike
   visitor_count: Visitor count
   feedback_like: Like
   feedback_dislike: Dislike
-  loading: Loading...
-  download_chart: Download Chart
   sidebar:
     dashboard: Dashboard
     home: Home

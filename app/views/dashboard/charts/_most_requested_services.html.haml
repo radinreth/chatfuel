@@ -1,0 +1,5 @@
+- if @query.most_requested_services[province_id].present?
+  .col-lg-6
+    = render( ChartComponent.new(name: t("welcomes.most_requested_services", province_name: province(province_id).send(t_name('name')))) ) do |c|
+      - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services_#{province_id}", class: "chart_most_requested_services", "data-provinceid": province_id) }
+      - c.with(:hint) { t("hint.most_requested_services") }

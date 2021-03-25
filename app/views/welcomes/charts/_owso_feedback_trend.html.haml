@@ -1,0 +1,8 @@
+.card.shadow.mb-4{ role: "figure" }
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .h5.m-0.font-weight-bold.text-primary
+      = t("welcomes.owso_feedback_trend")
+
+  .card-body
+    #owso_feedback_trend.pt-4.d-flex.justify-content-around.align-items-center
+      %canvas#chart_owso_feedback_trend

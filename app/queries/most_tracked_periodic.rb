@@ -1,5 +1,4 @@
 class MostTrackedPeriodic < BasicReport
-  
   def dataset
     result_set.each_with_object({}) do |(key, count), hash|
       date, sector = key

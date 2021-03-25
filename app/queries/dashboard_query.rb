@@ -137,6 +137,14 @@ class DashboardQuery
     @feedback ||= Variable.feedback
   end
 
+  def province_codes
+    options[:province_id].presence || all_province_codes
+  end
+
+  def province_codes_without_other
+    province_codes - ["00", "nu"]
+  end
+
   def district_codes
     options[:district_id].presence || all_district_codes
   end
@@ -145,7 +153,25 @@ class DashboardQuery
     district_codes - ["0000"]
   end
 
+  def selected_district_codes
+    district_codes_without_other.select do |code|
+      code.starts_with?(*province_codes_without_other)
+    end
+  end
+
   private
+    def all_province_codes
+      Session.pluck(:province_id).compact.uniq
+    end
+    
+    def categories_all
+      ::FeedbackSubCategories.new(nil, self).chart_options
+    end
+
+    def categories_separate
+      ::FeedbackSubCategoryItem.new(nil, self).chart_options
+    end
+
     def all_district_codes
       location = Variable.location
       return [] unless location
