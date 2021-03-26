@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   private
     def track_action
-      ahoy.track "track visitor", request.path_parameters
+      ahoy.track "track visitor", request.path_parameters unless request.xhr?
     end
   
     def set_raven_context
