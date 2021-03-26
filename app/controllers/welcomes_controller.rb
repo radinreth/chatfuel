@@ -7,6 +7,7 @@ class WelcomesController < PublicAccessController
   def index
     respond_to do |format|
       format.html { render layout: "welcome" }
+      format.json { render json: @gon_data }
       format.js
     end
   end
@@ -33,18 +34,22 @@ class WelcomesController < PublicAccessController
     end
 
     def set_query
-      @query = DashboardQuery.new(filter_options)
+      options = params[:options].presence || filter_options
+      @query = DashboardQuery.new(options)
     end
 
     def set_gon
-      @gon_data = Gonify.new(@query).chart_data
-      @gon_data.merge!(t_gon)
-
+      @gon_data = Gonify.new(@query).send(params["fetch"].to_sym) rescue {}
+      @gon_data.merge!(t_gon, query_options)
       gon.push(@gon_data)
     end
 
     def default_start_date
       Setting.dashboard_start_date.strftime('%Y/%m/%d')
+    end
+
+    def query_options
+      { query_options: @query.options }
     end
 
     def t_gon

@@ -161,7 +161,8 @@ class DashboardQuery
 
   private
     def all_province_codes
-      Session.pluck(:province_id).compact.uniq
+      Session.pluck(:province_id).compact.uniq &
+      Setting.pilot_province_codes
     end
     
     def categories_all

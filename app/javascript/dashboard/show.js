@@ -3,6 +3,10 @@ import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart
 import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
 import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart'
 import formater from '../data/formater'
+import { summaryPublic } from '../charts/summary-public'
+import { userGender } from '../charts/total_user_by_gender_chart'
+import { infoAccess } from '../charts/owso-information-accessed'
+import { citizenFeedback } from '../charts/citizen-feedback'
 
 OWSO.DashboardShow = (() => {
 
@@ -25,6 +29,36 @@ OWSO.DashboardShow = (() => {
     loadProvinceOverallRating()
     loadProvinceMostRequest()
     loadProvinceFeedbackTrend()
+  }
+
+  function fetchRemote(fetch, func) {
+    $.get('/', { options: gon.query_options, fetch }, func, "json");
+  }
+
+  function loadSummaryCharts() {
+    fetchRemote("summary_data", (response) => {
+      window.gon = response
+      summaryPublic.render();
+      loadInformationAccessCharts();
+    } );
+  }
+
+  function loadInformationAccessCharts() {
+    fetchRemote("access_info_data", (response) => {
+      window.gon = response
+      loadProvinceMostRequest();
+      infoAccess.render();
+      userGender.render();
+      loadFeedbackCharts();
+    });
+  }
+
+  function loadFeedbackCharts() {
+    fetchRemote("citizen_feedback_data", (response) => {
+      window.gon = response
+      citizenFeedback.render();
+      runAsPublicFeedback();
+    });
   }
 
   function loadChart(instance, element, data) {
@@ -281,10 +315,9 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  function runAsPublicDashboard() {
+  function runAsPublicFeedback() {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
-    loadProvinceMostRequest()
     loadProvinceFeedbackTrend()
     onLoadPopup()
   }
@@ -295,8 +328,8 @@ OWSO.DashboardShow = (() => {
             loadSubCategories,
             loadFeedbackTrend,
             attachEventClickToChartDownloadButton,
-            runAsPublicDashboard,
             multiSelectDistricts,
             onChangePeriod,
+            loadSummaryCharts,
             tooltipChart }
 })();

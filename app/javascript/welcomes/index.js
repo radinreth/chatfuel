@@ -1,5 +1,4 @@
 require("../patches/jquery")
-import { renderChart } from '../charts/root_chart'
 import { onDistrictModalSave, onProvinceModalSave } from './locationSave'
 
 OWSO.WelcomesIndex = (() => {
@@ -104,6 +103,6 @@ OWSO.WelcomesIndex = (() => {
     }, 500);
   }
 
-  return { init, renderChart, scrollToForm }
+  return { init, scrollToForm }
 
 })()
