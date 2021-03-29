@@ -4,7 +4,6 @@ $(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { acti
 $("#sub_categories_modals").html("<%= j(render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j(render partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 
-OWSO.WelcomesIndex.loading();
-OWSO.DashboardShow.loadSummaryCharts();
+OWSO.Charts.init();
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.DashboardShow.multiSelectDistricts();

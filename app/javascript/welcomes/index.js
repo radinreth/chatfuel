@@ -25,18 +25,6 @@ OWSO.WelcomesIndex = (() => {
     ssbInterceptor();
   }
 
-  function loading() {
-    $.each( $("canvas"), function(index, canvas) {
-      var ctx = canvas.getContext("2d");
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#888';
-      ctx.font = "16px normal 'Helvetica Nueue'";
-      ctx.fillText(gon.no_data, canvas.width / 2, canvas.height / 2);
-      ctx.restore();
-    });
-  }
-
   function ssbInterceptor() {
     $(".ssb-icon").click(function(){
       let site = $(this).data("site");
@@ -115,6 +103,6 @@ OWSO.WelcomesIndex = (() => {
     }, 500);
   }
 
-  return { init, loading, scrollToForm }
+  return { init, scrollToForm }
 
 })()
