@@ -1,8 +1,8 @@
 class WelcomesController < PublicAccessController
   include Filterable
 
-  before_action :set_daterange, except: :filter
-  before_action :setup_data_on_search, except: :filter
+  before_action :set_daterange
+  before_action :setup_data_on_search
   
   def index
     respond_to do |format|
@@ -10,10 +10,6 @@ class WelcomesController < PublicAccessController
       format.json { render json: @gon_data }
       format.js
     end
-  end
-
-  def filter
-    render json: { display_name: @location_filter.display_name, described_name: @location_filter.described_name }
   end
 
   def access_info
@@ -29,16 +25,16 @@ class WelcomesController < PublicAccessController
   end
 
   private
-    def set_active_tab_nav
+    def set_active_bootstrap_tab_pane
       @active_tab = params[:q][:active_tab] if params[:q]
     end
 
-    def set_query
+    def setup_query
       options = params[:options].presence || filter_options
       @query = DashboardQuery.new(options)
     end
 
-    def set_gon
+    def setup_gon
       @gon_data = Gonify.new(@query).send(params["fetch"].to_sym) rescue {}
       @gon_data.merge!(t_gon, query_options)
       gon.push(@gon_data)
@@ -65,9 +61,8 @@ class WelcomesController < PublicAccessController
     def setup_data_on_search
       return unless request.xhr?
   
-      
-      set_query
-      set_gon
-      set_active_tab_nav
+      setup_query
+      setup_gon
+      set_active_bootstrap_tab_pane
     end
 end
