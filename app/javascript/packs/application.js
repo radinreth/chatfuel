@@ -16,6 +16,7 @@ window._ = require("underscore")
 
 require('application/pumi')
 window._ = require("underscore")
+window.Routes = require('routes');
 
 import "bootstrap-toggle/js/bootstrap-toggle"
 

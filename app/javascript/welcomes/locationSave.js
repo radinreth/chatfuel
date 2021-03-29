@@ -1,3 +1,5 @@
+import { location_path } from 'routes';
+
 const onDistrictModalSave = function() {
   $(".btn-district-save").click(function(e) {
     e.preventDefault();
@@ -11,7 +13,7 @@ const onDistrictModalSave = function() {
     };
 
     if( districtCode.length > 0 ) {
-      $.get("/welcomes/filter", params, function(result) {
+      $.get(location_path(), params, function(result) {
         updateDistrict(result, districtCode);
       })
     } else {
@@ -35,7 +37,7 @@ const onProvinceModalSave = function() {
       resetProvince();
       resetDistrict();
     } else  {
-      $.get("/welcomes/filter", params, function(result) {
+      $.get(location_path(), params, function(result) {
         updateProvince(result, provinceCode);
 
         if ( provinceCode.length == 1 ) {
