@@ -15,7 +15,6 @@ class FilteredBarChart extends BarChart {
                 { ...this.ancestor.dataFormat(),
                   backgroundColor: data.colors,
                   dataTitles: this.dataTitles(data),
-                  maxBarThickness: 50,
                   data: this.dataCounts(data) }
               ]
             };

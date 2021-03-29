@@ -10,7 +10,6 @@ export const extractBarDataset = (ds) => {
         minBarLength: 2,
         backgroundColor: colors,
         data: values,
-        maxBarThickness: 50
       }
     ]
   };
