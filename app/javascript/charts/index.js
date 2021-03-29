@@ -14,6 +14,6 @@ OWSO.Charts = {
   },
   init: () => {
     canvasLoading($("canvas"));
-    summaryInit();
+    // summaryInit();
   }
 }
