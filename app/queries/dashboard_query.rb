@@ -170,14 +170,13 @@ class DashboardQuery
 
   private
     def all_province_codes
-      Session.pluck(:province_id).compact.uniq
+      province = Variable.province
+      province.raw_values rescue []
     end
 
     def all_district_codes
-      location = Variable.location
-      return [] unless location
-
-      location.values.map(&:raw_value)
+      district = Variable.district
+      district.raw_values rescue []
     end
 
     def platform_param
