@@ -21,17 +21,17 @@ FactoryBot.define do
     end
   end
 
-  trait :location do
-    name { 'location' }
-    mark_as { 'location' }
+  trait :district do
+    name { 'district' }
+    mark_as { 'district' }
 
     transient do
-      locations { ['0204', '0212'] }
+      districts { ['0204', '0212'] }
     end
 
     after(:create) do |variable, evaluator|
-      evaluator.locations.each do |location|
-        create :variable_value, raw_value: location, variable: variable
+      evaluator.districts.each do |district|
+        create :variable_value, raw_value: district, variable: variable
       end
     end
   end
