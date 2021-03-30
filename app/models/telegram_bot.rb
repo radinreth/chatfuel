@@ -14,6 +14,8 @@ class TelegramBot < ApplicationRecord
 
   before_save :post_webhook_to_telegram
 
+  scope :actived, -> { where(actived: true) }
+
   def post_webhook_to_telegram
     telegram_bot = Telegram::Bot::Client.new(token: token, username: username)
 

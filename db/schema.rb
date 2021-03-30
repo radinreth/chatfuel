@@ -187,11 +187,13 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
 
   create_table "telegram_chat_groups", force: :cascade do |t|
     t.string "title"
-    t.integer "chat_id"
+    t.string "chat_id"
     t.boolean "is_active"
     t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "chat_type", default: "group"
+    t.string "bot_token"
   end
 
   create_table "templates", force: :cascade do |t|
