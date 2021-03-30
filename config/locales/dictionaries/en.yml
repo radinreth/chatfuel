@@ -5,8 +5,10 @@ en:
     mark_as: Mark As
     feedback: Feedback
     mark_as_feedback: Mark as feedback
-    site_location: Location
-    mark_as_site_location: Mark as site location
+    site_district: District
+    site_province: Province
+    mark_as_site_district: Mark as site district
+    mark_as_site_province: Mark as site province
     action: Action
     new_dictionary: New Dictionary
     type_name: Type name
@@ -27,3 +29,6 @@ en:
     service_accessed: Service accessed
     gender: Gender
     user_visit: User visit
+    province: Province
+    district: District
+    feedback_dislike: Feedback dislike
