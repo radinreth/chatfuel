@@ -10,7 +10,7 @@ RSpec.describe Api::V1::MapPreviewsController, type: :controller do
       let!(:site) { create(:site) }
 
       it "renders json" do
-        get :show, params: { location: site.code }
+        get :show, params: { district: site.code }
 
         expect(response.status).to eq 200
       end

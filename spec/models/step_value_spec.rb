@@ -38,7 +38,7 @@ RSpec.describe StepValue, type: :model do
     context "when set_session_district_id" do
       it "return district_id" do
         variable_value.raw_value = '0102'
-        variable.mark_as = "location"
+        variable.mark_as = "district"
 
         step_value.save
 
