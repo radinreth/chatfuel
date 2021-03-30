@@ -1,0 +1,19 @@
+
+ActiveRecord::Base.transaction do
+  # migrate district
+  district = Variable.find_by(name: 'district')
+  unless district
+    location = Variable.find_by(mark_as: 'location')
+    location.name = 'district'
+    location.mark_as = 'district'
+    location.save!
+  end
+
+  # create province
+  Variable.find_by(name: 'province')&.destroy!
+  province = Variable.create!(name: 'province')
+  province.mark_as_province!
+  Session.province_codes.each do |code|
+    province.values << VariableValue.new(raw_value: code)
+  end
+end
