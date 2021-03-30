@@ -20,7 +20,7 @@ class DashboardQuery
   def user_unique
     return [] if user_count <= 0
 
-    sessions.select("DISTINCT ON (session_id) *").unscope(:order)
+    sessions.select("DISTINCT ON (session_id) *").unscope(:order).where.not(gender: nil)
   end
 
   def user_accessed_count
@@ -34,7 +34,6 @@ class DashboardQuery
       SELECT gender, COUNT(gender) AS gender_count FROM (
         #{ user_unique.to_sql }
       ) AS inner_query
-      WHERE gender <> ''
       GROUP BY gender
       ORDER BY gender
     SQL
