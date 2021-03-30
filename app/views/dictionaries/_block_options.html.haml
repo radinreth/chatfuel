@@ -2,10 +2,6 @@
   %i.fa.fa-star-half-alt
   %p.status-text.m-0= t("dictionaries.feedback")
 
-= render(SelectComponent.new(value: "location", name: "variable[mark_as]", checked: @variable.location?, disabled: (@location && @location&.id != @variable.id), title: @location&.name)) do
-  %i.fa.fa-map-marker-alt
-  %p.status-text.m-0= t("dictionaries.site_location")
-
 = render(SelectComponent.new(value: "ticket_tracking", name: "variable[mark_as]", checked: @variable.ticket_tracking?, disabled: (@ticket_tracking && @ticket_tracking&.id != @variable.id), title: @ticket_tracking&.name)) do
   %i.fa.fa-ticket-alt
   %p.status-text.m-0= t("dictionaries.ticket_tracking")
@@ -13,3 +9,7 @@
 = render(SelectComponent.new(value: "gender", name: "variable[mark_as]", checked: @variable.gender?, disabled: (@gender && @gender&.id != @variable.id), title: @gender&.name)) do
   %i.fa.fa-venus-mars
   %p.status-text.m-0= t("dictionaries.gender")
+
+= render(SelectComponent.new(value: "province", name: "variable[mark_as]", checked: @variable.province?, disabled: (@province && @province&.id != @variable.id), title: @province&.name)) do
+  %i.fa.fa-map-marker-alt
+  %p.status-text.m-0= t("dictionaries.site_province")
