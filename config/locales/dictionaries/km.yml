@@ -5,8 +5,10 @@ km:
     mark_as: សម្គាល់ជា
     feedback: មតិប្រតិកម្ម
     mark_as_feedback: សម្គាល់ថាជាមតិប្រតិកម្ម
-    site_location: ទីតាំង
-    mark_as_site_location: សម្គាល់ជាទីតាំង
+    site_district: ទីតាំងស្រុក
+    site_province: ទីតាំងខេត្ត
+    mark_as_site_district: សម្គាល់ជាទីតាំងស្រុក
+    mark_as_site_province: សម្គាល់ជាទីតាំងខេត្ត
     action: សកម្មភាព
     new_dictionary: ពាក្យគន្លឹះថ្មី
     type_name: វាយបញ្ចូលឈ្មោះ
@@ -26,4 +28,7 @@ km:
     used_by: បានប្រើប្រាស់ដោយ %{name}
     service_accessed: ការទទួលសេវា
     gender: ភេទ
-    user_visit: User visit
+    user_visit: អ្នកទស្សនា
+    province: ខេត្ត
+    district: ស្រុក
+    feedback_dislike: មតិមិនចូលចិត្ត
