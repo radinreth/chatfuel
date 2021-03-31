@@ -1,7 +1,7 @@
 class FeedbackReport < GenericReport
   def sql
     scope = StepValue.filter(@query.options, StepValue.joins(:session))
-    scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
+    scope = scope.where(sessions: { province_id: @query.province_codes })
     scope = scope.where(variable: [like, dislike])
     scope = scope.group(:variable_id, :variable_value_id)
   end

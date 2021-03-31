@@ -50,7 +50,8 @@ class OverallRating < Feedback
     def result_set
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
-      scope = scope.where(sessions: { province_id: @query.province_codes_without_other })
+      scope = scope.where(sessions: { province_id: @query.province_codes })
+      scope = scope.where(sessions: { district_id: @query.district_codes })
       scope = scope.group("sessions.province_id")
       scope = scope.group("sessions.district_id")
       scope = scope.group(:variable_value_id)
