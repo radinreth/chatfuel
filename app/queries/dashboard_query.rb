@@ -20,7 +20,7 @@ class DashboardQuery
   def user_unique
     return [] if user_count <= 0
 
-    sessions.select("DISTINCT ON (session_id) *").unscope(:order).where.not(gender: nil)
+    sessions.select("DISTINCT ON (session_id) *").reorder(:session_id, :gender)
   end
 
   def user_accessed_count
@@ -156,7 +156,7 @@ class DashboardQuery
   end
 
   def province_codes_without_other
-    province_codes - ["00", "nu"]
+    Array.wrap(province_codes) - ["00"] - dump_codes
   end
 
   def district_codes
@@ -164,10 +164,14 @@ class DashboardQuery
   end
 
   def district_codes_without_other
-    district_codes - ["0000"]
+    district_codes - ["0000"] - dump_codes
   end
 
   private
+    def dump_codes
+      [nil, "nu", "null"]
+    end
+
     def all_province_codes
       province = Variable.province
       province.raw_values rescue []
