@@ -156,7 +156,7 @@ class DashboardQuery
   end
 
   def province_codes_without_other
-    Array.wrap(province_codes) - ["00"] - dump_codes
+    Array.wrap(province_codes) - ["00"]
   end
 
   def district_codes
@@ -164,7 +164,7 @@ class DashboardQuery
   end
 
   def district_codes_without_other
-    district_codes - ["0000"] - dump_codes
+    district_codes - ["0000"]
   end
 
   private
@@ -174,12 +174,12 @@ class DashboardQuery
 
     def all_province_codes
       province = Variable.province
-      province.raw_values rescue []
+      province.raw_values - dump_codes rescue []
     end
 
     def all_district_codes
       district = Variable.district
-      district.raw_values rescue []
+      district.raw_values - dump_codes rescue []
     end
 
     def platform_param
