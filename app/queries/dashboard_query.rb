@@ -34,6 +34,7 @@ class DashboardQuery
       SELECT gender, COUNT(gender) AS gender_count FROM (
         #{ user_unique.to_sql }
       ) AS inner_query
+      WHERE gender <> ''
       GROUP BY gender
       ORDER BY gender
     SQL
