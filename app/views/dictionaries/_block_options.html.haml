@@ -13,3 +13,7 @@
 = render(SelectComponent.new(value: "province", name: "variable[mark_as]", checked: @variable.province?, disabled: (@province && @province&.id != @variable.id), title: @province&.name)) do
   %i.fa.fa-map-marker-alt
   %p.status-text.m-0= t("dictionaries.site_province")
+
+= render(SelectComponent.new(value: "district", name: "variable[mark_as]", checked: @variable.district?, disabled: (@district && @district&.id != @variable.id), title: @district&.name)) do
+  %i.fa.fa-map-marker-alt
+  %p.status-text.m-0= t("dictionaries.site_district")
