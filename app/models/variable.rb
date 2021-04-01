@@ -88,6 +88,10 @@ class Variable < ApplicationRecord
     find_by(name: 'feedback_rating')
   end
 
+  def raw_values
+    values.map &:raw_value
+  end
+
   private
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))

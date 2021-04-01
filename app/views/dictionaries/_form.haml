@@ -26,7 +26,8 @@
 
         %div.invalid-message
           = dictionary.errors.full_messages_for(:feedback).to_sentence
-          = dictionary.errors.full_messages_for(:location).to_sentence
+          = dictionary.errors.full_messages_for(:province).to_sentence
+          = dictionary.errors.full_messages_for(:district).to_sentence
 
   .modal-footer
     %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('shared.cancel')
