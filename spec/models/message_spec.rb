@@ -112,7 +112,7 @@ RSpec.describe Message do
 
   describe "#clone" do
     let!(:gender) { create(:variable, :gender) }
-    let!(:location) { create(:variable, :location) }
+    let!(:district) { create(:variable, :district) }
 
     it "clones relations" do
       old_message = create(:message, :text, district_id: '0204', gender: 'male')

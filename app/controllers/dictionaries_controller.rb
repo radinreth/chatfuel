@@ -82,7 +82,8 @@ class DictionariesController < ApplicationController
   def set_variables
     @gender = Variable.gender
     @feedback = Variable.feedback
-    @location = Variable.location
+    @district = Variable.district
+    @province = Variable.province
     @ticket_tracking = Variable.ticket_tracking
   end
 

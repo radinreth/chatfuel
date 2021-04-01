@@ -20,7 +20,7 @@ class DashboardQuery
   def user_unique
     return [] if user_count <= 0
 
-    sessions.select("DISTINCT ON (session_id) *").unscope(:order)
+    sessions.select("DISTINCT ON (session_id) *").reorder(:session_id, :gender)
   end
 
   def user_accessed_count
@@ -157,7 +157,7 @@ class DashboardQuery
   end
 
   def province_codes_without_other
-    province_codes - ["00", "nu"]
+    Array.wrap(province_codes) - ["00"]
   end
 
   def district_codes
@@ -168,16 +168,22 @@ class DashboardQuery
     district_codes - ["0000"]
   end
 
+  # both chatbots and Ivr may capture `nil` or `null` value
+  # `nu` happens when split first 2 characters that is assumed as province codes
+  def dump_codes
+    [nil, "nu", "null"]
+  end
+
   private
+
     def all_province_codes
-      Session.pluck(:province_id).compact.uniq
+      province = Variable.province
+      province.raw_values - dump_codes rescue []
     end
 
     def all_district_codes
-      location = Variable.location
-      return [] unless location
-
-      location.values.map(&:raw_value)
+      district = Variable.district
+      district.raw_values - dump_codes rescue []
     end
 
     def platform_param

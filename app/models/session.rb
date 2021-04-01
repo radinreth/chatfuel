@@ -33,11 +33,11 @@ class Session < ApplicationRecord
 
   default_scope -> { order(updated_at: :desc) }
 
+  validates :session_id, :source_id, presence: true
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
 
-  before_update :set_province_id, if: -> { district_id_changed? }
   after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
@@ -61,7 +61,8 @@ class Session < ApplicationRecord
 
   def clone_relations
     step_values.clone_step :gender, gender
-    step_values.clone_step :location, district_id
+    step_values.clone_step :province, province_id
+    step_values.clone_step :district, district_id
     self
   end
 
@@ -103,10 +104,14 @@ class Session < ApplicationRecord
     scope
   end
 
+  def self.province_codes
+    dashboard_query.province_codes
+  end
+
   private
 
-    def set_province_id
-      self.province_id = district_id[0..1]
+    def self.dashboard_query
+      dashboard_query = DashboardQuery.new
     end
 
     def clone_attributes

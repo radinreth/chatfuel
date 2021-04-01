@@ -46,7 +46,9 @@ class StepValue < ApplicationRecord
 
   after_create :push_notification, if: -> { variable_value.feedback? }
   after_commit :set_session_district_id,  on: [:create, :update],
-                                          if: -> { variable_value.location? }
+                                          if: -> { variable_value.district? }
+  after_commit :set_session_province_id,  on: [:create, :update],
+                                          if: -> { variable_value.province? }
   after_commit :set_session_gender, on: [:create, :update], if: -> { variable.gender? }
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
@@ -100,6 +102,12 @@ class StepValue < ApplicationRecord
       return if session.nil?
 
       session.update(district_id: variable_value.raw_value[0..3])
+    end
+
+    def set_session_province_id
+      return if session.nil?
+
+      session.update(province_id: variable_value.raw_value[0,2])
     end
 
     def set_session_gender

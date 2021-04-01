@@ -33,12 +33,12 @@ class OverallRating < Feedback
     def mapping
       result_set.each_with_object({}) do |(key, count), hash|
         pro_code, district, value = find_objects_by(key)
-        location = district.send("name_#{I18n.locale}".to_sym)
+        district = district.send("name_#{I18n.locale}".to_sym)
       
         hash[pro_code] ||= {}
-        hash[pro_code][location] ||= {}
-        prev_count = hash[pro_code][location][value.status].to_i
-        hash[pro_code][location][value.status] = (prev_count + count)
+        hash[pro_code][district] ||= {}
+        prev_count = hash[pro_code][district][value.status].to_i
+        hash[pro_code][district][value.status] = (prev_count + count)
       end
     end
 
@@ -50,7 +50,8 @@ class OverallRating < Feedback
     def result_set
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
-      scope = scope.where(sessions: { district_id: @query.district_codes_without_other })
+      scope = scope.where(sessions: { province_id: @query.province_codes })
+      scope = scope.where(sessions: { district_id: @query.district_codes })
       scope = scope.group("sessions.province_id")
       scope = scope.group("sessions.district_id")
       scope = scope.group(:variable_value_id)
