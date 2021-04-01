@@ -105,10 +105,14 @@ class Session < ApplicationRecord
   end
 
   def self.province_codes
-    pluck(:province_id).compact.uniq - ["nu"]
+    dashboard_query.province_codes
   end
 
   private
+
+    def self.dashboard_query
+      dashboard_query = DashboardQuery.new
+    end
 
     def clone_attributes
       %w(platform_name session_id source_id gender province_id district_id)
