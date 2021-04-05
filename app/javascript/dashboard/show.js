@@ -300,13 +300,13 @@ OWSO.DashboardShow = (() => {
 
 
   return {  init,
-    renderDatetimepicker,
-    onChangeProvince,
-    loadSubCategories,
-    loadFeedbackTrend,
-    attachEventClickToChartDownloadButton,
-    runAsPublicDashboard,
-    multiSelectDistricts,
-    onChangePeriod,
-    tooltipChart }
+            renderDatetimepicker,
+            onChangeProvince,
+            loadSubCategories,
+            loadFeedbackTrend,
+            attachEventClickToChartDownloadButton,
+            runAsPublicDashboard,
+            multiSelectDistricts,
+            onChangePeriod,
+            tooltipChart }
 })();
