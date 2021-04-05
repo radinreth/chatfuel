@@ -1,6 +1,7 @@
 import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_categories_chart'
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
+import { trendingFeedback } from '../charts/citizen-feedback/feedback_trend_chart';
 import formater from '../data/formater'
 
 OWSO.DashboardShow = (() => {
@@ -23,6 +24,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceSubCategories()
     loadProvinceOverallRating()
     loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
   }
 
   function loadChart(instance, element, data) {
@@ -38,6 +40,14 @@ OWSO.DashboardShow = (() => {
       let id = $(dom).data("provinceid");
       let data = gon.mostRequest[id];
       loadChart(mostRequest, dom.id, data)
+    });
+  }
+
+  function loadProvinceFeedbackTrend() {
+    $(".chart_owso_feedback_trend").each(function(_, dom) {
+      let id = $(dom).data("provinceid");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
     });
   }
 
@@ -82,7 +92,13 @@ OWSO.DashboardShow = (() => {
     loading($spin);
     let chart = OWSO.Util.findChartInstance(canvasId)
 
-    $.get(url, serializedParams, function(result) {
+    $.get(url, serializedParams, function(response) {
+      let result = response
+
+      // feedback trend filter under province
+      let proCode = chart.canvas.id.slice(-2)
+      if(proCode.match(/^\d{2}$/)) result = response[proCode]
+
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));
       let suggestedMax = Math.round( max * 1.40 );
@@ -110,7 +126,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function onLoadPopup() {
-    $(".modal").on('show.bs.modal', function (event) {
+    $(document).on('show.bs.modal', ".modal", function (event) {
       let btn = $(event.relatedTarget);
 
       let attrs = {
@@ -137,14 +153,28 @@ OWSO.DashboardShow = (() => {
     });
   }
 
+  function loadFeedbackTrend(provinceId) {
+    let elements = `.chart_feedback_trend[data-provinceid=${provinceId}]`
+
+    $(elements).each(function(_, dom) {	
+      let id = $(dom).data("id");
+      let data = gon.feedbackTrend[id];
+      loadChart(trendingFeedback, dom.id, data)
+    });
+  }
+
   function tooltipChart() {
-    $(".chart-name")
-      .mouseover(function() {
-        $(this).next().tooltip("show");
-      })
-      .mouseleave(function() {
-        $(this).next().tooltip("hide");
-      });
+    $(document)
+      .on("mouseover", ".chart-name", showToolTip )
+      .on("mouseleave", ".chart-name", hideToolTip );
+  }
+
+  function showToolTip() {
+    $(this).next().tooltip("show")
+  }
+
+  function hideToolTip() {
+    $(this).next().tooltip("hide")
   }
 
   function multiSelectDistricts() {
@@ -217,8 +247,12 @@ OWSO.DashboardShow = (() => {
      opens: 'left'
     })
     .on('apply.daterangepicker', function(ev, picker) {
-      $(".start_date").val(picker.startDate.format('YYYY/MM/DD'))
-      $(".end_date").val(picker.endDate.format('YYYY/MM/DD'))
+      let startDate = picker.startDate.format('YYYY/MM/DD')
+      let endDate = picker.endDate.format('YYYY/MM/DD')
+
+      $(".start_date").val(startDate)
+      $(".end_date").val(endDate)
+      $(".input-daterange").val(`${startDate} - ${endDate}`)
       $('.form').submit();
     })
   }
@@ -256,5 +290,23 @@ OWSO.DashboardShow = (() => {
     })
   }
 
-  return { init, renderDatetimepicker, onChangeProvince, multiSelectDistricts, loadSubCategories }
+  function runAsPublicDashboard() {
+    loadProvinceSubCategories()
+    loadProvinceOverallRating()
+    loadProvinceMostRequest()
+    loadProvinceFeedbackTrend()
+    onLoadPopup()
+  }
+
+
+  return {  init,
+    renderDatetimepicker,
+    onChangeProvince,
+    loadSubCategories,
+    loadFeedbackTrend,
+    attachEventClickToChartDownloadButton,
+    runAsPublicDashboard,
+    multiSelectDistricts,
+    onChangePeriod,
+    tooltipChart }
 })();
