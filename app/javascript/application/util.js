@@ -16,6 +16,7 @@ OWSO.Util = {
   chartReg() {
     let thiz = this;
 
+    Chart.defaults.global.datasets.bar.maxBarThickness = 50;
     Chart.plugins.register({
       afterDraw: function(chart) {
         let { datasets } = chart.data

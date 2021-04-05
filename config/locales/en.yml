@@ -42,14 +42,17 @@ en:
   female: Female
   other: Other
   all: All
-  location: "%{district} in %{province}"
-  location_no_district: "%{province}"
+  location: "%{location} selected"
+  location_no_district: "%{provinces}"
   district_count: "%{count} districts"
+  selected_districts: "%{count} districts selected"
+  selected_provinces: "%{count} provinces selected"
   repeated: Finish and restart session
   loading: Loading...
   download_chart: Download Chart
   feedback_like: Like
   feedback_dislike: Dislike
+  visitor_count: Visitor count
   sidebar:
     dashboard: Dashboard
     home: Home
@@ -63,6 +66,10 @@ en:
     signin: Signin
     confirm_logout: Are you sure you want to logout?
     tickets: Tickets
+    summary: Summary
+    information_access: Information Access
+    citizen_feedback: Citizen Feedback
+    about_us: About Us
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
   created:
@@ -79,6 +86,7 @@ en:
     success: "Successfully imported!"
     fail: "Failed to import!"
   required:
+    string: required
     file: "File required!"
   new_dictionary: "New Dictionary"
   new_site: "New Site"
@@ -144,7 +152,7 @@ en:
     province: Province
     show: Show
     active_user: Active User
-    total_users: Total Users
+    total_users: Total Visits
     total_users_accessed: Total Services Delivered
     total_uniq_users: Total Unique Users
     average_using_time: Average Using Time
@@ -166,8 +174,8 @@ en:
     choose_dictionary_name_to_agg_gender: Choose dictionary name for aggregate gender
     type_search: Type your search...
     district: District
-    all_province: All
-    all_district: All
+    all_province: All Provinces
+    all_district: All Districts
     all: All
     location: Location
   reports:
