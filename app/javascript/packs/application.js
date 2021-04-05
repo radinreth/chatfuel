@@ -10,6 +10,7 @@ window.chartDataLabels = require("chartjs-plugin-datalabels");
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min");
 require("toastr");
 require("select2");
+require("packs/social-share-button.js.erb");
 
 require("application/pumi");
 window._ = require("underscore");
@@ -37,3 +38,4 @@ require("view/ticket");
 require("view/chart");
 require("view/sidebar_toggle");
 require("view/users");
+require("welcomes/index");
