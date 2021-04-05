@@ -43,14 +43,17 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
-  location: "%{district} នៅក្នុង %{province}"
-  location_no_district: "%{province}"
+  location: "បានជ្រើសយក %{location}"
+  location_no_district: "%{provinces}"
   district_count: "ស្រុកចំនួន %{count}"
+  selected_districts: "ស្រុកចំនួន %{count} បានជ្រើសយក"
+  selected_provinces: "ខេត្តចំនួន %{count} បានជ្រើសយក"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   loading: ដំណើការ...
   download_chart: ទាញយកក្រាប
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
+  visitor_count: ចំនួនអ្នកចូលទស្សនា
   sidebar:
     dashboard: ផ្ទាំងគ្រប់គ្រង
     home: ទំព័រដើម
@@ -80,6 +83,7 @@ km:
     success: បាននាំចូលដោយជោគជ័យ
     fail: បានបរាជ័យក្នុងការនាំចូល
   required:
+    string: តំរូវការ
     file: ឯកសារចាំបាច់
   new_dictionary: ពាក្យគន្លឹះថ្មី
   new_site: ការិយាល័យថ្មី
@@ -153,7 +157,7 @@ km:
     like: ពេញចិត្ត
     acceptable: អាចទទួលយកបាន
     dislike: មិនពេញចិត្ត
-    owso_info: ពត៍មានអំពីច្រក
+    owso_info: ព័ត៌មានអំពីច្រក
     feedback: ការវាយតម្លៃ
     ticket_tracking: ការតាមដានឯកសារ
     overview: ការប្រើប្រាស់របស់ប្រជាជន
@@ -168,7 +172,7 @@ km:
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
     district: ស្រុក
     all_province: គ្រប់ខេត្ត
-    all_district: គ្រប់ស្រុក
+    all_district: គ្រប់ស្រុក/ក្រុង
     all: គ្រប់ខេត្ត/ក្រុង
     location: ទីតាំង
   reports:
