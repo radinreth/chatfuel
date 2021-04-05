@@ -167,9 +167,10 @@ class DashboardQuery
 
   private
 
+    # All provinces include in piloting areas
     def all_province_codes
       province = Variable.province
-      province.raw_values - dump_codes rescue []
+      (province.raw_values - dump_codes & Setting.pilot_province_codes) rescue []
     end
 
     def all_district_codes
