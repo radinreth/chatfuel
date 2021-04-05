@@ -167,6 +167,7 @@ class DashboardQuery
 
   private
 
+    # All provinces include in piloting areas
     def all_province_codes
       pilot_provinces.map(&:id) - dump_codes rescue []
     end
