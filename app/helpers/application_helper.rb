@@ -76,11 +76,4 @@ module ApplicationHelper
     roles[role_name.to_sym]
   end
 
-  def any_dataset?(dataset)
-    return false if dataset.nil?
-
-    dataset[:dataset].any? do |ds|
-      ds[:data].count > 0
-    end
-  end
 end
