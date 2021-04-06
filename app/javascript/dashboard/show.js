@@ -44,7 +44,7 @@ OWSO.DashboardShow = (() => {
   function loadProvinceOverallRating() {
     $(".chart_feedback_overall_rating").each(function(_, dom) {
       let id = $(dom).data("provinceid");
-      let data = gon.overallRating[id];
+      let data = gon.overallRating[id] || {};
       loadChart(overallFeedback, dom.id, data)
     });
   }
