@@ -9,6 +9,20 @@ RSpec.describe PilotArea::Province do
     expect(subject.all).to eq(pilot_provinces)
   end
 
+  context "when pumi" do
+    before do
+      @pumi = subject.new("01").to_pumi
+    end
+
+    it "returns instance of Pumi province" do
+      expect(@pumi.pumi_province).to be_kind_of(Pumi::Province)
+    end
+
+    it "returns instance of Pumi districts" do
+      expect(@pumi.districts).to all(be_an(Pumi::District))
+    end
+  end
+
   pilot_provinces.each do |province_code|
     context "with #{province_code}" do
       let(:province) { subject.new(province_code) }
