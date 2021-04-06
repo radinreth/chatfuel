@@ -9,6 +9,18 @@ module Pumi
       return super if id != "00"
       "ខេត្តផ្សេងៗ"
     end
+
+    def pilot_districts
+      ENV["PILOT_DISTRICT_CODES_FOR_#{id}"].to_s.split(",").map do |code|
+        District.find_by_id(code)
+      end
+    end
+
+    def self.pilots
+      ENV["PILOT_PROVINCE_CODES"].to_s.split(",").map do |code|
+        find_by_id(code)
+      end
+    end
   end
 
   class District
