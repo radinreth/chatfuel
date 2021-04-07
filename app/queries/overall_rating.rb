@@ -13,7 +13,7 @@ class OverallRating < Feedback
         {
           label: named_status(status),
           backgroundColor: colors_mapping[status],
-          data: districts.keys.map { |district_name| districts[district_name][status] }
+          data: districts.keys.map { |district_name| districts[district_name][status].to_i }
         }
       end
     end
