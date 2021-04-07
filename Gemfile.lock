@@ -21,7 +21,8 @@ GIT
 
 GIT
   remote: https://github.com/radinreth/pumi.git
-  revision: b9de5f38bdc95df66b13504b9e0d02da66a3e55c
+  revision: e66c8bb9434f1d56130dbda9a01d60d9410885ef
+  branch: other-districts
   specs:
     pumi (0.5.0)
 
