@@ -92,6 +92,7 @@ Rails.application.routes.draw do
   telegram_webhook TelegramWebhooksController
   concern :api_base do
     resources :sites, param: :site_code, only: [:update]
+    get 'sites/:site_code/map', to: 'sites#map', as: :site_map, defaults: { locale: "km" }
 
     resources :ivrs, only: [:create]
     resource :map_preview, only: [:show], defaults: { locale: 'km' }
