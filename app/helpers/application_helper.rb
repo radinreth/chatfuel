@@ -75,4 +75,5 @@ module ApplicationHelper
 
     roles[role_name.to_sym]
   end
+
 end
