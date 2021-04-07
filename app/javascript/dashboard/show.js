@@ -2,6 +2,9 @@ import { subCategoriesFeedback } from '../charts/citizen-feedback/feedback_sub_c
 import { overallFeedback } from '../charts/citizen-feedback/overall_rating_chart'
 import { mostRequest } from '../charts/owso-information-accessed/most_request_service_access_chart'
 import formater from '../data/formater'
+import { ticksOptions } from '../utils/bar_chart';
+
+let MAX_LABELS_SIZE = 4;
 
 OWSO.DashboardShow = (() => {
 
@@ -86,6 +89,9 @@ OWSO.DashboardShow = (() => {
       chart.data = extractor(result);
       let max = _.max(flatten(chart.data.datasets));
       let suggestedMax = Math.round( max * 1.40 );
+      
+      let { labels } = extractor(result);
+      chart.options.scales.xAxes[0].ticks = (labels && labels.length > MAX_LABELS_SIZE) ? ticksOptions : {};
       chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
 
       chart.update();
