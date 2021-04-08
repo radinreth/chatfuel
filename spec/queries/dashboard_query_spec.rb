@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe DashboardQuery.new do
+  it "#province_codes" do
+    ENV['PILOT_PROVINCE_CODES']="01"
+
+    expect(subject.province_codes).to eq ["01"]
+  end
+
+  it "#district_codes" do
+    ENV['PILOT_PROVINCE_CODES']="01"
+    ENV['PILOT_DISTRICT_CODES_FOR_01']="0102,0103"
+
+    expect(subject.district_codes).to eq ["0102", "0103"]
+  end
+
   context "with most request" do
     let(:variable) { build(:variable) }
 
