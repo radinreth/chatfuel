@@ -19,8 +19,9 @@ class FeedbackTrend < Feedback
       return {} unless result_set
 
       result_set.each_with_object({}).with_index do |((key, count), hash), index|
-        month, value_id = key
+        date, value_id = key
         variable_value = VariableValue.find(value_id)
+        month = month = format_label(date)
 
         hash[month] ||= {}
         hash[month][variable_value.mapping_value] = count
