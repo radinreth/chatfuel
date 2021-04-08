@@ -169,13 +169,17 @@ class DashboardQuery
 
     # All provinces include in piloting areas
     def all_province_codes
-      province = Variable.province
-      (province.raw_values - dump_codes & Setting.pilot_province_codes) rescue []
+      pilot_provinces.map(&:id) - dump_codes rescue []
     end
 
     def all_district_codes
-      district = Variable.district
-      district.raw_values - dump_codes rescue []
+      pilot_provinces.inject([]) do |codes, province|
+        codes += province.pilot_districts.map(&:id)
+      end - dump_codes rescue []
+    end
+
+    def pilot_provinces
+      Pumi::Province.pilots
     end
 
     def platform_param
