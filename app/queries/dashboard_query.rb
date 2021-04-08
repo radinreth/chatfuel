@@ -177,8 +177,7 @@ class DashboardQuery
   private
 
     def all_province_codes
-      province = Variable.province
-      province.raw_values - dump_codes rescue []
+      Pumi::Province.pilots.map(&:id) - dump_codes rescue []
     end
 
     def all_district_codes
