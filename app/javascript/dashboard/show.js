@@ -29,11 +29,11 @@ OWSO.DashboardShow = (() => {
   }
 
   function loadChart(instance, element, data) {
-    if( data != undefined ) {
-      instance.chartId = element;
-      instance.ds = data;
-      instance.render();
-    }
+    if( data == undefined ) data = {};
+
+    instance.chartId = element;
+    instance.ds = data;
+    instance.render();
   }
 
   function loadProvinceMostRequest() {
