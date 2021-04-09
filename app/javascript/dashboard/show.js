@@ -153,7 +153,20 @@ OWSO.DashboardShow = (() => {
   }
 
   function multiSelectDistricts() {
-    $("select").select2({theme: "bootstrap"})
+    $("select").select2({
+      theme: "bootstrap",
+    }).on('select2:select', clearOtherFilterIfAllselected);
+  }
+
+  function clearOtherFilterIfAllselected(event) {
+    let $districtCode = $("select.district_code");
+    const ALL_VALUE = "";
+
+    if( event.params.data.id == ALL_VALUE ) {
+      $districtCode.val(null).trigger("change");
+    } else {
+      $districtCode.val(_.without($(this).val(), ALL_VALUE)).trigger("change");
+    }
   }
 
   function attachEventClickToChartDownloadButton() {
