@@ -6,7 +6,7 @@ class TrendingFeedbackChart extends GroupBarChart {
   ticksOptions = {}
 
   format = () => {
-    let { labels, dataset } = gon.feedbackTrend;
+    let { labels, dataset } = this.ds;
     this.ticksOptions = (labels && labels.length > 4) ? ticksOptions : {}
     return { labels, datasets: _.map(dataset, (el) => el) };
   }
