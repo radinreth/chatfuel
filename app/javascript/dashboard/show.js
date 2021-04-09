@@ -187,6 +187,29 @@ OWSO.DashboardShow = (() => {
       theme: "bootstrap",
       dropdownAutoWidth : true,
       width: 'auto'
+    }).on('select2:select', clearOtherFilterIfAllselected);
+  }
+
+  function clearOtherFilterIfAllselected(event) {
+    let locElement = getLocationClassName(this.className);
+    if( locElement == undefined ) return
+
+    let $selector = $(`select.${locElement}`);
+    const ALL_VALUE = "";
+
+    if( event.params.data.id == ALL_VALUE ) {
+      $selector.val(null).trigger("change");
+    } else {
+      $selector.val(_.without($(this).val(), ALL_VALUE)).trigger("change");
+    }
+  }
+
+  function getLocationClassName(classList) {
+    let codeReg = new RegExp('_code'); // should match: { province_code or district_code }
+    let classNames = classList.split(' ');
+
+    return _.find(classNames, function(className) {
+      return className.match(codeReg)
     })
   }
 
