@@ -5,16 +5,32 @@ class MostRequest < BasicReport
       district_name = district.send("name_#{I18n.locale}".to_sym)
     
       hash[pro_code] ||= {}
-      hash[pro_code][:colors] ||= Color.generate
+      hash[pro_code][:colors] ||= []
       hash[pro_code][:dataset] ||= {}
-      hash[pro_code][:dataset][district_name] = {
-        value: replace_new_line(variable_value.mapping_value),
-        count: count
-      } if hash[pro_code][:dataset][district_name].nil? || hash[pro_code][:dataset][district_name][:count] < count
+
+      if hash[pro_code][:dataset][district_name].nil? || hash[pro_code][:dataset][district_name][:count] < count
+
+        if hash[pro_code][:dataset][district_name].present? &&
+            hash[pro_code][:dataset][district_name][:count] < count
+          hash[pro_code][:colors].pop
+        end
+
+        hash[pro_code][:colors] << colors[variable_value.mapping_value]
+        hash[pro_code][:dataset][district_name] = {
+          value: replace_new_line(variable_value.mapping_value),
+          count: count
+        }
+      end
     end
   end
 
   private
+
+  def colors
+    @variable.values.map do|v|
+      v.mapping_value
+    end.zip(Color.generate).to_h
+  end
 
   def find_objects_by(k)
     pro_code = k.shift
