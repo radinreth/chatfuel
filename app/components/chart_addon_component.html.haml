@@ -1,0 +1,4 @@
+%select.period-filter{ disabled: @visibility, style: "width: 100px", data: { resourcepath: @path, formater: @formater, canvasid: @canvasid }}
+  %option{ value: "month" }= t("period.monthly")
+  %option{ value: "quarter" }= t("period.quarterly")
+  %option{ value: "year" }= t("period.yearly")
