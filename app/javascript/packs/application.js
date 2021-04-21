@@ -1,4 +1,5 @@
 require("@rails/ujs").start()
+global.Rails = Rails
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
@@ -31,6 +32,7 @@ require("templates/index")
 require("dashboard/show")
 require("home/index")
 require("welcomes/index")
+require("listview/index")
 require("dictionaries/edit")
 require("dictionaries/index")
 
