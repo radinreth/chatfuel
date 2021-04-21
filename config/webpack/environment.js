@@ -10,7 +10,6 @@ environment.plugins.prepend('Provide',
     toastr: 'toastr/toastr',
     DateRangePicker: 'daterangepicker/daterangepicker',
     Popper: ['popper.js', 'default'],
-    Rails: ['@rails/ujs']
   })
 )
 
