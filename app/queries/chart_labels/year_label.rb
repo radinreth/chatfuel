@@ -5,7 +5,7 @@ module ChartLabels
     end
 
     def format
-      @raw.split("/")[1]
+      @raw.split(",")[1]
     end
   end
 end
