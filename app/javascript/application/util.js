@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import { sum } from '../utils/array'
 
 OWSO.Util = {
@@ -17,6 +18,13 @@ OWSO.Util = {
     let thiz = this;
 
     Chart.plugins.register({
+      beforeInit: function (chart) {
+        chart.data.labels.forEach(function (label, index, labelsArr) {
+          if (/\s/.test(label) && thiz.preferMultilinesLabel(chart) ) {
+            labelsArr[index] = label.split(/\s/)
+          }
+        })
+      },
       afterDraw: function(chart) {
         let { datasets } = chart.data
 
@@ -36,6 +44,10 @@ OWSO.Util = {
         }
       }
     });
+  },
+
+  preferMultilinesLabel(chart) {
+    return (chart.config.type == 'bar' || chart.canvas.id == 'chart_number_access_by_main_services')
   },
 
   isEmpty(datasets) {
