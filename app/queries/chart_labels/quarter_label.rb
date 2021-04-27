@@ -6,7 +6,8 @@ module ChartLabels
 
     def format
       q = Quarterly.new(@m)
-      I18n.t("chart.quarter_label", q: q.to_quarter, y: @y)
+      y = @y.split(",")[0]
+      I18n.t("chart.quarter_label", q: q.to_quarter, y: y)
     end
   end
 end
