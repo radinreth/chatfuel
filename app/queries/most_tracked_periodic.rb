@@ -21,7 +21,7 @@ class MostTrackedPeriodic < BasicReport
       scope = Ticket.filter(@query.options)
       scope = scope.joins(""" INNER JOIN trackings ON
                               trackings.ticket_code = tickets.code""")
-      scope = scope.group_by_period(period, "trackings.created_at", format: "%b/%Y")
+      scope = scope.group_by_period(period, "trackings.created_at", format: "%b/%y")
       scope = scope.group(:sector)
       scope.count
     end
