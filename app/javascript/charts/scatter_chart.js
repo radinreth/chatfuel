@@ -21,14 +21,6 @@ class ScatterChart extends LineChart {
         xAxes:[{
           ticks: {
             autoSkip: false,
-            maxRotation: 45,
-            minRotation: 45,
-            callback: function(value) {
-              let maxLength = 10,
-                  ellipsisValue = `${value.substr(0, 10)}...`;
-          
-              return (value.length >= maxLength) ? ellipsisValue : value;
-            },
           }
         }],
         yAxes: [{
