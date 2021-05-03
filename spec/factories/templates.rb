@@ -43,7 +43,9 @@ FactoryBot.define do
     trait :verboice do
       incomplete
       type { "VerboiceTemplate" }
-      audio { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'incompleted_audio.mp3'), 'audio/mp3') }
+      after(:build) do |template|
+        template.audio.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'incompleted_audio.mp3')), filename: 'incompleted_audio.mp3' )
+      end
     end
   end
 end
