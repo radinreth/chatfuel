@@ -12,7 +12,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "4.3.1",
     "bootstrap-toggle": "^2.2.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "coffee-loader": "^1.0.1",
     "coffeescript": "1.12.7",
