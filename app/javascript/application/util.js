@@ -47,6 +47,8 @@ OWSO.Util = {
     });
   },
 
+  isEmbed() { return !!location.pathname.match(/^\/reports$/) },
+
   preferMultilinesLabel(chart) {
     return (chart.config.type == 'bar' || chart.canvas.id == 'chart_number_access_by_main_services')
   },
