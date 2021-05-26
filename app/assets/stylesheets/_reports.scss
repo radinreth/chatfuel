@@ -1,0 +1,14 @@
+#reports-index {
+  #logo-container,
+  #article,
+  .sidebar-left,
+  .switch-lang,
+  .g-recaptcha,
+  footer {
+    display: none;
+  }
+
+  .tabs-container {
+    min-height: 0;
+  }
+}

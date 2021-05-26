@@ -46,7 +46,6 @@ class BarChart extends BaseChart {
           ticks: {
             maxRotation: 0,
             minRotation: 0,
-            ...this.ticksOptions
           }
         }]
       }

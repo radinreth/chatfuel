@@ -1,4 +1,13 @@
 @import "responsive_grid_system";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/";
+
+@include media-breakpoint-down(sm) {
+  .w-sm-25 {
+    width: 25%;
+  }
+}
 
 @media (max-width: $large-screen) {
   .filter-options {

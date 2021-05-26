@@ -1,4 +1,9 @@
-#welcomes-index {
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/";
+
+#welcomes-index,
+#reports-index {
   .nav-tabs .nav-link:focus,
   .ssb-icon:focus,
   .logo-link:focus {
@@ -93,12 +98,12 @@
     background-color: #FFF;
   }
 
-  .fixed-lh-3 {
-    line-height: 3em;
-  }
-
   .tabs-container {
     min-height: 300px;
+  }
+
+  .fixed-lh-3 {
+    line-height: 3em;
   }
 
   .secondary-branding-color {
@@ -117,8 +122,9 @@
     z-index: 996;
     background: white;
 
-    @media (max-width: 992px) {
-      top: 446px;
+    @include media-breakpoint-down(xs) {
+      top: 0;
+      position: relative !important;
     }
   }
 

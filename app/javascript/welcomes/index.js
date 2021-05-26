@@ -76,7 +76,7 @@ OWSO.WelcomesIndex = (() => {
       decreaseFormControlWidth();
     } 
 
-    if(window.pageYOffset < (pilotHeader.offset().top - scroll.DOWN)) {
+    if(window.pageYOffset == 0 || window.pageYOffset < (pilotHeader.offset().top - scroll.DOWN)) {
       $(".logo-inline").hide();
       formQuery.removeClass('highlight');
       $(".switch-lang").removeClass('inc-top');
@@ -99,9 +99,12 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function scrollToForm() {
-    $([document.documentElement, document.body]).animate({
-      scrollTop: (formQuery.outerHeight() + formQuery.offset().top)
-    }, 500);
+    if(window.matchMedia("(min-width: 767px)").matches) {
+      let formQuery = $("#form-query");
+      $([document.documentElement, document.body]).animate({
+        scrollTop: (formQuery.outerHeight() + formQuery.offset().top)
+      }, 500);
+    }
   }
 
   return { init, renderChart, scrollToForm }

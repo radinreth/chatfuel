@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
 
+    get 'developer_guides', to: 'developer_guides#index'
+    resources :reports, only: :index
+
     # public static website
     get 'provinces', to: "provinces#index"
     get 'districts', to: "districts#index"
