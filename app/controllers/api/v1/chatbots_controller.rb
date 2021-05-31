@@ -4,14 +4,10 @@ module Api
   module V1
     class ChatbotsController < SessionsController
       def mark_as_completed
-        @session&.completed!
+        SessionMarkAsCompleteJob.perform_later(params[:messenger_user_id])
+
         head :ok
       end
-
-      private
-        def set_session
-          @session = Session.create_or_return('Messenger', params[:messenger_user_id])
-        end
     end
   end
 end

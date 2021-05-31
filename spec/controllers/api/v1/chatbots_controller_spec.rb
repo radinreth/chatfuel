@@ -9,11 +9,10 @@ RSpec.describe Api::V1::ChatbotsController, type: :controller do
   describe "actions" do
     describe "POST :create" do
       it "creates new record" do
+        ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
         expect {
           post :create, params: { messenger_user_id: 123, name: "main_menu", value: "owso_info" }
-        }.to change { Variable.count }.by(1)
-        .and change { VariableValue.count }.by(1)
-        .and change { Session.count }.by(1)
+        }.to have_performed_job(SessionJob)
       end
     end
 
@@ -27,9 +26,10 @@ RSpec.describe Api::V1::ChatbotsController, type: :controller do
       specify { expect(session).to be_incomplete }
 
       it "completed" do
-        post :mark_as_completed, params: { messenger_user_id: session.session_id, name: "main_menu", value: "owso_info" }
-
-        expect(session.reload).to be_completed
+        ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
+        expect {
+          post :mark_as_completed, params: { messenger_user_id: session.session_id, name: "main_menu", value: "owso_info" }
+        }.to have_performed_job(SessionMarkAsCompleteJob)
       end
     end
   end
