@@ -1,10 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Chatbots session", type: :request do
+  before {
+    ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
+  }
+
   it "starts a new session" do
     expect {
       post "/api/v1/chatbots", params: { messenger_user_id: "123", name: "gender", value: "m" }
-    }.to change { Session.count }.by(1)
+    }.to have_performed_job(SessionJob)
   end
 
   describe ":province" do
@@ -16,9 +20,9 @@ RSpec.describe "Chatbots session", type: :request do
     end
 
     it "creates step :province" do
-      post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
-
-      expect(Session.first.province_id).to eq(value.raw_value)
+      expect {
+        post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
+      }.to have_performed_job(SessionJob)
     end
   end
 
@@ -31,9 +35,10 @@ RSpec.describe "Chatbots session", type: :request do
     end
 
     it "creates step :district" do
-      post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
 
-      expect(Session.first.district_id).to eq(value.raw_value)
+      expect {
+        post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
+      }.to have_performed_job(SessionJob)
     end
   end
 
@@ -42,11 +47,9 @@ RSpec.describe "Chatbots session", type: :request do
     let(:value) { build(:variable_value, raw_value: "m") }
 
     it "creates step :gender" do
-      post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
-
-      step_value = StepValue.first
-      expect(step_value.variable.name).to eq(variable.name)
-      expect(step_value.variable_value.raw_value).to eq(value.raw_value)
+      expect {
+        post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
+      }.to have_performed_job(SessionJob)
     end
   end
 end

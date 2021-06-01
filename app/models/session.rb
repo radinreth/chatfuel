@@ -40,6 +40,12 @@ class Session < ApplicationRecord
 
   after_create_commit :completed!, if: :ivr?
 
+  def self.create_from_type(platform_name, session_id, source_id)
+    return create_or_return(platform_name, session_id) if platform_name == 'Messenger'
+
+    find_or_create_by(platform_name: platform_name, session_id: session_id, source_id: source_id)
+  end
+
   def self.create_or_return(platform_name, session_id)
     session = find_or_initialize_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
 

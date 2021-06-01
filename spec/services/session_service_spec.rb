@@ -4,7 +4,7 @@ RSpec.describe SessionService do
   describe '.create' do
     specify do
       expect {
-        SessionService.create("123456") do |session|
+        SessionService.create('Messenger', '123456') do |session|
           session.add_value('owso_info', 'certify_docs').append_steps
         end
       }.to change { Session.count }.by(1)

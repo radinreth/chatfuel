@@ -5,9 +5,9 @@ class SessionService
     @session = session
   end
 
-  def self.create(uid, &block)
+  def self.create(platform_name, session_id, source_id = nil, &block)
     Session.transaction do
-      yield session(uid)
+      yield session(platform_name, session_id, source_id)
     end
   end
 
@@ -24,8 +24,8 @@ class SessionService
 
   private
 
-    def self.session(messenger_user_id)
-      session = Session.create_or_return('Messenger', messenger_user_id)
-      new( session )
+    def self.session(platform_name, session_id, source_id)
+      session = Session.create_from_type(platform_name, session_id, source_id)
+      new(session)
     end
 end
