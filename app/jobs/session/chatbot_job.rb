@@ -1,4 +1,4 @@
-class SessionJob < ApplicationJob
+class Session::ChatbotJob < ApplicationJob
   sidekiq_options queue: :default
 
   discard_on ActiveJob::DeserializationError

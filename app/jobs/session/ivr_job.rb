@@ -1,4 +1,4 @@
-class SessionIvrJob < ApplicationJob
+class Session::IvrJob < ApplicationJob
   queue_as :default
 
   def perform(name, value, session_id, source_id)

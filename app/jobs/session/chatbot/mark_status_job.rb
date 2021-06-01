@@ -1,4 +1,4 @@
-class SessionMarkAsCompleteJob < ApplicationJob
+class Session::Chatbot::MarkStatusJob < ApplicationJob
   sidekiq_options queue: :default
 
   discard_on ActiveJob::DeserializationError

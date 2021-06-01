@@ -8,7 +8,7 @@ RSpec.describe "Chatbots session", type: :request do
   it "starts a new session" do
     expect {
       post "/api/v1/chatbots", params: { messenger_user_id: "123", name: "gender", value: "m" }
-    }.to have_performed_job(SessionJob)
+    }.to have_performed_job(Session::ChatbotJob)
   end
 
   describe ":province" do
@@ -22,7 +22,7 @@ RSpec.describe "Chatbots session", type: :request do
     it "creates step :province" do
       expect {
         post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
-      }.to have_performed_job(SessionJob)
+      }.to have_performed_job(Session::ChatbotJob)
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe "Chatbots session", type: :request do
 
       expect {
         post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
-      }.to have_performed_job(SessionJob)
+      }.to have_performed_job(Session::ChatbotJob)
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe "Chatbots session", type: :request do
     it "creates step :gender" do
       expect {
         post "/api/v1/chatbots", params: { messenger_user_id: "123", name: variable.name, value: value.raw_value }
-      }.to have_performed_job(SessionJob)
+      }.to have_performed_job(Session::ChatbotJob)
     end
   end
 end
