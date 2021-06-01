@@ -1,9 +1,4 @@
 :dynamic: true
-:queues:
-  - critical
-  - high
-  - default
-  - low
 :schedule:
   quota:
     cron: '0 0,12 * * *'

@@ -9,7 +9,7 @@ module Api
       end
 
       def create
-        Session::ChatbotJob.perform_later(params[:name], params[:value], params[:messenger_user_id])
+        Session::ChatbotJob.perform_later(chatbot_params)
         head :ok
       end
     end
