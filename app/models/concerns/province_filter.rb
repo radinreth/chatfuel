@@ -12,10 +12,6 @@ class ProvinceFilter
         '00'
       end
 
-      # nil     => []
-      # '1,2'   => [1,2]
-      # [1,2]   => [1,2]
-      # [[1,2]] => [1,2]
       def parse(codes)
         return codes.flatten if codes.is_a? Array
 
@@ -27,7 +23,7 @@ class ProvinceFilter
       end
 
       def pilot_codes
-        Array.wrap(ENV["PILOT_PROVINCE_CODES"].to_s.split(','))
+        Pumi::Province.pilots.map(&:id)
       end
 
       def all_codes

@@ -7,7 +7,7 @@ RSpec.describe ProvinceFilter do
     let!(:chh) { create(:session, province_id: '04') }
 
     before do
-      ENV['PILOT_PROVINCE_CODES'] = '01,02'
+      allow(ProvinceFilter).to receive(:pilot_codes).and_return(['01', '02'])
     end
 
     context "with OTHER" do
