@@ -108,7 +108,19 @@ class Session < ApplicationRecord
     dashboard_query.province_codes
   end
 
+  def self.province_ids
+    pluck(:province_id).uniq - dump_codes
+  end
+
+  def self.district_ids
+    pluck(:district_id).uniq - dump_codes
+  end
+
   private
+
+    def self.dump_codes
+      ::Filters::LocationFilter.dump_codes
+    end
 
     def self.dashboard_query
       dashboard_query = DashboardQuery.new
