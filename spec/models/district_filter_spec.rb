@@ -7,7 +7,7 @@ RSpec.describe DistrictFilter do
     let!(:chh) { create(:session, district_id: '0400') }
 
     before do
-      allow(DistrictFilter).to receive(:district_pilot_codes).and_return(['0100', '0200'])
+      allow(DistrictFilter).to receive(:pilot_codes).and_return(['0100', '0200'])
     end
 
     context "with OTHER" do
