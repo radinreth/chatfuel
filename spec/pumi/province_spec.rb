@@ -5,6 +5,10 @@ RSpec.describe Pumi::Province do
   
   pilot_provinces = ENV['PILOT_PROVINCE_CODES'].to_s.split(',')
 
+  before do
+    ENV['PILOT_PROVINCE_CODES'] = '01,02,04,08'
+  end
+
   it ".pilots" do
     expect(subject.pilots.map(&:id)).to eq(pilot_provinces)
   end
