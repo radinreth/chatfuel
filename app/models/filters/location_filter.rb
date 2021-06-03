@@ -49,6 +49,10 @@ class Filters::LocationFilter
     Array.wrap(districts).map { |district| district.send(field_name) }.to_sentence
   end
 
+  def self.dump_codes
+    [nil, "nu", "null"]
+  end
+
   private
 
   def province?
