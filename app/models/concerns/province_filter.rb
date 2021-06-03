@@ -5,16 +5,12 @@ class ProvinceFilter < AreaFilter
         '00'
       end
 
-      def beside_pilot_codes
-        all_codes - pilot_codes
+      def codes_beside_pilot
+        Session.province_ids - pilot_codes
       end
 
       def pilot_codes
-        Pumi::Province.pilots.map(&:id)
-      end
-
-      def all_codes
-        Session.pluck(:province_id).uniq - Filters::LocationFilter.dump_codes
+        Filters::PumiFilter.pilot_province_codes
       end
   end
 end
