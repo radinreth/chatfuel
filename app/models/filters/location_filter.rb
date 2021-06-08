@@ -10,6 +10,10 @@ class Filters::LocationFilter
      "name_#{I18n.locale}".to_sym
   end
 
+  def field_full_name
+    "full_name_#{I18n.locale}".to_sym
+  end
+
   def field_address
     "address_#{I18n.locale}".to_sym
   end
