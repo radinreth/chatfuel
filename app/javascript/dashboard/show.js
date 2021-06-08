@@ -266,7 +266,7 @@ OWSO.DashboardShow = (() => {
 
       $(".start_date").val(startDate)
       $(".end_date").val(endDate)
-      $(".input-daterange").val(`${startDate} - ${endDate}`)
+      $(".datepicker_date").val(`${startDate} - ${endDate}`)
       $('.form').submit();
     })
   }
