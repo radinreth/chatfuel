@@ -13,6 +13,7 @@ en:
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
     combo_nav_js: "Page %{page_input} of %{pages}"
     items_selector_js: "Show %{items_input} %{item_name} per page"
+  title: Welcome to OW4C's Public Dashboard
   copyright: Developed by 2020 InSTEDD
   role: "Role: %{name}"
   login_as: "Logged in as: %{as}"
