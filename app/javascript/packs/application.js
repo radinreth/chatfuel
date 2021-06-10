@@ -20,6 +20,7 @@ require("cookieconsent/build/cookieconsent.min")
 require('application/pumi')
 
 import "bootstrap-toggle/js/bootstrap-toggle"
+import "bootstrap-datepicker"
 
 require("application/namespace")
 require("application/util")
