@@ -49,6 +49,12 @@ class Filters::LocationFilter
     Array.wrap(districts).map { |district| district.send(field_name) }.to_sentence
   end
 
+  # both chatbots and Ivr may capture `nil` or `null` value
+  # `nu` happens when split first 2 characters that is assumed as province codes
+  def self.dump_codes
+    [nil, "nu", "null"]
+  end
+
   private
 
   def province?
