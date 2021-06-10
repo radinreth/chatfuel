@@ -168,26 +168,14 @@ class DashboardQuery
     district_codes - ["0000"]
   end
 
-  # both chatbots and Ivr may capture `nil` or `null` value
-  # `nu` happens when split first 2 characters that is assumed as province codes
-  def dump_codes
-    [nil, "nu", "null"]
-  end
-
   private
 
     def all_province_codes
-      pilot_provinces.map(&:id) - dump_codes rescue []
+      Filters::PumiFilter.pilot_province_codes
     end
 
     def all_district_codes
-      pilot_provinces.inject([]) do |codes, province|
-        codes += province.pilot_districts.map(&:id)
-      end - dump_codes rescue []
-    end
-
-    def pilot_provinces
-      Pumi::Province.pilots
+      Filters::PumiFilter.pilot_district_codes
     end
 
     def platform_param
