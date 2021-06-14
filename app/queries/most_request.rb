@@ -8,7 +8,7 @@ class MostRequest < BasicReport
       hash[pro_code][:colors] ||= Color.generate
       hash[pro_code][:dataset] ||= {}
       hash[pro_code][:dataset][district_name] = {
-        value: replace_new_line(variable_value.mapping_value),
+        value: variable_value.mapping_value,
         count: count
       } if hash[pro_code][:dataset][district_name].nil? || hash[pro_code][:dataset][district_name][:count] < count
     end
@@ -19,10 +19,6 @@ class MostRequest < BasicReport
   def find_objects_by(k)
     pro_code = k.shift
     [pro_code] + super(k)
-  end
-
-  def replace_new_line(str)
-    str.sub(/\s/, "\n")
   end
 
   def result_set
