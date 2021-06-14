@@ -29,7 +29,10 @@ class BarChart extends BaseChart {
           formatter: function (value, context) {
             let { dataTitles } = context.dataset;
             if (dataTitles == undefined) return value;
-            else return dataTitles[context.dataIndex] + ":" + value;
+            else
+              return value > 0
+                ? dataTitles[context.dataIndex] + ":" + value
+                : gon.not_available;
           },
         },
       },
