@@ -21,6 +21,7 @@ class DashboardController < ApplicationController
     @query = DashboardQuery.new(filter_options)
     gon_data = Gonify.new(@query).chart_data
     gon_data[:no_data] = I18n.t("no_data")
+    gon_data[:not_available] = I18n.t(:not_available)
     gon.push(gon_data)
   end
 end

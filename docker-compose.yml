@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   db:
@@ -44,4 +44,4 @@ services:
     ports:
       - 4040:4040
     environment:
-      NGROK_PORT: 'web:3000'
+      NGROK_PORT: "web:3000"
