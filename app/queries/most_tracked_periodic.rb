@@ -6,17 +6,13 @@ class MostTrackedPeriodic < BasicReport
       month = format_label(date)
 
       hash[month] = {
-        value: replace_new_line(sector),
+        value: sector,
         count: count
       } if !hash[month] || hash[month][:count] < count
     end
   end
 
   private
-    def replace_new_line(str)
-      str.sub(/\s/, "\n")
-    end
-
     def result_set
       scope = Ticket.filter(@query.options)
       scope = scope.joins(""" INNER JOIN trackings ON

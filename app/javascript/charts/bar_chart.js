@@ -6,14 +6,12 @@ class BarChart extends BaseChart {
   dataFormat = () => ({
     maxBarThickness: 36,
     minBarLength: 2,
-  })
+  });
 
-  options () {
+  options() {
     let { plugins } = this.baseOptions;
 
-    return Object.assign({}, 
-      this.baseOptions, 
-      this.childOptions, {
+    return Object.assign({}, this.baseOptions, this.childOptions, {
       plugins: {
         datalabels: {
           ...plugins.datalabels,
@@ -26,32 +24,40 @@ class BarChart extends BaseChart {
           display: true,
           textAlign: "center",
           font: {
-            weight: 'normal'
+            weight: "normal",
           },
-          formatter: function(value, context) {
-            let { dataTitles } = context.dataset
-            if( dataTitles == undefined ) return value
-            else return dataTitles[context.dataIndex] + "\n" + value;
-          }
-        }
+          formatter: function (value, context) {
+            let { dataTitles } = context.dataset;
+            if (dataTitles == undefined) return value;
+            else
+              return value > 0
+                ? dataTitles[context.dataIndex] + ":" + value
+                : gon.not_available;
+          },
+        },
       },
       cutoutPercentage: 80,
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            suggestedMax: this._suggestedMax(),
-          }
-        }],
-        xAxes: [{
-          maxBarThickness: 50,
-          ticks: {
-            maxRotation: 0,
-            minRotation: 0,
-            ...this.ticksOptions
-          }
-        }]
-      }
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              suggestedMax: this._suggestedMax(),
+            },
+          },
+        ],
+        xAxes: [
+          {
+            maxBarThickness: 50,
+            ticks: {
+              suggestedMax: this._suggestedMax(),
+              maxRotation: 0,
+              minRotation: 0,
+              ...this.ticksOptions,
+            },
+          },
+        ],
+      },
     });
   }
 }
