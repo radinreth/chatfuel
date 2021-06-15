@@ -50,6 +50,7 @@ class BarChart extends BaseChart {
           {
             maxBarThickness: 50,
             ticks: {
+              beginAtZero: true,
               suggestedMax: this._suggestedMax(),
               maxRotation: 0,
               minRotation: 0,
