@@ -46,6 +46,8 @@ class Ticket < ApplicationRecord
   scope :delivered, -> { where(status: 'delivered') }
   scope :completed, -> { where(status: ['approved', 'delivered']) }
 
+  scope :for_location, -> (code) { joins(:site).where(sites: { code: code }) }
+
   delegate :platform_name, to: :message, allow_nil: true
   delegate :platform_name, to: :session, allow_nil: true
 
@@ -74,6 +76,7 @@ class Ticket < ApplicationRecord
 
   # Class methods
   def self.filter(params = {})
+    # abort(params.inspect)
     scope = all
     scope = scope.joins(:site) if params[:province_id].present? || params[:district_id].present?
     scope = scope.where("LEFT(sites.code, 2) = ?", params[:province_id]) if params[:province_id].present?
