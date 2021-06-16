@@ -37,6 +37,8 @@ en:
     action: Action
     track_count: Track count
     create_new: Create site
+    kamrieng: Kamrieng
+    poipet: Poipet
     form:
       enable?: Enable?
     edit:

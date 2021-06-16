@@ -37,6 +37,8 @@ km:
     action: សកម្មភាព
     track_count: ចំនួនតាមដាន
     create_new: បង្កើតថ្មី
+    kamrieng: កំរៀង
+    poipet: ប៉ោយប៉ែត
     form:
       enable?: បើកដំណើរការ?
     edit:
