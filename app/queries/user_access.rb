@@ -23,8 +23,7 @@ class UserAccess < BasicReport
     # Ticket does not need to care about about platform(both, chatbot, ivr)
     # because it syncs from desktop app).
     def submitted_ticket_in_kamrieng
-      # .for_location("0212")
-      data = Ticket.filter(@query.options).group_by_day(:requested_date, format: "%b %e, %y").count
+      data = Ticket.filter(@query.options).for_location("0212").group_by_day(:requested_date, format: "%b %e, %y").count
 
       { name: I18n.t("dashboard.submitted", site_name: I18n.t("sites.kamrieng")), data: data, color: '#4e73df', title: I18n.t("dashboard.submitted_explain", site_name: I18n.t("sites.kamrieng")), class_name: "rect__submitted", display_text: I18n.t("dashboard.submitted", site_name: I18n.t("sites.kamrieng")) } if data.present?
     end
