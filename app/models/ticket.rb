@@ -89,7 +89,6 @@ class Ticket < ApplicationRecord
 
   # Class methods
   def self.filter(params = {})
-    # abort(params.inspect)
     scope = all
     scope = scope.joins(:site) if params[:province_id].present? || params[:district_id].present?
     scope = scope.where("LEFT(sites.code, 2) = ?", params[:province_id]) if params[:province_id].present?
