@@ -51,6 +51,19 @@ class Ticket < ApplicationRecord
   delegate :platform_name, to: :message, allow_nil: true
   delegate :platform_name, to: :session, allow_nil: true
 
+  
+  def self.submitted_from_synced_locations(options = {}, group_by_format = "%b %e, %y")
+    ENV['TICKET_SYNCED_DISTRICT_CODES'].to_s.split(",").map do |district_code|
+      data = filter(options)
+              .for_location(district_code)
+              .group_by_day(:requested_date, format: group_by_format)
+              .count
+      { name: I18n.t("dashboard.submitted", site_name: I18n.t(district_code)), data: data }
+    rescue
+      nil
+    end
+  end
+
   # Instand methods
   def progress_status
     return 'incomplete' if INCOMPLETE_STATUSES.include?(status)

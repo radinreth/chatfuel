@@ -1,14 +1,15 @@
 export const extractLineDataset = (ds) => {
   if (ds.length == 0) return {};
 
-  let labels = _.keys(ds[0].data);
+  let labels = _.map(ds, (di) => _.keys(di.data));
+  let flattenLabels = _.uniq(_.flatten(labels));
   return {
-    labels: labels,
+    labels: flattenLabels,
     datasets: ds.map((line) => ({
       label: line.name,
       backgroundColor: line.color,
       borderColor: line.color,
-      data: labels.map((label) => line.data[label]),
+      data: flattenLabels.map((label) => line.data && line.data[label]),
       fill: false,
       spanGaps: true,
     })),

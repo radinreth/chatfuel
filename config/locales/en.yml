@@ -13,6 +13,8 @@ en:
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
     combo_nav_js: "Page %{page_input} of %{pages}"
     items_selector_js: "Show %{items_input} %{item_name} per page"
+  "0110": Poipet
+  "0212": Kamrieng
   copyright: Developed by 2020 InSTEDD
   role: "Role: %{name}"
   login_as: "Logged in as: %{as}"
