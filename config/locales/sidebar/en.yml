@@ -1,0 +1,15 @@
+en:
+  sidebar:
+    dashboard: Dashboard
+    home: Home
+    sites: Sites
+    dictionaries: Dictionaries
+    reports: Reports
+    users: Users
+    templates: Templates
+    setting: Setting
+    logout: Logout
+    signin: Signin
+    confirm_logout: Are you sure you want to logout?
+    tickets: Tickets
+    provincial_usages: Provincial Usages
