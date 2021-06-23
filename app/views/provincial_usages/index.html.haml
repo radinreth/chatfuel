@@ -15,12 +15,12 @@
       %table.table
         %thead
           %tr
-            %th{:scope => "col"} No.
-            %th{:scope => "col"} Province/City
-            %th{:scope => "col"} Total Unique Users
-            %th{:scope => "col"} Total Visit
-            %th{:scope => "col"} Total Service Delivered
-            %th{:scope => "col"} Most Request Services
+            %th{:scope => "col"}= t("provincial_usages.no")
+            %th{:scope => "col"}= t("provincial_usages.location")
+            %th{:scope => "col"}= t("provincial_usages.unique")
+            %th{:scope => "col"}= t("provincial_usages.visit")
+            %th{:scope => "col"}= t("provincial_usages.delivered")
+            %th{:scope => "col"}= t("provincial_usages.most_request")
         %tbody
           - @provincial_usages.each_with_index do |usage, index|
             %tr

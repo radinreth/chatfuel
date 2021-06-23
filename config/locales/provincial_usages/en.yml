@@ -1,0 +1,8 @@
+en:
+  provincial_usages:
+    "no": No.
+    location: Province/City
+    unique: Total Unique Users
+    visit: Total Visit
+    delivered: Total Service Delivered
+    most_request: Most Request Services
