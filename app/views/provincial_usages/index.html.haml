@@ -6,6 +6,10 @@
 .card.shadow.mb-4
   .card-body
     = render "dashboard/filter_options"
+
+    .d-flex.justify-content-between
+      %p
+        = t("paginate_info_html", name: t("sidebar.provincial_usages"), items_range: pagy_range, collection_count: @provincial_usages.count)
     
     .table-responsive
       %table.table
@@ -20,7 +24,7 @@
           - @provincial_usages.each_with_index do |usage, index|
             %tr
               %th{:scope => "row"}= index + 1
-              %td= usage.pro_code
+              %td= usage.pro_name
               %td= usage.unique_user
               %td= usage.visit
               %td= usage.service_delivered
