@@ -12,21 +12,11 @@
       %th{:scope => "col"} Total Visit
       %th{:scope => "col"} Total Service Delivered
   %tbody
-    %tr
-      %th{:scope => "row"} 1
-      %td Mark
-      %td Otto
-      %td @mdo
-      %td @mdo
-    %tr
-      %th{:scope => "row"} 2
-      %td Jacob
-      %td Thornton
-      %td @mdo
-      %td @fat
-    %tr
-      %th{:scope => "row"} 3
-      %td Larry
-      %td the Bird
-      %td @mdo
-      %td @twitter
+    - @provincial_usages.each_with_index do |usage, index|
+      %tr
+        %th{:scope => "row"}= index + 1
+        %td= usage.pro_code
+        %td= usage.unique_user
+        %td= usage.visit
+        %td= 'usage.total_service_delivered'
+    
