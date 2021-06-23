@@ -1,12 +1,13 @@
 # query options (filter)
 # province filter
 class ProvincialUsage
-  attr_reader :pro_code, :unique_user, :visit
+  attr_reader :pro_code, :unique_user, :visit, :service_delivered
   # pivot by province
-  def initialize(pro_code:, unique_user:, visit:)
+  def initialize(pro_code:, unique_user:, visit:, service_delivered:)
     @pro_code = pro_code
     @unique_user = unique_user
     @visit = visit
+    @service_delivered = service_delivered
   end
 
   def self.all
@@ -14,7 +15,8 @@ class ProvincialUsage
       new(
         pro_code: pro_code,
         unique_user: unique_users[pro_code],
-        visit: visit[pro_code]
+        visit: visit[pro_code],
+        service_delivered: service_delivered[pro_code]
       )
     end
   end
@@ -27,8 +29,23 @@ class ProvincialUsage
     @visit ||= TotalVisit.all
   end
 
+  def self.service_delivered
+    @service_delivered ||= ServiceDelivered.all
+  end
+
   def self.pro_codes
     Filters::PumiFilter.pilot_province_codes
+  end
+end
+
+class ServiceDelivered
+  def self.all
+    {"08"=>63, "12"=>377, nil=>3794, "21"=>65, "06"=>22, 
+      "10"=>5, "00"=>2673, "03"=>20, "13"=>9, "17"=>113, 
+      "15"=>40, "01"=>2783, "04"=>1124, "20"=>32, "14"=>31, 
+      "22"=>5, "02"=>23766, "nu"=>4, "07"=>26, "18"=>5, 
+      "11"=>97, "09"=>3, "05"=>33
+    }
   end
 end
 
