@@ -1,8 +1,5 @@
 = render "shared/sb-admin/page_heading", title: t("sidebar.provincial_usages")
 
--# compare unique
--# expand other locations
-
 .card.shadow.mb-4
   .card-body
     = render "dashboard/filter_options"
@@ -25,10 +22,10 @@
           - @provincial_usages.each_with_index do |usage, index|
             %tr
               %th{:scope => "row"}= index + 1
-              %td= usage.pro_name
-              %td= usage.unique_user
-              %td= usage.visit
-              %td= usage.service_delivered
+              %td= usage.province_name
+              %td= usage.unique_users_count
+              %td= usage.visits_count
+              %td= usage.service_delivered_count
               %td
                 - variable_id, count, total = usage.most_request_service
                 = variable_id

@@ -6,7 +6,7 @@ class ProvincialUsagesController < ApplicationController
   before_action :set_query
 
   def index
-    @pagy, @provincial_usages = pagy_array(ProvincialUsage.within(@query))
+    @pagy, @provincial_usages = pagy_array(@query.provincial_usages)
   end
 
   private
