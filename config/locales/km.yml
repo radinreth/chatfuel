@@ -64,6 +64,7 @@ km:
     signin: ចូលប្រើ
     confirm_logout: តើអ្នកពិតជាចង់ចាកចេញឬ?
     tickets: សំបុត្រ
+    provincial_usages: ការប្រើប្រាស់តាមខេត្ត
   signin: ចូលប្រើ
   not_authorized: អ្នកមិនត្រូវបានអនុញ្ញាតទេ
   created:

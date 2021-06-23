@@ -63,6 +63,7 @@ en:
     signin: Signin
     confirm_logout: Are you sure you want to logout?
     tickets: Tickets
+    provincial_usages: Provincial Usages
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
   created:
