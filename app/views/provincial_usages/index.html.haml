@@ -5,7 +5,7 @@
 
 .card.shadow.mb-4
   .card-body
-
+    = render "dashboard/filter_options"
     
     .table-responsive
       %table.table
@@ -24,4 +24,6 @@
               %td= usage.unique_user
               %td= usage.visit
               %td= usage.service_delivered
+
+!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
     
