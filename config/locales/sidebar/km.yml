@@ -1,0 +1,15 @@
+km:
+  sidebar:
+    dashboard: ផ្ទាំងគ្រប់គ្រង
+    home: ទំព័រដើម
+    sites: ការិយាល័យ
+    dictionaries: ពាក្យគន្លឹះ
+    reports: របាយការណ៏
+    users: អ្នកប្រើប្រាស់
+    templates: គំរូ
+    setting: កំណត់
+    logout: ចាកចេញ
+    signin: ចូលប្រើ
+    confirm_logout: តើអ្នកពិតជាចង់ចាកចេញឬ?
+    tickets: សំបុត្រ
+    provincial_usages: ការប្រើប្រាស់តាមខេត្ត
