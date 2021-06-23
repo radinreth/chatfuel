@@ -9,10 +9,10 @@ class TotalServiceDeliveredUsage
   private
 
   def self.delivered_options
-    @delivered_options ||= @options.merge({ variable_id: Variable.user_visit&.id })
+    @options.merge({ variable_id: Variable.user_visit&.id })
   end
 
   def self.delivered_scope
-    @delivered_scope ||= StepValue.joins(:session, variable_value: :variable)
+    StepValue.joins(:session, variable_value: :variable)
   end
 end
