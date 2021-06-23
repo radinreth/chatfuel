@@ -20,6 +20,7 @@
             %th{:scope => "col"} Total Unique Users
             %th{:scope => "col"} Total Visit
             %th{:scope => "col"} Total Service Delivered
+            %th{:scope => "col"} Most Request Services
         %tbody
           - @provincial_usages.each_with_index do |usage, index|
             %tr
@@ -28,6 +29,11 @@
               %td= usage.unique_user
               %td= usage.visit
               %td= usage.service_delivered
+              %td
+                - variable_id, count, total = usage.most_request_service
+                = variable_id
+                = count
+                = total
 
 != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
     
