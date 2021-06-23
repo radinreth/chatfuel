@@ -1,13 +1,14 @@
 # query options (filter)
 # province filter
 class ProvincialUsage
-  attr_reader :pro_name, :unique_user, :visit, :service_delivered
+  attr_reader :pro_name, :unique_user, :visit, :service_delivered, :most_request_service
 
-  def initialize(pro_name:, unique_user:, visit:, service_delivered:)
+  def initialize(pro_name:, unique_user:, visit:, service_delivered:, most_request_service:)
     @pro_name = pro_name
     @unique_user = unique_user
     @visit = visit
     @service_delivered = service_delivered
+    @most_request_service = most_request_service
   end
 
   def self.within(query)
@@ -16,9 +17,14 @@ class ProvincialUsage
         pro_name: Pumi::Province.find_by_id(pro_code).name_latin,
         unique_user: unique_users(query.options)[pro_code],
         visit: visit(query.options)[pro_code],
-        service_delivered: service_delivered(query.options)[pro_code]
+        service_delivered: service_delivered(query.options)[pro_code],
+        most_request_service: most_request_service(query.options)[pro_code]
       )
     end
+  end
+
+  def self.most_request_service(options)
+    MostRequestService.within(options)
   end
 
   def self.unique_users(options)
@@ -31,6 +37,28 @@ class ProvincialUsage
 
   def self.service_delivered(options)
     ServiceDelivered.within(options)
+  end
+end
+
+class MostRequestService
+  def self.within(options)
+    most_request(options).each_with_object({}).each do |(key, count), cloned|
+      pro_code, variable_value_id = key
+      cloned[pro_code] = [variable_value_id, count, 0] unless cloned[pro_code]
+      cloned[pro_code][-1] += count
+    end
+  end
+
+  def self.most_request(options)
+    StepValue.filter(options.merge(variable_options))\
+              .joins(:session)\
+              .group(:province_id, :variable_value_id)\
+              .order(:province_id, count_all: :desc)\
+              .count
+  end
+
+  def self.variable_options
+    {variable_id: Variable.most_request.id}
   end
 end
 
