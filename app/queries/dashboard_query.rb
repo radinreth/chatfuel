@@ -1,4 +1,5 @@
 class DashboardQuery
+  include Chart::ProvincialUsage
   include Chart::ReportHelper
   attr_reader :options
 
