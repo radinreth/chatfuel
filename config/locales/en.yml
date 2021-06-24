@@ -13,6 +13,8 @@ en:
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
     combo_nav_js: "Page %{page_input} of %{pages}"
     items_selector_js: "Show %{items_input} %{item_name} per page"
+  "0110": Poipet
+  "0212": Kamrieng
   copyright: Developed by 2020 InSTEDD
   role: "Role: %{name}"
   login_as: "Logged in as: %{as}"
@@ -131,45 +133,6 @@ en:
       empty: There is no data yet
     no_session:
       empty: There is no data yet
-  dashboard:
-    title: Dashboard
-    total_user_gender: Information Access by Gender
-    total_user_visit: Total Visits by Type of Service
-    total_user_feedback: Total User Feedback
-    total_user_feedback_groupby_gender: Total Feedback
-    number_of_ticket_tracking: Ticket Tracking(times)
-    both: Both
-    ivr: IVR
-    chatbot: Chatbot
-    province: Province
-    show: Show
-    active_user: Active User
-    total_users: Total Users
-    total_users_accessed: Total Services Delivered
-    total_uniq_users: Total Unique Users
-    average_using_time: Average Using Time
-    most_request_service: Most Request Services
-    like: Like
-    acceptable: Acceptable
-    dislike: Dislike
-    owso_info: OWSO Info
-    feedback: Feedback
-    ticket_tracking: Ticket Tracking
-    overview: User Access
-    accessed: "# Access to OWSO Info"
-    accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
-    submitted: "# Access to OWSO Service(Kamrieng)"
-    submitted_explain: Number of citizen access to OWSO services in Kamrieng district
-    delivered: Delivered
-    completed: Completed
-    choose_dictionary_name: Choose dictionary name
-    choose_dictionary_name_to_agg_gender: Choose dictionary name for aggregate gender
-    type_search: Type your search...
-    district: District
-    all_province: All
-    all_district: All
-    all: All
-    location: Location
   reports:
     accessed_submitted_completed_line_chart:
       no_data: No data
