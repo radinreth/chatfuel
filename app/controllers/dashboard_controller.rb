@@ -20,8 +20,15 @@ class DashboardController < ApplicationController
   def set_gon
     @query = DashboardQuery.new(filter_options)
     gon_data = Gonify.new(@query).chart_data
-    gon_data[:no_data] = I18n.t("no_data")
-    gon_data[:not_available] = I18n.t(:not_available)
-    gon.push(gon_data)
+    gon.push(gon_data.merge(static_gon))
+  end
+
+  def static_gon
+    {
+      no_data: I18n.t("no_data"),
+      not_available: I18n.t(:not_available),
+      start_date: @start_date,
+      end_date: @end_date
+    }
   end
 end
