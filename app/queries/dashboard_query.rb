@@ -15,7 +15,7 @@ class DashboardQuery
   end
 
   def user_unique_count
-    user_unique.size
+    user_unique.length
   end
 
   def user_unique
