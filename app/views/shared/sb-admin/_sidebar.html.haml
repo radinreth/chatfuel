@@ -16,6 +16,13 @@
         = link_to home_path, class: "nav-link" do
           %i.fas.fa-fw.fa-home
           %span= t('sidebar.home')
+    
+    - if policy(:provincial_usage).index?
+      %li.nav-item{ class: css_active_class('provincial_usages') }
+        = link_to provincial_usages_path, class: "nav-link d-flex align-items-center" do
+          %i.fas.fa-fw.fa-circle-notch
+          %span{style: "margin-left: 0.25rem;"}
+            = t('sidebar.provincial_usages')
 
     - if policy(Site).index?
       %li.nav-item{ class: css_active_class('sites') }
