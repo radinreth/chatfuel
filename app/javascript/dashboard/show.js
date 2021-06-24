@@ -86,7 +86,7 @@ OWSO.DashboardShow = (() => {
       serializedParams,
       function (result) {
         chart.data = extractor(result);
-        let max = _.max(flatten(chart.data.datasets));
+        let max = _.max(OWSO.Util.flattenDataset(chart.data.datasets));
         let padding = chart.config.type == "horizontalBar" ? 1.75 : 1.4;
         let suggestedMax = Math.round(max * padding);
 
@@ -99,10 +99,6 @@ OWSO.DashboardShow = (() => {
       },
       "json"
     );
-  }
-
-  function flatten(ds) {
-    return _.flatten(_.map(ds, (d) => d.data));
   }
 
   function loading(spin) {

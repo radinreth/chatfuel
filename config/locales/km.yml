@@ -13,6 +13,8 @@ km:
       multiple_pages: "បង្ហាញ %{item_name} <b>%{from}-%{to}</b> នៃ <b>%{count}</b> ជាចំនួនសរុប"
     combo_nav_js: "ទំព័រ %{page_input} នៃ %{pages}"
     items_selector_js: "បង្ហាញ %{items_input} %{item_name} ក្នុង ១ ទំព័រ"
+  "0110": ប៉ោយប៉ែត
+  "0212": កំរៀង
   copyright: បង្កើតឡើងនៅឆ្នាំ ២០២០ InSTEDD
   role: "តួនាទី៖ %{name}"
   login_as: "បានចូលជា៖ %{as}"
@@ -132,45 +134,6 @@ km:
       empty: មិនទាន់មានទិន្នន័យទេ
     no_session:
       empty: មិនទាន់មានទិន្នន័យទេ
-  dashboard:
-    title: ផ្ទាំងគ្រប់គ្រង
-    total_user_gender: ការទទួលព័ត៌មានរបស់ប្រជាពលរដ្ឋតាមភេទ
-    total_user_visit: ចំនួនដងនៃការចូលទស្សនាសរុបតាមផ្នែកនីមួយៗ
-    total_user_feedback: ចំនួនមតិយោបល់សរុបរបស់អ្នកប្រើប្រាស់
-    total_user_feedback_groupby_gender: ចំនួនមតិយោបល់ បែងចែកតាមភេទ
-    number_of_ticket_tracking: ការតាមដានសំបុត្រ(ចំនួនដង)
-    both: ទាំងពីរ
-    ivr: ខលចូល
-    chatbot: ឆាតបត
-    province: ខេត្ត
-    show: បង្ហាញ
-    active_user: អ្នកប្រើប្រាស់សកម្ម
-    total_users: ចំនួនការចូលមើលសរុប
-    total_users_accessed: ចំនួនការចូលមើលសរុបលើផ្នែកទាំងបី
-    total_uniq_users: ចំនួនអ្នកចូលប្រើសរុប
-    average_using_time: ការប្រើប្រាស់ពេលវេលាជាមធ្យម
-    most_request_service: សេវាច្រកដែលពលរដ្ឋស្វែងរកច្រើនជាងគេ
-    like: ពេញចិត្ត
-    acceptable: អាចទទួលយកបាន
-    dislike: មិនពេញចិត្ត
-    owso_info: ពត៍មានអំពីច្រក
-    feedback: ការវាយតម្លៃ
-    ticket_tracking: ការតាមដានឯកសារ
-    overview: ការប្រើប្រាស់របស់ប្រជាជន
-    accessed: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មាន
-    accessed_explain: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មានពីឧបករណ៍បច្ចេកវិទ្យារបស់គម្រោង OW4C
-    submitted: ចំនួនអ្នកទទួលសេវាច្រក (កំរៀង)
-    submitted_explain: ចំនួនអ្នកទទួលសេវាច្រកចេញចូលតែមួយ​នៅស្រុកកំរៀង
-    delivered: Delivered
-    completed: ការបញ្ចប់
-    choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
-    choose_dictionary_name_to_agg_gender: ជ្រើសរើសពាក្យគន្លឹះដើម្បីចំណាត់ក្រុមតាមភេទ
-    type_search: វាយពាក្យស្វែងរករបស់អ្នក...
-    district: ស្រុក
-    all_province: គ្រប់ខេត្ត
-    all_district: គ្រប់ស្រុក
-    all: គ្រប់ខេត្ត/ក្រុង
-    location: ទីតាំង
   reports:
     accessed_submitted_completed_line_chart:
       no_data: គ្មានទិន្នន័យ

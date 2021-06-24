@@ -1,5 +1,5 @@
-import LineChart from './line_chart'
-import { extractLineDataset } from '../utils/line_chart'
+import LineChart from "./line_chart";
+import { extractLineDataset } from "../utils/line_chart";
 
 class OverviewChart extends LineChart {
   chartId = "chart-overview";
