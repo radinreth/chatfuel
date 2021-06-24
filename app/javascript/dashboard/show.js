@@ -222,7 +222,6 @@ OWSO.DashboardShow = (() => {
         rangeSeparator: " - ",
       },
       defaultDate: [gon.start_date, gon.end_date],
-      // defaultDate: ["2016-10-10", "2016-10-20"],
       onChange: function (selectedDates, dateStr, instance) {
         const [startDate, endDate] = selectedDates;
 
