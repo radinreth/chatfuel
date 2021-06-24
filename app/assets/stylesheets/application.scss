@@ -7,7 +7,8 @@
 @import "startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min";
 @import "sb-admin-webfonts-override";
 @import "startbootstrap-sb-admin-2/css/sb-admin-2.min";
-@import "daterangepicker/daterangepicker";
+// @import "daterangepicker/daterangepicker";
+@import "flatpickr/dist/themes/material_blue";
 
 @import "bootstrap-toggle/css/bootstrap-toggle";
 @import "bootstrap-toggle-custom";
@@ -16,7 +17,7 @@
 @import "share";
 @import "showcase";
 
-// Select One UI: Enhancement over default HTML radio button selection 
+// Select One UI: Enhancement over default HTML radio button selection
 @import "block-options";
 
 @import "sb-admin-custom";
