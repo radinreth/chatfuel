@@ -217,6 +217,7 @@ OWSO.DashboardShow = (() => {
     $(".datepicker_date").flatpickr({
       dateFormat: "Y/m/d",
       mode: "range",
+      minDate: gon.start_date,
       maxDate: "today",
       locale: {
         rangeSeparator: " - ",
