@@ -17,6 +17,12 @@
     }
   }
 
+  // Fixed: Invisible focus when navigate in date range
+  .flatpickr-day:focus {
+    color: #fff !important;
+    background-color: #656565 !important;
+  }
+
   .cog.float {
     position: absolute;
     top: 15px;
