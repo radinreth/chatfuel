@@ -25,6 +25,7 @@ class DashboardController < ApplicationController
 
   def static_gon
     {
+      locale: I18n.locale,
       no_data: I18n.t("no_data"),
       not_available: I18n.t(:not_available),
       start_date: @start_date,

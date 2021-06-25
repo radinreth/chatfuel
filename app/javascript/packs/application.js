@@ -16,6 +16,7 @@ window._ = require("underscore");
 
 import "bootstrap-toggle/js/bootstrap-toggle";
 import flatpickr from "flatpickr";
+import { Khmer } from "flatpickr/dist/l10n/km";
 
 require("application/namespace");
 require("application/util");

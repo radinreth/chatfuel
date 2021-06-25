@@ -210,6 +210,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function renderDatetimepicker() {
+    flatpickr.localize(flatpickr.l10ns[gon.locale]);
     $(".datepicker_date").flatpickr({
       dateFormat: "Y/m/d",
       mode: "range",
