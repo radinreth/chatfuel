@@ -1,5 +1,6 @@
 %h1 PdfTemplates#show
 %p Find me in app/views/pdf_templates/show.html.haml
 
+= link_to "edit", edit_pdf_template_path(@pdf_template)
 = @pdf_template.name
 = @pdf_template.content

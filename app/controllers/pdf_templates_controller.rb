@@ -21,9 +21,16 @@ class PdfTemplatesController < ApplicationController
   end
 
   def edit
+    @pdf_template = PdfTemplate.find params[:id]
   end
 
   def update
+    @pdf_template = PdfTemplate.find params[:id]
+    if @pdf_template.update(pdf_template_params)
+      redirect_to @pdf_template
+    else
+      render :edit
+    end
   end
 
   def destroy

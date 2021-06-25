@@ -32,7 +32,9 @@ Rails.application.routes.draw do
         post :set_criteria
       end
     end
-    resources :pdf_templates
+    resources :pdf_templates do
+      resources :sites, only: :show, module: "pdf_templates"
+    end
 
     resources :sites do
       collection do
