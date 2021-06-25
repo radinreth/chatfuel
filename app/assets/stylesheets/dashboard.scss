@@ -18,10 +18,13 @@
   }
 
   // Fixed: Invisible focus when navigate in date range
-  .flatpickr-day:focus {
-    color: #fff !important;
-    background-color: #656565 !important;
-    border-color: #656565 !important;
+  .flatpickr-day {
+    border-radius: 0 !important;
+    &:focus {
+      color: #fff !important;
+      background-color: #656565 !important;
+      border-color: #656565 !important;
+    }
   }
 
   .cog.float {
