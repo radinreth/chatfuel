@@ -32,6 +32,7 @@ class HomeController < ApplicationController
 
   def set_gon
     gon.push({
+      locale: I18n.locale,
       start_date: @start_date,
       end_date: @end_date
     })
