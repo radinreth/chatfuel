@@ -1,2 +1,5 @@
-%h1 PdfTemplates#index
-%p Find me in app/views/pdf_templates/index.html.haml
+%h1 PdfTemplates
+= link_to 'new pdf template', new_pdf_template_path
+
+- @pdf_templates.each do |template|
+  = template.name

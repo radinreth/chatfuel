@@ -1,8 +1,10 @@
 class PdfTemplatesController < ApplicationController
   def index
+    @pdf_templates = PdfTemplate.all
   end
 
   def new
+    @pdf_template = PdfTemplate.new
   end
 
   def show
