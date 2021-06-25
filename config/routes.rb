@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         post :set_criteria
       end
     end
+    resources :pdf_templates
 
     resources :sites do
       collection do
