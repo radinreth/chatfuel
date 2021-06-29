@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+    %meta{:charset => "utf-8"}
+    %title my app
+
+    = wicked_pdf_stylesheet_link_tag "pdf"
+    = wicked_pdf_javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js", integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A==", crossorigin="anonymous"
+    = wicked_pdf_javascript_pack_tag "pdf"
+
+  %body#pdf
+    = Gon::Base.render_data
+    .wrapper
+      -# %h1 Testing in Layout
+
+      .test-content
+      
+      = yield

@@ -1,0 +1,5 @@
+%h1 My document header
+= @pdf_template.content
+
+- user_visit_locals = { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
+= render partial: "dashboard/total_user_visit", locals: user_visit_locals
