@@ -1,5 +1,7 @@
 %h1 PdfTemplates
 = link_to 'new pdf template', new_pdf_template_path
 
+%ul
 - @pdf_templates.each do |template|
-  = template.name
+  %li
+    = link_to template.name, template

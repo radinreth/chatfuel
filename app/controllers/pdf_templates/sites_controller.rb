@@ -20,6 +20,10 @@ class PdfTemplates::SitesController < ApplicationController
         render pdf: "myfile",
                 template: "pdf_templates/sites/template.html.haml",
                 layout: "pdf",
+                orientation: 'Landscape',
+                lowquality: false,
+                dpi: '300',
+                viewport_size: '1280x1024',
                 javascript_delay: 100 # have to set
       end
     end
@@ -30,7 +34,8 @@ class PdfTemplates::SitesController < ApplicationController
   def set_gon
     @query = DashboardQuery.new(filter_options)
     gon.push({
-      totalUserVisitByCategory: @query.total_users_visit_by_category
+      totalUserVisitByCategory: @query.total_users_visit_by_category,
+      totalUserFeedback: @query.users_feedback,
     })
   end
 

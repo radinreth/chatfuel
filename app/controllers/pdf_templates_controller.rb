@@ -1,6 +1,6 @@
 class PdfTemplatesController < ApplicationController
   def index
-    @pdf_templates = PdfTemplate.all
+    @pdf_templates = PdfTemplate.order(created_at: :desc)
   end
 
   def new

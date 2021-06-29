@@ -11,9 +11,5 @@
 
   %body#pdf
     = Gon::Base.render_data
-    .wrapper
-      -# %h1 Testing in Layout
-
-      .test-content
-      
-      = yield
+    .error-message
+    = yield
