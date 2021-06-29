@@ -1,4 +1,4 @@
-= render( ChartComponent.new(name: title) ) do |c|
+= render_component( ChartComponent.new(name: title) ) do |c|
   - c.with(:subheader) do
     %span{ data: { toggle: "tooltip", title: full_district_list_name } }
       = show_location_detail

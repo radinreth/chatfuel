@@ -49,6 +49,11 @@ module Chatfuel
 
     config.time_zone = 'Bangkok'
     config.action_dispatch.rescue_responses["OmniauthCallbacksController::Forbidden"] = :forbidden
+
+    # incompatible with wicked_pdf
+    # https://github.com/github/view_component/issues/288
+    # https://github.com/github/view_component/pull/358
+    config.view_component.render_monkey_patch_enabled = false
   end
 end
 

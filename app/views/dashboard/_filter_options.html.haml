@@ -17,9 +17,9 @@
         .form-group.mb-0.mr-3.gender-options
           %select.form-control.select.province__select-option{ name: "gender", onchange: "this.form.submit()"}
             %option{ value: "" }= t('all')
-            = render(GenderOptionComponent.new(name: "male"))
-            = render(GenderOptionComponent.new(name: "female"))
-            = render(GenderOptionComponent.new(name: "other"))
+            = render_component(GenderOptionComponent.new(name: "male"))
+            = render_component(GenderOptionComponent.new(name: "female"))
+            = render_component(GenderOptionComponent.new(name: "other"))
 
       .province.d-flex.align-items-center
         = hidden_field '', :platform, value: params[:platform]

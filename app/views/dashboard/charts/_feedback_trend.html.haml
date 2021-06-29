@@ -1,5 +1,5 @@
-= render( ChartComponent.new(name: title, filterable: true) ) do |c|
+= render_component( ChartComponent.new(name: title, filterable: true) ) do |c|
   - c.with(:addon) do
-    = render ChartAddonComponent.new(visibility:collection.blank?, path:"feedback-trend", formater: "feedbackTrend", canvasid: id)
+    = render_component ChartAddonComponent.new(visibility:collection.blank?, path:"feedback-trend", formater: "feedbackTrend", canvasid: id)
   - c.with(:body) { content_tag(:canvas, nil, id: id) }
   - c.with(:hint) { t("hint.owso_feedback_trend") }

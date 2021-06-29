@@ -38,15 +38,15 @@
 
   .form-group
     .block-option.d-flex.justify-content-between
-      = render(SelectComponent.new(value: 0, name: "template[status]")) do
+      = render_component(SelectComponent.new(value: 0, name: "template[status]")) do
         = image_tag "incomplete.svg"
         %p.status-text.m-0= t("templates.index.incomplete")
 
-      = render(SelectComponent.new(value: 1, name: "template[status]")) do
+      = render_component(SelectComponent.new(value: 1, name: "template[status]")) do
         = image_tag "complete.svg"
         %p.status-text.m-0= t("templates.index.completed")
 
-      = render(SelectComponent.new(value: 2, name: "template[status]")) do
+      = render_component(SelectComponent.new(value: 2, name: "template[status]")) do
         = image_tag "incorrect.svg"
         %p.status-text.m-0= t("templates.index.incorrect")
       

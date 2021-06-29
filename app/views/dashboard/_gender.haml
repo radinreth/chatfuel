@@ -1,11 +1,11 @@
 - downloadable = @query.users_visited_by_each_genders.present?
 
-= render(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
+= render_component(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
   - c.with(:config) { open_config_modal("#chooseCriteria") }
   - c.with(:subheader) { subheader }
   - c.with(:hint) { t("hint.total_user_by_gender") }
   - c.with(:body) { content_tag(:canvas, nil, id: id) }
 
-= render(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
+= render_component(DictionaryModalComponent.new(url: set_criteria_dictionaries_path, modal_id: 'chooseCriteria')) do |component|
   - component.with(:body) do
     = render partial: 'dashboard/variable_with_criteria', collection: @variables, as: :variable

@@ -22,7 +22,7 @@
 
             .block-option.d-flex.justify-content-between
               - @roles.each do |role|
-                = render(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
+                = render_component(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
                   %i.fa{ class: get_role(role.name)[:icon] }
                   %p.status-text.m-0= t("roles.#{role.name}")
 
