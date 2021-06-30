@@ -5,7 +5,7 @@ class PdfTemplates::SitesController < ApplicationController
   before_action :set_gon
 
   def show
-    @pdf_template = PdfTemplate.find(3)
+    @pdf_template = PdfTemplate.find(3).decorate
     @site = Site.find_by(code: params[:id])
 
     # liquid parse
