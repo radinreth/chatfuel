@@ -5,8 +5,7 @@ class PdfTemplates::SitesController < ApplicationController
   before_action :set_gon
 
   def show
-    @pdf_template = PdfTemplate.find(params[:pdf_template_id])
-    @pdf_template = PdfTemplate.first
+    @pdf_template = PdfTemplate.find(3)
     @site = Site.find_by(code: params[:id])
 
     # liquid parse
@@ -23,6 +22,7 @@ class PdfTemplates::SitesController < ApplicationController
                 orientation: 'Landscape',
                 lowquality: false,
                 dpi: '300',
+                encoding: 'utf8',
                 viewport_size: '1280x1024',
                 javascript_delay: 100 # have to set
       end

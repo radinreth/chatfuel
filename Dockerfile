@@ -7,6 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
   curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   apt-get update -qq && \
   apt-get install -y nodejs yarn postgresql-client && \
+  apt-get install fonts-khmeros && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
