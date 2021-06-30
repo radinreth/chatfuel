@@ -2,6 +2,7 @@ class PdfTemplates::SitesController < ApplicationController
   # skip_before_action :authenticate_user_with_guisso!
   include Filterable
 
+  before_action :set_query
   before_action :set_gon
 
   def show
@@ -31,8 +32,11 @@ class PdfTemplates::SitesController < ApplicationController
 
   private
 
-  def set_gon
+  def set_query
     @query = DashboardQuery.new(filter_options)
+  end
+
+  def set_gon
     gon.push({
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,

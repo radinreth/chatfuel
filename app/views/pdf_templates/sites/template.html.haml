@@ -1,12 +1,3 @@
 %h1 My document header
 
 != @pdf_template.render
-
-.container-fluid
-  .row.d-table-row
-    .col.w-50.d-table-cell
-      - user_visit_locals = { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
-      = render partial: "dashboard/total_user_visit", locals: user_visit_locals
-    .col.w-50.d-table-cell
-      - user_feedback_locals = { id: "total_user_feedback", title: t("dashboard.total_user_feedback") }
-      = render partial: "dashboard/total_user_feedback", locals: user_feedback_locals
