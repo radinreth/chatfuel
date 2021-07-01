@@ -12,27 +12,27 @@ module LiquidServices
 
     def summary_html
       summary_html = <<~HTML
-      .container-fluid
-        .row.d-table-row
+      .container-fluid.d-table{ style: "page-break-before: always;"}
+        .row.d-table-row{ style: "margin: 0 auto;"}
           .col.w-50.d-table-cell
-            .card.shadow.mb-4{ role: "figure" }
+            .card.mb-4{ role: "figure", style: "width: 600px; border: 1px solid #dfdfdf; margin: 0 auto;" }
               .card-header.position-relative
                 .d-flex.flex-row.align-items-center.justify-content-between
                   .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
                     %span.chart-name.text-primary.d-inline-block.mr-1.chart-head.text-capitalize
                       = I18n.t("dashboard.total_user_visit")
               .card-body
-                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: 483px; height: 250px"}
+                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: inherit;"}
                   %canvas#chart_total_user_visit
           .col.w-50.d-table-cell
-            .card.shadow.mb-4{ role: "figure" }
+            .card.mb-4{ role: "figure", style: "width: 600px; border: 1px solid #dfdfdf; margin: 0 auto;" }
               .card-header.position-relative
                 .d-flex.flex-row.align-items-center.justify-content-between
                   .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
                     %span.chart-name.text-primary.d-inline-block.mr-1.chart-head.text-capitalize
                       = I18n.t("dashboard.total_user_feedback")
               .card-body
-                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: 483px; height: 250px"}
+                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: inherit;"}
                   %canvas#total_user_feedback
       HTML
 
@@ -42,17 +42,17 @@ module LiquidServices
 
     def feedback_sub_categories_html
       html = <<~HTML
-      .container-fluid
-        .row.d-table-row
-          .col.w-100.d-table-cell
-            .card.shadow.mb-4{ role: "figure" }
+      .container-fluid{ style: "page-break-before: always;"}
+        .row
+          .col
+            .card.mb-4{ role: "figure", style: "width: 992px; border: 1px solid #dfdfdf; margin: 0 auto;" }
               .card-header.position-relative
                 .d-flex.flex-row.align-items-center.justify-content-between
                   .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
                     %span.chart-name.text-primary.d-inline-block.mr-1.chart-head.text-capitalize
                       = I18n.t("dashboard.total_user_visit")
               .card-body
-                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: 483px; height: 250px"}
+                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: inherit; "}
                   %canvas#chart_feedback_by_sub_category
       HTML
 
@@ -62,17 +62,17 @@ module LiquidServices
 
     def most_popular_service_html
       html = <<~HTML
-      .container-fluid
-        .row.d-table-row
-          .col.w-100.d-table-cell
-            .card.shadow.mb-4{ role: "figure" }
+      .container-fluid{ style: "page-break-before: always;"}
+        .row
+          .col
+            .card.mb-4{ role: "figure", style: "width: 992px; border: 1px solid #dfdfdf; margin: 0 auto;" }
               .card-header.position-relative
                 .d-flex.flex-row.align-items-center.justify-content-between
                   .h5.m-0.font-weight-bold.d-flex.justify-content-center.align-items-center
                     %span.chart-name.text-primary.d-inline-block.mr-1.chart-head.text-capitalize
                       = I18n.t("welcomes.number_access_by_main_services")
               .card-body
-                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: 483px; height: 250px"}
+                .chart-wrapper.pt-4.d-flex.justify-content-around.align-items-center.position-relative{ style: "width: inherit;"}
                   %canvas#chart_number_access_by_main_services
       HTML
 
