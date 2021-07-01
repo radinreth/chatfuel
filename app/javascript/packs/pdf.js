@@ -5,6 +5,7 @@ window.chartDataLabels = require("chartjs-plugin-datalabels/dist/chartjs-plugin-
 // import ChartDataLabels from "chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels";
 window._ = require("underscore");
 import { extractDonutDataset } from "../utils/donut_chart";
+import { extractScatterDataset } from "../utils/line_chart/scatter_chart";
 import { suggestedMax } from "../utils/bar_chart";
 import { labels } from "../data/donutchart/defaults";
 
@@ -33,11 +34,68 @@ $(document).ready(function () {
     totalVisitChart();
     totalFeedbackChart();
     feedbackSubCategories();
-    // userVisit.render();
+    mainServiceAccess();
   } catch (e) {
     $(".error-message").html(e.message);
   }
 });
+
+function mainServiceAccess() {
+  try {
+    let data = extractScatterDataset(gon.accessMainService);
+    new Chart("chart_number_access_by_main_services", {
+      type: "line",
+      data: data,
+      options: {
+        legend: { display: false },
+        layout: {
+          padding: {
+            right: 50,
+          },
+        },
+        elements: {
+          point: {
+            pointStyle: "circle",
+          },
+        },
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                autoSkip: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                suggestedMax: suggestedMax(
+                  _.flatten(_.map(data.datasets, (ds) => ds.data))
+                ),
+              },
+            },
+          ],
+        },
+        animation: false,
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            rotation: 0,
+            borderRadius: 0,
+            textAlign: "center",
+            backgroundColor: "#2F3559",
+            color: "#FFF",
+            padding: 3,
+            font: { size: 10, weight: "normal" },
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 function feedbackSubCategories() {
   try {
@@ -48,7 +106,6 @@ function feedbackSubCategories() {
       type: "bar",
       data: data,
       options: {
-        // responsive: false,
         legend: {
           display: true,
           labels: { boxWidth: 12 },

@@ -43,7 +43,8 @@ class PdfTemplates::SitesController < ApplicationController
     gon.push({
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,
-      feedbackSubCategories: @query.feedback_sub_categories[@site.code]
+      feedbackSubCategories: @query.feedback_sub_categories[@site.code],
+      accessMainService: @query.access_main_service
     })
   end
 
