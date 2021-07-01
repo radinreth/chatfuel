@@ -1,7 +1,7 @@
 require 'haml'
 
 module LiquidServices
-  class ChartLiquid < BaseLiquid
+  class ChartLiquid
     def to_h
       { 'summary' => html }
     end

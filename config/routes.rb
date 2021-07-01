@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       end
     end
     resources :pdf_templates do
-      resources :sites, only: :show, module: "pdf_templates"
+      resources :sites, only: :show, module: "pdf_templates", param: :district_code
     end
 
     resources :sites do

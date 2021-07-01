@@ -81,6 +81,14 @@ class Site < ApplicationRecord
     "https://www.google.com/maps/dir/current+location/#{lat},#{lng}"
   end
 
+  def name_i18n
+    send("name_#{I18n.locale}".to_sym)
+  end
+
+  def pumi_province
+    Pumi::Province.find_by_id(province_id) if province_id
+  end
+
   private
     def whitelist_format
       return true if whitelist == '*'

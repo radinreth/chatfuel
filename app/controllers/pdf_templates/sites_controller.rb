@@ -1,16 +1,13 @@
 class PdfTemplates::SitesController < ApplicationController
-  # skip_before_action :authenticate_user_with_guisso!
   include Filterable
 
-  before_action :set_query
+  before_action :default_start_date
+  before_action :set_daterange
+  before_action :set_site
   before_action :set_gon
 
   def show
     @pdf_template = PdfTemplate.find(3).decorate
-    @site = Site.find_by(code: params[:id])
-
-    # liquid parse
-    # Tilt
     pdf_html = render_to_string(template: "pdf_templates/sites/template.html.haml", layout: "layouts/pdf.html.haml", encoding: "UTF-8")
 
     respond_to do |format|
@@ -22,7 +19,7 @@ class PdfTemplates::SitesController < ApplicationController
                 layout: "pdf",
                 orientation: 'Landscape',
                 lowquality: false,
-                dpi: '300',
+                dpi: 300,
                 encoding: 'utf8',
                 viewport_size: '1280x1024',
                 javascript_delay: 100 # have to set
@@ -30,13 +27,18 @@ class PdfTemplates::SitesController < ApplicationController
     end
   end
 
+  def set_site
+    @site = Site.find_by(code: params[:district_code])
+  end
+
   private
 
-  def set_query
-    @query = DashboardQuery.new(filter_options)
+  def default_start_date
+    Setting.dashboard_start_date.strftime('%Y/%m/%d')
   end
 
   def set_gon
+    @query = DashboardQuery.new(filter_options)
     gon.push({
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,

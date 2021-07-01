@@ -61,7 +61,7 @@ function totalFeedbackChart() {
 function totalVisitChart() {
   try {
     let data = extractDonutDataset(gon.totalUserVisitByCategory);
-    $(".error-message").text(chartDataLabels);
+    // $(".error-message").text(chartDataLabels);
 
     new Chart("chart_total_user_visit", {
       data,

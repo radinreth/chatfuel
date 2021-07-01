@@ -1,20 +1,24 @@
 module LiquidServices
   class BaseLiquid
+    def initialize(site)
+      @site = site
+    end
+
     def to_h
       { 
-        'site' => site.to_h,
-        'chart' => chart.to_h
+        'site' => site_locals.to_h,
+        'chart' => chart_locals.to_h
       }
     end
 
     private
 
-    def site
-      @site ||= SiteLiquid.new
+    def site_locals
+      @site_locals ||= SiteLiquid.new(@site)
     end
 
-    def chart
-      @chart ||= ChartLiquid.new
+    def chart_locals
+      @chart_locals ||= ChartLiquid.new
     end
   end
 end
