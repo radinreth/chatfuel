@@ -21,6 +21,7 @@ class PdfTemplates::SitesController < ApplicationController
                 lowquality: false,
                 dpi: 300,
                 encoding: 'utf8',
+                page_size: 'A4',
                 viewport_size: '1280x1024',
                 javascript_delay: 100 # have to set
       end
@@ -42,6 +43,7 @@ class PdfTemplates::SitesController < ApplicationController
     gon.push({
       totalUserVisitByCategory: @query.total_users_visit_by_category,
       totalUserFeedback: @query.users_feedback,
+      feedbackSubCategories: @query.feedback_sub_categories[@site.code]
     })
   end
 

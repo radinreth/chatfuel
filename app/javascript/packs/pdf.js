@@ -5,6 +5,7 @@ window.chartDataLabels = require("chartjs-plugin-datalabels/dist/chartjs-plugin-
 // import ChartDataLabels from "chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels";
 window._ = require("underscore");
 import { extractDonutDataset } from "../utils/donut_chart";
+import { suggestedMax } from "../utils/bar_chart";
 import { labels } from "../data/donutchart/defaults";
 
 Chart.defaults.global.plugins.datalabels = {
@@ -31,11 +32,80 @@ $(document).ready(function () {
   try {
     totalVisitChart();
     totalFeedbackChart();
+    feedbackSubCategories();
     // userVisit.render();
   } catch (e) {
     $(".error-message").html(e.message);
   }
 });
+
+function feedbackSubCategories() {
+  try {
+    let { labels, dataset } = gon.feedbackSubCategories;
+    let data = { labels, datasets: _.map(dataset, (el) => el) };
+
+    new Chart("chart_feedback_by_sub_category", {
+      type: "bar",
+      data: data,
+      options: {
+        // responsive: false,
+        legend: {
+          display: true,
+          labels: { boxWidth: 12 },
+        },
+        plugins: {
+          datalabels: {
+            anchor: "end",
+            align: "end",
+            color: "#333",
+            borderWidth: 0,
+            padding: 0,
+            backgroundColor: undefined,
+            display: true,
+            textAlign: "center",
+            font: {
+              weight: "normal",
+            },
+            formatter: function (value, context) {
+              let { dataTitles } = context.dataset;
+              if (dataTitles == undefined) return value;
+              else
+                return value > 0
+                  ? dataTitles[context.dataIndex] + ":" + value
+                  : gon.not_available;
+            },
+          },
+        },
+        cutoutPercentage: 80,
+        animation: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                suggestedMax: suggestedMax(
+                  _.flatten(_.map(data.datasets, (ds) => ds.data))
+                ),
+              },
+            },
+          ],
+          xAxes: [
+            {
+              maxBarThickness: 50,
+              ticks: {
+                beginAtZero: true,
+                maxRotation: 0,
+                minRotation: 0,
+              },
+            },
+          ],
+        },
+      },
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
 
 function totalFeedbackChart() {
   try {
