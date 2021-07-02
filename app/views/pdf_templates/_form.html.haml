@@ -9,5 +9,9 @@
         #editor-container{ style: "height: 30rem; width: 100%; " }
           = raw @pdf_template.content
 
+      .available-keys.mb-4
+        - f.object.decorate.variables.each do |variable|
+          %span.badge.badge-secondary= variable
+
       = f.submit t("pdf_templates.save"), class: "btn btn-primary"
       = link_to t("pdf_templates.cancel"), pdf_templates_path, class: "btn btn-secondary"
