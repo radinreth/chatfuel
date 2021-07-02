@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_094129) do
   create_table "pdf_templates", force: :cascade do |t|
     t.string "name", null: false
     t.text "content", default: ""
-    t.string "lang_code"
+    t.string "lang_code", default: "en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

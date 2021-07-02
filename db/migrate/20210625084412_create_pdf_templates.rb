@@ -3,7 +3,7 @@ class CreatePdfTemplates < ActiveRecord::Migration[6.0]
     create_table :pdf_templates do |t|
       t.string :name, null: false
       t.text :content, default: ""
-      t.string :lang_code
+      t.string :lang_code, default: "en"
 
       t.timestamps
     end
