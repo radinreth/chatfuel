@@ -1,6 +1,10 @@
 = simple_form_for @pdf_template do |f|
   = f.input :name
-  = f.rich_text_area :content
+  .form-group
+    = f.label :content
+    = f.input_field :content, as: :hidden, class: "pdf_template_content"
+    #editor-container{ style: "height: 30rem; width: 100%; " }
+      = raw @pdf_template.content
   = f.input :lang_code
 
   = f.submit

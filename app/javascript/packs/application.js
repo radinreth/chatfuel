@@ -13,6 +13,7 @@ require("select2");
 
 require("application/pumi");
 window._ = require("underscore");
+import "./quill-editor.js";
 
 import "bootstrap-toggle/js/bootstrap-toggle";
 import flatpickr from "flatpickr";

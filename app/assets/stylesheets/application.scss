@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
 @import url("https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&display=swap");
 
-@import "trix/dist/trix.css";
-@import "actiontext";
+// @import "trix/dist/trix.css";
+// @import "actiontext";
+@import "quill/dist/quill.core.css";
+@import "quill/dist/quill.snow.css";
+@import "quill/dist/quill.bubble.css";
+
 @import "bootstrap/scss/bootstrap";
 @import "select2/dist/css/select2.min";
 @import "select2-bootstrap-theme/dist/select2-bootstrap.min";
