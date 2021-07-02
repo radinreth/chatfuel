@@ -12,7 +12,7 @@ module LiquidServices
 
     def summary_html
       summary_html = <<~HTML
-      .container-fluid.d-table{ style: "page-break-before: always;"}
+      .bs.container-fluid.d-table{ style: "page-break-before: always;"}
         .row.d-table-row{ style: "margin: 0 auto;"}
           .col.w-50.d-table-cell
             .card.mb-4{ role: "figure", style: "width: 600px; border: 1px solid #dfdfdf; margin: 0 auto;" }

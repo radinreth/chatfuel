@@ -10,5 +10,4 @@
 #  updated_at :datetime         not null
 #
 class PdfTemplate < ApplicationRecord
-  has_rich_text :content
 end

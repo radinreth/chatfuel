@@ -9,7 +9,7 @@
     = wicked_pdf_javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js", integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A==", crossorigin="anonymous"
     = wicked_pdf_javascript_pack_tag "pdf"
 
-  %body#pdf
+  %body#pdf.ql-editor
     = Gon::Base.render_data
     .error-message
     = yield
