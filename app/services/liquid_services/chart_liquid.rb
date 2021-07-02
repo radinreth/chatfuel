@@ -12,7 +12,7 @@ module LiquidServices
 
     def summary_html
       summary_html = <<~HTML
-      .bs.container-fluid.d-table{ style: "page-break-before: always;"}
+      .bs.container-fluid.d-table.nobreak
         .row.d-table-row{ style: "margin: 0 auto;"}
           .col.w-50.d-table-cell
             .card.mb-4{ role: "figure", style: "width: 600px; border: 1px solid #dfdfdf; margin: 0 auto;" }
@@ -42,7 +42,7 @@ module LiquidServices
 
     def feedback_sub_categories_html
       html = <<~HTML
-      .container-fluid{ style: "page-break-before: always;"}
+      .container-fluid
         .row
           .col
             .card.mb-4{ role: "figure", style: "width: 992px; border: 1px solid #dfdfdf; margin: 0 auto;" }
@@ -62,7 +62,7 @@ module LiquidServices
 
     def most_popular_service_html
       html = <<~HTML
-      .container-fluid{ style: "page-break-before: always;"}
+      .container-fluid
         .row
           .col
             .card.mb-4{ role: "figure", style: "width: 992px; border: 1px solid #dfdfdf; margin: 0 auto;" }
