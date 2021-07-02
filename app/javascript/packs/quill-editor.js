@@ -36,9 +36,7 @@ $(document).on("turbolinks:load", function () {
   let $form = $("form");
   if ($form) {
     $form.submit(function (e) {
-      // e.preventDefault();
       if (quill != undefined) {
-        debugger;
         $("#pdf_template_content").val(quill.root.innerHTML);
       }
     });

@@ -12,6 +12,7 @@
     "@yaireo/tagify": "^3.6.10",
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "4.3.1",
     "bootstrap-toggle": "^2.2.2",
     "chart.js": "^2.9.4",

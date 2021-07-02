@@ -1,9 +1,8 @@
-// import { userVisit } from "../charts/total_user_visit_by_category_chart";
+require("babel-polyfill");
 
-// var Chart = require("chart.js/dist/Chart.bundle");
 window.chartDataLabels = require("chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels");
-// import ChartDataLabels from "chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels";
 window._ = require("underscore");
+
 import { extractDonutDataset } from "../utils/donut_chart";
 import { extractScatterDataset } from "../utils/line_chart/scatter_chart";
 import { suggestedMax } from "../utils/bar_chart";
@@ -188,7 +187,6 @@ function totalFeedbackChart() {
 function totalVisitChart() {
   try {
     let data = extractDonutDataset(gon.totalUserVisitByCategory);
-    // $(".error-message").text(chartDataLabels);
 
     new Chart("chart_total_user_visit", {
       data,
