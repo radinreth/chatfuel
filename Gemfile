@@ -12,7 +12,7 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "alto_guisso", github: "instedd/alto_guisso", branch: "master"
 gem "alto_guisso_rails", github: "instedd/alto_guisso_rails", branch: "rails-5.1"
-gem "bootsnap", require: false
+gem "bootsnap", ">= 1.4.2", require: false
 gem "devise", "~> 4.7.1"
 gem "jquery-rails", "~> 4.3.5"
 gem "verboice", "~> 0.7.0"

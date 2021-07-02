@@ -550,7 +550,7 @@ DEPENDENCIES
   alto_guisso!
   alto_guisso_rails!
   annotate (~> 3.1.0)
-  bootsnap
+  bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.1)
