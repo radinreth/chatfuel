@@ -10,4 +10,5 @@
 #  updated_at :datetime         not null
 #
 class PdfTemplate < ApplicationRecord
+  validates :name, :lang_code, presence: true
 end
