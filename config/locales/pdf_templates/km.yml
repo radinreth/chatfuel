@@ -1,0 +1,10 @@
+km:
+  pdf_templates:
+    title: គម្រូ PDF
+    name: ឈ្មោះ
+    lang_code: ភាសា
+    created_at: កាលបរិច្ឆេទបង្កើត
+    new: បង្កើតគម្រូ PDF ថ្មី
+    edit: កែប្រែគម្រូ PDF
+    save: រក្សាទុក
+    cancel: បោះបង់

@@ -1,6 +1,6 @@
 class PdfTemplatesController < ApplicationController
   def index
-    @pdf_templates = PdfTemplate.order(created_at: :desc)
+    @pagy, @pdf_templates = pagy(PdfTemplate.order(created_at: :desc))
   end
 
   def new
@@ -34,6 +34,9 @@ class PdfTemplatesController < ApplicationController
   end
 
   def destroy
+    @pdf_template = PdfTemplate.find params[:id]
+    @pdf_template.destroy
+    redirect_to action: :index
   end
 
   private

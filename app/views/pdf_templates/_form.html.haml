@@ -1,12 +1,13 @@
-= simple_form_for @pdf_template do |f|
-  = f.input :name
-  .form-group
-    = f.label :content
-    = f.input_field :content, as: :hidden, class: "pdf_template_content"
-    #editor-container{ style: "height: 30rem; width: 100%; " }
-      = raw @pdf_template.content
-  = f.input :lang_code
+.card.shadow.mb-4
+  .card-body
+    = simple_form_for @pdf_template do |f|
+      = f.input :name
+      = f.input :lang_code
+      .form-group
+        = f.label :content
+        = f.input_field :content, as: :hidden, class: "pdf_template_content"
+        #editor-container{ style: "height: 30rem; width: 100%; " }
+          = raw @pdf_template.content
 
-  = f.submit
-
--# = javascript_pack_tag "quill-editor", 'data-turbolinks-track': 'reload'
+      = f.submit t("pdf_templates.save"), class: "btn btn-primary"
+      = link_to t("pdf_templates.cancel"), pdf_templates_path, class: "btn btn-secondary"

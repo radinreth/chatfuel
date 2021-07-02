@@ -1,0 +1,10 @@
+en:
+  pdf_templates:
+    title: PDF template
+    name: Name
+    lang_code: Language code
+    created_at: Created at
+    new: New PDF template
+    edit: Edit PDF template
+    save: Save
+    cancel: Cancel
