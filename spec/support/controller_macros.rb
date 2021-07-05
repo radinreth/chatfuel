@@ -1,9 +1,9 @@
 module ControllerMacros
   def login_system_admin
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env["devise.mapping"] = Devise.mappings[:user] if @request.present?
       system_admin = create(:user, :system_admin)
-      system_admin.confirm!
+      system_admin.confirm
       sign_in system_admin
     end
   end
