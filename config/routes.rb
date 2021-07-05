@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :pdf_templates
-    get '/sites/:district_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show', param: 'district_code', defaults: { format: "pdf" }
+    get '/sites/:district_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show', defaults: { format: "pdf" }
 
     resources :sites do
       collection do
