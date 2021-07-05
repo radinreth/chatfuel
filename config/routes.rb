@@ -32,9 +32,9 @@ Rails.application.routes.draw do
         post :set_criteria
       end
     end
-    resources :pdf_templates do
-      resources :sites, only: :show, module: "pdf_templates", param: :district_code
-    end
+
+    resources :pdf_templates
+    get '/sites/:district_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show', param: 'district_code', defaults: { format: "pdf" }
 
     resources :sites do
       collection do
