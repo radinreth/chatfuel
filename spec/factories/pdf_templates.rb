@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :pdf_template do
-    name { "MyString" }
-    content { "MyText" }
-    lang_code { "MyString" }
+    name { "pdf title" }
+    content { "pdf content" }
+    lang_code { ['en', 'km'].sample }
   end
 end
