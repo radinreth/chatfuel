@@ -1,4 +1,3 @@
-import { DirectUpload } from "@rails/activestorage";
 import ImageResize from "@taoqf/quill-image-resize-module/image-resize.min";
 import Quill from "quill/quill";
 
@@ -22,7 +21,7 @@ $(document).on("turbolinks:load", function () {
             "code",
             "link",
           ],
-          ["blockquote", "code-block", "image"],
+          ["blockquote", "code-block"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ align: ["center", "right", "justify", false] }],
           [{ indent: "-1" }, { indent: "+1" }],
