@@ -50,10 +50,12 @@ module Chatfuel
     config.time_zone = 'Bangkok'
     config.action_dispatch.rescue_responses["OmniauthCallbacksController::Forbidden"] = :forbidden
 
-    # incompatible with wicked_pdf
+    # incompatible issue between wicked_pdf and view_component gems
     # https://github.com/github/view_component/issues/288
     # https://github.com/github/view_component/pull/358
+    # 1. add this option
     config.view_component.render_monkey_patch_enabled = false
+    # 2. views: change `render` to `render_component`
   end
 end
 
