@@ -1,5 +1,5 @@
 class PdfTemplatesController < ApplicationController
-  before_action :set_pdf_template
+  before_action :set_pdf_template, only: [:show, :edit, :update, :destroy]
 
   def index
     @pagy, @pdf_templates = pagy(PdfTemplate.order(created_at: :desc))

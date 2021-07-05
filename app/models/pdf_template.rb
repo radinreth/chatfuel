@@ -10,8 +10,8 @@
 #  updated_at :datetime         not null
 #
 class PdfTemplate < ApplicationRecord
-  enum lang_code: { en: :en, km: :km }
+  ALLOWED_LANGUAGE_CODES = I18n.available_locales.map(&:to_s)
 
-  validates :name, :lang_code, presence: true
-  validates :lang_code, inclusion: { in: I18n.available_locales.map(&:to_s) }
+  validates :name, presence: true
+  validates :lang_code, inclusion: { in: ALLOWED_LANGUAGE_CODES }
 end

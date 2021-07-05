@@ -2,7 +2,7 @@
   .card-body
     = simple_form_for @pdf_template do |f|
       = f.input :name
-      = f.input :lang_code, label: t("pdf_templates.language_code"), collection: PdfTemplate.lang_codes, label_method: lambda { |o| t("pdf_templates.#{o[0]}") }, include_blank: false
+      = f.input :lang_code, label: t("pdf_templates.language_code"), collection: PdfTemplate::ALLOWED_LANGUAGE_CODES, label_method: lambda { |lang_code| t("pdf_templates.#{lang_code}") }, include_blank: false
       .form-group
         = f.label :content
         = f.input_field :content, as: :hidden, class: "pdf_template_content"

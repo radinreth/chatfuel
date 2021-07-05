@@ -10,10 +10,10 @@ class PdfTemplates::SitesController < ApplicationController
     @pdf_template = PdfTemplate.find(params[:pdf_template_id]).decorate
 
     respond_to do |format|
-      format.html { render template: 'pdf_templates/sites/template.html.haml', layout: 'layouts/pdf.html.haml' }
+      format.html { render template: 'pdf_templates/sites/template', layout: 'pdf' }
       format.pdf do
         render pdf: pdf_name,
-                template: 'pdf_templates/sites/template.html.haml',
+                template: 'pdf_templates/sites/template.html',
                 layout: 'pdf',
                 orientation: 'Portrait',
                 lowquality: false,
@@ -21,7 +21,8 @@ class PdfTemplates::SitesController < ApplicationController
                 encoding: 'utf8',
                 page_size: 'A4',
                 header: { right: '[page] of [topage]' },
-                javascript_delay: 100 # have to set ( delay for chartjs to execute)
+                # Delay for chartjs to execute before render pdf
+                javascript_delay: 100
       end
     end
   end
