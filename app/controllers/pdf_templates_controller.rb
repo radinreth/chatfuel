@@ -1,4 +1,6 @@
 class PdfTemplatesController < ApplicationController
+  before_action :set_pdf_template
+
   def index
     @pagy, @pdf_templates = pagy(PdfTemplate.order(created_at: :desc))
   end
@@ -8,7 +10,6 @@ class PdfTemplatesController < ApplicationController
   end
 
   def show
-    @pdf_template = PdfTemplate.find params[:id]
   end
 
   def create
@@ -21,11 +22,9 @@ class PdfTemplatesController < ApplicationController
   end
 
   def edit
-    @pdf_template = PdfTemplate.find params[:id]
   end
 
   def update
-    @pdf_template = PdfTemplate.find params[:id]
     if @pdf_template.update(pdf_template_params)
       redirect_to @pdf_template
     else
@@ -34,12 +33,15 @@ class PdfTemplatesController < ApplicationController
   end
 
   def destroy
-    @pdf_template = PdfTemplate.find params[:id]
     @pdf_template.destroy
     redirect_to action: :index
   end
 
   private
+
+  def set_pdf_template
+    @pdf_template = PdfTemplate.find params[:id]
+  end
 
   def pdf_template_params
     params.require(:pdf_template).permit(:name, :content, :lang_code)
