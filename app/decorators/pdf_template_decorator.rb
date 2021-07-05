@@ -9,16 +9,17 @@ class PdfTemplateDecorator < ApplicationDecorator
   end
 
   def variables
-    hashes.keys.each_with_object([]) do |k, arr|
-      hashes[k].keys.each { |k2| arr << "{{#{k}.#{k2}}}" }
+    hashes.keys.each_with_object([]) do |outer_key, arr|
+      hashes[outer_key].keys.each do |inner_key|
+        arr << "{{#{outer_key}.#{inner_key}}}"
+      end
     end
-  rescue
-    []
   end
 
   private
 
   def hashes
+    return {} unless Site.exists?
     LiquidServices::BaseLiquid.new(Site.first).to_h
   end
 
