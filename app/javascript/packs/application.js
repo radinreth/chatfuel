@@ -38,6 +38,3 @@ require("view/ticket");
 require("view/chart");
 require("view/sidebar_toggle");
 require("view/users");
-
-require("trix");
-require("@rails/actiontext");
