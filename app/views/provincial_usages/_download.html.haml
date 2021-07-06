@@ -1,6 +1,13 @@
-.dropdown
+.dropdown.float-right
   %button#download.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-    Download
+    %fa.fas.fa-download
+    = t "provincial_usages.download"
   .dropdown-menu{"aria-labelledby" => "download"}
-    = link_to 'CSV', url_for(format: :csv), class: 'dropdown-item', target: '_blank'
-    = link_to 'Image (png)', '#', id: 'downloadImage', class: 'dropdown-item'
+    = link_to url_for(format: :csv), class: 'dropdown-item', target: '_blank' do
+      %i.fa.fas.fa-file-csv
+      %span= t "provincial_usages.csv"
+    = link_to '#', id: 'downloadImage', class: 'dropdown-item' do
+      %i.fa.fas.fa-image
+      %span= t "provincial_usages.image"
+
+.clearfix
