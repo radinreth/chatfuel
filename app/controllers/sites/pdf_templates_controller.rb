@@ -31,7 +31,7 @@ module Sites
     end
 
     def set_site
-      @site = Site.find_by(code: params[:district_code])
+      @site = Site.find_by(code: params[:site_code])
     end
 
     private

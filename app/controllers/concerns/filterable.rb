@@ -23,9 +23,10 @@ module Filterable
   end
 
   def params_district_code
-    return [] unless params['district_code'].present?
+    district_codes = params['district_code'] || params['site_code']
+    return [] unless district_codes.present?
 
-    Array.wrap(params['district_code']).map { |code| code.split(",") }.flatten
+    Array.wrap(district_codes).map { |code| code.split(",") }.flatten
   end
 
   def set_location_filter

@@ -9,7 +9,7 @@ RSpec.describe Sites::PdfTemplatesController, type: :controller do
 
     context 'when format=html' do
       it 'renders html template' do
-        get :show, params: { district_code: site.code, id: pdf_template.id }
+        get :show, params: { site_code: site.code, id: pdf_template.id }
 
         expect(response).to render_template('sites/pdf_templates/show.html')
       end
@@ -17,7 +17,7 @@ RSpec.describe Sites::PdfTemplatesController, type: :controller do
 
     context 'when format=pdf' do
       it 'renders html template' do
-        get :show, params: { district_code: site.code, id: pdf_template.id }, format: "pdf"
+        get :show, params: { site_code: site.code, id: pdf_template.id }, format: "pdf"
 
         expect(assigns[:pdf_template]).to be_decorated
         expect(response).to render_template('sites/pdf_templates/show.html')
