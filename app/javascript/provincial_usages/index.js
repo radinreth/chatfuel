@@ -1,5 +1,6 @@
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
+window.moment = require("moment/moment");
 
 OWSO.Provincial_usagesIndex = (() => {
   function init() {
@@ -16,7 +17,10 @@ OWSO.Provincial_usagesIndex = (() => {
           style: { color: "black" },
         })
         .then(function (dataUrl) {
-          download(dataUrl, "report.png");
+          download(
+            dataUrl,
+            `provincial_usages-${moment().format("YMMDDHmmss")}.png`
+          );
         })
         .catch(function (err) {
           console.log(err.message);
