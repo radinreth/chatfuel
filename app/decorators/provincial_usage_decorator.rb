@@ -12,6 +12,9 @@ class ProvincialUsageDecorator < ApplicationDecorator
   end
 
   def most_request
-    h.render MostRequestUsageComponent.new(item: most_request_service)
+    return "" unless most_request_service.present?
+
+    name, count, total = most_request_service
+    "#{name} (#{count}/#{total})"
   end
 end
