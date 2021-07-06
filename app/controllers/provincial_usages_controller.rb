@@ -1,5 +1,4 @@
 class ProvincialUsagesController < ApplicationController
-  respond_to :html, :csv
   include Filterable
 
   before_action :default_start_date
@@ -9,10 +8,20 @@ class ProvincialUsagesController < ApplicationController
 
   def index
     @provincial_usages = ProvincialUsageDecorator.decorate_collection(@query.provincial_usages)
-    respond_with(@provincial_usages)
+    respond_to do |format|
+      format.html
+      format.csv {
+        response.headers['Content-Disposition'] = "attachment; filename=\"#{csv_file_name}\""
+        render csv: @provincial_usages
+      }
+    end
   end
 
   private
+
+  def csv_file_name
+    "provincial_usages-#{DateTime.current.strftime("%Y%m%d%H%M%S")}.csv"
+  end
 
   def set_query
     @query ||= DashboardQuery.new(filter_options)
