@@ -1,0 +1,8 @@
+- headers = %w(no location visit unique delivered most_request)
+= CSV.generate_line headers
+
+- @provincial_usages.each_with_index do |p, index|
+  - data = [index + 1, p.province_name, p.visits_count, p.unique_users_count, p.service_delivered_count]
+  - if(name, count, total = p.most_request_service.presence)
+    - data.push << "#{name} (#{count}/#{total})"
+  = CSV.generate_line data

@@ -2,6 +2,7 @@
 
 .card.shadow.mb-4
   .card-body
+    = render "download"
     = render "dashboard/filter_options"
 
     .d-flex.justify-content-between
@@ -14,8 +15,8 @@
           %tr
             %th{:scope => "col"}= t("provincial_usages.no")
             %th{:scope => "col"}= t("provincial_usages.location")
-            %th{:scope => "col"}= t("provincial_usages.unique")
             %th{:scope => "col"}= t("provincial_usages.visit")
+            %th{:scope => "col"}= t("provincial_usages.unique")
             %th{:scope => "col"}= t("provincial_usages.delivered")
             %th{:scope => "col"}= t("provincial_usages.most_request")
         %tbody
@@ -23,8 +24,8 @@
             %tr
               %th{:scope => "row"}= index + 1
               %td= usage.province_name
-              %td= usage.unique_users_count
               %td= usage.visits_count
+              %td= usage.unique_users_count
               %td= usage.service_delivered_count
               %td
                 = render(MostRequestUsageComponent.new(item: usage.most_request_service))

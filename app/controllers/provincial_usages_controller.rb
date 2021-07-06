@@ -1,4 +1,5 @@
 class ProvincialUsagesController < ApplicationController
+  respond_to :html, :csv
   include Filterable
 
   before_action :default_start_date
@@ -8,6 +9,7 @@ class ProvincialUsagesController < ApplicationController
 
   def index
     @pagy, @provincial_usages = pagy_array(@query.provincial_usages)
+    respond_with(@provincial_usages)
   end
 
   private
