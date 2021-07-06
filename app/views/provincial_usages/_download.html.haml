@@ -3,4 +3,4 @@
     Download
   .dropdown-menu{"aria-labelledby" => "download"}
     = link_to 'CSV', url_for(format: :csv), class: 'dropdown-item', target: '_blank'
-    %a.dropdown-item{:href => "#"} Image(PNG)
+    = link_to 'Image (png)', '#', id: 'downloadImage', class: 'dropdown-item'
