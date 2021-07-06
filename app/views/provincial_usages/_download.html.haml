@@ -1,0 +1,6 @@
+.dropdown
+  %button#download.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+    Download
+  .dropdown-menu{"aria-labelledby" => "download"}
+    = link_to 'CSV', url_for(format: :csv), class: 'dropdown-item', target: '_blank'
+    %a.dropdown-item{:href => "#"} Image(PNG) 
