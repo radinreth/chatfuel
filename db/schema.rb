@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_014012) do
+ActiveRecord::Schema.define(version: 2021_06_25_084412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 2020_12_09_014012) do
     t.string "gender", default: ""
     t.boolean "repeated", default: false
     t.index ["content_type", "content_id"], name: "index_messages_on_content_type_and_content_id"
+  end
+
+  create_table "pdf_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "content", default: ""
+    t.string "lang_code", default: "en"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "quota", force: :cascade do |t|

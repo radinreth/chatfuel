@@ -3,7 +3,7 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      = render(SearchFormComponent.new(placeholder: t('sites.type_name_or_code'), url: sites_path)) do |c|
+      = render_component(SearchFormComponent.new(placeholder: t('sites.type_name_or_code'), url: sites_path)) do |c|
         = c.with(:action) { render "search_action" }
 
     .total-info.mb-2

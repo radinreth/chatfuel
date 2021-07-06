@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :pdf_templates
+    get '/sites/:site_code/pdf_templates/:id', to: 'sites/pdf_templates#show'
+
     resources :sites do
       collection do
         get :new_import

@@ -1,0 +1,13 @@
+en:
+  pdf_templates:
+    title: PDF Templates
+    name: Name
+    lang_code: Language code
+    created_at: Created at
+    new: New PDF template
+    edit: Edit PDF template
+    save: Save
+    cancel: Cancel
+    language_code: Language code
+    km: ខ្មែរ
+    en: English

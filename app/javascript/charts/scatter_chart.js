@@ -6,28 +6,32 @@ class ScatterChart extends LineChart {
   options = () => {
     return {
       ...this.ancestor.options(),
-      legend: { display: false, },
+      legend: { display: false },
       layout: {
         padding: {
-          right: 50
-        }
+          right: 50,
+        },
       },
       elements: {
         point: {
-          pointStyle: "circle"
-        }
+          pointStyle: "circle",
+        },
       },
       scales: {
-        xAxes:[{
-          ticks: {
-            autoSkip: false,
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            suggestedMax: this._suggestedMax(),
-          }
-        }]
+        xAxes: [
+          {
+            ticks: {
+              autoSkip: false,
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              suggestedMax: this._suggestedMax(),
+            },
+          },
+        ],
       },
       plugins: {
         datalabels: {
@@ -37,11 +41,11 @@ class ScatterChart extends LineChart {
           textAlign: "center",
           backgroundColor: "#2F3559",
           color: "#FFF",
-          font: { size: 10 }
-        }
-      }
-    }
-  }
+          font: { size: 10 },
+        },
+      },
+    };
+  };
 }
 
 export default ScatterChart;

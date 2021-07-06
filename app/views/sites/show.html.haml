@@ -3,7 +3,7 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      = render(SearchFormComponent.new(placeholder: t('sites.type_track_code'), url: site_path))
+      = render_component(SearchFormComponent.new(placeholder: t('sites.type_track_code'), url: site_path))
 
     .table-responsive
       %table.table.table-bordered

@@ -3,7 +3,7 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      = render(SearchFormComponent.new(placeholder: t('tickets.type_ticket_code'), url: tickets_path))
+      = render_component(SearchFormComponent.new(placeholder: t('tickets.type_ticket_code'), url: tickets_path))
 
     .total-info.mb-2
       = t("paginate_info_html", name: t("tickets.title"), items_range: pagy_range, collection_count: @pagy.count)

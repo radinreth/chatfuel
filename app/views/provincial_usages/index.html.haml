@@ -27,7 +27,7 @@
               %td= usage.visits_count
               %td= usage.service_delivered_count
               %td
-                = render(MostRequestUsageComponent.new(item: usage.most_request_service))
+                = render_component(MostRequestUsageComponent.new(item: usage.most_request_service))
 
 != render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
     

@@ -19,13 +19,14 @@ module Filterable
   end
 
   def compact_district_codes
-    Array.wrap(params_district_code).compact_blank
+    params_district_code.compact_blank
   end
 
   def params_district_code
-    return unless params['district_code'].present?
+    district_codes = params['district_code'] || params['site_code']
+    return [] unless district_codes.present?
 
-    params['district_code'].map { |code| code.split(",") }.flatten
+    Array.wrap(district_codes).map { |code| code.split(",") }.flatten
   end
 
   def set_location_filter

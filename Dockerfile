@@ -22,6 +22,9 @@ RUN gem install bundler:2.1.4 && \
 # Install the application
 COPY . /app
 
+# Create symlink fonts
+RUN ln -s /app/vendor/assets/fonts /usr/share/fonts
+
 # Generate version file if available
 RUN if [ -d .git ]; then git describe --always > VERSION; fi
 
