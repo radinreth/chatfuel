@@ -50,6 +50,8 @@ gem 'paper_trail', '~> 10.3', '>= 10.3.1'
 gem "view_component", require: "view_component/engine"
 gem 'gon', '~> 6.4'
 
+gem 'draper', '~> 4.0.2'
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.beta4"

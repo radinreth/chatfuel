@@ -5,30 +5,16 @@
     = render "download"
     = render "dashboard/filter_options"
 
-    .d-flex.justify-content-between
-      %p
-        = t("paginate_info_html", name: t("sidebar.provincial_usages"), items_range: pagy_range, collection_count: @provincial_usages.count)
-    
     .table-responsive
       %table.table
         %thead
           %tr
-            %th{:scope => "col"}= t("provincial_usages.no")
-            %th{:scope => "col"}= t("provincial_usages.location")
-            %th{:scope => "col"}= t("provincial_usages.visit")
-            %th{:scope => "col"}= t("provincial_usages.unique")
-            %th{:scope => "col"}= t("provincial_usages.delivered")
-            %th{:scope => "col"}= t("provincial_usages.most_request")
+            - @provincial_usages.t_headers.each do |h|
+              %th{:scope => "col"}= h
         %tbody
-          - @provincial_usages.each_with_index do |usage, index|
+          - @provincial_usages.each_with_index do |p, index|
             %tr
-              %th{:scope => "row"}= index + 1
-              %td= usage.province_name
-              %td= usage.visits_count
-              %td= usage.unique_users_count
-              %td= usage.service_delivered_count
-              %td
-                = render(MostRequestUsageComponent.new(item: usage.most_request_service))
-
-!= render partial: 'shared/pagy/bootstrap_nav', locals: {pagy: @pagy}
-    
+              %th{:scope => "row"}
+                = ++index
+              - p.data.each do |d|
+                %td= d

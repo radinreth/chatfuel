@@ -8,7 +8,7 @@ class ProvincialUsagesController < ApplicationController
   before_action :set_gon
 
   def index
-    @pagy, @provincial_usages = pagy_array(@query.provincial_usages)
+    @provincial_usages = ProvincialUsageDecorator.decorate_collection(@query.provincial_usages)
     respond_with(@provincial_usages)
   end
 
