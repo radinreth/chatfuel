@@ -15,6 +15,6 @@
           - @provincial_usages.each_with_index do |p, index|
             %tr
               %th{:scope => "row"}
-                = ++index
+                = index + 1
               - p.data.each do |d|
                 %td= d
