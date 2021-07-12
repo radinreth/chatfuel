@@ -4,10 +4,10 @@
     = t "provincial_usages.download"
   .dropdown-menu{"aria-labelledby" => "download"}
     = link_to url_for(params.permit!.merge(format: :csv)), class: 'dropdown-item d-flex align-items-center', target: '_blank' do
-      = image_tag "csv_ico", width: 20, class: 'mr-2'
+      = image_tag "csv_ico.png", width: 20, class: 'mr-2'
       %span= t "provincial_usages.csv"
     = link_to '#', id: 'downloadImage', class: 'dropdown-item d-flex align-items-center' do
-      = image_tag "image_ico", width: 20, class: 'mr-2'
+      = image_tag "image_ico.png", width: 20, class: 'mr-2'
       %span= t "provincial_usages.image"
 
 .clearfix
