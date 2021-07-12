@@ -5,7 +5,7 @@ en:
     unique: Total Unique Users
     visit: Total Visit
     delivered: Total Service Delivered
-    most_request: Most Request Services
+    most_request: Most Request Services (times/total)
     download: Download
     csv: CSV
     image: Image(.png)
