@@ -19,7 +19,7 @@
     
     - if policy(:provincial_usage).index?
       %li.nav-item{ class: css_active_class('provincial_usages') }
-        = link_to provincial_usages_path, class: "nav-link d-flex align-items-center" do
+        = link_to provincial_usages_path, class: "nav-link provincial-usage" do
           %i.fas.fa-fw.fa-circle-notch
           %span{style: "margin-left: 0.25rem;"}
             = t('sidebar.provincial_usages')
