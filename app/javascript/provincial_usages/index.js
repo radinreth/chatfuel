@@ -20,10 +20,7 @@ OWSO.Provincial_usagesIndex = (() => {
           style: { color: "black" },
         })
         .then(function (dataUrl) {
-          download(
-            dataUrl,
-            `provincial_usages-${moment().format("YMMDDHmmss")}.png`
-          );
+          download(dataUrl, `${gon.fileName}.png`);
         })
         .catch(function (err) {
           console.log(err.message);
