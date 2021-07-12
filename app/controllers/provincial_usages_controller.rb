@@ -11,7 +11,7 @@ class ProvincialUsagesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        response.headers['Content-Disposition'] = "attachment; filename=\"#{csv_file_name}\""
+        response.headers['Content-Disposition'] = "attachment; filename=\"#{file_name}.csv\""
         render csv: @provincial_usages
       }
     end
@@ -19,8 +19,8 @@ class ProvincialUsagesController < ApplicationController
 
   private
 
-  def csv_file_name
-    "provincial_usages-#{DateTime.current.strftime("%Y%m%d%H%M%S")}.csv"
+  def file_name
+    "provincial_usage_from_#{@start_date}_to_#{@end_date}"
   end
 
   def set_query
@@ -34,6 +34,7 @@ class ProvincialUsagesController < ApplicationController
   def set_gon
     gon.push({
       locale: I18n.locale,
+      fileName: file_name,
       start_date: @start_date,
       end_date: @end_date
     })
