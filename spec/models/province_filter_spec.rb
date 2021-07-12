@@ -25,10 +25,10 @@ RSpec.describe ProvinceFilter do
         expect(filter).to match_array ['01']
       end
 
-      it 'fetches more province codes in pilot areas' do
+      it 'fetches any province codes' do
         filter = described_class.fetch '01', '02', '04'
 
-        expect(filter).to match_array ['01', '02']
+        expect(filter).to match_array ['01', '02', '04']
       end
     end
   end
