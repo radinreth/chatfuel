@@ -25,10 +25,10 @@ RSpec.describe DistrictFilter do
         expect(filter).to match_array ['0100']
       end
 
-      it 'fetches more district codes in pilot areas' do
+      it 'fetches any district codes' do
         filter = described_class.fetch '0100', '0200', '0400'
 
-        expect(filter).to match_array ['0100', '0200']
+        expect(filter).to match_array ['0100', '0200', '0400']
       end
     end
   end

@@ -2,7 +2,7 @@ class AreaFilter
   def self.fetch(*codes)
     return codes_beside_pilot if parse(codes).include?(other_code)
 
-    codes.flatten & pilot_codes
+    codes.flatten
   end
 
   private
